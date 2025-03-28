@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour {
     [System.NonSerialized] public float poisonAttackInterval = 600;
     [System.NonSerialized] public float poisonEffectDuration = 50;
     [System.NonSerialized] public float reach;
+    [System.NonSerialized] public float longReach;
     [System.NonSerialized] public float speed;
 
     [System.NonSerialized] public int attacksReceived = 0;
@@ -209,6 +210,7 @@ public class Enemy : MonoBehaviour {
     exp = enemyStats.exp;
     speed = enemyStats.speed;
     reach = enemyStats.reach;
+    longReach = enemyStats.longReach;
 
     edgeCastLength = enemyStats.edgeCastLength;
     arrowBurnPosition = enemyStats.arrowBurnPosition;
@@ -316,7 +318,7 @@ public class Enemy : MonoBehaviour {
     if (!isFlyingEnemy && Helpers.IsValueInArray(Constants.flyingEnemyTypes, type)) {
       // instantiates wings only only enemies who cannot naturally fly get wings and based on a position offset ("cheaper" to store a Vector2 than a Sprite object in a Dictionary)
       Vector2 wingOffset = Helpers.GetOrException(Objects.enemyWingOffsets, key);
-      GameObject wings = Instantiate(Helpers.GetOrException(Objects.prefabs, "enemy-wings"), new Vector2(transform.position.x - wingOffset.x * (isFacingLeft ? -1 : 1), transform.position.y + wingOffset.y), Quaternion.identity, transform);
+      GameObject wings = Instantiate(Helpers.GetOrException(Objects.prefabs, "enemy-wings"), new Vector2(transform.position.x + wingOffset.x * (isFacingLeft ? -1 : 1), transform.position.y + wingOffset.y), Quaternion.identity, transform);
 
       Color wingColor = Helpers.GetOrException(Colors.wingsColors, GameData.area);
       wings.GetComponent<SpriteRenderer>().color = wingColor;
@@ -954,7 +956,7 @@ public class Enemy : MonoBehaviour {
     Projectile projectileScript = projectile.GetComponent<Projectile>();
 
     projectileScript.fromFacingLeft = isFacingLeft;
-    projectileScript.key = Objects.projectileKeys[key];
+    projectileScript.key = Helpers.GetOrException(Objects.projectileKeys, key);
     projectileScript.targetPoint = searchPosition;
     searchPosition = Vector2.zero;
   }

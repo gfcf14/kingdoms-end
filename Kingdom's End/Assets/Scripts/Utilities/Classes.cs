@@ -147,6 +147,7 @@ public class EnemyStats {
   public int exp;
   public int speed;
   public float reach;
+  public float longReach;
   public float edgeCastLength;
   public float arrowBurnPosition;
   public float mass;

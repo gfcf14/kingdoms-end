@@ -343,7 +343,8 @@ public class Sprites {
 
   // refers to the sprites for projectiles that only enemies (like the shooter) can throw
   public static Dictionary<string, Sprite> projectileSprites = new Dictionary<string, Sprite> {
-    {"skeleton-bone", Resources.Load<Sprite>("Sprites/skeleton-bone")}
+    {"goblin-knife", Resources.Load<Sprite>("Sprites/projectiles/goblin-knife")},
+    {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")}
   };
 
   public static Dictionary<string, Sprite> droppableSprites = new Dictionary<string, Sprite> {
