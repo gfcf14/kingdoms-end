@@ -1226,4 +1226,9 @@ public class Enemy : MonoBehaviour {
     GameObject sparkle = Instantiate(Helpers.GetOrException(Objects.prefabs, "sparkle"), extraObject.position, Quaternion.identity, extraObject);
     sparkle.GetComponent<Animator>().Play("sparkle");
   }
+
+  // Bumps up the enemy a little bit as required by animation (for example when running and having to be a little bit off the ground)
+  public void BumpUp() {
+    transform.position = new Vector2(transform.position.x, transform.position.y + 0.125f);
+  }
 }
