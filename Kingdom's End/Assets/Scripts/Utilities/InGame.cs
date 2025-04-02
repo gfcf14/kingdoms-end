@@ -24,6 +24,14 @@ public class InGame : MonoBehaviour {
 
   void Start() {
     SetComponents();
+
+    if (DataManager.instance.playerPosition.HasValue) {
+      hero.ModifyPosition(DataManager.instance.playerPosition.Value);
+    }
+
+    if (DataManager.instance.playerFalling.HasValue) {
+      hero.isFalling = DataManager.instance.playerFalling.Value;
+    }
   }
 
   public void SetComponents() {

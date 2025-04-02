@@ -13,11 +13,6 @@ public class MainOverlay : MonoBehaviour {
     anim = GetComponent<Animator>();
     inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
     areaImage = gameObject.transform.Find("AreaImage").GetComponent<Image>();
-
-    // sets the area image based on the gamedata area
-    // TODO: ensure this can change as the game is loaded from a save state
-    areaImage.sprite = Helpers.GetOrException(Sprites.areaImages, GameData.area);
-    // areaImage.sprite = Helpers.GetOrException(Sprites.areaImages, "space");
   }
 
   void Update() {}
@@ -36,7 +31,6 @@ public class MainOverlay : MonoBehaviour {
   }
 
   public void ChangeArea() {
-    areaImage.sprite = Helpers.GetOrException(Sprites.areaImages, GameData.area);
     PauseUntilFading();
   }
 

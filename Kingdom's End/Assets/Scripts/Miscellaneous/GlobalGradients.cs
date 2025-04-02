@@ -198,12 +198,15 @@ public class GlobalGradients : MonoBehaviour {
           teleportPointTilemap.color = currentGradientColor;
         }
 
+        // TODO: find a way for each ambush floor to put itself on Start inside a list here, and remove itself on destroy. That way there's less work to do for this object
         // checks all enemy spawners of the current room and if an ambush floor is found, paint it as per current gradient (otherwise it's glaringly visible)
-        foreach (Transform child in hero.currentRoom.transform) {
-          if (child.tag == "EnemySpawner") {
-            foreach (Transform spawnerChild in child.transform) {
-              if (spawnerChild.tag == "AmbushFloor") {
-                spawnerChild.Find("Tile").GetComponent<SpriteRenderer>().color = currentGradientColor;
+        if (hero.currentRoom != null) {
+          foreach (Transform child in hero.currentRoom.transform) {
+            if (child.tag == "EnemySpawner") {
+              foreach (Transform spawnerChild in child.transform) {
+                if (spawnerChild.tag == "AmbushFloor") {
+                  spawnerChild.Find("Tile").GetComponent<SpriteRenderer>().color = currentGradientColor;
+                }
               }
             }
           }

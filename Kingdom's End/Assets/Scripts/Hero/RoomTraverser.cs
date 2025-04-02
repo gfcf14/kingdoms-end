@@ -32,7 +32,6 @@ public class RoomTraverser : MonoBehaviour {
           GameData.area = location;
           inGame.globalGradients.isIndoors = false;
           inGame.globalGradients.area = location;
-          inGame.ChangeArea();
         }
       }
     }
