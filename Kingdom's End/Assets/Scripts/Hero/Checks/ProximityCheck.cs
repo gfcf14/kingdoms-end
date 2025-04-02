@@ -62,7 +62,14 @@ public class ProximityCheck : MonoBehaviour {
         heroScript.nearbyInteractableObject = col.gameObject;
 
         string portalType = col.gameObject.GetComponent<Portal>().portalType;
-        SetObjectAction(portalType == "entrance" ? "enter" : portalType);
+
+        string action = portalType == "entrance" ? "enter" : portalType;
+
+        if (portalType == "cave") {
+          action = GameData.area == "underground" ? "exit" : "enter";
+        }
+
+        SetObjectAction(action);
       }
     }
   }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Helpers {
   public static int GetDamage(string weaponWielded) {
@@ -612,5 +613,13 @@ public class Helpers {
 
   public static string Capitalize(string s) {
     return char.ToUpper(s[0]) + s.Substring(1);
+  }
+
+  public static void ChangeScene(string scene, Vector2 position, Vector2 cameraPosition, Hero hero) {
+    DataManager.instance.playerPosition = position;
+    DataManager.instance.newCameraPosition = cameraPosition;
+    DataManager.instance.playerFalling = hero.isJumping || hero.isFalling;
+
+    SceneManager.LoadScene(scene);
   }
 }

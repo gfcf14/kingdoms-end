@@ -1080,7 +1080,13 @@ public class Hero : MonoBehaviour {
           } else {
             if (nearbyInteractableObject) {
               if (nearbyInteractableObject.tag == "Portal") {
-                TransportViaPortal(nearbyInteractableObject.GetComponent<Portal>().transportLocation);
+                Portal interactingPortal = nearbyInteractableObject.GetComponent<Portal>();
+
+                if (interactingPortal.portalType == "cave") {
+                  Helpers.ChangeScene("Underground", interactingPortal.transportLocation, interactingPortal.cameraPosition, GetComponent<Hero>());
+                } else {
+                  TransportViaPortal(interactingPortal.transportLocation);
+                }
               }
             } else {
               if (NPCnearbyAction == "chat") {
