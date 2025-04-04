@@ -9,12 +9,10 @@ public class RoomTrigger : MonoBehaviour {
 
   private GameObject hero;
   private Hero heroScript;
-  private InGame inGame;
 
   void Start() {
     hero = GameObject.FindGameObjectWithTag("Hero");
     heroScript = hero.GetComponent<Hero>();
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
   }
 
   public bool CanSpawnMiniBoss(Transform child) {
@@ -29,13 +27,13 @@ public class RoomTrigger : MonoBehaviour {
         Transform currentSavePoint = gameObject.transform.Find("SaveContainer");
 
         if (currentSavePoint != null) {
-          inGame.globalGradients.savePointTilemap = currentSavePoint.transform.Find("Grid").transform.GetChild(0).GetComponent<Tilemap>();
+          InGame.instance.globalGradients.savePointTilemap = currentSavePoint.transform.Find("Grid").transform.GetChild(0).GetComponent<Tilemap>();
         }
 
         Transform currentTeleportPoint = gameObject.transform.Find("TeleportContainer");
 
         if (currentTeleportPoint != null) {
-          inGame.globalGradients.teleportPointTilemap = currentTeleportPoint.transform.Find("Grid").transform.GetChild(0).GetComponent<Tilemap>();
+          InGame.instance.globalGradients.teleportPointTilemap = currentTeleportPoint.transform.Find("Grid").transform.GetChild(0).GetComponent<Tilemap>();
         }
 
       heroScript.currentRoom = gameObject;
@@ -99,7 +97,7 @@ public class RoomTrigger : MonoBehaviour {
   }
 
   IEnumerator PauseRoomWhileOnBossEntry() {
-    inGame.ToggleSoundtrack(isPaused: false, restart: true);
+    InGame.instance.ToggleSoundtrack(isPaused: false, restart: true);
 
     yield return new WaitForSecondsRealtime(3);
 

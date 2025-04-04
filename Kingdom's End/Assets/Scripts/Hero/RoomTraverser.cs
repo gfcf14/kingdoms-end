@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class RoomTraverser : MonoBehaviour {
   Hero hero;
-  private InGame inGame;
   void Start() {
     hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
   }
 
   void Update() {}
@@ -24,14 +22,15 @@ public class RoomTraverser : MonoBehaviour {
       string location = newRoom.location;
 
       if (GameData.area != location && location != "intersection") {
-        inGame.globalGradients.ResetTilemaps();
+        Debug.Log(InGame.instance);
+        InGame.instance.ResetTilemaps();
 
         if (location == "indoors") {
-          inGame.globalGradients.isIndoors = true;
+          InGame.instance.globalGradients.isIndoors = true;
         } else {
           GameData.area = location;
-          inGame.globalGradients.isIndoors = false;
-          inGame.globalGradients.area = location;
+          InGame.instance.globalGradients.isIndoors = false;
+          InGame.instance.globalGradients.area = location;
         }
       }
     }

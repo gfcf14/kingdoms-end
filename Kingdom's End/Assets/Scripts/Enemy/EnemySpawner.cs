@@ -8,10 +8,8 @@ public class EnemySpawner : MonoBehaviour {
   [SerializeField] public List<string> dropConditions = new List<string>();
   [SerializeField] public string specificDrop = "";
   [SerializeField] public bool isMiniBoss = false;
-  private InGame inGame;
-  void Start() {
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
-  }
+
+  void Start() {}
   void Update() {}
 
   public void Spawn() {
@@ -29,7 +27,7 @@ public class EnemySpawner : MonoBehaviour {
       ambushFloorScript.specificDrop = specificDrop;
       ambushFloorScript.isMiniBoss = false; // ambushers should NEVER be minibosses
     } else {
-      inGame.SpawnEnemy(transform.position, enemyKey, enemyType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform);
+      InGame.instance.SpawnEnemy(transform.position, enemyKey, enemyType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform);
     }
   }
 

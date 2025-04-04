@@ -3,23 +3,21 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GlobalGradients : MonoBehaviour {
-  [System.NonSerialized] public Hero hero;
-
-  [SerializeField] private Tilemap skyTilemap;
-  [SerializeField] private Tilemap cloudsTilemap;
-  [SerializeField] private Tilemap backgroundFarTilemap;
-  [SerializeField] private Tilemap backgroundMiddleTilemap;
-  [SerializeField] private Tilemap backgroundCloseTilemap;
-  [SerializeField] private Tilemap fortressBackTilemap;
-  [SerializeField] private Tilemap foregroundTilemap;
-  [SerializeField] private Tilemap fortressFrontTilemap;
-  [SerializeField] private Tilemap wallsTilemap;
-  [SerializeField] private Tilemap floorsTilemap;
-  [SerializeField] private Tilemap blendsTilemap;
-  [SerializeField] private Tilemap detailTilemap;
-  [SerializeField] private Tilemap buildingsBackTilemap;
-  [SerializeField] private Tilemap buildingsFrontTilemap;
-  [SerializeField] private Tilemap overlaysTilemap;
+  [SerializeField] public Tilemap skyTilemap;
+  [SerializeField] public Tilemap cloudsTilemap;
+  [SerializeField] public Tilemap backgroundFarTilemap;
+  [SerializeField] public Tilemap backgroundMiddleTilemap;
+  [SerializeField] public Tilemap backgroundCloseTilemap;
+  [SerializeField] public Tilemap fortressBackTilemap;
+  [SerializeField] public Tilemap foregroundTilemap;
+  [SerializeField] public Tilemap fortressFrontTilemap;
+  [SerializeField] public Tilemap wallsTilemap;
+  [SerializeField] public Tilemap floorsTilemap;
+  [SerializeField] public Tilemap blendsTilemap;
+  [SerializeField] public Tilemap detailTilemap;
+  [SerializeField] public Tilemap buildingsBackTilemap;
+  [SerializeField] public Tilemap buildingsFrontTilemap;
+  [SerializeField] public Tilemap overlaysTilemap;
 
   [System.NonSerialized] public Tilemap savePointTilemap;
   [System.NonSerialized] public Tilemap teleportPointTilemap;
@@ -108,8 +106,6 @@ public class GlobalGradients : MonoBehaviour {
   [System.NonSerialized] private Color resetColor = Color.white;
 
   void Start() {
-    hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
-
     areaGradients = new Dictionary<string, Dictionary<string, Gradient>> {
       {"calderas", new Dictionary<string, Gradient> {
           {"sky", calderasSkyGradient}, {"ground", calderasGroundGradient}, {"buildings", calderasBuildingsGradient}
@@ -159,7 +155,7 @@ public class GlobalGradients : MonoBehaviour {
   }
 
   void Update() {
-    if (!hero.isPaused) {
+    if (!Hero.instance.isPaused) {
       // TODO: add time from loaded time once implemented
       float elapsedTime = Time.time + GameData.initialGameTime;
       currentTime = Helpers.GetGameTime((int)(elapsedTime % Constants.maxDayLength));
@@ -200,8 +196,8 @@ public class GlobalGradients : MonoBehaviour {
 
         // TODO: find a way for each ambush floor to put itself on Start inside a list here, and remove itself on destroy. That way there's less work to do for this object
         // checks all enemy spawners of the current room and if an ambush floor is found, paint it as per current gradient (otherwise it's glaringly visible)
-        if (hero.currentRoom != null) {
-          foreach (Transform child in hero.currentRoom.transform) {
+        if (Hero.instance.currentRoom != null) {
+          foreach (Transform child in Hero.instance.currentRoom.transform) {
             if (child.tag == "EnemySpawner") {
               foreach (Transform spawnerChild in child.transform) {
                 if (spawnerChild.tag == "AmbushFloor") {

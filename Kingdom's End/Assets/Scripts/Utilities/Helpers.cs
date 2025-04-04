@@ -618,7 +618,7 @@ public class Helpers {
   public static void ChangeScene(string scene, Vector2 position, Vector2 cameraPosition, Hero hero) {
     DataManager.instance.playerPosition = position;
     DataManager.instance.newCameraPosition = cameraPosition;
-    DataManager.instance.playerFalling = hero.isJumping || hero.isFalling;
+    // DataManager.instance.playerFalling = hero.isJumping || hero.isFalling;
 
     SceneManager.LoadScene(scene);
   }

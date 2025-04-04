@@ -7,8 +7,8 @@ using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class InGame : MonoBehaviour {
-  private Tilemap groundTiles;
-  private Tilemap detailTiles;
+  // private Tilemap groundTiles;
+  // private Tilemap detailTiles;
   private AudioSource soundtrack;
   private float fadeDuration = 0.25f;
 
@@ -21,6 +21,16 @@ public class InGame : MonoBehaviour {
 
   [SerializeField] public GameObject pauseCanvas;
   public GlobalGradients globalGradients;
+
+  public static InGame instance;
+  private void Awake() {
+    if (instance == null) {
+      instance = this;
+      DontDestroyOnLoad(gameObject);
+    } else if (instance != this) {
+      Destroy(gameObject); // Destroy any new instance of this class
+    }
+  }
 
   void Start() {
     SetComponents();
@@ -35,17 +45,23 @@ public class InGame : MonoBehaviour {
   }
 
   public void SetComponents() {
-    groundTiles = GameObject.Find("Floors").GetComponent<Tilemap>();
-    detailTiles = GameObject.Find("Detail").GetComponent<Tilemap>();
+    // groundTiles = GameObject.Find("Floors").GetComponent<Tilemap>();
+    // detailTiles = GameObject.Find("Detail").GetComponent<Tilemap>();
     mainOverlay = GameObject.Find("MainOverlay");
     soundtrack = GetComponent<AudioSource>();
     soundtrack.volume = Settings.maxSoundtrackVolume;
     soundtrack.loop = true;
 
     hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
-    globalGradients = GameObject.Find("Global Gradients").GetComponent<GlobalGradients>();
+    globalGradients = instance.transform.Find("Global Gradients").GetComponent<GlobalGradients>();
+
+    mainOverlay.GetComponent<MainOverlay>().AssignTilemaps();
   }
   void Update() {}
+
+  public void ResetTilemaps() {
+    globalGradients.ResetTilemaps();
+  }
 
   public void PlaySoundtrack(string key) {
     soundtrack.clip = Helpers.GetOrException(Sounds.soundtracks, key);
@@ -198,53 +214,54 @@ public class InGame : MonoBehaviour {
     return Helpers.GetMaterial(material, tileName);
   }
 
-  public string GetTileName(Vector3 objectPosition) {
-    Vector3Int groundTileCoordinates = groundTiles.WorldToCell(objectPosition);
-    Vector3 tileCenter = groundTiles.GetCellCenterWorld(groundTileCoordinates);
-    Vector3 tileHalfSize = groundTiles.cellSize / 2;
-    Vector3Int groundTileBelowCoordinates = groundTileCoordinates;
-    TileBase groundTileBelowPlayer = groundTiles.GetTile(groundTileBelowCoordinates);
+  // public string GetTileName(Vector3 objectPosition) {
+  //   Vector3Int groundTileCoordinates = groundTiles.WorldToCell(objectPosition);
+  //   Vector3 tileCenter = groundTiles.GetCellCenterWorld(groundTileCoordinates);
+  //   Vector3 tileHalfSize = groundTiles.cellSize / 2;
+  //   Vector3Int groundTileBelowCoordinates = groundTileCoordinates;
+  //   TileBase groundTileBelowPlayer = groundTiles.GetTile(groundTileBelowCoordinates);
 
-    // if not found, get the tile below
-    if (groundTileBelowPlayer == null) {
-      groundTileCoordinates = groundTileCoordinates + new Vector3Int(0, -1, 0);
-      tileCenter = groundTiles.GetCellCenterWorld(groundTileCoordinates);
-      groundTileBelowCoordinates = groundTileCoordinates;
-      groundTileBelowPlayer = groundTiles.GetTile(groundTileBelowCoordinates);
-    }
+  //   // if not found, get the tile below
+  //   if (groundTileBelowPlayer == null) {
+  //     groundTileCoordinates = groundTileCoordinates + new Vector3Int(0, -1, 0);
+  //     tileCenter = groundTiles.GetCellCenterWorld(groundTileCoordinates);
+  //     groundTileBelowCoordinates = groundTileCoordinates;
+  //     groundTileBelowPlayer = groundTiles.GetTile(groundTileBelowCoordinates);
+  //   }
 
-    // Draw lines around the boundaries of the selected tile
-    Debug.DrawLine(tileCenter + new Vector3(-tileHalfSize.x, -tileHalfSize.y), tileCenter + new Vector3(tileHalfSize.x, -tileHalfSize.y), Color.red);
-    Debug.DrawLine(tileCenter + new Vector3(tileHalfSize.x, -tileHalfSize.y), tileCenter + new Vector3(tileHalfSize.x, tileHalfSize.y), Color.red);
-    Debug.DrawLine(tileCenter + new Vector3(tileHalfSize.x, tileHalfSize.y), tileCenter + new Vector3(-tileHalfSize.x, tileHalfSize.y), Color.red);
-    Debug.DrawLine(tileCenter + new Vector3(-tileHalfSize.x, tileHalfSize.y), tileCenter + new Vector3(-tileHalfSize.x, -tileHalfSize.y), Color.red);
+  //   // Draw lines around the boundaries of the selected tile
+  //   Debug.DrawLine(tileCenter + new Vector3(-tileHalfSize.x, -tileHalfSize.y), tileCenter + new Vector3(tileHalfSize.x, -tileHalfSize.y), Color.red);
+  //   Debug.DrawLine(tileCenter + new Vector3(tileHalfSize.x, -tileHalfSize.y), tileCenter + new Vector3(tileHalfSize.x, tileHalfSize.y), Color.red);
+  //   Debug.DrawLine(tileCenter + new Vector3(tileHalfSize.x, tileHalfSize.y), tileCenter + new Vector3(-tileHalfSize.x, tileHalfSize.y), Color.red);
+  //   Debug.DrawLine(tileCenter + new Vector3(-tileHalfSize.x, tileHalfSize.y), tileCenter + new Vector3(-tileHalfSize.x, -tileHalfSize.y), Color.red);
 
-    return groundTileBelowPlayer ? groundTileBelowPlayer.name : "";
-  }
+  //   return groundTileBelowPlayer ? groundTileBelowPlayer.name : "";
+  // }
 
   // TODO: refactor to use the location, or a specific grid in the room, ensuring that this grid allows a material, to use this for sounds
   public string GetTileMaterial(Vector3 objectPosition) {
-    Vector3Int groundTileCoordinates = groundTiles.WorldToCell(objectPosition);
-    Vector3Int groundTileBelowCoordinates = groundTileCoordinates + new Vector3Int(0, -1, 0);
+    return "grass";
+    // Vector3Int groundTileCoordinates = groundTiles.WorldToCell(objectPosition);
+    // Vector3Int groundTileBelowCoordinates = groundTileCoordinates + new Vector3Int(0, -1, 0);
 
-    Vector3Int detailTileCoordinates = detailTiles.WorldToCell(objectPosition);
-    Vector3Int detailTileBelowCoordinates = detailTileCoordinates + new Vector3Int(0, -1, 0);
+    // Vector3Int detailTileCoordinates = detailTiles.WorldToCell(objectPosition);
+    // Vector3Int detailTileBelowCoordinates = detailTileCoordinates + new Vector3Int(0, -1, 0);
 
-    TileBase groundTileBelowPlayer = groundTiles.GetTile(groundTileBelowCoordinates);
-    TileBase detailTileBelowPlayer = detailTiles.GetTile(detailTileBelowCoordinates);
+    // TileBase groundTileBelowPlayer = groundTiles.GetTile(groundTileBelowCoordinates);
+    // TileBase detailTileBelowPlayer = detailTiles.GetTile(detailTileBelowCoordinates);
 
-    if (detailTileBelowPlayer != null) {
-      return "grass";
-      // int detailTileIndex = int.Parse(detailTileBelowPlayer.name.Replace("tiles-details_", ""));
+    // if (detailTileBelowPlayer != null) {
+    //   return "grass";
+    //   // int detailTileIndex = int.Parse(detailTileBelowPlayer.name.Replace("tiles-details_", ""));
 
-      // if (Helpers.IsValueInArray(Constants.detailDirt, detailTileIndex)) {
-      //   return "dirt";
-      // } else {
-      //   return GetGroundMaterial(groundTileBelowPlayer == null ? "" : groundTileBelowPlayer.name);
-      // }
-    } else {
-      return GetGroundMaterial(groundTileBelowPlayer == null ? "" : groundTileBelowPlayer.name);
-    }
+    //   // if (Helpers.IsValueInArray(Constants.detailDirt, detailTileIndex)) {
+    //   //   return "dirt";
+    //   // } else {
+    //   //   return GetGroundMaterial(groundTileBelowPlayer == null ? "" : groundTileBelowPlayer.name);
+    //   // }
+    // } else {
+    //   return GetGroundMaterial(groundTileBelowPlayer == null ? "" : groundTileBelowPlayer.name);
+    // }
   }
 
   public bool IsInRoom(string roomName) {

@@ -37,7 +37,6 @@ public class Hero : MonoBehaviour {
   private Animator anim;
   private SpriteRenderer heroRenderer;
   private AudioSource audioSource;
-  private InGame inGame;
 
   public float heroHeight;
   public float heroWidth;
@@ -270,6 +269,16 @@ public class Hero : MonoBehaviour {
     {"peasant-girl", ""}
   };
 
+  public static Hero instance;
+  private void Awake() {
+    if (instance == null) {
+      instance = this;
+      DontDestroyOnLoad(gameObject);
+    } else if (instance != this) {
+      Destroy(gameObject); // Destroy any duplicates! Only ONE hero can exist!
+    }
+  }
+
   // called when script is loaded
   private void Start() {
     #if !UNITY_EDITOR
@@ -285,7 +294,6 @@ public class Hero : MonoBehaviour {
     airEdgeCheckScript = airEdgeCheck.GetComponent<AirEdgeCheck>();
     proximityCheckScript = transform.Find("ProximityCheck").GetComponent<ProximityCheck>();
     bombCheckScript = bombCheck.GetComponent<BombCheck>();
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
 
     // currentWeapon = weapons[weaponIndex % weapons.Length];
 
@@ -731,7 +739,7 @@ public class Hero : MonoBehaviour {
   }
 
   public void PlayRunningSound() {
-    string materialRunningOn = inGame.GetTileMaterial(new Vector3(transform.position.x + direction, transform.position.y + 0.1f, transform.position.z));
+    string materialRunningOn = InGame.instance.GetTileMaterial(new Vector3(transform.position.x + direction, transform.position.y + 0.1f, transform.position.z));
 
     // if there is no tile material, falling sound will be assumed from location
     if (materialRunningOn == null) {
@@ -776,7 +784,7 @@ public class Hero : MonoBehaviour {
 
   public void PerformGroundFall() {
     // when falling, y position may need to be adjusted by 0.1f to avoid null tile recognition
-    string tileMaterial = inGame.GetTileMaterial(new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z));
+    string tileMaterial = InGame.instance.GetTileMaterial(new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z));
 
     // if there is no tile material, falling sound will be assumed from location
     if (tileMaterial == null) {
@@ -824,7 +832,7 @@ public class Hero : MonoBehaviour {
   }
 
   public void ResumeGame() {
-    inGame.ToggleSoundtrack(isPaused);
+    InGame.instance.ToggleSoundtrack(isPaused);
     isPaused = !isPaused;
     Helpers.TogglePause(isPaused, pauseCanvas);
   }
@@ -833,12 +841,12 @@ public class Hero : MonoBehaviour {
     actionCanvas.SetActive(false);
     transform.position = transportLocation;
     transportLocation = Vector2.zero;
-    inGame.FlashFadeIn();
+    InGame.instance.FlashFadeIn();
   }
 
   public void TransportViaPortal(Vector2 newLocation) {
     transportLocation = newLocation;
-    inGame.FlashFadeOut();
+    InGame.instance.FlashFadeOut();
   }
 
   public bool IsMovingUphill() {
@@ -868,7 +876,7 @@ public class Hero : MonoBehaviour {
       Collider2D[] playerColliders = Physics2D.OverlapBoxAll(playerColliderPosition, heroDimensions, 0f);
 
       // DEBUG for FALL BOUNDS: draws this to be visible on Scene mode (or with gizmos) to check how it can change and affect falling strategy
-        // inGame.DrawRectangle(playerColliderPosition, heroDimensions);
+        // InGame.instance.DrawRectangle(playerColliderPosition, heroDimensions);
       // END of DEBUG for FALL BOUNDS
 
 
@@ -884,7 +892,7 @@ public class Hero : MonoBehaviour {
     // end of PLAYER FALLING ALGORITHM
 
     // DEBUG FOR TILE: checks for tile name and debugs its position
-        // inGame.GetTileName(transform.position);
+        // InGame.instance.GetTileName(transform.position);
     // END of DEBUG FOR TILE
 
 
@@ -1935,7 +1943,7 @@ public class Hero : MonoBehaviour {
           int shieldDefense = armUsed == 1 ? equippedDEF1 : equippedDEF2;
 
           if (bewitch || atk <= shieldDefense) {
-            inGame.Block(shieldCollider.transform.position, !isFacingLeft);
+            InGame.instance.Block(shieldCollider.transform.position, !isFacingLeft);
             currentShieldHP--;
           } else {
             DropDefense();
@@ -1958,7 +1966,7 @@ public class Hero : MonoBehaviour {
           DropDefense();
         }
         if (isParrying) {
-          inGame.Block(weaponCollider.transform.position, !isFacingLeft);
+          InGame.instance.Block(weaponCollider.transform.position, !isFacingLeft);
           Clash();
           if (enemyScript != null) {
             enemyScript.stunOnAttack = true;
@@ -2002,7 +2010,7 @@ public class Hero : MonoBehaviour {
     if (Settings.showDamage) {
       // TODO: consider changing the Hero colliders for damage so the connecting point is higher
       Vector2 position = damagePosition == null ? new Vector2(transform.position.x, transform.position.y + heroHeight / 2) : new Vector2(damagePosition.Value.x, damagePosition.Value.y + heroHeight / 2);
-      inGame.DrawDamage(position, damage, isCritical, soundType);
+      InGame.instance.DrawDamage(position, damage, isCritical, soundType);
     }
 
     if (!isInvulnerable) {
@@ -2056,7 +2064,7 @@ public class Hero : MonoBehaviour {
 
   public void CheckLevel() {
     if (exp >= next) {
-      inGame.ToggleSoundtrack(isPaused: false);
+      InGame.instance.ToggleSoundtrack(isPaused: false);
       LevelUp();
     }
   }
@@ -2064,7 +2072,7 @@ public class Hero : MonoBehaviour {
   public void LevelUp() {
     playerLevel++;
     SetupStatsByLevel();
-    inGame.PlaySound(Helpers.GetOrException(Sounds.notificationSounds, "levelup"), transform.position);
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.notificationSounds, "levelup"), transform.position);
     fanfareCanvas.SetActive(true);
     SetPauseCase("level-up");
     fanfareCanvas.GetComponent<FanfareCanvas>().ShowLevelUp();
@@ -2072,8 +2080,8 @@ public class Hero : MonoBehaviour {
 
   public void GetRelic() {
 
-    inGame.ToggleSoundtrack(isPaused: false);
-    inGame.PlaySound(Helpers.GetOrException(Sounds.notificationSounds, "levelup"), transform.position);
+    InGame.instance.ToggleSoundtrack(isPaused: false);
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.notificationSounds, "levelup"), transform.position);
     fanfareCanvas.SetActive(true);
     SetPauseCase("got-relic");
     fanfareCanvas.GetComponent<FanfareCanvas>().ShowGetRelic();
@@ -2082,7 +2090,7 @@ public class Hero : MonoBehaviour {
   public void PlayerDeath() {
     SetPauseCase("death");
     fadeOutCanvas.SetActive(true);
-    inGame.StartFadeOutAndPause();
+    InGame.instance.StartFadeOutAndPause();
   }
 
   public void SetPauseCase(string newPauseCase) {
@@ -2092,14 +2100,14 @@ public class Hero : MonoBehaviour {
 
   public void ClearPauseCase(bool resumeSoundtrack = false, bool waitIfLevelingUp = false) {
     if (pauseCase == "got-relic") {
-      inGame.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, "normal"), transform.position);
+      InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, "normal"), transform.position);
     }
 
     pauseCase = "";
     Time.timeScale = 1;
 
     if (resumeSoundtrack) {
-      inGame.ToggleSoundtrack(isPaused: true, restart: false, wait: waitIfLevelingUp);
+      InGame.instance.ToggleSoundtrack(isPaused: true, restart: false, wait: waitIfLevelingUp);
     }
   }
 

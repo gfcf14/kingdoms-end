@@ -1,11 +1,7 @@
 using UnityEngine;
 
 public class PlayerStopper : MonoBehaviour {
-  private InGame inGame;
-  void Start() {
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
-  }
-
+  void Start() {}
   void Update() {}
 
   private void OnTriggerEnter2D(Collider2D col) {
@@ -31,16 +27,16 @@ public class PlayerStopper : MonoBehaviour {
 
           if (roomBoss != null) {
             Enemy bossScript = roomBoss.GetComponent<Enemy>();
-            BossBarsCanvas bossCanvas = inGame.bossStatusCanvas.GetComponent<BossBarsCanvas>();
+            BossBarsCanvas bossCanvas = InGame.instance.bossStatusCanvas.GetComponent<BossBarsCanvas>();
 
             bossCanvas.boss = bossScript;
             bossCanvas.bossName = bossScript.enemyName;
-            inGame.bossStatusCanvas.SetActive(true);
+            InGame.instance.bossStatusCanvas.SetActive(true);
           }
         }
 
         // starts playing the miniboss soundtrack
-        inGame.PlaySoundtrack("miniboss");
+        InGame.instance.PlaySoundtrack("miniboss");
       }
     }
   }

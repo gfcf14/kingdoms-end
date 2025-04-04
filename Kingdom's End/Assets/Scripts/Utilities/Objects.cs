@@ -21,6 +21,7 @@ public class Objects {
     {"enemy-spawner", Resources.Load("Prefabs/EnemySpawner") as GameObject},
     {"enemy-wings", Resources.Load("Prefabs/EnemyWings") as GameObject},
     {"explosion", Resources.Load("Prefabs/Explosion") as GameObject},
+    {"in-game", Resources.Load("Prefabs/InGame") as GameObject},
     {"item-button", Resources.Load("Prefabs/ItemButton") as GameObject},
     {"item-loss", Resources.Load("Prefabs/ItemLoss") as GameObject},
     {"money-loss", Resources.Load("Prefabs/MoneyLoss") as GameObject},
