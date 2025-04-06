@@ -5,11 +5,8 @@ public class Explosion : MonoBehaviour {
   [SerializeField] public int damage;
 
   [SerializeField] public bool hasDamaged;
-  private InGame inGame;
 
   void Start() {
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
-
     if (!Helpers.IsValueInArray(Constants.explosionsWithColliders, type)) {
       Destroy(GetComponent<CapsuleCollider2D>());
     }
@@ -28,7 +25,7 @@ public class Explosion : MonoBehaviour {
   public void PlayExplosion() {
     // TODO: consider if a explosion sound needs to be played for projectiles
     if (type != "projectile") {
-      inGame.PlaySound(Helpers.GetOrException(Sounds.explosionSounds, type), transform.position);
+      InGame.instance.PlaySound(Helpers.GetOrException(Sounds.explosionSounds, type), transform.position);
     }
   }
 

@@ -2,15 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FadeOutOverlay : MonoBehaviour {
-  private InGame inGame;
-  void Start() {
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
-  }
+  void Start() {}
   void Update() {}
 
   // uses the main overlay to cover the game on game over
   public void Cover() {
-    inGame.Cover();
+    InGame.instance.Cover();
   }
 
   public void GameOver() {

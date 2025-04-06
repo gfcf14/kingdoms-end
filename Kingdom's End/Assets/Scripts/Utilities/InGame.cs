@@ -17,9 +17,13 @@ public class InGame : MonoBehaviour {
 
   public Hero hero;
   public GameObject mainOverlay;
+  public GameObject actionCanvas;
   public GameObject bossStatusCanvas;
+  public GameObject chatCanvas;
+  public GameObject infoCanvas;
 
-  [SerializeField] public GameObject pauseCanvas;
+  public GameObject pauseCanvas;
+  public GameObject hpBarContainer;
   public GlobalGradients globalGradients;
 
   public static InGame instance;
@@ -35,10 +39,6 @@ public class InGame : MonoBehaviour {
   void Start() {
     SetComponents();
 
-    if (DataManager.instance.playerPosition.HasValue) {
-      hero.ModifyPosition(DataManager.instance.playerPosition.Value);
-    }
-
     if (DataManager.instance.playerFalling.HasValue) {
       hero.isFalling = DataManager.instance.playerFalling.Value;
     }
@@ -53,7 +53,6 @@ public class InGame : MonoBehaviour {
     soundtrack.loop = true;
 
     hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
-    globalGradients = instance.transform.Find("Global Gradients").GetComponent<GlobalGradients>();
 
     mainOverlay.GetComponent<MainOverlay>().AssignTilemaps();
   }

@@ -10,7 +10,6 @@ public class MainOverlay : MonoBehaviour {
   public void AssignTilemaps() {
     GameObject grid = GameObject.Find("Grid");
 
-    Debug.Log(InGame.instance.globalGradients);
     InGame.instance.globalGradients.skyTilemap = grid.transform.Find("Sky").GetComponent<Tilemap>();
     InGame.instance.globalGradients.cloudsTilemap = grid.transform.Find("Clouds").GetComponent<Tilemap>();
     InGame.instance.globalGradients.backgroundFarTilemap = grid.transform.Find("Background Far").GetComponent<Tilemap>();

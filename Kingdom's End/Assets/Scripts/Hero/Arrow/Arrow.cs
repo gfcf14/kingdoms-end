@@ -28,14 +28,11 @@ public class Arrow : MonoBehaviour {
   [System.NonSerialized] public float maxHeight = 5f;
   [System.NonSerialized] public int directionFactor = 0;
 
-  private InGame inGame;
-
   void Start() {
     hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
     body = GetComponent<Rigidbody2D>();
     arrowCollider = transform.Find("ArrowCollider").gameObject;
     objectRenderer = GetComponent<SpriteRenderer>();
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
     extraSprite = transform.Find("Extra").gameObject;
     directionFactor = isFacingLeft ? -1 : 1;
 

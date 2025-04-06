@@ -22,7 +22,6 @@ public class RoomTraverser : MonoBehaviour {
       string location = newRoom.location;
 
       if (GameData.area != location && location != "intersection") {
-        Debug.Log(InGame.instance);
         InGame.instance.ResetTilemaps();
 
         if (location == "indoors") {

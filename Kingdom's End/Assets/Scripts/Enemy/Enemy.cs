@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour {
     [System.NonSerialized] public SpriteRenderer enemyRenderer;
 
     private AudioSource audioSource;
-    private InGame inGame;
 
   // Properties
     [System.NonSerialized] public bool isFacingLeft = false;
@@ -166,7 +165,6 @@ public class Enemy : MonoBehaviour {
     body = GetComponent<Rigidbody2D>();
     anim = GetComponent<Animator>();
     enemyRenderer = GetComponent<SpriteRenderer>();
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
     audioSource = GetComponent<AudioSource>();
 
     flashEffect = GetComponent<SimpleFlash>();
@@ -264,7 +262,7 @@ public class Enemy : MonoBehaviour {
     // if no such object (same type and key) was found, instantiate a new copy and assign clips based on key to states
     if (!animatorAlreadyExists) {
       AnimatorOverrideController aoc = new AnimatorOverrideController(Instantiate(Helpers.GetOrException(Objects.animationControllers, type)));
-      AnimatorOverrideController resourceAoc = new AnimatorOverrideController(GameObject.Find("InGame").gameObject.GetComponent<Animator>().runtimeAnimatorController);
+      AnimatorOverrideController resourceAoc = new AnimatorOverrideController(InGame.instance.gameObject.GetComponent<Animator>().runtimeAnimatorController);
 
       var anims = new List<KeyValuePair<AnimationClip, AnimationClip>>();
       foreach (AnimationClip a in aoc.animationClips) {
@@ -344,7 +342,7 @@ public class Enemy : MonoBehaviour {
 
   // TODO: consider if enemies should constantly be making sound (e.g. walking)
   public void PlayRunningSound() {
-    // string materialRunningOn = inGame.GetTileMaterial(transform.position);
+    // string materialRunningOn = InGame.instance.GetTileMaterial(transform.position);
 
     // if (materialRunningOn != null) {
     //   AudioClip[] materialClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.runningSounds, materialRunningOn), baseMaterial);
@@ -431,7 +429,7 @@ public class Enemy : MonoBehaviour {
               }
 
               if (currentTime > nextPoisonAttackTime)  {
-                inGame.PlaySound(Helpers.GetOrException(Sounds.poisonSounds, "basic"), transform.position);
+                InGame.instance.PlaySound(Helpers.GetOrException(Sounds.poisonSounds, "basic"), transform.position);
                 TakeDamage(Constants.arrowPoisonDamage);
                 poisonEffectTime = Time.time * 1000;
                 enemyRenderer.color = Helpers.GetOrException(Colors.statusColors, "poisoned");
@@ -562,7 +560,7 @@ public class Enemy : MonoBehaviour {
         rotateDirection = "east";
       }
 
-      inGame.InstantiatePrefab("droppable", fragmentOutcome.key, "normal", transform.parent.gameObject, collisionOrigin + fragmentPositionOffset, enemyRenderer, shouldRotate: true, rotateDirection);
+      InGame.instance.InstantiatePrefab("droppable", fragmentOutcome.key, "normal", transform.parent.gameObject, collisionOrigin + fragmentPositionOffset, enemyRenderer, shouldRotate: true, rotateDirection);
     }
   }
 
@@ -660,7 +658,7 @@ public class Enemy : MonoBehaviour {
               parentArrow.DestroyArrow();
             }
           } else if (isDefending && !Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, weaponType)) {
-            inGame.Block(col.ClosestPoint(transform.position), attackedFromBehind && isFacingLeft || !attackedFromBehind && !isFacingLeft);
+            InGame.instance.Block(col.ClosestPoint(transform.position), attackedFromBehind && isFacingLeft || !attackedFromBehind && !isFacingLeft);
           }
         }
       }
@@ -777,7 +775,7 @@ public class Enemy : MonoBehaviour {
 
   public void DisplayEnemyInInfoCanvas() {
     if (!isMiniBoss) {
-      hero.infoCanvas.GetComponent<InfoCanvas>().Display(enemyName, new EnemyHealth(currentHP, maxHP));
+      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().Display(enemyName, new EnemyHealth(currentHP, maxHP));
     }
   }
 
@@ -794,7 +792,7 @@ public class Enemy : MonoBehaviour {
 
     if (Settings.showDamage) {
       Vector2 position = damagePosition ?? new Vector2(transform.position.x, transform.position.y + (enemyHeight / 2));
-      inGame.DrawDamage(position, actualDamage, isCritical, soundType);
+      InGame.instance.DrawDamage(position, actualDamage, isCritical, soundType);
     }
   }
 
@@ -912,7 +910,7 @@ public class Enemy : MonoBehaviour {
 
     // instantiates the dropped item
     string[] droppableAndRarity = (specificDrop == "" ? Helpers.GetDroppableItem(key, level, hero.luckPercentage + hero.equippedLUCK + hero.effectLCK) : "" + specificDrop + "|rare").Split('|');
-    inGame.InstantiatePrefab("droppable", droppableAndRarity[0], droppableAndRarity[1], transform.parent.gameObject, deathOrigin, enemyRenderer, false, "", spawnedFrom);
+    InGame.instance.InstantiatePrefab("droppable", droppableAndRarity[0], droppableAndRarity[1], transform.parent.gameObject, deathOrigin, enemyRenderer, false, "", spawnedFrom);
 
     // instantiates the explosion of the enemy
     GameObject enemyExplosion = Instantiate(Helpers.GetOrException(Objects.prefabs, "explosion"), deathOrigin, Quaternion.identity);
@@ -922,7 +920,7 @@ public class Enemy : MonoBehaviour {
       GameObject.Find("BossStatusCanvas").SetActive(false);
       hero.isFightingBoss = false;
 
-      inGame.SwitchFromMiniBossTrack(GameData.area, bossCausingLevelUp);
+      InGame.instance.SwitchFromMiniBossTrack(GameData.area, bossCausingLevelUp);
     }
 
     Destroy(gameObject);
@@ -1222,7 +1220,7 @@ public class Enemy : MonoBehaviour {
 
   public void Sparkle() {
     Transform extraObject = transform.Find("Extra");
-    inGame.PlaySound(Sounds.bewitchSound, extraObject.position);
+    InGame.instance.PlaySound(Sounds.bewitchSound, extraObject.position);
     GameObject sparkle = Instantiate(Helpers.GetOrException(Objects.prefabs, "sparkle"), extraObject.position, Quaternion.identity, extraObject);
     sparkle.GetComponent<Animator>().Play("sparkle");
   }

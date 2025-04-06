@@ -7,10 +7,8 @@ public class SmashWave : MonoBehaviour {
   [System.NonSerialized] public int damage;
   [System.NonSerialized] public bool hitPlayer = false;
 
-  private InGame inGame;
   void Start() {
     GetComponent<SpriteRenderer>().size = new Vector2(width, width * 0.8f);
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
   }
 
   void Update() {}
@@ -31,6 +29,6 @@ public class SmashWave : MonoBehaviour {
   }
 
   public void PlaySmash() {
-    inGame.PlaySound(Helpers.GetOrException(Sounds.meleeSounds, "smash"), transform.position);
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.meleeSounds, "smash"), transform.position);
   }
 }

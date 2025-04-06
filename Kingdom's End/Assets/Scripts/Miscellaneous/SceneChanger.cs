@@ -10,8 +10,7 @@ public class SceneChanger : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D col) {
       if (col.gameObject.CompareTag("Hero")) {
-        Hero heroInstance = GameObject.Find("Hero").GetComponent<Hero>();
-        Helpers.ChangeScene(scene, new Vector2(heroInstance.transform.position.x + heroInstance.direction, heroInstance.transform.position.y), newCameraPosition, heroInstance);
+        Helpers.ChangeScene(scene, new Vector2(Hero.instance.transform.position.x + Hero.instance.direction, Hero.instance.transform.position.y), newCameraPosition);
       }
     }
 }

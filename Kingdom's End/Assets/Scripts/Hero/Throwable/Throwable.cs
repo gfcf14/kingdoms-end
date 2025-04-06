@@ -30,8 +30,6 @@ public class Throwable : MonoBehaviour {
 
   [System.NonSerialized] public Hero hero;
 
-  private InGame inGame;
-
   [System.NonSerialized] private Vector2 initialPosition;
   [System.NonSerialized] public float speed = 0f;
   [System.NonSerialized] public float steepness = 0f;
@@ -45,7 +43,6 @@ public class Throwable : MonoBehaviour {
   void Start() {
     hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
     objectRenderer = GetComponent<SpriteRenderer>();
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
     throwableCollider = transform.Find("ThrowableCollider").gameObject;
 
     body = GetComponent<Rigidbody2D>();
@@ -195,7 +192,7 @@ public class Throwable : MonoBehaviour {
     isExploding = true;
 
     // TODO: consider a better way to play a sound other than using the in game helper
-    inGame.PlaySound(Helpers.GetOrException(Sounds.explosionSounds, "basic"), transform.position);
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.explosionSounds, "basic"), transform.position);
   }
 
   public void SetBounce(Transform t, Vector3 collisionPoint) {

@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class ProximityCheck : MonoBehaviour {
   [SerializeField] GameObject hero;
-  [System.NonSerialized] Hero heroScript;
-  void Start() {
-    heroScript = hero.GetComponent<Hero>();
-  }
+  void Start() {}
   void Update() {}
 
   private void OnCollisionEnter2D(Collision2D col) {
@@ -17,49 +14,49 @@ public class ProximityCheck : MonoBehaviour {
   }
 
   private void ActivateActionCanvas() {
-    heroScript.actionCanvas.SetActive(true);
+    InGame.instance.actionCanvas.SetActive(true);
 
-    if (heroScript.infoCanvas.activeSelf) {
-      heroScript.infoCanvas.GetComponent<InfoCanvas>().AlignRight();
+    if (Hero.instance.infoCanvas.activeSelf) {
+      Hero.instance.infoCanvas.GetComponent<InfoCanvas>().AlignRight();
     }
   }
 
   private void SetNPCAction(NPC npc) {
     if (npc.actionAvailable != "") {
-      if (!heroScript.isOnChat) {
+      if (!Hero.instance.isOnChat) {
         ActivateActionCanvas();
       }
-      heroScript.SetAction(npc.actionAvailable);
-      heroScript.NPCnearbyAction = npc.actionAvailable;
+      Hero.instance.SetAction(npc.actionAvailable);
+      Hero.instance.NPCnearbyAction = npc.actionAvailable;
     }
   }
 
   private void SetObjectAction(string action) {
     ActivateActionCanvas();
-    heroScript.SetAction(action);
+    Hero.instance.SetAction(action);
   }
 
   // clears the current action when moving away from an interactable object
   void ClearActionOnExit() {
-    heroScript.actionCanvas.SetActive(false);
+    InGame.instance.actionCanvas.SetActive(false);
 
     // if the info canvas is active, ensure it shows on the left of the screen
-    if (heroScript.infoCanvas.activeSelf) {
-      heroScript.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
+    if (Hero.instance.infoCanvas.activeSelf) {
+      Hero.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
     }
 
-    heroScript.actionCanvas.GetComponent<ActionCanvas>().ClearAction();
+    InGame.instance.actionCanvas.GetComponent<ActionCanvas>().ClearAction();
   }
 
   private void OnTriggerEnter2D(Collider2D col) {
     string colTag = col.gameObject.tag;
 
     if (colTag == "NPC") {
-      heroScript.NPCnearby = col.gameObject.name;
+      Hero.instance.NPCnearby = col.gameObject.name;
       SetNPCAction(col.gameObject.GetComponent<NPC>());
     } else if (colTag == "Portal") {
-      if (!heroScript.isFightingBoss) {
-        heroScript.nearbyInteractableObject = col.gameObject;
+      if (!Hero.instance.isFightingBoss) {
+        Hero.instance.nearbyInteractableObject = col.gameObject;
 
         string portalType = col.gameObject.GetComponent<Portal>().portalType;
 
@@ -79,15 +76,15 @@ public class ProximityCheck : MonoBehaviour {
 
     if (colTag == "NPC") {
       ClearActionOnExit();
-      heroScript.NPCnearby = "";
-      heroScript.NPCnearbyAction = "";
+      Hero.instance.NPCnearby = "";
+      Hero.instance.NPCnearbyAction = "";
     } else if (colTag == "Portal") {
       // when entering a building, action should not hide immediately as it should change to
       // reflect the action from the portal the player appears in, hence the action canvas
       // should only hide on a trigger exit as the player moves away from the trigger, not
       // when transported by it
-      if (heroScript.nearbyInteractableObject.name == col.gameObject.name) {
-        heroScript.nearbyInteractableObject = null;
+      if (Hero.instance.nearbyInteractableObject.name == col.gameObject.name) {
+        Hero.instance.nearbyInteractableObject = null;
         ClearActionOnExit();
       }
     }
@@ -113,7 +110,7 @@ public class ProximityCheck : MonoBehaviour {
     GameObject overlappedObject = OverlapsWith("NPC");
 
     if (overlappedObject != null) {
-      heroScript.NPCnearby = overlappedObject.name;
+      Hero.instance.NPCnearby = overlappedObject.name;
       SetNPCAction(overlappedObject.GetComponent<NPC>());
     }
   }

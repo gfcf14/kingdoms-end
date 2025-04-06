@@ -9,14 +9,12 @@ public class Interactable : MonoBehaviour {
   private Animator anim;
   private Chest chest;
   private SpriteRenderer spriteRenderer;
-  private InGame inGame;
   private AudioSource audioSource;
 
   void Start() {
     anim = GetComponent<Animator>();
     chest = GetComponent<Chest>();
     spriteRenderer = GetComponent<SpriteRenderer>();
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
     audioSource = GetComponent<AudioSource>();
 
     if (!isFacingLeft) {
@@ -48,6 +46,6 @@ public class Interactable : MonoBehaviour {
     GetComponent<BoxCollider2D>().enabled = false;
 
     string rarity = itemRarity != "" ? itemRarity : (Helpers.IsValueInArray(Constants.moneyItemKeys, item) ? "money" : "normal");
-    inGame.InstantiatePrefab("droppable", item, rarity, transform.parent.gameObject, transform.position, spriteRenderer);
+    InGame.instance.InstantiatePrefab("droppable", item, rarity, transform.parent.gameObject, transform.position, spriteRenderer);
   }
 }

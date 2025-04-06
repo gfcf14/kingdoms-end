@@ -46,8 +46,8 @@ public class RoomTrigger : MonoBehaviour {
       }
 
       // if the chat canvas is active, close it
-      if (heroScript.chatCanvas.activeSelf) {
-        heroScript.chatCanvas.GetComponent<ChatCanvas>().FinishChat(playerLeft: true);
+      if (InGame.instance.chatCanvas != null && InGame.instance.chatCanvas.activeSelf) {
+        InGame.instance.chatCanvas.GetComponent<ChatCanvas>().FinishChat(playerLeft: true);
       }
 
     }

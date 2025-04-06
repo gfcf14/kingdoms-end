@@ -3,11 +3,8 @@ using UnityEngine;
 public class Defense : MonoBehaviour {
   [System.NonSerialized] public bool isFacingLeft;
 
-  private InGame inGame;
-
   void Start() {
     transform.localScale = new Vector3(isFacingLeft ? -1 : 1, 1, 1);
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
   }
   void Update() {}
 
@@ -16,6 +13,6 @@ public class Defense : MonoBehaviour {
   }
 
   public void PlayBlockSound() {
-    inGame.PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
   }
 }

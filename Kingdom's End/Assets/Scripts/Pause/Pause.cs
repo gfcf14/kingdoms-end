@@ -156,7 +156,6 @@ public class Pause : MonoBehaviour {
 
   // dynamic hero objects
   [Header("Hero Objects")]
-  [SerializeField] GameObject hero;
   [SerializeField] GameObject playerAvatar;
   [SerializeField] GameObject level;
   [SerializeField] GameObject currentHPObject;
@@ -216,7 +215,6 @@ public class Pause : MonoBehaviour {
   [System.NonSerialized] bool hasGamepad = false;
 
   // variables to keep track of stats
-  [System.NonSerialized] Hero heroScript;
   [System.NonSerialized] string bodyEquipment = "";
   [System.NonSerialized] int playerLevel = -1;
   [System.NonSerialized] int currentHP = -1;
@@ -306,7 +304,6 @@ public class Pause : MonoBehaviour {
   [SerializeField] int currentGameTime = 0;
 
   void Start() {
-    heroScript = hero.GetComponent<Hero>();
     audioSource = GetComponent<AudioSource>();
     eventSystem = EventSystem.current;
 
@@ -426,7 +423,7 @@ public class Pause : MonoBehaviour {
     itemsCanvas.SetActive(true);
 
     ClearItems(itemsContainer);
-    PopulateItemsContainer(heroScript.items, itemsContainer);
+    PopulateItemsContainer(Hero.instance.items, itemsContainer);
     Helpers.FocusUIElement(itemButtons.ElementAt(0));
     previouslyFocusedButton = itemButtons.ElementAt(0);
     canPlayDeselect = true;
@@ -475,9 +472,9 @@ public class Pause : MonoBehaviour {
         int currentAmount = currentItem.amount;
         PauseItem currentRegularItem = isRelics ? (PauseItem)Helpers.GetOrException(Objects.relicItems, currentKey) : Helpers.GetOrException(Objects.regularItems, currentKey);
 
-        int itemUsageFrequency = Helpers.ValueFrequencyInArray(heroScript.equipmentArray, currentKey);
+        int itemUsageFrequency = Helpers.ValueFrequencyInArray(Hero.instance.equipmentArray, currentKey);
 
-        if (canvasStatus == "relics" || canvasStatus == "items" || (canvasStatus == "equipment" && (!Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey) || (Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey) && Helpers.HasProjectilesForWeapon(currentKey, heroScript.items))) && (itemUsageFrequency < currentAmount || Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey)))) {
+        if (canvasStatus == "relics" || canvasStatus == "items" || (canvasStatus == "equipment" && (!Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey) || (Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey) && Helpers.HasProjectilesForWeapon(currentKey, Hero.instance.items))) && (itemUsageFrequency < currentAmount || Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey)))) {
           GameObject currentItemButton = Instantiate(Helpers.GetOrException(Objects.prefabs, "item-button"), Vector2.zero, Quaternion.identity);
 
           currentItemButton.transform.SetParent(parentContainer.transform);
@@ -578,8 +575,8 @@ public class Pause : MonoBehaviour {
 
     if (newItemKey.Contains("unequip")) {
       Hero.projectileEquipment = "";
-      heroScript.ChangeArrowContainerSprite(clear: true);
-      heroScript.Unequip(currentlyEquippedIndex);
+      Hero.instance.ChangeArrowContainerSprite(clear: true);
+      Hero.instance.Unequip(currentlyEquippedIndex);
       CancelEquipmentSelection();
     } else {
       string newItemType = Helpers.GetOrException(Objects.regularItems, newItemKey).type;
@@ -589,8 +586,8 @@ public class Pause : MonoBehaviour {
         SelectProjectileOnNewItemKey(newItemKey);
       } else { // if not, item would be immediately equipped
         Hero.projectileEquipment = "";
-        heroScript.ChangeArrowContainerSprite(clear: true);
-        heroScript.EquipItem(newItemKey, currentlyEquippedIndex);
+        Hero.instance.ChangeArrowContainerSprite(clear: true);
+        Hero.instance.EquipItem(newItemKey, currentlyEquippedIndex);
         CancelEquipmentSelection();
       }
     }
@@ -599,7 +596,7 @@ public class Pause : MonoBehaviour {
   public void SelectProjectileOnNewItemKey(string itemKey) {
     canPlayDeselect = false;
     string[] itemProjectiles = Helpers.GetOrException(Objects.itemProjectiles, itemKey);
-    string[] heroItemsList = heroScript.items.Select(item => item.key).ToArray();
+    string[] heroItemsList = Hero.instance.items.Select(item => item.key).ToArray();
     int currProjectileButtonIndex = 0;
     availableProjectileKeys.Clear();
 
@@ -612,7 +609,7 @@ public class Pause : MonoBehaviour {
 
         projectileButton.Find("ProjectileImage").GetComponent<Image>().sprite = availableProjectileItem.thumbnail;
         projectileButton.Find("ProjectileName").GetComponent<Text>().text = availableProjectileItem.name;
-        projectileButton.Find("ProjectileAmount").GetComponent<Text>().text = "(" + Helpers.GetItemFromList(heroScript.items, currentPossibleProjectile).amount + ")";
+        projectileButton.Find("ProjectileAmount").GetComponent<Text>().text = "(" + Helpers.GetItemFromList(Hero.instance.items, currentPossibleProjectile).amount + ")";
         projectileButton.Find("Attack").GetComponent<Text>().text = "+" + availableProjectileItem.effects.atk;
         availableProjectileKeys.Add(currentPossibleProjectile);
 
@@ -656,9 +653,9 @@ public class Pause : MonoBehaviour {
 
   public void EquipProjectile(int projectileIndex) {
     Hero.projectileEquipment = availableProjectileKeys[projectileIndex];
-    heroScript.ChangeArrowContainerSprite();
+    Hero.instance.ChangeArrowContainerSprite();
     string newItemKey = currentEquipmentItems.ElementAt(currentItemButtonIndex).key;
-    heroScript.EquipItem(newItemKey, currentlyEquippedIndex);
+    Hero.instance.EquipItem(newItemKey, currentlyEquippedIndex);
     arm1EquipmentKey = "";
     arm2EquipmentKey = "";
     CancelProjectileSelection();
@@ -673,7 +670,7 @@ public class Pause : MonoBehaviour {
 
   public void UseItem() {
     canPlayDeselect = false;
-    Item heroItem = heroScript.items.ElementAt(currentItemButtonIndex);
+    Item heroItem = Hero.instance.items.ElementAt(currentItemButtonIndex);
     RegularItem currentRegularItem = Helpers.GetOrException(Objects.regularItems, heroItem.key);
 
     canvasStatus = "items";
@@ -687,16 +684,16 @@ public class Pause : MonoBehaviour {
           effectsCurrentHP.SetActive(true);
 
           // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
-          heroScript.UpdateStats("hp", itemEffects.hp);
+          Hero.instance.UpdateStats("hp", itemEffects.hp);
         }
 
         if (itemEffects.hpPercentage != null) {
-          int hpTotal = (int)(itemEffects.hpPercentage * heroScript.maxHP);
+          int hpTotal = (int)(itemEffects.hpPercentage * Hero.instance.maxHP);
           effectsCurrentHP.transform.Find("Text").gameObject.GetComponent<Text>().text = (hpTotal >= 0 ? "+" : "") + hpTotal;
           effectsCurrentHP.SetActive(true);
 
           // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
-          heroScript.UpdateStats("hp", hpTotal);
+          Hero.instance.UpdateStats("hp", hpTotal);
         }
 
         // TODO: build the others as more items are created!
@@ -705,31 +702,31 @@ public class Pause : MonoBehaviour {
           effectsCurrentMP.SetActive(true);
 
           // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
-          heroScript.UpdateStats("mp", itemEffects.mp);
+          Hero.instance.UpdateStats("mp", itemEffects.mp);
         }
 
         if (itemEffects.mpPercentage != null) {
-          int mpTotal = (int)(itemEffects.mpPercentage * heroScript.maxMP);
+          int mpTotal = (int)(itemEffects.mpPercentage * Hero.instance.maxMP);
           effectsCurrentMP.transform.Find("Text").gameObject.GetComponent<Text>().text = (mpTotal >= 0 ? "+" : "") + mpTotal;
           effectsCurrentMP.SetActive(true);
 
           // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
-          heroScript.UpdateStats("mp", mpTotal);
+          Hero.instance.UpdateStats("mp", mpTotal);
         }
       } else {
-        heroScript.AddConsumable(new Consumable(){key=heroItem.key, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
+        Hero.instance.AddConsumable(new Consumable(){key=heroItem.key, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
       }
 
       // determines what to do with the item and its amount
       if (heroItem.amount > 1) {
-        heroScript.ConsumeItem(heroItem.key);
+        Hero.instance.ConsumeItem(heroItem.key);
         itemButtons.ElementAt(0).transform.Find("Amount").gameObject.GetComponent<Text>().text = (heroItem.amount).ToString();
         Helpers.FocusUIElement(itemButtons.ElementAt(currentItemButtonIndex));
         previouslyFocusedButton = itemButtons.ElementAt(currentItemButtonIndex);
       } else {
-        heroScript.RemoveItem(currentItemButtonIndex);
+        Hero.instance.RemoveItem(currentItemButtonIndex);
         ClearItems(itemsContainer);
-        PopulateItemsContainer(heroScript.items, itemsContainer);
+        PopulateItemsContainer(Hero.instance.items, itemsContainer);
         Helpers.FocusUIElement(itemButtons.ElementAt(0));
         previouslyFocusedButton = itemButtons.ElementAt(0);
         SetItemInfo(0);
@@ -849,7 +846,7 @@ public class Pause : MonoBehaviour {
     currentItemButtonIndex = index;
 
     // grab current equipped
-    RegularItem currentEquipment = heroScript.equipmentArray[currentlyEquippedIndex] != "" ? Helpers.GetOrException(Objects.regularItems, heroScript.equipmentArray[currentlyEquippedIndex]) : null;
+    RegularItem currentEquipment = Hero.instance.equipmentArray[currentlyEquippedIndex] != "" ? Helpers.GetOrException(Objects.regularItems, Hero.instance.equipmentArray[currentlyEquippedIndex]) : null;
 
     string currentItemKey = currentEquipmentItems.ElementAt(currentItemButtonIndex).key;
 
@@ -864,7 +861,7 @@ public class Pause : MonoBehaviour {
 
     // Check ATK1
     if (currentlyEquippedIndex == 1 || (currentlyEquippedIndex == 2 && (isEquippingDouble || equippedIsDouble))) {
-      RegularItem otherArmEquipment = heroScript.equipmentArray[1] != "" ? Helpers.GetOrException(Objects.regularItems, heroScript.equipmentArray[1]) : null;
+      RegularItem otherArmEquipment = Hero.instance.equipmentArray[1] != "" ? Helpers.GetOrException(Objects.regularItems, Hero.instance.equipmentArray[1]) : null;
       RegularItem equippedSelected = (currentlyEquippedIndex == 2 && (isEquippingDouble || equippedIsDouble)) ? otherArmEquipment : currentEquipment;
 
       // gets the attack of the selected equipment (unless user is equipping the other hand with a single and currently carries a double),
@@ -889,7 +886,7 @@ public class Pause : MonoBehaviour {
 
     // Check ATK2
     if (currentlyEquippedIndex == 2 || (currentlyEquippedIndex == 1 && (isEquippingDouble || equippedIsDouble))) {
-      RegularItem otherArmEquipment = heroScript.equipmentArray[2] != "" ? Helpers.GetOrException(Objects.regularItems, heroScript.equipmentArray[2]) : null;
+      RegularItem otherArmEquipment = Hero.instance.equipmentArray[2] != "" ? Helpers.GetOrException(Objects.regularItems, Hero.instance.equipmentArray[2]) : null;
       RegularItem equippedSelected = (currentlyEquippedIndex == 1 && (isEquippingDouble || equippedIsDouble)) ? otherArmEquipment : currentEquipment;
 
       // gets the attack of the selected equipment (unless user is equipping the other hand with a single and currently carries a double),
@@ -914,12 +911,12 @@ public class Pause : MonoBehaviour {
 
     // Check DEF1
     if (currentlyEquippedIndex == 1 || (currentlyEquippedIndex == 2 && (isEquippingDouble))) {
-      RegularItem otherArmEquipment = heroScript.equipmentArray[1] != "" ? Helpers.GetOrException(Objects.regularItems, heroScript.equipmentArray[1]) : null;
+      RegularItem otherArmEquipment = Hero.instance.equipmentArray[1] != "" ? Helpers.GetOrException(Objects.regularItems, Hero.instance.equipmentArray[1]) : null;
       RegularItem equippedSelected = (currentlyEquippedIndex == 2 && (isEquippingDouble || equippedIsDouble)) ? otherArmEquipment : currentEquipment;
 
-      int newEquippedDEF1 = (selectedEquipment.effects.def ?? 0) + (heroScript.equippedDEF1 - (equippedSelected != null ? equippedSelected.effects.def ?? 0 : 0));
-      if (newEquippedDEF1 != heroScript.equippedDEF1) {
-        Color equippedLabelColor = newEquippedDEF1 > heroScript.equippedDEF1 ? Helpers.GetOrException(Colors.pauseStatsColors, "higher") : Helpers.GetOrException(Colors.pauseStatsColors, "lower");
+      int newEquippedDEF1 = (selectedEquipment.effects.def ?? 0) + (Hero.instance.equippedDEF1 - (equippedSelected != null ? equippedSelected.effects.def ?? 0 : 0));
+      if (newEquippedDEF1 != Hero.instance.equippedDEF1) {
+        Color equippedLabelColor = newEquippedDEF1 > Hero.instance.equippedDEF1 ? Helpers.GetOrException(Colors.pauseStatsColors, "higher") : Helpers.GetOrException(Colors.pauseStatsColors, "lower");
 
         Text equipmentText = EquippedDEF1Label.transform.Find("Text").gameObject.GetComponent<Text>();
         equipmentText.text = newEquippedDEF1 > 0 ? newEquippedDEF1.ToString() : "0";
@@ -931,12 +928,12 @@ public class Pause : MonoBehaviour {
 
     // Check DEF2
     if (currentlyEquippedIndex == 2 || (currentlyEquippedIndex == 1 && isEquippingDouble)) {
-      RegularItem otherArmEquipment = heroScript.equipmentArray[2] != "" ? Helpers.GetOrException(Objects.regularItems, heroScript.equipmentArray[2]) : null;
+      RegularItem otherArmEquipment = Hero.instance.equipmentArray[2] != "" ? Helpers.GetOrException(Objects.regularItems, Hero.instance.equipmentArray[2]) : null;
       RegularItem equippedSelected = (currentlyEquippedIndex == 1 && (isEquippingDouble || equippedIsDouble)) ? otherArmEquipment : currentEquipment;
 
-      int newEquippedDEF2 = (selectedEquipment.effects.def ?? 0) + (heroScript.equippedDEF2 - (equippedSelected != null ? equippedSelected.effects.def ?? 0 : 0));
-      if (newEquippedDEF2 != heroScript.equippedDEF2) {
-        Color equippedLabelColor = newEquippedDEF2 > heroScript.equippedDEF2 ? Helpers.GetOrException(Colors.pauseStatsColors, "higher") : Helpers.GetOrException(Colors.pauseStatsColors, "lower");
+      int newEquippedDEF2 = (selectedEquipment.effects.def ?? 0) + (Hero.instance.equippedDEF2 - (equippedSelected != null ? equippedSelected.effects.def ?? 0 : 0));
+      if (newEquippedDEF2 != Hero.instance.equippedDEF2) {
+        Color equippedLabelColor = newEquippedDEF2 > Hero.instance.equippedDEF2 ? Helpers.GetOrException(Colors.pauseStatsColors, "higher") : Helpers.GetOrException(Colors.pauseStatsColors, "lower");
 
         Text equipmentText = EquippedDEF2Label.transform.Find("Text").gameObject.GetComponent<Text>();
         equipmentText.text = newEquippedDEF2 > 0 ? newEquippedDEF2.ToString() : "0";
@@ -948,7 +945,7 @@ public class Pause : MonoBehaviour {
 
     // Check STR
     if (currentlyEquippedIndex > 2) {
-      int totalEquippedSTR = heroScript.strength + (int)heroScript.equippedSTR + (int)heroScript.effectSTR;
+      int totalEquippedSTR = Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR;
       float newEquippedSTR = (selectedEquipment.effects.atk ?? 0) + (totalEquippedSTR - (currentEquipment != null ? currentEquipment.effects.atk ?? 0 : 0));
       if (newEquippedSTR != totalEquippedSTR) {
         Color equippedLabelColor = newEquippedSTR > totalEquippedSTR ? Helpers.GetOrException(Colors.pauseStatsColors, "higher") : Helpers.GetOrException(Colors.pauseStatsColors, "lower");
@@ -963,7 +960,7 @@ public class Pause : MonoBehaviour {
 
     // Check STA
     if (currentlyEquippedIndex > 2) {
-      int totalEquippedSTA = heroScript.stamina + (int)heroScript.equippedSTA + (int)heroScript.effectSTA;
+      int totalEquippedSTA = Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA;
       float newEquippedSTA = (selectedEquipment.effects.def ?? 0) + (totalEquippedSTA - (currentEquipment != null ? currentEquipment.effects.def ?? 0 : 0));
       if (newEquippedSTA != totalEquippedSTA) {
         Color equippedLabelColor = newEquippedSTA > totalEquippedSTA ? Helpers.GetOrException(Colors.pauseStatsColors, "higher") : Helpers.GetOrException(Colors.pauseStatsColors, "lower");
@@ -977,7 +974,7 @@ public class Pause : MonoBehaviour {
     }
 
     // Check CRIT
-    float totalEquippedCRIT = heroScript.criticalPercentage + heroScript.equippedCRIT + heroScript.effectCRIT;
+    float totalEquippedCRIT = Hero.instance.criticalPercentage + Hero.instance.equippedCRIT + Hero.instance.effectCRIT;
     float newEquippedCRIT = (selectedEquipment.effects.crit ?? 0) + (totalEquippedCRIT - (currentEquipment != null ? currentEquipment.effects.crit ?? 0 : 0));
     if (newEquippedCRIT != totalEquippedCRIT) {
       Color equippedLabelColor = newEquippedCRIT > totalEquippedCRIT ? Helpers.GetOrException(Colors.pauseStatsColors, "higher") : Helpers.GetOrException(Colors.pauseStatsColors, "lower");
@@ -990,7 +987,7 @@ public class Pause : MonoBehaviour {
     }
 
     // Check LUCK
-    float totalEquippedLUCK = heroScript.luckPercentage + heroScript.equippedLUCK + heroScript.effectLCK;
+    float totalEquippedLUCK = Hero.instance.luckPercentage + Hero.instance.equippedLUCK + Hero.instance.effectLCK;
     float newEquippedLUCK = (selectedEquipment.effects.luck ?? 0) + (totalEquippedLUCK - (currentEquipment != null ? currentEquipment.effects.luck ?? 0 : 0));
     if (newEquippedLUCK != totalEquippedLUCK) {
       Color equippedLabelColor = newEquippedLUCK > totalEquippedLUCK ? Helpers.GetOrException(Colors.pauseStatsColors, "higher") : Helpers.GetOrException(Colors.pauseStatsColors, "lower");
@@ -1004,12 +1001,12 @@ public class Pause : MonoBehaviour {
 
     // Check magic resistances
     MagicResistance[] possibleNewMagicResistances = selectedEquipment.effects.magicResistances ?? null;
-    // clones the heroScript.magicResistances array to a new instance to compare
-    HeroMagicResistance[] newMagicResistances = Array.ConvertAll(heroScript.magicResistances, currMR => new HeroMagicResistance() {name=(string)currMR.name.Clone(),  frequency=(int)currMR.frequency});
+    // clones the Hero.instance.magicResistances array to a new instance to compare
+    HeroMagicResistance[] newMagicResistances = Array.ConvertAll(Hero.instance.magicResistances, currMR => new HeroMagicResistance() {name=(string)currMR.name.Clone(),  frequency=(int)currMR.frequency});
 
     // adds the effect magic resistances to make the comparison
-    for (int i = 0; i < heroScript.effectMagicResistances.Length; i++) {
-      HeroMagicResistance currentEffectMagicResistance = heroScript.effectMagicResistances[i];
+    for (int i = 0; i < Hero.instance.effectMagicResistances.Length; i++) {
+      HeroMagicResistance currentEffectMagicResistance = Hero.instance.effectMagicResistances[i];
       if (currentEffectMagicResistance.frequency == 1) {
         newMagicResistances[i].frequency = 1;
       }
@@ -1018,13 +1015,13 @@ public class Pause : MonoBehaviour {
     // removes the current equipment's magic resistances (if any)
     if (currentEquipment != null && currentEquipment.effects.magicResistances != null) {
       foreach (MagicResistance currMagicResistance in currentEquipment.effects.magicResistances) {
-        newMagicResistances[heroScript.magicResistanceTypeIndex[currMagicResistance.name]].frequency += currMagicResistance.type == "add" ? -1 : 1;
+        newMagicResistances[Hero.instance.magicResistanceTypeIndex[currMagicResistance.name]].frequency += currMagicResistance.type == "add" ? -1 : 1;
       }
     }
 
     if (possibleNewMagicResistances != null) {
       foreach (MagicResistance currentMagicResistance in possibleNewMagicResistances) {
-        newMagicResistances[heroScript.magicResistanceTypeIndex[currentMagicResistance.name]].frequency += currentMagicResistance.type == "add" ? 1 : -1;
+        newMagicResistances[Hero.instance.magicResistanceTypeIndex[currentMagicResistance.name]].frequency += currentMagicResistance.type == "add" ? 1 : -1;
       }
     }
 
@@ -1066,7 +1063,7 @@ public class Pause : MonoBehaviour {
   void SetRelicInfo(int index) {
     currentItemButtonIndex = index;
 
-    RelicItem currentRelicItem = Helpers.GetOrException(Objects.relicItems, heroScript.relicItems[index].key);
+    RelicItem currentRelicItem = Helpers.GetOrException(Objects.relicItems, Hero.instance.relicItems[index].key);
     relicName.GetComponent<Text>().text = currentRelicItem.name.ToUpper();
     relicImage.GetComponent<Image>().sprite = currentRelicItem.image;
     relicDescription.GetComponent<Text>().text = currentRelicItem.description;
@@ -1076,7 +1073,7 @@ public class Pause : MonoBehaviour {
     HideEffectsObjects();
     currentItemButtonIndex = index;
 
-    RegularItem currentRegularItem = Helpers.GetOrException(Objects.regularItems, heroScript.items[index].key);
+    RegularItem currentRegularItem = Helpers.GetOrException(Objects.regularItems, Hero.instance.items[index].key);
     itemName.GetComponent<Text>().text = currentRegularItem.name.ToUpper();
     itemImage.GetComponent<Image>().sprite = currentRegularItem.image;
     itemDescription.GetComponent<Text>().text = currentRegularItem.description;
@@ -1223,7 +1220,7 @@ public class Pause : MonoBehaviour {
     relicsCanvas.SetActive(true);
 
     ClearItems(relicsContainer);
-    PopulateItemsContainer(heroScript.relicItems, relicsContainer, isRelics: true);
+    PopulateItemsContainer(Hero.instance.relicItems, relicsContainer, isRelics: true);
     Helpers.FocusUIElement(itemButtons.ElementAt(0));
     previouslyFocusedButton = itemButtons.ElementAt(0);
     canPlayDeselect = true;
@@ -1560,65 +1557,65 @@ public class Pause : MonoBehaviour {
       playerAvatar.GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.pauseAvatars, bodyEquipment);
     }
 
-    if (playerLevel != heroScript.playerLevel) {
-      playerLevel = heroScript.playerLevel;
+    if (playerLevel != Hero.instance.playerLevel) {
+      playerLevel = Hero.instance.playerLevel;
       level.GetComponent<Text>().text = (playerLevel).ToString();
     }
 
-    if (currentHP != heroScript.currentHP) {
-      currentHP = heroScript.currentHP;
+    if (currentHP != Hero.instance.currentHP) {
+      currentHP = Hero.instance.currentHP;
       currentHPObject.GetComponent<Text>().text = (currentHP).ToString();
     }
 
-    if (maxHP != heroScript.maxHP) {
-      maxHP = heroScript.maxHP;
+    if (maxHP != Hero.instance.maxHP) {
+      maxHP = Hero.instance.maxHP;
       totalHP.GetComponent<Text>().text = (maxHP).ToString();
     }
 
-    if (currentMP != heroScript.currentMP) {
-      currentMP = heroScript.currentMP;
+    if (currentMP != Hero.instance.currentMP) {
+      currentMP = Hero.instance.currentMP;
       currentMPObject.GetComponent<Text>().text = (currentMP).ToString();
     }
 
-    if (maxMP != heroScript.maxMP) {
-      maxMP = heroScript.maxMP;
+    if (maxMP != Hero.instance.maxMP) {
+      maxMP = Hero.instance.maxMP;
       totalMP.GetComponent<Text>().text = (maxMP).ToString();
     }
 
-    if (status != heroScript.status) {
-      status = heroScript.status;
+    if (status != Hero.instance.status) {
+      status = Hero.instance.status;
       statusObject.GetComponent<Text>().text = char.ToUpper(status[0]) + status.Substring(1);
     }
 
-    if (exp != heroScript.exp) {
-      exp = heroScript.exp;
+    if (exp != Hero.instance.exp) {
+      exp = Hero.instance.exp;
       expObject.GetComponent<Text>().text = (exp).ToString();
     }
 
-    if (next != heroScript.next) {
-      next = heroScript.next;
+    if (next != Hero.instance.next) {
+      next = Hero.instance.next;
       nextObject.GetComponent<Text>().text = (next).ToString();
     }
 
-    if (gold != heroScript.gold) {
-      gold = heroScript.gold;
+    if (gold != Hero.instance.gold) {
+      gold = Hero.instance.gold;
       goldObject.GetComponent<Text>().text = (gold).ToString();
     }
 
-    if (strength != (heroScript.strength + (int)heroScript.equippedSTR + (int)heroScript.effectSTR)) {
-      strength = heroScript.strength + (int)heroScript.equippedSTR + (int)heroScript.effectSTR;
+    if (strength != (Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR)) {
+      strength = Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR;
       strObject.GetComponent<Text>().text = (strength).ToString();
-      if (heroScript.effectSTR > 0) {
+      if (Hero.instance.effectSTR > 0) {
         strObject.GetComponent<Text>().color = Colors.effect;
       } else {
         strObject.GetComponent<Text>().color = Color.white;
       }
     }
 
-    if (stamina != (heroScript.stamina + (int)heroScript.equippedSTA + (int)heroScript.effectSTA)) {
-      stamina = heroScript.stamina + (int)heroScript.equippedSTA + (int)heroScript.effectSTA;
+    if (stamina != (Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA)) {
+      stamina = Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA;
       staObject.GetComponent<Text>().text = (stamina).ToString();
-      if (heroScript.effectSTA > 0) {
+      if (Hero.instance.effectSTA > 0) {
         staObject.GetComponent<Text>().color = Colors.effect;
       } else {
         staObject.GetComponent<Text>().color = Color.white;
@@ -1635,30 +1632,30 @@ public class Pause : MonoBehaviour {
       atk2Object.GetComponent<Text>().text = (atk2).ToString();
     }
 
-    if (def1 != heroScript.equippedDEF1) {
-      def1 = heroScript.equippedDEF1;
+    if (def1 != Hero.instance.equippedDEF1) {
+      def1 = Hero.instance.equippedDEF1;
       def1Object.GetComponent<Text>().text = (def1).ToString();
     }
 
-    if (def2 != heroScript.equippedDEF2) {
-      def2 = heroScript.equippedDEF2;
+    if (def2 != Hero.instance.equippedDEF2) {
+      def2 = Hero.instance.equippedDEF2;
       def2Object.GetComponent<Text>().text = (def2).ToString();
     }
 
-    if (criticalPercentage != (heroScript.criticalPercentage + heroScript.equippedCRIT + heroScript.effectCRIT)) {
-      criticalPercentage = heroScript.criticalPercentage + heroScript.equippedCRIT + heroScript.effectCRIT;
+    if (criticalPercentage != (Hero.instance.criticalPercentage + Hero.instance.equippedCRIT + Hero.instance.effectCRIT)) {
+      criticalPercentage = Hero.instance.criticalPercentage + Hero.instance.equippedCRIT + Hero.instance.effectCRIT;
       critical.GetComponent<Text>().text = Helpers.TwoDecimalPlaces(criticalPercentage * 100) + " %";
-      if (heroScript.effectCRIT > 0) {
+      if (Hero.instance.effectCRIT > 0) {
         critical.GetComponent<Text>().color = Colors.effect;
       } else {
         critical.GetComponent<Text>().color = Color.white;
       }
     }
 
-    if (luckPercentage != heroScript.luckPercentage + heroScript.effectLCK) {
-      luckPercentage = heroScript.luckPercentage + heroScript.equippedLUCK + heroScript.effectLCK;
+    if (luckPercentage != Hero.instance.luckPercentage + Hero.instance.effectLCK) {
+      luckPercentage = Hero.instance.luckPercentage + Hero.instance.equippedLUCK + Hero.instance.effectLCK;
       luck.GetComponent<Text>().text = Helpers.TwoDecimalPlaces(luckPercentage * 100) + " %";
-      if (heroScript.effectLCK > 0) {
+      if (Hero.instance.effectLCK > 0) {
         luck.GetComponent<Text>().color = Colors.effect;
       } else {
         luck.GetComponent<Text>().color = Color.white;
@@ -1846,9 +1843,9 @@ public class Pause : MonoBehaviour {
   void UpdateMagicResistances() {
     string currentMagicResistances = "";
 
-    for (int i = 0; i < heroScript.magicResistances.Length; i++) {
-      HeroMagicResistance currentMagicResistance = heroScript.magicResistances[i];
-      HeroMagicResistance effectMagicResistance = heroScript.effectMagicResistances[i];
+    for (int i = 0; i < Hero.instance.magicResistances.Length; i++) {
+      HeroMagicResistance currentMagicResistance = Hero.instance.magicResistances[i];
+      HeroMagicResistance effectMagicResistance = Hero.instance.effectMagicResistances[i];
 
       if (currentMagicResistance.frequency >= 1 || effectMagicResistance.frequency >= 1) {
         currentMagicResistances += currentMagicResistance.name + ",";
@@ -2088,22 +2085,22 @@ public class Pause : MonoBehaviour {
 
     switch(equipmentType) {
       case "body":
-        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.bodyEquipmentTypes, heroScript.items);
+        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.bodyEquipmentTypes, Hero.instance.items);
       break;
       case "arm1":
       case "arm2":
-        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.armEquipmentTypes, heroScript.items, canUnequip, equipmentType);
+        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.armEquipmentTypes, Hero.instance.items, canUnequip, equipmentType);
       break;
       case "neck":
-        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.neckEquipmentTypes, heroScript.items, canUnequip, equipmentType);
+        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.neckEquipmentTypes, Hero.instance.items, canUnequip, equipmentType);
       break;
       case "armwear1":
       case "armwear2":
-        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.armwearEquipmentTypes, heroScript.items, canUnequip, equipmentType);
+        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.armwearEquipmentTypes, Hero.instance.items, canUnequip, equipmentType);
       break;
       case "ring1":
       case "ring2":
-        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.ringEquipmentTypes, heroScript.items, canUnequip, equipmentType);
+        currentEquipmentItems = Helpers.GetSpecificItemList(Constants.ringEquipmentTypes, Hero.instance.items, canUnequip, equipmentType);
       break;
       default:
         Debug.Log("Unknown equipmentType: " + equipmentType);
@@ -2211,6 +2208,6 @@ public class Pause : MonoBehaviour {
         equipmentValue = 0;
       break;
     }
-    return heroScript.equipmentArray[equipmentValue] != "";
+    return Hero.instance.equipmentArray[equipmentValue] != "";
   }
 }

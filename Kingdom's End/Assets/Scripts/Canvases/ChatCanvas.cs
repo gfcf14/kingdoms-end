@@ -25,17 +25,6 @@ public class ChatCanvas : MonoBehaviour {
     ClearText();
   }
 
-  public static ChatCanvas instance;
-
-  private void Awake() {
-    if (instance == null) {
-      instance = this;
-      DontDestroyOnLoad(gameObject);
-      gameObject.SetActive(false);
-    } else if (instance != this) {
-      Destroy(gameObject); // Destroy any new instance of this class
-    }
-  }
   void Start() {
     characterComponent = characterObject.GetComponent<Text>();
     textComponent = textObject.GetComponent<Text>();

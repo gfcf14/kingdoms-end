@@ -18,10 +18,7 @@ public class Hero : MonoBehaviour {
   [SerializeField] public float jumpHeight = GameData.playerJumpHeight;
   [SerializeField] private float jetpackHeight;
   [SerializeField] public GameObject infoCanvas;
-  [SerializeField] public GameObject actionCanvas;
-  [SerializeField] public GameObject chatCanvas;
 
-  [SerializeField] public GameObject hpBarContainer;
   [SerializeField] public GameObject mpBarContainer;
   [SerializeField] public GameObject weaponCollider;
   [SerializeField] public GameObject shieldCollider;
@@ -257,7 +254,6 @@ public class Hero : MonoBehaviour {
   private Vector2 transportLocation;
 
   public bool isPaused;
-  [SerializeField] GameObject pauseCanvas;
 
   [System.NonSerialized] public GameObject currentRoom;
 
@@ -406,7 +402,7 @@ public class Hero : MonoBehaviour {
     // For the first time, the pause buttons must be changed to allow for the Relic button to be enabled
     if (relicItems.Count == 0) {
       // fetch all buttons involved
-      Transform mainCanvas = pauseCanvas.transform.Find("PauseBackground").Find("Wrapper Outline").Find("Right Outline").Find("MainCanvas");
+      Transform mainCanvas = InGame.instance.pauseCanvas.transform.Find("PauseBackground").Find("Wrapper Outline").Find("Right Outline").Find("MainCanvas");
       GameObject buttonEquipment = mainCanvas.Find("ButtonEquipment").gameObject;
       GameObject buttonRelics = mainCanvas.Find("ButtonRelics").gameObject;
       GameObject buttonMap = mainCanvas.Find("ButtonMap").gameObject;
@@ -834,11 +830,11 @@ public class Hero : MonoBehaviour {
   public void ResumeGame() {
     InGame.instance.ToggleSoundtrack(isPaused);
     isPaused = !isPaused;
-    Helpers.TogglePause(isPaused, pauseCanvas);
+    Helpers.TogglePause(isPaused, InGame.instance.pauseCanvas);
   }
 
   public void PerformPortalTransport() {
-    actionCanvas.SetActive(false);
+    InGame.instance.actionCanvas.SetActive(false);
     transform.position = transportLocation;
     transportLocation = Vector2.zero;
     InGame.instance.FlashFadeIn();
@@ -946,7 +942,7 @@ public class Hero : MonoBehaviour {
               if ((currentKey.ToString().Contains("JoystickButton") && Input.GetJoystickNames()[0] != "") || !currentKey.ToString().Contains("Joystick")) {
                 if (canMap) {
                   if (!Helpers.IsForbiddenToRemap(currentKey.ToString())) {
-                    pauseCanvas.GetComponent<Pause>().FinishMapping(currentKey.ToString());
+                    InGame.instance.pauseCanvas.GetComponent<Pause>().FinishMapping(currentKey.ToString());
                     canMap = false;
                   }
                 } else {
@@ -1083,7 +1079,7 @@ public class Hero : MonoBehaviour {
 
         // action
         if (Helpers.IsKeyUp(Controls.currentKeyboardAction) || Helpers.IsKeyUp(Controls.currentGamepadAction)) {
-          if (chatCanvas.activeSelf) {
+          if (InGame.instance.chatCanvas.activeSelf) {
             // CloseChat();
           } else {
             if (nearbyInteractableObject) {
@@ -1091,7 +1087,7 @@ public class Hero : MonoBehaviour {
                 Portal interactingPortal = nearbyInteractableObject.GetComponent<Portal>();
 
                 if (interactingPortal.portalType == "cave") {
-                  Helpers.ChangeScene("Underground", interactingPortal.transportLocation, interactingPortal.cameraPosition, GetComponent<Hero>());
+                  Helpers.ChangeScene("Underground", interactingPortal.transportLocation, interactingPortal.cameraPosition);
                 } else {
                   TransportViaPortal(interactingPortal.transportLocation);
                 }
@@ -1217,7 +1213,7 @@ public class Hero : MonoBehaviour {
           if (Pause.canvasStatus == "main") {
             ResumeGame();
           } else {
-            pauseCanvas.GetComponent<Pause>().PerformBack();
+            InGame.instance.pauseCanvas.GetComponent<Pause>().PerformBack();
           }
         }
       }
@@ -2003,7 +1999,7 @@ public class Hero : MonoBehaviour {
 
     GameObject barDecrement = Instantiate(Helpers.GetOrException(Objects.prefabs, "bar-decrement"), Vector2.zero, Quaternion.identity);
     int damageWidth = (maxHP > Constants.maxHPDisplayableLimit ? (int)(Constants.maxHPDisplayableLimit * ((float)damageToDisplay/(float)maxHP)) : damageToDisplay) * Constants.containerMultiplier + (int)Constants.hpAdjustDifference;
-    barDecrement.transform.SetParent(hpBarContainer.transform, false);
+    barDecrement.transform.SetParent(InGame.instance.hpBarContainer.transform, false);
     barDecrement.GetComponent<BarDecrement>().width = damageWidth;
     barDecrement.GetComponent<BarDecrement>().type = "hp";
 
@@ -2112,8 +2108,7 @@ public class Hero : MonoBehaviour {
   }
 
   public void SetAction(string action) {
-    ActionCanvas actionCanvasScript = actionCanvas.GetComponent<ActionCanvas>();
-    actionCanvasScript.SetAction(action);
+    InGame.instance.actionCanvas.GetComponent<ActionCanvas>().SetAction(action);
   }
 
   public bool SatisfiesCondition(Condition nodeCondition) {
@@ -2157,14 +2152,14 @@ public class Hero : MonoBehaviour {
     string npcKey = Helpers.PascalToKebab(NPCnearby);
     NPC currentNPC = GameObject.Find(NPCnearby).GetComponent<NPC>();
     currentNPC.DecideFlip(transform.position);
-    ChatCanvas chatCanvasScript = chatCanvas.GetComponent<ChatCanvas>();
+    ChatCanvas chatCanvasScript = InGame.instance.chatCanvas.GetComponent<ChatCanvas>();
 
     chatCanvasScript.chatLines = GetChatLines(npcKey, Helpers.GetOrException(npcNodes, npcKey));
     chatCanvasScript.startingNPC = npcKey;
     chatCanvasScript.nextNode = Helpers.GetOrException(Helpers.GetOrException(Chat.chatNodes, npcKey), Helpers.GetOrException(npcNodes, npcKey)).nextNode;
 
     // closes the action canvas when the chat canvas activates
-    actionCanvas.SetActive(false);
+    InGame.instance.actionCanvas.SetActive(false);
 
     // if the info canvas is active, then it should return to its left alignment
     if (infoCanvas.activeSelf) {
@@ -2172,16 +2167,16 @@ public class Hero : MonoBehaviour {
     }
 
     // resets the action canvas so when the chat closes and it should show again, it won't show at full width
-    actionCanvas.GetComponent<ActionCanvas>().ClearAction();
+    InGame.instance.actionCanvas.GetComponent<ActionCanvas>().ClearAction();
 
-    chatCanvas.SetActive(true);
+    InGame.instance.chatCanvas.SetActive(true);
     isOnChat = true;
     chatCanvasScript.StartChat();
   }
 
   // TODO: other properties, such as changing the emotion sprites, should be done inside below
   public void CloseChat() {
-    chatCanvas.SetActive(false);
+    InGame.instance.chatCanvas.SetActive(false);
     isOnChat = false;
     proximityCheckScript.DecideActionShow();
   }

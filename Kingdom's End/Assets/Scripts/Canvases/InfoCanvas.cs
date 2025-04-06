@@ -53,7 +53,7 @@ public class InfoCanvas : MonoBehaviour {
     textObject.GetComponent<Text>().text = text;
 
     // immediately align right if the action canvas is already visible
-    if (heroScript.actionCanvas.activeSelf) {
+    if (InGame.instance.actionCanvas.activeSelf) {
       AlignRight();
     }
 

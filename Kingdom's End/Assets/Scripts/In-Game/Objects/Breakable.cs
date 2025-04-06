@@ -19,13 +19,12 @@ public class Breakable : MonoBehaviour {
   private Rigidbody2D body;
   private BoxCollider2D breakableCollider;
   private AudioSource audioSource;
-  private InGame inGame;
+
   void Start() {
     body = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponent<SpriteRenderer>();
     breakableCollider = GetComponent<BoxCollider2D>();
     audioSource = GetComponent<AudioSource>();
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
     spriteRenderer.sprite = Helpers.GetOrException(Sprites.breakableSprites, type);
 
     if (type == "vase") {
@@ -75,7 +74,7 @@ public class Breakable : MonoBehaviour {
       Physics2D.IgnoreCollision(col.gameObject.GetComponent<PolygonCollider2D>(), breakableCollider);
     }
 
-    if (inGame.IsInRoom(inGame.FindRoom(transform.parent))) {
+    if (InGame.instance.IsInRoom(InGame.instance.FindRoom(transform.parent))) {
       isFalling = true;
       StartCoroutine(PrepareFalling(col.gameObject));
     }
@@ -102,7 +101,7 @@ public class Breakable : MonoBehaviour {
 
       string rarity = itemRarity != "" ? itemRarity : (Helpers.IsValueInArray(Constants.moneyItemKeys, item) ? "money" : "normal");
 
-      inGame.InstantiatePrefab("droppable", item, rarity, GetItemSpawnedParent(), transform.position, spriteRenderer);
+      InGame.instance.InstantiatePrefab("droppable", item, rarity, GetItemSpawnedParent(), transform.position, spriteRenderer);
 
       GameObject parentObject = col.transform.parent.gameObject;
       if (parentObject.name.Contains("Throwable")) {
@@ -142,7 +141,7 @@ public class Breakable : MonoBehaviour {
         PlaySound(Helpers.GetRandomClipFromGroup(breakableClips));
       break;
       case "Floor":
-        string materialFallingOn = inGame.GetTileMaterial(transform.position);
+        string materialFallingOn = InGame.instance.GetTileMaterial(transform.position);
 
         // if there is no tile material, falling sound will be assumed from location
         if (materialFallingOn == null) {
@@ -163,7 +162,7 @@ public class Breakable : MonoBehaviour {
   }
 
   public void PlaySound(AudioClip breakableSound) {
-    if (Helpers.IsPastPlayElapsedTime(inGame) && Settings.playSFX) {
+    if (Helpers.IsPastPlayElapsedTime(InGame.instance) && Settings.playSFX) {
       // lower volume to aggregate to 1 depending on the breakable siblings
       float audioVolume = 1 / BreakableCount();
       audioSource.volume = audioVolume;

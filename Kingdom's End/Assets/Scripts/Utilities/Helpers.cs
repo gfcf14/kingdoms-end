@@ -497,7 +497,7 @@ public class Helpers {
   }
 
   public static bool IsPastPlayElapsedTime(InGame inGame) {
-    float elapsedTime =  Time.realtimeSinceStartup - inGame.mainOverlay.GetComponent<MainOverlay>().timeOnFade;
+    float elapsedTime =  Time.realtimeSinceStartup - InGame.instance.mainOverlay.GetComponent<MainOverlay>().timeOnFade;
 
     return elapsedTime > Constants.minimumSoundPlayElapsedTime;
   }
@@ -615,10 +615,11 @@ public class Helpers {
     return char.ToUpper(s[0]) + s.Substring(1);
   }
 
-  public static void ChangeScene(string scene, Vector2 position, Vector2 cameraPosition, Hero hero) {
-    DataManager.instance.playerPosition = position;
+  public static void ChangeScene(string scene, Vector2 position, Vector2 cameraPosition) {
+    InGame.instance.StopSoundtrack();
+
+    Hero.instance.ModifyPosition(position);
     DataManager.instance.newCameraPosition = cameraPosition;
-    // DataManager.instance.playerFalling = hero.isJumping || hero.isFalling;
 
     SceneManager.LoadScene(scene);
   }

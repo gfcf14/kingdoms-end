@@ -26,7 +26,6 @@ public class Droppable : MonoBehaviour {
   [SerializeField] public GameObject spawnedFrom;
 
   private AudioSource audioSource;
-  private InGame inGame;
 
   public float parabolaConstant = 0f;
   private Vector2 initialPosition;
@@ -44,7 +43,6 @@ public class Droppable : MonoBehaviour {
     flickerEffect = GetComponent<Flicker>();
     droppableSprite = GetComponent<SpriteRenderer>();
     audioSource = GetComponent<AudioSource>();
-    inGame = GameObject.Find("InGame").gameObject.GetComponent<InGame>();
 
     body = gameObject.AddComponent<Rigidbody2D>();
     body.gravityScale = 0;
@@ -133,7 +131,7 @@ public class Droppable : MonoBehaviour {
   }
 
   public void PlaySound(AudioClip droppableSound) {
-    if (inGame.hero.pauseCase == "" && Settings.playSFX) {
+    if (InGame.instance.hero.pauseCase == "" && Settings.playSFX) {
       audioSource.PlayOneShot(droppableSound);
     }
   }
@@ -155,8 +153,8 @@ public class Droppable : MonoBehaviour {
         }
       }
 
-      if (inGame.IsInRoom(inGame.FindRoom(transform.parent))) {
-        string materialFallingOn = inGame.GetTileMaterial(transform.position);
+      if (InGame.instance.IsInRoom(InGame.instance.FindRoom(transform.parent))) {
+        string materialFallingOn = InGame.instance.GetTileMaterial(transform.position);
         if (materialFallingOn == null) {
           // TODO: find a better way to get the location
           materialFallingOn = Helpers.GetMaterial(GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>().location);
@@ -199,8 +197,8 @@ public class Droppable : MonoBehaviour {
     if (gameObjectTag == "Hero" && canBePicked) {
       string itemPickSoundIndex = rarity == "" ? (Helpers.IsValueInArray(Constants.moneyItemKeys, key) ? "money" : "normal") : rarity;
 
-      inGame.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, itemPickSoundIndex), transform.position);
-      DestroyDroppable(col.gameObject.GetComponent<Hero>());
+      InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, itemPickSoundIndex), transform.position);
+      DestroyDroppable(Hero.instance);
     }
   }
 
@@ -219,7 +217,7 @@ public class Droppable : MonoBehaviour {
 
     if (Settings.showItemInfo) {
       bool displayMoney = key.Contains("money");
-      hero.infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? moneyItem.text : Helpers.GetOrException(Objects.regularItems, key).name);
+      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? moneyItem.text : Helpers.GetOrException(Objects.regularItems, key).name);
     }
 
     // interaction with enemy spawner happens here if provided
