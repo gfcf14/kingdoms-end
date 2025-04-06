@@ -20,8 +20,9 @@ public class InGame : MonoBehaviour {
   public GameObject actionCanvas;
   public GameObject bossStatusCanvas;
   public GameObject chatCanvas;
+  public GameObject fadeOutCanvas;
+  public GameObject fanfareCanvas;
   public GameObject infoCanvas;
-
   public GameObject pauseCanvas;
   public GameObject hpBarContainer;
   public GlobalGradients globalGradients;

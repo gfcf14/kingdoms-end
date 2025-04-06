@@ -68,10 +68,8 @@ public class Relic : MonoBehaviour {
   private void OnTriggerEnter2D(Collider2D col) {
     string gameObjectTag = col.gameObject.tag;
     if (gameObjectTag == "Hero") {
-      Hero heroScript = col.gameObject.GetComponent<Hero>();
-
-      heroScript.AddToRelics(key);
-      heroScript.GetRelic();
+      Hero.instance.AddToRelics(key);
+      Hero.instance.GetRelic();
 
       Destroy(transform.parent.gameObject);
     }

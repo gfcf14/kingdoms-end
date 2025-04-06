@@ -17,14 +17,11 @@ public class Hero : MonoBehaviour {
   [SerializeField] public float inclineSlope = 0.125f;
   [SerializeField] public float jumpHeight = GameData.playerJumpHeight;
   [SerializeField] private float jetpackHeight;
-  [SerializeField] public GameObject infoCanvas;
 
   [SerializeField] public GameObject mpBarContainer;
   [SerializeField] public GameObject weaponCollider;
   [SerializeField] public GameObject shieldCollider;
   [SerializeField] public GameObject bow;
-  [SerializeField] public GameObject fanfareCanvas;
-  [SerializeField] public GameObject fadeOutCanvas;
   [SerializeField] public GameObject airEdgeCheck;
   public AirEdgeCheck airEdgeCheckScript;
   public ProximityCheck proximityCheckScript;
@@ -2069,23 +2066,23 @@ public class Hero : MonoBehaviour {
     playerLevel++;
     SetupStatsByLevel();
     InGame.instance.PlaySound(Helpers.GetOrException(Sounds.notificationSounds, "levelup"), transform.position);
-    fanfareCanvas.SetActive(true);
+    InGame.instance.fanfareCanvas.SetActive(true);
     SetPauseCase("level-up");
-    fanfareCanvas.GetComponent<FanfareCanvas>().ShowLevelUp();
+    InGame.instance.fanfareCanvas.GetComponent<FanfareCanvas>().ShowLevelUp();
   }
 
   public void GetRelic() {
 
     InGame.instance.ToggleSoundtrack(isPaused: false);
     InGame.instance.PlaySound(Helpers.GetOrException(Sounds.notificationSounds, "levelup"), transform.position);
-    fanfareCanvas.SetActive(true);
+    InGame.instance.fanfareCanvas.SetActive(true);
     SetPauseCase("got-relic");
-    fanfareCanvas.GetComponent<FanfareCanvas>().ShowGetRelic();
+    InGame.instance.fanfareCanvas.GetComponent<FanfareCanvas>().ShowGetRelic();
   }
 
   public void PlayerDeath() {
     SetPauseCase("death");
-    fadeOutCanvas.SetActive(true);
+    InGame.instance.fadeOutCanvas.SetActive(true);
     InGame.instance.StartFadeOutAndPause();
   }
 
@@ -2162,8 +2159,8 @@ public class Hero : MonoBehaviour {
     InGame.instance.actionCanvas.SetActive(false);
 
     // if the info canvas is active, then it should return to its left alignment
-    if (infoCanvas.activeSelf) {
-      infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
+    if (InGame.instance.infoCanvas.activeSelf) {
+      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
     }
 
     // resets the action canvas so when the chat closes and it should show again, it won't show at full width

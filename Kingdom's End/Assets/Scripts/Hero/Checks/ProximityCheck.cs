@@ -16,8 +16,8 @@ public class ProximityCheck : MonoBehaviour {
   private void ActivateActionCanvas() {
     InGame.instance.actionCanvas.SetActive(true);
 
-    if (Hero.instance.infoCanvas.activeSelf) {
-      Hero.instance.infoCanvas.GetComponent<InfoCanvas>().AlignRight();
+    if (InGame.instance.infoCanvas.activeSelf) {
+      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().AlignRight();
     }
   }
 
@@ -41,8 +41,8 @@ public class ProximityCheck : MonoBehaviour {
     InGame.instance.actionCanvas.SetActive(false);
 
     // if the info canvas is active, ensure it shows on the left of the screen
-    if (Hero.instance.infoCanvas.activeSelf) {
-      Hero.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
+    if (InGame.instance.infoCanvas.activeSelf) {
+      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
     }
 
     InGame.instance.actionCanvas.GetComponent<ActionCanvas>().ClearAction();
@@ -83,7 +83,8 @@ public class ProximityCheck : MonoBehaviour {
       // reflect the action from the portal the player appears in, hence the action canvas
       // should only hide on a trigger exit as the player moves away from the trigger, not
       // when transported by it
-      if (Hero.instance.nearbyInteractableObject.name == col.gameObject.name) {
+
+      if (Hero.instance.nearbyInteractableObject != null && Hero.instance.nearbyInteractableObject.name == col.gameObject.name) {
         Hero.instance.nearbyInteractableObject = null;
         ClearActionOnExit();
       }

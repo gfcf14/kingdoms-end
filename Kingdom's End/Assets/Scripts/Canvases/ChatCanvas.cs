@@ -84,14 +84,14 @@ public class ChatCanvas : MonoBehaviour {
     GameObject.Find(Helpers.KebabToObject(character)).GetComponent<SpriteRenderer>().sprite = Helpers.GetOrException(Helpers.GetOrException(Sprites.emotions, character), emotion);
   }
 
-  void GiveItem(Hero heroScript, string itemKey) {
-    Item currItem = Helpers.GetItemFromList(heroScript.items, itemKey);
+  void GiveItem(string itemKey) {
+    Item currItem = Helpers.GetItemFromList(Hero.instance.items, itemKey);
 
     if (itemKey.Contains("money")) {
-      heroScript.gold += Helpers.GetOrException(Objects.moneyItems, itemKey).increment;
+      Hero.instance.gold += Helpers.GetOrException(Objects.moneyItems, itemKey).increment;
     } else {
       if (currItem == null) { // if not found, the item must be added
-        heroScript.items.Add(new Item(itemKey, 1));
+        Hero.instance.items.Add(new Item(itemKey, 1));
       } else { // if found, the item is incremented
         currItem.amount++;
       }
@@ -99,33 +99,31 @@ public class ChatCanvas : MonoBehaviour {
 
     if (Settings.showItemInfo) {
       bool displayMoney = itemKey.Contains("money");
-      heroScript.infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? Helpers.GetOrException(Objects.moneyItems, itemKey).text : Helpers.GetOrException(Objects.regularItems, itemKey).name);
+      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? Helpers.GetOrException(Objects.moneyItems, itemKey).text : Helpers.GetOrException(Objects.regularItems, itemKey).name);
     }
   }
 
-  void TakeItem(Hero heroScript, string itemKey) {
+  void TakeItem(string itemKey) {
     if (itemKey.Contains("money")) { // if there is money involved, remove from the gold value
       string moneyValue = itemKey.Split('-')[1];
-      heroScript.gold -= int.Parse(moneyValue);
+      Hero.instance.gold -= int.Parse(moneyValue);
 
-      heroScript.InstantiateLoss("money-loss", isItem: false, moneyValue, null);
+      Hero.instance.InstantiateLoss("money-loss", isItem: false, moneyValue, null);
     } else { // if there is no money involved, remove from the hero item list
-      Item currItem = Helpers.GetItemFromList(heroScript.items, itemKey);
+      Item currItem = Helpers.GetItemFromList(Hero.instance.items, itemKey);
 
       if (currItem.amount > 1) { // if more than one, just decrement
         currItem.amount--;
       } else { // otherwise, remove it from the item list
-        heroScript.RemoveItem(Helpers.GetItemIndex(heroScript.items, itemKey));
+        Hero.instance.RemoveItem(Helpers.GetItemIndex(Hero.instance.items, itemKey));
       }
 
       // TODO: if at some point the player has to give more than 2 of the same item, the multiplier text should reflect this
-      heroScript.InstantiateLoss("item-loss", isItem: true, "", Helpers.GetOrException(Objects.regularItems, itemKey).thumbnail);
+      Hero.instance.InstantiateLoss("item-loss", isItem: true, "", Helpers.GetOrException(Objects.regularItems, itemKey).thumbnail);
     }
   }
 
   void RunOutcome(Outcome outcome) {
-    Hero heroScript = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
-
     switch (outcome.outcomeCase) {
       case "":
         // do nothing
@@ -134,7 +132,7 @@ public class ChatCanvas : MonoBehaviour {
         string[] itemKeys = outcome.outcomeValue.Split(',');
 
         foreach (string itemKey in itemKeys) {
-          GiveItem(heroScript, itemKey);
+          GiveItem(itemKey);
         }
       break;
       case "trade":
@@ -143,11 +141,11 @@ public class ChatCanvas : MonoBehaviour {
         string[] npcItems = outcomeValues[1].Split(',');
 
         foreach (string item in heroItems) {
-          TakeItem(heroScript, item);
+          TakeItem(item);
         }
 
         foreach(string item in npcItems) {
-          GiveItem(heroScript, item);
+          GiveItem(item);
         }
       break;
       default:
