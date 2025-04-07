@@ -617,10 +617,9 @@ public class Helpers {
 
   public static void ChangeScene(string scene, Vector2 position, Vector2 cameraPosition) {
     InGame.instance.StopSoundtrack();
-
-    Hero.instance.ModifyPosition(position);
+    InGame.instance.ClearPauseTimes();
     DataManager.instance.newCameraPosition = cameraPosition;
-
+    DataManager.instance.playerPosition = position;
     SceneManager.LoadScene(scene);
   }
 }

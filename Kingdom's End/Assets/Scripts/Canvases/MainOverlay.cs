@@ -36,6 +36,10 @@ public class MainOverlay : MonoBehaviour {
 
     anim = GetComponent<Animator>();
     areaImage = gameObject.transform.Find("AreaImage").GetComponent<Image>();
+
+    if (DataManager.instance.playerPosition.HasValue) {
+      Hero.instance.ModifyPosition(DataManager.instance.playerPosition.Value);
+    }
   }
 
   void Update() {}

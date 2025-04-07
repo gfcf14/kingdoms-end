@@ -10,7 +10,8 @@ public class SceneChanger : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D col) {
       if (col.gameObject.CompareTag("Hero")) {
-        Helpers.ChangeScene(scene, new Vector2(Hero.instance.transform.position.x + Hero.instance.direction, Hero.instance.transform.position.y), newCameraPosition);
+        // TODO: for some reason the x position increases, so twice the hero collider width is removed accordingly
+        Helpers.ChangeScene(scene, new Vector2(Hero.instance.transform.position.x - (Hero.instance.direction * Hero.instance.heroDimensions.x * 2), Hero.instance.transform.position.y), newCameraPosition);
       }
     }
 }

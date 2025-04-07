@@ -3,7 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class GameOverOverlay : MonoBehaviour {
   [SerializeField] GameObject titleCanvas;
-  void Start() {}
+  void Start() {
+    Destroy(Hero.instance);
+    Destroy(InGame.instance);
+  }
   void Update() {}
 
   public void TransitionToTitle() {
