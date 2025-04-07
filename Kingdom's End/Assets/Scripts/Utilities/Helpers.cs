@@ -496,8 +496,8 @@ public class Helpers {
     }
   }
 
-  public static bool IsPastPlayElapsedTime(InGame inGame) {
-    float elapsedTime =  Time.realtimeSinceStartup - InGame.instance.mainOverlay.GetComponent<MainOverlay>().timeOnFade;
+  public static bool IsPastPlayElapsedTime() {
+    float elapsedTime =  Time.realtimeSinceStartup - GameObject.Find("MainOverlay").GetComponent<MainOverlay>().timeOnFade;
 
     return elapsedTime > Constants.minimumSoundPlayElapsedTime;
   }

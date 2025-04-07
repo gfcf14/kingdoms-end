@@ -162,7 +162,7 @@ public class Breakable : MonoBehaviour {
   }
 
   public void PlaySound(AudioClip breakableSound) {
-    if (Helpers.IsPastPlayElapsedTime(InGame.instance) && Settings.playSFX) {
+    if (Helpers.IsPastPlayElapsedTime() && Settings.playSFX) {
       // lower volume to aggregate to 1 depending on the breakable siblings
       float audioVolume = 1 / BreakableCount();
       audioSource.volume = audioVolume;

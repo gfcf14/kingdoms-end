@@ -1084,7 +1084,7 @@ public class Hero : MonoBehaviour {
                 Portal interactingPortal = nearbyInteractableObject.GetComponent<Portal>();
 
                 if (interactingPortal.portalType == "cave") {
-                  Helpers.ChangeScene("Underground", interactingPortal.transportLocation, interactingPortal.cameraPosition);
+                  Helpers.ChangeScene(interactingPortal.scene, interactingPortal.transportLocation, interactingPortal.cameraPosition);
                 } else {
                   TransportViaPortal(interactingPortal.transportLocation);
                 }

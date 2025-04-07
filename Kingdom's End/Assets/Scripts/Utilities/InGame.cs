@@ -16,7 +16,7 @@ public class InGame : MonoBehaviour {
   [SerializeField] float miniBossTrackPausedTime = 0f; // Stores the min boss track paused time position
 
   public Hero hero;
-  public GameObject mainOverlay;
+  // public GameObject mainOverlay;
   public GameObject actionCanvas;
   public GameObject bossStatusCanvas;
   public GameObject chatCanvas;
@@ -48,14 +48,14 @@ public class InGame : MonoBehaviour {
   public void SetComponents() {
     // groundTiles = GameObject.Find("Floors").GetComponent<Tilemap>();
     // detailTiles = GameObject.Find("Detail").GetComponent<Tilemap>();
-    mainOverlay = GameObject.Find("MainOverlay");
+    // mainOverlay = GameObject.Find("MainOverlay");
     soundtrack = GetComponent<AudioSource>();
     soundtrack.volume = Settings.maxSoundtrackVolume;
     soundtrack.loop = true;
 
     hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
 
-    mainOverlay.GetComponent<MainOverlay>().AssignTilemaps();
+    GameObject.Find("MainOverlay").GetComponent<MainOverlay>().AssignTilemaps();
   }
   void Update() {}
 
@@ -120,7 +120,7 @@ public class InGame : MonoBehaviour {
   }
 
   public void FlashFadeOut() {
-    mainOverlay.GetComponent<MainOverlay>().FlashFadeOut();
+    GameObject.Find("MainOverlay").GetComponent<MainOverlay>().FlashFadeOut();
   }
 
   public void FlashFinish() {
@@ -128,12 +128,12 @@ public class InGame : MonoBehaviour {
   }
 
   public void FlashFadeIn() {
-    mainOverlay.GetComponent<MainOverlay>().FlashFadeIn();
+    GameObject.Find("MainOverlay").GetComponent<MainOverlay>().FlashFadeIn();
   }
 
   public void ChangeArea() {
     pauseCanvas.GetComponent<Pause>().ChangeArea();
-    mainOverlay.GetComponent<MainOverlay>().PrepareAreaTransition();
+    GameObject.Find("MainOverlay").GetComponent<MainOverlay>().PrepareAreaTransition();
   }
 
   private IEnumerator FadeOutAndPause() {
@@ -176,7 +176,7 @@ public class InGame : MonoBehaviour {
   }
 
   public void Cover() {
-    mainOverlay.GetComponent<Image>().color = new Color(0, 0, 0, 1);
+    GameObject.Find("MainOverlay").GetComponent<Image>().color = new Color(0, 0, 0, 1);
   }
 
   public void InstantiatePrefab(string prefab, string key, string rarity, GameObject room, Vector2 position, SpriteRenderer spr, bool shouldRotate = false, string rotateDirection = "", GameObject spawnedFrom = null) {
