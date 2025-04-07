@@ -38,10 +38,6 @@ public class InGame : MonoBehaviour {
 
   void Start() {
     SetComponents();
-
-    if (DataManager.instance.playerFalling.HasValue) {
-      hero.isFalling = DataManager.instance.playerFalling.Value;
-    }
   }
 
   public void SetComponents() {
