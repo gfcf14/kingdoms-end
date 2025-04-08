@@ -1,7 +1,7 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour {
+  [SerializeField] float offset;
   [SerializeField] string scene;
   [SerializeField] Vector2 newCameraPosition;
   void Start() {}
@@ -10,8 +10,7 @@ public class SceneChanger : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D col) {
       if (col.gameObject.CompareTag("Hero")) {
-        // TODO: for some reason the x position increases, so twice the hero collider width is removed accordingly
-        Helpers.ChangeScene(scene, new Vector2(Hero.instance.transform.position.x - (Hero.instance.direction * Hero.instance.heroDimensions.x * 2), Hero.instance.transform.position.y), newCameraPosition);
+        Helpers.ChangeScene(scene, new Vector2(Hero.instance.transform.position.x + offset, Hero.instance.transform.position.y), newCameraPosition);
       }
     }
 }
