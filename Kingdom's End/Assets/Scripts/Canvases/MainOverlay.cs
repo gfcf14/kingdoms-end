@@ -40,6 +40,8 @@ public class MainOverlay : MonoBehaviour {
     if (DataManager.instance.playerPosition.HasValue) {
       Hero.instance.ModifyPosition(DataManager.instance.playerPosition.Value);
     }
+
+    Hero.instance.gameObject.transform.Find("ProximityCheck").gameObject.SetActive(true);
   }
 
   void Update() {}

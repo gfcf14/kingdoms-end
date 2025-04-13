@@ -621,5 +621,8 @@ public class Helpers {
     DataManager.instance.newCameraPosition = cameraPosition;
     DataManager.instance.playerPosition = position;
     SceneManager.LoadScene(scene);
+    InGame.instance.actionCanvas.SetActive(false);
+    Hero.instance.gameObject.transform.Find("ProximityCheck").gameObject.SetActive(false);
+    GameData.area = scene.ToLower();
   }
 }
