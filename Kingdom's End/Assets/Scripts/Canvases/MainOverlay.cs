@@ -7,6 +7,8 @@ public class MainOverlay : MonoBehaviour {
   public Image areaImage;
   public float timeOnFade = 0;
 
+  [SerializeField] GameObject[] sceneAnchorers;
+
   public void AssignTilemaps() {
     GameObject grid = GameObject.Find("Grid");
 
@@ -36,12 +38,23 @@ public class MainOverlay : MonoBehaviour {
 
     anim = GetComponent<Animator>();
     areaImage = gameObject.transform.Find("AreaImage").GetComponent<Image>();
+  }
 
-    if (DataManager.instance.playerPosition.HasValue) {
-      Hero.instance.ModifyPosition(DataManager.instance.playerPosition.Value);
+  public void UpdatePlayerPosition() {
+    if (DataManager.instance.anchorIndex.Value != -1) {
+      float newHeroX = sceneAnchorers[DataManager.instance.anchorIndex.Value].transform.position.x;
+      float heroY = Hero.instance.transform.position.y;
+
+      if (Hero.instance.transform.position.x != newHeroX) {
+        Hero.instance.transform.position = new Vector2(newHeroX, heroY);
+      }
     }
 
     Hero.instance.gameObject.transform.Find("ProximityCheck").gameObject.SetActive(true);
+  }
+
+  public void ClearAnchorIndex() {
+    DataManager.instance.anchorIndex = -1;
   }
 
   void Update() {}
