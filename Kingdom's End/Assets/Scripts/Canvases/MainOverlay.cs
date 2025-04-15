@@ -27,6 +27,8 @@ public class MainOverlay : MonoBehaviour {
     InGame.instance.globalGradients.buildingsBackTilemap = grid.transform.Find("Buildings - Back").GetComponent<Tilemap>();
     InGame.instance.globalGradients.buildingsFrontTilemap = grid.transform.Find("Buildings - Front").GetComponent<Tilemap>();
     InGame.instance.globalGradients.overlaysTilemap = grid.transform.Find("Overlays").GetComponent<Tilemap>();
+
+    InGame.instance.globalGradients.canUpdateGradients = true;
   }
 
   void Start() {

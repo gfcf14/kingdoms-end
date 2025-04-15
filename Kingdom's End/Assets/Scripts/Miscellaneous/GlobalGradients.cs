@@ -105,6 +105,8 @@ public class GlobalGradients : MonoBehaviour {
   [System.NonSerialized] private Dictionary<string, Dictionary<string, Gradient>> areaGradients;
   [System.NonSerialized] private Color resetColor = Color.white;
 
+  public bool canUpdateGradients = false;
+
   void Start() {
     areaGradients = new Dictionary<string, Dictionary<string, Gradient>> {
       {"calderas", new Dictionary<string, Gradient> {
@@ -155,7 +157,7 @@ public class GlobalGradients : MonoBehaviour {
   }
 
   void Update() {
-    if (!Hero.instance.isPaused) {
+    if (canUpdateGradients && !Hero.instance.isPaused) {
       // TODO: add time from loaded time once implemented
       float elapsedTime = Time.time + GameData.initialGameTime;
       currentTime = Helpers.GetGameTime((int)(elapsedTime % Constants.maxDayLength));
@@ -219,16 +221,18 @@ public class GlobalGradients : MonoBehaviour {
   }
 
   public void ResetTilemaps() {
-    skyTilemap.color = resetColor;
-    cloudsTilemap.color = resetColor;
-    backgroundFarTilemap.color = resetColor;
-    backgroundMiddleTilemap.color = resetColor;
-    backgroundCloseTilemap.color = resetColor;
-    foregroundTilemap.color = resetColor;
-    wallsTilemap.color = resetColor;
-    floorsTilemap.color = resetColor;
-    blendsTilemap.color = resetColor;
-    overlaysTilemap.color = resetColor;
-    detailTilemap.color = resetColor;
+    if (canUpdateGradients) {
+      skyTilemap.color = resetColor;
+      cloudsTilemap.color = resetColor;
+      backgroundFarTilemap.color = resetColor;
+      backgroundMiddleTilemap.color = resetColor;
+      backgroundCloseTilemap.color = resetColor;
+      foregroundTilemap.color = resetColor;
+      wallsTilemap.color = resetColor;
+      floorsTilemap.color = resetColor;
+      blendsTilemap.color = resetColor;
+      overlaysTilemap.color = resetColor;
+      detailTilemap.color = resetColor;
+    }
   }
 }

@@ -618,9 +618,13 @@ public class Helpers {
   public static void ChangeScene(string scene, Vector2 position, Vector2 cameraPosition) {
     InGame.instance.StopSoundtrack();
     InGame.instance.ClearPauseTimes();
+    InGame.instance.globalGradients.canUpdateGradients = false;
+
     DataManager.instance.newCameraPosition = cameraPosition;
     DataManager.instance.playerPosition = position;
+
     SceneManager.LoadScene(scene);
+
     InGame.instance.actionCanvas.SetActive(false);
     Hero.instance.gameObject.transform.Find("ProximityCheck").gameObject.SetActive(false);
     GameData.area = scene.ToLower();
