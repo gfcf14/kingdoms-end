@@ -22,7 +22,9 @@ public class RoomTraverser : MonoBehaviour {
       string location = newRoom.location;
 
       if (GameData.area != location && location != "intersection") {
-        InGame.instance.ResetTilemaps();
+        if (InGame.instance != null) {
+          InGame.instance.ResetTilemaps();
+        }
 
         if (location == "indoors") {
           InGame.instance.globalGradients.isIndoors = true;
