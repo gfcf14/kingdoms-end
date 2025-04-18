@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ public class Throwable : MonoBehaviour {
 
     directionFactor = isFacingLeft ? -1 : 1;
 
-    objectRenderer.sprite = Helpers.GetOrException(Sprites.throwableSprites, type);
+    objectRenderer.sprite = Helpers.IsValueInArray(Constants.enemyProjectiles, type) ? Helpers.GetOrException(Sprites.projectileSprites, type) : Helpers.GetOrException(Sprites.throwableSprites, type);
 
 
     // if the instantiated throwable must bounce, use different values than those for a regular throw
@@ -107,7 +108,7 @@ public class Throwable : MonoBehaviour {
 
     // Rotates the throwable to conform to parabola
     if (!freezeRotation) {
-      if (mustBounce || Helpers.IsValueInArray(Constants.rotatingThrowables, type)) {
+      if (mustBounce || Helpers.IsValueInArray(Constants.rotatingThrowables.Concat(Constants.rotatingProjectiles).ToArray(), type)) {
         transform.Rotate(0f, 0f, rotationFactor * rotationSpeed * Time.deltaTime * -directionFactor);
       } else {
         // gets an angle for the throwable (in radians first then converted to degrees) based on the speed

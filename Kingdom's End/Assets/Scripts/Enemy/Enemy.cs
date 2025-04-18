@@ -934,8 +934,7 @@ public class Enemy : MonoBehaviour {
     Throwable throwableInstance = throwableWeapon.GetComponent<Throwable>();
 
     throwableInstance.isFacingLeft = isFacingLeft;
-    // TODO: change when implementing other throwable types
-    throwableInstance.type = "king-bone";
+    throwableInstance.type = Helpers.GetOrException(Objects.projectileKeys, key);
     throwableInstance.criticalRate = criticalRate;
 
     // TODO: change when implementing other throwable types

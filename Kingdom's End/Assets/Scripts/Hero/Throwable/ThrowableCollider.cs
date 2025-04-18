@@ -21,6 +21,7 @@ public class ThrowableCollider : MonoBehaviour {
 
     if (!parentThrowable.mustBounce) {
       if (colliderTag == "Floor" || colliderTag == "Wall") {
+        Debug.Log("Ground Check for type: " + parentThrowable.type);
         if (!Helpers.IsValueInArray(Constants.nonGroundableThrowables, parentThrowable.type)) {
           parentThrowable.hasCollided = true;
           parentThrowable.collideTime = Time.time * 1000;

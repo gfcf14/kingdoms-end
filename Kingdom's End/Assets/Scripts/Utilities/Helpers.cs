@@ -7,11 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class Helpers {
   public static int GetDamage(string weaponWielded) {
+    if (IsValueInArray(Constants.enemyProjectiles, weaponWielded)) {
+      
+      return GetOrException(Objects.projectileDamages, weaponWielded);
+    }
+
     return (int)GetOrException(Objects.regularItems, weaponWielded).effects.atk;
   }
 
   public static bool IsNonBouncingThrowable(string type) {
-    return IsValueInArray(Constants.nonBouncingThrowables, type);
+    return IsValueInArray(Constants.nonBouncingThrowables.Concat(Constants.nonBouncingProjectiles).ToArray(), type);
   }
 
   public static bool IsSmallRotatingThrowable(string type) {

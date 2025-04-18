@@ -179,6 +179,11 @@ public class Objects {
     // {"chicken-drumstick", new RegularItem(Sprites.itemThumbnails[3], Sprites.itemImages[3], "Chicken Drumstick", "From range-free raised fowl.", "food", new Effects() {hp = 99, mp=99, statusHeal=new string[]{"Poison", "Curse", "Drain"}, atk=-99, def=99, crit=0.5f, luck=-0.2f, magicResistances=new MagicResistance[]{new MagicResistance(){name="Earth", type="add"}, new MagicResistance(){name="Air", type="add"}, new MagicResistance(){name="Water", type="add"}, new MagicResistance(){name="Fire", type="add"}, new MagicResistance(){name="Lightning", type="remove"}, new MagicResistance(){name="Ice", type="remove"}, new MagicResistance(){name="Light", type="remove"}, new MagicResistance(){name="Dark", type="remove"}}})}
   };
 
+  public static Dictionary<string, int> projectileDamages = new Dictionary<string, int> {
+    {"goblin-knife", 50},
+    {"skeleton-bone", 50}
+  };
+
   public static Dictionary<string, FragmentOutcome> itemFragments = new Dictionary<string, FragmentOutcome> {
     {"watermelon", new FragmentOutcome(){key="watermelon-slice", count=8}}
   };
@@ -440,8 +445,11 @@ public class Objects {
     {"W", 38},
   };
 
+  // TODO: modify impact types for appropriate sounds
   public static Dictionary<string, string> throwableImpactType = new Dictionary<string, string> {
-    {"king-bone", "blunt"}
+    {"goblin-knife", "blunt"},
+    {"king-bone", "blunt"},
+    {"skeleton-bone", "blunt"}
   };
 
   public static Dictionary<string, int[]> locationInclineTiles = new Dictionary<string, int[]> {
@@ -451,11 +459,13 @@ public class Objects {
   public static Dictionary<string, ThrowableSpecs> throwableSpecs = new Dictionary<string, ThrowableSpecs> {
     {"axe", new ThrowableSpecs() {colliderOffset = new ValuePair(0.67f, 0), colliderSize = new ValuePair(0.65f, 0.75f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"bomb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0.22f), colliderSize = new ValuePair(0.6f, 0.4f), freezeRotation = true, hDisplacement = 1.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
+    {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"hatchet", new ThrowableSpecs() {colliderOffset = new ValuePair(0.45f, 0), colliderSize = new ValuePair(0.55f, 0.45f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 20f, steepness = 200f}},
     {"king-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.65f, 1.45f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.25f, 1.2f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 30f, steepness = 150f}},
     {"kunai", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.35f, 1.25f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 30f, steepness = 150f}},
     {"lance", new ThrowableSpecs() {colliderOffset = new ValuePair(1.4f, -0.14f), colliderSize = new ValuePair(0.37f, 1.26f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 10f, speed = 20f, steepness = 20f}},
+    {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"shuriken-4", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.65f, 0.65f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, rotationFactor = 8, speed = 40f, steepness = 300f}},
     {"shuriken-6", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.65f, 0.65f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, rotationFactor = 8, speed = 40f, steepness = 300f}},
     {"watermelon", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1.02f, 1.15f), hDisplacement = 1.5f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
@@ -463,7 +473,8 @@ public class Objects {
 
   public static Dictionary<string, string> projectileKeys = new Dictionary<string, string> {
     {"goblin", "goblin-knife"},
-    {"skeleton", "skeleton-bone"}
+    {"skeleton", "skeleton-bone"},
+    {"skeleton-king", "king-bone"}
   };
 
   public static Dictionary<string, Vector2> projectileColliderSpecs = new Dictionary<string, Vector2> {

@@ -20,7 +20,7 @@ public class Sprites {
   public static Sprite[] breakableBarrels = Resources.LoadAll<Sprite>("Spritesheets/barrel");
   public static Sprite[] breakableJars = Resources.LoadAll<Sprite>("Spritesheets/jar");
   public static Sprite[] breakableVases = Resources.LoadAll<Sprite>("Spritesheets/vase");
-
+  public static Sprite[] goblinSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/goblin");
   public static Sprite[] skeletonSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton");
   public static Sprite[] skeletonKingSprites = Resources.LoadAll<Sprite>("Spritesheets/skeleton-king");
 
@@ -475,6 +475,7 @@ public class Sprites {
   };
 
   public static Dictionary<string, Sprite> firstBossSprites = new Dictionary<string, Sprite> {
+    {"goblin", goblinSprites[0]},
     {"skeleton", skeletonSprites[35]},
     {"skeleton-king", skeletonKingSprites[0]}
   };
