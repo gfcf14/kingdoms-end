@@ -695,7 +695,7 @@ public class Enemy : MonoBehaviour {
               }
             } else {
               if (!isDefending) {
-                if (type != "bouncer") {
+                if (type != "bouncer" && type != "bewitcher") {
                   Stun();
                 }
               }
@@ -1070,12 +1070,14 @@ public class Enemy : MonoBehaviour {
     if (searchCast && searchCast.collider.tag == "Hero") {
       playerFound = true;
       if (type == "charger") {
+        // TODO: consider checking if the hero is hurt (currently enemy will charge and push an invincible player)
         isCharging = true;
       }
 
       // champions and ambushers of high enough level can make it more annoying by throwing stuff at player
       if (type == "champion" || type == "ambusher") {
-        if (level >= 10 && !isDefending) {
+        // TODO: uncomment once testing for all enemies is done, and level is better defined
+        if (/*level >= 10 &&*/ !isDefending) {
           isThrowingWeapon = true;
         }
       }

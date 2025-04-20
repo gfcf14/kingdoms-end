@@ -42,7 +42,7 @@ public class EnemyBomb : MonoBehaviour {
   }
 
   void Bounce() {
-    GameObject.Find("InGame").gameObject.GetComponent<InGame>().PlaySound(Helpers.GetOrException(Helpers.GetOrException(Sounds.impactSounds, "kick"), "normal"), transform.position);
+   InGame.instance.PlaySound(Helpers.GetOrException(Helpers.GetOrException(Sounds.impactSounds, "kick"), "normal"), transform.position);
 
     body.velocity = new Vector2(0, 8f); // Mathf.Abs(body.velocity.y));
     body.gravityScale = 0;

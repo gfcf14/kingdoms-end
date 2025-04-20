@@ -21,6 +21,7 @@ public class Sprites {
   public static Sprite[] breakableJars = Resources.LoadAll<Sprite>("Spritesheets/jar");
   public static Sprite[] breakableVases = Resources.LoadAll<Sprite>("Spritesheets/vase");
   public static Sprite[] goblinSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/goblin");
+  public static Sprite[] nymphSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nymph");
   public static Sprite[] skeletonSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton");
   public static Sprite[] skeletonKingSprites = Resources.LoadAll<Sprite>("Spritesheets/skeleton-king");
 
@@ -344,6 +345,7 @@ public class Sprites {
   // refers to the sprites for projectiles that only enemies (like the shooter) can throw
   public static Dictionary<string, Sprite> projectileSprites = new Dictionary<string, Sprite> {
     {"goblin-knife", Resources.Load<Sprite>("Sprites/projectiles/goblin-knife")},
+    {"nymph-acorn", Resources.Load<Sprite>("Sprites/projectiles/nymph-acorn")},
     {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")}
   };
 
@@ -476,6 +478,7 @@ public class Sprites {
 
   public static Dictionary<string, Sprite> firstBossSprites = new Dictionary<string, Sprite> {
     {"goblin", goblinSprites[0]},
+    {"nymph", nymphSprites[0]},
     {"skeleton", skeletonSprites[35]},
     {"skeleton-king", skeletonKingSprites[0]}
   };

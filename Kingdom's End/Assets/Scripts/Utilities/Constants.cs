@@ -4,7 +4,7 @@ public class Constants {
   public static string preferredInput = "gamepad";
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "king-bone", "coconut", "honeydew", "watermelon" };
-  public static string[] nonBouncingProjectiles = {"goblin-knife", "skeleton-bone"};
+  public static string[] nonBouncingProjectiles = {"goblin-knife", "nymph-acorn", "skeleton-bone"};
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
   public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
   public static string[] forbiddenKeys = {"Escape", "KeypadEnter", "Return", "W", "A", "S", "D", "UpArrow", "DownArrow", "RightArrow", "LeftArrow", "P"};
@@ -81,7 +81,7 @@ public class Constants {
 
   public static string[] enemyBombBounceTags = {"Hero", "Weapon"};
 
-  public static string[] enemyProjectiles = {"goblin-knife", "skeleton-bone"};
+  public static string[] enemyProjectiles = {"goblin-knife", "nymph-acorn", "skeleton-bone"};
 
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};

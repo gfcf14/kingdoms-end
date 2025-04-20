@@ -32,7 +32,19 @@ public class EnemyCollider : MonoBehaviour {
       } else {
         if (enemy.type == "bouncer" && (col.gameObject.CompareTag("Floor") || col.gameObject.CompareTag("Wall"))) {
           if (col.gameObject.CompareTag("Floor")) { // when hitting the floor/ceiling, bounce by flipping the y direction
-            enemy.yDirection *= -1;
+            Bounds enemyBounds = GetComponent<Collider2D>().bounds;
+            Vector2 enemyCenter = new Vector2(enemyBounds.center.x, enemyBounds.min.y + enemyBounds.size.y / 2);
+            Vector2 otherPos = col.bounds.center;
+
+            float verticalOffset = otherPos.y - enemyCenter.y;
+
+            if (Mathf.Abs(verticalOffset) > Mathf.Abs(col.bounds.extents.x)) {
+                if (verticalOffset > 0) {
+                    enemy.yDirection *= -1;
+                } else {
+                    enemy.yDirection *= 1;
+                }
+            }
           } else if (col.gameObject.CompareTag("Wall")) { // when hitting walls, bounce by turning around (which switches scale and isFacingLeft, which switches direction)
             enemy.TurnAround();
           }
