@@ -180,6 +180,7 @@ public class Objects {
   };
 
   public static Dictionary<string, int> projectileDamages = new Dictionary<string, int> {
+    {"dwarf-cobble", 35},
     {"goblin-knife", 50},
     {"nymph-acorn", 40},
     {"skeleton-bone", 50}
@@ -383,7 +384,7 @@ public class Objects {
   };
 
   public static Dictionary<string, EnemyStats> enemyStats = new Dictionary<string, EnemyStats> {
-    {"dwarf", new EnemyStats() {name = "Dwarf", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.3f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
+    {"dwarf", new EnemyStats() {name = "Dwarf", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"goblin", new EnemyStats() {name = "Goblin", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"nymph", new EnemyStats() {name = "Nymph", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"pixie", new EnemyStats() {name = "Pixie", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
@@ -401,6 +402,7 @@ public class Objects {
   };
 
   public static Dictionary<string, Vector2> enemyWingOffsets = new Dictionary<string, Vector2> {
+    {"dwarf", new Vector2(0, 1)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
     {"skeleton", new Vector2(-0.25f, 1.95f)}
@@ -449,6 +451,7 @@ public class Objects {
 
   // TODO: modify impact types for appropriate sounds
   public static Dictionary<string, string> throwableImpactType = new Dictionary<string, string> {
+    {"dwarf-cobble", "blunt"},
     {"goblin-knife", "blunt"},
     {"king-bone", "blunt"},
     {"nymph-acorn", "blunt"},
@@ -462,20 +465,24 @@ public class Objects {
   public static Dictionary<string, ThrowableSpecs> throwableSpecs = new Dictionary<string, ThrowableSpecs> {
     {"axe", new ThrowableSpecs() {colliderOffset = new ValuePair(0.67f, 0), colliderSize = new ValuePair(0.65f, 0.75f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"bomb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0.22f), colliderSize = new ValuePair(0.6f, 0.4f), freezeRotation = true, hDisplacement = 1.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
-    {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"hatchet", new ThrowableSpecs() {colliderOffset = new ValuePair(0.45f, 0), colliderSize = new ValuePair(0.55f, 0.45f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 20f, steepness = 200f}},
     {"king-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.65f, 1.45f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.25f, 1.2f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 30f, steepness = 150f}},
     {"kunai", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.35f, 1.25f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 30f, steepness = 150f}},
     {"lance", new ThrowableSpecs() {colliderOffset = new ValuePair(1.4f, -0.14f), colliderSize = new ValuePair(0.37f, 1.26f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 10f, speed = 20f, steepness = 20f}},
-    {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
-    {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"shuriken-4", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.65f, 0.65f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, rotationFactor = 8, speed = 40f, steepness = 300f}},
     {"shuriken-6", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.65f, 0.65f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, rotationFactor = 8, speed = 40f, steepness = 300f}},
     {"watermelon", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1.02f, 1.15f), hDisplacement = 1.5f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
   };
+  public static Dictionary<string, ThrowableSpecs> projectileSpecs = new Dictionary<string, ThrowableSpecs> {
+    {"dwarf-cobble", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+  };
 
   public static Dictionary<string, string> projectileKeys = new Dictionary<string, string> {
+    {"dwarf", "dwarf-cobble"},
     {"goblin", "goblin-knife"},
     {"nymph", "nymph-acorn"},
     {"skeleton", "skeleton-bone"},
@@ -483,6 +490,7 @@ public class Objects {
   };
 
   public static Dictionary<string, Vector2> projectileColliderSpecs = new Dictionary<string, Vector2> {
+    {"dwarf-cobble", new Vector2(0.5f, 0.25f)},
     {"goblin-knife", new Vector2(1, 1)},
     {"nymph-acorn", new Vector2(0.5f, 0.25f)},
     {"skeleton-bone", new Vector2(0.5f, 0.2f)}

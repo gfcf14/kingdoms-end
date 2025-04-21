@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -65,7 +66,8 @@ public class Throwable : MonoBehaviour {
 
 
     // if the instantiated throwable must bounce, use different values than those for a regular throw
-    ThrowableSpecs throwableSpecs = mustBounce ? Constants.bounceSpecs : Helpers.GetOrException(Objects.throwableSpecs, type);
+    Dictionary<string, ThrowableSpecs> throwableAndProjectileSpecs = Objects.throwableSpecs.Concat(Objects.projectileSpecs).ToDictionary(x => x.Key, x => x.Value);
+    ThrowableSpecs throwableSpecs = mustBounce ? Constants.bounceSpecs : Helpers.GetOrException(throwableAndProjectileSpecs, type);
 
     // edit throwable specs for the collider based on type
       throwableCollider.transform.rotation = Quaternion.Euler(throwableSpecs.initialRotationValues.x, throwableSpecs.initialRotationValues.y, 0);
