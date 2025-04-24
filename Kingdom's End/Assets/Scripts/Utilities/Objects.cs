@@ -183,6 +183,7 @@ public class Objects {
     {"dwarf-cobble", 35},
     {"goblin-knife", 50},
     {"nymph-acorn", 40},
+    {"pixie-fireball", 60},
     {"skeleton-bone", 50}
   };
 
@@ -455,6 +456,7 @@ public class Objects {
     {"goblin-knife", "blunt"},
     {"king-bone", "blunt"},
     {"nymph-acorn", "blunt"},
+    {"pixie-fireball", "blunt"},
     {"skeleton-bone", "blunt"}
   };
 
@@ -478,6 +480,7 @@ public class Objects {
     {"dwarf-cobble", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
   };
 
@@ -485,6 +488,7 @@ public class Objects {
     {"dwarf", "dwarf-cobble"},
     {"goblin", "goblin-knife"},
     {"nymph", "nymph-acorn"},
+    {"pixie", "pixie-fireball"},
     {"skeleton", "skeleton-bone"},
     {"skeleton-king", "king-bone"}
   };

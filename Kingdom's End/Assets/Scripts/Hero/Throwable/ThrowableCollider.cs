@@ -22,7 +22,9 @@ public class ThrowableCollider : MonoBehaviour {
     if (!parentThrowable.mustBounce) {
       if (colliderTag == "Floor" || colliderTag == "Wall") {
         Debug.Log("Ground Check for type: " + parentThrowable.type);
-        if (!Helpers.IsValueInArray(Constants.nonGroundableThrowables, parentThrowable.type)) {
+        if (Helpers.IsValueInArray(Constants.explodingThrowables, parentThrowable.type)) {
+          parentThrowable.SetBounce(parentThrowable.transform, col.ClosestPoint(transform.position));
+        } else if (!Helpers.IsValueInArray(Constants.nonGroundableThrowables, parentThrowable.type)) {
           parentThrowable.hasCollided = true;
           parentThrowable.collideTime = Time.time * 1000;
           parentThrowable.StopAndFade();

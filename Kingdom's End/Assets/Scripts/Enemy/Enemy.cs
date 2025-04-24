@@ -287,15 +287,16 @@ public class Enemy : MonoBehaviour {
       anim.runtimeAnimatorController = aoc;
     }
 
+    // Find existing boundaries prior to any displacement
+    if (!Helpers.IsValueInArray(Constants.nonBoundariedEnemies, type)) {
+      FindBoundaries();
+    }
+
     // move enemy upward a bit from ground to account for flying behavior
     if (isFlyingEnemy) {
       transform.position = new Vector2(transform.position.x, transform.position.y + Helpers.GetOrException(Objects.enemyDimensions, key).y);
       body.gravityScale = 0;
       transform.Find("Grounder").gameObject.SetActive(false);
-    }
-
-    if (!Helpers.IsValueInArray(Constants.nonBoundariedEnemies, type)) {
-      FindBoundaries();
     }
 
     // from the beginning, start the bouncer by flying up
