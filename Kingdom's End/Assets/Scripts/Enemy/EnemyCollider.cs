@@ -65,6 +65,9 @@ public class EnemyCollider : MonoBehaviour {
             enemy.canLand = true;
           }
         } else {
+          if (enemy.type == "ambusher" && col.gameObject.CompareTag("Floor")) {
+            enemy.FloatEnemy();
+          }
           enemy.Trigger(col);
         }
       }

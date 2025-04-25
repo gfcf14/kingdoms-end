@@ -9,6 +9,11 @@ public class Bouncer : MonoBehaviour {
 
   void Start() {
     enemy = GetComponent<Enemy>();
+
+    // TODO: consider changing this for low reaching enemies
+    if (enemy.key == "pixie") {
+      forwardCastLength = enemy.reach;
+    }
   }
 
 

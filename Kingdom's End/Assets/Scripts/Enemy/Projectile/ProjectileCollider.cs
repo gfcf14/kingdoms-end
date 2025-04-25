@@ -26,13 +26,13 @@ public class ProjectileCollider : MonoBehaviour {
       if (gameObject.tag == "EnemyWeapon") {
         // plays a weapon clash sound when enemy throwables collide with the player weapon
         if (colliderTag == "Weapon") {
-          GameObject.Find("InGame").gameObject.GetComponent<InGame>().PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
+          InGame.instance.PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
         }
       }
 
       // plays a weapon clash sound when two opposing throwables collide
       if (colliderTag == "EnemyWeapon") {
-        GameObject.Find("InGame").gameObject.GetComponent<InGame>().PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
+        InGame.instance.PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
       }
     }
   }

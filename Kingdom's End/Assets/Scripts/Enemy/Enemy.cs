@@ -161,6 +161,12 @@ public class Enemy : MonoBehaviour {
       rightBound = rightFlipper.transform.position.x - offsetByType;
   }
 
+  public void FloatEnemy() {
+    transform.position = new Vector2(transform.position.x, transform.position.y + Helpers.GetOrException(Objects.enemyDimensions, key).y);
+    body.gravityScale = 0;
+    transform.Find("Grounder").gameObject.SetActive(false);
+  }
+
   void Start() {
     body = GetComponent<Rigidbody2D>();
     anim = GetComponent<Animator>();
@@ -292,11 +298,9 @@ public class Enemy : MonoBehaviour {
       FindBoundaries();
     }
 
-    // move enemy upward a bit from ground to account for flying behavior
-    if (isFlyingEnemy) {
-      transform.position = new Vector2(transform.position.x, transform.position.y + Helpers.GetOrException(Objects.enemyDimensions, key).y);
-      body.gravityScale = 0;
-      transform.Find("Grounder").gameObject.SetActive(false);
+    // move enemy upward a bit from ground to account for flying behavior, except when it's an ambusher as that will only happen when they land
+    if (isFlyingEnemy && type != "ambusher") {
+      FloatEnemy();
     }
 
     // from the beginning, start the bouncer by flying up

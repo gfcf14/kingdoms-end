@@ -22,7 +22,8 @@ public class Projectile : MonoBehaviour {
     projectileSprite.sprite = Helpers.GetOrException(Sprites.projectileSprites, key);
 
     projectileCollider = transform.Find("ProjectileCollider").GetComponent<CapsuleCollider2D>();
-    projectileCollider.size = Helpers.GetOrException(Objects.projectileColliderSpecs, key);
+    ValuePair projectileSize = Helpers.GetOrException(Objects.projectileSpecs, key).colliderSize;
+    projectileCollider.size = new Vector2(projectileSize.x, projectileSize.y);
 
     body = GetComponent<Rigidbody2D>();
     body.gravityScale = 0;
