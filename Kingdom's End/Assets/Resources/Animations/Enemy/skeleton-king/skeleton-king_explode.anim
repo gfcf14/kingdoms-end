@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: skeleton-king_summon
+  m_Name: skeleton-king_explode
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -31,7 +31,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -39,8 +39,17 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 0.16666667
+        value: 0.92156863
+        inSlope: -1.1764706
+        outSlope: -1.1764706
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0.8039216
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -68,16 +77,25 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: 0
-        inSlope: 0
-        outSlope: 0
+        value: 0.92156863
+        inSlope: -1.8823528
+        outSlope: -1.8823528
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 0.37254903
+        inSlope: -3.7647061
+        outSlope: -3.7647061
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0.21568628
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -105,16 +123,25 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: 0.5019608
-        inSlope: 0
-        outSlope: 0
+        value: 0.39215687
+        inSlope: -5.411765
+        outSlope: -5.411765
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 0.09803922
+        inSlope: -0.9411763
+        outSlope: -0.9411763
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0.05882353
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -131,7 +158,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 5247924458964652420, guid: 97b074c58b4b7ae4dbce7e8b38e7d247, type: 3}
+      value: {fileID: -9044787150798735234, guid: 97b074c58b4b7ae4dbce7e8b38e7d247, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -172,13 +199,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 5247924458964652420, guid: 97b074c58b4b7ae4dbce7e8b38e7d247, type: 3}
+    - {fileID: -9044787150798735234, guid: 97b074c58b4b7ae4dbce7e8b38e7d247, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -208,7 +235,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -216,8 +243,17 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 0.16666667
+        value: 0.92156863
+        inSlope: -1.1764706
+        outSlope: -1.1764706
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0.8039216
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -245,16 +281,25 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: 0
-        inSlope: 0
-        outSlope: 0
+        value: 0.92156863
+        inSlope: -1.8823528
+        outSlope: -1.8823528
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 0.37254903
+        inSlope: -3.7647061
+        outSlope: -3.7647061
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0.21568628
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -282,16 +327,25 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: 0.5019608
-        inSlope: 0
-        outSlope: 0
+        value: 0.39215687
+        inSlope: -5.411765
+        outSlope: -5.411765
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 0.09803922
+        inSlope: -0.9411763
+        outSlope: -0.9411763
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0.05882353
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -309,15 +363,8 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.16666667
-    functionName: Summon
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.5
-    functionName: Recover
+  - time: 0.33333334
+    functionName: Explode
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
