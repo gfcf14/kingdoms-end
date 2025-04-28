@@ -725,6 +725,10 @@ public class Pause : MonoBehaviour {
         previouslyFocusedButton = itemButtons.ElementAt(currentItemButtonIndex);
       } else {
         Hero.instance.RemoveItem(currentItemButtonIndex);
+
+        // ensures the item list is positioned back to the top
+        itemsContainer.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+
         ClearItems(itemsContainer);
         PopulateItemsContainer(Hero.instance.items, itemsContainer);
         Helpers.FocusUIElement(itemButtons.ElementAt(0));
