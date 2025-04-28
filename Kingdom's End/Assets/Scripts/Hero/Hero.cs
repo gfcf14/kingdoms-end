@@ -337,7 +337,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("arrow-poison", 5));
       items.Add(new Item("arrow-fire", 10));
       items.Add(new Item("bomb", 99));
-      items.Add(new Item("king-bone", 16));
+      items.Add(new Item("skeleton-king-giant-bone", 16));
       items.Add(new Item("elixir", 99));
       items.Add(new Item("theriac", 1));
       items.Add(new Item("strawberry", 1));
@@ -377,7 +377,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("basic-bow", 1));
       items.Add(new Item("chicken-drumstick", 2));
       items.Add(new Item("hatchet", 25));
-      items.Add(new Item("king-bone", 25));
+      items.Add(new Item("skeleton-king-giant-bone", 25));
       items.Add(new Item("knife", 25));
       items.Add(new Item("kunai", 25));
       items.Add(new Item("lance", 25));
@@ -1437,14 +1437,14 @@ public class Hero : MonoBehaviour {
     float xModifier = 1;
     if (throwableType == "axe") {
       xModifier = isFacingLeft ? 2 : 0;
-    } else if (throwableType == "king-bone") {
+    } else if (throwableType == "skeleton-king-giant-bone") {
       xModifier = isFacingLeft ? 2.25f : 0.25f;
     }
 
     float yModifier = 0.75f;
     if (throwableType == "axe") {
       yModifier = 0.5f;
-    } else if (throwableType == "king-bone") {
+    } else if (throwableType == "skeleton-king-giant-bone") {
       yModifier = 0.625f;
     }
 
@@ -1843,7 +1843,7 @@ public class Hero : MonoBehaviour {
     float throwableX = projectile.transform.position.x;
 
     // TODO: ensure properties for other enemy throwables besides the king-bone are implemented, along with different sounds for impact
-    ReceiveFlyingWeapon(contactPoint, currentX, throwableX, type: "king-bone", criticalRate: 0, isCritical: false);
+    ReceiveFlyingWeapon(contactPoint, currentX, throwableX, type: "skeleton-king-giant-bone", criticalRate: 0, isCritical: false);
   }
 
   public void ReceiveFlyingWeapon(Vector2 contactPoint, float currentX, float flyingX, string type, float criticalRate, bool isCritical) {

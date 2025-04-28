@@ -25,7 +25,7 @@ public class Sprites {
   public static Sprite[] nymphSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nymph");
   public static Sprite[] pixieSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/pixie");
   public static Sprite[] skeletonSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton");
-  public static Sprite[] skeletonKingSprites = Resources.LoadAll<Sprite>("Spritesheets/skeleton-king");
+  public static Sprite[] skeletonKingSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton-king");
 
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
 
@@ -336,7 +336,7 @@ public class Sprites {
     {"bomb", bombSprites[0]},
     {"hatchet", Resources.Load<Sprite>("Sprites/hatchet")},
     {"lance", Resources.Load<Sprite>("Sprites/lance")},
-    {"king-bone", skeletonKingSprites[20]},
+    {"skeleton-king-giant-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-king-giant-bone")},
     {"knife", Resources.Load<Sprite>("Sprites/knife")},
     {"kunai", Resources.Load<Sprite>("Sprites/kunai")},
     {"shuriken-4", Resources.Load<Sprite>("Sprites/shuriken-4")},
@@ -350,7 +350,7 @@ public class Sprites {
     {"goblin-knife", Resources.Load<Sprite>("Sprites/projectiles/goblin-knife")},
     {"nymph-acorn", Resources.Load<Sprite>("Sprites/projectiles/nymph-acorn")},
     {"pixie-fireball", Resources.Load<Sprite>("Sprites/projectiles/pixie-fireball")},
-    {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")}
+    {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")},
   };
 
   public static Dictionary<string, Sprite> droppableSprites = new Dictionary<string, Sprite> {
@@ -458,7 +458,7 @@ public class Sprites {
     {"polished-king-skull", droppableImages[101]},
     {"silver-king-skull", droppableImages[102]},
     {"royal-pelt", droppableImages[103]},
-    {"king-bone", droppableImages[104]}
+    {"skeleton-king-giant-bone", droppableImages[104]}
   };
 
   public static Dictionary<string, Sprite> relicSprites = new Dictionary<string, Sprite> {

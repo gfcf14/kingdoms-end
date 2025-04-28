@@ -1,5 +1,7 @@
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour {
@@ -19,10 +21,14 @@ public class Projectile : MonoBehaviour {
 
   void Start() {
     projectileSprite = GetComponent<SpriteRenderer>();
-    projectileSprite.sprite = Helpers.GetOrException(Sprites.projectileSprites, key);
+
+    Dictionary<string, Sprite> throwableAndProjectileSprites = Sprites.projectileSprites.Concat(Sprites.throwableSprites).ToDictionary(x => x.Key, x => x.Value);
+    projectileSprite.sprite = Helpers.GetOrException(throwableAndProjectileSprites, key);
 
     projectileCollider = transform.Find("ProjectileCollider").GetComponent<CapsuleCollider2D>();
-    ValuePair projectileSize = Helpers.GetOrException(Objects.projectileSpecs, key).colliderSize;
+
+    Dictionary<string, ThrowableSpecs> throwableAndProjectileSpecs = Objects.throwableSpecs.Concat(Objects.projectileSpecs).ToDictionary(x => x.Key, x => x.Value);
+    ValuePair projectileSize = Helpers.GetOrException(throwableAndProjectileSpecs, key).colliderSize;
     projectileCollider.size = new Vector2(projectileSize.x, projectileSize.y);
 
     body = GetComponent<Rigidbody2D>();
@@ -33,14 +39,14 @@ public class Projectile : MonoBehaviour {
 
     directionFactor = fromFacingLeft ? 1 : -1;
 
-    if (!Helpers.IsValueInArray(Constants.rotatingProjectiles, key)) {
+    if (!Helpers.IsValueInArray(Constants.rotatingProjectiles.Concat(Constants.rotatingThrowables).ToArray(), key)) {
       float angle = Mathf.Atan2(body.velocity.y, body.velocity.x) * Mathf.Rad2Deg;
       transform.rotation = Quaternion.Euler(0, 0, angle);
     }
   }
 
   void Update() {
-    if (Helpers.IsValueInArray(Constants.rotatingProjectiles, key)) {
+    if (Helpers.IsValueInArray(Constants.rotatingProjectiles.Concat(Constants.rotatingThrowables).ToArray(), key)) {
       transform.Rotate(0f, 0f, 1440f * Time.deltaTime * directionFactor);
     }
   }

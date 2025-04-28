@@ -3,7 +3,7 @@ using UnityEngine;
 public class Constants {
   public static string preferredInput = "gamepad";
   public static string[] fragmentableThrowables = { "watermelon" };
-  public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "king-bone", "coconut", "honeydew", "watermelon" };
+  public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
   public static string[] nonBouncingProjectiles = {"dwarf-cobble", "goblin-knife", "nymph-acorn", "pixie-fireball", "skeleton-bone"};
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
   public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
@@ -32,10 +32,10 @@ public class Constants {
   public static string[] droppableNonColliderTags = {"Enemy", "Hero"};
 
   public static string[] smallThrowables = {"knife", "kunai", "shuriken-4", "shuriken-6"};
-  public static string[] angledThrowables = {"king-bone", "hatchet", "axe"};
-  public static string[] rotatingThrowables = {"king-bone", "shuriken-4", "shuriken-6", "hatchet", "axe"};
+  public static string[] angledThrowables = {"skeleton-king-giant-bone", "hatchet", "axe"};
+  public static string[] rotatingThrowables = {"skeleton-king-giant-bone", "shuriken-4", "shuriken-6", "hatchet", "axe"};
   public static string[] rotatingProjectiles = {"skeleton-bone"};
-  public static string[] nonGroundableThrowables = {"king-bone", "axe", "bomb"};
+  public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
 
   // TODO: remove skeleton once testing for enemies is complete
   public static string[] meadowEnemies = {"skeleton", "pixie", "dwarf", "nymph", "goblin"};
@@ -83,6 +83,7 @@ public class Constants {
 
   public static string[] enemyProjectiles = {"dwarf-cobble", "goblin-knife", "nymph-acorn", "pixie-fireball", "skeleton-bone"};
   public static string[] explodingThrowables = {"pixie-fireball"};
+  public static string[] shortCastEnemies = {"skeleton-king"};
 
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};

@@ -173,7 +173,7 @@ public class Objects {
     {"polished-king-skull", new RegularItem(Sprites.itemThumbnails[101], Sprites.itemImages[101], "Polished King Skull", "A more refined head from a skeleton king", "valuable")},
     {"silver-king-skull", new RegularItem(Sprites.itemThumbnails[102], Sprites.itemImages[102], "Silver King Skull", "Silver skeleton king skull with a gold laurel crown", "valuable")},
     {"royal-pelt", new RegularItem(Sprites.itemThumbnails[103], Sprites.itemImages[103], "Royal Pelt", "Comfortable pelt worn by skeleton kings", "valuable")},
-    {"king-bone", new RegularItem(Sprites.itemThumbnails[104], Sprites.itemImages[104], "Giant Bone", "Thrown by the skeleton king. Quite deadly when it hits", "throwable-double", new Effects() {atk=80})},
+    {"skeleton-king-giant-bone", new RegularItem(Sprites.itemThumbnails[104], Sprites.itemImages[104], "Giant Bone", "Thrown by the skeleton king. Quite deadly when it hits", "throwable-double", new Effects() {atk=80})},
 
     // Example of having everything
     // {"chicken-drumstick", new RegularItem(Sprites.itemThumbnails[3], Sprites.itemImages[3], "Chicken Drumstick", "From range-free raised fowl.", "food", new Effects() {hp = 99, mp=99, statusHeal=new string[]{"Poison", "Curse", "Drain"}, atk=-99, def=99, crit=0.5f, luck=-0.2f, magicResistances=new MagicResistance[]{new MagicResistance(){name="Earth", type="add"}, new MagicResistance(){name="Air", type="add"}, new MagicResistance(){name="Water", type="add"}, new MagicResistance(){name="Fire", type="add"}, new MagicResistance(){name="Lightning", type="remove"}, new MagicResistance(){name="Ice", type="remove"}, new MagicResistance(){name="Light", type="remove"}, new MagicResistance(){name="Dark", type="remove"}}})}
@@ -300,19 +300,19 @@ public class Objects {
     }},
     {"skeleton-king", new Dictionary<string, ProbabilityItem[]> {
       {"low", new ProbabilityItem[] {
-        new ProbabilityItem(){key="king-bone", probability=0.7f},
+        new ProbabilityItem(){key="skeleton-king-giant-bone", probability=0.7f},
         new ProbabilityItem(){key="mid-potions", probability=0.9f},
         new ProbabilityItem(){key="royal-pelt", probability=0.97f},
         new ProbabilityItem(){key="king-skull", probability=1},
       }},
       {"mid", new ProbabilityItem[] {
-        new ProbabilityItem(){key="king-bone", probability=0.7f},
+        new ProbabilityItem(){key="skeleton-king-giant-bone", probability=0.7f},
         new ProbabilityItem(){key="high-potions", probability=0.9f},
         new ProbabilityItem(){key="gold-ingot", probability=0.97f},
         new ProbabilityItem(){key="polished-king-skull", probability=1},
       }},
       {"high", new ProbabilityItem[] {
-        new ProbabilityItem(){key="king-bone", probability=0.7f},
+        new ProbabilityItem(){key="skeleton-king-giant-bone", probability=0.7f},
         new ProbabilityItem(){key="elixir", probability=0.9f},
         new ProbabilityItem(){key="citrine", probability=0.97f},
         new ProbabilityItem(){key="silver-king-skull", probability=1},
@@ -390,7 +390,7 @@ public class Objects {
     {"nymph", new EnemyStats() {name = "Nymph", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"pixie", new EnemyStats() {name = "Pixie", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
-    {"skeleton-king", new EnemyStats() {name = "Skeleton King", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 0, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.5f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}}
+    {"skeleton-king", new EnemyStats() {name = "Skeleton King", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}}
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new Dictionary<string, Vector2> {
@@ -406,7 +406,8 @@ public class Objects {
     {"dwarf", new Vector2(0, 1)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
-    {"skeleton", new Vector2(-0.25f, 1.95f)}
+    {"skeleton", new Vector2(-0.25f, 1.95f)},
+    {"skeleton-king", new Vector2(0.1f, 2.1f)}
   };
 
   // TODO: consider if it'd be needed to use these custom origin values when dying only by burning/poison
@@ -454,7 +455,7 @@ public class Objects {
   public static Dictionary<string, string> throwableImpactType = new Dictionary<string, string> {
     {"dwarf-cobble", "blunt"},
     {"goblin-knife", "blunt"},
-    {"king-bone", "blunt"},
+    {"skeleton-king-giant-bone", "blunt"},
     {"nymph-acorn", "blunt"},
     {"pixie-fireball", "blunt"},
     {"skeleton-bone", "blunt"}
@@ -468,7 +469,7 @@ public class Objects {
     {"axe", new ThrowableSpecs() {colliderOffset = new ValuePair(0.67f, 0), colliderSize = new ValuePair(0.65f, 0.75f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"bomb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0.22f), colliderSize = new ValuePair(0.6f, 0.4f), freezeRotation = true, hDisplacement = 1.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
     {"hatchet", new ThrowableSpecs() {colliderOffset = new ValuePair(0.45f, 0), colliderSize = new ValuePair(0.55f, 0.45f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 20f, steepness = 200f}},
-    {"king-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.65f, 1.45f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
+    {"skeleton-king-giant-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.65f, 1.45f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.25f, 1.2f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 30f, steepness = 150f}},
     {"kunai", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.35f, 1.25f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 30f, steepness = 150f}},
     {"lance", new ThrowableSpecs() {colliderOffset = new ValuePair(1.4f, -0.14f), colliderSize = new ValuePair(0.37f, 1.26f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 10f, speed = 20f, steepness = 20f}},
@@ -490,7 +491,7 @@ public class Objects {
     {"nymph", "nymph-acorn"},
     {"pixie", "pixie-fireball"},
     {"skeleton", "skeleton-bone"},
-    {"skeleton-king", "king-bone"}
+    {"skeleton-king", "skeleton-king-giant-bone"}
   };
 
   public static Dictionary<string, ZoneSpecs> zoneSpecs = new Dictionary<string, ZoneSpecs> {

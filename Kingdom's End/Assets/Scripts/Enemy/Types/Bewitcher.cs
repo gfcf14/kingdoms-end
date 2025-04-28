@@ -9,6 +9,10 @@ public class Bewitcher : MonoBehaviour {
 
   void Start() {
     enemy = GetComponent<Enemy>();
+
+    if (Helpers.IsValueInArray(Constants.shortCastEnemies, enemy.key)) {
+      forwardCastLength = enemy.reach * 1.25f;
+    }
   }
 
   void Update() {
