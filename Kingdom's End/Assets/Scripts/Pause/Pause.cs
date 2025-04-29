@@ -689,6 +689,10 @@ public class Pause : MonoBehaviour {
 
         if (itemEffects.hpPercentage != null) {
           int hpTotal = (int)(itemEffects.hpPercentage * Hero.instance.maxHP);
+
+          // For items who recover a percentage, round up to the nearest multiple of 5
+          hpTotal = Mathf.CeilToInt(hpTotal / 5f) * 5;
+
           effectsCurrentHP.transform.Find("Text").gameObject.GetComponent<Text>().text = (hpTotal >= 0 ? "+" : "") + hpTotal;
           effectsCurrentHP.SetActive(true);
 
@@ -707,6 +711,10 @@ public class Pause : MonoBehaviour {
 
         if (itemEffects.mpPercentage != null) {
           int mpTotal = (int)(itemEffects.mpPercentage * Hero.instance.maxMP);
+
+          // For items who recover a percentage, round up to the nearest multiple of 5
+          mpTotal = Mathf.CeilToInt(mpTotal / 5f) * 5;
+
           effectsCurrentMP.transform.Find("Text").gameObject.GetComponent<Text>().text = (mpTotal >= 0 ? "+" : "") + mpTotal;
           effectsCurrentMP.SetActive(true);
 
