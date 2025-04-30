@@ -728,7 +728,7 @@ public class Pause : MonoBehaviour {
       // determines what to do with the item and its amount
       if (heroItem.amount > 1) {
         Hero.instance.ConsumeItem(heroItem.key);
-        itemButtons.ElementAt(0).transform.Find("Amount").gameObject.GetComponent<Text>().text = (heroItem.amount).ToString();
+        itemButtons.ElementAt(currentItemButtonIndex).transform.Find("Amount").gameObject.GetComponent<Text>().text = (heroItem.amount).ToString();
         Helpers.FocusUIElement(itemButtons.ElementAt(currentItemButtonIndex));
         previouslyFocusedButton = itemButtons.ElementAt(currentItemButtonIndex);
       } else {
