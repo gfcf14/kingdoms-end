@@ -491,17 +491,17 @@ public class Sprites {
 
   public static Dictionary<string, Dictionary<string, Sprite>> emotions = new Dictionary<string, Dictionary<string, Sprite>> {
     {"peasant-girl", new Dictionary<string, Sprite> {
-      {"affective", peasantGirlSprites[10]},
-      {"afraid", peasantGirlSprites[19]},
-      {"angry", peasantGirlSprites[14]},
-      {"ashamed", peasantGirlSprites[16]},
-      {"confused", peasantGirlSprites[18]},
+      {"affective", peasantGirlSprites[15]},
+      {"afraid", peasantGirlSprites[7]},
+      {"angry", peasantGirlSprites[19]},
+      {"ashamed", peasantGirlSprites[21]},
+      {"confused", peasantGirlSprites[23]},
       {"default", peasantGirlSprites[0]},
-      {"happy", peasantGirlSprites[11]},
-      {"jealous", peasantGirlSprites[17]},
-      {"lonely", peasantGirlSprites[13]},
-      {"sad", peasantGirlSprites[12]},
-      {"surprised", peasantGirlSprites[15]}
+      {"happy", peasantGirlSprites[16]},
+      {"jealous", peasantGirlSprites[22]},
+      {"lonely", peasantGirlSprites[18]},
+      {"sad", peasantGirlSprites[17]},
+      {"surprised", peasantGirlSprites[20]}
     }}
   };
 
