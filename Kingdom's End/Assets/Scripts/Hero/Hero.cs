@@ -879,7 +879,8 @@ public class Hero : MonoBehaviour {
       // if only the player collider is found, nothing else was found and player should fall
       // TODO: check if other attack types cause the player to lift off the ground, even but slightly, and add them here
       // TODO: consider if at any point it'd be necessary to include some form of list of animations where falling shouldn't happen
-      if (/*!Helpers.IsAnyPlaying(anim, Constants.heroNonFallingAnimations) && */!collidingBottom  && !IsOnIncline() && !IsMovingUphill() && !isAttackingHeavy && colliderCount <= 1 && body.velocity.y < 0 && GroundFallDistance() > Constants.fallThreshold) {
+      GroundFallDistance();
+      if (/*!Helpers.IsAnyPlaying(anim, Constants.heroNonFallingAnimations) && */!collidingBottom  && !IsOnIncline() && !IsMovingUphill() && !isAttackingHeavy && colliderCount <= 1 && body.velocity.y < Constants.yVelocityThreshold /*&& GroundFallDistance() > Constants.fallThreshold*/) {
         Fall();
       }
     // end of PLAYER FALLING ALGORITHM
