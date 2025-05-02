@@ -163,7 +163,8 @@ public class Constants {
   public static float sparkleDistanceRadius = 0.1f;
 
   public static float fallThreshold = 0.3f;
-  public static float yVelocityThreshold = -0.01f;
+  public static float yAirVelocityThreshold = -0.01f;
+  public static float yInclineVelocityThreshold = -0.1962f;
 
   public static float bomberReach = 5f;
 
