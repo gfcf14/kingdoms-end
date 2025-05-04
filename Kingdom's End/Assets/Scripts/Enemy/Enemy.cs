@@ -394,8 +394,7 @@ public class Enemy : MonoBehaviour {
 
         if (defenseRayCast && defenseRayCast.collider.tag == "Weapon") {
           if (level - hero.playerLevel >= 10) {
-            isDefending = true;
-            anim.SetTrigger("isDefending");
+            Defend();
           }
         }
 
@@ -586,6 +585,12 @@ public class Enemy : MonoBehaviour {
     }
   }
 
+  public void Defend() {
+    // TODO: ensure all enemy types have a means to return to isDefending = false
+    isDefending = true;
+    anim.SetTrigger("isDefending");
+  }
+
   public void Trigger(Collider2D col) {
     CheckAttackToPlayer(col);
     string colliderTag = col.gameObject.tag;
@@ -675,23 +680,19 @@ public class Enemy : MonoBehaviour {
           }
 
           if (!willBurn) {
+            // if enemy receives constant attacks, if past lvl 30 defend, unless it's a champion in which case perform melee.
+            // but if not past lvl 30 only defend if not attacked from behind and is champion. Stun if it's a bouncer
             if (attacksReceived >= attackRetaliationCounter) {
               if (level >= 30) {
                 if (type == "champion") {
                   isAttackingMelee = true;
                   attackedStart = 0;
                 } else {
-                  // TODO: ensure all enemy types have a means to return to isDefending = false
-                  // TODO: remove the if below (not the code inside!) once all enemies have defend animations
-                  if (key == "sekeleton-king") {
-                    isDefending = true;
-                    anim.SetTrigger("isDefending");
-                  }
+                  Defend();
                 }
               } else {
                 if (!attackedFromBehind && type == "champion") {
-                  isDefending = true;
-                  anim.SetTrigger("isDefending");
+                  Defend();
                 } else {
                   if (type != "bouncer") {
                     Stun();
