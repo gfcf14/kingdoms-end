@@ -385,4 +385,8 @@ public class InGame : MonoBehaviour {
     // TODO: implement a better way to assign level values
     enemyScript.level = level;
   }
+
+  public void SetBossName(string bossName) {
+    bossStatusCanvas.GetComponent<BossBarsCanvas>().SetName(bossName);
+  }
 }

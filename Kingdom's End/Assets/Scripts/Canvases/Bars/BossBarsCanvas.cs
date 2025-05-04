@@ -12,8 +12,7 @@ public class BossBarsCanvas : MonoBehaviour {
   [System.NonSerialized] int maxHPWidth = -1;
   [System.NonSerialized] public string bossName = "";
   void Start() {
-    bossLabel.GetComponent<Text>().text = bossName;
-    Vector2 containerDimension = new Vector2((Constants.maxHPDisplayableLimit * Constants.containerMultiplier), 36);
+    Vector2 containerDimension = new Vector2(Constants.maxHPDisplayableLimit * Constants.containerMultiplier, 36);
     hpBackground.GetComponent<RectTransform>().sizeDelta = containerDimension;
 
     hpForeground.GetComponent<RectTransform>().sizeDelta = containerDimension;
@@ -44,5 +43,9 @@ public class BossBarsCanvas : MonoBehaviour {
         hpBar.GetComponent<Image>().color = Colors.barHPBelow20;
       }
     }
+  }
+
+  public void SetName(string bossName) {
+    bossLabel.GetComponent<Text>().text = bossName;
   }
 }

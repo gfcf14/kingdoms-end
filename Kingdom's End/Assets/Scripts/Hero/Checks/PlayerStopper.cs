@@ -30,7 +30,7 @@ public class PlayerStopper : MonoBehaviour {
             BossBarsCanvas bossCanvas = InGame.instance.bossStatusCanvas.GetComponent<BossBarsCanvas>();
 
             bossCanvas.boss = bossScript;
-            bossCanvas.bossName = bossScript.enemyName;
+            InGame.instance.SetBossName(bossScript.enemyName);
             InGame.instance.bossStatusCanvas.SetActive(true);
           }
         }
