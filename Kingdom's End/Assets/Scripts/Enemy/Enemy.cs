@@ -62,6 +62,7 @@ public class Enemy : MonoBehaviour {
     [System.NonSerialized] public float poisonAttackInterval = 600;
     [System.NonSerialized] public float poisonEffectDuration = 50;
     [System.NonSerialized] public float reach;
+    [System.NonSerialized] public float defenseReach;
     [System.NonSerialized] public float longReach;
     [System.NonSerialized] public float speed;
 
@@ -110,6 +111,8 @@ public class Enemy : MonoBehaviour {
 
     bool mustTakeDamage = true;
     bool bossCausingLevelUp = false;
+
+    bool isSmallEnemy = false;
 
   // Player Related Properties
     [System.NonSerialized] public bool playerFound = false;
@@ -329,6 +332,8 @@ public class Enemy : MonoBehaviour {
       // changes the color of the fly brace (the Extra)
       transform.Find("Extra").GetComponent<SpriteRenderer>().color = wingColor;
     }
+
+    isSmallEnemy = Helpers.IsValueInArray(Constants.smallEnemies, key);
   }
 
   void awardExp() {
@@ -365,6 +370,7 @@ public class Enemy : MonoBehaviour {
     if (enemyRenderer != null) {
       enemyHeight = enemyRenderer.bounds.size.y;
       enemyWidth = enemyRenderer.bounds.size.x;
+      defenseReach = enemyWidth * (isSmallEnemy ? 4 : 2); ;
     }
 
     if (!isWalking && !hero.isAutonomous && type != "exploder") {
@@ -386,14 +392,23 @@ public class Enemy : MonoBehaviour {
     } else {
       if ((isMiniBoss && isOnCamera) || gameObject.name != "Boss") {
         // DEFENSE CAST
-        Vector2 defenseCast = new Vector2(transform.position.x + ((enemyWidth / 2) * reach * direction), transform.position.y + enemyHeight / 2 + 0.05f);
+        Vector2 defenseCast = new Vector2(transform.position.x + (enemyWidth * direction * -(isSmallEnemy ? 2 : 1)), transform.position.y + enemyHeight / 2 + 0.05f);
         Vector2 defenseCastDirection = transform.TransformDirection(new Vector2(1 * (direction), 0));
 
-        RaycastHit2D defenseRayCast = Physics2D.Raycast(defenseCast, defenseCastDirection, reach * 2);
-        Debug.DrawRay(defenseCast, defenseCastDirection.normalized * (reach * 2), Helpers.GetOrException(Colors.raycastColors, "defense"));
+        RaycastHit2D defenseRayCast = Physics2D.Raycast(defenseCast, defenseCastDirection, defenseReach);
+        Debug.DrawRay(defenseCast, defenseCastDirection.normalized * defenseReach, Helpers.GetOrException(Colors.raycastColors, "defense"));
 
+        // defines conditions to defend if a weapon is incoming:
+        //  1. If the level difference is greater than or equal to 10 (stronger enemies according to story should feel impossible to defeat!)
+        //  2. If it's a champion after receiving too many attacks
+        //  3. If it's any other enemy after level 30 and receiving too many attacks
         if (defenseRayCast && defenseRayCast.collider.tag == "Weapon") {
-          if (level - hero.playerLevel >= 10) {
+          bool highLevelDifference = level - hero.playerLevel >= 10;
+          bool championConstantlyAttacked = attacksReceived >= attackRetaliationCounter && type == "champion";
+          bool highLevelEnemyConstantlyAttacked = attacksReceived >= attackRetaliationCounter && level >= 30;
+
+          if (highLevelDifference || championConstantlyAttacked || highLevelEnemyConstantlyAttacked) {
+            Debug.LogFormat("highLevelDifference: {0}, championConstantlyAttacked: {1}, highLevelEnemyConstantlyAttacked: {2}", highLevelDifference, championConstantlyAttacked, highLevelEnemyConstantlyAttacked);
             Defend();
           }
         }
@@ -680,23 +695,17 @@ public class Enemy : MonoBehaviour {
           }
 
           if (!willBurn) {
-            // if enemy receives constant attacks, if past lvl 30 defend, unless it's a champion in which case perform melee.
-            // but if not past lvl 30 only defend if not attacked from behind and is champion. Stun if it's a bouncer
+            // if enemy receives constant attacks, if past lvl 20 and it's a champion perform melee.
+            // but if not past lvl 20 and it's a bouncer stun
             if (attacksReceived >= attackRetaliationCounter) {
-              if (level >= 30) {
+              if (level >= 20) {
                 if (type == "champion") {
                   isAttackingMelee = true;
                   attackedStart = 0;
-                } else {
-                  Defend();
                 }
               } else {
-                if (!attackedFromBehind && type == "champion") {
-                  Defend();
-                } else {
-                  if (type != "bouncer") {
-                    Stun();
-                  }
+                if (type != "bouncer") {
+                  Stun();
                 }
               }
             } else {

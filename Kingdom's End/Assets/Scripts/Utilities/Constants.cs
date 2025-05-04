@@ -41,6 +41,7 @@ public class Constants {
   public static string[] meadowEnemies = {"skeleton", "pixie", "dwarf", "nymph", "goblin"};
   public static string[] flyingDeathEnemies = {"dwarf", "goblin", "pixie", "skeleton"};
   public static string[] flyingEnemies = {"pixie"};
+  public static string[] smallEnemies = {"dwarf", "pixie"};
 
   public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
   public static string[] lowLevelMoney = {"money-50", "money-100"};
