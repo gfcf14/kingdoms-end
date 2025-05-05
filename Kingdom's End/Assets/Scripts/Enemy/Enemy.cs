@@ -135,6 +135,24 @@ public class Enemy : MonoBehaviour {
 
     Vector2 searchPosition = Vector2.zero;
 
+    private Func<bool> ShouldDefend;
+
+    private bool ShouldDefendByLevelDifference() {
+      return true;
+    }
+
+    private bool ShouldDefendAsChampion() {
+      return attacksReceived >= attackRetaliationCounter;
+    }
+
+    private bool ShouldDefendAsHighLevel() {
+      return attacksReceived >= attackRetaliationCounter;
+    }
+
+    private bool ShouldNeverDefend() {
+      return false;
+    }
+
   void FindBoundaries() {
     // find the parent room
     Transform parentRoom = transform.parent.parent;
@@ -334,6 +352,17 @@ public class Enemy : MonoBehaviour {
     }
 
     isSmallEnemy = Helpers.IsValueInArray(Constants.smallEnemies, key);
+
+    // defines conditions to defend if a weapon is incoming:
+    if (level - hero.playerLevel >= 10) { //  1. If the level difference is greater than or equal to 10 (stronger enemies according to story should feel impossible to defeat!)
+      ShouldDefend = ShouldDefendByLevelDifference;
+    } else if (type == "champion") { //  2. If it's a champion after receiving too many attacks
+      ShouldDefend = ShouldDefendAsChampion;
+    } else if (level >= 30) { //  3. If it's any other enemy after level 30 and receiving too many attacks
+      ShouldDefend = ShouldDefendAsHighLevel;
+    } else { // do not defend otherwise
+      ShouldDefend = ShouldNeverDefend;
+    }
   }
 
   void awardExp() {
@@ -398,17 +427,8 @@ public class Enemy : MonoBehaviour {
         RaycastHit2D defenseRayCast = Physics2D.Raycast(defenseCast, defenseCastDirection, defenseReach);
         Debug.DrawRay(defenseCast, defenseCastDirection.normalized * defenseReach, Helpers.GetOrException(Colors.raycastColors, "defense"));
 
-        // defines conditions to defend if a weapon is incoming:
-        //  1. If the level difference is greater than or equal to 10 (stronger enemies according to story should feel impossible to defeat!)
-        //  2. If it's a champion after receiving too many attacks
-        //  3. If it's any other enemy after level 30 and receiving too many attacks
         if (defenseRayCast && defenseRayCast.collider.tag == "Weapon") {
-          bool highLevelDifference = level - hero.playerLevel >= 10;
-          bool championConstantlyAttacked = attacksReceived >= attackRetaliationCounter && type == "champion";
-          bool highLevelEnemyConstantlyAttacked = attacksReceived >= attackRetaliationCounter && level >= 30;
-
-          if (highLevelDifference || championConstantlyAttacked || highLevelEnemyConstantlyAttacked) {
-            Debug.LogFormat("highLevelDifference: {0}, championConstantlyAttacked: {1}, highLevelEnemyConstantlyAttacked: {2}", highLevelDifference, championConstantlyAttacked, highLevelEnemyConstantlyAttacked);
+          if (ShouldDefend()) {
             Defend();
           }
         }
