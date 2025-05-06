@@ -13,8 +13,8 @@ public class Charger : MonoBehaviour {
   }
 
   void Update() {
-    if (!enemy.hero.isAutonomous) {
-      if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (!Hero.instance.isAutonomous) {
+      if (Hero.instance != null && Hero.instance.pauseCase == "") {
         // CHARGER MOVEMENT
         if ((enemy.isWalking || enemy.isCharging) && !enemy.isAttacking) {
           enemy.DecideMovement();

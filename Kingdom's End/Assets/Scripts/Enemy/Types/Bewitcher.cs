@@ -16,7 +16,7 @@ public class Bewitcher : MonoBehaviour {
   }
 
   void Update() {
-    if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       if (!enemy.needsCoolDown) {
         // BEWITCHER MOVEMENT
         if (enemy.isWalking && !enemy.isAttacking) {

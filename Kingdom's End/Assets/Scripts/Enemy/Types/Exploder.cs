@@ -17,7 +17,7 @@ public class Exploder : MonoBehaviour {
   }
 
   void Update() {
-    if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       // EXPLODER MOVEMENT
       if (enemy.isWalking && !enemy.isAttacking && !enemy.isExploding) {
         enemy.DecideMovement();

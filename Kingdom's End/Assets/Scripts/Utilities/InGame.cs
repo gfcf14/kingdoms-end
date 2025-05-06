@@ -14,7 +14,6 @@ public class InGame : MonoBehaviour {
   [SerializeField] float soundtrackPausedTime = 0f; // Stores the soundtrack paused time position
   [SerializeField] float miniBossTrackPausedTime = 0f; // Stores the min boss track paused time position
 
-  public Hero hero;
   // public GameObject mainOverlay;
   public GameObject actionCanvas;
   public GameObject bossStatusCanvas;
@@ -47,8 +46,6 @@ public class InGame : MonoBehaviour {
     soundtrack = GetComponent<AudioSource>();
     soundtrack.volume = Settings.maxSoundtrackVolume;
     soundtrack.loop = true;
-
-    hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
 
     GameObject.Find("MainOverlay").GetComponent<MainOverlay>().AssignTilemaps();
   }
@@ -90,7 +87,7 @@ public class InGame : MonoBehaviour {
       StartFadeIn(wait);
     } else {
       if (soundtrack.isPlaying) { // must check if soundtrack is playing; when not playing, time is 0 thus choosing to mute backgrounds would "reset" soundtrack position
-        if (hero.isFightingBoss) {
+        if (Hero.instance.isFightingBoss) {
           miniBossTrackPausedTime = soundtrack.time;
         } else {
           soundtrackPausedTime = soundtrack.time;
@@ -119,7 +116,7 @@ public class InGame : MonoBehaviour {
   }
 
   public void FlashFinish() {
-    hero.PerformPortalTransport();
+    Hero.instance.PerformPortalTransport();
   }
 
   public void FlashFadeIn() {
@@ -148,7 +145,7 @@ public class InGame : MonoBehaviour {
       yield return new WaitForSeconds(1);
     }
 
-    soundtrack.time = hero.isFightingBoss ? miniBossTrackPausedTime : soundtrackPausedTime;
+    soundtrack.time = Hero.instance.isFightingBoss ? miniBossTrackPausedTime : soundtrackPausedTime;
     soundtrack.volume = 0;
     if (Settings.playSoundtrack) {
       soundtrack.Play();
@@ -163,11 +160,11 @@ public class InGame : MonoBehaviour {
   }
 
   public void SetPauseCase(string pauseCase) {
-    hero.SetPauseCase(pauseCase);
+    Hero.instance.SetPauseCase(pauseCase);
   }
 
   public void ClearPauseCase() {
-    hero.ClearPauseCase();
+    Hero.instance.ClearPauseCase();
   }
 
   public void Cover() {
@@ -260,7 +257,7 @@ public class InGame : MonoBehaviour {
   }
 
   public bool IsInRoom(string roomName) {
-    return roomName == hero.currentRoom.name;
+    return roomName == Hero.instance.currentRoom.name;
   }
 
   // Checks the name of the provided parent if it's a room. If not a room, get its parent and recheck. If null, return blank
@@ -325,14 +322,14 @@ public class InGame : MonoBehaviour {
       case "item": // Check if player doesn't have an item. Condition is of the form item:<key>=<amount>
         string[] itemAndAmount = conditionValue.Split('=');
 
-        Debug.Log(condition + ": " + Helpers.HasAmount(hero.items, itemAndAmount[0], int.Parse(itemAndAmount[1])));
+        Debug.Log(condition + ": " + Helpers.HasAmount(Hero.instance.items, itemAndAmount[0], int.Parse(itemAndAmount[1])));
 
-        return !Helpers.HasAmount(hero.items, itemAndAmount[0], int.Parse(itemAndAmount[1]));
+        return !Helpers.HasAmount(Hero.instance.items, itemAndAmount[0], int.Parse(itemAndAmount[1]));
       case "hp": // Check if player's HP is less than or equal to amount. CSondition is of the form hp:<amount>
 
-        Debug.Log(condition + ": " + (hero.currentHP <= int.Parse(conditionValue)));
+        Debug.Log(condition + ": " + (Hero.instance.currentHP <= int.Parse(conditionValue)));
 
-        return hero.currentHP <= int.Parse(conditionValue);
+        return Hero.instance.currentHP <= int.Parse(conditionValue);
       default:
         return false;
     }

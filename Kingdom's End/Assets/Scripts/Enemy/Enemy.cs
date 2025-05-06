@@ -116,7 +116,6 @@ public class Enemy : MonoBehaviour {
 
   // Player Related Properties
     [System.NonSerialized] public bool playerFound = false;
-    [System.NonSerialized] public Hero hero;
     [System.NonSerialized] SpriteRenderer weaponSpriteRenderer;
     [SerializeField] public GameObject spawnedFrom;
 
@@ -196,16 +195,15 @@ public class Enemy : MonoBehaviour {
 
     flashEffect = GetComponent<SimpleFlash>();
     weaponSpriteRenderer = GameObject.Find("Weapon").GetComponent<SpriteRenderer>();
-    hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
 
     // TODO: only flip for specific types
-    isFacingLeft = type == "idler" ? isFacingLeft : !hero.isFacingLeft;
+    isFacingLeft = type == "idler" ? isFacingLeft : !Hero.instance.isFacingLeft;
 
     if (isFacingLeft) {
       Flip();
     }
 
-    if (!hero.isAutonomous) {
+    if (!Hero.instance.isAutonomous) {
       // TODO: consider if this only needs to be applied to enemies that walk
       if (type != "exploder") {
         isWalking = true;
@@ -354,7 +352,7 @@ public class Enemy : MonoBehaviour {
     isSmallEnemy = Helpers.IsValueInArray(Constants.smallEnemies, key);
 
     // defines conditions to defend if a weapon is incoming:
-    if (level - hero.playerLevel >= 10) { //  1. If the level difference is greater than or equal to 10 (stronger enemies according to story should feel impossible to defeat!)
+    if (level - Hero.instance.playerLevel >= 10) { //  1. If the level difference is greater than or equal to 10 (stronger enemies according to story should feel impossible to defeat!)
       ShouldDefend = ShouldDefendByLevelDifference;
     } else if (type == "champion") { //  2. If it's a champion after receiving too many attacks
       ShouldDefend = ShouldDefendAsChampion;
@@ -367,10 +365,10 @@ public class Enemy : MonoBehaviour {
 
   void awardExp() {
     gaveExp = true;
-    int expToAward = Helpers.GetEnemyEXP(heroLevel: hero.playerLevel, enemyLevel: level, baseExp: exp);
-    hero.exp += expToAward;
-    bossCausingLevelUp = hero.exp >= hero.next;
-    hero.CheckLevel();
+    int expToAward = Helpers.GetEnemyEXP(heroLevel: Hero.instance.playerLevel, enemyLevel: level, baseExp: exp);
+    Hero.instance.exp += expToAward;
+    bossCausingLevelUp = Hero.instance.exp >= Hero.instance.next;
+    Hero.instance.CheckLevel();
   }
 
   public void PlaySound(AudioClip sound) {
@@ -402,7 +400,7 @@ public class Enemy : MonoBehaviour {
       defenseReach = enemyWidth * (isSmallEnemy ? 4 : 2); ;
     }
 
-    if (!isWalking && !hero.isAutonomous && type != "exploder") {
+    if (!isWalking && !Hero.instance.isAutonomous && type != "exploder") {
       isWalking = true;
     }
 
@@ -412,9 +410,9 @@ public class Enemy : MonoBehaviour {
 
     isDying = isBurning || isDeadByBurning || isDeadByPoison;
 
-    if (hero.isAutonomous && isMiniBoss) {
+    if (Hero.instance.isAutonomous && isMiniBoss) {
       enemyRenderer.sprite = Helpers.GetOrException(Sprites.firstBossSprites, key);
-      isFacingLeft = !hero.isFacingLeft;
+      isFacingLeft = !Hero.instance.isFacingLeft;
       if (isFacingLeft) {
         Flip();
       }
@@ -434,7 +432,7 @@ public class Enemy : MonoBehaviour {
         }
 
 
-        if (hero != null && hero.pauseCase == "") {
+        if (Hero.instance != null && Hero.instance.pauseCase == "") {
           // ENEMY BURNING
             if (isBurning) {
               enemyColor = Helpers.GetOrException(Colors.statusColors, "burned");
@@ -565,7 +563,7 @@ public class Enemy : MonoBehaviour {
   }
 
   void LateUpdate() {
-    if (hero != null && hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       if (!isPoisoned && !isStunned && !isExploding && (type == "bewitcher" && !isAttacking)) {
         enemyRenderer.color = enemyColor;
       }
@@ -579,8 +577,8 @@ public class Enemy : MonoBehaviour {
 
       if (!needsCoolDown) {
         // ensures the hero isn't damaged after being damaged
-        if (!hero.isInvulnerable) {
-          hero.ReceiveEnemyAttack(gameObject, col.ClosestPoint(transform.position), bewitch: type == "bewitcher");
+        if (!Hero.instance.isInvulnerable) {
+          Hero.instance.ReceiveEnemyAttack(gameObject, col.ClosestPoint(transform.position), bewitch: type == "bewitcher");
         }
         needsCoolDown = true;
       }
@@ -608,7 +606,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void DamageCalculation(Collider2D col, int specificDamage, string damageSoundType, string weaponType = "", bool isCritical = false) {
-    int damage = def - ((specificDamage + hero.strength + (int)hero.equippedSTR + (int)hero.effectSTR) * (isCritical ? 2 : 1));
+    int damage = def - ((specificDamage + Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (isCritical ? 2 : 1));
 
     if (Helpers.IsValueInArray(Constants.throwableTypes, weaponType) || !(isDefending && !attackedFromBehind)) {
       TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position), isCritical, damageSoundType);
@@ -630,21 +628,21 @@ public class Enemy : MonoBehaviour {
     CheckAttackToPlayer(col);
     string colliderTag = col.gameObject.tag;
 
-    if (colliderTag == "Weapon" && !hero.isParrying) {
+    if (colliderTag == "Weapon" && !Hero.instance.isParrying) {
       float currentX = transform.position.x;
       float enemyX = col.transform.position.x;
       bool willBurn = false;
-      bool isCritical = Helpers.IsCritical(hero.criticalPercentage + hero.equippedCRIT + hero.effectCRIT);;
+      bool isCritical = Helpers.IsCritical(Hero.instance.criticalPercentage + Hero.instance.equippedCRIT + Hero.instance.effectCRIT);;
       string currentWeapon = "";
       int currentEquippedATK = 0;
 
       attackedFromBehind = (currentX < enemyX && isFacingLeft) || (currentX > enemyX && !isFacingLeft);
 
-      if (hero.isKicking || hero.isDropKicking && !isDefending) {
+      if (Hero.instance.isKicking || Hero.instance.isDropKicking && !isDefending) {
         DamageCalculation(col, Constants.kickDamage, "kick", "", isCritical);
       } else {
-        currentWeapon = hero.armUsed == 1 ? Hero.arm1Equipment : Hero.arm2Equipment;
-        currentEquippedATK = hero.armUsed == 1 ? Hero.equippedATK1 : Hero.equippedATK2;
+        currentWeapon = Hero.instance.armUsed == 1 ? Hero.arm1Equipment : Hero.arm2Equipment;
+        currentEquippedATK = Hero.instance.armUsed == 1 ? Hero.equippedATK1 : Hero.equippedATK2;
 
         if (currentWeapon == "" && !isDefending) {
           DamageCalculation(col, Constants.punchDamage, "punch", "", isCritical);
@@ -690,7 +688,7 @@ public class Enemy : MonoBehaviour {
             willBurn = parentArrow.type == "arrow-fire" && !Helpers.IsFireResistant(elementResistances) && currentHP <= Constants.arrowExplosionDamage;
 
             if (mustTakeDamage) {
-              int damage = (def * (isDefending ? 2 : 1)) - ((Helpers.GetDamage(arrowUsed) + hero.strength + (int)hero.equippedSTR + (int)hero.effectSTR) * (isCritical ? 2 : 1));
+              int damage = (def * (isDefending ? 2 : 1)) - ((Helpers.GetDamage(arrowUsed) + Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (isCritical ? 2 : 1));
 
               // do not play standard damage sound if the arrow used is a fire arrow
               TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position), isCritical, parentArrow.type == "arrow-fire" ? "" : "arrow");
@@ -944,7 +942,7 @@ public class Enemy : MonoBehaviour {
         Vector2.zero) * new Vector2(direction, 1));
 
     // instantiates the dropped item
-    string[] droppableAndRarity = (specificDrop == "" ? Helpers.GetDroppableItem(key, level, hero.luckPercentage + hero.equippedLUCK + hero.effectLCK) : "" + specificDrop + "|rare").Split('|');
+    string[] droppableAndRarity = (specificDrop == "" ? Helpers.GetDroppableItem(key, level, Hero.instance.luckPercentage + Hero.instance.equippedLUCK + Hero.instance.effectLCK) : "" + specificDrop + "|rare").Split('|');
     InGame.instance.InstantiatePrefab("droppable", droppableAndRarity[0], droppableAndRarity[1], transform.parent.gameObject, deathOrigin, enemyRenderer, false, "", spawnedFrom);
 
     // instantiates the explosion of the enemy
@@ -953,7 +951,7 @@ public class Enemy : MonoBehaviour {
 
     if (isMiniBoss) {
       GameObject.Find("BossStatusCanvas").SetActive(false);
-      hero.isFightingBoss = false;
+      Hero.instance.isFightingBoss = false;
 
       InGame.instance.SwitchFromMiniBossTrack(GameData.area, bossCausingLevelUp);
     }
@@ -1022,7 +1020,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void OnGUI() {
-    if (hero.showDebug) {
+    if (Hero.instance.showDebug) {
       string guiLabel = "HP: " + currentHP + "\n";
       GUI.Label(new Rect(600, 0, 200, 400), guiLabel);
     }
@@ -1083,7 +1081,7 @@ public class Enemy : MonoBehaviour {
 
   // TODO: this death method depends on an array of positions! Ensure it can be changed to allow for a function to handle the flying death position change
   public void CheckDeath() {
-    if (hero != null && hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       if (isDead && (!isBurning || !isDeadByBurning || !isDeadByPoison) && diesFlying) {
         int index = deadAnimationIncrement;
         float xIncrement = Constants.enemyDeathXTransitions[index >= Constants.enemyDeathXTransitions.Length ? Constants.enemyDeathXTransitions.Length - 1 : index];
@@ -1244,7 +1242,7 @@ public class Enemy : MonoBehaviour {
     EnemyBomb bombScript = enemyBomb.GetComponent<EnemyBomb>();
     bombScript.damage = atk * 2;
     bombScript.dropper = gameObject.GetComponent<Enemy>();
-    bombScript.hero = hero;
+    bombScript.hero = Hero.instance;
     isAttacking = false;
     coolDownStart = Time.time * 1000;
     needsCoolDown = true;

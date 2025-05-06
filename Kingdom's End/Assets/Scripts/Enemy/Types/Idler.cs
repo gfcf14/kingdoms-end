@@ -12,7 +12,7 @@ public class Idler : MonoBehaviour {
   }
 
   void Update() {
-    if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       if (!enemy.needsCoolDown) {
         enemy.AttackLogic(0, (enemy.enemyWidth / 2) + idleReach);
       } else {

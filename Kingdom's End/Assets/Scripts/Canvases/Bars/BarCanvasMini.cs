@@ -5,16 +5,14 @@ public class BarCanvasMini : MonoBehaviour {
   [SerializeField] GameObject hpObject;
   [SerializeField] GameObject mpObject;
 
-  [System.NonSerialized] Hero hero;
   [System.NonSerialized] int hp = -1;
   [System.NonSerialized] int hpDifference = 0;
   [System.NonSerialized] int mp = -1;
   [System.NonSerialized] int mpDifference = 0;
 
   void Start() {
-    hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
-    hp = hero.currentHP;
-    mp = hero.currentMP;
+    hp = Hero.instance.currentHP;
+    mp = Hero.instance.currentMP;
 
     hpObject.GetComponent<TextMeshProUGUI>().text = hp.ToString();
     mpObject.GetComponent<TextMeshProUGUI>().text = mp.ToString();
@@ -29,8 +27,8 @@ public class BarCanvasMini : MonoBehaviour {
   }
 
   public void UpdateHP() {
-    if (hp != hero.currentHP && hpDifference == 0) {
-      hpDifference = hp - hero.currentHP;
+    if (hp != Hero.instance.currentHP && hpDifference == 0) {
+      hpDifference = hp - Hero.instance.currentHP;
     }
 
     if (hpDifference != 0) {
@@ -45,8 +43,8 @@ public class BarCanvasMini : MonoBehaviour {
   }
 
   public void UpdateMP() {
-    if (mp != hero.currentMP && mpDifference == 0) {
-      mpDifference = mp - hero.currentMP;
+    if (mp != Hero.instance.currentMP && mpDifference == 0) {
+      mpDifference = mp - Hero.instance.currentMP;
     }
 
     if (mpDifference != 0) {
@@ -61,7 +59,7 @@ public class BarCanvasMini : MonoBehaviour {
   }
 
   public void UpdateColor(GameObject statObject, int stat, string type) {
-    float percentage = (float)stat / (type == "hp" ? hero.maxHP : hero.maxMP);
+    float percentage = (float)stat / (type == "hp" ? Hero.instance.maxHP : Hero.instance.maxMP);
 
     if (percentage == 1) {
         statObject.GetComponent<TextMeshProUGUI>().color = Colors.miniHPFull;

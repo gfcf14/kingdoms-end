@@ -29,8 +29,6 @@ public class Throwable : MonoBehaviour {
 
   [System.NonSerialized] public string type;
 
-  [System.NonSerialized] public Hero hero;
-
   [System.NonSerialized] private Vector2 initialPosition;
   [System.NonSerialized] public float speed = 0f;
   [System.NonSerialized] public float steepness = 0f;
@@ -42,7 +40,6 @@ public class Throwable : MonoBehaviour {
   [System.NonSerialized] public bool freezeRotation = false;
 
   void Start() {
-    hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
     objectRenderer = GetComponent<SpriteRenderer>();
     throwableCollider = transform.Find("ThrowableCollider").gameObject;
 

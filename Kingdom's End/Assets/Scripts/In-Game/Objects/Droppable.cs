@@ -131,7 +131,7 @@ public class Droppable : MonoBehaviour {
   }
 
   public void PlaySound(AudioClip droppableSound) {
-    if (InGame.instance.hero.pauseCase == "" && Settings.playSFX) {
+    if (Hero.instance.pauseCase == "" && Settings.playSFX) {
       audioSource.PlayOneShot(droppableSound);
     }
   }
@@ -157,7 +157,7 @@ public class Droppable : MonoBehaviour {
         string materialFallingOn = InGame.instance.GetTileMaterial(transform.position);
         if (materialFallingOn == null) {
           // TODO: find a better way to get the location
-          materialFallingOn = Helpers.GetMaterial(GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>().location);
+          materialFallingOn = Helpers.GetMaterial(Hero.instance.location);
         }
         PlaySound(Helpers.GetOrException(Sounds.droppableFallingSounds, gameObjectTag == "Interactable" ? "interactable" : materialFallingOn));
       }

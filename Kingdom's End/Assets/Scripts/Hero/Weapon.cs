@@ -2,12 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour {
-  Hero hero;
   private AudioSource audioSource;
   [System.NonSerialized] public List<GameObject> triggeredObjects = new List<GameObject>();
 
   void Start() {
-    hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
     audioSource = transform.parent.gameObject.GetComponent<AudioSource>();
   }
 
@@ -18,12 +16,12 @@ public class Weapon : MonoBehaviour {
       GameObject parentObject = col.gameObject.transform.parent.gameObject;
       float enemyTopBounds = col.transform.position.y + parentObject.GetComponent<SpriteRenderer>().bounds.size.y;
 
-      if (hero.isDropKicking) {
-        float heroBottomBounds = GameObject.FindGameObjectWithTag("Hero").transform.position.y;
+      if (Hero.instance.isDropKicking) {
+        float heroBottomBounds = Hero.instance.transform.position.y;
 
         if (Mathf.Abs(heroBottomBounds - enemyTopBounds) <= 1) {
           parentObject.GetComponent<Enemy>().Trigger(GetComponent<CapsuleCollider2D>());
-          hero.Jump(true);
+          Hero.instance.Jump(true);
         }
       }
     }

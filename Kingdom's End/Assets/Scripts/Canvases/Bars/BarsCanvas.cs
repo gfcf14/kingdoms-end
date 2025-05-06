@@ -16,14 +16,12 @@ public class BarsCanvas : MonoBehaviour {
   [SerializeField] GameObject mpBarContainer;
   [SerializeField] bool mpBarDisplaying = false;
 
-  [System.NonSerialized] Hero hero;
   [System.NonSerialized] int currentHPWidth = -1;
   [System.NonSerialized] int currentMPWidth = -1;
   [System.NonSerialized] int maxHPWidth = -1;
   [System.NonSerialized] int maxMPWidth = -1;
-  void Start() {
-    hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
-  }
+
+  void Start() {}
   void Update() {
     CheckMPBarDisplay();
 
@@ -35,15 +33,15 @@ public class BarsCanvas : MonoBehaviour {
   }
 
   public void CheckMPBarDisplay() {
-    if (hero.canCastMagic && !mpBarDisplaying) {
+    if (Hero.instance.canCastMagic && !mpBarDisplaying) {
       DisplayMPBar();
       mpBarDisplaying = true;
     }
   }
 
   public void UpdateHPContainer() {
-    if (maxHPWidth != hero.maxHP) {
-      maxHPWidth = hero.maxHP;
+    if (maxHPWidth != Hero.instance.maxHP) {
+      maxHPWidth = Hero.instance.maxHP;
 
       // obtains a dimension that is dependent on the hp value
       Vector2 containerDimension = new Vector2((maxHPWidth > Constants.maxHPDisplayableLimit ? Constants.maxHPDisplayableLimit : maxHPWidth) * Constants.containerMultiplier, 36);
@@ -55,14 +53,14 @@ public class BarsCanvas : MonoBehaviour {
   }
 
   public void UpdateHPBar() {
-    if (currentHPWidth != hero.currentHP) {
-      currentHPWidth = hero.currentHP;
+    if (currentHPWidth != Hero.instance.currentHP) {
+      currentHPWidth = Hero.instance.currentHP;
       float calculatedHPDisplay = maxHPWidth > Constants.maxHPDisplayableLimit ? Constants.maxHPDisplayableLimit * ((float)currentHPWidth / (float)maxHPWidth) : currentHPWidth;
       Vector2 hpDisplayVector = new Vector2(calculatedHPDisplay, 27);
       hpDisplayVector.x *= Constants.containerMultiplier;
       hpBar.GetComponent<RectTransform>().sizeDelta = hpDisplayVector;
 
-      float healthPercentage = (float)hero.currentHP / (float)hero.maxHP;
+      float healthPercentage = (float)Hero.instance.currentHP / (float)Hero.instance.maxHP;
 
       if (healthPercentage >= 0.4f) {
         hpBar.GetComponent<Image>().color = Colors.barHPAbove40;
@@ -75,8 +73,8 @@ public class BarsCanvas : MonoBehaviour {
   }
 
   public void UpdateMPContainer() {
-    if (maxMPWidth != hero.maxMP) {
-      maxMPWidth = hero.maxMP;
+    if (maxMPWidth != Hero.instance.maxMP) {
+      maxMPWidth = Hero.instance.maxMP;
 
       // obtains a dimension that is dependent on the mp value
       Vector2 containerDimension = new Vector2((maxMPWidth > Constants.maxMPDisplayableLimit ? Constants.maxMPDisplayableLimit : maxMPWidth) * Constants.containerMultiplier, 16);
@@ -88,8 +86,8 @@ public class BarsCanvas : MonoBehaviour {
   }
 
   public void UpdateMPBar() {
-    if (currentMPWidth != hero.currentMP) {
-      currentMPWidth = hero.currentMP;
+    if (currentMPWidth != Hero.instance.currentMP) {
+      currentMPWidth = Hero.instance.currentMP;
       float calculatedMPDisplay = maxMPWidth > Constants.maxMPDisplayableLimit ? Constants.maxMPDisplayableLimit * ((float)currentMPWidth / (float)maxMPWidth) : currentMPWidth;
       Vector2 mpDisplayVector = new Vector2(calculatedMPDisplay, 9);
       mpDisplayVector.x *= Constants.containerMultiplier;

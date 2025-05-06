@@ -12,7 +12,7 @@ public class Patroller : MonoBehaviour {
   }
 
   void Update() {
-    if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       // PATROLLER MOVEMENT
       if (!enemy.needsCoolDown) {
         if (enemy.isWalking && !enemy.isAttacking) {

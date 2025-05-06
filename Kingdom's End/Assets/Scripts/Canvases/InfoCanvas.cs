@@ -13,7 +13,6 @@ public class InfoCanvas : MonoBehaviour {
   [System.NonSerialized] float maxDisplayTime = 2000;
   [System.NonSerialized] public float startTime = 0;
 
-  private Hero heroScript;
   private HorizontalLayoutGroup infoLayout;
   private RectTransform infoRect;
 
@@ -24,7 +23,6 @@ public class InfoCanvas : MonoBehaviour {
   public void SetComponents() {
     infoLayout = layoutObject.GetComponent<HorizontalLayoutGroup>();
     infoRect = infoContainerObject.GetComponent<RectTransform>();
-    heroScript = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
   }
 
   void Update() {
@@ -35,9 +33,7 @@ public class InfoCanvas : MonoBehaviour {
   }
 
   public void Display(string text, EnemyHealth enemyHealth = null) {
-    if (!heroScript) {
-      SetComponents();
-    }
+    SetComponents();
 
     int textAndContainerWidth = 0;
 

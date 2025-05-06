@@ -13,10 +13,9 @@ public class ProjectileCollider : MonoBehaviour {
       Explode(parentObject);
     } else if ((gameObject.tag == "EnemyWeapon" && Helpers.IsValueInArray(Constants.enemyThrowableBouncers, colliderTag)) || (gameObject.tag == "Weapon" && colliderTag == "EnemyWeapon")) {
       if (colliderTag == "Hero") {
-        Hero heroInstance = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
         // ensures the hero isn't damaged after being damaged
-        if (!heroInstance.isInvulnerable) {
-          heroInstance.ReceiveProjectile(parentObject, col.ClosestPoint(transform.position));
+        if (!Hero.instance.isInvulnerable) {
+          Hero.instance.ReceiveProjectile(parentObject, col.ClosestPoint(transform.position));
         }
       }
 

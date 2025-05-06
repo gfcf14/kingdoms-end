@@ -146,7 +146,7 @@ public class Breakable : MonoBehaviour {
         // if there is no tile material, falling sound will be assumed from location
         if (materialFallingOn == null) {
           // TODO: find a better way to get the location
-          materialFallingOn = Helpers.GetMaterial(GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>().location);
+          materialFallingOn = Helpers.GetMaterial(Hero.instance.location);
         }
         AudioClip[] groundClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), materialFallingOn);
         PlaySound(Helpers.GetRandomClipFromGroup(groundClips));

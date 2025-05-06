@@ -13,8 +13,8 @@ public class Champion : MonoBehaviour {
   }
 
   void Update() {
-    if (!enemy.hero.isAutonomous) {
-      if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (!Hero.instance.isAutonomous) {
+      if (Hero.instance != null && Hero.instance.pauseCase == "") {
         // CHAMPION MOVEMENT
         if (!enemy.needsCoolDown) {
           if (enemy.isWalking && !enemy.isAttacking) {

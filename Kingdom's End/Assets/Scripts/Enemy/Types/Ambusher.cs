@@ -24,7 +24,7 @@ public class Ambusher : MonoBehaviour {
   }
 
   void Update() {
-    if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       if (!enemy.needsCoolDown) {
         enemy.AttackLogic(0, (enemy.enemyWidth / 2) + (enemy.reach * (enemy.canLand ? enemy.longReach : 1.5f)));
       } else {

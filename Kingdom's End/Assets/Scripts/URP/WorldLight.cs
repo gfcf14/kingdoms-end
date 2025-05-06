@@ -15,7 +15,7 @@ namespace WorldTime {
     // private Light2D light;
 
     void Awake() {
-      // hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
+      // hero = Hero.instance;
       // light = GetComponent<Light2D>();
     }
 

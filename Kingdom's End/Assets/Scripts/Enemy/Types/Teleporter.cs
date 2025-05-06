@@ -14,7 +14,7 @@ public class Teleporter : MonoBehaviour {
   }
 
   void Update() {
-    if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       // FOUND PLAYER
       if (!enemy.playerFound) {
         enemy.CheckForPlayer(forwardCastLength);

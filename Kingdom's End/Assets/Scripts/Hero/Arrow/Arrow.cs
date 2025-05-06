@@ -7,8 +7,6 @@ public class Arrow : MonoBehaviour {
 
   [System.NonSerialized] public GameObject arrowCollider;
 
-  Hero hero;
-
   [System.NonSerialized] public GameObject extraSprite;
 
   [System.NonSerialized] public bool isFacingLeft;
@@ -29,7 +27,6 @@ public class Arrow : MonoBehaviour {
   [System.NonSerialized] public int directionFactor = 0;
 
   void Start() {
-    hero = GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>();
     body = GetComponent<Rigidbody2D>();
     arrowCollider = transform.Find("ArrowCollider").gameObject;
     objectRenderer = GetComponent<SpriteRenderer>();

@@ -12,7 +12,7 @@ public class Shooter : MonoBehaviour {
   }
 
   void Update() {
-    if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       if (!enemy.isThrowingWeapon) {
         enemy.SearchPlayer(searchCastLength);
       }

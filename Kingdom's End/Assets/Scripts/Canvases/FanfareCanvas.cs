@@ -21,7 +21,7 @@ public class FanfareCanvas : MonoBehaviour {
 
   IEnumerator DisplayFanfare() {
     yield return new WaitForSecondsRealtime(displaySeconds);
-    GameObject.FindGameObjectWithTag("Hero").GetComponent<Hero>().ClearPauseCase(resumeSoundtrack: true, waitIfLevelingUp: true);
+    Hero.instance.ClearPauseCase(resumeSoundtrack: true, waitIfLevelingUp: true);
     gameObject.SetActive(false);
   }
 }

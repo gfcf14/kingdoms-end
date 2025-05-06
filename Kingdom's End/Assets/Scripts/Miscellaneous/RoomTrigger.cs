@@ -7,13 +7,8 @@ public class RoomTrigger : MonoBehaviour {
   [SerializeField] GameObject virtualCam;
   [SerializeField] public string location;
 
-  private GameObject hero;
-  private Hero heroScript;
 
-  void Start() {
-    hero = GameObject.FindGameObjectWithTag("Hero");
-    heroScript = hero.GetComponent<Hero>();
-  }
+  void Start() {}
 
   public bool CanSpawnMiniBoss(Transform child) {
     return child.gameObject.tag == "EnemySpawner" && child.gameObject.GetComponent<EnemySpawner>().isMiniBoss;
@@ -39,7 +34,7 @@ public class RoomTrigger : MonoBehaviour {
           InGame.instance.globalGradients.teleportPointTilemap = currentTeleportPoint.transform.Find("Grid").transform.GetChild(0).GetComponent<Tilemap>();
         }
 
-      heroScript.currentRoom = gameObject;
+      Hero.instance.currentRoom = gameObject;
       foreach(Transform child in gameObject.transform) {
         if (child.tag == "EnemySpawner") {
           child.gameObject.GetComponent<EnemySpawner>().Spawn();
@@ -59,11 +54,11 @@ public class RoomTrigger : MonoBehaviour {
     if (col.gameObject.name == "ProximityCheck") {
       foreach(Transform child in gameObject.transform) {
         if (CanSpawnMiniBoss(child)) {
-          Rigidbody2D heroBody = hero.GetComponent<Rigidbody2D>();
-          Hero heroScript = hero.GetComponent<Hero>();
+          Rigidbody2D heroBody = Hero.instance.gameObject.GetComponent<Rigidbody2D>();
+          Hero heroScript = Hero.instance.gameObject.GetComponent<Hero>();
 
-          heroScript.SetPauseCase("boss-room-entry");
-          heroScript.bossTransitionDirection = (int)(heroBody.velocity.x / Math.Abs(heroBody.velocity.x));
+          Hero.instance.SetPauseCase("boss-room-entry");
+          Hero.instance.bossTransitionDirection = (int)(heroBody.velocity.x / Math.Abs(heroBody.velocity.x));
           StartCoroutine(PauseRoomWhileOnBossEntry());
         }
       }
@@ -92,9 +87,9 @@ public class RoomTrigger : MonoBehaviour {
     }
 
     if (col.gameObject.name == "ProximityCheck") {
-      if (heroScript.isAutonomous && heroScript.mustTransitionOnAir) {
-        heroScript.mustTransitionOnAir = false;
-        hero.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+      if (Hero.instance.isAutonomous && Hero.instance.mustTransitionOnAir) {
+        Hero.instance.mustTransitionOnAir = false;
+        Hero.instance.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
       }
     }
   }
@@ -104,21 +99,21 @@ public class RoomTrigger : MonoBehaviour {
 
     yield return new WaitForSecondsRealtime(3);
 
-    heroScript.ClearPauseCase();
-    heroScript.isFightingBoss = true;
-    heroScript.isAutonomous = true;
-    hero.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    Hero.instance.ClearPauseCase();
+    Hero.instance.isFightingBoss = true;
+    Hero.instance.isAutonomous = true;
+    Hero.instance.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-    if (heroScript.isFacingLeft && heroScript.bossTransitionDirection == 1) {
-      hero.transform.localScale = Vector3.one;
-      heroScript.isFacingLeft = false;
-    } else if (!heroScript.isFacingLeft && heroScript.bossTransitionDirection == -1) {
-      hero.transform.localScale = new Vector3(-1, 1, 1);
-      heroScript.isFacingLeft = true;
+    if (Hero.instance.isFacingLeft && Hero.instance.bossTransitionDirection == 1) {
+      Hero.instance.transform.localScale = Vector3.one;
+      Hero.instance.isFacingLeft = false;
+    } else if (!Hero.instance.isFacingLeft && Hero.instance.bossTransitionDirection == -1) {
+      Hero.instance.transform.localScale = new Vector3(-1, 1, 1);
+      Hero.instance.isFacingLeft = true;
     }
 
-    if (!heroScript.isGrounded) {
-      heroScript.mustTransitionOnAir = true;
+    if (!Hero.instance.isGrounded) {
+      Hero.instance.mustTransitionOnAir = true;
     }
   }
 }

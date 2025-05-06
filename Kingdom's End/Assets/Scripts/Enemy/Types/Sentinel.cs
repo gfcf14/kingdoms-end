@@ -11,7 +11,7 @@ public class Sentinel : MonoBehaviour {
   }
 
   void Update() {
-    if (enemy.hero != null && enemy.hero.pauseCase == "") {
+    if (Hero.instance != null && Hero.instance.pauseCase == "") {
       enemy.Watch();
 
       if (!enemy.needsCoolDown) {
