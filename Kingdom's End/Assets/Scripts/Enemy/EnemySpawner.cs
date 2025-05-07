@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour {
       ambushFloorScript.specificDrop = specificDrop;
       ambushFloorScript.isMiniBoss = false; // ambushers should NEVER be minibosses
     } else {
-      InGame.instance.SpawnEnemy(transform.position, enemyKey, enemyType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform);
+      InGame.instance.SpawnEnemy(transform.position, enemyKey, enemyType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform, 2);
     }
   }
 

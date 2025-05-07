@@ -11,7 +11,7 @@ public class Explosion : MonoBehaviour {
       Destroy(GetComponent<CapsuleCollider2D>());
     }
 
-    if (type == "arrow") {
+    if (type == "arrow" || type == "bomb") {
       gameObject.tag = "Explosion";
     } else if (type == "damage") {
       gameObject.tag = "DamageExplosion";

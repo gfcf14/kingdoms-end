@@ -78,7 +78,7 @@ public class Constants {
   public static string[] nonBoundariedEnemies = {"ambusher", "bomber", "bouncer", "idler", "sentinel", "shooter"};
   public static string[] flyingEnemyTypes = {"bomber", "bouncer"};
 
-  public static string[] explosionsWithColliders = {"arrow", "damage"};
+  public static string[] explosionsWithColliders = {"arrow", "bomb", "damage"};
 
   public static string[] enemyBombTriggerTags = {"DamageExplosion", "EnemyBomb", "Floor", "Wall"};
 

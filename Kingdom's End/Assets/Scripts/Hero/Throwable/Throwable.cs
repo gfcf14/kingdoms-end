@@ -187,13 +187,18 @@ public class Throwable : MonoBehaviour {
 
   public void Explode() {
     // TODO: remove usage of animation for explosions once explosion with particle effects are implemented
-    Animator anim = gameObject.AddComponent<Animator>();
-    anim.runtimeAnimatorController = Helpers.GetOrException(Objects.animationControllers, "throwable");
-    anim.Play("exploding");
-    isExploding = true;
+    // Animator anim = gameObject.AddComponent<Animator>();
+    // anim.runtimeAnimatorController = Helpers.GetOrException(Objects.animationControllers, "throwable");
+    // anim.Play("exploding");
+    // isExploding = true;
 
-    // TODO: consider a better way to play a sound other than using the in game helper
-    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.explosionSounds, "basic"), transform.position);
+    // // TODO: consider a better way to play a sound other than using the in game helper
+    // InGame.instance.PlaySound(Helpers.GetOrException(Sounds.explosionSounds, "basic"), transform.position);
+
+    isExploding = true;
+    GameObject arrowExplosion = Instantiate(Helpers.GetOrException(Objects.prefabs, "explosion"), transform.position, Quaternion.identity);
+    arrowExplosion.GetComponent<Explosion>().type = "bomb";
+    DestroyThrowable();
   }
 
   public void SetBounce(Transform t, Vector3 collisionPoint) {

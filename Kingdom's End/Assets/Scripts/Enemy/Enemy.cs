@@ -624,6 +624,66 @@ public class Enemy : MonoBehaviour {
     anim.SetTrigger("isDefending");
   }
 
+  public void DeathSequence() {
+    if (!isBurning) {
+      isDead = true;
+    }
+
+    isPoisoned = false;
+    isStunned = false;
+    isWalking = false;
+    body.velocity = Vector2.zero;
+    deadPosition = new Vector2(transform.position.x, transform.position.y);
+
+    if (!isDeadByPoison) { // avoids getting double exp if attacking while dying from poison
+      if (!gaveExp) {
+        awardExp();
+      }
+    }
+  }
+
+  public void ArrowBurnLogic(Collider2D col) {
+    bool willBurn = !Helpers.IsFireResistant(elementResistances) && currentHP <= Constants.arrowExplosionDamage;
+
+    if (willBurn) {
+      float currentTime = Time.time * 1000;
+
+      // only instantiate the flame if the enemy is not set to die (hence, !isDying)
+      if (!isDying) {
+        GameObject arrowBurn = Instantiate(Helpers.GetOrException(Objects.prefabs, "arrow-burn"), new Vector2(transform.position.x, transform.position.y + arrowBurnPosition), Quaternion.identity);
+
+        // sets the parent room so that the flame can be found and deleted more easily on room exit
+        arrowBurn.transform.SetParent(transform.parent);
+
+        ArrowBurn arrowBurnScript = arrowBurn.GetComponent<ArrowBurn>();
+        arrowBurnScript.startTime = currentTime;
+        arrowBurnScript.burnDimensions = Helpers.GetOrException(Objects.enemyDimensions, key);
+
+        burnTime = currentTime;
+        isBurning = true;
+        isWalking = false;
+        body.velocity = Vector2.zero;
+      }
+    } else {
+      int damageFromExplosion = Constants.arrowExplosionDamage;
+      int damage = def - damageFromExplosion;
+      TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position));
+
+      if (flashEffect != null) {
+        flashEffect.Flash();
+        if (type != "bouncer") {
+          Stun();
+        }
+      }
+
+      // allows a bomb explosion to kill an enemy
+      // TODO: if any other explosions are added, ensure to change the usage of arrowExplosionDamage
+      if (currentHP <= 0 && damageFromExplosion != Constants.arrowExplosionDamage) {
+        DeathSequence();
+      }
+    }
+  }
+
   public void Trigger(Collider2D col) {
     CheckAttackToPlayer(col);
     string colliderTag = col.gameObject.tag;
@@ -657,7 +717,7 @@ public class Enemy : MonoBehaviour {
             Throwable parentThrowable = parentObject.GetComponent<Throwable>();
             string weaponWielded = parentThrowable.type;
 
-            mustTakeDamage = (Helpers.IsNonBouncingThrowable(weaponWielded) && !parentThrowable.hasCollided) || (weaponWielded == "bomb" && parentThrowable.isExploding);
+            mustTakeDamage = Helpers.IsNonBouncingThrowable(weaponWielded) && !parentThrowable.hasCollided;
 
             if (mustTakeDamage) {
               string throwableSoundType = Helpers.GetThrowableSoundType(currentWeapon);
@@ -738,21 +798,7 @@ public class Enemy : MonoBehaviour {
             }
           }
         } else {
-          if (!isBurning) {
-            isDead = true;
-          }
-
-          isPoisoned = false;
-          isStunned = false;
-          isWalking = false;
-          body.velocity = Vector2.zero;
-          deadPosition = new Vector2(transform.position.x, transform.position.y);
-
-          if (!isDeadByPoison) { // avoids getting double exp if attacking while dying from poison
-            if (!gaveExp) {
-              awardExp();
-            }
-          }
+          DeathSequence();
         }
       }
 
@@ -765,39 +811,60 @@ public class Enemy : MonoBehaviour {
 
       DisplayEnemyInInfoCanvas();
     } else if (colliderTag == "Explosion") {
-      string colName = col.gameObject.name.Replace("(Clone)", "");
+      string explosionType = col.gameObject.GetComponent<Explosion>().type;
 
-      if (colName == "Explosion" || colName == "ArrowBurn") {
-        bool willBurn = !Helpers.IsFireResistant(elementResistances) && currentHP <= Constants.arrowExplosionDamage;
+      if (explosionType == "bomb") { // for bomb explosions
+        int damageFromExplosion = (int) Helpers.GetOrException(Objects.regularItems, explosionType).effects.atk;
+        int damage = def - damageFromExplosion;
+        TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position));
 
-        if (willBurn) {
-          float currentTime = Time.time * 1000;
-
-          // only instantiate the flame if the enemy is not set to die (hence, !isDying)
-          if (!isDying) {
-            GameObject arrowBurn = Instantiate(Helpers.GetOrException(Objects.prefabs, "arrow-burn"), new Vector2(transform.position.x, transform.position.y + arrowBurnPosition), Quaternion.identity);
-
-            // sets the parent room so that the flame can be found and deleted more easily on room exit
-            arrowBurn.transform.SetParent(transform.parent);
-
-            ArrowBurn arrowBurnScript = arrowBurn.GetComponent<ArrowBurn>();
-            arrowBurnScript.startTime = currentTime;
-            arrowBurnScript.burnDimensions = Helpers.GetOrException(Objects.enemyDimensions, key);
-
-            burnTime = currentTime;
-            isBurning = true;
-            isWalking = false;
-            body.velocity = Vector2.zero;
+        if (flashEffect != null) {
+          flashEffect.Flash();
+          if (type != "bouncer") {
+            Stun();
           }
-        } else {
-          if (!Helpers.IsFireResistant(elementResistances)) {
-            int damage = def - Constants.arrowExplosionDamage;
-            TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position));
+        }
 
-            if (flashEffect != null) {
-              flashEffect.Flash();
-              if (type != "bouncer") {
-                Stun();
+        // allows a bomb explosion to kill an enemy
+        // TODO: if any other explosions are added, ensure to change the usage of arrowExplosionDamage
+        if (currentHP <= 0 && damageFromExplosion != Constants.arrowExplosionDamage) {
+          DeathSequence();
+        }
+      } else {
+        string colName = col.gameObject.name.Replace("(Clone)", "");
+
+        if (colName == "Explosion" || colName == "ArrowBurn") {
+          bool willBurn = !Helpers.IsFireResistant(elementResistances) && currentHP <= Constants.arrowExplosionDamage;
+
+          if (willBurn) {
+            float currentTime = Time.time * 1000;
+
+            // only instantiate the flame if the enemy is not set to die (hence, !isDying)
+            if (!isDying) {
+              GameObject arrowBurn = Instantiate(Helpers.GetOrException(Objects.prefabs, "arrow-burn"), new Vector2(transform.position.x, transform.position.y + arrowBurnPosition), Quaternion.identity);
+
+              // sets the parent room so that the flame can be found and deleted more easily on room exit
+              arrowBurn.transform.SetParent(transform.parent);
+
+              ArrowBurn arrowBurnScript = arrowBurn.GetComponent<ArrowBurn>();
+              arrowBurnScript.startTime = currentTime;
+              arrowBurnScript.burnDimensions = Helpers.GetOrException(Objects.enemyDimensions, key);
+
+              burnTime = currentTime;
+              isBurning = true;
+              isWalking = false;
+              body.velocity = Vector2.zero;
+            }
+          } else {
+            if (!Helpers.IsFireResistant(elementResistances)) {
+              int damage = def - Constants.arrowExplosionDamage;
+              TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position));
+
+              if (flashEffect != null) {
+                flashEffect.Flash();
+                if (type != "bouncer") {
+                  Stun();
+                }
               }
             }
           }

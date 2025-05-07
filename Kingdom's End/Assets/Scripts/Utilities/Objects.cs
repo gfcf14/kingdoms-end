@@ -93,7 +93,7 @@ public class Objects {
     {"arrow-standard", new RegularItem(Sprites.itemThumbnails[22], Sprites.itemImages[22], "Standard Arrow", "Basic arrows to deal projectile damage.", "arrow", new Effects() {atk=20})},
     {"arrow-poison", new RegularItem(Sprites.itemThumbnails[23], Sprites.itemImages[23], "Poisoned Arrow", "Arrows dipped with poison to damage beyond contact.", "arrow", new Effects() {atk=10})},
     {"arrow-fire", new RegularItem(Sprites.itemThumbnails[24], Sprites.itemImages[24], "Fire Arrow", "Incendiary arrow which burns a non-resistant enemy upon contact.", "arrow", new Effects() {atk=5})},
-    {"bomb", new RegularItem(Sprites.itemThumbnails[25], Sprites.itemImages[25], "Bomb", "Paper-based weapon of Asian manufacture with high explosive power.", "throwable", new Effects() {atk=100})},
+    {"bomb", new RegularItem(Sprites.itemThumbnails[25], Sprites.itemImages[25], "Bomb", "Paper-based weapon of Asian manufacture with high explosive power.", "throwable", new Effects() {atk=60})},
     {"diamond", new RegularItem(Sprites.itemThumbnails[26], Sprites.itemImages[26], "Diamond", "Commercially non-rare precious stone.", "valuable")},
     {"emerald", new RegularItem(Sprites.itemThumbnails[27], Sprites.itemImages[27], "Emerald", "Precious stone of a vibrant green color.", "valuable")},
     {"sapphire", new RegularItem(Sprites.itemThumbnails[28], Sprites.itemImages[28], "Sapphire", "Blue gemstone that matches the deep seas.", "valuable")},

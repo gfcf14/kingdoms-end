@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 
   damage: 0
+  hasDamaged: 0
 --- !u!95 &7442361956410706219
 Animator:
   serializedVersion: 3
@@ -128,7 +129,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

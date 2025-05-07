@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class Helpers {
   public static int GetDamage(string weaponWielded) {
     if (IsValueInArray(Constants.enemyProjectiles, weaponWielded)) {
-      
       return GetOrException(Objects.projectileDamages, weaponWielded);
     }
 
