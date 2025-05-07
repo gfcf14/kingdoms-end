@@ -24,7 +24,9 @@ public class Constants {
   public static string[] itemContainerStates = {"items", "equipment_select", "relics"};
   public static string[] stackableBreakables = {"barrel", "box"};
   public static string[] landingObjects = {"Breakable", "Floor", "Interactable"};
-  public static string[] nonHorizontalCollidableObjects= {"Breakable", "Interactable"};
+
+  // TODO: consider why it could still be needed to keep `Breakable` as part of the nonHorizontalCollidableObjects, doing so prevents the player from pushing breakables too far
+  public static string[] nonHorizontalCollidableObjects= {/*"Breakable", */"Interactable"};
   public static string[] enemyNonColliderNames = {"Enemy", "EnemyCollider", "Grounder"};
   public static string[] enemyThrowableBouncers = {"Hero", "Shield", "Weapon"};
   public static string[] proximityCheckNonColliderTags = {"Breakable", "Enemy", "Floor", "Wall", "Interactable", "Item"};
@@ -85,6 +87,7 @@ public class Constants {
   public static string[] enemyProjectiles = {"dwarf-cobble", "goblin-knife", "nymph-acorn", "pixie-fireball", "skeleton-bone"};
   public static string[] explodingThrowables = {"pixie-fireball"};
   public static string[] shortCastEnemies = {"skeleton-king"};
+  public static string[] nonStackableBreakables = {"jar", "vase"};
 
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};

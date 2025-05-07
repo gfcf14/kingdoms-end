@@ -103,7 +103,16 @@ public class Sounds {
   };
 
   public static Dictionary<string, Dictionary<string, AudioClip>> characterFallingSounds = new Dictionary<string, Dictionary<string, AudioClip>> {
+    {"barrel", new Dictionary<string, AudioClip> {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
+    }},
     {"box", new Dictionary<string, AudioClip> {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
+    }},
+    {"jar", new Dictionary<string, AudioClip> {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
+    }},
+    {"vase", new Dictionary<string, AudioClip> {
       {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
     }},
     {"dirt", new Dictionary<string, AudioClip> {

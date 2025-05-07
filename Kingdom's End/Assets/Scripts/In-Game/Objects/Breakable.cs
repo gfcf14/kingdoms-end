@@ -41,6 +41,12 @@ public class Breakable : MonoBehaviour {
     if (item == "") {
       throw new Exception("No item declared for breakable in " + transform.parent.gameObject.name + ". Please declare an item for proper use.");
     }
+
+    // breakables who would not be stackable shouldn't be pushed or player should not stand on them
+    if (Helpers.IsValueInArray(Constants.nonStackableBreakables, type)) {
+      Destroy(body);
+      breakableCollider.isTrigger = true;
+    }
   }
 
   void Update() {}
@@ -101,7 +107,8 @@ public class Breakable : MonoBehaviour {
 
       string rarity = itemRarity != "" ? itemRarity : (Helpers.IsValueInArray(Constants.moneyItemKeys, item) ? "money" : "normal");
 
-      InGame.instance.InstantiatePrefab("droppable", item, rarity, GetItemSpawnedParent(), transform.position, spriteRenderer);
+      // ensure the droppable to instantiate appears at the middle of the breakable (i.e. a bit off the breakable's ground) to avoid issues with ground collision at the beginning
+      InGame.instance.InstantiatePrefab("droppable", item, rarity, GetItemSpawnedParent(), new Vector2(transform.position.x, transform.position.y + spriteRenderer.size.y / 2), spriteRenderer);
 
       GameObject parentObject = col.transform.parent.gameObject;
       if (parentObject.name.Contains("Throwable")) {
