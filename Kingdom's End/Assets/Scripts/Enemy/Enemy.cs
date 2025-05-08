@@ -447,45 +447,6 @@ public class Enemy : MonoBehaviour {
               currentHP = 0;
             }
 
-          // ENEMY POISONED
-            if (isPoisoned) {
-              float currentTime = Time.time * 1000;
-              float nextPoisonAttackTime = poisonTime + (poisonAttackInterval * poisonAttackCounter);
-
-              if (currentTime > poisonEffectTime + poisonEffectDuration) {
-                if (!isStunned) {
-                  enemyRenderer.color = enemyColor;
-                }
-
-                if (poisonAttackCounter == maxPoisonAttacks + 1) {
-                  isPoisoned = false;
-                  poisonAttackCounter = 0;
-                }
-              }
-
-              if (currentTime > nextPoisonAttackTime)  {
-                InGame.instance.PlaySound(Helpers.GetOrException(Sounds.poisonSounds, "basic"), transform.position);
-                TakeDamage(Constants.arrowPoisonDamage);
-                poisonEffectTime = Time.time * 1000;
-                enemyRenderer.color = Helpers.GetOrException(Colors.statusColors, "poisoned");
-                poisonAttackCounter++;
-
-                if (currentHP <= 0) {
-                  isDeadByPoison = true;
-                  isWalking = false;
-                  body.velocity = Vector2.zero;
-                  // so flying enemies drop dead
-                  body.gravityScale = 1;
-
-                  if (!isDead) { // avoids getting double exp if dying from poison after being attacked
-                     if (!gaveExp) {
-                      awardExp();
-                     }
-                  }
-                }
-              }
-            }
-
           // ENEMY BURNING
             if (!isBurning) {
               if (isFacingLeft) {
@@ -561,6 +522,45 @@ public class Enemy : MonoBehaviour {
   }
 
   void LateUpdate() {
+    // ENEMY POISONED
+    if (isPoisoned) {
+      float currentTime = Time.time * 1000;
+      float nextPoisonAttackTime = poisonTime + (poisonAttackInterval * poisonAttackCounter);
+
+      if (currentTime > poisonEffectTime + poisonEffectDuration) {
+        if (!isStunned) {
+          enemyRenderer.color = enemyColor;
+        }
+
+        if (poisonAttackCounter == maxPoisonAttacks + 1) {
+          isPoisoned = false;
+          poisonAttackCounter = 0;
+        }
+      }
+
+      if (currentTime > nextPoisonAttackTime)  {
+        InGame.instance.PlaySound(Helpers.GetOrException(Sounds.poisonSounds, "basic"), transform.position);
+        TakeDamage(Constants.arrowPoisonDamage);
+        poisonEffectTime = Time.time * 1000;
+        enemyRenderer.color = Helpers.GetOrException(Colors.statusColors, "poisoned");
+        poisonAttackCounter++;
+
+        if (currentHP <= 0) {
+          isDeadByPoison = true;
+          isWalking = false;
+          body.velocity = Vector2.zero;
+          // so flying enemies drop dead
+          body.gravityScale = 1;
+
+          if (!isDead) { // avoids getting double exp if dying from poison after being attacked
+              if (!gaveExp) {
+              awardExp();
+              }
+          }
+        }
+      }
+    }
+
     if (Hero.instance.pauseCase == "") {
       if (isBurning || (!isPoisoned && !isStunned && !isExploding && (type == "bewitcher" && !isAttacking && !isPoisoned))) {
         enemyRenderer.color = enemyColor;
