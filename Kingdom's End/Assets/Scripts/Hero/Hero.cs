@@ -1673,6 +1673,20 @@ public class Hero : MonoBehaviour {
       if (currZoneSpecs.animSpeed != null) {
         anim.speed = (float) currZoneSpecs.animSpeed;
       }
+    } else if (colTag == "DamageExplosion") {
+      Explosion currentExplosion = col.gameObject.GetComponent<Explosion>();
+
+      if (!currentExplosion.hasDamaged) {
+        ReceiveExplosionDamage(col.gameObject, col.ClosestPoint(transform.position));
+        currentExplosion.hasDamaged = true;
+      }
+    } else if (colTag == "Explosion") {
+      Explosion currentExplosion = col.gameObject.GetComponent<Explosion>();
+
+      if (currentExplosion.type == "bomb" && !currentExplosion.hasDamaged) {
+        ReceiveExplosionDamage(col.gameObject, col.ClosestPoint(transform.position));
+        currentExplosion.hasDamaged = true;
+      }
     }
   }
 
@@ -1806,22 +1820,17 @@ public class Hero : MonoBehaviour {
     Collider2D otherCollider = col.otherCollider;
     string colTag = col.gameObject.tag;
 
-    if (colTag == "DamageExplosion" && !col.gameObject.GetComponent<Explosion>().hasDamaged) {
-      ReceiveExplosionDamage(col.gameObject, col.collider.ClosestPoint(transform.position));
-      col.gameObject.GetComponent<Explosion>().hasDamaged = true;
+    // TODO: consider the use of collisionDirection and remove it if not needed
+    collisionDirection = GetGroundCollisionDirection();
+
+    // only toggle the isCollidingWithCeiling flag if the player has collided while jumping, i.e. not falling
+    if (collidingTop && !isFalling) {
+      isCollidingWithCeiling = true;
     } else {
-      // TODO: consider the use of collisionDirection and remove it if not needed
-      collisionDirection = GetGroundCollisionDirection();
+      MainCollisionLogic(collider, otherCollider, colTag);
 
-      // only toggle the isCollidingWithCeiling flag if the player has collided while jumping, i.e. not falling
-      if (collidingTop && !isFalling) {
-        isCollidingWithCeiling = true;
-      } else {
-        MainCollisionLogic(collider, otherCollider, colTag);
-
-        if (IsOnIncline() && isFalling) {
-          GroundOnIncline();
-        }
+      if (IsOnIncline() && isFalling) {
+        GroundOnIncline();
       }
     }
   }
