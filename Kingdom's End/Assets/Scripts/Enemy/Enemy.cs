@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour {
     [System.NonSerialized] string[] elementResistances;
 
 
-    [System.NonSerialized] public Color enemyColor;
+    public Color enemyColor;
 
 
     [System.NonSerialized] public Vector2 deadPosition;
@@ -432,11 +432,9 @@ public class Enemy : MonoBehaviour {
         }
 
 
-        if (Hero.instance != null && Hero.instance.pauseCase == "") {
+        if (Hero.instance.pauseCase == "") {
           // ENEMY BURNING
             if (isBurning) {
-              enemyColor = Helpers.GetOrException(Colors.statusColors, "burned");
-
               if (Helpers.ExceedsTime(burnTime, burningDuration)) {
                 isBurning = false;
                 isDeadByBurning = true;
@@ -563,8 +561,8 @@ public class Enemy : MonoBehaviour {
   }
 
   void LateUpdate() {
-    if (Hero.instance != null && Hero.instance.pauseCase == "") {
-      if (!isPoisoned && !isStunned && !isExploding && (type == "bewitcher" && !isAttacking)) {
+    if (Hero.instance.pauseCase == "") {
+      if (isBurning || (!isPoisoned && !isStunned && !isExploding && (type == "bewitcher" && !isAttacking && !isPoisoned))) {
         enemyRenderer.color = enemyColor;
       }
     }
@@ -638,48 +636,6 @@ public class Enemy : MonoBehaviour {
     if (!isDeadByPoison) { // avoids getting double exp if attacking while dying from poison
       if (!gaveExp) {
         awardExp();
-      }
-    }
-  }
-
-  public void ArrowBurnLogic(Collider2D col) {
-    bool willBurn = !Helpers.IsFireResistant(elementResistances) && currentHP <= Constants.arrowExplosionDamage;
-
-    if (willBurn) {
-      float currentTime = Time.time * 1000;
-
-      // only instantiate the flame if the enemy is not set to die (hence, !isDying)
-      if (!isDying) {
-        GameObject arrowBurn = Instantiate(Helpers.GetOrException(Objects.prefabs, "arrow-burn"), new Vector2(transform.position.x, transform.position.y + arrowBurnPosition), Quaternion.identity);
-
-        // sets the parent room so that the flame can be found and deleted more easily on room exit
-        arrowBurn.transform.SetParent(transform.parent);
-
-        ArrowBurn arrowBurnScript = arrowBurn.GetComponent<ArrowBurn>();
-        arrowBurnScript.startTime = currentTime;
-        arrowBurnScript.burnDimensions = Helpers.GetOrException(Objects.enemyDimensions, key);
-
-        burnTime = currentTime;
-        isBurning = true;
-        isWalking = false;
-        body.velocity = Vector2.zero;
-      }
-    } else {
-      int damageFromExplosion = Constants.arrowExplosionDamage;
-      int damage = def - damageFromExplosion;
-      TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position));
-
-      if (flashEffect != null) {
-        flashEffect.Flash();
-        if (type != "bouncer") {
-          Stun();
-        }
-      }
-
-      // allows a bomb explosion to kill an enemy
-      // TODO: if any other explosions are added, ensure to change the usage of arrowExplosionDamage
-      if (currentHP <= 0 && damageFromExplosion != Constants.arrowExplosionDamage) {
-        DeathSequence();
       }
     }
   }
@@ -774,7 +730,7 @@ public class Enemy : MonoBehaviour {
 
           if (!willBurn) {
             // if enemy receives constant attacks, if past lvl 20 and it's a champion perform melee.
-            // but if not past lvl 20 and it's a bouncer stun
+            // but if not past lvl 20 and it's not a bouncer stun
             if (attacksReceived >= attackRetaliationCounter) {
               if (level >= 20) {
                 if (type == "champion") {
@@ -788,7 +744,11 @@ public class Enemy : MonoBehaviour {
               }
             } else {
               if (!isDefending) {
-                if (type != "bouncer" && type != "bewitcher") {
+                string weaponType = Helpers.GetOrException(Objects.regularItems, currentWeapon).type;
+                bool isProjectileWeapon = Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, weaponType);
+
+                // TODO: for now, certain projectile weapons as specified by projectileHoldingWeaponTypes should not stun. Check the possibility of stunning without changing color
+                if (!isProjectileWeapon && type != "bouncer" && type != "bewitcher") {
                   Stun();
                 }
               }
@@ -852,6 +812,8 @@ public class Enemy : MonoBehaviour {
 
               burnTime = currentTime;
               isBurning = true;
+              // immediately sets the enemy color so the enemy looks burned
+              enemyColor = Helpers.GetOrException(Colors.statusColors, "burned");
               isWalking = false;
               body.velocity = Vector2.zero;
             }
@@ -1148,7 +1110,7 @@ public class Enemy : MonoBehaviour {
 
   // TODO: this death method depends on an array of positions! Ensure it can be changed to allow for a function to handle the flying death position change
   public void CheckDeath() {
-    if (Hero.instance != null && Hero.instance.pauseCase == "") {
+    if (Hero.instance.pauseCase == "") {
       if (isDead && (!isBurning || !isDeadByBurning || !isDeadByPoison) && diesFlying) {
         int index = deadAnimationIncrement;
         float xIncrement = Constants.enemyDeathXTransitions[index >= Constants.enemyDeathXTransitions.Length ? Constants.enemyDeathXTransitions.Length - 1 : index];

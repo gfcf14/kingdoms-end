@@ -18,10 +18,7 @@ public class Patroller : MonoBehaviour {
         if (enemy.isWalking && !enemy.isAttacking) {
           enemy.DecideMovement();
           // There's floor forward
-          // if (!diagonalForwardCast && diagonalForwardCast.collider.tag == "Floor") {
           enemy.CheckEdge();
-
-          // if (!heroIsDead) {
 
           // FOUND PLAYER
           if (!enemy.playerFound) {
