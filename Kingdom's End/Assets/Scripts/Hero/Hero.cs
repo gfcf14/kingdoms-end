@@ -1410,8 +1410,7 @@ public class Hero : MonoBehaviour {
           arm2Equipment = "";
         break;
         case "arrow":
-          arm1Equipment = "";
-          arm2Equipment = "";
+          Unequip(1);
           projectileEquipment = "";
           ChangeArrowContainerSprite(clear: true);
         break;
