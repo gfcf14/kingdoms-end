@@ -100,7 +100,7 @@ public class Breakable : MonoBehaviour {
       GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
-    if (colTag == "Weapon" && !isBreaking) {
+    if (Helpers.IsValueInArray(Constants.canBreakTags, colTag) && !isBreaking) {
       isBreaking = true;
       Destroy(body);
       GetComponent<BoxCollider2D>().isTrigger = true;
@@ -110,8 +110,8 @@ public class Breakable : MonoBehaviour {
       // ensure the droppable to instantiate appears at the middle of the breakable (i.e. a bit off the breakable's ground) to avoid issues with ground collision at the beginning
       InGame.instance.InstantiatePrefab("droppable", item, rarity, GetItemSpawnedParent(), new Vector2(transform.position.x, transform.position.y + spriteRenderer.size.y / 2), spriteRenderer);
 
-      GameObject parentObject = col.transform.parent.gameObject;
-      if (parentObject.name.Contains("Throwable")) {
+      GameObject parentObject = col.transform.parent != null ? col.transform.parent.gameObject : null;
+      if (parentObject != null && parentObject.name.Contains("Throwable")) {
         Throwable parentThrowable = parentObject.GetComponent<Throwable>();
         string weaponWielded = parentThrowable.type;
         Transform parentTransform = parentObject.GetComponent<Transform>();

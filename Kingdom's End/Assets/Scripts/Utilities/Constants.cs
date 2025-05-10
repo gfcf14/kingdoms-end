@@ -89,6 +89,8 @@ public class Constants {
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
 
+  public static string[] canBreakTags = {"DamageExplosion", "Explosion", "Weapon"};
+
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};
 
