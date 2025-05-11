@@ -190,6 +190,10 @@ public class Helpers {
   }
 
   public static AudioClip GetRandomClipFromGroup(AudioClip[] audioclipGroup) {
+    // if (audioclipGroup.Length == 1) {
+    //   return audioclipGroup[0];
+    // }
+
     return audioclipGroup[UnityEngine.Random.Range(0, audioclipGroup.Length)];
   }
 

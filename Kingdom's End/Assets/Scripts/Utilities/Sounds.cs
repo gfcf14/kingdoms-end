@@ -62,9 +62,19 @@ public class Sounds {
     Resources.Load<AudioClip>("SFX/breakables/box/breaking/breaking-3"),
   };
 
+  // TODO: given their rarity, consider if these need any more clips to randomize
+  public static AudioClip[] jarBreakingSounds = new AudioClip[] {
+    Resources.Load<AudioClip>("SFX/breakables/jar/breaking-1")
+  };
+  public static AudioClip[] vaseBreakingSounds = new AudioClip[] {
+    Resources.Load<AudioClip>("SFX/breakables/vase/breaking-1")
+  };
+
   public static Dictionary<string, AudioClip[]> breakableSounds = new Dictionary<string, AudioClip[]> {
     {"barrel", woodBreakingSounds},
-    {"box", woodBreakingSounds}
+    {"box", woodBreakingSounds},
+    {"jar", jarBreakingSounds},
+    {"vase", vaseBreakingSounds}
   };
 
   public static Dictionary<string, AudioClip[]> woodFallingSounds = new Dictionary<string, AudioClip[]> {

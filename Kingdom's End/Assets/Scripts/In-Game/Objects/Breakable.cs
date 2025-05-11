@@ -176,7 +176,8 @@ public class Breakable : MonoBehaviour {
 
       soundLength = breakableSound.length;
 
-      audioSource.PlayOneShot(breakableSound);
+      // TODO: since the ingame object is used for sound play, consider if the AudioSource component for breakables should be removed
+      InGame.instance.PlaySound(breakableSound, transform.position);
       StartCoroutine(ActionAfterSound());
     }
   }

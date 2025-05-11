@@ -17,6 +17,8 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 | breakables/box/falling/on-box-2    | https://pixabay.com/sound-effects/wood-door-slam-46791/          |
 | breakables/box/falling/on-grass-1  | https://pixabay.com/sound-effects/wood-break-40011/				|
 | breakables/box/falling/on-grass-2  | https://pixabay.com/sound-effects/wood-door-slam-46791/          |
+| breakables/jar/breaking-1          | https://pixabay.com/sound-effects/plate-break-1-36468/           |
+| breakables/vase/breaking-1         | https://pixabay.com/sound-effects/glass-smash-6266/              |
 | chests/large                       | https://pixabay.com/sound-effects/wood-door-slam-46791/          |
 | chests/small                       | https://pixabay.com/sound-effects/wood-door-slam-46791/          |
 | explosions/arrow                   | https://pixabay.com/sound-effects/fire-sound-efftect-21991/      |
