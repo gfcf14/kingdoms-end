@@ -8,9 +8,10 @@ public class Sound : MonoBehaviour {
 
   void Update() {}
 
-  public void PlaySound(AudioClip clip) {
+  public void PlaySound(AudioClip clip, float volume) {
     if (Settings.playSFX) {
       audioSource = GetComponent<AudioSource>();
+      audioSource.volume = volume;
       audioSource.PlayOneShot(clip);
       StartCoroutine(WaitForSoundFinish());
     }

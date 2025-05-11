@@ -1,6 +1,8 @@
+// TIPS FOR BREAKABLES:
+// - When stacking, the rows at the bottom must have one less in the order in layer. E.g. if there are six boxes stacked in a triangle, the 3 at the bottom should have order -1, the 2 above them 0, and the one at the top 1
+
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Breakable : MonoBehaviour {
@@ -177,7 +179,7 @@ public class Breakable : MonoBehaviour {
       soundLength = breakableSound.length;
 
       // TODO: since the ingame object is used for sound play, consider if the AudioSource component for breakables should be removed
-      InGame.instance.PlaySound(breakableSound, transform.position);
+      InGame.instance.PlaySound(breakableSound, transform.position, audioVolume);
       StartCoroutine(ActionAfterSound());
     }
   }

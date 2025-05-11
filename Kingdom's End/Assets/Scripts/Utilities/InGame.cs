@@ -301,10 +301,10 @@ public class InGame : MonoBehaviour {
   }
 
   // Plays a sound by creating a sound prefab that lives only until it is done playing
-  public void PlaySound(AudioClip clip, Vector3 position) {
+  public void PlaySound(AudioClip clip, Vector3 position, float volume = 1) {
     GameObject sound = Instantiate(Helpers.GetOrException(Objects.prefabs, "sound"), position, Quaternion.identity);
     Sound soundInstance = sound.GetComponent<Sound>();
-    soundInstance.PlaySound(clip);
+    soundInstance.PlaySound(clip, volume);
   }
 
   // instantiates a defense/block sprite on a contact point
