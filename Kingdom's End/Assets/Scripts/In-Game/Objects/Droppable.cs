@@ -118,7 +118,8 @@ public class Droppable : MonoBehaviour {
         }
       } else if (isFlickering) {
         if (Helpers.ExceedsTime(timer, maxFlickerTime)) {
-          Destroy(transform.parent.gameObject);
+          // just in case, destroy immediately and don't call the DestroyDroppable function if it triggers any extra actions
+          Destroy(gameObject);
         }
       }
     }
@@ -153,7 +154,7 @@ public class Droppable : MonoBehaviour {
         }
       }
 
-      if (InGame.instance.IsInRoom(InGame.instance.FindRoom(transform.parent))) {
+      if (!isRising && InGame.instance.IsInRoom(InGame.instance.FindRoom(transform.parent))) {
         string materialFallingOn = InGame.instance.GetTileMaterial(transform.position);
         if (materialFallingOn == null) {
           // TODO: find a better way to get the location
@@ -164,7 +165,7 @@ public class Droppable : MonoBehaviour {
 
       // destroys the rigid body and makes the collider a trigger so that
       // if the player is overlapping no movement is caused (usually pushing the player up)
-      if (gameObjectTag == "Floor") {
+      if (gameObjectTag == "Floor" || (gameObjectTag == "Interactable" && !isRising)) {
 
         // checks if collision is from the bottom, and if so, proceed with logic
         Vector2 normal = col.GetContact(0).normal;
@@ -198,18 +199,18 @@ public class Droppable : MonoBehaviour {
       string itemPickSoundIndex = rarity == "" ? (Helpers.IsValueInArray(Constants.moneyItemKeys, key) ? "money" : "normal") : rarity;
 
       InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, itemPickSoundIndex), transform.position);
-      DestroyDroppable(Hero.instance);
+      DestroyDroppable();
     }
   }
 
-  public void DestroyDroppable(Hero hero) {
+  public void DestroyDroppable() {
     if (key.Contains("money")) {
-      hero.gold += moneyItem.increment;
+      Hero.instance.gold += moneyItem.increment;
     } else {
-      Item currItem = Helpers.GetItemFromList(hero.items, key);
+      Item currItem = Helpers.GetItemFromList(Hero.instance.items, key);
 
       if (currItem == null) { // if not found, the item must be added
-        hero.items.Add(new Item(key, 1));
+        Hero.instance.items.Add(new Item(key, 1));
       } else { // if found, the item is incremented
         currItem.amount++;
       }
@@ -248,5 +249,5 @@ public class Droppable : MonoBehaviour {
     canBePicked = true;
     body.gravityScale = 1;
     body.velocity = Vector2.zero;
-}
+  }
 }

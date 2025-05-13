@@ -26,7 +26,7 @@ public class Constants {
   public static string[] landingObjects = {"Breakable", "Floor", "Interactable"};
 
   // TODO: consider why it could still be needed to keep `Breakable` as part of the nonHorizontalCollidableObjects, doing so prevents the player from pushing breakables too far
-  public static string[] nonHorizontalCollidableObjects= {/*"Breakable", */"Interactable"};
+  public static string[] nonHorizontalCollidableObjects= {"Breakable", "Interactable"};
   public static string[] enemyNonColliderNames = {"Enemy", "EnemyCollider", "Grounder"};
   public static string[] enemyThrowableBouncers = {"Hero", "Shield", "Weapon"};
   public static string[] proximityCheckNonColliderTags = {"Breakable", "Enemy", "Floor", "Wall", "Interactable", "Item"};

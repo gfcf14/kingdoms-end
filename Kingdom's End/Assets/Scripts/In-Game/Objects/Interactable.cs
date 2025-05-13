@@ -46,6 +46,7 @@ public class Interactable : MonoBehaviour {
     GetComponent<BoxCollider2D>().enabled = false;
 
     string rarity = itemRarity != "" ? itemRarity : (Helpers.IsValueInArray(Constants.moneyItemKeys, item) ? "money" : "normal");
-    InGame.instance.InstantiatePrefab("droppable", item, rarity, transform.parent.gameObject, transform.position, spriteRenderer);
+    Vector2 droppableOrigin = new Vector2(transform.position.x, transform.position.y + spriteRenderer.bounds.size.y);
+    InGame.instance.InstantiatePrefab("droppable", item, rarity, transform.parent.gameObject, droppableOrigin, spriteRenderer);
   }
 }

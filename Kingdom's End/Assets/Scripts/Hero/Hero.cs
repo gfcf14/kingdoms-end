@@ -1801,7 +1801,7 @@ public class Hero : MonoBehaviour {
 
           weaponCollider.SetActive(false);
         } else {
-          horizontalCollision = Helpers.IsValueInArray(Constants.nonHorizontalCollidableObjects, colTag) ? true : false;
+          // horizontalCollision = Helpers.IsValueInArray(Constants.nonHorizontalCollidableObjects, colTag) ? true : false;
 
           if (isBottomCollision(otherCollider, collider)) {
             horizontalCollision = false;
