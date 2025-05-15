@@ -16,10 +16,10 @@ public class Sprites {
   public static Sprite[] relicItemImages = Resources.LoadAll<Sprite>("Pause/Relics/images");
   public static Sprite[] moneyImages = Resources.LoadAll<Sprite>("Spritesheets/money");
 
-  public static Sprite[] breakableBoxes = Resources.LoadAll<Sprite>("Spritesheets/box");
-  public static Sprite[] breakableBarrels = Resources.LoadAll<Sprite>("Spritesheets/barrel");
-  public static Sprite[] breakableJars = Resources.LoadAll<Sprite>("Spritesheets/jar");
-  public static Sprite[] breakableVases = Resources.LoadAll<Sprite>("Spritesheets/vase");
+  public static Sprite[] breakableBoxes = Resources.LoadAll<Sprite>("Spritesheets/breakables/box");
+  public static Sprite[] breakableBarrels = Resources.LoadAll<Sprite>("Spritesheets/breakables/barrel");
+  public static Sprite[] breakableJars = Resources.LoadAll<Sprite>("Spritesheets/breakables/jar");
+  public static Sprite[] breakableVases = Resources.LoadAll<Sprite>("Spritesheets/breakables/vase");
   public static Sprite[] dwarfSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/dwarf");
   public static Sprite[] goblinSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/goblin");
   public static Sprite[] nymphSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nymph");
