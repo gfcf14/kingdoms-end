@@ -195,27 +195,49 @@ public class Objects {
     {"watermelon-slice", 0.5f}
   };
 
+  // TODO: this Dictionary will be used until all enemies are added to the game and all items they can drop are defined. Be sure to then update all enemies that use it
+  public static Dictionary<string, ProbabilityItem[]> genericItemDictionary = new Dictionary<string, ProbabilityItem[]> {
+    {"low", new ProbabilityItem[] {
+      new ProbabilityItem(){key="low-potions", probability=0.8f},
+      new ProbabilityItem(){key="low-money", probability=0.9f},
+      new ProbabilityItem(){key="skull", probability=0.96f},
+      new ProbabilityItem(){key="calcite", probability=1},
+    }},
+    {"mid", new ProbabilityItem[] {
+      new ProbabilityItem(){key="mid-potions", probability=0.8f},
+      new ProbabilityItem(){key="darkling-sword", probability=0.9f},
+      new ProbabilityItem(){key="polished-skull", probability=0.96f},
+      new ProbabilityItem(){key="refined-calcite", probability=1},
+    }},
+    {"high", new ProbabilityItem[] {
+      new ProbabilityItem(){key="silver-bracelet", probability=0.8f},
+      new ProbabilityItem(){key="darklord-sword", probability=0.9f},
+      new ProbabilityItem(){key="silver-skull", probability=0.96f},
+      new ProbabilityItem(){key="precious-calcite", probability=1},
+    }}
+  };
+
   // To get item probabilities, order them with the highest probability item first, then descending. the next item's probability has to be its inteded probability PLUS the previous ones
   // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%, then A's probability is 0.8, B is 0.9, C is 0.96, and D is 1
   public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new Dictionary<string, Dictionary<string, ProbabilityItem[]>> {
-    {"skeleton", new Dictionary<string, ProbabilityItem[]> {
+    {"dwarf", new Dictionary<string, ProbabilityItem[]> {
       {"low", new ProbabilityItem[] {
-        new ProbabilityItem(){key="low-potions", probability=0.8f},
-        new ProbabilityItem(){key="low-money", probability=0.9f},
-        new ProbabilityItem(){key="skull", probability=0.96f},
-        new ProbabilityItem(){key="calcite", probability=1},
+        new ProbabilityItem(){key="low-food", probability=0.7f},
+        new ProbabilityItem(){key="low-money", probability=0.85f},
+        new ProbabilityItem(){key="silver-bar", probability=0.95f},
+        new ProbabilityItem(){key="wine", probability=1},
       }},
       {"mid", new ProbabilityItem[] {
-        new ProbabilityItem(){key="mid-potions", probability=0.8f},
-        new ProbabilityItem(){key="darkling-sword", probability=0.9f},
-        new ProbabilityItem(){key="polished-skull", probability=0.96f},
-        new ProbabilityItem(){key="refined-calcite", probability=1},
+        new ProbabilityItem(){key="mid-food", probability=0.7f},
+        new ProbabilityItem(){key="axe", probability=0.85f},
+        new ProbabilityItem(){key="silver-ingot", probability=0.95f},
+        new ProbabilityItem(){key="dwarf-hammer", probability=1},
       }},
       {"high", new ProbabilityItem[] {
-        new ProbabilityItem(){key="silver-bracelet", probability=0.8f},
-        new ProbabilityItem(){key="darklord-sword", probability=0.9f},
-        new ProbabilityItem(){key="silver-skull", probability=0.96f},
-        new ProbabilityItem(){key="precious-calcite", probability=1},
+        new ProbabilityItem(){key="mid-food", probability=0.7f},
+        new ProbabilityItem(){key="reinforced-axe", probability=0.85f},
+        new ProbabilityItem(){key="diamond", probability=0.95f},
+        new ProbabilityItem(){key="war-maul", probability=1},
       }}
     }},
     {"goblin", new Dictionary<string, ProbabilityItem[]> {
@@ -258,26 +280,6 @@ public class Objects {
         new ProbabilityItem(){key="flower-wreath", probability=1},
       }}
     }},
-    {"dwarf", new Dictionary<string, ProbabilityItem[]> {
-      {"low", new ProbabilityItem[] {
-        new ProbabilityItem(){key="low-food", probability=0.7f},
-        new ProbabilityItem(){key="low-money", probability=0.85f},
-        new ProbabilityItem(){key="silver-bar", probability=0.95f},
-        new ProbabilityItem(){key="wine", probability=1},
-      }},
-      {"mid", new ProbabilityItem[] {
-        new ProbabilityItem(){key="mid-food", probability=0.7f},
-        new ProbabilityItem(){key="axe", probability=0.85f},
-        new ProbabilityItem(){key="silver-ingot", probability=0.95f},
-        new ProbabilityItem(){key="dwarf-hammer", probability=1},
-      }},
-      {"high", new ProbabilityItem[] {
-        new ProbabilityItem(){key="mid-food", probability=0.7f},
-        new ProbabilityItem(){key="reinforced-axe", probability=0.85f},
-        new ProbabilityItem(){key="diamond", probability=0.95f},
-        new ProbabilityItem(){key="war-maul", probability=1},
-      }}
-    }},
     {"pixie", new Dictionary<string, ProbabilityItem[]> {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="low-food", probability=0.5f},
@@ -298,7 +300,27 @@ public class Objects {
         new ProbabilityItem(){key="gold-pixie-belt", probability=1},
       }}
     }},
-    {"skeleton-king", new Dictionary<string, ProbabilityItem[]> {
+    {"skeleton", new Dictionary<string, ProbabilityItem[]> {
+      {"low", new ProbabilityItem[] {
+        new ProbabilityItem(){key="low-potions", probability=0.8f},
+        new ProbabilityItem(){key="low-money", probability=0.9f},
+        new ProbabilityItem(){key="skull", probability=0.96f},
+        new ProbabilityItem(){key="calcite", probability=1},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new ProbabilityItem(){key="mid-potions", probability=0.8f},
+        new ProbabilityItem(){key="darkling-sword", probability=0.9f},
+        new ProbabilityItem(){key="polished-skull", probability=0.96f},
+        new ProbabilityItem(){key="refined-calcite", probability=1},
+      }},
+      {"high", new ProbabilityItem[] {
+        new ProbabilityItem(){key="silver-bracelet", probability=0.8f},
+        new ProbabilityItem(){key="darklord-sword", probability=0.9f},
+        new ProbabilityItem(){key="silver-skull", probability=0.96f},
+        new ProbabilityItem(){key="precious-calcite", probability=1},
+      }}
+    }},
+    { "skeleton-king", new Dictionary<string, ProbabilityItem[]> {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="skeleton-king-giant-bone", probability=0.7f},
         new ProbabilityItem(){key="mid-potions", probability=0.9f},
@@ -317,7 +339,8 @@ public class Objects {
         new ProbabilityItem(){key="citrine", probability=0.97f},
         new ProbabilityItem(){key="silver-king-skull", probability=1},
       }}
-    }}
+    }},
+    {"troll", genericItemDictionary},
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -390,7 +413,8 @@ public class Objects {
     {"nymph", new EnemyStats() {name = "Nymph", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"pixie", new EnemyStats() {name = "Pixie", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
-    {"skeleton-king", new EnemyStats() {name = "Skeleton King", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}}
+    {"skeleton-king", new EnemyStats() {name = "Skeleton King", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
+    {"troll", new EnemyStats() {name = "Troll", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}}
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new Dictionary<string, Vector2> {
@@ -399,7 +423,8 @@ public class Objects {
     {"nymph", new Vector2(0.72f, 2.34f)},
     {"pixie", new Vector2(0.7f, 0.68f)},
     {"skeleton", new Vector2(1.77f, 2.05f)},
-    {"skeleton-king", new Vector2(1.82f, 3.21f)}
+    {"skeleton-king", new Vector2(1.82f, 3.21f)},
+    {"troll", new Vector2(1.01f, 2.68f)}
   };
 
   public static Dictionary<string, Vector2> enemyWingOffsets = new Dictionary<string, Vector2> {
