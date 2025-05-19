@@ -184,7 +184,8 @@ public class Objects {
     {"goblin-knife", 50},
     {"nymph-acorn", 40},
     {"pixie-fireball", 60},
-    {"skeleton-bone", 50}
+    {"skeleton-bone", 50},
+    {"troll-boulder", 50}
   };
 
   public static Dictionary<string, FragmentOutcome> itemFragments = new Dictionary<string, FragmentOutcome> {
@@ -432,7 +433,8 @@ public class Objects {
     {"goblin", new Vector2(-0.2f, 1.65f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
     {"skeleton", new Vector2(-0.25f, 1.95f)},
-    {"skeleton-king", new Vector2(0.1f, 2.1f)}
+    {"skeleton-king", new Vector2(0.1f, 2.1f)},
+    {"troll", new Vector2(0.1f, 1.4f)}
   };
 
   // TODO: consider if it'd be needed to use these custom origin values when dying only by burning/poison
@@ -483,7 +485,8 @@ public class Objects {
     {"skeleton-king-giant-bone", "blunt"},
     {"nymph-acorn", "blunt"},
     {"pixie-fireball", "blunt"},
-    {"skeleton-bone", "blunt"}
+    {"skeleton-bone", "blunt"},
+    {"troll-boulder", "blunt"}
   };
 
   public static Dictionary<string, int[]> locationInclineTiles = new Dictionary<string, int[]> {
@@ -508,6 +511,7 @@ public class Objects {
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"troll-boulder", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}}
   };
 
   public static Dictionary<string, string> projectileKeys = new Dictionary<string, string> {
@@ -516,7 +520,8 @@ public class Objects {
     {"nymph", "nymph-acorn"},
     {"pixie", "pixie-fireball"},
     {"skeleton", "skeleton-bone"},
-    {"skeleton-king", "skeleton-king-giant-bone"}
+    {"skeleton-king", "skeleton-king-giant-bone"},
+    {"troll", "troll-boulder"}
   };
 
   public static Dictionary<string, ZoneSpecs> zoneSpecs = new Dictionary<string, ZoneSpecs> {

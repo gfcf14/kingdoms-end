@@ -26,6 +26,7 @@ public class Sprites {
   public static Sprite[] pixieSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/pixie");
   public static Sprite[] skeletonSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton");
   public static Sprite[] skeletonKingSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton-king");
+  public static Sprite[] trollSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/troll");
 
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
 
@@ -351,6 +352,7 @@ public class Sprites {
     {"nymph-acorn", Resources.Load<Sprite>("Sprites/projectiles/nymph-acorn")},
     {"pixie-fireball", Resources.Load<Sprite>("Sprites/projectiles/pixie-fireball")},
     {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")},
+    {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")}
   };
 
   public static Dictionary<string, Sprite> droppableSprites = new Dictionary<string, Sprite> {
@@ -486,7 +488,8 @@ public class Sprites {
     {"nymph", nymphSprites[0]},
     {"pixie", pixieSprites[0]},
     {"skeleton", skeletonSprites[35]},
-    {"skeleton-king", skeletonKingSprites[0]}
+    {"skeleton-king", skeletonKingSprites[0]},
+    {"troll", trollSprites[0]}
   };
 
   public static Dictionary<string, Dictionary<string, Sprite>> emotions = new Dictionary<string, Dictionary<string, Sprite>> {
