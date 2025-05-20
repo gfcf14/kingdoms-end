@@ -415,7 +415,7 @@ public class Objects {
     {"pixie", new EnemyStats() {name = "Pixie", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"skeleton-king", new EnemyStats() {name = "Skeleton King", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
-    {"troll", new EnemyStats() {name = "Troll", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}}
+    {"troll", new EnemyStats() {name = "Troll", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}}
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new Dictionary<string, Vector2> {

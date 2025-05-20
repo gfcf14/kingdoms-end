@@ -324,6 +324,7 @@ public class Enemy : MonoBehaviour {
 
     // from the beginning, start the bouncer by flying up
     if (type == "bouncer") {
+      transform.Find("Grounder").gameObject.SetActive(false);
       yDirection = 1;
 
       // TODO: the OnTriggerStay2D condition for bouncing to avoid leaving a room makes the enemy bounce intermittently in the beginning.
