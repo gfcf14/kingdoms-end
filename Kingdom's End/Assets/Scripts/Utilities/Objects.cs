@@ -418,7 +418,7 @@ public class Objects {
     {"skeleton", new EnemyStats() {name = "Skeleton", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"skeleton-king", new EnemyStats() {name = "Skeleton King", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"troll", new EnemyStats() {name = "Troll", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f} },
-    {"unicorn", new EnemyStats() {name = "Unicorn", baseMaterial = "barefoot", normalAttackType = "blunt", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.35f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}}
+    {"unicorn", new EnemyStats() {name = "Unicorn", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.35f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}}
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new Dictionary<string, Vector2> {
@@ -439,7 +439,7 @@ public class Objects {
     {"skeleton", new Vector2(-0.25f, 1.95f)},
     {"skeleton-king", new Vector2(0.1f, 2.1f)},
     {"troll", new Vector2(0.1f, 1.4f)},
-    {"unicorn", new Vector2(0.1f, 1.4f)}
+    {"unicorn", new Vector2(0.25f, 2.25f)}
   };
 
   // TODO: consider if it'd be needed to use these custom origin values when dying only by burning/poison

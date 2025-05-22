@@ -354,7 +354,7 @@ public class Sprites {
     {"pixie-fireball", Resources.Load<Sprite>("Sprites/projectiles/pixie-fireball")},
     {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")},
     {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")},
-    {"unicorn-shard", Resources.Load<Sprite>("Sprite/projectiles/unicorn-shard")}
+    {"unicorn-shard", Resources.Load<Sprite>("Sprites/projectiles/unicorn-shard")}
   };
 
   public static Dictionary<string, Sprite> droppableSprites = new Dictionary<string, Sprite> {
