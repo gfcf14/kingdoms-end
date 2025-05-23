@@ -990,10 +990,9 @@ public class Enemy : MonoBehaviour {
   }
 
   public void ThrowWeapon(float distance) {
-    float throwableX = transform.position.x + ((isFacingLeft ? -2f : 1) * enemyWidth) + (distance * ( isFacingLeft ? 1 : -1));
-    float throwableY = transform.position.y + enemyWidth;
+    Transform extraObject = transform.Find("Extra");
 
-    GameObject throwableWeapon = Instantiate(Helpers.GetOrException(Objects.prefabs, "throwable"), new Vector3(throwableX, throwableY, 0), Quaternion.identity);
+    GameObject throwableWeapon = Instantiate(Helpers.GetOrException(Objects.prefabs, "throwable"), extraObject.position, Quaternion.identity);
     Throwable throwableInstance = throwableWeapon.GetComponent<Throwable>();
 
     throwableInstance.isFacingLeft = isFacingLeft;
@@ -1011,8 +1010,8 @@ public class Enemy : MonoBehaviour {
   }
 
   public void ThrowProjectile() {
-    Vector2 projectilePosition = new Vector2(transform.position.x + enemyWidth / 2, transform.position.y + enemyHeight / 2);
-    GameObject projectile = Instantiate(Helpers.GetOrException(Objects.prefabs, "projectile"), projectilePosition, Quaternion.identity, transform);
+    Transform extraObject = transform.Find("Extra");
+    GameObject projectile = Instantiate(Helpers.GetOrException(Objects.prefabs, "projectile"), extraObject.position, Quaternion.identity, transform);
     Projectile projectileScript = projectile.GetComponent<Projectile>();
 
     projectileScript.fromFacingLeft = isFacingLeft;
@@ -1072,7 +1071,8 @@ public class Enemy : MonoBehaviour {
   }
 
   public void CheckEdge() {
-    Vector2 beginEdgeCast = new Vector2(transform.position.x, transform.position.y);
+    float edgeCastX = transform.position.x + (Helpers.IsValueInArray(Constants.longEnemies, key) ? (enemyWidth / 2) * direction : 0);
+    Vector2 beginEdgeCast = new Vector2(edgeCastX, transform.position.y);
     Vector2 edgeCastDirection = transform.TransformDirection(new Vector2(direction * 2, -1));
 
     RaycastHit2D edgeCast = Physics2D.Raycast(beginEdgeCast, edgeCastDirection, edgeCastLength);
