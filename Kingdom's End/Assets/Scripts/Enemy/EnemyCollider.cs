@@ -69,6 +69,12 @@ public class EnemyCollider : MonoBehaviour {
             enemy.canLand = true;
           }
         } else {
+          // flying enemies who need to stay off the ground once landing after an ambush should float
+          if (enemy.type == "ambusher" && enemy.isFlyingEnemy && col.gameObject.CompareTag("Floor"))
+          {
+            enemy.FloatEnemy();
+          }
+
           enemy.Trigger(col);
         }
       }
