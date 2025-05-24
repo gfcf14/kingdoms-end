@@ -412,11 +412,13 @@ public class Enemy : MonoBehaviour {
     isDying = isBurning || isDeadByBurning || isDeadByPoison;
 
     if (Hero.instance.isAutonomous && isMiniBoss) {
-      enemyRenderer.sprite = Helpers.GetOrException(Sprites.firstBossSprites, key);
-      isFacingLeft = !Hero.instance.isFacingLeft;
-      if (isFacingLeft) {
-        Flip();
-      }
+      // TODO: initially this code was meant to flip an enemy boss when the player enters on his own.
+      //       But given a similar condition on start could make this invalid. Test if it's still needed.
+      // enemyRenderer.sprite = Helpers.GetOrException(Sprites.firstBossSprites, key);
+      // isFacingLeft = !Hero.instance.isFacingLeft;
+      // if (isFacingLeft) {
+      //   Flip();
+      // }
     } else {
       if ((isMiniBoss && isOnCamera) || gameObject.name != "Boss") {
         // DEFENSE CAST
