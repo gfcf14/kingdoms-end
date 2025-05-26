@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Objects {
   public static Dictionary<string, GameObject> prefabs = new Dictionary<string, GameObject> {
