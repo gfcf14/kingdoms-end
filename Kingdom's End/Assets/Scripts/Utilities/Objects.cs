@@ -221,7 +221,8 @@ public class Objects {
   // To get item probabilities, order them with the highest probability item first, then descending. the next item's probability has to be its inteded probability PLUS the previous ones
   // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%, then A's probability is 0.8, B is 0.9, C is 0.96, and D is 1
   public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new Dictionary<string, Dictionary<string, ProbabilityItem[]>> {
-    {"dwarf", new Dictionary<string, ProbabilityItem[]> {
+    {"centaur", genericItemDictionary},
+    { "dwarf", new Dictionary<string, ProbabilityItem[]> {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="low-food", probability=0.7f},
         new ProbabilityItem(){key="low-money", probability=0.85f},
@@ -410,6 +411,7 @@ public class Objects {
   };
 
   public static Dictionary<string, EnemyStats> enemyStats = new Dictionary<string, EnemyStats> {
+    {"centaur", new EnemyStats() {name = "Centaur", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"dwarf", new EnemyStats() {name = "Dwarf", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"goblin", new EnemyStats() {name = "Goblin", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"nymph", new EnemyStats() {name = "Nymph", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
@@ -421,6 +423,7 @@ public class Objects {
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new Dictionary<string, Vector2> {
+    {"centaur", new Vector2(2.28f, 2.77f)},
     {"dwarf", new Vector2(0.76f, 1.44f)},
     {"goblin", new Vector2(1.12f, 2.06f)},
     {"nymph", new Vector2(0.72f, 2.34f)},
@@ -432,7 +435,8 @@ public class Objects {
   };
 
   public static Dictionary<string, Vector2> enemyWingOffsets = new Dictionary<string, Vector2> {
-    {"dwarf", new Vector2(0, 1)},
+    {"centaur", new Vector2(0.25f, 2.25f)},
+    { "dwarf", new Vector2(0, 1)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
     {"skeleton", new Vector2(-0.25f, 1.95f)},
@@ -521,7 +525,8 @@ public class Objects {
   };
 
   public static Dictionary<string, string> projectileKeys = new Dictionary<string, string> {
-    {"dwarf", "dwarf-cobble"},
+    {"centaur", "centaur-spear"},
+    { "dwarf", "dwarf-cobble"},
     {"goblin", "goblin-knife"},
     {"nymph", "nymph-acorn"},
     {"pixie", "pixie-fireball"},

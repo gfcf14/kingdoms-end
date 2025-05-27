@@ -28,6 +28,7 @@ public class Sprites {
   public static Sprite[] skeletonKingSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton-king");
   public static Sprite[] trollSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/troll");
   public static Sprite[] unicornSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/unicorn");
+  public static Sprite[] centaurSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/centaur");
 
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
 
@@ -485,7 +486,8 @@ public class Sprites {
   };
 
   public static Dictionary<string, Sprite> firstBossSprites = new Dictionary<string, Sprite> {
-    {"dwarf", dwarfSprites[0]},
+    {"centaur", centaurSprites[0]},
+    { "dwarf", dwarfSprites[0]},
     {"goblin", goblinSprites[0]},
     {"nymph", nymphSprites[0]},
     {"pixie", pixieSprites[0]},
