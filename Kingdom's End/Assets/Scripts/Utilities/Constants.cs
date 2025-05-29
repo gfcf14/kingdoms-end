@@ -85,7 +85,7 @@ public class Constants {
 
   public static string[] enemyBombBounceTags = {"Hero", "Weapon"};
 
-  public static string[] enemyProjectiles = {"dwarf-cobble", "goblin-knife", "nymph-acorn", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
+  public static string[] enemyProjectiles = {"centaur-spear", "dwarf-cobble", "goblin-knife", "nymph-acorn", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
   public static string[] explodingThrowables = {"pixie-fireball"};
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
