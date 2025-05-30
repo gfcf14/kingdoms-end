@@ -193,6 +193,7 @@ public class Constants {
 
   public static float sparkleParentOffset = 0.5f;
   public static float sparkleOffsetDistance = 0.11f;
+  public static float enemyBombWidth = 0.8f;
 
   public static Vector2[] fragmentPositions = { new Vector2(-fragmentOffset, fragmentOffset), new Vector2(0, fragmentOffset), new Vector2(fragmentOffset, fragmentOffset),
                                                 new Vector2(-fragmentOffset, 0),              new Vector2(0, 0),              new Vector2(fragmentOffset, 0),

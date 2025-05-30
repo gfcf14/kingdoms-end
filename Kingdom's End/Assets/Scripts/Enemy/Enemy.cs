@@ -119,6 +119,8 @@ public class Enemy : MonoBehaviour {
     [System.NonSerialized] SpriteRenderer weaponSpriteRenderer;
     [SerializeField] public GameObject spawnedFrom;
 
+    [System.NonSerialized] GameObject extra;
+
     Vector2 forwardCastDirection;
     public float wanderStart = 0;
     public float wanderTime = 5000;
@@ -195,6 +197,7 @@ public class Enemy : MonoBehaviour {
 
     flashEffect = GetComponent<SimpleFlash>();
     weaponSpriteRenderer = GameObject.Find("Weapon").GetComponent<SpriteRenderer>();
+    extra = transform.Find("Extra").gameObject;
 
     // TODO: only flip for specific types
     isFacingLeft = type == "idler" ? isFacingLeft : !Hero.instance.isFacingLeft;
@@ -332,10 +335,12 @@ public class Enemy : MonoBehaviour {
       transform.position = new Vector2(transform.position.x, transform.position.y + 0.1f);
     }
 
-    if (type == "bomber") {
+    if (type == "bomber")
+    {
       // moves the bomber up initially to account for the reach specified
       transform.position = new Vector2(transform.position.x, transform.position.y + Constants.bomberReach);
       body.gravityScale = 0;
+      transform.Find("Grounder").gameObject.SetActive(false);
     }
 
     if (!isFlyingEnemy && Helpers.IsValueInArray(Constants.flyingEnemyTypes, type)) {
@@ -347,7 +352,7 @@ public class Enemy : MonoBehaviour {
       wings.GetComponent<SpriteRenderer>().color = wingColor;
 
       // changes the color of the fly brace (the Extra)
-      transform.Find("Extra").GetComponent<SpriteRenderer>().color = wingColor;
+      extra.GetComponent<SpriteRenderer>().color = wingColor;
     }
 
     isSmallEnemy = Helpers.IsValueInArray(Constants.smallEnemies, key);
@@ -992,9 +997,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void ThrowWeapon(float distance) {
-    Transform extraObject = transform.Find("Extra");
-
-    GameObject throwableWeapon = Instantiate(Helpers.GetOrException(Objects.prefabs, "throwable"), extraObject.position, Quaternion.identity);
+    GameObject throwableWeapon = Instantiate(Helpers.GetOrException(Objects.prefabs, "throwable"), extra.transform.position, Quaternion.identity);
     Throwable throwableInstance = throwableWeapon.GetComponent<Throwable>();
 
     throwableInstance.isFacingLeft = isFacingLeft;
@@ -1012,8 +1015,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void ThrowProjectile() {
-    Transform extraObject = transform.Find("Extra");
-    GameObject projectile = Instantiate(Helpers.GetOrException(Objects.prefabs, "projectile"), extraObject.position, Quaternion.identity, transform);
+    GameObject projectile = Instantiate(Helpers.GetOrException(Objects.prefabs, "projectile"), extra.transform.position, Quaternion.identity, transform);
     Projectile projectileScript = projectile.GetComponent<Projectile>();
 
     projectileScript.fromFacingLeft = isFacingLeft;
@@ -1268,7 +1270,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void DropBomb() {
-    Vector2 bombOrigin = new Vector2(transform.position.x + ((enemyWidth / 2) * direction), transform.position.y + enemyHeight / 2);
+    Vector2 bombOrigin = new Vector2(extra.transform.position.x + ((Constants.enemyBombWidth / 2) * direction), extra.transform.position.y);
     GameObject enemyBomb = Instantiate(Helpers.GetOrException(Objects.prefabs, "enemy-bomb"), bombOrigin, Quaternion.identity, transform);
 
     EnemyBomb bombScript = enemyBomb.GetComponent<EnemyBomb>();
@@ -1285,9 +1287,8 @@ public class Enemy : MonoBehaviour {
   }
 
   public void Sparkle() {
-    Transform extraObject = transform.Find("Extra");
-    InGame.instance.PlaySound(Sounds.bewitchSound, extraObject.position);
-    GameObject sparkle = Instantiate(Helpers.GetOrException(Objects.prefabs, "sparkle"), extraObject.position, Quaternion.identity, extraObject);
+    InGame.instance.PlaySound(Sounds.bewitchSound, extra.transform.position);
+    GameObject sparkle = Instantiate(Helpers.GetOrException(Objects.prefabs, "sparkle"), extra.transform.position, Quaternion.identity, extra.transform);
     sparkle.GetComponent<Animator>().Play("sparkle");
   }
 
