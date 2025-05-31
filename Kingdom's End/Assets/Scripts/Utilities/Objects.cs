@@ -3,6 +3,17 @@ using TMPro;
 using UnityEngine;
 
 public class Objects {
+  public static Dictionary<string, string[]> enemyKeysByArea = new Dictionary<string, string[]> {
+    {"forest", new string[]{"unicorn"}},
+    {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
+    {"wasteland", new string[]{"skeleton", "skeleton-king"}}
+  };
+
+  public static Dictionary<string, string[]> enemyTypesByCondition = new Dictionary<string, string[]> {
+    {"bounded", new string[]{"bewitcher", "champion", "charger", "exploder", "patroller", "teleporter"}},
+    {"unbounded", new string[]{"ambusher", "bomber", "bouncer", "idler", "sentinel", "shooter"}}
+  };
+
   public static Dictionary<string, GameObject> prefabs = new Dictionary<string, GameObject> {
     {"ambush-floor", Resources.Load("Prefabs/AmbushFloor") as GameObject},
     {"arrow", Resources.Load("Prefabs/Arrow") as GameObject},
@@ -180,7 +191,7 @@ public class Objects {
 
   public static Dictionary<string, int> projectileDamages = new Dictionary<string, int> {
     {"centaur-spear", 50},
-    { "dwarf-cobble", 35},
+    {"dwarf-cobble", 35},
     {"goblin-knife", 50},
     {"nymph-acorn", 40},
     {"pixie-fireball", 60},
@@ -223,7 +234,7 @@ public class Objects {
   // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%, then A's probability is 0.8, B is 0.9, C is 0.96, and D is 1
   public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new Dictionary<string, Dictionary<string, ProbabilityItem[]>> {
     {"centaur", genericItemDictionary},
-    { "dwarf", new Dictionary<string, ProbabilityItem[]> {
+    {"dwarf", new Dictionary<string, ProbabilityItem[]> {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="low-food", probability=0.7f},
         new ProbabilityItem(){key="low-money", probability=0.85f},
@@ -437,7 +448,7 @@ public class Objects {
 
   public static Dictionary<string, Vector2> enemyWingOffsets = new Dictionary<string, Vector2> {
     {"centaur", new Vector2(0.4f, 2.8f)},
-    { "dwarf", new Vector2(0, 1)},
+    {"dwarf", new Vector2(0, 1)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
     {"skeleton", new Vector2(-0.25f, 1.95f)},
@@ -498,10 +509,6 @@ public class Objects {
     {"skeleton-bone", "blunt"},
     {"troll-boulder", "blunt" },
     {"unicorn-shard", "blunt"}
-  };
-
-  public static Dictionary<string, int[]> locationInclineTiles = new Dictionary<string, int[]> {
-    {"meadows", Constants.inclineMeadows}
   };
 
   public static Dictionary<string, ThrowableSpecs> throwableSpecs = new Dictionary<string, ThrowableSpecs> {

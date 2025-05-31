@@ -1,3 +1,8 @@
+public enum EnemyKeyTypeCondition {
+  custom,
+  bounded,
+  unbounded
+}
 
 public enum EnemyType {
   unspecified,
