@@ -1075,12 +1075,13 @@ public class Enemy : MonoBehaviour {
   }
 
   public void CheckEdge() {
-    float edgeCastX = transform.position.x + (Helpers.IsValueInArray(Constants.longEnemies, key) ? (enemyWidth / 2) * direction : 0);
-    Vector2 beginEdgeCast = new Vector2(edgeCastX, transform.position.y);
-    Vector2 edgeCastDirection = transform.TransformDirection(new Vector2(direction * 2, -1));
+    float edgeCastX = transform.position.x + ((enemyWidth / 2) + Constants.enemyEdgeforwardOffset) * direction;
+    Vector2 beginEdgeCast = new Vector2(edgeCastX, transform.position.y + enemyHeight);
+    Vector2 edgeCastDirection = Vector2.down;
+    float lengthWithHeight = enemyHeight + edgeCastLength;
 
-    RaycastHit2D edgeCast = Physics2D.Raycast(beginEdgeCast, edgeCastDirection, edgeCastLength);
-    Debug.DrawRay(beginEdgeCast, edgeCastDirection.normalized * edgeCastLength, Helpers.GetOrException(Colors.raycastColors, "edge"));
+    RaycastHit2D edgeCast = Physics2D.Raycast(beginEdgeCast, edgeCastDirection, lengthWithHeight);
+    Debug.DrawRay(beginEdgeCast, edgeCastDirection * lengthWithHeight, Helpers.GetOrException(Colors.raycastColors, "edge"));
 
     if (edgeCast.collider && edgeCast.collider.name.Contains("EnemyFlipper")) {
       if (type == "charger" && isCharging) { // when the enemy charges, if it finds a flipper it should turn back, as the player is no longer in their area
