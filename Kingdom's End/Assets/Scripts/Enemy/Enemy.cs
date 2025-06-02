@@ -1228,8 +1228,20 @@ public class Enemy : MonoBehaviour {
 
   public void Teleport() {
     float newXPosition = UnityEngine.Random.Range(leftBound, rightBound);
+    Vector2 teleportCastOrigin = new Vector2(newXPosition, transform.position.y + enemyHeight);
+    float teleportGroundCastLength = enemyHeight + 2f; // 2 tiles down besides enemy height
 
-    transform.position = new Vector2(newXPosition, transform.position.y);
+    RaycastHit2D hit = Physics2D.Raycast(teleportCastOrigin, Vector2.down, teleportGroundCastLength);
+    Debug.DrawRay(teleportCastOrigin, Vector2.down * teleportGroundCastLength, Helpers.GetOrException(Colors.raycastColors, "search"));
+
+    if (hit.collider != null) {
+      transform.position = new Vector2(newXPosition, hit.point.y);
+    }
+    else {
+      // fallback if no ground was hit
+      transform.position = new Vector2(newXPosition, transform.position.y);
+    }
+
     playerFound = false;
     isTeleporting = false;
   }
