@@ -38,9 +38,6 @@ public class Constants {
   public static string[] rotatingThrowables = {"skeleton-king-giant-bone", "shuriken-4", "shuriken-6", "hatchet", "axe"};
   public static string[] rotatingProjectiles = {"skeleton-bone", "troll-boulder"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
-
-  // TODO: remove skeleton once testing for enemies is complete
-  public static string[] meadowEnemies = {"skeleton", "pixie", "dwarf", "nymph", "goblin"};
   public static string[] flyingDeathEnemies = {"dwarf", "goblin", "pixie", "skeleton"};
   public static string[] flyingEnemies = {"pixie"};
   public static string[] longEnemies = {"centaur", "unicorn"};

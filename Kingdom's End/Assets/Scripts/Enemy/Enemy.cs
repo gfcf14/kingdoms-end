@@ -1028,7 +1028,7 @@ public class Enemy : MonoBehaviour {
     GameObject summonEnergy = Instantiate(Helpers.GetOrException(Objects.prefabs, "summon-energy"), new Vector3(transform.position.x + (isFacingLeft ? -1 : 1), transform.position.y, 0), Quaternion.identity);
     SummonEnergy summonScript = summonEnergy.GetComponent<SummonEnergy>();
 
-    summonScript.summonKey = summonKey != "" ? summonKey : Constants.meadowEnemies[UnityEngine.Random.Range(0, Constants.meadowEnemies.Length)];
+    summonScript.summonKey = summonKey != "" ? summonKey : Helpers.GetRandomItemFromGroup(Helpers.GetOrException(Objects.enemyKeysByArea, GameData.area));
     // sets the enemy spawner as parent, for when the player leaves a room with summoned enemies so these can be destroyed
     summonScript.parent = transform.parent.gameObject;
     // TODO: define which enemy types can be summoned
