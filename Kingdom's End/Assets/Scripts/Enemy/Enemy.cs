@@ -1234,7 +1234,7 @@ public class Enemy : MonoBehaviour {
     RaycastHit2D hit = Physics2D.Raycast(teleportCastOrigin, Vector2.down, teleportGroundCastLength);
     Debug.DrawRay(teleportCastOrigin, Vector2.down * teleportGroundCastLength, Helpers.GetOrException(Colors.raycastColors, "search"));
 
-    if (hit.collider != null) {
+    if (hit.collider != null) { // && hit.collider.CompareTag("Floor")) {
       transform.position = new Vector2(newXPosition, hit.point.y);
     }
     else {

@@ -6,6 +6,7 @@ public class Objects {
   public static Dictionary<string, string[]> enemyKeysByArea = new Dictionary<string, string[]> {
     {"forest", new string[]{"unicorn"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
+    {"seaside", new string[]{"nereid"}},
     {"wasteland", new string[]{"skeleton", "skeleton-king"}}
   };
 
@@ -193,6 +194,7 @@ public class Objects {
     {"centaur-spear", 50},
     {"dwarf-cobble", 35},
     {"goblin-knife", 50},
+    {"nereid-seashell", 35},
     {"nymph-acorn", 40},
     {"pixie-fireball", 60},
     {"skeleton-bone", 50},
@@ -356,6 +358,7 @@ public class Objects {
     }},
     {"troll", genericItemDictionary},
     {"unicorn", genericItemDictionary},
+    {"nereid", genericItemDictionary},
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -426,6 +429,7 @@ public class Objects {
     {"centaur", new EnemyStats() {name = "Centaur", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"dwarf", new EnemyStats() {name = "Dwarf", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"goblin", new EnemyStats() {name = "Goblin", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
+    {"nereid", new EnemyStats() {name = "Nereid", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"nymph", new EnemyStats() {name = "Nymph", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"pixie", new EnemyStats() {name = "Pixie", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
@@ -436,12 +440,13 @@ public class Objects {
 
   public static Dictionary<string, Vector2> enemyDimensions = new Dictionary<string, Vector2> {
     {"centaur", new Vector2(2.28f, 2.77f)},
-    {"dwarf", new Vector2(0.76f, 1.44f)},
-    {"goblin", new Vector2(1.12f, 2.06f)},
-    {"nymph", new Vector2(0.72f, 2.34f)},
-    {"pixie", new Vector2(0.7f, 0.68f)},
-    {"skeleton", new Vector2(1.77f, 2.05f)},
-    {"skeleton-king", new Vector2(1.82f, 3.21f)},
+    {"dwarf", new Vector2(0.69f, 1.62f)},
+    {"goblin", new Vector2(1.38f, 2.37f)},
+    {"nereid", new Vector2(0.66f, 2.23f)},
+    {"nymph", new Vector2(0.67f, 2.24f)},
+    {"pixie", new Vector2(0.97f, 0.92f)},
+    {"skeleton", new Vector2(1.87f, 2.17f)},
+    {"skeleton-king", new Vector2(1.06f, 2.8f)},
     {"troll", new Vector2(1.01f, 2.68f)},
     {"unicorn", new Vector2(2.82f, 2.11f)}
   };
@@ -450,6 +455,7 @@ public class Objects {
     {"centaur", new Vector2(0.4f, 2.8f)},
     {"dwarf", new Vector2(0, 1)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
+    {"nereid", new Vector2(-0.09f, 1.6f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
     {"skeleton", new Vector2(-0.25f, 1.95f)},
     {"skeleton-king", new Vector2(0.1f, 2.1f)},
@@ -461,6 +467,7 @@ public class Objects {
   public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new Dictionary<string, Vector2> {
     {"dwarf", new Vector2(0, 0.1f)},
     {"goblin", new Vector2(0, 0.1f)},
+    {"nereid", new Vector2(-0.7025f, 0.5f)},
     {"nymph", new Vector2(-0.7025f, 0.5f)},
     {"pixie", new Vector2(0, 0.1f)},
     {"skeleton", new Vector2(0, 0.1f)},
@@ -504,6 +511,7 @@ public class Objects {
     {"dwarf-cobble", "blunt"},
     {"goblin-knife", "blunt"},
     {"skeleton-king-giant-bone", "blunt"},
+    {"nereid-seashell", "blunt"},
     {"nymph-acorn", "blunt"},
     {"pixie-fireball", "blunt"},
     {"skeleton-bone", "blunt"},
@@ -527,6 +535,7 @@ public class Objects {
     {"centaur-spear", new ThrowableSpecs() {colliderOffset = new ValuePair(1.4f, -0.14f), colliderSize = new ValuePair(0.37f, 1.26f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 10f, speed = 20f, steepness = 20f}},
     {"dwarf-cobble", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"nereid-seashell", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -538,6 +547,7 @@ public class Objects {
     {"centaur", "centaur-spear"},
     {"dwarf", "dwarf-cobble"},
     {"goblin", "goblin-knife"},
+    {"nereid", "nereid-seashell"},
     {"nymph", "nymph-acorn"},
     {"pixie", "pixie-fireball"},
     {"skeleton", "skeleton-bone"},
