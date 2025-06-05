@@ -1227,18 +1227,24 @@ public class Enemy : MonoBehaviour {
   }
 
   public void Teleport() {
-    float newXPosition = UnityEngine.Random.Range(leftBound, rightBound);
+    float newXPosition = UnityEngine.Random.Range(leftBound + enemyWidth, rightBound - enemyWidth);
     Vector2 teleportCastOrigin = new Vector2(newXPosition, transform.position.y + enemyHeight);
     float teleportGroundCastLength = enemyHeight + 2f; // 2 tiles down besides enemy height
 
-    RaycastHit2D hit = Physics2D.Raycast(teleportCastOrigin, Vector2.down, teleportGroundCastLength);
+    RaycastHit2D[] hits = Physics2D.RaycastAll(teleportCastOrigin, Vector2.down, teleportGroundCastLength);
     Debug.DrawRay(teleportCastOrigin, Vector2.down * teleportGroundCastLength, Helpers.GetOrException(Colors.raycastColors, "search"));
 
-    if (hit.collider != null) { // && hit.collider.CompareTag("Floor")) {
-      transform.position = new Vector2(newXPosition, hit.point.y);
+    bool foundFloor = false;
+
+    foreach (RaycastHit2D hit in hits) {
+      if (hit.collider != null && hit.collider.CompareTag("Floor")) {
+        transform.position = new Vector2(newXPosition, hit.point.y);
+        foundFloor = true;
+        break;
+      }
     }
-    else {
-      // fallback if no ground was hit
+
+    if (!foundFloor) {
       transform.position = new Vector2(newXPosition, transform.position.y);
     }
 
@@ -1246,7 +1252,8 @@ public class Enemy : MonoBehaviour {
     isTeleporting = false;
   }
 
-  public void SearchPlayer(float searchCastLength) {
+  public void SearchPlayer(float searchCastLength)
+  {
     float dynamicAngle = Mathf.PingPong(Time.time * 30f, 90f) - 45f; // Sweeps from -45° to 45°
     float angleInRadians = dynamicAngle * Mathf.Deg2Rad;
     Vector2 searchDirection = new Vector2(Mathf.Cos(angleInRadians) * direction, -Mathf.Sin(angleInRadians));
@@ -1255,7 +1262,8 @@ public class Enemy : MonoBehaviour {
     RaycastHit2D searchCast = Physics2D.Raycast(searchOrigin, searchDirection, searchCastLength);
     Debug.DrawRay(searchOrigin, searchDirection * searchCastLength, Helpers.GetOrException(Colors.raycastColors, "player"));
 
-    if (searchCast && searchCast.collider.tag == "Hero") {
+    if (searchCast && searchCast.collider.tag == "Hero")
+    {
       searchPosition = searchCast.point;
       isThrowingWeapon = true;
     }
@@ -1303,10 +1311,5 @@ public class Enemy : MonoBehaviour {
     InGame.instance.PlaySound(Sounds.bewitchSound, extra.transform.position);
     GameObject sparkle = Instantiate(Helpers.GetOrException(Objects.prefabs, "sparkle"), extra.transform.position, Quaternion.identity, extra.transform);
     sparkle.GetComponent<Animator>().Play("sparkle");
-  }
-
-  // Bumps up the enemy a little bit as required by animation (for example when running and having to be a little bit off the ground)
-  public void BumpUp() {
-    transform.position = new Vector2(transform.position.x, transform.position.y + 0.125f);
   }
 }
