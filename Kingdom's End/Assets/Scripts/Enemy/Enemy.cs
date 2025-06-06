@@ -199,8 +199,7 @@ public class Enemy : MonoBehaviour {
     weaponSpriteRenderer = GameObject.Find("Weapon").GetComponent<SpriteRenderer>();
     extra = transform.Find("Extra").gameObject;
 
-    // TODO: only flip for specific types
-    isFacingLeft = type == "idler" ? isFacingLeft : !Hero.instance.isFacingLeft;
+    isFacingLeft = Hero.instance.transform.position.x < transform.position.x;
 
     if (isFacingLeft) {
       Flip();

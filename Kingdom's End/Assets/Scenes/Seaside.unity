@@ -51325,7 +51325,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &339216558
 GameObject:
@@ -73434,7 +73434,7 @@ Transform:
   m_Children:
   - {fileID: 1723303561}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518471208
 GameObject:
@@ -73682,7 +73682,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -73815,6 +73815,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &542655235
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8315258216437073882, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_Name
+      value: Relic
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -66
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216437073883, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315258216991882082, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: key
+      value: swift-boots
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
 --- !u!1 &549213336
 GameObject:
   m_ObjectHideFlags: 0
@@ -95476,7 +95537,7 @@ Transform:
   - {fileID: 588754300}
   - {fileID: 824544128}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &618539539
 GameObject:
@@ -119941,7 +120002,7 @@ Transform:
   - {fileID: 965208877}
   - {fileID: 339216559}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &824544127
 GameObject:
@@ -192645,7 +192706,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.17, y: 2.37}
+    oldSize: {x: 1.43, y: 2.27}
     newSize: {x: 2.14, y: 2.1805203}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -192730,7 +192791,7 @@ Transform:
   - {fileID: 838788232}
   - {fileID: 568159849}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1177825373
 Animator:
