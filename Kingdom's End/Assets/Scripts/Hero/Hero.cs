@@ -1610,6 +1610,12 @@ public class Hero : MonoBehaviour {
   }
 
   public void Jump(bool clearDropKick = false) {
+    // if performing the double jump
+    if (jumpsExecuted > 1) {
+      // TODO: modify so it doesn't use 1 but uses a number based on equipment
+      anim.Play("jumping-double-1");
+    }
+
     // resets collision with ceiling to avoid that animation upon starting jump
     isCollidingWithCeiling = false;
 
