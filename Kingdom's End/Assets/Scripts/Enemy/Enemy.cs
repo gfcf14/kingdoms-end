@@ -1226,6 +1226,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void Teleport() {
+    Vector2 teleportPosition = Vector2.zero;
     float newXPosition = UnityEngine.Random.Range(leftBound + enemyWidth, rightBound - enemyWidth);
     Vector2 teleportCastOrigin = new Vector2(newXPosition, transform.position.y + enemyHeight);
     float teleportGroundCastLength = enemyHeight + 2f; // 2 tiles down besides enemy height
@@ -1237,15 +1238,21 @@ public class Enemy : MonoBehaviour {
 
     foreach (RaycastHit2D hit in hits) {
       if (hit.collider != null && hit.collider.CompareTag("Floor")) {
-        transform.position = new Vector2(newXPosition, hit.point.y);
+        teleportPosition = new Vector2(newXPosition, hit.point.y);
         foundFloor = true;
         break;
       }
     }
 
     if (!foundFloor) {
-      transform.position = new Vector2(newXPosition, transform.position.y);
+      teleportPosition = new Vector2(newXPosition, transform.position.y);
     }
+
+    if (isFlyingEnemy) {
+      teleportPosition = new Vector2(teleportPosition.x, teleportPosition.y + Helpers.GetOrException(Objects.enemyDimensions, key).y);
+    }
+
+    transform.position = teleportPosition;
 
     playerFound = false;
     isTeleporting = false;
