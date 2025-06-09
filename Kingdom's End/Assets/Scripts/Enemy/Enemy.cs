@@ -1079,17 +1079,21 @@ public class Enemy : MonoBehaviour {
     Vector2 edgeCastDirection = Vector2.down;
     float lengthWithHeight = enemyHeight + edgeCastLength;
 
-    RaycastHit2D edgeCast = Physics2D.Raycast(beginEdgeCast, edgeCastDirection, lengthWithHeight);
+    RaycastHit2D[] edgeCast = Physics2D.RaycastAll(beginEdgeCast, edgeCastDirection, lengthWithHeight);
     Debug.DrawRay(beginEdgeCast, edgeCastDirection * lengthWithHeight, Helpers.GetOrException(Colors.raycastColors, "edge"));
 
-    if (edgeCast.collider && edgeCast.collider.name.Contains("EnemyFlipper")) {
-      if (type == "charger" && isCharging) { // when the enemy charges, if it finds a flipper it should turn back, as the player is no longer in their area
-        WanderBack();
-      } else {
-        isFacingLeft = !isFacingLeft;
-        if (playerFound) {
-          playerFound = false;
+    foreach (RaycastHit2D hit in edgeCast) {
+      if (hit.collider && hit.collider.name.Contains("EnemyFlipper")) {
+        if (type == "charger" && isCharging) { // when the enemy charges, if it finds a flipper it should turn back, as the player is no longer in their area
+          WanderBack();
+        } else {
+          isFacingLeft = !isFacingLeft;
+          if (playerFound) {
+            playerFound = false;
+          }
         }
+
+        break;
       }
     }
   }
