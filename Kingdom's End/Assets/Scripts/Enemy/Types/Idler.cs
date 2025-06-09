@@ -7,8 +7,7 @@ public class Idler : MonoBehaviour {
 
   void Start() {
     enemy = GetComponent<Enemy>();
-    // TODO: consider changing this for low reaching enemies
-    idleReach = enemy.key != "pixie" ? enemy.reach * 3 : enemy.reach;
+    idleReach = Helpers.IsValueInArray(Constants.lowReachingEnemies, enemy.key) ? enemy.reach * 3 : enemy.reach;
   }
 
   void Update() {

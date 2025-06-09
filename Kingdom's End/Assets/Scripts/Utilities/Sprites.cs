@@ -30,6 +30,7 @@ public class Sprites {
   public static Sprite[] unicornSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/unicorn");
   public static Sprite[] centaurSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/centaur");
   public static Sprite[] nereidSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nereid");
+  public static Sprite[] fairySprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/fairy");
 
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
 
@@ -352,6 +353,7 @@ public class Sprites {
   public static Dictionary<string, Sprite> projectileSprites = new Dictionary<string, Sprite> {
     {"centaur-spear", Resources.Load<Sprite>("Sprites/projectiles/centaur-spear")},
     {"dwarf-cobble", Resources.Load<Sprite>("Sprites/projectiles/dwarf-cobble")},
+    {"fairy-blast", Resources.Load<Sprite>("Sprites/projectiles/fairy-blast")},
     {"goblin-knife", Resources.Load<Sprite>("Sprites/projectiles/goblin-knife")},
     {"nereid-seashell", Resources.Load<Sprite>("Sprites/projectiles/nereid-seashell")},
     {"nymph-acorn", Resources.Load<Sprite>("Sprites/projectiles/nymph-acorn")},
@@ -490,7 +492,8 @@ public class Sprites {
 
   public static Dictionary<string, Sprite> firstBossSprites = new Dictionary<string, Sprite> {
     {"centaur", centaurSprites[0]},
-    { "dwarf", dwarfSprites[0]},
+    {"dwarf", dwarfSprites[0]},
+    {"fairy", fairySprites[0]},
     {"goblin", goblinSprites[0]},
     {"nereid", nereidSprites[0]},
     {"nymph", nymphSprites[0]},

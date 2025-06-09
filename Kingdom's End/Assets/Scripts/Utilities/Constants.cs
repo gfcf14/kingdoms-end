@@ -4,7 +4,7 @@ public class Constants {
   public static string preferredInput = "gamepad";
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
-  public static string[] nonBouncingProjectiles = {"dwarf-cobble", "goblin-knife", "nereid-seashell", "nymph-acorn", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
+  public static string[] nonBouncingProjectiles = {"dwarf-cobble", "fairy-blast", "goblin-knife", "nereid-seashell", "nymph-acorn", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
   public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
   public static string[] forbiddenKeys = {"Escape", "KeypadEnter", "Return", "W", "A", "S", "D", "UpArrow", "DownArrow", "RightArrow", "LeftArrow", "P"};
@@ -36,12 +36,12 @@ public class Constants {
   public static string[] smallThrowables = {"knife", "kunai", "shuriken-4", "shuriken-6"};
   public static string[] angledThrowables = {"skeleton-king-giant-bone", "hatchet", "axe"};
   public static string[] rotatingThrowables = {"skeleton-king-giant-bone", "shuriken-4", "shuriken-6", "hatchet", "axe"};
-  public static string[] rotatingProjectiles = {"skeleton-bone", "troll-boulder"};
+  public static string[] rotatingProjectiles = {"fairy-blast", "pixie-fireball", "skeleton-bone", "troll-boulder"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
-  public static string[] flyingDeathEnemies = {"dwarf", "goblin", "pixie", "skeleton"};
-  public static string[] flyingEnemies = {"pixie"};
+  public static string[] flyingDeathEnemies = {"dwarf", "fairy", "goblin", "pixie", "skeleton"};
+  public static string[] flyingEnemies = {"fairy", "pixie"};
   public static string[] longEnemies = {"centaur", "unicorn"};
-  public static string[] smallEnemies = { "dwarf", "pixie" };
+  public static string[] smallEnemies = { "dwarf", "fairy", "pixie" };
 
   public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
   public static string[] lowLevelMoney = {"money-50", "money-100"};
@@ -82,18 +82,20 @@ public class Constants {
 
   public static string[] enemyBombBounceTags = {"Hero", "Weapon"};
 
-  public static string[] enemyProjectiles = {"centaur-spear", "dwarf-cobble", "goblin-knife", "nereid-seashell", "nymph-acorn", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
-  public static string[] explodingThrowables = {"pixie-fireball"};
+  public static string[] enemyProjectiles = {"centaur-spear", "dwarf-cobble", "fairy-blast", "goblin-knife", "nereid-seashell", "nymph-acorn", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
+  public static string[] explodingThrowables = {"fairy-blast", "pixie-fireball"};
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
 
   public static string[] canBreakTags = {"DamageExplosion", "Explosion", "Weapon"};
 
+  public static string[] lowReachingEnemies = {"fairy", "pixie"};
+
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};
 
   // ensure that these tiles are updated if the dirt position in the detail tileset is updated
-  public static int[] detailDirt = {150, 151, 158, 159};
+  public static int[] detailDirt = { 150, 151, 158, 159 };
   public static int[] inclineMeadows = {163, 164, 165, 166, 168, 169, 170, 171};
 
   public static int arrowExplosionDamage = 50;

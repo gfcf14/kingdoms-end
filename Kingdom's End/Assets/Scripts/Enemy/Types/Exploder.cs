@@ -10,8 +10,7 @@ public class Exploder : MonoBehaviour {
   void Start() {
     enemy = GetComponent<Enemy>();
 
-    // TODO: consider changing this for low reaching enemies
-    if (enemy.key == "pixie") {
+    if (Helpers.IsValueInArray(Constants.lowReachingEnemies, enemy.key)) {
       forwardCastLength = enemy.reach;
     }
   }

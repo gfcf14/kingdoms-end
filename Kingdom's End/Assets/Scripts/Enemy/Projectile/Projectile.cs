@@ -43,8 +43,7 @@ public class Projectile : MonoBehaviour {
       transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y * -1, transform.localScale.z);
     }
 
-    if (!Helpers.IsValueInArray(Constants.rotatingProjectiles.Concat(Constants.rotatingThrowables).ToArray(), key))
-    {
+    if (!Helpers.IsValueInArray(Constants.rotatingProjectiles.Concat(Constants.rotatingThrowables).ToArray(), key)) {
       float angle = Mathf.Atan2(body.velocity.y, body.velocity.x) * Mathf.Rad2Deg;
       transform.rotation = Quaternion.Euler(0, 0, angle);
     }
