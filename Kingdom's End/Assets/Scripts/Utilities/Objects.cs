@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Objects {
   public static Dictionary<string, string[]> enemyKeysByArea = new Dictionary<string, string[]> {
+    {"calderas", new string[]{"phoenix"}},
     {"forest", new string[]{"fairy", "unicorn"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
     {"seaside", new string[]{"nereid"}},
@@ -197,6 +198,7 @@ public class Objects {
     {"goblin-knife", 50},
     {"nereid-seashell", 35},
     {"nymph-acorn", 40},
+    {"phoenix-orb", 40},
     {"pixie-fireball", 60},
     {"skeleton-bone", 50},
     {"troll-boulder", 50},
@@ -361,6 +363,7 @@ public class Objects {
     {"unicorn", genericItemDictionary},
     {"nereid", genericItemDictionary},
     {"fairy", genericItemDictionary},
+    {"phoenix", genericItemDictionary},
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -434,6 +437,7 @@ public class Objects {
     {"goblin", new EnemyStats() {name = "Goblin", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"nereid", new EnemyStats() {name = "Nereid", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"nymph", new EnemyStats() {name = "Nymph", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
+    {"phoenix", new EnemyStats() {name = "Phoenix", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"pixie", new EnemyStats() {name = "Pixie", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"skeleton-king", new EnemyStats() {name = "Skeleton King", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
@@ -448,6 +452,7 @@ public class Objects {
     {"goblin", new Vector2(1.38f, 2.37f)},
     {"nereid", new Vector2(0.66f, 2.23f)},
     {"nymph", new Vector2(0.67f, 2.24f)},
+    {"phoenix", new Vector2(0.89f, 1.26f)},
     {"pixie", new Vector2(0.97f, 0.92f)},
     {"skeleton", new Vector2(1.87f, 2.17f)},
     {"skeleton-king", new Vector2(1.06f, 2.8f)},
@@ -474,6 +479,7 @@ public class Objects {
     {"goblin", new Vector2(0, 0.1f)},
     {"nereid", new Vector2(-0.7025f, 0.5f)},
     {"nymph", new Vector2(-0.7025f, 0.5f)},
+    {"phoenix", new Vector2(0, 0.1f)},
     {"pixie", new Vector2(0, 0.1f)},
     {"skeleton", new Vector2(0, 0.1f)},
     {"skeleton-king", new Vector2(0, 0.1f)}
@@ -519,6 +525,7 @@ public class Objects {
     {"skeleton-king-giant-bone", "blunt"},
     {"nereid-seashell", "blunt"},
     {"nymph-acorn", "blunt"},
+    {"phoenix-orb", "blunt"},
     {"pixie-fireball", "blunt"},
     {"skeleton-bone", "blunt"},
     {"troll-boulder", "blunt" },
@@ -544,6 +551,7 @@ public class Objects {
     {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nereid-seashell", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"phoenix-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"troll-boulder", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
@@ -557,6 +565,7 @@ public class Objects {
     {"goblin", "goblin-knife"},
     {"nereid", "nereid-seashell"},
     {"nymph", "nymph-acorn"},
+    {"phoenix", "phoenix-orb"},
     {"pixie", "pixie-fireball"},
     {"skeleton", "skeleton-bone"},
     {"skeleton-king", "skeleton-king-giant-bone"},

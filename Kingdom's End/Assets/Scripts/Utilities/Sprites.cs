@@ -23,6 +23,7 @@ public class Sprites {
   public static Sprite[] dwarfSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/dwarf");
   public static Sprite[] goblinSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/goblin");
   public static Sprite[] nymphSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nymph");
+  public static Sprite[] phoenixSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/phoenix");
   public static Sprite[] pixieSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/pixie");
   public static Sprite[] skeletonSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton");
   public static Sprite[] skeletonKingSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton-king");
@@ -357,6 +358,7 @@ public class Sprites {
     {"goblin-knife", Resources.Load<Sprite>("Sprites/projectiles/goblin-knife")},
     {"nereid-seashell", Resources.Load<Sprite>("Sprites/projectiles/nereid-seashell")},
     {"nymph-acorn", Resources.Load<Sprite>("Sprites/projectiles/nymph-acorn")},
+    {"phoenix-orb", Resources.Load<Sprite>("Sprites/projectiles/phoenix-orb")},
     {"pixie-fireball", Resources.Load<Sprite>("Sprites/projectiles/pixie-fireball")},
     {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")},
     {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")},
@@ -497,6 +499,7 @@ public class Sprites {
     {"goblin", goblinSprites[0]},
     {"nereid", nereidSprites[0]},
     {"nymph", nymphSprites[0]},
+    {"phoenix", phoenixSprites[0]},
     {"pixie", pixieSprites[0]},
     {"skeleton", skeletonSprites[35]},
     {"skeleton-king", skeletonKingSprites[0]},
