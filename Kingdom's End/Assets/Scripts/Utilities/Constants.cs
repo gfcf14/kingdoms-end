@@ -4,7 +4,7 @@ public class Constants {
   public static string preferredInput = "gamepad";
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
-  public static string[] nonBouncingProjectiles = {"dwarf-cobble", "fairy-blast", "goblin-knife", "nereid-seashell", "nymph-acorn", "phoenix-orb", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
+  public static string[] nonBouncingProjectiles = {"dwarf-cobble", "fairy-blast", "frostbird-orb", "goblin-knife", "nereid-seashell", "nymph-acorn", "phoenix-orb", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
   public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
   public static string[] forbiddenKeys = {"Escape", "KeypadEnter", "Return", "W", "A", "S", "D", "UpArrow", "DownArrow", "RightArrow", "LeftArrow", "P"};
@@ -36,10 +36,10 @@ public class Constants {
   public static string[] smallThrowables = {"knife", "kunai", "shuriken-4", "shuriken-6"};
   public static string[] angledThrowables = {"skeleton-king-giant-bone", "hatchet", "axe"};
   public static string[] rotatingThrowables = {"skeleton-king-giant-bone", "shuriken-4", "shuriken-6", "hatchet", "axe"};
-  public static string[] rotatingProjectiles = {"fairy-blast", "phoenix-orb", "pixie-fireball", "skeleton-bone", "troll-boulder"};
+  public static string[] rotatingProjectiles = {"fairy-blast", "frostbird-orb", "phoenix-orb", "pixie-fireball", "skeleton-bone", "troll-boulder"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
   public static string[] flyingDeathEnemies = {"dwarf", "fairy", "goblin", "pixie", "skeleton"};
-  public static string[] flyingEnemies = {"fairy", "phoenix", "pixie"};
+  public static string[] flyingEnemies = {"fairy", "frostbird", "phoenix", "pixie"};
   public static string[] longEnemies = {"centaur", "unicorn"};
   public static string[] smallEnemies = { "dwarf", "fairy", "pixie" };
 
@@ -82,8 +82,8 @@ public class Constants {
 
   public static string[] enemyBombBounceTags = {"Hero", "Weapon"};
 
-  public static string[] enemyProjectiles = {"centaur-spear", "dwarf-cobble", "fairy-blast", "goblin-knife", "nereid-seashell", "nymph-acorn", "phoenix-orb", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
-  public static string[] explodingThrowables = {"fairy-blast", "phoenix-orb", "pixie-fireball"};
+  public static string[] enemyProjectiles = {"centaur-spear", "dwarf-cobble", "fairy-blast", "frostbird-orb", "goblin-knife", "nereid-seashell", "nymph-acorn", "phoenix-orb", "pixie-fireball", "skeleton-bone", "troll-boulder", "unicorn-shard"};
+  public static string[] explodingThrowables = {"fairy-blast", "frostbird-orb", "phoenix-orb", "pixie-fireball"};
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
 
