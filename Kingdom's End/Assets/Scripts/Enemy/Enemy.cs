@@ -1044,7 +1044,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public bool ShouldMove() {
-    return !isDead && !isDeadByBurning && !isDeadByPoison && !isBurning && (!isStunned || isStunned && type == "charger") && !isThrowingWeapon && !isAttackingMelee && !isDefending && !isSummoning;
+    return isWalking && !isDead && !isDeadByBurning && !isDeadByPoison && !isBurning && (!isStunned || isStunned && type == "charger") && !isThrowingWeapon && !isAttackingMelee && !isDefending && !isSummoning;
   }
 
   public bool WillDie() {
@@ -1180,6 +1180,10 @@ public class Enemy : MonoBehaviour {
            // for exploders, decide if they should walk or not
           if (type == "exploder") {
             isWalking = UnityEngine.Random.Range(0, 2) != 0;
+
+            if (!isWalking) {
+              body.velocity = Vector2.zero;
+            }
           }
         }
       } else {
