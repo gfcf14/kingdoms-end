@@ -9,6 +9,7 @@ public class Objects {
     {"glaciers", new string[]{"frostbird"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
     {"mountains", new string[]{"thunderbird"}},
+    {"ruins", new string[]{"neret"}},
     {"seaside", new string[]{"nereid"}},
     {"wasteland", new string[]{"skeleton", "skeleton-king"}}
   };
@@ -200,6 +201,7 @@ public class Objects {
     {"frostbird-orb", 40},
     {"goblin-knife", 50},
     {"nereid-seashell", 35},
+    {"neret-orb", 40},
     {"nymph-acorn", 40},
     {"phoenix-orb", 40},
     {"pixie-fireball", 60},
@@ -370,6 +372,7 @@ public class Objects {
     {"phoenix", genericItemDictionary},
     {"frostbird", genericItemDictionary},
     {"thunderbird", genericItemDictionary},
+    {"neret", genericItemDictionary},
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -443,6 +446,7 @@ public class Objects {
     {"frostbird", new EnemyStats() {name = "Frostbird", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"goblin", new EnemyStats() {name = "Goblin", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"nereid", new EnemyStats() {name = "Nereid", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
+    {"neret", new EnemyStats() {name = "Neret", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"nymph", new EnemyStats() {name = "Nymph", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"phoenix", new EnemyStats() {name = "Phoenix", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"pixie", new EnemyStats() {name = "Pixie", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
@@ -460,6 +464,7 @@ public class Objects {
     {"frostbird", new Vector2(0.89f, 1.26f)},
     {"goblin", new Vector2(1.38f, 2.37f)},
     {"nereid", new Vector2(0.66f, 2.23f)},
+    {"neret", new Vector2(0.89f, 1.26f)},
     {"nymph", new Vector2(0.67f, 2.24f)},
     {"phoenix", new Vector2(0.89f, 1.26f)},
     {"pixie", new Vector2(0.97f, 0.92f)},
@@ -490,6 +495,7 @@ public class Objects {
     {"frostbird", new Vector2(0, 0.1f)},
     {"goblin", new Vector2(0, 0.1f)},
     {"nereid", new Vector2(-0.7025f, 0.5f)},
+    {"neret", new Vector2(0, 0.1f)},
     {"nymph", new Vector2(-0.7025f, 0.5f)},
     {"phoenix", new Vector2(0, 0.1f)},
     {"pixie", new Vector2(0, 0.1f)},
@@ -540,6 +546,7 @@ public class Objects {
     {"goblin-knife", "blunt"},
     {"skeleton-king-giant-bone", "blunt"},
     {"nereid-seashell", "blunt"},
+    {"neret-orb", "blunt"},
     {"nymph-acorn", "blunt"},
     {"phoenix-orb", "blunt"},
     {"pixie-fireball", "blunt"},
@@ -568,6 +575,7 @@ public class Objects {
     {"frostbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nereid-seashell", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"neret-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"phoenix-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
@@ -584,6 +592,7 @@ public class Objects {
     {"frostbird", "frostbird-orb"},
     {"goblin", "goblin-knife"},
     {"nereid", "nereid-seashell"},
+    {"neret", "neret-orb"},
     {"nymph", "nymph-acorn"},
     {"phoenix", "phoenix-orb"},
     {"pixie", "pixie-fireball"},
