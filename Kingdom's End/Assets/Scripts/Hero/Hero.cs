@@ -1060,7 +1060,8 @@ public class Hero : MonoBehaviour {
 
                 weaponCollider.SetActive(true);
               }
-            } else if (isJumping && !isFalling && canDropKick) { // DROPKICK
+              // TODO: for now don't execute if double jumping, but check if it'd be necessary
+            } else if (isJumping && jumpsExecuted <= 1 && !isFalling && canDropKick) { // DROPKICK
               DropKick();
             }
           }
