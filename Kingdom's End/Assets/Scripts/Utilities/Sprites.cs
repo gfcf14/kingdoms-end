@@ -36,6 +36,7 @@ public class Sprites {
   public static Sprite[] thunderbirdSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/thunderbird");
   public static Sprite[] neretSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/neret");
   public static Sprite[] skelewingSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skelewing");
+  public static Sprite[] mummySprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/mummy");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
 
   public static Sprite[] bombSprites = Resources.LoadAll<Sprite>("Spritesheets/bomb");
@@ -360,6 +361,7 @@ public class Sprites {
     {"fairy-blast", Resources.Load<Sprite>("Sprites/projectiles/fairy-blast")},
     {"frostbird-orb", Resources.Load<Sprite>("Sprites/projectiles/frostbird-orb")},
     {"goblin-knife", Resources.Load<Sprite>("Sprites/projectiles/goblin-knife")},
+    {"mummy-rib", Resources.Load<Sprite>("Sprites/projectiles/mummy-rib")},
     {"nereid-seashell", Resources.Load<Sprite>("Sprites/projectiles/nereid-seashell")},
     {"neret-orb", Resources.Load<Sprite>("Sprites/projectiles/neret-orb")},
     {"nymph-acorn", Resources.Load<Sprite>("Sprites/projectiles/nymph-acorn")},
@@ -505,6 +507,7 @@ public class Sprites {
     {"fairy", fairySprites[0]},
     {"frostbird", frostbirdSprites[0]},
     {"goblin", goblinSprites[0]},
+    {"mummy", mummySprites[0]},
     {"nereid", nereidSprites[0]},
     {"neret", neretSprites[0]},
     {"nymph", nymphSprites[0]},

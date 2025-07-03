@@ -5,6 +5,7 @@ using UnityEngine;
 public class Objects {
   public static Dictionary<string, string[]> enemyKeysByArea = new Dictionary<string, string[]> {
     {"calderas", new string[]{"phoenix"}},
+    {"desert", new string[]{"mummy"}},
     {"forest", new string[]{"fairy", "unicorn"}},
     {"glaciers", new string[]{"frostbird"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
@@ -200,6 +201,7 @@ public class Objects {
     {"fairy-blast", 55},
     {"frostbird-orb", 40},
     {"goblin-knife", 50},
+    {"mummy-rib", 30},
     {"nereid-seashell", 35},
     {"neret-orb", 40},
     {"nymph-acorn", 40},
@@ -374,7 +376,8 @@ public class Objects {
     {"frostbird", genericItemDictionary},
     {"thunderbird", genericItemDictionary},
     {"neret", genericItemDictionary},
-    {"skelewing", genericItemDictionary}
+    {"skelewing", genericItemDictionary},
+    {"mummy", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -447,6 +450,7 @@ public class Objects {
     {"fairy", new EnemyStats() {name = "Fairy", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"frostbird", new EnemyStats() {name = "Frostbird", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"goblin", new EnemyStats() {name = "Goblin", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
+    {"mummy", new EnemyStats() {name = "Mummy", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"nereid", new EnemyStats() {name = "Nereid", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"neret", new EnemyStats() {name = "Neret", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"nymph", new EnemyStats() {name = "Nymph", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
@@ -466,6 +470,7 @@ public class Objects {
     {"fairy", new Vector2(0.97f, 0.92f)},
     {"frostbird", new Vector2(0.89f, 1.26f)},
     {"goblin", new Vector2(1.38f, 2.37f)},
+    {"mummy", new Vector2(1.19f, 2.24f)},
     {"nereid", new Vector2(0.66f, 2.23f)},
     {"neret", new Vector2(0.89f, 1.26f)},
     {"nymph", new Vector2(0.67f, 2.24f)},
@@ -483,6 +488,7 @@ public class Objects {
     {"centaur", new Vector2(0.4f, 2.8f)},
     {"dwarf", new Vector2(0, 1)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
+    {"mummy", new Vector2(0.125f, 2.125f)},
     {"nereid", new Vector2(-0.09f, 1.6f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
     {"skeleton", new Vector2(-0.25f, 1.95f)},
@@ -498,6 +504,7 @@ public class Objects {
     {"fairy", new Vector2(0, 0.1f)},
     {"frostbird", new Vector2(0, 0.1f)},
     {"goblin", new Vector2(0, 0.1f)},
+    {"mummy", new Vector2(0, 0.1f)},
     {"nereid", new Vector2(-0.7025f, 0.5f)},
     {"neret", new Vector2(0, 0.1f)},
     {"nymph", new Vector2(-0.7025f, 0.5f)},
@@ -550,6 +557,7 @@ public class Objects {
     {"frostbird-orb", "blunt"},
     {"goblin-knife", "blunt"},
     {"skeleton-king-giant-bone", "blunt"},
+    {"mummy-rib", "blunt"},
     {"nereid-seashell", "blunt"},
     {"neret-orb", "blunt"},
     {"nymph-acorn", "blunt"},
@@ -580,6 +588,7 @@ public class Objects {
     {"fairy-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"frostbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"mummy-rib", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nereid-seashell", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"neret-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -598,6 +607,7 @@ public class Objects {
     {"fairy", "fairy-blast"},
     {"frostbird", "frostbird-orb"},
     {"goblin", "goblin-knife"},
+    {"mummy", "mummy-rib"},
     {"nereid", "nereid-seashell"},
     {"neret", "neret-orb"},
     {"nymph", "nymph-acorn"},
