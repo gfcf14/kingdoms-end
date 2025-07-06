@@ -631,7 +631,21 @@ public class Helpers {
     DataManager.instance.newCameraPosition = cameraPosition;
     DataManager.instance.playerPosition = position;
 
+    // temporarily stores old area for use with transition
+    string areaBeforeSceneChange = GameData.area;
+
     SceneManager.LoadScene(scene);
+
+    // Forces player position change when coming into/leaving underground
+    if (scene == "Underground") {
+      Hero.instance.transform.position = position;
+    } else if (Capitalize(areaBeforeSceneChange) == "Underground") {
+      string roomGroup = Hero.instance.currentRoom.transform.parent.name;
+
+      if (!roomGroup.Contains("Intersections")) {
+        Hero.instance.transform.position = position;
+      }
+    }
 
     InGame.instance.actionCanvas.SetActive(false);
     Hero.instance.gameObject.transform.Find("ProximityCheck").gameObject.SetActive(false);

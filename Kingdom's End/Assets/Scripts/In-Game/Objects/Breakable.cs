@@ -21,8 +21,16 @@ public class Breakable : MonoBehaviour {
   private Rigidbody2D body;
   private BoxCollider2D breakableCollider;
   private AudioSource audioSource;
+  private bool inGameReady = false;
 
-  void Start() {
+  IEnumerator Start() {
+    while (InGame.instance == null) yield return null;
+
+    inGameReady = true;
+    SetupBreakable();
+  }
+
+  void SetupBreakable() {
     body = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponent<SpriteRenderer>();
     breakableCollider = GetComponent<BoxCollider2D>();
@@ -82,7 +90,7 @@ public class Breakable : MonoBehaviour {
       Physics2D.IgnoreCollision(col.gameObject.GetComponent<PolygonCollider2D>(), breakableCollider);
     }
 
-    if (InGame.instance.IsInRoom(InGame.instance.FindRoom(transform.parent))) {
+    if (inGameReady && InGame.instance.IsInRoom(InGame.instance.FindRoom(transform.parent))) {
       isFalling = true;
       StartCoroutine(PrepareFalling(col.gameObject));
     }
