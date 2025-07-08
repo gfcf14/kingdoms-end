@@ -295,6 +295,7 @@ public class Enemy : MonoBehaviour {
       foreach (AnimationClip a in aoc.animationClips) {
         string stateName = a.name.Split('_')[1];
 
+        // TODO: consider if this is even needed or if it's easier to replicate the nymph_death animation into a nymph_death-by-poison animation
         // Find the corresponding resource animation clip based on the enemy key and state name
         AnimationClip resourceClip = resourceAoc.animationClips.FirstOrDefault(
             resourceClip => resourceClip.name == key + "_" + stateName ||
