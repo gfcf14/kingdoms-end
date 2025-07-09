@@ -12,6 +12,7 @@ public class Objects {
     {"mountains", new string[]{"thunderbird"}},
     {"ruins", new string[]{"neret"}},
     {"seaside", new string[]{"nereid"}},
+    {"underground", new string[]{"samodiva"}},
     {"wasteland", new string[]{"skeleton", "skeleton-king", "skelewing"}}
   };
 
@@ -207,6 +208,7 @@ public class Objects {
     {"nymph-acorn", 40},
     {"phoenix-orb", 40},
     {"pixie-fireball", 60},
+    {"samodiva-stalagtip", 50},
     {"skeleton-bone", 50},
     {"skelewing-orb", 40},
     {"thunderbird-orb", 40},
@@ -377,7 +379,8 @@ public class Objects {
     {"thunderbird", genericItemDictionary},
     {"neret", genericItemDictionary},
     {"skelewing", genericItemDictionary},
-    {"mummy", genericItemDictionary}
+    {"mummy", genericItemDictionary},
+    {"samodiva", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -457,6 +460,7 @@ public class Objects {
     {"phoenix", new EnemyStats() {name = "Phoenix", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"pixie", new EnemyStats() {name = "Pixie", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
+    {"samodiva", new EnemyStats() {name = "Samodiva", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"skeleton-king", new EnemyStats() {name = "Skeleton King", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"skelewing", new EnemyStats() {name = "Skelewing", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"thunderbird", new EnemyStats() {name = "Thunderbird", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
@@ -476,6 +480,7 @@ public class Objects {
     {"nymph", new Vector2(0.67f, 2.24f)},
     {"phoenix", new Vector2(0.89f, 1.26f)},
     {"pixie", new Vector2(0.97f, 0.92f)},
+    {"samodiva", new Vector2(0.65f, 2.24f)},
     {"skeleton", new Vector2(1.87f, 2.17f)},
     {"skeleton-king", new Vector2(1.06f, 2.8f)},
     {"skelewing", new Vector2(0.89f, 1.26f)},
@@ -491,6 +496,7 @@ public class Objects {
     {"mummy", new Vector2(0.125f, 2.125f)},
     {"nereid", new Vector2(-0.09f, 1.6f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
+    {"samodiva", new Vector2(-0.09f, 1.6f)},
     {"skeleton", new Vector2(-0.25f, 1.95f)},
     {"skeleton-king", new Vector2(0.1f, 2.1f)},
     {"troll", new Vector2(0.1f, 1.4f)},
@@ -510,6 +516,7 @@ public class Objects {
     {"nymph", new Vector2(-0.7025f, 0.5f)},
     {"phoenix", new Vector2(0, 0.1f)},
     {"pixie", new Vector2(0, 0.1f)},
+    {"samodiva", new Vector2(-0.7025f, 0.5f)},
     {"skeleton", new Vector2(0, 0.1f)},
     {"skeleton-king", new Vector2(0, 0.1f)},
     {"skelewing", new Vector2(0, 0.1f)},
@@ -563,6 +570,7 @@ public class Objects {
     {"nymph-acorn", "blunt"},
     {"phoenix-orb", "blunt"},
     {"pixie-fireball", "blunt"},
+    {"samodiva-stalagtip", "blunt"},
     {"skeleton-bone", "blunt"},
     {"skelewing-orb", "blunt"},
     {"thunderbird-orb", "blunt"},
@@ -594,7 +602,8 @@ public class Objects {
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"phoenix-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
-    {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"samodiva-stalagtip", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    { "skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"skelewing-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"thunderbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"troll-boulder", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
@@ -613,6 +622,7 @@ public class Objects {
     {"nymph", "nymph-acorn"},
     {"phoenix", "phoenix-orb"},
     {"pixie", "pixie-fireball"},
+    {"samodiva", "samodiva-stalagtip"},
     {"skeleton", "skeleton-bone"},
     {"skeleton-king", "skeleton-king-giant-bone"},
     {"skelewing", "skelewing-orb"},
