@@ -12,6 +12,7 @@ public class Objects {
     {"mountains", new string[]{"thunderbird"}},
     {"ruins", new string[]{"neret"}},
     {"seaside", new string[]{"nereid"}},
+    {"swamps", new string[]{"yanmabel"}},
     {"underground", new string[]{"samodiva"}},
     {"wasteland", new string[]{"skeleton", "skeleton-king", "skelewing"}}
   };
@@ -213,7 +214,8 @@ public class Objects {
     {"skelewing-orb", 40},
     {"thunderbird-orb", 40},
     {"troll-boulder", 50},
-    {"unicorn-shard", 30}
+    {"unicorn-shard", 30},
+    {"yanmabel-stinger", 30}
   };
 
   public static Dictionary<string, FragmentOutcome> itemFragments = new Dictionary<string, FragmentOutcome> {
@@ -380,7 +382,8 @@ public class Objects {
     {"neret", genericItemDictionary},
     {"skelewing", genericItemDictionary},
     {"mummy", genericItemDictionary},
-    {"samodiva", genericItemDictionary}
+    {"samodiva", genericItemDictionary},
+    {"yanmabel", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -465,7 +468,8 @@ public class Objects {
     {"skelewing", new EnemyStats() {name = "Skelewing", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"thunderbird", new EnemyStats() {name = "Thunderbird", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"troll", new EnemyStats() {name = "Troll", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f} },
-    {"unicorn", new EnemyStats() {name = "Unicorn", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}}
+    {"unicorn", new EnemyStats() {name = "Unicorn", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
+    {"yanmabel", new EnemyStats() {name = "Yanmabel", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new Dictionary<string, Vector2> {
@@ -486,7 +490,8 @@ public class Objects {
     {"skelewing", new Vector2(0.89f, 1.26f)},
     {"thunderbird", new Vector2(0.89f, 1.26f)},
     {"troll", new Vector2(1.01f, 2.68f)},
-    {"unicorn", new Vector2(2.82f, 2.11f)}
+    {"unicorn", new Vector2(2.82f, 2.11f)},
+    {"yanmabel", new Vector2(1.59f, 0.78f)}
   };
 
   public static Dictionary<string, Vector2> enemyWingOffsets = new Dictionary<string, Vector2> {
@@ -503,26 +508,29 @@ public class Objects {
     {"unicorn", new Vector2(0.25f, 2.25f)}
   };
 
+  public static Vector2 defaultDeathOrigin = new Vector2(0, 0.1f);
+
   // TODO: consider if it'd be needed to use these custom origin values when dying only by burning/poison
   public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new Dictionary<string, Vector2> {
-    {"centaur", new Vector2(0, 0.1f)},
-    {"dwarf", new Vector2(0, 0.1f)},
-    {"fairy", new Vector2(0, 0.1f)},
-    {"frostbird", new Vector2(0, 0.1f)},
-    {"goblin", new Vector2(0, 0.1f)},
-    {"mummy", new Vector2(0, 0.1f)},
+    {"centaur", defaultDeathOrigin},
+    {"dwarf", defaultDeathOrigin},
+    {"fairy", defaultDeathOrigin},
+    {"frostbird", defaultDeathOrigin},
+    {"goblin", defaultDeathOrigin},
+    {"mummy", defaultDeathOrigin},
     {"nereid", new Vector2(-0.7025f, 0.5f)},
-    {"neret", new Vector2(0, 0.1f)},
+    {"neret", defaultDeathOrigin},
     {"nymph", new Vector2(-0.7025f, 0.5f)},
-    {"phoenix", new Vector2(0, 0.1f)},
-    {"pixie", new Vector2(0, 0.1f)},
+    {"phoenix", defaultDeathOrigin},
+    {"pixie", defaultDeathOrigin},
     {"samodiva", new Vector2(-0.7025f, 0.5f)},
-    {"skeleton", new Vector2(0, 0.1f)},
-    {"skeleton-king", new Vector2(0, 0.1f)},
-    {"skelewing", new Vector2(0, 0.1f)},
-    {"thunderbird", new Vector2(0, 0.1f)},
-    {"troll", new Vector2(0, 0.1f)},
-    {"unicorn", new Vector2(0, 0.1f)},
+    {"skeleton", defaultDeathOrigin},
+    {"skeleton-king", defaultDeathOrigin},
+    {"skelewing", defaultDeathOrigin},
+    {"thunderbird", defaultDeathOrigin},
+    {"troll", defaultDeathOrigin},
+    {"unicorn", defaultDeathOrigin},
+    {"yanmabel", defaultDeathOrigin}
   };
 
   public static Dictionary<string, TMP_FontAsset> fonts = new Dictionary<string, TMP_FontAsset> {
@@ -575,7 +583,8 @@ public class Objects {
     {"skelewing-orb", "blunt"},
     {"thunderbird-orb", "blunt"},
     {"troll-boulder", "blunt" },
-    {"unicorn-shard", "blunt"}
+    {"unicorn-shard", "blunt"},
+    {"yanmabel-stinger", "blunt"}
   };
 
   public static Dictionary<string, ThrowableSpecs> throwableSpecs = new Dictionary<string, ThrowableSpecs> {
@@ -608,6 +617,7 @@ public class Objects {
     {"thunderbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"troll-boulder", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"unicorn-shard", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"yanmabel-stinger", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
   };
 
   public static Dictionary<string, string> projectileKeys = new Dictionary<string, string> {
@@ -628,7 +638,8 @@ public class Objects {
     {"skelewing", "skelewing-orb"},
     {"thunderbird", "thunderbird-orb"},
     {"troll", "troll-boulder"},
-    {"unicorn", "unicorn-shard"}
+    {"unicorn", "unicorn-shard"},
+    {"yanmabel", "yanmabel-stinger"}
   };
 
   public static Dictionary<string, ZoneSpecs> zoneSpecs = new Dictionary<string, ZoneSpecs> {

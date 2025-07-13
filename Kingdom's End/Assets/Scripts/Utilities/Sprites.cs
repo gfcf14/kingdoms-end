@@ -28,6 +28,7 @@ public class Sprites {
   public static Sprite[] skeletonKingSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skeleton-king");
   public static Sprite[] trollSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/troll");
   public static Sprite[] unicornSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/unicorn");
+  public static Sprite[] yanmabelSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/yanmabel");
   public static Sprite[] centaurSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/centaur");
   public static Sprite[] nereidSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nereid");
   public static Sprite[] fairySprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/fairy");
@@ -373,7 +374,8 @@ public class Sprites {
     {"skelewing-orb", Resources.Load<Sprite>("Sprites/projectiles/skelewing-orb")},
     {"thunderbird-orb", Resources.Load<Sprite>("Sprites/projectiles/thunderbird-orb")},
     {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")},
-    {"unicorn-shard", Resources.Load<Sprite>("Sprites/projectiles/unicorn-shard")}
+    {"unicorn-shard", Resources.Load<Sprite>("Sprites/projectiles/unicorn-shard")},
+    {"yanmabel-stinger", Resources.Load<Sprite>("Sprites/projectiles/yanmabel-stinger")}
   };
 
   public static Dictionary<string, Sprite> droppableSprites = new Dictionary<string, Sprite> {
@@ -522,6 +524,7 @@ public class Sprites {
     {"thunderbird", thunderbirdSprites[0]},
     {"troll", trollSprites[0]},
     {"unicorn", unicornSprites[0]},
+    {"yanmabel", yanmabelSprites[0]}
   };
 
   public static Dictionary<string, Dictionary<string, Sprite>> emotions = new Dictionary<string, Dictionary<string, Sprite>> {
