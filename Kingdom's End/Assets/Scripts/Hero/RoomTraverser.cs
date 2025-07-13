@@ -31,6 +31,15 @@ public class RoomTraverser : MonoBehaviour {
           InGame.instance.globalGradients.area = location;
         }
       }
+
+      // only instantiate enemies as soon as the area is updated if at all
+      foreach (Transform child in col.gameObject.transform) {
+        if (child.tag == "EnemySpawner") {
+          child.gameObject.GetComponent<EnemySpawner>().Spawn();
+          // } else if (CanSpawnMiniBoss(child)) {
+          //   child.gameObject.GetComponent<Enemy>().isOnCamera = true;
+        }
+      }
     }
   }
 }

@@ -35,13 +35,6 @@ public class RoomTrigger : MonoBehaviour {
         }
 
       Hero.instance.currentRoom = gameObject;
-      foreach(Transform child in gameObject.transform) {
-        if (child.tag == "EnemySpawner") {
-          child.gameObject.GetComponent<EnemySpawner>().Spawn();
-        // } else if (CanSpawnMiniBoss(child)) {
-        //   child.gameObject.GetComponent<Enemy>().isOnCamera = true;
-        }
-      }
 
       // if the chat canvas is active, close it
       if (InGame.instance.chatCanvas != null && InGame.instance.chatCanvas.activeSelf) {
