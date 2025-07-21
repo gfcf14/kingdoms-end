@@ -168,6 +168,7 @@ MonoBehaviour:
   criticalRate: 0
   isOnCamera: 0
   isMiniBoss: 0
+  enemyColor: {r: 0, g: 0, b: 0, a: 0}
   isAttacking: 0
   isAttackingMelee: 0
   isBurning: 0
@@ -188,6 +189,8 @@ MonoBehaviour:
   isWalking: 0
   isWatching: 0
   stunOnAttack: 0
+  bombReturned: 0
+  canLand: 0
   direction: 1
   yDirection: 0
   spawnedFrom: {fileID: 0}
@@ -490,7 +493,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21761131, y: 0.99817204}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.74599075, y: 2.0502095}
   m_Direction: 0
 --- !u!114 &2670320648081386255
