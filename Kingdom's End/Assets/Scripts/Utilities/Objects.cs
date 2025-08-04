@@ -10,10 +10,10 @@ public class Objects {
     {"glaciers", new string[]{"frostbird"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
     {"mountains", new string[]{"thunderbird"}},
-    {"oceans", new string[]{"merman"} }, // "mermaid", "hippocampus"}},
+    {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
     {"ruins", new string[]{"neret"}},
-    {"seaside", new string[]{"kelpie" } }, // "nereid"}},
-    {"swamps", new string[]{"yanmabel"}},
+    {"seaside", new string[]{"kelpie", "nereid"}},
+    {"swamps", new string[]{"ogre"}}, // "yanmabel"}},
     {"underground", new string[]{"samodiva"}},
     {"wasteland", new string[]{"skeleton", "skeleton-king", "skelewing"}}
   };
@@ -212,6 +212,7 @@ public class Objects {
     {"nereid-seashell", 35},
     {"neret-orb", 40},
     {"nymph-acorn", 40},
+    {"ogre-stump", 50},
     {"phoenix-orb", 40},
     {"pixie-fireball", 60},
     {"samodiva-stalagtip", 50},
@@ -392,7 +393,8 @@ public class Objects {
     {"hippocampus", genericItemDictionary},
     {"mermaid", genericItemDictionary},
     {"merman", genericItemDictionary},
-    {"kelpie", genericItemDictionary}
+    {"kelpie", genericItemDictionary},
+    {"ogre", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -473,6 +475,7 @@ public class Objects {
     {"nereid", new EnemyStats() {name = "Nereid", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"neret", new EnemyStats() {name = "Neret", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"nymph", new EnemyStats() {name = "Nymph", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
+    {"ogre", new EnemyStats() {name = "Ogre", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f} },
     {"phoenix", new EnemyStats() {name = "Phoenix", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"pixie", new EnemyStats() {name = "Pixie", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
@@ -499,6 +502,7 @@ public class Objects {
     {"nereid", new Vector2(0.66f, 2.23f)},
     {"neret", new Vector2(0.89f, 1.26f)},
     {"nymph", new Vector2(0.67f, 2.24f)},
+    {"ogre", new Vector2(1.11f, 2.68f)},
     {"phoenix", new Vector2(0.89f, 1.26f)},
     {"pixie", new Vector2(0.97f, 0.92f)},
     {"samodiva", new Vector2(0.65f, 2.24f)},
@@ -522,6 +526,7 @@ public class Objects {
     {"mummy", new Vector2(0.125f, 2.125f)},
     {"nereid", new Vector2(-0.09f, 1.6f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
+    {"ogre", new Vector2(0.1f, 1.4f)},
     {"samodiva", new Vector2(-0.09f, 1.6f)},
     {"skeleton", new Vector2(-0.25f, 1.95f)},
     {"skeleton-king", new Vector2(0.1f, 2.1f)},
@@ -546,6 +551,7 @@ public class Objects {
     {"nereid", new Vector2(-0.7025f, 0.5f)},
     {"neret", defaultDeathOrigin},
     {"nymph", new Vector2(-0.7025f, 0.5f)},
+    {"ogre", defaultDeathOrigin},
     {"phoenix", defaultDeathOrigin},
     {"pixie", defaultDeathOrigin},
     {"samodiva", new Vector2(-0.7025f, 0.5f)},
@@ -604,6 +610,7 @@ public class Objects {
     {"nereid-seashell", "blunt"},
     {"neret-orb", "blunt"},
     {"nymph-acorn", "blunt"},
+    {"ogre-stump", "blunt"},
     {"phoenix-orb", "blunt"},
     {"pixie-fireball", "blunt"},
     {"samodiva-stalagtip", "blunt"},
@@ -642,6 +649,7 @@ public class Objects {
     {"nereid-seashell", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"neret-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"ogre-stump", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"phoenix-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"samodiva-stalagtip", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -667,6 +675,7 @@ public class Objects {
     {"nereid", "nereid-seashell"},
     {"neret", "neret-orb"},
     {"nymph", "nymph-acorn"},
+    {"ogre", "ogre-stump"},
     {"phoenix", "phoenix-orb"},
     {"pixie", "pixie-fireball"},
     {"samodiva", "samodiva-stalagtip"},
