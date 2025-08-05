@@ -44,6 +44,7 @@ public class Sprites {
   public static Sprite[] mermanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/merman");
   public static Sprite[] kelpieSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/kelpie");
   public static Sprite[] ogreSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/ogre");
+  public static Sprite[] cyclopsSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/cyclops");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
 
   public static Sprite[] bombSprites = Resources.LoadAll<Sprite>("Spritesheets/bomb");
@@ -364,6 +365,7 @@ public class Sprites {
   // refers to the sprites for projectiles that only enemies (like the shooter) can throw
   public static Dictionary<string, Sprite> projectileSprites = new Dictionary<string, Sprite> {
     {"centaur-spear", Resources.Load<Sprite>("Sprites/projectiles/centaur-spear")},
+    {"cyclops-hillstone", Resources.Load<Sprite>("Sprites/projectiles/cyclops-hillstone")},
     {"dwarf-cobble", Resources.Load<Sprite>("Sprites/projectiles/dwarf-cobble")},
     {"fairy-blast", Resources.Load<Sprite>("Sprites/projectiles/fairy-blast")},
     {"frostbird-orb", Resources.Load<Sprite>("Sprites/projectiles/frostbird-orb")},
@@ -517,6 +519,7 @@ public class Sprites {
 
   public static Dictionary<string, Sprite> firstBossSprites = new Dictionary<string, Sprite> {
     {"centaur", centaurSprites[0]},
+    {"cyclops", cyclopsSprites[0]},
     {"dwarf", dwarfSprites[0]},
     {"fairy", fairySprites[0]},
     {"frostbird", frostbirdSprites[0]},
