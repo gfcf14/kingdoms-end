@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
+
 
 
 namespace WorldTime {
-  [RequireComponent(typeof(Light2D))]
+  [RequireComponent(typeof(UnityEngine.Rendering.Universal.Light2D))]
   public class WorldLight : MonoBehaviour {
     // [SerializeField] Gradient gradient;
 
