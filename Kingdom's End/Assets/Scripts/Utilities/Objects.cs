@@ -9,7 +9,7 @@ public class Objects {
     {"forest", new string[]{"fairy", "unicorn"}},
     {"glaciers", new string[]{"frostbird"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
-    {"mountains", new string[]{"cyclops"} }, // "thunderbird"}},
+    {"mountains", new string[]{"cyclops", "thunderbird"}},
     {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
     {"ruins", new string[]{"neret"}},
     {"seaside", new string[]{"kelpie", "nereid"}},
