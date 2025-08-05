@@ -2,7 +2,7 @@
 A repository for the updated Unity 2D game Kingdom's End
 
 ## Development versions
-Use Unity Hub 2.4.3 and Unity version 2020.3.12f1
+Use Unity Hub 3.1.2 and Unity version 2021.3.38f1
 
 ## SFX Used
 
