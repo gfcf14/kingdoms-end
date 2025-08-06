@@ -6,7 +6,7 @@ public class Objects {
   public static Dictionary<string, string[]> enemyKeysByArea = new Dictionary<string, string[]> {
     {"calderas", new string[]{"phoenix"}},
     {"desert", new string[]{"mummy"}},
-    {"forest", new string[]{"faun"}}, // "fairy", "unicorn"}},
+    {"forest", new string[]{"fairy", "faun", "unicorn"}},
     {"glaciers", new string[]{"frostbird"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
     {"mountains", new string[]{"cyclops", "thunderbird"}},
@@ -527,7 +527,7 @@ public class Objects {
     {"centaur", new Vector2(0.4f, 2.8f)},
     {"cyclops", new Vector2(-0.1f, 1.75f)},
     {"dwarf", new Vector2(0, 1)},
-    {"faun", new Vector2(-0.2f, 1.65f)},
+    {"faun", new Vector2(0.1f, 1.75f)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
     {"hippocampus", new Vector2(0.25f, 2.25f)},
     {"kelpie", new Vector2(0.25f, 2.25f)},

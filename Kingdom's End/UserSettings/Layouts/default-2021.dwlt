@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357.3334
   m_ShowMode: 4
-  m_Title: Animation
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 3540
+  controlID: 5878
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 3541
+  controlID: 5879
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 3519
+  controlID: 5880
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: SpriteEditorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -216,14 +216,14 @@ MonoBehaviour:
     y: 0
     width: 729.3334
     height: 696.6667
-  m_MinSize: {x: 202, y: 221}
+  m_MinSize: {x: 362, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 15}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 15}
   - {fileID: 13}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: AnimationWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -270,16 +270,16 @@ MonoBehaviour:
     y: 696.6667
     width: 2137.3333
     height: 610.6667
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 20}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
   - {fileID: 20}
   - {fileID: 21}
-  m_Selected: 2
-  m_LastSelected: 3
+  m_Selected: 0
+  m_LastSelected: 2
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -337,10 +337,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_ShowAlpha: 0
   m_MipLevel: 0
-  m_Zoom: 3.5689507
-  m_ScrollPosition: {x: -640.0403, y: 2111.7627}
-  m_SelectedObject: {fileID: 2800000, guid: a607103501b0d514e8a3adfc008fb9d8, type: 3}
-  m_SelectedSpriteRectGUID: 633dd9ce12657d849a0b51ada30a4323
+  m_Zoom: 7.6214285
+  m_ScrollPosition: {x: 0, y: 0}
+  m_SelectedObject: {fileID: 0}
+  m_SelectedSpriteRectGUID: 5e97eb03825dee720800000000000000
   m_LastUsedModuleTypeName: 
 --- !u!114 &14
 MonoBehaviour:
@@ -376,7 +376,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0cf7ffff0afbffff
+      m_ExpandedIDs: e676fffff490ffffe092ffff0cf7ffff0afbffff607301001474010028750100a0750100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -692,9 +692,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 46.15281, y: -15.989699, z: -0.01506964}
+    m_Target: {x: 52.45121, y: 53.67534, z: -0.29792008}
     speed: 2
-    m_Value: {x: 46.145084, y: -16.001024, z: -0.014602257}
+    m_Value: {x: 52.45121, y: 53.67534, z: -0.29792008}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -745,9 +745,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1.0853523
+    m_Target: 29.3703
     speed: 2
-    m_Value: 1.0386146
+    m_Value: 29.3703
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -941,23 +941,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Animations/Enemy/faun
+    - Assets/Resources/Sprites/projectiles
     m_Globs: []
     m_OriginalText: 
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Resources/Animations/Enemy/faun
+  - Assets/Resources/Sprites/projectiles
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Carlos\Documents\GitHub\kingdoms-end\Kingdom's End
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 120}
-    m_SelectedIDs: 5c650100
-    m_LastClickedID: 91484
-    m_ExpandedIDs: 00000000722e0100742e0100762e0100782e01007a2e01007c2e010000ca9a3b
+    scrollPos: {x: 0, y: 662.3333}
+    m_SelectedIDs: e8700100
+    m_LastClickedID: 94440
+    m_ExpandedIDs: 00000000862e0100882e01008a2e01008c2e01008e2e0100902e0100c065010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -985,7 +985,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000722e0100742e0100762e0100782e01007a2e01007c2e010000ca9a3b
+    m_ExpandedIDs: 00000000862e0100882e01008a2e01008c2e01008e2e0100902e010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1101,7 +1101,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -2292
+  m_LastSelectedObjectID: 27010
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1186,9 +1186,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 34c11c84e0e40f446a85d5d1fd3d5423, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: ec636d00436216c4986f8fa0f28346b7, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 4388651198133533916, guid: 34c11c84e0e40f446a85d5d1fd3d5423, type: 2}
+  - m_Target: {fileID: 9122454138243949302, guid: ec636d00436216c4986f8fa0f28346b7, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
