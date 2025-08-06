@@ -6,7 +6,7 @@ public class Objects {
   public static Dictionary<string, string[]> enemyKeysByArea = new Dictionary<string, string[]> {
     {"calderas", new string[]{"phoenix"}},
     {"desert", new string[]{"mummy"}},
-    {"forest", new string[]{"fairy", "unicorn"}},
+    {"forest", new string[]{"faun"}}, // "fairy", "unicorn"}},
     {"glaciers", new string[]{"frostbird"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
     {"mountains", new string[]{"cyclops", "thunderbird"}},
@@ -203,6 +203,7 @@ public class Objects {
     {"cyclops-hillstone", 50},
     {"dwarf-cobble", 35},
     {"fairy-blast", 55},
+    {"faun-horn", 35},
     {"frostbird-orb", 40},
     {"goblin-knife", 50},
     {"hippocampus-scale", 35},
@@ -396,7 +397,8 @@ public class Objects {
     {"merman", genericItemDictionary},
     {"kelpie", genericItemDictionary},
     {"ogre", genericItemDictionary},
-    {"cyclops", genericItemDictionary}
+    {"cyclops", genericItemDictionary},
+    {"faun", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -468,6 +470,7 @@ public class Objects {
     {"cyclops", new EnemyStats() {name = "Cyclops", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.001f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"dwarf", new EnemyStats() {name = "Dwarf", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"fairy", new EnemyStats() {name = "Fairy", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
+    {"faun", new EnemyStats() {name = "Faun", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 10, def = 20, crit = 0.0025f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"frostbird", new EnemyStats() {name = "Frostbird", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"goblin", new EnemyStats() {name = "Goblin", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"hippocampus", new EnemyStats() {name = "Hippocampus", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
@@ -497,6 +500,7 @@ public class Objects {
     {"dwarf", new Vector2(0.69f, 1.62f)},
     {"fairy", new Vector2(0.97f, 0.92f)},
     {"frostbird", new Vector2(0.89f, 1.26f)},
+    {"faun", new Vector2(1.01f, 2.35f)},
     {"goblin", new Vector2(1.38f, 2.37f)},
     {"hippocampus", new Vector2(2.72f, 2.12f)},
     {"kelpie", new Vector2(2.79f, 2.12f)},
@@ -523,6 +527,7 @@ public class Objects {
     {"centaur", new Vector2(0.4f, 2.8f)},
     {"cyclops", new Vector2(-0.1f, 1.75f)},
     {"dwarf", new Vector2(0, 1)},
+    {"faun", new Vector2(-0.2f, 1.65f)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
     {"hippocampus", new Vector2(0.25f, 2.25f)},
     {"kelpie", new Vector2(0.25f, 2.25f)},
@@ -548,6 +553,7 @@ public class Objects {
     {"dwarf", defaultDeathOrigin},
     {"fairy", defaultDeathOrigin},
     {"frostbird", defaultDeathOrigin},
+    {"faun", defaultDeathOrigin},
     {"goblin", defaultDeathOrigin},
     {"hippocampus", defaultDeathOrigin},
     {"kelpie", defaultDeathOrigin},
@@ -607,6 +613,7 @@ public class Objects {
     {"cyclops-hillstone", "blunt"},
     {"dwarf-cobble", "blunt"},
     {"fairy-blast", "blunt"},
+    {"faun-horn", "blunt"},
     {"frostbird-orb", "blunt"},
     {"goblin-knife", "blunt"},
     {"hippocampus-scale", "blunt"},
@@ -647,6 +654,7 @@ public class Objects {
     {"cyclops-hillstone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"dwarf-cobble", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"fairy-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
+    {"faun-horn", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"frostbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"hippocampus-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -674,6 +682,7 @@ public class Objects {
     {"cyclops", "cyclops-hillstone"},
     {"dwarf", "dwarf-cobble"},
     {"fairy", "fairy-blast"},
+    {"faun", "faun-horn"},
     {"frostbird", "frostbird-orb"},
     {"goblin", "goblin-knife"},
     {"hippocampus", "hippocampus-scale"},
