@@ -46,6 +46,7 @@ public class Sprites {
   public static Sprite[] ogreSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/ogre");
   public static Sprite[] cyclopsSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/cyclops");
   public static Sprite[] faunSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/faun");
+  public static Sprite[] dryadSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/dryad");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
 
   public static Sprite[] bombSprites = Resources.LoadAll<Sprite>("Spritesheets/bomb");
@@ -367,6 +368,7 @@ public class Sprites {
   public static Dictionary<string, Sprite> projectileSprites = new Dictionary<string, Sprite> {
     {"centaur-spear", Resources.Load<Sprite>("Sprites/projectiles/centaur-spear")},
     {"cyclops-hillstone", Resources.Load<Sprite>("Sprites/projectiles/cyclops-hillstone")},
+    {"dryad-twig", Resources.Load<Sprite>("Sprites/projectiles/dryad-twig")},
     {"dwarf-cobble", Resources.Load<Sprite>("Sprites/projectiles/dwarf-cobble")},
     {"fairy-blast", Resources.Load<Sprite>("Sprites/projectiles/fairy-blast")},
     {"faun-horn", Resources.Load<Sprite>("Sprites/projectiles/faun-horn")},
@@ -522,6 +524,7 @@ public class Sprites {
   public static Dictionary<string, Sprite> firstBossSprites = new Dictionary<string, Sprite> {
     {"centaur", centaurSprites[0]},
     {"cyclops", cyclopsSprites[0]},
+    {"dryad", dryadSprites[0]},
     {"dwarf", dwarfSprites[0]},
     {"fairy", fairySprites[0]},
     {"faun", faunSprites[0]},
