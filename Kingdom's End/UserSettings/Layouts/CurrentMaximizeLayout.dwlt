@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 3330
+  controlID: 69
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -56,9 +56,9 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_ShowAlpha: 0
   m_MipLevel: 0
-  m_Zoom: 0.7014232
-  m_ScrollPosition: {x: -199.88481, y: -75.16491}
-  m_SelectedObject: {fileID: 0}
+  m_Zoom: 0.3857718
+  m_ScrollPosition: {x: 0, y: 0}
+  m_SelectedObject: {fileID: 2800000, guid: 87cfe3c3b3cb58643bd045132d58dbc5, type: 3}
   m_SelectedSpriteRectGUID: 00000000000000000000000000000000
   m_LastUsedModuleTypeName: 
 --- !u!114 &3
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 3331
+  controlID: 70
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 3332
+  controlID: 71
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: ba6c0100
       m_LastClickedID: 0
       m_ExpandedIDs: 0afbffff
       m_RenameOverlay:
@@ -515,9 +515,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 45.88439, y: -16.716076, z: -0.00314367}
+    m_Target: {x: 88.939896, y: 33.651394, z: -0.8105798}
     speed: 2
-    m_Value: {x: 45.88439, y: -16.716076, z: -0.00314367}
+    m_Value: {x: 88.939896, y: 33.651394, z: -0.8105798}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -568,9 +568,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1.5913311
+    m_Target: 81.884895
     speed: 2
-    m_Value: 1.5913311
+    m_Value: 81.884895
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -820,23 +820,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Animations/Enemy/dryad
+    - Assets/Resources/Spritesheets/enemies
     m_Globs: []
     m_OriginalText: 
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Resources/Animations/Enemy/dryad
+  - Assets/Resources/Spritesheets/enemies
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Carlos\Documents\GitHub\kingdoms-end\Kingdom's End
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 120}
-    m_SelectedIDs: 38660100
-    m_LastClickedID: 91704
-    m_ExpandedIDs: 00000000de2e0100e02e0100e22e0100e42e0100e62e0100e82e010000ca9a3b
+    scrollPos: {x: 0, y: 720}
+    m_SelectedIDs: 646c0100
+    m_LastClickedID: 93284
+    m_ExpandedIDs: 000000002a2301002c2301002e23010030230100322301003423010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -864,7 +864,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000de2e0100e02e0100e22e0100e42e0100e62e0100e82e0100
+    m_ExpandedIDs: 000000002a2301002c2301002e230100302301003223010034230100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -889,10 +889,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000
+    m_SelectedInstanceIDs: ba6c0100
+    m_LastClickedInstanceID: 93370
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c6230000e0170100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1016,14 +1016,14 @@ MonoBehaviour:
     - {fileID: 9122454138243949302, guid: ec636d00436216c4986f8fa0f28346b7, type: 2}
     - {fileID: -8875411454972498318, guid: de1f604bb5826c644a2b23943434a7c9, type: 2}
     m_ValueSerializationHelper:
-    - e00: 1.7066667
+    - e00: 1.4237106
       e01: 0
       e02: 0
-      e03: -7615.0215
+      e03: -6144.713
       e10: 0
-      e11: 1.7066667
+      e11: 1.4237106
       e12: 0
-      e13: -590.5007
+      e13: -1262.6206
       e20: 0
       e21: 0
       e22: 1
