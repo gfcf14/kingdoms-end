@@ -6,7 +6,7 @@ public class Objects {
   public static Dictionary<string, string[]> enemyKeysByArea = new Dictionary<string, string[]> {
     {"calderas", new string[]{"phoenix"}},
     {"desert", new string[]{"mummy"}},
-    {"forest", new string[]{"dryad"}}, // , "fairy", "faun", "unicorn"}},
+    {"forest", new string[]{"werewolf"}}, // "dryad", "fairy", "faun", "unicorn"}},
     {"glaciers", new string[]{"frostbird"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
     {"mountains", new string[]{"cyclops", "thunderbird"}},
@@ -224,6 +224,7 @@ public class Objects {
     {"thunderbird-orb", 40},
     {"troll-boulder", 50},
     {"unicorn-shard", 30},
+    {"werewolf-fang", 40},
     {"yanmabel-stinger", 30}
   };
 
@@ -400,7 +401,8 @@ public class Objects {
     {"ogre", genericItemDictionary},
     {"cyclops", genericItemDictionary},
     {"faun", genericItemDictionary},
-    {"dryad", genericItemDictionary}
+    {"dryad", genericItemDictionary},
+    {"werewolf", genericItemDictionary},
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -494,6 +496,7 @@ public class Objects {
     {"thunderbird", new EnemyStats() {name = "Thunderbird", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"troll", new EnemyStats() {name = "Troll", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"unicorn", new EnemyStats() {name = "Unicorn", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
+    {"werewolf", new EnemyStats() {name = "Werewolf", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.0025f, exp = 50, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"yanmabel", new EnemyStats() {name = "Yanmabel", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
   };
 
@@ -524,6 +527,7 @@ public class Objects {
     {"thunderbird", new Vector2(0.89f, 1.26f)},
     {"troll", new Vector2(1.01f, 2.68f)},
     {"unicorn", new Vector2(2.82f, 2.11f)},
+    {"werewolf", new Vector2(1.21f, 2.60f)},
     {"yanmabel", new Vector2(1.59f, 0.78f)}
   };
 
@@ -546,7 +550,8 @@ public class Objects {
     {"skeleton", new Vector2(-0.25f, 1.95f)},
     {"skeleton-king", new Vector2(0.1f, 2.1f)},
     {"troll", new Vector2(0.1f, 1.4f)},
-    {"unicorn", new Vector2(0.25f, 2.25f)}
+    {"unicorn", new Vector2(0.25f, 2.25f)},
+    {"werewolf", new Vector2(0.1f, 1.4f)}
   };
 
   public static Vector2 defaultDeathOrigin = new Vector2(0, 0.1f);
@@ -579,6 +584,7 @@ public class Objects {
     {"thunderbird", defaultDeathOrigin},
     {"troll", defaultDeathOrigin},
     {"unicorn", defaultDeathOrigin},
+    {"werewolf", defaultDeathOrigin},
     {"yanmabel", defaultDeathOrigin}
   };
 
@@ -641,6 +647,7 @@ public class Objects {
     {"thunderbird-orb", "blunt"},
     {"troll-boulder", "blunt" },
     {"unicorn-shard", "blunt"},
+    {"werewolf-fang", "blunt"},
     {"yanmabel-stinger", "blunt"}
   };
 
@@ -682,6 +689,7 @@ public class Objects {
     {"thunderbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"troll-boulder", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"unicorn-shard", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"werewolf-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"yanmabel-stinger", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
   };
 
@@ -712,6 +720,7 @@ public class Objects {
     {"thunderbird", "thunderbird-orb"},
     {"troll", "troll-boulder"},
     {"unicorn", "unicorn-shard"},
+    {"werewolf", "werewolf-fang"},
     {"yanmabel", "yanmabel-stinger"}
   };
 

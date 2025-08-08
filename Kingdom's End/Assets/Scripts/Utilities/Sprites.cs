@@ -47,6 +47,7 @@ public class Sprites {
   public static Sprite[] cyclopsSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/cyclops");
   public static Sprite[] faunSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/faun");
   public static Sprite[] dryadSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/dryad");
+  public static Sprite[] werewolfSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/werewolf");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
 
   public static Sprite[] bombSprites = Resources.LoadAll<Sprite>("Spritesheets/bomb");
@@ -391,6 +392,7 @@ public class Sprites {
     {"thunderbird-orb", Resources.Load<Sprite>("Sprites/projectiles/thunderbird-orb")},
     {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")},
     {"unicorn-shard", Resources.Load<Sprite>("Sprites/projectiles/unicorn-shard")},
+    {"werewolf-fang", Resources.Load<Sprite>("Sprites/projectiles/werewolf-fang")},
     {"yanmabel-stinger", Resources.Load<Sprite>("Sprites/projectiles/yanmabel-stinger")}
   };
 
@@ -548,6 +550,7 @@ public class Sprites {
     {"thunderbird", thunderbirdSprites[0]},
     {"troll", trollSprites[0]},
     {"unicorn", unicornSprites[0]},
+    {"werewolf", werewolfSprites[0]},
     {"yanmabel", yanmabelSprites[0]}
   };
 
