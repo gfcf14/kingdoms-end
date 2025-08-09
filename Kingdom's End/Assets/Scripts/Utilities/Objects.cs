@@ -551,7 +551,7 @@ public class Objects {
     {"skeleton-king", new Vector2(0.1f, 2.1f)},
     {"troll", new Vector2(0.1f, 1.4f)},
     {"unicorn", new Vector2(0.25f, 2.25f)},
-    {"werewolf", new Vector2(0.1f, 1.4f)}
+    {"werewolf", new Vector2(0.1f, 2f)}
   };
 
   public static Vector2 defaultDeathOrigin = new Vector2(0, 0.1f);
