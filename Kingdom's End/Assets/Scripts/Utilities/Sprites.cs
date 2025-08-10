@@ -49,6 +49,7 @@ public class Sprites {
   public static Sprite[] dryadSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/dryad");
   public static Sprite[] werewolfSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/werewolf");
   public static Sprite[] leprechaunSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/leprechaun");
+  public static Sprite[] gnomeSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/gnome");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
 
   public static Sprite[] bombSprites = Resources.LoadAll<Sprite>("Spritesheets/bomb");
@@ -375,6 +376,7 @@ public class Sprites {
     {"fairy-blast", Resources.Load<Sprite>("Sprites/projectiles/fairy-blast")},
     {"faun-horn", Resources.Load<Sprite>("Sprites/projectiles/faun-horn")},
     {"frostbird-orb", Resources.Load<Sprite>("Sprites/projectiles/frostbird-orb")},
+    {"gnome-truffle", Resources.Load<Sprite>("Sprites/projectiles/gnome-truffle")},
     {"goblin-knife", Resources.Load<Sprite>("Sprites/projectiles/goblin-knife")},
     {"hippocampus-scale", Resources.Load<Sprite>("Sprites/projectiles/hippocampus-scale")},
     {"kelpie-fin", Resources.Load<Sprite>("Sprites/projectiles/kelpie-fin")},
@@ -533,6 +535,7 @@ public class Sprites {
     {"fairy", fairySprites[0]},
     {"faun", faunSprites[0]},
     {"frostbird", frostbirdSprites[0]},
+    {"gnome", gnomeSprites[0]},
     {"goblin", goblinSprites[0]},
     {"hippocampus", hippocampusSprites[0]},
     {"kelpie", kelpieSprites[0]},
