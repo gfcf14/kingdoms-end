@@ -4,7 +4,7 @@ public class Constants {
   public static string preferredInput = "gamepad";
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
-  public static string[] nonBouncingProjectiles = {"cyclops-hillstone", "dwarf-cobble", "dryad-twig", "fairy-blast", "faun-horn", "frostbird-orb", "gnome-truffle", "goblin-knife", "hippocampus-scale", "kelpie-fin", "leprechaun-mushroom", "mermaid-scale", "merman-scale", "mummy-rib", "nereid-seashell", "neret-orb", "nymph-acorn", "ogre-stump", "phoenix-orb", "pixie-fireball", "samodiva-stalagtip", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder", "unicorn-shard", "werewolf-fang", "yanmabel-stinger"};
+  public static string[] nonBouncingProjectiles = {"cyclops-hillstone", "dwarf-cobble", "dryad-twig", "fairy-blast", "faun-horn", "frostbird-orb", "gnome-truffle", "goblin-knife", "hippocampus-scale", "kelpie-fin", "leprechaun-mushroom", "mermaid-scale", "merman-scale", "mummy-rib", "nereid-seashell", "neret-orb", "nixie-cattail", "nymph-acorn", "ogre-stump", "phoenix-orb", "pixie-fireball", "samodiva-stalagtip", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder", "unicorn-shard", "werewolf-fang", "yanmabel-stinger"};
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
   public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
   public static string[] forbiddenKeys = {"Escape", "KeypadEnter", "Return", "W", "A", "S", "D", "UpArrow", "DownArrow", "RightArrow", "LeftArrow", "P"};
@@ -82,7 +82,7 @@ public class Constants {
 
   public static string[] enemyBombBounceTags = {"Hero", "Weapon"};
 
-  public static string[] enemyProjectiles = {"centaur-spear", "cyclops-hillstone", "dryad-twig", "dwarf-cobble", "fairy-blast", "faun-horn", "frostbird-orb", "gnome-truffle", "goblin-knife", "hippocampus-scale", "kelpie-fin", "leprechaun-mushroom", "mermaid-scale", "merman-scale", "mummy-rib", "nereid-seashell", "neret-orb", "nymph-acorn", "ogre-stump", "phoenix-orb", "pixie-fireball", "samodiva-stalagtip", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder", "unicorn-shard", "werewolf-fang", "yanmabel-stinger"};
+  public static string[] enemyProjectiles = {"centaur-spear", "cyclops-hillstone", "dryad-twig", "dwarf-cobble", "fairy-blast", "faun-horn", "frostbird-orb", "gnome-truffle", "goblin-knife", "hippocampus-scale", "kelpie-fin", "leprechaun-mushroom", "mermaid-scale", "merman-scale", "mummy-rib", "nereid-seashell", "neret-orb", "nixie-cattail", "nymph-acorn", "ogre-stump", "phoenix-orb", "pixie-fireball", "samodiva-stalagtip", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder", "unicorn-shard", "werewolf-fang", "yanmabel-stinger"};
   public static string[] explodingThrowables = {"fairy-blast", "frostbird-orb", "neret-orb", "phoenix-orb", "pixie-fireball", "skelewing-orb", "thunderbird-orb"};
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
