@@ -13,7 +13,7 @@ public class Objects {
     {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
     {"ruins", new string[]{"neret"}},
     {"seaside", new string[]{"kelpie", "nereid"}},
-    {"swamps", new string[]{"nixie", "ogre", "pishtaco", "yanmabel"}},
+    {"swamps", new string[]{"bunyip", "nixie", "ogre", "pishtaco", "yanmabel"}},
     {"underground", new string[]{"samodiva"}},
     {"wasteland", new string[]{"skeleton", "skeleton-king", "skelewing"}}
   };
@@ -199,6 +199,7 @@ public class Objects {
   };
 
   public static Dictionary<string, int> projectileDamages = new Dictionary<string, int> {
+    {"bunyip-tooth", 30},
     {"centaur-spear", 50},
     {"cyclops-hillstone", 50},
     {"dryad-twig", 30},
@@ -410,7 +411,8 @@ public class Objects {
     {"leprechaun", genericItemDictionary},
     {"gnome", genericItemDictionary},
     {"nixie", genericItemDictionary},
-    {"pishtaco", genericItemDictionary}
+    {"pishtaco", genericItemDictionary},
+    {"bunyip", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
@@ -478,6 +480,7 @@ public class Objects {
   };
 
   public static Dictionary<string, EnemyStats> enemyStats = new Dictionary<string, EnemyStats> {
+    {"bunyip", new EnemyStats() {name = "Bunyip", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 3, reach = 0.2f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"centaur", new EnemyStats() {name = "Centaur", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"cyclops", new EnemyStats() {name = "Cyclops", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.001f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"dryad", new EnemyStats() {name = "Dryad", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
@@ -513,6 +516,7 @@ public class Objects {
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new Dictionary<string, Vector2> {
+    {"bunyip", new Vector2(2.06f, 1.83f)},
     {"centaur", new Vector2(2.28f, 2.77f)},
     {"cyclops", new Vector2(1.01f, 2.66f)},
     {"dryad", new Vector2(0.72f, 2.23f)},
@@ -548,6 +552,7 @@ public class Objects {
   };
 
   public static Dictionary<string, Vector2> enemyWingOffsets = new Dictionary<string, Vector2> {
+    {"bunyip", new Vector2(0.25f, 1.55f)},
     {"centaur", new Vector2(0.4f, 2.8f)},
     {"cyclops", new Vector2(-0.1f, 1.75f)},
     {"dryad", new Vector2(-0.09f, 1.6f)},
@@ -578,6 +583,7 @@ public class Objects {
 
   // TODO: consider if it'd be needed to use these custom origin values when dying only by burning/poison
   public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new Dictionary<string, Vector2> {
+    {"bunyip", defaultDeathOrigin},
     {"centaur", defaultDeathOrigin},
     {"cyclops", defaultDeathOrigin},
     {"dryad", new Vector2(-0.7025f, 0.5f)},
@@ -645,6 +651,7 @@ public class Objects {
 
   // TODO: modify impact types for appropriate sounds
   public static Dictionary<string, string> throwableImpactType = new Dictionary<string, string> {
+    {"bunyip-tooth", "blunt"},
     {"centaur-spear", "blunt"},
     {"cyclops-hillstone", "blunt"},
     {"dryad-twig", "blunt"},
@@ -692,6 +699,7 @@ public class Objects {
     {"watermelon", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1.02f, 1.15f), hDisplacement = 1.5f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
   };
   public static Dictionary<string, ThrowableSpecs> projectileSpecs = new Dictionary<string, ThrowableSpecs> {
+    {"bunyip-tooth", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"centaur-spear", new ThrowableSpecs() {colliderOffset = new ValuePair(1.4f, -0.14f), colliderSize = new ValuePair(0.37f, 1.26f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 10f, speed = 20f, steepness = 20f}},
     {"cyclops-hillstone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"dryad-twig", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -726,6 +734,7 @@ public class Objects {
   };
 
   public static Dictionary<string, string> projectileKeys = new Dictionary<string, string> {
+    {"bunyip", "bunyip-tooth"},
     {"centaur", "centaur-spear"},
     {"cyclops", "cyclops-hillstone"},
     {"dryad", "dryad-twig"},
