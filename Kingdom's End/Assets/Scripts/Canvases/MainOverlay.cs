@@ -41,10 +41,11 @@ public class MainOverlay : MonoBehaviour {
     areaImage = gameObject.transform.Find("AreaImage").GetComponent<Image>();
   }
 
-  public void UpdatePlayerPosition() {
-    // since at this point in the scene change the world is covered, change the global gradient area as well
+  public void RepaintGradient() {
     InGame.instance.globalGradients.area = GameData.area;
+  }
 
+  public void UpdatePlayerPosition() {
     if (DataManager.instance.anchorIndex.Value != -1) {
       float newHeroX = sceneAnchorers[DataManager.instance.anchorIndex.Value].transform.position.x;
       float heroY = Hero.instance.transform.position.y;
