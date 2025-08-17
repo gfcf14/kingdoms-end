@@ -43,6 +43,10 @@ public class MainOverlay : MonoBehaviour {
 
   public void RepaintGradient() {
     InGame.instance.globalGradients.area = GameData.area;
+
+    if (Helpers.IsValueInArray(Constants.nonGradientAreas, GameData.area)) {
+      InGame.instance.globalGradients.ResetTilemaps(); // reset tilemaps to avoid showing colors underground, in hellscape, or skyway
+    }
   }
 
   public void UpdatePlayerPosition() {

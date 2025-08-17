@@ -548,7 +548,7 @@ public class Helpers {
   }
 
   public static string GetGameTime(int currentTime) {
-    // TO TEST: change this value to 1 so each hour is a second
+    // TO TEST: change this value to 1 so each hour is a second (default value: 60)
     int hourLength = 60;
     int noon = 12;
 

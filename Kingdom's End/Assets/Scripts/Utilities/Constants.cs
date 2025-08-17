@@ -116,7 +116,7 @@ public class Constants {
   public static int defaultActionTextContainerWidth = 76;
   public static int actionTextContainerHeight = 75;
   public static int actionTextHeight = 60;
-  // TO TEST: change this value to 24 so each hour is a second
+  // TO TEST: change this value to 24 so each hour is a second (default value: 1440)
   public static int maxDayLength = 1440;
 
   public static float[] HurtBTransitions = {0.009155554f, 0.01235556f, 0.01528889f, 0.01795555f, 0.02035556f, 0.02248894f, 0.0243555f,

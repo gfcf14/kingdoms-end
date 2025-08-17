@@ -34,6 +34,7 @@ public class RoomTraverser : MonoBehaviour {
 
       // only instantiate enemies as soon as the area is updated if at all
       foreach (Transform child in col.gameObject.transform) {
+        // TODO: when implementing common enemies (nomad, wanderess, or luxhusk) ensure only one of each can implement.
         if (child.tag == "EnemySpawner") {
           child.gameObject.GetComponent<EnemySpawner>().Spawn();
           // } else if (CanSpawnMiniBoss(child)) {
