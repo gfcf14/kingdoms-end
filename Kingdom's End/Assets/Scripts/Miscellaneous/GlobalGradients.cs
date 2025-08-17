@@ -105,6 +105,8 @@ public class GlobalGradients : MonoBehaviour {
   [System.NonSerialized] private Dictionary<string, Dictionary<string, Gradient>> areaGradients;
   [System.NonSerialized] private Color resetColor = Color.white;
 
+  [System.NonSerialized] public bool shouldPaintOutsideArea = true;
+
   public bool canUpdateGradients = false;
 
   void Start() {
@@ -169,11 +171,11 @@ public class GlobalGradients : MonoBehaviour {
       percentage = Mathf.Clamp01(percentage);
       currentGradientPercentage = percentage;
 
-      if (!Helpers.IsValueInArray(Constants.nonGradientAreas, area)) {
+      if (shouldPaintOutsideArea  && !Helpers.IsValueInArray(Constants.nonGradientAreas, area)) {
         skyTilemap.color = Helpers.GetOrException(Helpers.GetOrException(areaGradients, area), "sky").Evaluate(percentage);
       }
 
-      if (!isIndoors && !Helpers.IsValueInArray(Constants.nonGradientAreas, area)) {
+      if (!isIndoors && shouldPaintOutsideArea && !Helpers.IsValueInArray(Constants.nonGradientAreas, area)) {
         cloudsTilemap.color = cloudsGradient.Evaluate(percentage);
 
         Color currentGradientColor = Helpers.GetOrException(Helpers.GetOrException(areaGradients, area), "ground").Evaluate(percentage);

@@ -1087,6 +1087,7 @@ public class Hero : MonoBehaviour {
                 if (interactingPortal.portalType == "cave") {
                   Helpers.ChangeScene(interactingPortal.scene, interactingPortal.transportLocation, interactingPortal.cameraPosition);
                 } else {
+                  InGame.instance.globalGradients.area = "underground";
                   TransportViaPortal(interactingPortal.transportLocation);
                 }
               }
