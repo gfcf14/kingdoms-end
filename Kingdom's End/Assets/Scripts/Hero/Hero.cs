@@ -23,6 +23,7 @@ public class Hero : MonoBehaviour {
   [SerializeField] public GameObject shieldCollider;
   [SerializeField] public GameObject bow;
   [SerializeField] public GameObject airEdgeCheck;
+  [SerializeField] public GameObject undergroundLight;
   public AirEdgeCheck airEdgeCheckScript;
   public ProximityCheck proximityCheckScript;
 

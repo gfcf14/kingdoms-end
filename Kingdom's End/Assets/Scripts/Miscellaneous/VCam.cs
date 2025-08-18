@@ -11,13 +11,16 @@ public class VCam : MonoBehaviour
     bool isInNonGradientArea = Helpers.IsValueInArray(Constants.nonGradientAreas, GameData.area);
     bool isIntersectionsContainer = roomContainer.Contains("Intersections");
 
+    // toggles the underground light based on area and room container
+    Hero.instance.undergroundLight.SetActive(GameData.area == "underground" && !isIntersectionsContainer);
+
     // modifies bool to ensure areas can receive gradient color changes despite being in an area that shouldn't
     // (e.g. if the player is in an intersection room in the underground area)
     InGame.instance.globalGradients.shouldPaintOutsideArea = !isInNonGradientArea || (isInNonGradientArea && isIntersectionsContainer);
 
     if (isIntersectionsContainer) {
       string currentRoom = transform.parent.gameObject.name;
-      string firstAreaRegex = @"Room\s*-\s*([A-Za-z]+)";
+      string firstAreaRegex = @"Room\s*-\s*([A-Za-z]+)"; // gets first mentioned area, e.g. from "Room - Desert to Seaside" it gets "desert"
 
       Match match = Regex.Match(currentRoom, firstAreaRegex);
 
