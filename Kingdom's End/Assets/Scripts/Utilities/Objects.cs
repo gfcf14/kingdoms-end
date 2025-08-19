@@ -81,8 +81,11 @@ public class Objects {
 
   // initialize constructable RegularItem objects by: new RelicItem(thumbnail, image, name, description, effect)
   public static Dictionary<string, RelicItem> relicItems = new Dictionary<string, RelicItem> {
-    {"swift-boots", new RelicItem(Sprites.relicItemThumbnails[0], Sprites.relicItemImages[0], "Swift Boots", "Enables the user to do a double jump.", new RelicEffect("enable", "canDoubleJump"))},
-    {"magic-talisman", new RelicItem(Sprites.relicItemThumbnails[1], Sprites.relicItemImages[1], "Magic Talisman", "Enables the user to cast magic.", new RelicEffect("enable", "canCastMagic"))}
+    {"dawn-gem", new RelicItem(Sprites.relicItemThumbnails[3], Sprites.relicItemImages[3], "Dawn Gem", "Crystalline fragment said to hold the first rays of dawn, increasing glow", new RelicEffect("enable", "hasLightUnderground"))},
+    {"magic-talisman", new RelicItem(Sprites.relicItemThumbnails[1], Sprites.relicItemImages[1], "Magic Talisman", "Enables the user to cast magic.", new RelicEffect("enable", "canCastMagic"))},
+    {"royal-lamp", new RelicItem(Sprites.relicItemThumbnails[2], Sprites.relicItemImages[2], "Royal Lamp", "A symbol of royal heritage that grants the user some sight in darkness", new RelicEffect("enable", "hasLightUnderground"))},
+    {"sundrop", new RelicItem(Sprites.relicItemThumbnails[4], Sprites.relicItemImages[4], "Sun Drop", "A droplet of pure sunlight said to vanish cavern shadows yet leaving natural light untouched", new RelicEffect("enable", "hasLightUnderground"))},
+    {"swift-boots", new RelicItem(Sprites.relicItemThumbnails[0], Sprites.relicItemImages[0], "Swift Boots", "Enables the user to do a double jump.", new RelicEffect("enable", "canDoubleJump"))}
   };
 
   // initialize constructable RegularItem objects by: new RegularItem(thumbnail, image, name, description, type, effects)

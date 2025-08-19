@@ -91,6 +91,8 @@ public class Constants {
 
   public static string[] lowReachingEnemies = {"fairy", "pixie"};
 
+  public static string[] partialLightRelics = {"dawn-gem", "royal-lamp"};
+
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};
 

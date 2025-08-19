@@ -515,8 +515,11 @@ public class Sprites {
   };
 
   public static Dictionary<string, Sprite> relicSprites = new Dictionary<string, Sprite> {
+    {"dawn-gem", relicImages[3]},
+    {"magic-talisman", relicImages[1]},
+    {"royal-lamp", relicImages[2]},
+    {"sundrop", relicImages[4]},
     {"swift-boots", relicImages[0]},
-    {"magic-talisman", relicImages[1]}
   };
 
   public static Dictionary<string, Sprite> breakableSprites = new Dictionary<string, Sprite> {

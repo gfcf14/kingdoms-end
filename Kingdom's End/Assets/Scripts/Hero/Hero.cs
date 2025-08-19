@@ -56,6 +56,7 @@ public class Hero : MonoBehaviour {
   public int jumpsExecuted = 0;
 
   public bool canCastMagic = false;
+  public bool hasLightUnderground = false;
 
   // public bool isJetpackUp;
   // public string jetpackHorizontal = "";
@@ -427,6 +428,22 @@ public class Hero : MonoBehaviour {
     // TODO: though this sets a hero property given the relic effect value (a string), it's necessary to create a switch block to determine how
     // this should happen given the effect type as well
     this.GetType().GetField(Helpers.GetOrException(Objects.relicItems, relicKey).effect.value).SetValue(this, true);
+
+    // modifies the area depending on if the relic involves light
+    if (relicKey == "royal-lamp") {
+      undergroundLight.SetActive(true);
+    } else if (relicKey == "dawn-gem") {
+      undergroundLight.SetActive(true);
+      undergroundLight.transform.localScale = new Vector2(6, 6);
+    } else if (relicKey == "sundrop") {
+      GameObject[] allDarknesses = GameObject.FindGameObjectsWithTag("Darkness");
+
+      foreach (GameObject currDarkness in allDarknesses) {
+        if (currDarkness.activeSelf) {
+          currDarkness.SetActive(false);
+        }
+      }
+    }
   }
 
   public void SetupStatsByLevel() {

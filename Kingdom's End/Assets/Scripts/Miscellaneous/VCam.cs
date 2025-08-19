@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -10,9 +11,6 @@ public class VCam : MonoBehaviour
     string roomContainer = transform.parent.parent.gameObject.name;
     bool isInNonGradientArea = Helpers.IsValueInArray(Constants.nonGradientAreas, GameData.area);
     bool isIntersectionsContainer = roomContainer.Contains("Intersections");
-
-    // toggles the underground light based on area and room container
-    Hero.instance.undergroundLight.SetActive(GameData.area == "underground" && !isIntersectionsContainer);
 
     // modifies bool to ensure areas can receive gradient color changes despite being in an area that shouldn't
     // (e.g. if the player is in an intersection room in the underground area)
@@ -34,5 +32,22 @@ public class VCam : MonoBehaviour
         InGame.instance.globalGradients.ResetTilemaps();
       }
     }
+
+    // toggles the underground light based on if the user has a partial light relic, area and room container
+    bool hasPartialLightRelic = Hero.instance.relicItems.Any(relicItem => Constants.partialLightRelics.Contains(relicItem.key));
+    Hero.instance.undergroundLight.SetActive(hasPartialLightRelic && GameData.area == "underground" && !isIntersectionsContainer);
+
+    // Deactivates any present darkness in an area if the user has the sundrop
+      bool hasSunDrop = Hero.instance.relicItems.Any(relicItem => relicItem.key == "sundrop");
+
+      if (hasSunDrop) {
+        GameObject[] allDarknesses = GameObject.FindGameObjectsWithTag("Darkness");
+
+        foreach (GameObject currDarkness in allDarknesses) {
+          if (currDarkness.activeSelf) {
+            currDarkness.SetActive(false);
+          }
+        }
+      }
   }
 }
