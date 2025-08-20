@@ -4,7 +4,6 @@ using UnityEngine;
 public class Relic : MonoBehaviour {
   [SerializeField] public string key;
   [System.NonSerialized] SpriteRenderer relicSprite;
-  [System.NonSerialized] PolygonCollider2D relicCollider;
 
   Vector2 GetRandomPoint(Vector2[] corners) {
     float minX = Mathf.Min(corners[0].x, corners[1].x, corners[2].x, corners[3].x);
@@ -29,11 +28,7 @@ public class Relic : MonoBehaviour {
     return point;
   }
   void Start() {
-    relicCollider = gameObject.AddComponent<PolygonCollider2D>();
-    relicCollider.autoTiling = true;
-    relicCollider.isTrigger = true;
-
-    relicSprite = GetComponent<SpriteRenderer>();
+    relicSprite = transform.Find("RelicObject").GetComponent<SpriteRenderer>();
     relicSprite.sprite = Helpers.GetOrException(Sprites.relicSprites, key);
 
     // These variables are to define a rectangle's corners located at a specific distance from the relic's center (the offset)
@@ -71,7 +66,7 @@ public class Relic : MonoBehaviour {
       Hero.instance.AddToRelics(key);
       Hero.instance.GetRelic();
 
-      Destroy(transform.parent.gameObject);
+      Destroy(gameObject);
     }
   }
 }

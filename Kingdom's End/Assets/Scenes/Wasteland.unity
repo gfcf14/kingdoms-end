@@ -55459,9 +55459,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2304440547025284325, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
+      propertyPath: key
+      value: swift-boots
+      objectReference: {fileID: 0}
     - target: {fileID: 8315258216437073882, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
       propertyPath: m_Name
-      value: Relic (1)
+      value: Relic
       objectReference: {fileID: 0}
     - target: {fileID: 8315258216437073882, guid: 26b703fbededa7047a030f12c99ee21f, type: 3}
       propertyPath: m_IsActive
@@ -146816,6 +146820,7 @@ MonoBehaviour:
   canDoubleJump: 0
   jumpsExecuted: 0
   canCastMagic: 0
+  hasLightUnderground: 0
   currentYPosition: 0
   currentXPosition: 0
   throwbackHeight: 0
