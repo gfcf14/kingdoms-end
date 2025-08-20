@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -49,5 +50,22 @@ public class VCam : MonoBehaviour
           }
         }
       }
+  }
+  public void RemoveOwnedRelics() {
+    // Convert to HashSet for fast lookups
+    HashSet<string> ownedRelicKeys = new HashSet<string>();
+    foreach (var item in Hero.instance.relicItems) {
+        ownedRelicKeys.Add(item.key);
+    }
+
+    // Find all relics in the scene
+    Relic[] relicObjects = FindObjectsOfType<Relic>();
+
+    foreach (var relic in relicObjects) {
+      // if any relics are found that exist in the HashSet, then the player already owns them and thus these should be destroyed
+      if (ownedRelicKeys.Contains(relic.key)) {
+        Destroy(relic.gameObject);
+      }
+    }
   }
 }

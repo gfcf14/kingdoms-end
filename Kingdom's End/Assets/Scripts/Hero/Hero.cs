@@ -398,15 +398,19 @@ public class Hero : MonoBehaviour {
   }
 
   public void AddToRelics(string relicKey) {
-    // For the first time, the pause buttons must be changed to allow for the Relic button to be enabled
-    if (relicItems.Count == 0) {
-      // fetch all buttons involved
-      Transform mainCanvas = InGame.instance.pauseCanvas.transform.Find("PauseBackground").Find("Wrapper Outline").Find("Right Outline").Find("MainCanvas");
-      GameObject buttonEquipment = mainCanvas.Find("ButtonEquipment").gameObject;
-      GameObject buttonRelics = mainCanvas.Find("ButtonRelics").gameObject;
-      GameObject buttonMap = mainCanvas.Find("ButtonMap").gameObject;
+    // failsafe to not get an already owned relic twice. This bool shouldn't even have to ever be true if already owned relics get destroyed on area entry
+    bool hasRelicAlready = relicItems.Any(currRelic => currRelic.key == relicKey);
 
-      // modify button navigation targets
+    if (!hasRelicAlready) {
+      // For the first time, the pause buttons must be changed to allow for the Relic button to be enabled
+      if (relicItems.Count == 0) {
+        // fetch all buttons involved
+        Transform mainCanvas = InGame.instance.pauseCanvas.transform.Find("PauseBackground").Find("Wrapper Outline").Find("Right Outline").Find("MainCanvas");
+        GameObject buttonEquipment = mainCanvas.Find("ButtonEquipment").gameObject;
+        GameObject buttonRelics = mainCanvas.Find("ButtonRelics").gameObject;
+        GameObject buttonMap = mainCanvas.Find("ButtonMap").gameObject;
+
+        // modify button navigation targets
         Navigation newButtonEquipmentNavigation = new Navigation();
         newButtonEquipmentNavigation.mode = Navigation.Mode.Explicit;
         newButtonEquipmentNavigation.selectOnDown = buttonRelics.GetComponent<Button>();
@@ -419,28 +423,29 @@ public class Hero : MonoBehaviour {
         newButtonMapNavigation.selectOnUp = buttonRelics.GetComponent<Button>();
         buttonMap.GetComponent<Button>().navigation = newButtonMapNavigation;
 
-      // modify button text opacity
-      buttonRelics.transform.Find("Text").GetComponent<Text>().color = new Color(1f, 1f, 1f, 1f);
-    }
+        // modify button text opacity
+        buttonRelics.transform.Find("Text").GetComponent<Text>().color = new Color(1f, 1f, 1f, 1f);
+      }
 
-    relicItems.Add(new Item(relicKey, 1));
+      relicItems.Add(new Item(relicKey, 1));
 
-    // TODO: though this sets a hero property given the relic effect value (a string), it's necessary to create a switch block to determine how
-    // this should happen given the effect type as well
-    this.GetType().GetField(Helpers.GetOrException(Objects.relicItems, relicKey).effect.value).SetValue(this, true);
+      // TODO: though this sets a hero property given the relic effect value (a string), it's necessary to create a switch block to determine how
+      // this should happen given the effect type as well
+      this.GetType().GetField(Helpers.GetOrException(Objects.relicItems, relicKey).effect.value).SetValue(this, true);
 
-    // modifies the area depending on if the relic involves light
-    if (relicKey == "royal-lamp") {
-      undergroundLight.SetActive(true);
-    } else if (relicKey == "dawn-gem") {
-      undergroundLight.SetActive(true);
-      undergroundLight.transform.localScale = new Vector2(6, 6);
-    } else if (relicKey == "sundrop") {
-      GameObject[] allDarknesses = GameObject.FindGameObjectsWithTag("Darkness");
+      // modifies the area depending on if the relic involves light
+      if (relicKey == "royal-lamp") {
+        undergroundLight.SetActive(true);
+      } else if (relicKey == "dawn-gem") {
+        undergroundLight.SetActive(true);
+        undergroundLight.transform.localScale = new Vector2(6, 6);
+      } else if (relicKey == "sundrop") {
+        GameObject[] allDarknesses = GameObject.FindGameObjectsWithTag("Darkness");
 
-      foreach (GameObject currDarkness in allDarknesses) {
-        if (currDarkness.activeSelf) {
-          currDarkness.SetActive(false);
+        foreach (GameObject currDarkness in allDarknesses) {
+          if (currDarkness.activeSelf) {
+            currDarkness.SetActive(false);
+          }
         }
       }
     }
