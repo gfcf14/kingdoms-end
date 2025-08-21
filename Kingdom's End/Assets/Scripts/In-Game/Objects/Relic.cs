@@ -48,7 +48,7 @@ public class Relic : MonoBehaviour {
       // gets a random point from the prefab above
       Vector2 sparklePosition = GetRandomPoint(rectangleCorners);
       // creates the sparkle as a child of the relic
-      GameObject sparkle = Instantiate(Helpers.GetOrException(Objects.prefabs, "sparkle"), transform);
+      GameObject sparkle = Instantiate(Helpers.GetOrException(Objects.prefabs, "sparkle"), transform.Find("RelicObject"));
 
       // since the random position of a sparkle is limited by an imaginary rectangle to the right of the relic's center, to
       // ensure these sparkles (up to 6) surround the relic each subsequent sparkle is rotated 60 degress, ensuring each sparkle
