@@ -19,8 +19,4 @@ public class Idler : MonoBehaviour {
       }
     }
   }
-
-  void FixedUpdate() {
-    enemy.CheckDeath();
-  }
 }

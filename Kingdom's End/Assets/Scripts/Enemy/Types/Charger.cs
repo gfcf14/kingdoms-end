@@ -34,8 +34,4 @@ public class Charger : MonoBehaviour {
       }
     }
   }
-
-  void FixedUpdate() {
-    enemy.CheckDeath();
-  }
 }

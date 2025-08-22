@@ -29,8 +29,4 @@ public class Exploder : MonoBehaviour {
       }
     }
   }
-
-  void FixedUpdate() {
-    enemy.CheckDeath();
-  }
 }

@@ -33,8 +33,4 @@ public class Bewitcher : MonoBehaviour {
       }
     }
   }
-
-  void FixedUpdate() {
-    enemy.CheckDeath();
-  }
 }

@@ -78,14 +78,6 @@ public class EnemyCollider : MonoBehaviour {
           enemy.Trigger(col);
         }
       }
-    } else {
-      if ((col.tag == "Floor" || col.tag == "Wall") && enemy.diesFlying) {
-        // if already dying, destroy on ground (wall) contact to avoid droppable spawn past wall (when enemy dies flying)
-        enemy.anim.speed = 0;
-        // move enemy a bit to the opposite direction to ensure droppable won't stick to the wall
-        enemy.transform.position = new Vector2(enemy.transform.position.x + ((enemy.enemyWidth / 8) * enemy.direction), enemy.transform.position.y);
-        enemy.Destroy();
-      }
     }
   }
 

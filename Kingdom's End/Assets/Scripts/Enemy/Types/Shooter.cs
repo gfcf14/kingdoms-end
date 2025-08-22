@@ -18,8 +18,4 @@ public class Shooter : MonoBehaviour {
       }
     }
   }
-
-  void FixedUpdate() {
-    enemy.CheckDeath();
-  }
 }

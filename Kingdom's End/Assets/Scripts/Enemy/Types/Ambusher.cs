@@ -31,8 +31,4 @@ public class Ambusher : MonoBehaviour {
       }
     }
   }
-
-  void FixedUpdate() {
-    enemy.CheckDeath();
-  }
 }

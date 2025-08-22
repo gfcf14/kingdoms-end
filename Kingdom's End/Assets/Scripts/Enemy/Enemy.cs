@@ -630,6 +630,17 @@ public class Enemy : MonoBehaviour {
     anim.SetTrigger("isDefending");
   }
 
+  public void PerformFlyingDeath() {
+    transform.Find("EnemyCollider").GetComponent<CapsuleCollider2D>().isTrigger = false;
+    transform.Find("Grounder").gameObject.SetActive(false);
+    body.velocity = Vector2.zero;
+    float horizontalDirection = -direction * (attackedFromBehind ? -1 : 1);
+
+    float deathMass = body.mass / (Helpers.IsValueInArray(Constants.smallEnemies, key) ? 2 : 5);
+    Vector2 deathForce = new Vector2(deathMass * horizontalDirection * 4, deathMass * 2.5f);
+    body.velocity = deathForce;
+  }
+
   public void DeathSequence() {
     if (!isBurning) {
       isDead = true;
@@ -638,7 +649,13 @@ public class Enemy : MonoBehaviour {
     isPoisoned = false;
     isStunned = false;
     isWalking = false;
-    body.velocity = Vector2.zero;
+
+    if (isDead && (!isBurning || !isDeadByBurning || !isDeadByPoison) && diesFlying) {
+      PerformFlyingDeath();
+    } else {
+      body.velocity = Vector2.zero;
+    }
+
     deadPosition = new Vector2(transform.position.x, transform.position.y);
 
     if (!isDeadByPoison) { // avoids getting double exp if attacking while dying from poison
@@ -1118,21 +1135,6 @@ public class Enemy : MonoBehaviour {
     }
   }
 
-  // TODO: this death method depends on an array of positions! Ensure it can be changed to allow for a function to handle the flying death position change
-  public void CheckDeath() {
-    if (Hero.instance.pauseCase == "") {
-      if (isDead && (!isBurning || !isDeadByBurning || !isDeadByPoison) && diesFlying) {
-        int index = deadAnimationIncrement;
-        float xIncrement = Constants.enemyDeathXTransitions[index >= Constants.enemyDeathXTransitions.Length ? Constants.enemyDeathXTransitions.Length - 1 : index];
-        float yIncrement = Constants.enemyDeathYTransitions[index >= Constants.enemyDeathYTransitions.Length ? Constants.enemyDeathYTransitions.Length - 1 : index];
-
-        transform.position = new Vector2(deadPosition.x + (xIncrement * (isFacingLeft ? -1 : 1) * (attackedFromBehind ? -1 : 1)), deadPosition.y + yIncrement);
-
-        deadAnimationIncrement++;
-      }
-    }
-  }
-
   public void CheckForPlayer(float forwardCastLength) {
     Vector2 forwardCast = new Vector2(transform.position.x + ((enemyWidth / 2) * direction), transform.position.y + enemyHeight / 2);
     RaycastHit2D searchCast = Physics2D.Raycast(forwardCast, forwardCastDirection, forwardCastLength);
@@ -1202,7 +1204,9 @@ public class Enemy : MonoBehaviour {
     if (ShouldMove()) {
       body.velocity = new Vector2(direction * (speed * (type == "charger" && isCharging ? 2 : 1)), body.velocity.y);
     } else {
-      body.velocity = Vector2.zero;
+      if (!isDead) {
+        body.velocity = Vector2.zero;
+      }
     }
   }
 

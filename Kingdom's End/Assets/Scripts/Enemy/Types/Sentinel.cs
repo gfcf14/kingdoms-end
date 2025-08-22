@@ -21,8 +21,4 @@ public class Sentinel : MonoBehaviour {
       }
     }
   }
-
-  void FixedUpdate() {
-    enemy.CheckDeath();
-  }
 }

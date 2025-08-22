@@ -29,8 +29,4 @@ public class Teleporter : MonoBehaviour {
       }
     }
   }
-
-  void FixedUpdate() {
-    enemy.CheckDeath();
-  }
 }
