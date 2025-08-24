@@ -43,7 +43,7 @@ public class Wall : MonoBehaviour {
             FrontBump();
           }
         }
-      } else if (colName == "DirectionCheck-Back" && !Hero.instance.isGrounded) { // implies a hero back collision with wall
+      } else if (colName == "DirectionCheck-Back" && !Hero.instance.isGrounded && Hero.instance.isHurt != 3) { // implies a hero back collision with wall when not slammed
         Debug.Log("bump from back");
         Hero.instance.Bump(bumpX: (-Hero.instance.heroWidth * Hero.instance.direction) / 4, 0, specificBlockDirection: Hero.instance.isFacingLeft ? "right" : "left");
       } else if (colName == "WeaponCollider" && Hero.instance.isDropKicking) {

@@ -9,11 +9,14 @@ public class DirectionCheck : MonoBehaviour {
     if (col.tag == "Floor" || col.tag == "Wall") {
       Hero.instance.SetCollisionDirection(direction, true);
 
-      // TODO: prepare an animation for when this happens (i.e. player gets "slammed" against the wall after a throwback)
-      if (direction == "back" && col.tag == "Wall") {
+      if (direction == "back" && col.tag == "Wall") { // starts the slam sequence
         if (Hero.instance.isHurt == 3) {
-          Debug.Log("throwback!");
+          Hero.instance.body.velocity = Vector2.zero;
+          Hero.instance.isSlammed = true;
+          Hero.instance.ModifyPosition(new Vector2(transform.position.x + ((Hero.instance.heroWidth * Hero.instance.direction) / 3), transform.position.y));
         }
+      } else if (direction == "bottom" && col.tag == "Floor" && Hero.instance.isFallingSlammed == true) { // transitions slam sequence from falling to recover
+        Hero.instance.isFallingSlammed = false;
       }
     }
   }

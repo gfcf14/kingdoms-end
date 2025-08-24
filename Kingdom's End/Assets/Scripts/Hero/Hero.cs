@@ -69,7 +69,9 @@ public class Hero : MonoBehaviour {
   public float throwbackHeight = 0;
 
   public int isHurt = 0;
-  public int hurtCounter = 0; // to increment/decrement position by mapping
+  public bool isSlammed = false;
+  public bool isFallingSlammed = false;
+  public bool isRecoveringFromSlam = false;
   public int isDead = 0;
 
   public bool isDefending = false;
@@ -988,8 +990,8 @@ public class Hero : MonoBehaviour {
           }
         }
 
-        // restricts horizontal input based on blocked direction due to bumping
-        if ((blockedDirection == "left" && horizontalInput < -Constants.inputThreshold) || (blockedDirection == "right" && horizontalInput > Constants.inputThreshold)) {
+        // restricts horizontal input based on blocked direction due to bumping or being slammed
+        if (isSlammed && isFallingSlammed && (blockedDirection == "left" && horizontalInput < -Constants.inputThreshold) || (blockedDirection == "right" && horizontalInput > Constants.inputThreshold)) {
           horizontalInput = 0;
         }
 
@@ -997,7 +999,7 @@ public class Hero : MonoBehaviour {
         if (!horizontalCollision && isHurt < 1) {
           if (!isDefending && !isParrying && !isClashing && isThrowing == 0) {
             // movement happens on this line
-            body.velocity = new Vector2(!isDropKicking ? horizontalInput * speed : 0, GetGroundVerticalModifier(groundType, horizontalInput * speed));
+            body.velocity = new Vector2(!isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? horizontalInput * speed : 0, GetGroundVerticalModifier(groundType, horizontalInput * speed));
           }
 
           // flip player back when moving right
@@ -1009,7 +1011,7 @@ public class Hero : MonoBehaviour {
             }
           }
           // flip player when moving left
-          else if (horizontalInput < -0.01f && (isGrounded || canFlipOnAir) && !isAttackingSingle) {
+          else if (horizontalInput < -0.01f && (isGrounded || canFlipOnAir) && !isAttackingSingle && !isSlammed && !isFallingSlammed) {
             FlipPlayer();
 
             if (!isDropKicking) {
@@ -1271,6 +1273,9 @@ public class Hero : MonoBehaviour {
     anim.SetBool("isParrying", isParrying);
     anim.SetBool("isClashing", isClashing);
     anim.SetBool("isCollidingWithCeiling", isCollidingWithCeiling);
+    anim.SetBool("isSlammed", isSlammed);
+    anim.SetBool("isFallingSlammed", isFallingSlammed);
+    anim.SetBool("isRecoveringFromSlam", isRecoveringFromSlam);
   }
 
   void FixedUpdate() {
@@ -1604,6 +1609,14 @@ public class Hero : MonoBehaviour {
 
     isGrounded = false;
     isFalling = true;
+
+    // TODO: this is for the odd case when a slam doesn't activate upon wall contact, so the player can move once on the ground
+    if (isSlammed || isFallingSlammed || isRecoveringFromSlam) {
+      isSlammed = false;
+      isFallingSlammed = false;
+      isRecoveringFromSlam = false;
+    }
+
     // TESTING FOR PROGRAMMATIC PLAY
     // anim.Play("falling-1", -1, 0f);
     DropDefense();
@@ -2240,5 +2253,20 @@ public class Hero : MonoBehaviour {
 
   public void ChangeArrowContainerSprite(bool clear = false) {
     transform.Find("ArrowContainer").GetComponent<SpriteRenderer>().sprite = clear ? null : Helpers.GetOrException(Sprites.arrows, projectileEquipment);
+  }
+
+  public void FinishSlam() {
+    isSlammed = false;
+    isFallingSlammed = true;
+  }
+
+  public void StartSlamRecover() {
+    isRecoveringFromSlam = true;
+  }
+
+  public void FinishSlamRecover() {
+    Debug.Log("this executes?");
+    isFallingSlammed = false;
+    isRecoveringFromSlam = false;
   }
 }
