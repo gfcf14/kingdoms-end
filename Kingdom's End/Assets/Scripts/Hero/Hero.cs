@@ -856,6 +856,7 @@ public class Hero : MonoBehaviour {
   public void PerformPortalTransport() {
     InGame.instance.actionCanvas.SetActive(false);
     transform.position = transportLocation;
+    // TODO: define transport location by means of a list so the order can be sequential
     transportLocation = Vector2.zero;
     InGame.instance.FlashFadeIn();
   }
@@ -1284,30 +1285,6 @@ public class Hero : MonoBehaviour {
           body.velocity = new Vector2(speed * bossTransitionDirection, 0);
         }
       }
-    } else {
-      if (isHurt == 2 && isGrounded) {
-        float xIncrement = hurtCounter >= Constants.HurtBTransitions.Length ? 0 : Constants.HurtBTransitions[hurtCounter];
-        transform.position = new Vector2(transform.position.x + ((isFacingLeft ? 1 : -1) * xIncrement * (hurtFromBehind ? -1 : 1)), currentYPosition);
-        hurtCounter++;
-      }
-
-      if (isHurt == 3 && currentHP > 0) {
-        if (body.gravityScale == 1) {
-          body.gravityScale = 0;
-        }
-
-        if (body.interpolation == RigidbodyInterpolation2D.Interpolate) {
-          body.interpolation = RigidbodyInterpolation2D.Extrapolate;
-        }
-
-        float xIncrement =  Constants.hurtCXTransitions[hurtCounter >= Constants.hurtCXTransitions.Length ? Constants.hurtCXTransitions.Length - 1 : hurtCounter];
-        float yIncrement =  Constants.hurtCYTransitions[hurtCounter >= Constants.hurtCYTransitions.Length ? Constants.hurtCYTransitions.Length - 1 : hurtCounter];
-
-        // TODO: weird position change happens here! ensure to check what causes it
-        transform.position = new Vector2(currentXPosition + (xIncrement * direction * (hurtFromBehind ? -1 : 1)), currentYPosition + yIncrement);
-
-        hurtCounter++;
-      }
     }
   }
 
@@ -1408,15 +1385,14 @@ public class Hero : MonoBehaviour {
   void PlayerHurt(int hurtLevel) {
     body.velocity = Vector2.zero;
     isHurt = hurtLevel;
-    hurtCounter = 0;
 
-    if (hurtLevel > 1) {
-      currentXPosition = transform.position.x;
-      currentYPosition = transform.position.y;
-    }
-
-    if (hurtLevel == 3) {
-      throwbackHeight = 2f;
+    switch (hurtLevel) {
+      case 2: // pushed away (in ground)
+        body.velocity = new Vector2(2 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 0);
+      break;
+      case 3: // thrown back (air "parabola")
+        body.velocity = new Vector2(6 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 2 * hurtLevel);
+      break;
     }
   }
 
@@ -1485,7 +1461,6 @@ public class Hero : MonoBehaviour {
 
   public void Recover() {
     isHurt = 0;
-    hurtCounter = 0;
     body.gravityScale = 1;
     body.interpolation = RigidbodyInterpolation2D.Interpolate;
   }
