@@ -15,8 +15,13 @@ public class DirectionCheck : MonoBehaviour {
           Hero.instance.isSlammed = true;
           Hero.instance.ModifyPosition(new Vector2(transform.position.x + ((Hero.instance.heroWidth * Hero.instance.direction) / 3), transform.position.y));
         }
-      } else if (direction == "bottom" && col.tag == "Floor" && Hero.instance.isFallingSlammed == true) { // transitions slam sequence from falling to recover
-        Hero.instance.isFallingSlammed = false;
+      } else if (direction == "bottom" && col.tag == "Floor") {
+        if (Hero.instance.isFallingSlammed == true) { // transitions slam sequence from falling to recover
+          Hero.instance.isFallingSlammed = false;
+        } else if (Hero.instance.currentHP == 0) { // starts the dead throwback animation
+          Hero.instance.ClearInvulnerability();
+          Hero.instance.isDead = 2;
+        }
       }
     }
   }

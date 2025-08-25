@@ -1186,9 +1186,7 @@ public class Hero : MonoBehaviour {
         // }
 
         if (isDead == 2) {
-          if (!isGrounded) {
-            body.velocity = new Vector2(-body.velocity.x + (jumpHeight * (isFacingLeft ? 2 : -2)), -(float)jumpHeight);
-          } else {
+          if (isGrounded) {
             body.velocity = Vector2.zero;
           }
         }
@@ -1956,7 +1954,12 @@ public class Hero : MonoBehaviour {
         if (currentHP > 0) {
           PlayerHurt(isGrounded ? 2 : 3);
         } else {
-          PlayerDying(isGrounded);
+          if (isGrounded) {
+            PlayerDying(isGrounded);
+          } else {
+            // when dying while on air, a throwback sequence would execute, deciding towards its end how the player shows their death
+            PlayerHurt(3);
+          }
         }
       } else {
         if (isDefending) {
@@ -2258,6 +2261,10 @@ public class Hero : MonoBehaviour {
   public void FinishSlam() {
     isSlammed = false;
     isFallingSlammed = true;
+
+    if (currentHP == 0) {
+      isDead = 1;
+    }
   }
 
   public void StartSlamRecover() {
@@ -2265,7 +2272,6 @@ public class Hero : MonoBehaviour {
   }
 
   public void FinishSlamRecover() {
-    Debug.Log("this executes?");
     isFallingSlammed = false;
     isRecoveringFromSlam = false;
   }
