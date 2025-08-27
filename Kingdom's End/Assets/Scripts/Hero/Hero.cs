@@ -16,6 +16,8 @@ public class Hero : MonoBehaviour {
   [SerializeField] public string tempGroundType = "";
   [SerializeField] public float inclineSlope = 0.125f;
   [SerializeField] public float jumpHeight = GameData.playerJumpHeight;
+  [SerializeField] public float moveFriction = GameData.playerMovementFriction;
+  [SerializeField] public float moveSpeed = GameData.playerMovementSpeed;
   [SerializeField] private float jetpackHeight;
 
   [SerializeField] public GameObject mpBarContainer;
@@ -998,8 +1000,10 @@ public class Hero : MonoBehaviour {
         // x axis movement
         if (!horizontalCollision && isHurt < 1) {
           if (!isDefending && !isParrying && !isClashing && isThrowing == 0) {
+            float xMovement = moveFriction > 0 ? Mathf.Lerp(horizontalInput, speed * moveSpeed * direction, moveFriction) : horizontalInput * speed * moveSpeed;
+
             // movement happens on this line
-            body.velocity = new Vector2(!isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? horizontalInput * speed : 0, GetGroundVerticalModifier(groundType, horizontalInput * speed));
+            body.velocity = new Vector2(!isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? xMovement : 0, GetGroundVerticalModifier(groundType, horizontalInput * speed));
           }
 
           // flip player back when moving right
@@ -1683,11 +1687,19 @@ public class Hero : MonoBehaviour {
       ZoneSpecs currZoneSpecs = Helpers.GetOrException(Objects.zoneSpecs, zoneScript.type);
 
       if (currZoneSpecs.jumpHeight != null) {
-        jumpHeight = (float) currZoneSpecs.jumpHeight;
+        jumpHeight = (float)currZoneSpecs.jumpHeight;
       }
 
       if (currZoneSpecs.animSpeed != null) {
-        anim.speed = (float) currZoneSpecs.animSpeed;
+        anim.speed = (float)currZoneSpecs.animSpeed;
+      }
+
+      if (currZoneSpecs.moveSpeed != null) {
+        moveSpeed = (float)currZoneSpecs.moveSpeed;
+      }
+
+      if (currZoneSpecs.moveFriction != null) {
+        moveFriction = (float)currZoneSpecs.moveFriction;
       }
     } else if (colTag == "DamageExplosion") {
       Explosion currentExplosion = col.gameObject.GetComponent<Explosion>();
@@ -1715,6 +1727,8 @@ public class Hero : MonoBehaviour {
       if (!Helpers.Intersects(heroCollider, col.gameObject.GetComponent<PolygonCollider2D>())) {
         jumpHeight = GameData.playerJumpHeight;
         anim.speed = 1;
+        moveSpeed = GameData.playerMovementSpeed;
+        moveFriction = GameData.playerMovementFriction;
       }
     }
   }

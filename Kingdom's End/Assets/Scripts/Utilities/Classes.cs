@@ -205,8 +205,10 @@ public class ThrowableSpecs {
 }
 
 public class ZoneSpecs {
-  public float? animSpeed;
-  public float? jumpHeight;
+  public float? animSpeed; // how fast the player changes frames in an animation
+  public float? jumpHeight; // how high the player jumps
+  public float? moveFriction; // how fast the player stops moving
+  public float? moveSpeed; // how fast the player moves
 }
 
 public class AreaGradients {

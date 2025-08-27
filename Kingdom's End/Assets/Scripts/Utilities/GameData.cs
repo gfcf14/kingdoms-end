@@ -27,6 +27,8 @@ public class GameData {
   public static float mainCameraY = 12.5f;
 
   public static float playerJumpHeight = 8f;
+  public static float playerMovementFriction = 0;
+  public static float playerMovementSpeed = 1;
 
   public static float playerX = -124;
   public static float playerY = 0;
