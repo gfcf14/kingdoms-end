@@ -1,14 +1,15 @@
+using System;
 using UnityEngine;
 
 public class ArrowBurn : MonoBehaviour {
   private Animator anim;
   private SpriteRenderer spriteRenderer;
 
-  [System.NonSerialized] public float startTime;
-  [System.NonSerialized] float maxBurnDuration = 3000f;
-  [System.NonSerialized] float arrowBurnX = 0;
-  [System.NonSerialized] float arrowBurnY = 0;
-  [System.NonSerialized] public bool isFinished;
+  [NonSerialized] public float startTime;
+  [NonSerialized] float maxBurnDuration = 3000f;
+  [NonSerialized] float arrowBurnX = 0;
+  [NonSerialized] float arrowBurnY = 0;
+  [NonSerialized] public bool isFinished;
   [SerializeField] public Vector2 burnDimensions;
 
   private AudioSource audioSource;

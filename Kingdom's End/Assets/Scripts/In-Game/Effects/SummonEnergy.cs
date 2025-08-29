@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SummonEnergy : MonoBehaviour {
-  [System.NonSerialized] Animator anim;
-  [System.NonSerialized] public GameObject parent;
+  [NonSerialized] Animator anim;
+  [NonSerialized] public GameObject parent;
   [SerializeField] public string summonKey;
 
   [SerializeField] public string enemyType;

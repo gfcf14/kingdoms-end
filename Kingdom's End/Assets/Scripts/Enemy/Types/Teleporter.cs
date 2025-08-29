@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour {
@@ -7,7 +8,7 @@ public class Teleporter : MonoBehaviour {
   // Raycast properties
     public float forwardCastLength = 2f;
 
-  [System.NonSerialized] public float teleporterReach;
+  [NonSerialized] public float teleporterReach;
   void Start() {
     enemy = GetComponent<Enemy>();
     teleporterReach = enemy.reach * 3;

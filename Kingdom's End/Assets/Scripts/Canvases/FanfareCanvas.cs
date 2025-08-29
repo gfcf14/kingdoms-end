@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class FanfareCanvas : MonoBehaviour {
   [SerializeField] GameObject textObject;
-  [System.NonSerialized] float displaySeconds = 2f;
+  [NonSerialized] float displaySeconds = 2f;
   void Start() {}
 
   void Update() {}

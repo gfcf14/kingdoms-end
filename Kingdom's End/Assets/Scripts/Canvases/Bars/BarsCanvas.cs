@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -16,10 +17,10 @@ public class BarsCanvas : MonoBehaviour {
   [SerializeField] GameObject mpBarContainer;
   [SerializeField] bool mpBarDisplaying = false;
 
-  [System.NonSerialized] int currentHPWidth = -1;
-  [System.NonSerialized] int currentMPWidth = -1;
-  [System.NonSerialized] int maxHPWidth = -1;
-  [System.NonSerialized] int maxMPWidth = -1;
+  [NonSerialized] int currentHPWidth = -1;
+  [NonSerialized] int currentMPWidth = -1;
+  [NonSerialized] int maxHPWidth = -1;
+  [NonSerialized] int maxMPWidth = -1;
 
   void Start() {}
   void Update() {

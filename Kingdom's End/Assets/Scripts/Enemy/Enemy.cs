@@ -18,70 +18,70 @@ public class Enemy : MonoBehaviour {
     [SerializeField] public bool isMiniBoss = false;
 
   // Components
-    [System.NonSerialized] public Animator anim;
-    [System.NonSerialized] private SimpleFlash flashEffect;
-    [System.NonSerialized] public Rigidbody2D body;
-    [System.NonSerialized] public SpriteRenderer enemyRenderer;
+    [NonSerialized] public Animator anim;
+    [NonSerialized] private SimpleFlash flashEffect;
+    [NonSerialized] public Rigidbody2D body;
+    [NonSerialized] public SpriteRenderer enemyRenderer;
 
     private AudioSource audioSource;
 
   // Properties
-    [System.NonSerialized] public bool isFacingLeft = false;
-    [System.NonSerialized] public bool needsCoolDown = false;
-    [System.NonSerialized] public bool diesFlying = false;
-    [System.NonSerialized] public bool isFlyingEnemy = false;
+    [NonSerialized] public bool isFacingLeft = false;
+    [NonSerialized] public bool needsCoolDown = false;
+    [NonSerialized] public bool diesFlying = false;
+    [NonSerialized] public bool isFlyingEnemy = false;
 
-    [System.NonSerialized] public float arrowBurnPosition = 0;
-    [System.NonSerialized] public float attackedStart = 0;
-    [System.NonSerialized] public float burnTime = 0;
-    [System.NonSerialized] public float consecutiveAttackTime = 5000;
-    [System.NonSerialized] public float coolDownStart = 0;
-    [System.NonSerialized] public float coolDownTime = 750;
-    [System.NonSerialized] public float enemyHeight = 0f;
-    [System.NonSerialized] public float enemyWidth = 0f;
-    [System.NonSerialized] public float edgeCastLength = 0;
-    [System.NonSerialized] public float poisonEffectTime = 0;
-    [System.NonSerialized] public float poisonTime = 0;
-
-
-    [System.NonSerialized] public int deadAnimationIncrement = 0;
-    [System.NonSerialized] public int poisonAttackCounter = 1;
+    [NonSerialized] public float arrowBurnPosition = 0;
+    [NonSerialized] public float attackedStart = 0;
+    [NonSerialized] public float burnTime = 0;
+    [NonSerialized] public float consecutiveAttackTime = 5000;
+    [NonSerialized] public float coolDownStart = 0;
+    [NonSerialized] public float coolDownTime = 750;
+    [NonSerialized] public float enemyHeight = 0f;
+    [NonSerialized] public float enemyWidth = 0f;
+    [NonSerialized] public float edgeCastLength = 0;
+    [NonSerialized] public float poisonEffectTime = 0;
+    [NonSerialized] public float poisonTime = 0;
 
 
-    [System.NonSerialized] string[] elementResistances;
+    [NonSerialized] public int deadAnimationIncrement = 0;
+    [NonSerialized] public int poisonAttackCounter = 1;
+
+
+    [NonSerialized] string[] elementResistances;
 
 
     public Color enemyColor;
 
 
-    [System.NonSerialized] public Vector2 deadPosition;
+    [NonSerialized] public Vector2 deadPosition;
 
 
-    [System.NonSerialized] public float burningDuration = 3000;
-    [System.NonSerialized] public float distanceToPlayer;
-    [System.NonSerialized] public float poisonAttackInterval = 600;
-    [System.NonSerialized] public float poisonEffectDuration = 50;
-    [System.NonSerialized] public float reach;
-    [System.NonSerialized] public float defenseReach;
-    [System.NonSerialized] public float longReach;
-    [System.NonSerialized] public float speed;
+    [NonSerialized] public float burningDuration = 3000;
+    [NonSerialized] public float distanceToPlayer;
+    [NonSerialized] public float poisonAttackInterval = 600;
+    [NonSerialized] public float poisonEffectDuration = 50;
+    [NonSerialized] public float reach;
+    [NonSerialized] public float defenseReach;
+    [NonSerialized] public float longReach;
+    [NonSerialized] public float speed;
 
-    [System.NonSerialized] public int attacksReceived = 0;
-    [System.NonSerialized] public int attackRetaliationCounter = 3;
-    [System.NonSerialized] public int exp;
-    [System.NonSerialized] public int maxPoisonAttacks = 3;
-    [System.NonSerialized] public int maxThrows = 3;
-    [System.NonSerialized] public int maxThrowCounter = 0;
+    [NonSerialized] public int attacksReceived = 0;
+    [NonSerialized] public int attackRetaliationCounter = 3;
+    [NonSerialized] public int exp;
+    [NonSerialized] public int maxPoisonAttacks = 3;
+    [NonSerialized] public int maxThrows = 3;
+    [NonSerialized] public int maxThrowCounter = 0;
 
 
-    [System.NonSerialized] public string enemyName;
-    [System.NonSerialized] public string type;
-    [System.NonSerialized] public string baseMaterial;
-    [System.NonSerialized] public string normalAttackType;
+    [NonSerialized] public string enemyName;
+    [NonSerialized] public string type;
+    [NonSerialized] public string baseMaterial;
+    [NonSerialized] public string normalAttackType;
 
   // Game Properties
-    [System.NonSerialized] public bool attackedFromBehind = false;
-    [System.NonSerialized] public bool gaveExp = false;
+    [NonSerialized] public bool attackedFromBehind = false;
+    [NonSerialized] public bool gaveExp = false;
     [SerializeField] public bool isAttacking = false;
     [SerializeField] public bool isAttackingMelee = false;
     [SerializeField] public bool isBurning = false;
@@ -115,11 +115,11 @@ public class Enemy : MonoBehaviour {
     bool isSmallEnemy = false;
 
   // Player Related Properties
-    [System.NonSerialized] public bool playerFound = false;
-    [System.NonSerialized] SpriteRenderer weaponSpriteRenderer;
+    [NonSerialized] public bool playerFound = false;
+    [NonSerialized] SpriteRenderer weaponSpriteRenderer;
     [SerializeField] public GameObject spawnedFrom;
 
-    [System.NonSerialized] GameObject extra;
+    [NonSerialized] GameObject extra;
 
     Vector2 forwardCastDirection;
     public float wanderStart = 0;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -5,8 +6,8 @@ public class BarDecrement : MonoBehaviour {
   [SerializeField] public int width;
   [SerializeField] public string type;
 
-  [System.NonSerialized] public RectTransform rect;
-  [System.NonSerialized] public float barHeight;
+  [NonSerialized] public RectTransform rect;
+  [NonSerialized] public float barHeight;
   void Start() {
     rect = GetComponent<RectTransform>();
 

@@ -11,7 +11,7 @@ namespace WorldTime {
     // [SerializeField] string currentTime;
     // [SerializeField] float currentGradientPercentage;
 
-    // [System.NonSerialized] public Hero hero;
+    // [NonSerialized] public Hero hero;
     // private Light2D light;
 
     void Awake() {

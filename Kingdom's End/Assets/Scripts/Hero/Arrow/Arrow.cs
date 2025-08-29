@@ -1,30 +1,31 @@
+using System;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour {
   private SpriteRenderer objectRenderer;
 
-  [System.NonSerialized] public Rigidbody2D body;
+  [NonSerialized] public Rigidbody2D body;
 
-  [System.NonSerialized] public GameObject arrowCollider;
+  [NonSerialized] public GameObject arrowCollider;
 
-  [System.NonSerialized] public GameObject extraSprite;
+  [NonSerialized] public GameObject extraSprite;
 
-  [System.NonSerialized] public bool isFacingLeft;
-  [System.NonSerialized] public bool hasCollided = false;
-  [System.NonSerialized] public bool hasFired = false;
-  [System.NonSerialized] public float startX;
-  [System.NonSerialized] public float startY;
-  [System.NonSerialized] public float collideTime;
-  [System.NonSerialized] public float maxEllapsedCollideTime = 1500f;
+  [NonSerialized] public bool isFacingLeft;
+  [NonSerialized] public bool hasCollided = false;
+  [NonSerialized] public bool hasFired = false;
+  [NonSerialized] public float startX;
+  [NonSerialized] public float startY;
+  [NonSerialized] public float collideTime;
+  [NonSerialized] public float maxEllapsedCollideTime = 1500f;
 
-  [System.NonSerialized] public string type;
+  [NonSerialized] public string type;
 
-  [System.NonSerialized] private Vector2 initialPosition;
-  [System.NonSerialized] public float speed = 50f;
-  [System.NonSerialized] public float steepness = 4500f;
-  [System.NonSerialized] public float hDisplacement = 1f;
-  [System.NonSerialized] public float maxHeight = 5f;
-  [System.NonSerialized] public int directionFactor = 0;
+  [NonSerialized] private Vector2 initialPosition;
+  [NonSerialized] public float speed = 50f;
+  [NonSerialized] public float steepness = 4500f;
+  [NonSerialized] public float hDisplacement = 1f;
+  [NonSerialized] public float maxHeight = 5f;
+  [NonSerialized] public int directionFactor = 0;
 
   void Start() {
     body = GetComponent<Rigidbody2D>();

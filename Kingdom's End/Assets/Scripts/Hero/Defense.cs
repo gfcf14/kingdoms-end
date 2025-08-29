@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 
 public class Defense : MonoBehaviour {
-  [System.NonSerialized] public bool isFacingLeft;
+  [NonSerialized] public bool isFacingLeft;
 
   void Start() {
     transform.localScale = new Vector3(isFacingLeft ? -1 : 1, 1, 1);

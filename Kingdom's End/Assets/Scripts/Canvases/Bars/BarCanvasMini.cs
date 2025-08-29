@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -5,10 +6,10 @@ public class BarCanvasMini : MonoBehaviour {
   [SerializeField] GameObject hpObject;
   [SerializeField] GameObject mpObject;
 
-  [System.NonSerialized] int hp = -1;
-  [System.NonSerialized] int hpDifference = 0;
-  [System.NonSerialized] int mp = -1;
-  [System.NonSerialized] int mpDifference = 0;
+  [NonSerialized] int hp = -1;
+  [NonSerialized] int hpDifference = 0;
+  [NonSerialized] int mp = -1;
+  [NonSerialized] int mpDifference = 0;
 
   void Start() {
     hp = Hero.instance.currentHP;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyBomb : MonoBehaviour {
@@ -5,7 +6,7 @@ public class EnemyBomb : MonoBehaviour {
   [SerializeField] public bool wasKickedBack = false;
   [SerializeField] public Enemy dropper;
   [SerializeField] public Hero hero;
-  [System.NonSerialized] private Rigidbody2D body;
+  [NonSerialized] private Rigidbody2D body;
   void Start() {
     body = GetComponent<Rigidbody2D>();
   }

@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 public class ArrowCollider : MonoBehaviour {
-  [System.NonSerialized] GameObject parentObject;
-  [System.NonSerialized] Arrow parentArrow;
+  [NonSerialized] GameObject parentObject;
+  [NonSerialized] Arrow parentArrow;
 
   void Start() {
     parentObject = transform.parent.gameObject;

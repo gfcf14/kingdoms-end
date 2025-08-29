@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SmashWave : MonoBehaviour {
-  [System.NonSerialized] public float width;
-  [System.NonSerialized] public int damage;
-  [System.NonSerialized] public bool hitPlayer = false;
+  [NonSerialized] public float width;
+  [NonSerialized] public int damage;
+  [NonSerialized] public bool hitPlayer = false;
 
   void Start() {
     GetComponent<SpriteRenderer>().size = new Vector2(width, width * 0.8f);

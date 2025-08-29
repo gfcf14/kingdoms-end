@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityRandom = UnityEngine.Random;
 
 public class Droppable : MonoBehaviour {
   [SerializeField] public string key;
@@ -14,15 +16,15 @@ public class Droppable : MonoBehaviour {
   [SerializeField] public bool isIdle = false;
   [SerializeField] public bool isFlickering = false;
   [SerializeField] public int collisionCounter = 0;
-  [System.NonSerialized] MoneyItem moneyItem;
-  [System.NonSerialized] public float timer = 0;
-  [System.NonSerialized] public float maxIdleTime = 10000;
-  [System.NonSerialized] public float maxFlickerTime = 5000;
-  [System.NonSerialized] public Flicker flickerEffect;
-  [System.NonSerialized] SpriteRenderer droppableSprite;
-  [System.NonSerialized] Rigidbody2D body;
-  [System.NonSerialized] Sprite spriteHolder;
-  [System.NonSerialized] CircleCollider2D droppableCollider;
+  [NonSerialized] MoneyItem moneyItem;
+  [NonSerialized] public float timer = 0;
+  [NonSerialized] public float maxIdleTime = 10000;
+  [NonSerialized] public float maxFlickerTime = 5000;
+  [NonSerialized] public Flicker flickerEffect;
+  [NonSerialized] SpriteRenderer droppableSprite;
+  [NonSerialized] Rigidbody2D body;
+  [NonSerialized] Sprite spriteHolder;
+  [NonSerialized] CircleCollider2D droppableCollider;
   [SerializeField] public GameObject spawnedFrom;
 
   private AudioSource audioSource;
@@ -35,7 +37,7 @@ public class Droppable : MonoBehaviour {
 
   public int directionFactor = 0;
 
-  [System.NonSerialized] public float riseVelocity = 2f;
+  [NonSerialized] public float riseVelocity = 2f;
 
   public bool isRising = true;
 
@@ -48,7 +50,7 @@ public class Droppable : MonoBehaviour {
     body.gravityScale = 0;
 
     directionFactor = rotateDirection == "east" ? 1 : -1;
-    parabolaConstant = Random.Range(0, 3) + 2; // gets a number between 2 and 4, inclusively
+    parabolaConstant = UnityRandom.Range(0, 3) + 2; // gets a number between 2 and 4, inclusively
 
     if (rotateDirection != "") {
       isRising = false;

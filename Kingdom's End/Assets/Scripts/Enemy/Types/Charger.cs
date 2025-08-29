@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Charger : MonoBehaviour {
@@ -6,7 +7,7 @@ public class Charger : MonoBehaviour {
 
   // Raycast properties
     public float forwardCastLength = 10f;
-    [System.NonSerialized] public float chargerReach;
+    [NonSerialized] public float chargerReach;
   void Start() {
     enemy = GetComponent<Enemy>();
     chargerReach = enemy.reach * 10;

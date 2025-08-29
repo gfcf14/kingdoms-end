@@ -5,7 +5,7 @@ public class Interactable : MonoBehaviour {
   [SerializeField] public bool isFacingLeft = true;
   [SerializeField] public string item;
   [SerializeField] public string itemRarity;
-  [System.NonSerialized] public bool isOpen = false;
+  [NonSerialized] public bool isOpen = false;
   private Animator anim;
   private Chest chest;
   private SpriteRenderer spriteRenderer;

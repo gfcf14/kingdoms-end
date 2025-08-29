@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
@@ -6,8 +7,8 @@ public class IntroCanvas : MonoBehaviour {
   [SerializeField] public GameObject background;
   [SerializeField] public GameObject fader;
 
-  [System.NonSerialized] Animator faderAnimator;
-  [System.NonSerialized] AudioSource audioSource;
+  [NonSerialized] Animator faderAnimator;
+  [NonSerialized] AudioSource audioSource;
 
   private AudioClip[] audioClips = new AudioClip[2];
   private bool hasSkipped = false;

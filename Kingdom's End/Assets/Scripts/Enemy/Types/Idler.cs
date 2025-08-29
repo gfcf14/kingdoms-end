@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Idler : MonoBehaviour {
   // Components
     Enemy enemy;
-    [System.NonSerialized] public float idleReach;
+    [NonSerialized] public float idleReach;
 
   void Start() {
     enemy = GetComponent<Enemy>();

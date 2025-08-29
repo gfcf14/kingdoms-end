@@ -1,10 +1,11 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class DamageContainer : MonoBehaviour {
-  [System.NonSerialized] public int damage;
-  [System.NonSerialized] public bool isCritical;
-  [System.NonSerialized] public string soundType;
+  [NonSerialized] public int damage;
+  [NonSerialized] public bool isCritical;
+  [NonSerialized] public string soundType;
 
   private AudioSource audioSource;
   private bool mustDestroy = false;

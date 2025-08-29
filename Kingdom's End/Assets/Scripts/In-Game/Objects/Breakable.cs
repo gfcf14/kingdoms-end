@@ -13,7 +13,7 @@ public class Breakable : MonoBehaviour {
 
   [SerializeField] public bool isGrounded;
   [SerializeField] public bool isFalling = false;
-  [System.NonSerialized] public bool isBreaking = false;
+  [NonSerialized] public bool isBreaking = false;
 
   private float soundLength = 0;
   private Animator anim;

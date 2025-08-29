@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,8 @@ public class InfoCanvas : MonoBehaviour {
   [SerializeField] GameObject enemyHPBackground;
   [SerializeField] GameObject enemyHPForeground;
 
-  [System.NonSerialized] float maxDisplayTime = 2000;
-  [System.NonSerialized] public float startTime = 0;
+  [NonSerialized] float maxDisplayTime = 2000;
+  [NonSerialized] public float startTime = 0;
 
   private HorizontalLayoutGroup infoLayout;
   private RectTransform infoRect;

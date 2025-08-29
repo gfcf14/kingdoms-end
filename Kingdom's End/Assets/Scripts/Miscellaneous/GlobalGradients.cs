@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -19,8 +20,8 @@ public class GlobalGradients : MonoBehaviour {
   [SerializeField] public Tilemap buildingsFrontTilemap;
   [SerializeField] public Tilemap overlaysTilemap;
 
-  [System.NonSerialized] public Tilemap savePointTilemap;
-  [System.NonSerialized] public Tilemap teleportPointTilemap;
+  [NonSerialized] public Tilemap savePointTilemap;
+  [NonSerialized] public Tilemap teleportPointTilemap;
 
   [SerializeField] public string area = "";
 
@@ -102,10 +103,10 @@ public class GlobalGradients : MonoBehaviour {
   [SerializeField] Gradient wastelandBuildingsGradient;
   [Space(10)]
 
-  [System.NonSerialized] private Dictionary<string, Dictionary<string, Gradient>> areaGradients;
-  [System.NonSerialized] private Color resetColor = Color.white;
+  [NonSerialized] private Dictionary<string, Dictionary<string, Gradient>> areaGradients;
+  [NonSerialized] private Color resetColor = Color.white;
 
-  [System.NonSerialized] public bool shouldPaintOutsideArea = true;
+  [NonSerialized] public bool shouldPaintOutsideArea = true;
 
   public bool canUpdateGradients = false;
 

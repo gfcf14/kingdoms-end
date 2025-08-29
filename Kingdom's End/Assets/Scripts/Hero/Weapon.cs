@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour {
   private AudioSource audioSource;
-  [System.NonSerialized] public List<GameObject> triggeredObjects = new List<GameObject>();
+  [NonSerialized] public List<GameObject> triggeredObjects = new List<GameObject>();
 
   void Start() {
     audioSource = transform.parent.gameObject.GetComponent<AudioSource>();

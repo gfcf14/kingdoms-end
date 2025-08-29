@@ -212,88 +212,88 @@ public class Pause : MonoBehaviour {
   [SerializeField] public static EventSystem eventSystem;
   [Space(10)]
 
-  [System.NonSerialized] bool hasGamepad = false;
+  [NonSerialized] bool hasGamepad = false;
 
   // variables to keep track of stats
-  [System.NonSerialized] string bodyEquipment = "";
-  [System.NonSerialized] int playerLevel = -1;
-  [System.NonSerialized] int currentHP = -1;
-  [System.NonSerialized] int maxHP = -1;
-  [System.NonSerialized] int currentMP = -1;
-  [System.NonSerialized] int maxMP = -1;
-  [System.NonSerialized] string status = "";
-  [System.NonSerialized] int exp = -1;
-  [System.NonSerialized] int next = -1;
-  [System.NonSerialized] int gold = -1;
-  [System.NonSerialized] int strength = -1;
-  [System.NonSerialized] int stamina = -1;
-  [System.NonSerialized] int atk1 = -1;
-  [System.NonSerialized] int atk2 = -1;
-  [System.NonSerialized] int def1 = -1;
-  [System.NonSerialized] int def2 = -1;
-  [System.NonSerialized] float luckPercentage = -0.1f;
-  [System.NonSerialized] float criticalPercentage = -0.1f;
+  [NonSerialized] string bodyEquipment = "";
+  [NonSerialized] int playerLevel = -1;
+  [NonSerialized] int currentHP = -1;
+  [NonSerialized] int maxHP = -1;
+  [NonSerialized] int currentMP = -1;
+  [NonSerialized] int maxMP = -1;
+  [NonSerialized] string status = "";
+  [NonSerialized] int exp = -1;
+  [NonSerialized] int next = -1;
+  [NonSerialized] int gold = -1;
+  [NonSerialized] int strength = -1;
+  [NonSerialized] int stamina = -1;
+  [NonSerialized] int atk1 = -1;
+  [NonSerialized] int atk2 = -1;
+  [NonSerialized] int def1 = -1;
+  [NonSerialized] int def2 = -1;
+  [NonSerialized] float luckPercentage = -0.1f;
+  [NonSerialized] float criticalPercentage = -0.1f;
 
-  [System.NonSerialized] string magicResistances = " ";
+  [NonSerialized] string magicResistances = " ";
 
   // variables to keep track of preferences
-  [System.NonSerialized] string preferredInputString = "";
-  [System.NonSerialized] string jumpKeyboardString = "";
-  [System.NonSerialized] string jumpGamepadString = "";
-  [System.NonSerialized] string atk1KeyboardString = "";
-  [System.NonSerialized] string atk1GamepadString = "";
-  [System.NonSerialized] string atk2KeyboardString = "";
-  [System.NonSerialized] string atk2GamepadString = "";
-  [System.NonSerialized] string actionKeyboardString = "";
-  [System.NonSerialized] string actionGamepadString = "";
+  [NonSerialized] string preferredInputString = "";
+  [NonSerialized] string jumpKeyboardString = "";
+  [NonSerialized] string jumpGamepadString = "";
+  [NonSerialized] string atk1KeyboardString = "";
+  [NonSerialized] string atk1GamepadString = "";
+  [NonSerialized] string atk2KeyboardString = "";
+  [NonSerialized] string atk2GamepadString = "";
+  [NonSerialized] string actionKeyboardString = "";
+  [NonSerialized] string actionGamepadString = "";
 
   // variables to keep track of equipment
-  [System.NonSerialized] string bodyEquipmentKey = "";
-  [System.NonSerialized] string arm1EquipmentKey = "";
-  [System.NonSerialized] string arm2EquipmentKey = "";
-  [System.NonSerialized] string neckEquipmentKey = "";
-  [System.NonSerialized] string armwear1EquipmentKey = "";
-  [System.NonSerialized] string armwear2EquipmentKey = "";
-  [System.NonSerialized] string ring1EquipmentKey = "";
-  [System.NonSerialized] string ring2EquipmentKey = "";
+  [NonSerialized] string bodyEquipmentKey = "";
+  [NonSerialized] string arm1EquipmentKey = "";
+  [NonSerialized] string arm2EquipmentKey = "";
+  [NonSerialized] string neckEquipmentKey = "";
+  [NonSerialized] string armwear1EquipmentKey = "";
+  [NonSerialized] string armwear2EquipmentKey = "";
+  [NonSerialized] string ring1EquipmentKey = "";
+  [NonSerialized] string ring2EquipmentKey = "";
 
   // current mapping button
-  [System.NonSerialized] public static string currentlyMapping = "";
+  [NonSerialized] public static string currentlyMapping = "";
   // current pause status (to match with canvas display)
-  [System.NonSerialized] public static string canvasStatus = "main";
+  [NonSerialized] public static string canvasStatus = "main";
   // items list for added item buttons
-  [System.NonSerialized] public List<GameObject> itemButtons = new List<GameObject>();
+  [NonSerialized] public List<GameObject> itemButtons = new List<GameObject>();
   // current index to display info
-  [System.NonSerialized] public int currentItemButtonIndex = -1;
+  [NonSerialized] public int currentItemButtonIndex = -1;
   // tracks the previously selected game button to return to after equipping or cancelling
-  [System.NonSerialized] GameObject previouslySelectedEquipmentButton;
+  [NonSerialized] GameObject previouslySelectedEquipmentButton;
   // tracks which item list is currently visible
-  [System.NonSerialized] List<Item> currentEquipmentItems;
+  [NonSerialized] List<Item> currentEquipmentItems;
   // tracks which equipment should be compared to a new equipment
-  [System.NonSerialized] int currentlyEquippedIndex;
+  [NonSerialized] int currentlyEquippedIndex;
   // tracks each effect in the effect panel
-  [System.NonSerialized] List<GameObject> effectsList = new List<GameObject>();
+  [NonSerialized] List<GameObject> effectsList = new List<GameObject>();
   // tracks each magic resistance in the adds list
-  [System.NonSerialized] List<GameObject> addsList = new List<GameObject>();
+  [NonSerialized] List<GameObject> addsList = new List<GameObject>();
   // tracks each magic resistance in the removes list
-  [System.NonSerialized] List<GameObject> removesList = new List<GameObject>();
+  [NonSerialized] List<GameObject> removesList = new List<GameObject>();
   // tracks projectile buttons in projectile canvas
-  [System.NonSerialized] List<GameObject> projectileButtonList = new List<GameObject>();
+  [NonSerialized] List<GameObject> projectileButtonList = new List<GameObject>();
   // tracks available projectile keys
-  [System.NonSerialized] List<string> availableProjectileKeys = new List<string>();
+  [NonSerialized] List<string> availableProjectileKeys = new List<string>();
   // tracks if in-game statuses should show
-  [System.NonSerialized] bool showInGameStatuses = false;
+  [NonSerialized] bool showInGameStatuses = false;
   // tracks how in-game statuses should show
-  [System.NonSerialized] string statusType = "";
+  [NonSerialized] string statusType = "";
   // tracks if damage should show
-  [System.NonSerialized] bool showDamage = false;
+  [NonSerialized] bool showDamage = false;
   // tracks if item info should show
-  [System.NonSerialized] bool showItemInfo = false;
+  [NonSerialized] bool showItemInfo = false;
 
   // tracks if sfx should play
-  [System.NonSerialized] bool playSFX = false;
+  [NonSerialized] bool playSFX = false;
   // tracks if soundtrack should play
-  [System.NonSerialized] bool playSoundtrack = false;
+  [NonSerialized] bool playSoundtrack = false;
 
   // plays sounds
   private AudioSource audioSource;

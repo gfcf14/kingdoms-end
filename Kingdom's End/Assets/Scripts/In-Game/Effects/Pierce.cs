@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Pierce : MonoBehaviour {
-  [System.NonSerialized] SpriteRenderer objectRenderer;
-  [System.NonSerialized] public Color color;
-  [System.NonSerialized] public bool isFacingLeft;
+  [NonSerialized] SpriteRenderer objectRenderer;
+  [NonSerialized] public Color color;
+  [NonSerialized] public bool isFacingLeft;
 
   void Start() {
     objectRenderer = GetComponent<SpriteRenderer>();

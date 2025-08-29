@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,7 +12,7 @@ public class TitleCanvas : MonoBehaviour {
   [SerializeField] EventSystem eventSystem;
   [SerializeField] AudioSource audioSource;
 
-  [System.NonSerialized] AudioClip startSound;
+  [NonSerialized] AudioClip startSound;
 
   private bool canPlayDeselect = false;
   GameObject previouslyFocusedButton = null;

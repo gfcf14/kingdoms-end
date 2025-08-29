@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,38 +7,38 @@ public class Throwable : MonoBehaviour {
   private SpriteRenderer objectRenderer;
   private CapsuleCollider2D hitBounds;
 
-  [System.NonSerialized] public GameObject extraSprite;
-  [System.NonSerialized] public GameObject throwableCollider;
-  [System.NonSerialized] public Sprite bounceSprite;
+  [NonSerialized] public GameObject extraSprite;
+  [NonSerialized] public GameObject throwableCollider;
+  [NonSerialized] public Sprite bounceSprite;
 
-  [System.NonSerialized] public Rigidbody2D body;
+  [NonSerialized] public Rigidbody2D body;
 
-  [System.NonSerialized] public bool isFacingLeft;
-  [System.NonSerialized] public bool hasCollided = false;
-  [System.NonSerialized] public bool mustBounce = false;
-  [System.NonSerialized] public bool isExploding = false;
+  [NonSerialized] public bool isFacingLeft;
+  [NonSerialized] public bool hasCollided = false;
+  [NonSerialized] public bool mustBounce = false;
+  [NonSerialized] public bool isExploding = false;
 
-  [System.NonSerialized] public int transitionIncrement = 0;
-  [System.NonSerialized] public float criticalRate = 0;
+  [NonSerialized] public int transitionIncrement = 0;
+  [NonSerialized] public float criticalRate = 0;
 
-  [System.NonSerialized] public float bounceRotationMultiplier = 3;
-  [System.NonSerialized] public float bounceX;
-  [System.NonSerialized] public float bounceY;
-  [System.NonSerialized] public float newAngle;
-  [System.NonSerialized] public float collideTime;
-  [System.NonSerialized] public float maxEllapsedCollideTime = 1500f;
+  [NonSerialized] public float bounceRotationMultiplier = 3;
+  [NonSerialized] public float bounceX;
+  [NonSerialized] public float bounceY;
+  [NonSerialized] public float newAngle;
+  [NonSerialized] public float collideTime;
+  [NonSerialized] public float maxEllapsedCollideTime = 1500f;
 
-  [System.NonSerialized] public string type;
+  [NonSerialized] public string type;
 
-  [System.NonSerialized] private Vector2 initialPosition;
-  [System.NonSerialized] public float speed = 0f;
-  [System.NonSerialized] public float steepness = 0f;
-  [System.NonSerialized] public float hDisplacement = 0f;
-  [System.NonSerialized] public float maxHeight = 0f;
-  [System.NonSerialized] public int directionFactor = 0;
-  [System.NonSerialized] public float rotationSpeed = 360f;
-  [System.NonSerialized] public int rotationFactor = 1; // dictates how fast throwable rotation would go
-  [System.NonSerialized] public bool freezeRotation = false;
+  [NonSerialized] private Vector2 initialPosition;
+  [NonSerialized] public float speed = 0f;
+  [NonSerialized] public float steepness = 0f;
+  [NonSerialized] public float hDisplacement = 0f;
+  [NonSerialized] public float maxHeight = 0f;
+  [NonSerialized] public int directionFactor = 0;
+  [NonSerialized] public float rotationSpeed = 360f;
+  [NonSerialized] public int rotationFactor = 1; // dictates how fast throwable rotation would go
+  [NonSerialized] public bool freezeRotation = false;
 
   void Start() {
     objectRenderer = GetComponent<SpriteRenderer>();

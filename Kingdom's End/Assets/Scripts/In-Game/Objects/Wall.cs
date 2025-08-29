@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Wall : MonoBehaviour {
-  [System.NonSerialized] public bool isEnemyWall;
+  [NonSerialized] public bool isEnemyWall;
   void Start() {
     isEnemyWall = gameObject.name.Contains("EnemyWalls");
   }

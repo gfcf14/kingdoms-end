@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Hero : MonoBehaviour {
-  [System.NonSerialized] public bool showDebug = false;
+  [NonSerialized] public bool showDebug = false;
 
-  [System.NonSerialized] public string pauseCase = "intro";
+  [NonSerialized] public string pauseCase = "intro";
   [SerializeField] public List<Consumable> consumables = new List<Consumable>();
   [SerializeField] public float speed = 5;
   [SerializeField] public string groundType = "level";
@@ -160,21 +160,21 @@ public class Hero : MonoBehaviour {
   public bool isCollidingWithCeiling = false;
 
   // PLAYER STATS
-    [System.NonSerialized] public int playerLevel = 1;
-    [System.NonSerialized] public int currentHP = GameData.baseHP;
-    [System.NonSerialized] public int maxHP = GameData.baseHP;
-    [System.NonSerialized] public int currentMP = GameData.baseHP;
-    [System.NonSerialized] public int maxMP = GameData.baseHP;
-    [System.NonSerialized] public string status = "good";
-    [System.NonSerialized] public int exp = 0;
-    [System.NonSerialized] public int next = 0;
-    [System.NonSerialized] public int gold = 500;
-    [System.NonSerialized] public int strength = GameData.baseSTR;
-    [System.NonSerialized] public int stamina = GameData.baseSTA;
-    [System.NonSerialized] public float luckPercentage = GameData.baseLCK;
-    [System.NonSerialized] public float criticalPercentage = GameData.baseCRI;
-    [System.NonSerialized] public string location = "meadows";
-    [System.NonSerialized] public HeroMagicResistance[] magicResistances = new HeroMagicResistance[] {
+    [NonSerialized] public int playerLevel = 1;
+    [NonSerialized] public int currentHP = GameData.baseHP;
+    [NonSerialized] public int maxHP = GameData.baseHP;
+    [NonSerialized] public int currentMP = GameData.baseHP;
+    [NonSerialized] public int maxMP = GameData.baseHP;
+    [NonSerialized] public string status = "good";
+    [NonSerialized] public int exp = 0;
+    [NonSerialized] public int next = 0;
+    [NonSerialized] public int gold = 500;
+    [NonSerialized] public int strength = GameData.baseSTR;
+    [NonSerialized] public int stamina = GameData.baseSTA;
+    [NonSerialized] public float luckPercentage = GameData.baseLCK;
+    [NonSerialized] public float criticalPercentage = GameData.baseCRI;
+    [NonSerialized] public string location = "meadows";
+    [NonSerialized] public HeroMagicResistance[] magicResistances = new HeroMagicResistance[] {
       new HeroMagicResistance() {name = "earth", frequency = 0},
       new HeroMagicResistance() {name = "air", frequency = 0},
       new HeroMagicResistance() {name = "water", frequency = 0},
@@ -185,7 +185,7 @@ public class Hero : MonoBehaviour {
       new HeroMagicResistance() {name = "dark", frequency = 0}
     };
 
-    [System.NonSerialized] public HeroMagicResistance[] effectMagicResistances = new HeroMagicResistance[] {
+    [NonSerialized] public HeroMagicResistance[] effectMagicResistances = new HeroMagicResistance[] {
       new HeroMagicResistance() {name = "earth", frequency = 0},
       new HeroMagicResistance() {name = "air", frequency = 0},
       new HeroMagicResistance() {name = "water", frequency = 0},
@@ -196,7 +196,7 @@ public class Hero : MonoBehaviour {
       new HeroMagicResistance() {name = "dark", frequency = 0}
     };
 
-    [System.NonSerialized] public Dictionary<string, int> magicResistanceTypeIndex = new Dictionary<string, int> {
+    [NonSerialized] public Dictionary<string, int> magicResistanceTypeIndex = new Dictionary<string, int> {
       {"Earth", 0},
       {"Air", 1},
       {"Water", 2},
@@ -208,28 +208,28 @@ public class Hero : MonoBehaviour {
     };
 
   // PLAYER EQUIPMENT
-    [System.NonSerialized] public static string bodyEquipment = "body-1";
-    [System.NonSerialized] public static string arm1Equipment = "basic-longsword";
-    [System.NonSerialized] public static string arm2Equipment = "basic-longsword";
-    [System.NonSerialized] public static string neckEquipment = "";
-    [System.NonSerialized] public static string armwear1Equipment = "";
-    [System.NonSerialized] public static string armwear2Equipment = "";
-    [System.NonSerialized] public static string ring1Equipment = "";
-    [System.NonSerialized] public static string ring2Equipment = "";
+    [NonSerialized] public static string bodyEquipment = "body-1";
+    [NonSerialized] public static string arm1Equipment = "basic-longsword";
+    [NonSerialized] public static string arm2Equipment = "basic-longsword";
+    [NonSerialized] public static string neckEquipment = "";
+    [NonSerialized] public static string armwear1Equipment = "";
+    [NonSerialized] public static string armwear2Equipment = "";
+    [NonSerialized] public static string ring1Equipment = "";
+    [NonSerialized] public static string ring2Equipment = "";
 
-    [System.NonSerialized] public static string projectileEquipment = "";
+    [NonSerialized] public static string projectileEquipment = "";
 
-    [System.NonSerialized] public string[] equipmentArray = { bodyEquipment, arm1Equipment, arm2Equipment, neckEquipment, armwear1Equipment, armwear2Equipment, ring1Equipment, ring2Equipment};
+    [NonSerialized] public string[] equipmentArray = { bodyEquipment, arm1Equipment, arm2Equipment, neckEquipment, armwear1Equipment, armwear2Equipment, ring1Equipment, ring2Equipment};
 
   // PLAYER EQUIPPED STATS
-    [System.NonSerialized] public float equippedSTR = 0f;
-    [System.NonSerialized] public float equippedSTA = 0f;
-    [System.NonSerialized] public float equippedLUCK = 0f;
-    [System.NonSerialized] public float equippedCRIT = 0f;
-    [System.NonSerialized] public static int equippedATK1 = 0;
-    [System.NonSerialized] public static int equippedATK2 = 0;
-    [System.NonSerialized] public int equippedDEF1 = 0;
-    [System.NonSerialized] public int equippedDEF2 = 0;
+    [NonSerialized] public float equippedSTR = 0f;
+    [NonSerialized] public float equippedSTA = 0f;
+    [NonSerialized] public float equippedLUCK = 0f;
+    [NonSerialized] public float equippedCRIT = 0f;
+    [NonSerialized] public static int equippedATK1 = 0;
+    [NonSerialized] public static int equippedATK2 = 0;
+    [NonSerialized] public int equippedDEF1 = 0;
+    [NonSerialized] public int equippedDEF2 = 0;
 
   // PLAYER EFFECT STATS
     [SerializeField] public float effectSTR = 0f;
@@ -237,8 +237,8 @@ public class Hero : MonoBehaviour {
     [SerializeField] public float effectCRIT = 0f;
     [SerializeField] public float effectLCK = 0f;
 
-  [System.NonSerialized] public List<Item> items = new List<Item>();
-  [System.NonSerialized] public List<Item> relicItems = new List<Item>();
+  [NonSerialized] public List<Item> items = new List<Item>();
+  [NonSerialized] public List<Item> relicItems = new List<Item>();
 
   public int tiredThreshold = 40;
 
@@ -258,13 +258,13 @@ public class Hero : MonoBehaviour {
 
   public bool isPaused;
 
-  [System.NonSerialized] public GameObject currentRoom;
+  [NonSerialized] public GameObject currentRoom;
 
-  [System.NonSerialized] bool canMap = false;
+  [NonSerialized] bool canMap = false;
 
-  [System.NonSerialized] public int bossTransitionDirection = 0;
+  [NonSerialized] public int bossTransitionDirection = 0;
 
-  [System.NonSerialized] private Dictionary<string, string> npcNodes = new Dictionary<string, string> {
+  [NonSerialized] private Dictionary<string, string> npcNodes = new Dictionary<string, string> {
     {"peasant-girl", ""}
   };
 

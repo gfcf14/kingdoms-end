@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -7,10 +8,10 @@ public class BossBarsCanvas : MonoBehaviour {
   [SerializeField] GameObject hpBar;
   [SerializeField] GameObject bossLabel;
 
-  [System.NonSerialized] public Enemy boss;
-  [System.NonSerialized] int currentHPWidth = -1;
-  [System.NonSerialized] int maxHPWidth = -1;
-  [System.NonSerialized] public string bossName = "";
+  [NonSerialized] public Enemy boss;
+  [NonSerialized] int currentHPWidth = -1;
+  [NonSerialized] int maxHPWidth = -1;
+  [NonSerialized] public string bossName = "";
   void Start() {
     Vector2 containerDimension = new Vector2(Constants.maxHPDisplayableLimit * Constants.containerMultiplier, 36);
     hpBackground.GetComponent<RectTransform>().sizeDelta = containerDimension;

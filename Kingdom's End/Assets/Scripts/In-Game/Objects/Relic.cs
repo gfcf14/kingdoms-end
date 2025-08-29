@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Relic : MonoBehaviour {
   [SerializeField] public string key;
-  [System.NonSerialized] SpriteRenderer relicSprite;
+  [NonSerialized] SpriteRenderer relicSprite;
 
   Vector2 GetRandomPoint(Vector2[] corners) {
     float minX = Mathf.Min(corners[0].x, corners[1].x, corners[2].x, corners[3].x);
