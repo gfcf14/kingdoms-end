@@ -1034,7 +1034,7 @@ public class Hero : MonoBehaviour {
         }
 
         // // jumping + actions (kick, drop kick)
-        // if (Helpers.IsKeyHeld(Controls.currentKeyboardJump) || Helpers.IsKeyHeld(Controls.currentGamepadJump)) {
+        // if (UserInput.IsKeyHeld(Controls.currentKeyboardJump) || UserInput.IsKeyHeld(Controls.currentGamepadJump)) {
         //   if (isGrounded) {
         //     if (isHoldingDown) {
         //       if (!isRunning && !isKicking && canKick) {
@@ -1068,7 +1068,7 @@ public class Hero : MonoBehaviour {
         //   // }
 
         // // jumping
-        // } else if ((Helpers.IsKeyUp(Controls.currentKeyboardJump) || Helpers.IsKeyUp((Controls.currentGamepadJump))) && !isHoldingDown) {
+        // } else if ((UserInput.IsKeyUp(Controls.currentKeyboardJump) || UserInput.IsKeyUp((Controls.currentGamepadJump))) && !isHoldingDown) {
         //   if (isGrounded || (canDoubleJump && jumpsExecuted < GameData.maxJumpLimit)) {
         //     jumpsExecuted++;
         //     Jump();
@@ -1077,7 +1077,7 @@ public class Hero : MonoBehaviour {
 
         // TODO: for some reason, a gamepad's d-pad down button doesn't trigger vertical input. Investigate a workaround
         if (verticalInput < -Constants.inputThreshold) { // if DOWN key is being held
-          if (Helpers.IsKeyDown(Controls.currentKeyboardJump) || Helpers.IsKeyDown(Controls.currentGamepadJump)) { // Perform actions if JUMP key is also held
+          if (UserInput.IsKeyDown(Controls.currentKeyboardJump) || UserInput.IsKeyDown(Controls.currentGamepadJump)) { // Perform actions if JUMP key is also held
             if (isGrounded) {
               if (!isRunning && !isKicking && canKick) { // KICK
                 isKicking = true;
@@ -1097,7 +1097,7 @@ public class Hero : MonoBehaviour {
           }
         } else {
           // JUMP
-          if ((Helpers.IsKeyUp(Controls.currentKeyboardJump) || Helpers.IsKeyUp((Controls.currentGamepadJump)))) {
+          if ((UserInput.IsKeyUp(Controls.currentKeyboardJump) || UserInput.IsKeyUp((Controls.currentGamepadJump)))) {
             if (isGrounded || (canDoubleJump && jumpsExecuted < GameData.maxJumpLimit)) {
               jumpsExecuted++;
               Jump();
@@ -1106,7 +1106,7 @@ public class Hero : MonoBehaviour {
         }
 
         // action
-        if (Helpers.IsKeyUp(Controls.currentKeyboardAction) || Helpers.IsKeyUp(Controls.currentGamepadAction)) {
+        if (UserInput.IsKeyUp(Controls.currentKeyboardAction) || UserInput.IsKeyUp(Controls.currentGamepadAction)) {
           if (InGame.instance.chatCanvas.activeSelf) {
             // CloseChat();
           } else {
@@ -1130,19 +1130,19 @@ public class Hero : MonoBehaviour {
         }
 
         // arm 1
-        if (Helpers.IsKeyDown(Controls.currentKeyboardAttack1) || Helpers.IsKeyDown(Controls.currentGamepadAttack1)) {
+        if (UserInput.IsKeyDown(Controls.currentKeyboardAttack1) || UserInput.IsKeyDown(Controls.currentGamepadAttack1)) {
           DecideAttackType(arm1Equipment, 1);
         }
-        if (Helpers.IsKeyUp(Controls.currentKeyboardAttack1) || Helpers.IsKeyUp(Controls.currentGamepadAttack1)) {
+        if (UserInput.IsKeyUp(Controls.currentKeyboardAttack1) || UserInput.IsKeyUp(Controls.currentGamepadAttack1)) {
           DecideShieldRelease(arm1Equipment);
           isParrying = false;
         }
 
         // arm 2
-        if (Helpers.IsKeyDown(Controls.currentKeyboardAttack2) || Helpers.IsKeyDown(Controls.currentGamepadAttack2)) {
+        if (UserInput.IsKeyDown(Controls.currentKeyboardAttack2) || UserInput.IsKeyDown(Controls.currentGamepadAttack2)) {
           DecideAttackType(arm2Equipment, 2);
         }
-        if (Helpers.IsKeyUp(Controls.currentKeyboardAttack2) || Helpers.IsKeyUp(Controls.currentGamepadAttack2)) {
+        if (UserInput.IsKeyUp(Controls.currentKeyboardAttack2) || UserInput.IsKeyUp(Controls.currentGamepadAttack2)) {
           DecideShieldRelease(arm2Equipment);
           isParrying = false;
         }
