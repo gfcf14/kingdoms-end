@@ -1,3 +1,10 @@
+public enum ControlActions {
+  Action,
+  Attack1,
+  Attack2,
+  Jump
+};
+
 public enum EnemyKeyTypeCondition {
   custom,
   bounded,
