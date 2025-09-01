@@ -63,18 +63,6 @@ public class Helpers {
     }
   }
 
-  public static bool IsKeyHeld(string key) {
-    return Input.GetKey((KeyCode)Enum.Parse(typeof(KeyCode), key));
-  }
-
-  public static bool IsKeyDown(string key) {
-    return Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), key));
-  }
-
-  public static bool IsKeyUp(string key) {
-    return Input.GetKeyUp((KeyCode)Enum.Parse(typeof(KeyCode), key));
-  }
-
   // ensure proper mapping works for several kinds of gamepads
   public static bool IsPauseKeyUp() {
     return Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.P) || Input.GetKeyUp(KeyCode.JoystickButton9);

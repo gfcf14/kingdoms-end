@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
 public class UserInput : MonoBehaviour {
-  private enum KeyState { Down, Held, Up }
   private const float stickDeadzone = 0.1f;
 
   // Cache for mapping results to avoid repeated lookups
@@ -13,6 +12,7 @@ public class UserInput : MonoBehaviour {
 
   void Update() {}
 
+  // Gets the mapping to which the gamepad corresponds per key press
   private static Dictionary<ControlActions, string> GetCurrentGamepadMapping() {
     // First, check if any Gamepads exist
     if (Gamepad.all.Count > 0) {
@@ -34,7 +34,8 @@ public class UserInput : MonoBehaviour {
     return null;
   }
 
-  public static bool IsActionUp(ControlActions action) {
+  // checks if an action has occurred
+  public static bool IsAction(ControlActions action, KeyState state) {
     var mapping = GetCurrentGamepadMapping();
 
     // Check keyboard first
@@ -45,12 +46,15 @@ public class UserInput : MonoBehaviour {
       ControlActions.Action => Controls.currentKeyboardAction,
       _ => null
     };
-    if (keyboardKey != null && IsKeyUp(keyboardKey)) return true;
 
-    // Check gamepad mapping
+    //  if a keyboard key was pressed
+    if (keyboardKey != null && CheckKeyState(keyboardKey, state)) return true;
+
+    // If a gamepad/joystick key was pressed and is within the respective dictionary
     if (mapping != null && mapping.TryGetValue(action, out var gamepadKey)) {
-      if (IsKeyUp(gamepadKey)) return true;
+      if (CheckKeyState(gamepadKey, state)) return true;
     }
+
     return false;
   }
 
@@ -68,6 +72,7 @@ public class UserInput : MonoBehaviour {
 
   private static bool CheckKeyboardKey(string key, KeyState state) {
     if (Keyboard.current != null) {
+      // checks a key pressed using the new Input System
       if (Enum.TryParse<UnityEngine.InputSystem.Key>(key, true, out var parsedKey)) {
         var kc = Keyboard.current[parsedKey];
         if (kc != null) {
@@ -79,6 +84,8 @@ public class UserInput : MonoBehaviour {
           };
         }
       }
+
+      // fallback to the old input system, i.e. loop all keys and see which matches
       foreach (var control in Keyboard.current.allKeys) {
         if (string.Equals(control.name, key, StringComparison.OrdinalIgnoreCase)
           || string.Equals(control.displayName, key, StringComparison.OrdinalIgnoreCase)) {
@@ -91,6 +98,8 @@ public class UserInput : MonoBehaviour {
         }
       }
     }
+
+    // last fallback using Input.GetKey
     try {
       var kc = (KeyCode)Enum.Parse(typeof(KeyCode), key, true);
       return state switch {
@@ -109,6 +118,7 @@ public class UserInput : MonoBehaviour {
       var button = MapGamepadButton(key, gamepad);
       if (button == null) continue;
 
+      // checks if a key is pressed based on what was found from the mapping in the cache
       bool result = state switch {
         KeyState.Down => button.wasPressedThisFrame,
         KeyState.Held => button.isPressed,
@@ -124,26 +134,28 @@ public class UserInput : MonoBehaviour {
 
     // ** If we didn't find the expected key, log what buttons are currently pressed **
     foreach (var gamepad in Gamepad.all) {
-      List<string> pressedButtons = new List<string>();
-      if (gamepad.buttonSouth.isPressed) pressedButtons.Add("buttonSouth (A/X)");
-      if (gamepad.buttonNorth.isPressed) pressedButtons.Add("buttonNorth (Y/Triangle)");
-      if (gamepad.buttonWest.isPressed) pressedButtons.Add("buttonWest (X/Square)");
-      if (gamepad.buttonEast.isPressed) pressedButtons.Add("buttonEast (B/Circle)");
-      if (gamepad.leftShoulder.isPressed) pressedButtons.Add("leftShoulder (L1)");
-      if (gamepad.rightShoulder.isPressed) pressedButtons.Add("rightShoulder (R1)");
-      if (gamepad.leftTrigger.isPressed) pressedButtons.Add("leftTrigger (L2)");
-      if (gamepad.rightTrigger.isPressed) pressedButtons.Add("rightTrigger (R2)");
-      if (gamepad.startButton.isPressed) pressedButtons.Add("start");
-      if (gamepad.selectButton.isPressed) pressedButtons.Add("select");
+    List<string> pressedButtons = new List<string>();
 
-      if (pressedButtons.Count > 0) {
-        Debug.Log($"[Debug] Device: {gamepad.displayName} | Currently Pressed: {string.Join(", ", pressedButtons)}");
-      }
+    if (gamepad.buttonSouth.isPressed) pressedButtons.Add("JoystickButton0 (buttonSouth / A / X)");
+    if (gamepad.buttonEast.isPressed) pressedButtons.Add("JoystickButton1 (buttonEast / B / Circle)");
+    if (gamepad.buttonWest.isPressed) pressedButtons.Add("JoystickButton2 (buttonWest / X / Square)");
+    if (gamepad.buttonNorth.isPressed) pressedButtons.Add("JoystickButton3 (buttonNorth / Y / Triangle)");
+    if (gamepad.leftShoulder.isPressed) pressedButtons.Add("JoystickButton4 (leftShoulder / L1)");
+    if (gamepad.rightShoulder.isPressed) pressedButtons.Add("JoystickButton5 (rightShoulder / R1)");
+    if (gamepad.leftTrigger.isPressed) pressedButtons.Add("JoystickButton6 (leftTrigger / L2)");
+    if (gamepad.rightTrigger.isPressed) pressedButtons.Add("JoystickButton7 (rightTrigger / R2)");
+    if (gamepad.startButton.isPressed) pressedButtons.Add("JoystickButton8 (start / Options)");
+    if (gamepad.selectButton.isPressed) pressedButtons.Add("JoystickButton9 (select / Back)");
+
+    if (pressedButtons.Count > 0) {
+      Debug.Log($"[Debug] Device: {gamepad.displayName} | Currently Pressed: {string.Join(", ", pressedButtons)}");
     }
+}
 
     return false;
   }
 
+  // Maps legacy "JoystickButtonX" names to InputSystem Gamepad buttons and uses cache to avoid repeated string comparisons.
   private static ButtonControl MapGamepadButton(string key, Gamepad gamepad) {
     var cacheKey = (key, gamepad.displayName);
     if (_buttonCache.TryGetValue(cacheKey, out var cached)) return cached;
@@ -157,12 +169,13 @@ public class UserInput : MonoBehaviour {
         "JoystickButton1" => gamepad.buttonEast,    // B
         "JoystickButton2" => gamepad.buttonWest,    // X
         "JoystickButton3" => gamepad.buttonNorth,   // Y
-        "JoystickButton6" => gamepad.startButton,
-        "JoystickButton7" => gamepad.selectButton,
+        "JoystickButton4" => gamepad.leftShoulder,  // Left Shoulder/Bumper
+        "JoystickButton5" => gamepad.rightShoulder, // Right Shoulder/Bumper
+        "JoystickButton6" => gamepad.selectButton,
+        "JoystickButton7" => gamepad.startButton,
         _ => null
       };
-    }
-    else if (name.Contains("usb gamepad")) {
+    } else if (name.Contains("usb gamepad")) {
       button = key switch {
         "JoystickButton4" => gamepad.buttonWest,        // Square
         "JoystickButton2" => gamepad.buttonEast,        // Circle
@@ -173,8 +186,7 @@ public class UserInput : MonoBehaviour {
         "JoystickButton6" => gamepad.rightTrigger,      // R2
         _ => null
       };
-    }
-    else {
+    } else {
       button = key switch {
         "JoystickButton0" => gamepad.buttonSouth,
         "JoystickButton1" => gamepad.buttonEast,

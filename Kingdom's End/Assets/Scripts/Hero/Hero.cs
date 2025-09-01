@@ -1077,7 +1077,7 @@ public class Hero : MonoBehaviour {
 
         // TODO: for some reason, a gamepad's d-pad down button doesn't trigger vertical input. Investigate a workaround
         if (verticalInput < -Constants.inputThreshold) { // if DOWN key is being held
-          if (UserInput.IsKeyDown(Controls.currentKeyboardJump) || UserInput.IsKeyDown(Controls.currentGamepadJump)) { // Perform actions if JUMP key is also held
+          if (UserInput.IsAction(ControlActions.Jump, KeyState.Down)) { // Perform actions if JUMP key is also held
             if (isGrounded) {
               if (!isRunning && !isKicking && canKick) { // KICK
                 isKicking = true;
@@ -1097,7 +1097,7 @@ public class Hero : MonoBehaviour {
           }
         } else {
           // JUMP
-          if (UserInput.IsActionUp(ControlActions.Jump)) {
+          if (UserInput.IsAction(ControlActions.Jump, KeyState.Up)) {
             if (isGrounded || (canDoubleJump && jumpsExecuted < GameData.maxJumpLimit)) {
               jumpsExecuted++;
               Jump();
@@ -1106,7 +1106,7 @@ public class Hero : MonoBehaviour {
         }
 
         // action
-        if (UserInput.IsKeyUp(Controls.currentKeyboardAction) || UserInput.IsKeyUp(Controls.currentGamepadAction)) {
+        if (UserInput.IsAction(ControlActions.Action, KeyState.Up)) {
           if (InGame.instance.chatCanvas.activeSelf) {
             // CloseChat();
           } else {
@@ -1130,19 +1130,19 @@ public class Hero : MonoBehaviour {
         }
 
         // arm 1
-        if (UserInput.IsKeyDown(Controls.currentKeyboardAttack1) || UserInput.IsKeyDown(Controls.currentGamepadAttack1)) {
+        if (UserInput.IsAction(ControlActions.Attack1, KeyState.Down)) {
           DecideAttackType(arm1Equipment, 1);
         }
-        if (UserInput.IsKeyUp(Controls.currentKeyboardAttack1) || UserInput.IsKeyUp(Controls.currentGamepadAttack1)) {
+        if (UserInput.IsAction(ControlActions.Attack1, KeyState.Up)) {
           DecideShieldRelease(arm1Equipment);
           isParrying = false;
         }
 
         // arm 2
-        if (UserInput.IsKeyDown(Controls.currentKeyboardAttack2) || UserInput.IsKeyDown(Controls.currentGamepadAttack2)) {
+        if (UserInput.IsAction(ControlActions.Attack2, KeyState.Down)) {
           DecideAttackType(arm2Equipment, 2);
         }
-        if (UserInput.IsKeyUp(Controls.currentKeyboardAttack2) || UserInput.IsKeyUp(Controls.currentGamepadAttack2)) {
+        if (UserInput.IsAction(ControlActions.Attack2, KeyState.Up)) {
           DecideShieldRelease(arm2Equipment);
           isParrying = false;
         }

@@ -30,7 +30,7 @@ public class ChatCanvas : MonoBehaviour {
     StartChat();
   }
   void Update() {
-    if (UserInput.IsKeyUp(Controls.currentKeyboardAction) || UserInput.IsKeyUp(Controls.currentGamepadAction)) {
+    if (UserInput.IsAction(ControlActions.Action, KeyState.Up)) {
       // if the entire text is on screen, get the next line
       if (textComponent.text == chatLines[lineIndex].line) {
         NextLine();

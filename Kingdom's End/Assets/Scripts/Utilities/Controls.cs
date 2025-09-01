@@ -17,7 +17,7 @@ public static class Controls {
   public const string DEFAULT_XBOX_JUMP = "JoystickButton0";
   public const string DEFAULT_XBOX_ATTACK_1 = "JoystickButton2";
   public const string DEFAULT_XBOX_ATTACK_2 = "JoystickButton1";
-  public const string DEFAULT_XBOX_ACTION = "Left Bumper";
+  public const string DEFAULT_XBOX_ACTION = "JoystickButton4";
 
   // variables that define keys to use in game. To be changed only in pause menu
   public static string currentKeyboardJump = DEFAULT_KEYBOARD_JUMP;

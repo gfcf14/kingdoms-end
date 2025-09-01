@@ -26,3 +26,9 @@ public enum EnemyType {
   shooter,
   teleporter
 }
+
+public enum KeyState {
+  Down,
+  Held,
+  Up
+  }
