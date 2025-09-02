@@ -27,7 +27,7 @@ public class IntroCanvas : MonoBehaviour {
   }
 
   void Update() {
-    if (!hasSkipped && Helpers.IsStartKeyDown()) {
+    if (!hasSkipped && UserInput.IsStartKeyDown()) {
       hasSkipped = true;
       StopCurrentSound();
       PlayNextSound();

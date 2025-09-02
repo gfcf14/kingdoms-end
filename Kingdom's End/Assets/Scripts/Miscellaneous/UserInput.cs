@@ -148,7 +148,7 @@ public class UserInput : MonoBehaviour {
     if (gamepad.selectButton.isPressed) pressedButtons.Add("JoystickButton9 (select / Back)");
 
     if (pressedButtons.Count > 0) {
-      Debug.Log($"[Debug] Device: {gamepad.displayName} | Currently Pressed: {string.Join(", ", pressedButtons)}");
+      // Debug.Log($"[Debug] Device: {gamepad.displayName} | Currently Pressed: {string.Join(", ", pressedButtons)}");
     }
 }
 
@@ -200,5 +200,82 @@ public class UserInput : MonoBehaviour {
 
     _buttonCache[cacheKey] = button;
     return button;
+  }
+
+  public static bool IsPauseKeyUp() {
+    // Keyboard first
+    if (Keyboard.current != null && (Keyboard.current.escapeKey.wasReleasedThisFrame || Keyboard.current.pKey.wasReleasedThisFrame)) {
+      return true;
+    }
+
+    // Gamepad check
+    foreach (var gamepad in Gamepad.all) {
+      string name = gamepad.displayName.ToLower();
+
+      if (name.Contains("xbox") && gamepad.startButton.wasReleasedThisFrame) return true;
+      if (name.Contains("usb gamepad") && gamepad.startButton.wasReleasedThisFrame) return true;
+    }
+
+    // Joystick check
+    foreach (var joystick in Joystick.all) {
+      var button9 = joystick.TryGetChildControl<ButtonControl>("button9");
+
+      if (button9 != null && button9.wasReleasedThisFrame) return true;
+    }
+
+    return false;
+  }
+
+  public static bool IsBackKeyDown() {
+    if (Keyboard.current != null && Keyboard.current.backspaceKey.wasPressedThisFrame) return true;
+
+    // Gamepad check
+    foreach (var gamepad in Gamepad.all) {
+      string name = gamepad.displayName.ToLower();
+
+      if (name.Contains("xbox") && gamepad.buttonNorth.wasPressedThisFrame) return true;
+      if (name.Contains("usb gamepad") && gamepad.buttonNorth.wasPressedThisFrame) return true;
+    }
+
+    // Joystick check
+    foreach (var joystick in Joystick.all) {
+      // FOR DEBUG PURPOSES, SHOULD SHOW A BUTTON BEING PRESSED AND ITS NAME
+      // foreach (var control in joystick.allControls) {
+      //   if (control is ButtonControl button) {
+      //     if (button.isPressed)
+      //       Debug.Log($"Button: {button.name}, Pressed: {button.isPressed}");
+      //   }
+      // }
+
+      var triggerButton = joystick.TryGetChildControl<ButtonControl>("trigger");
+
+      if (triggerButton != null && triggerButton.wasPressedThisFrame) return true;
+    }
+
+    return false;
+  }
+
+  public static bool IsStartKeyDown() {
+    // Keyboard first
+    if (Keyboard.current != null && (Keyboard.current.enterKey.wasPressedThisFrame)) {
+      return true;
+    }
+
+    // Gamepad check
+    foreach (var gamepad in Gamepad.all) {
+      string name = gamepad.displayName.ToLower();
+
+      if (name.Contains("xbox") && gamepad.startButton.wasPressedThisFrame) return true;
+      if (name.Contains("usb gamepad") && gamepad.startButton.wasPressedThisFrame) return true;
+    }
+
+    // Joystick check
+    foreach (var joystick in Joystick.all) {
+      var button9 = joystick.TryGetChildControl<ButtonControl>("button9");
+
+      if (button9 != null && button9.wasPressedThisFrame) return true;
+    }
+
+    return false;
   }
 }

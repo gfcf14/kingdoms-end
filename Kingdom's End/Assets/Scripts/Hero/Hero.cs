@@ -1230,11 +1230,11 @@ public class Hero : MonoBehaviour {
       //   anim.Play("running-1", -1, 0f);
       // }
 
-      if (Helpers.IsPauseKeyUp() && pauseCase == "" && Pause.currentlyMapping == "") {
+      if (UserInput.IsPauseKeyUp() && pauseCase == "" && Pause.currentlyMapping == "") {
         ResumeGame();
       }
 
-      if (Helpers.IsBackKeyDown() && isPaused) {
+      if (UserInput.IsBackKeyDown() && isPaused) {
         // do not perform "BACK" if a key is being mapped
         if (Pause.canvasStatus != "mapping") {
           if (Pause.canvasStatus == "main") {

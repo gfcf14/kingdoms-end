@@ -11,7 +11,8 @@
                     "id": "f3f107ca-1282-4039-9439-3c8daa47cf30",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Submit",
@@ -19,7 +20,8 @@
                     "id": "182415a7-2587-49e6-8bf0-09d2dca8a3b4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -313,6 +315,17 @@
                     "name": "",
                     "id": "a14c9793-654c-42d5-a1d3-0db7a4a9e346",
                     "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d54ad3ef-c20f-48c2-abc6-75c62b5f4ee1",
+                    "path": "<XInputController>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
