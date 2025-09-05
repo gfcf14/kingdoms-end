@@ -12,7 +12,7 @@ public class UserInput : MonoBehaviour {
   void Update() {
     if (!Hero.instance.isAutonomous) {
       if (Hero.instance.isPaused && Pause.currentlyMapping != "") { // block to customize buttons
-        var input = UserInput.DetectInputForRemapping();
+        var input = DetectInputForRemapping();
         if (input != null) {
           if (Hero.instance.canMap) {
             if (!input.isForbidden) {
@@ -23,9 +23,9 @@ public class UserInput : MonoBehaviour {
               else if (deviceName.Contains("playstation") || deviceName.Contains("dualshock") || deviceName.Contains("dualsense")) deviceName = "playstation";
               else if (deviceName.Contains("usb") || deviceName.Contains("joystick")) deviceName = "usb gamepad";
 
-              var controlAction = UserInput.StringToControlAction(Pause.currentlyMapping);
+              var controlAction = StringToControlAction(Pause.currentlyMapping);
 
-              UserInput.UpdateMapping(Helpers.GetOrException(Controls.currentControlMappings, deviceName), controlAction, input.keyCode);
+              UpdateMapping(Helpers.GetOrException(Controls.currentControlMappings, deviceName), controlAction, input.keyCode);
               Hero.instance.canMap = false;
             }
           } else {

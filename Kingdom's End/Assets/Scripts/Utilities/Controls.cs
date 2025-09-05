@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public static class Controls {
   // DO NOT CHANGE OR RISK THE POSSIBLITY OF UNIVERSE IMPLOSION
@@ -28,7 +29,7 @@ public static class Controls {
   public static string currentGamepadAttack2 = DEFAULT_GAMEPAD_ATTACK_2;
   public static string currentGamepadAction = DEFAULT_GAMEPAD_ACTION;
 
-  public static Dictionary<string, Dictionary<ControlActions, string>> currentControlMappings = new() {
+  public static Dictionary<string, Dictionary<ControlActions, string>> defaultControlMappings = new() {
     {"keyboard", new() {
       {ControlActions.Action, DEFAULT_KEYBOARD_ACTION},
       {ControlActions.Attack1, DEFAULT_KEYBOARD_ATTACK_1},
@@ -48,6 +49,11 @@ public static class Controls {
       {ControlActions.Jump, DEFAULT_XBOX_JUMP},
     }},
   };
+
+  public static Dictionary<string, Dictionary<ControlActions, string>> currentControlMappings = defaultControlMappings.ToDictionary(
+    outer => outer.Key,
+    outer => outer.Value.ToDictionary(inner => inner.Key, inner => inner.Value)
+  );
 
   // Forbidden keys grouped by device type
   public static Dictionary<string, string[]> forbiddenKeys = new() {

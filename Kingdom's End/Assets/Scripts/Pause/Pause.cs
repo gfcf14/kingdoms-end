@@ -1978,14 +1978,10 @@ public class Pause : MonoBehaviour {
   }
 
   public void ResetMapping() {
-    // TODO: reset dictionaries here
-    Controls.currentKeyboardJump = Controls.DEFAULT_KEYBOARD_JUMP;
-    Controls.currentKeyboardAttack1 = Controls.DEFAULT_KEYBOARD_ATTACK_1;
-    Controls.currentKeyboardAttack2 = Controls.DEFAULT_KEYBOARD_ATTACK_2;
-
-    Controls.currentGamepadJump = Controls.DEFAULT_GAMEPAD_JUMP;
-    Controls.currentGamepadAttack1 = Controls.DEFAULT_GAMEPAD_ATTACK_1;
-    Controls.currentGamepadAttack2 = Controls.DEFAULT_GAMEPAD_ATTACK_2;
+    Controls.currentControlMappings = Controls.defaultControlMappings.ToDictionary(
+      outer => outer.Key,
+      outer => outer.Value.ToDictionary(inner => inner.Key, inner => inner.Value)
+    );
 
     canvasStatus = "options_controls";
     resetRectangle.SetActive(false);
