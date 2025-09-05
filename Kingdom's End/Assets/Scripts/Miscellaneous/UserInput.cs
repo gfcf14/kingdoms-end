@@ -9,7 +9,32 @@ public class UserInput : MonoBehaviour {
   // Cache for mapping results to avoid repeated lookups
   private static readonly Dictionary<(string, string), ButtonControl> _buttonCache = new();
 
-  void Update() {}
+  void Update() {
+    if (!Hero.instance.isAutonomous) {
+      if (Hero.instance.isPaused && Pause.currentlyMapping != "") { // block to customize buttons
+        var input = UserInput.DetectInputForRemapping();
+        if (input != null) {
+          if (Hero.instance.canMap) {
+            if (!input.isForbidden) {
+              var deviceName = input.deviceName.ToLower();
+
+              if (deviceName.Contains("keyboard")) deviceName = "keyboard";
+              else if (deviceName.Contains("xbox")) deviceName = "xbox";
+              else if (deviceName.Contains("playstation") || deviceName.Contains("dualshock") || deviceName.Contains("dualsense")) deviceName = "playstation";
+              else if (deviceName.Contains("usb") || deviceName.Contains("joystick")) deviceName = "usb gamepad";
+
+              var controlAction = UserInput.StringToControlAction(Pause.currentlyMapping);
+
+              UserInput.UpdateMapping(Helpers.GetOrException(Controls.currentControlMappings, deviceName), controlAction, input.keyCode);
+              Hero.instance.canMap = false;
+            }
+          } else {
+            Hero.instance.canMap = true;
+          }
+        }
+      }
+    }
+  }
 
   // Gets the mapping to which the device corresponds per key press
   private static Dictionary<ControlActions, string> GetDeviceMapping(string deviceKey) {
@@ -329,7 +354,6 @@ public class UserInput : MonoBehaviour {
     }
 
     mapping[action] = newKey;
-    Debug.Log($"{action}: {newKey}");
     InGame.instance.pauseCanvas.GetComponent<Pause>().FinishMapping();
   }
 

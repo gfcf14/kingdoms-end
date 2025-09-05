@@ -249,7 +249,7 @@ public class Hero : MonoBehaviour {
 
   [NonSerialized] public GameObject currentRoom;
 
-  [NonSerialized] bool canMap = false;
+  [NonSerialized] public bool canMap = false;
 
   [NonSerialized] public int bossTransitionDirection = 0;
 
@@ -907,29 +907,6 @@ public class Hero : MonoBehaviour {
 
 
     if (!isAutonomous) {
-      if (isPaused && Pause.currentlyMapping != "") {
-        var input = UserInput.DetectInputForRemapping();
-        if (input != null) {
-          if (canMap) {
-            if (!input.isForbidden) {
-              var deviceName = input.deviceName.ToLower();
-
-              if (deviceName.Contains("keyboard")) deviceName = "keyboard";
-              else if (deviceName.Contains("xbox")) deviceName = "xbox";
-              else if (deviceName.Contains("playstation") || deviceName.Contains("dualshock") || deviceName.Contains("dualsense")) deviceName = "playstation";
-              else if (deviceName.Contains("usb") || deviceName.Contains("joystick")) deviceName = "usb gamepad";
-
-              var controlAction = UserInput.StringToControlAction(Pause.currentlyMapping);
-
-              UserInput.UpdateMapping(Helpers.GetOrException(Controls.currentControlMappings, deviceName), controlAction, input.keyCode);
-              canMap = false;
-            }
-          } else {
-            canMap = true;
-          }
-        }
-      }
-
       if (!isPaused && pauseCase == "") {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
