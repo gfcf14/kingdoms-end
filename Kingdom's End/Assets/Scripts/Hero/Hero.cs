@@ -131,17 +131,6 @@ public class Hero : MonoBehaviour {
 
   // public string[] weapons = new string[] {"fists", "single", "heavy", "throwables", "projectile-single", "projectile-heavy", "projectile-auto", "projectile-pull"};
 
-  // public string jetpackUp = "🡣🡡⌴";
-  // public string jetpackUp = "du$";
-  // public string jetpackLeft = "🡣🡠⌴";
-  // public string jetpackLeft = "dl$";
-  // public string jetpackRight = "🡣🡢⌴";
-  // public string jetpackRight = "dr$";
-  public float timeoutDuration = 0.25f;
-
-  private string userInput = "";
-  private float timeoutTime = 0.0f;
-
   public int direction = 1;
 
   // public int weaponIndex = 0;
@@ -918,66 +907,26 @@ public class Hero : MonoBehaviour {
 
 
     if (!isAutonomous) {
-      // TODO: remove key combinations as they will not be used to favor two keys pressed
-      foreach (KeyCode currentKey in System.Enum.GetValues(typeof(KeyCode))) {
-        if(Input.GetKeyUp(currentKey)) {
-          if (userInput.Length == 0) {
-            timeoutTime = Time.time + timeoutDuration;
-          }
+      if (isPaused && Pause.currentlyMapping != "") {
+        var input = UserInput.DetectInputForRemapping();
+        if (input != null) {
+          if (canMap) {
+            if (!input.isForbidden) {
+              var deviceName = input.deviceName.ToLower();
 
-          // if (currentKey.ToString() == "Space") {
-          //   // userInput += "⌴";
-          //   userInput += "$";
-          // } else
-          if (currentKey.ToString() == "UpArrow") {
-            // userInput += "🡡";
-            userInput += "u";
-          } else if (currentKey.ToString() == "DownArrow") {
-            // userInput += "🡣";
-            userInput += "d";
-          } else if (currentKey.ToString() == "LeftArrow") {
-            // userInput += "🡠";
-            userInput += "l";
-          } else if (currentKey.ToString() == "RightArrow") {
-            // userInput += "🡢";
-            userInput += "r";
+              if (deviceName.Contains("keyboard")) deviceName = "keyboard";
+              else if (deviceName.Contains("xbox")) deviceName = "xbox";
+              else if (deviceName.Contains("playstation") || deviceName.Contains("dualshock") || deviceName.Contains("dualsense")) deviceName = "playstation";
+              else if (deviceName.Contains("usb") || deviceName.Contains("joystick")) deviceName = "usb gamepad";
+
+              var controlAction = UserInput.StringToControlAction(Pause.currentlyMapping);
+
+              UserInput.UpdateMapping(Helpers.GetOrException(Controls.currentControlMappings, deviceName), controlAction, input.keyCode);
+              canMap = false;
+            }
           } else {
-            if (currentKey.ToString() != "Space") {
-              userInput += currentKey.ToString();
-            }
+            canMap = true;
           }
-
-          // if (userInput.Contains(jetpackUp)) {
-          //   JetpackUp();
-          //   userInput = "";
-          // } else if (userInput.Contains(jetpackLeft)) {
-          //   Debug.Log("jetpack left");
-          //   userInput = "";
-          // } else if (userInput.Contains(jetpackRight)) {
-          //   Debug.Log("jetpack right");
-          //   userInput = "";
-          // } else if (userInput == "s") { // jumping?
-          //   Jump();
-          // }
-
-          // Debug.Log(currentKey.ToString());
-
-          if (isPaused) {
-            if (Pause.currentlyMapping != "") {
-              if ((currentKey.ToString().Contains("JoystickButton") && Input.GetJoystickNames()[0] != "") || !currentKey.ToString().Contains("Joystick")) {
-                if (canMap) {
-                  if (!Helpers.IsForbiddenToRemap(currentKey.ToString())) {
-                    InGame.instance.pauseCanvas.GetComponent<Pause>().FinishMapping(currentKey.ToString());
-                    canMap = false;
-                  }
-                } else {
-                  canMap = true;
-                }
-              }
-            }
-          }
-        } else if (Time.time > timeoutTime && userInput.Length > 0) { // input is cleared
-          userInput = "";
         }
       }
 

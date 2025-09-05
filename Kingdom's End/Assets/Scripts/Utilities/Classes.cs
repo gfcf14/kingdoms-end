@@ -216,3 +216,10 @@ public class AreaGradients {
   public Gradient ground;
   public Gradient buildings;
 }
+
+public class RemapInput {
+  public string keyCode { get; set; }       // The control name (e.g., "buttonSouth", "a", "leftButton")
+  public string deviceName { get; set; }    // The device name (e.g., "Xbox Controller", "Keyboard")
+  public bool isGamepad { get; set; }
+  public bool isForbidden { get; set; }
+}

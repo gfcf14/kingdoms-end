@@ -1,69 +1,78 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
 public class UserInput : MonoBehaviour {
-  private const float stickDeadzone = 0.1f;
-
   // Cache for mapping results to avoid repeated lookups
   private static readonly Dictionary<(string, string), ButtonControl> _buttonCache = new();
 
   void Update() {}
 
-  // Gets the mapping to which the gamepad corresponds per key press
-  private static Dictionary<ControlActions, string> GetCurrentGamepadMapping() {
-    // First, check if any Gamepads exist
+  // Gets the mapping to which the device corresponds per key press
+  private static Dictionary<ControlActions, string> GetDeviceMapping(string deviceKey) {
+    if (Controls.currentControlMappings.TryGetValue(deviceKey, out var mapping)) return mapping;
+
+    return null;
+  }
+
+  private static string GetActiveGamepadKey() {
     if (Gamepad.all.Count > 0) {
       foreach (var gamepad in Gamepad.all) {
         string name = gamepad.displayName.ToLower();
 
-        if (name.Contains("xbox")) return Controls.currentXboxMapping;
-        if (name.Contains("usb gamepad")) return Controls.currentGamepadMapping;
+        if (name.Contains("xbox")) return "xbox";
+        if (name.Contains("playstation")) return "playstation"; // if you add support
+        if (name.Contains("usb") || name.Contains("joystick")) return "usb gamepad";
       }
     }
 
-    // If no Gamepad found, check for Joysticks
-    if (Joystick.all.Count > 0) {
-      foreach (var joystick in Joystick.all) {
-        return Controls.currentGamepadMapping;
-      }
-    }
+    if (Joystick.all.Count > 0) return "usb gamepad";
 
     return null;
   }
 
   // checks if an action has occurred
   public static bool IsAction(ControlActions action, KeyState state) {
-    var mapping = GetCurrentGamepadMapping();
+    // Check keyboard mapping first
+    var keyboardMapping = GetDeviceMapping("keyboard");
+    if (keyboardMapping != null && keyboardMapping.TryGetValue(action, out var keyboardKey)) {
+      if (CheckKeyState(keyboardKey, state)) return true;
+    }
 
-    // Check keyboard first
-    string keyboardKey = action switch {
-      ControlActions.Jump => Controls.currentKeyboardJump,
-      ControlActions.Attack1 => Controls.currentKeyboardAttack1,
-      ControlActions.Attack2 => Controls.currentKeyboardAttack2,
-      ControlActions.Action => Controls.currentKeyboardAction,
-      _ => null
-    };
-
-    //  if a keyboard key was pressed
-    if (keyboardKey != null && CheckKeyState(keyboardKey, state)) return true;
-
-    // If a gamepad/joystick key was pressed and is within the respective dictionary
-    if (mapping != null && mapping.TryGetValue(action, out var gamepadKey)) {
-      if (CheckKeyState(gamepadKey, state)) return true;
+    // Check gamepad mapping
+    var gamepadKey = GetActiveGamepadKey();
+    if (!string.IsNullOrEmpty(gamepadKey)) {
+      var gamepadMapping = GetDeviceMapping(gamepadKey);
+      if (gamepadMapping != null && gamepadMapping.TryGetValue(action, out var mappedKey)) {
+        if (CheckKeyState(mappedKey, state)) return true;
+      }
     }
 
     return false;
   }
 
-  public static bool IsKeyHeld(string key) => CheckKeyState(key, KeyState.Held);
-  public static bool IsKeyDown(string key) => CheckKeyState(key, KeyState.Down);
-  public static bool IsKeyUp(string key) => CheckKeyState(key, KeyState.Up);
+  private static bool IsGamepadControlName(string key) {
+    return key switch {
+      // New Input System "proper" gamepad names
+      "buttonSouth" or "buttonEast" or "buttonWest" or "buttonNorth" or
+      "leftShoulder" or "rightShoulder" or "leftTrigger" or "rightTrigger" or
+      "startButton" or "selectButton" or "leftStick" or "rightStick" => true,
+
+      // Legacy USB joystick-style names
+      "button0" or "button1" or "button2" or "button3" or "button4" or
+      "button5" or "button6" or "button7" or "button8" or "button9" or
+      "trigger" => true,
+
+      _ => false
+    };
+  }
+
 
   private static bool CheckKeyState(string key, KeyState state) {
-    if (key.Contains("Joystick") && Gamepad.all.Count > 0) {
+    if ((Gamepad.all.Count > 0 || Joystick.all.Count > 0) && IsGamepadControlName(key)) {
       return CheckGamepadButton(key, state);
     } else {
       return CheckKeyboardKey(key, state);
@@ -99,58 +108,48 @@ public class UserInput : MonoBehaviour {
       }
     }
 
-    // last fallback using Input.GetKey
-    try {
-      var kc = (KeyCode)Enum.Parse(typeof(KeyCode), key, true);
-      return state switch {
-        KeyState.Down => Input.GetKeyDown(kc),
-        KeyState.Held => Input.GetKey(kc),
-        KeyState.Up => Input.GetKeyUp(kc),
-        _ => false
-      };
-    } catch (Exception) {
-      return false;
-    }
+    return false;
+  }
+
+  private static bool CheckButtonState(ButtonControl button, KeyState state) {
+    return state switch {
+      KeyState.Down => button.wasPressedThisFrame,
+      KeyState.Held => button.isPressed,
+      KeyState.Up => button.wasReleasedThisFrame,
+      _ => false
+    };
   }
 
   private static bool CheckGamepadButton(string key, KeyState state) {
+    // First: modern Gamepad
     foreach (var gamepad in Gamepad.all) {
       var button = MapGamepadButton(key, gamepad);
-      if (button == null) continue;
-
-      // checks if a key is pressed based on what was found from the mapping in the cache
-      bool result = state switch {
-        KeyState.Down => button.wasPressedThisFrame,
-        KeyState.Held => button.isPressed,
-        KeyState.Up => button.wasReleasedThisFrame,
-        _ => false
-      };
-
-      if (result) {
-        Debug.Log($"[Match] Device: {gamepad.displayName}, Expected Key: {key}, State: {state}");
+      if (button != null && CheckButtonState(button, state)) {
         return true;
       }
     }
 
-    // ** If we didn't find the expected key, log what buttons are currently pressed **
-    foreach (var gamepad in Gamepad.all) {
-    List<string> pressedButtons = new List<string>();
+    // Second: legacy Joystick
+    foreach (var joystick in Joystick.all) {
+      var button = key switch {
+          "button0" => joystick["button0"],
+          "button1" => joystick["button1"],
+          "button2" => joystick["button2"],
+          "button3" => joystick["button3"],
+          "button4" => joystick["button4"],
+          "button5" => joystick["button5"],
+          "button6" => joystick["button6"],
+          "button7" => joystick["button7"],
+          "button8" => joystick["button8"],
+          "button9" => joystick["button9"],
+          "trigger" => joystick.trigger,
+          _ => null
+      };
 
-    if (gamepad.buttonSouth.isPressed) pressedButtons.Add("JoystickButton0 (buttonSouth / A / X)");
-    if (gamepad.buttonEast.isPressed) pressedButtons.Add("JoystickButton1 (buttonEast / B / Circle)");
-    if (gamepad.buttonWest.isPressed) pressedButtons.Add("JoystickButton2 (buttonWest / X / Square)");
-    if (gamepad.buttonNorth.isPressed) pressedButtons.Add("JoystickButton3 (buttonNorth / Y / Triangle)");
-    if (gamepad.leftShoulder.isPressed) pressedButtons.Add("JoystickButton4 (leftShoulder / L1)");
-    if (gamepad.rightShoulder.isPressed) pressedButtons.Add("JoystickButton5 (rightShoulder / R1)");
-    if (gamepad.leftTrigger.isPressed) pressedButtons.Add("JoystickButton6 (leftTrigger / L2)");
-    if (gamepad.rightTrigger.isPressed) pressedButtons.Add("JoystickButton7 (rightTrigger / R2)");
-    if (gamepad.startButton.isPressed) pressedButtons.Add("JoystickButton8 (start / Options)");
-    if (gamepad.selectButton.isPressed) pressedButtons.Add("JoystickButton9 (select / Back)");
-
-    if (pressedButtons.Count > 0) {
-      // Debug.Log($"[Debug] Device: {gamepad.displayName} | Currently Pressed: {string.Join(", ", pressedButtons)}");
+      if (button != null && CheckButtonState(button as ButtonControl, state)) {
+        return true;
+      }
     }
-}
 
     return false;
   }
@@ -165,35 +164,18 @@ public class UserInput : MonoBehaviour {
 
     if (name.Contains("xbox")) {
       button = key switch {
-        "JoystickButton0" => gamepad.buttonSouth,   // A
-        "JoystickButton1" => gamepad.buttonEast,    // B
-        "JoystickButton2" => gamepad.buttonWest,    // X
-        "JoystickButton3" => gamepad.buttonNorth,   // Y
-        "JoystickButton4" => gamepad.leftShoulder,  // Left Shoulder/Bumper
-        "JoystickButton5" => gamepad.rightShoulder, // Right Shoulder/Bumper
-        "JoystickButton6" => gamepad.selectButton,
-        "JoystickButton7" => gamepad.startButton,
-        _ => null
-      };
-    } else if (name.Contains("usb gamepad")) {
-      button = key switch {
-        "JoystickButton4" => gamepad.buttonWest,        // Square
-        "JoystickButton2" => gamepad.buttonEast,        // Circle
-        "JoystickButton3" => gamepad.buttonSouth,       // X
-        "JoystickButton7" => gamepad.leftShoulder,      // L1
-        "JoystickButton5" => gamepad.leftTrigger,       // L2
-        "JoystickButton8" => gamepad.rightShoulder,     // R1
-        "JoystickButton6" => gamepad.rightTrigger,      // R2
-        _ => null
-      };
-    } else {
-      button = key switch {
-        "JoystickButton0" => gamepad.buttonSouth,
-        "JoystickButton1" => gamepad.buttonEast,
-        "JoystickButton2" => gamepad.buttonWest,
-        "JoystickButton3" => gamepad.buttonNorth,
-        "JoystickButton6" => gamepad.startButton,
-        "JoystickButton7" => gamepad.selectButton,
+        "buttonSouth"   => gamepad.buttonSouth,
+        "buttonEast"    => gamepad.buttonEast,
+        "buttonWest"    => gamepad.buttonWest,
+        "buttonNorth"   => gamepad.buttonNorth,
+        "leftShoulder"  => gamepad.leftShoulder,
+        "rightShoulder" => gamepad.rightShoulder,
+        "leftTrigger"   => gamepad.leftTrigger,
+        "rightTrigger"  => gamepad.rightTrigger,
+        "startButton"   => gamepad.startButton,
+        "selectButton"  => gamepad.selectButton,
+        "leftStick"     => gamepad.leftStickButton,
+        "rightStick"    => gamepad.rightStickButton,
         _ => null
       };
     }
@@ -257,9 +239,7 @@ public class UserInput : MonoBehaviour {
 
   public static bool IsStartKeyDown() {
     // Keyboard first
-    if (Keyboard.current != null && (Keyboard.current.enterKey.wasPressedThisFrame)) {
-      return true;
-    }
+    if (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame) return true;
 
     // Gamepad check
     foreach (var gamepad in Gamepad.all) {
@@ -277,5 +257,89 @@ public class UserInput : MonoBehaviour {
     }
 
     return false;
+  }
+
+  public static bool IsForbiddenToRemap(string keyCode, string deviceName) {
+    if (keyCode.Contains("mouse", StringComparison.OrdinalIgnoreCase)) return true;
+
+    var deviceKey = Controls.forbiddenKeys.Keys.FirstOrDefault(k => deviceName.ToLower().Contains(k));
+
+    if (!string.IsNullOrEmpty(deviceKey)) {
+      return Controls.forbiddenKeys[deviceKey].Any(fk => keyCode.Equals(fk, StringComparison.OrdinalIgnoreCase));
+    }
+
+    return false;
+  }
+
+  private static RemapInput BuildRemapInput(InputControl control, string deviceName) {
+    string keyCode = control.name;
+    bool isGamepad = deviceName.ToLower().Contains("xbox") || deviceName.ToLower().Contains("playstation") || deviceName.ToLower().Contains("gamepad");
+    bool isForbidden = IsForbiddenToRemap(keyCode, deviceName);
+
+    return new RemapInput {
+      keyCode = keyCode,
+      deviceName = deviceName,
+      isGamepad = isGamepad,
+      isForbidden = isForbidden
+    };
+  }
+
+  public static RemapInput DetectInputForRemapping() {
+    // Check gamepads
+    foreach (var gamepad in Gamepad.all) {
+      foreach (var control in gamepad.allControls) {
+        if (control is ButtonControl button && button.wasPressedThisFrame)
+          return BuildRemapInput(control, gamepad.displayName);
+      }
+    }
+
+    // Check joysticks (legacy USB gamepads)
+    foreach (var joystick in Joystick.all) {
+      foreach (var control in joystick.allControls) {
+        if (control is ButtonControl button && button.wasPressedThisFrame)
+          return BuildRemapInput(control, joystick.displayName);
+      }
+    }
+
+    // Check keyboard
+    if (Keyboard.current != null) {
+      foreach (var key in Keyboard.current.allKeys) {
+        if (key.wasPressedThisFrame)
+          return BuildRemapInput(key, "Keyboard");
+      }
+    }
+
+    // Check mouse
+    if (Mouse.current != null) {
+      if (Mouse.current.leftButton.wasPressedThisFrame)
+        return BuildRemapInput(Mouse.current.leftButton, "Mouse");
+      if (Mouse.current.rightButton.wasPressedThisFrame)
+        return BuildRemapInput(Mouse.current.rightButton, "Mouse");
+    }
+
+    return null; // No input detected
+  }
+
+  public static void UpdateMapping(Dictionary<ControlActions, string> mapping, ControlActions action, string newKey) {
+    // Check if newKey is already mapped to another action
+    var existingAction = mapping.FirstOrDefault(kv => kv.Value == newKey).Key;
+
+    if (!existingAction.Equals(default(ControlActions))) { // swap
+      mapping[existingAction] = mapping[action];
+    }
+
+    mapping[action] = newKey;
+    Debug.Log($"{action}: {newKey}");
+    InGame.instance.pauseCanvas.GetComponent<Pause>().FinishMapping();
+  }
+
+  public static ControlActions StringToControlAction(string actionName) {
+    return actionName.ToLower() switch {
+      "jump" => ControlActions.Jump,
+      "atk1" => ControlActions.Attack1,
+      "atk2" => ControlActions.Attack2,
+      "action" => ControlActions.Action,
+      _ => throw new ArgumentException($"Unknown action name: {actionName}")
+    };
   }
 }

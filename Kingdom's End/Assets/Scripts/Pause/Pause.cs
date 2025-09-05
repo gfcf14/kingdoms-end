@@ -1937,119 +1937,28 @@ public class Pause : MonoBehaviour {
     currentlyMapping = key;
   }
 
-  public void FinishMapping(String keyCode) {
+  public void FinishMapping() {
     switch(currentlyMapping) {
-      case "jump":
-        if (Helpers.IsGamepadKey(keyCode)) {
-          if (keyCode == Controls.currentGamepadAttack1) {
-            Controls.currentGamepadAttack1 = Controls.currentGamepadJump;
-          } else if (keyCode == Controls.currentGamepadAttack2) {
-            Controls.currentGamepadAttack2 = Controls.currentGamepadJump;
-          } else if (keyCode == Controls.currentGamepadAction) {
-            Controls.currentGamepadAction = Controls.currentGamepadJump;
-          }
-
-          Controls.currentGamepadJump = keyCode;
-        } else {
-          if (keyCode == Controls.currentKeyboardAttack1) {
-            Controls.currentKeyboardAttack1 = Controls.currentKeyboardJump;
-          } else if (keyCode == Controls.currentKeyboardAttack2) {
-            Controls.currentKeyboardAttack2 = Controls.currentKeyboardJump;
-          } else if (keyCode == Controls.currentKeyboardAction) {
-            Controls.currentKeyboardAction = Controls.currentKeyboardJump;
-          }
-
-          Controls.currentKeyboardJump = keyCode;
-        }
-
-        jumpAwaitLabel.SetActive(false);
-        Helpers.FocusUIElement(jumpButton);
-        previouslyFocusedButton = jumpButton;
-        break;
-      case "atk1":
-        if (Helpers.IsGamepadKey(keyCode)) {
-          if (keyCode == Controls.currentGamepadJump) {
-            Controls.currentGamepadJump = Controls.currentGamepadAttack1;
-          } else if (keyCode == Controls.currentGamepadAttack2) {
-            Controls.currentGamepadAttack2 = Controls.currentGamepadAttack1;
-          } else if (keyCode == Controls.currentGamepadAction) {
-            Controls.currentGamepadAction = Controls.currentGamepadAttack1;
-          }
-
-          Controls.currentGamepadAttack1 = keyCode;
-        } else {
-          if (keyCode == Controls.currentKeyboardJump) {
-            Controls.currentKeyboardJump = Controls.currentKeyboardAttack1;
-          } else if (keyCode == Controls.currentKeyboardAttack2) {
-            Controls.currentKeyboardAttack2 = Controls.currentKeyboardAttack1;
-          } else if (keyCode == Controls.currentKeyboardAction) {
-            Controls.currentKeyboardAction = Controls.currentKeyboardAttack1;
-          }
-
-          Controls.currentKeyboardAttack1 = keyCode;
-        }
-
-        atk1AwaitLabel.SetActive(false);
-        Helpers.FocusUIElement(atk1Button);
-        previouslyFocusedButton = atk1Button;
-        break;
-      case "atk2":
-        if (Helpers.IsGamepadKey(keyCode)) {
-          if (keyCode == Controls.currentGamepadJump) {
-            Controls.currentGamepadJump = Controls.currentGamepadAttack2;
-          } else if (keyCode == Controls.currentGamepadAttack1) {
-            Controls.currentGamepadAttack1 = Controls.currentGamepadAttack2;
-          } else if (keyCode == Controls.currentGamepadAction) {
-            Controls.currentGamepadAction = Controls.currentGamepadAttack2;
-          }
-
-          Controls.currentGamepadAttack2 = keyCode;
-        } else {
-          if (keyCode == Controls.currentKeyboardJump) {
-            Controls.currentKeyboardJump = Controls.currentKeyboardAttack2;
-          } else if (keyCode == Controls.currentKeyboardAttack1) {
-            Controls.currentKeyboardAttack1 = Controls.currentKeyboardAttack2;
-          } else if (keyCode == Controls.currentKeyboardAction) {
-            Controls.currentKeyboardAction = Controls.currentKeyboardAttack2;
-          }
-
-          Controls.currentKeyboardAttack2 = keyCode;
-        }
-
-        atk2AwaitLabel.SetActive(false);
-        Helpers.FocusUIElement(atk2Button);
-        previouslyFocusedButton = atk2Button;
-        break;
       case "action":
-        if (Helpers.IsGamepadKey(keyCode)) {
-          if (keyCode == Controls.currentGamepadJump) {
-            Controls.currentGamepadJump = Controls.currentGamepadAction;
-          } else if (keyCode == Controls.currentGamepadAttack1) {
-            Controls.currentGamepadAttack1 = Controls.currentGamepadAction;
-          } else if (keyCode == Controls.currentGamepadAttack2) {
-            Controls.currentGamepadAttack2 = Controls.currentGamepadAction;
-          }
-
-          Controls.currentGamepadAction = keyCode;
-        } else {
-          if (keyCode == Controls.currentKeyboardJump) {
-            Controls.currentKeyboardJump = Controls.currentKeyboardAction;
-          } else if (keyCode == Controls.currentKeyboardAttack1) {
-            Controls.currentKeyboardAttack1 = Controls.currentKeyboardAction;
-          } else if (keyCode == Controls.currentKeyboardAttack2) {
-            Controls.currentKeyboardAttack2 = Controls.currentKeyboardAction;
-          }
-
-          Controls.currentKeyboardAction = keyCode;
-        }
-
         actionAwaitLabel.SetActive(false);
         Helpers.FocusUIElement(actionButton);
         previouslyFocusedButton = actionButton;
-        break;
-      default:
-        Debug.Log("unknown map case: " + currentlyMapping);
-        break;
+      break;
+      case "atk1":
+        atk1AwaitLabel.SetActive(false);
+        Helpers.FocusUIElement(atk1Button);
+        previouslyFocusedButton = atk1Button;
+      break;
+      case "atk2":
+        atk2AwaitLabel.SetActive(false);
+        Helpers.FocusUIElement(atk2Button);
+        previouslyFocusedButton = atk2Button;
+      break;
+      case "jump":
+        jumpAwaitLabel.SetActive(false);
+        Helpers.FocusUIElement(jumpButton);
+        previouslyFocusedButton = jumpButton;
+      break;
     }
 
     currentlyMapping = "";
@@ -2069,6 +1978,7 @@ public class Pause : MonoBehaviour {
   }
 
   public void ResetMapping() {
+    // TODO: reset dictionaries here
     Controls.currentKeyboardJump = Controls.DEFAULT_KEYBOARD_JUMP;
     Controls.currentKeyboardAttack1 = Controls.DEFAULT_KEYBOARD_ATTACK_1;
     Controls.currentKeyboardAttack2 = Controls.DEFAULT_KEYBOARD_ATTACK_2;

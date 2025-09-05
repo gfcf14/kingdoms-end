@@ -63,14 +63,6 @@ public class Helpers {
     }
   }
 
-  public static bool IsForbiddenToRemap(string keyCode) {
-    return IsValueInArray(Constants.forbiddenKeys, keyCode) || keyCode.Contains("Mouse") || keyCode.Contains("Button9");
-  }
-
-  public static bool IsGamepadKey(string keyCode) {
-    return keyCode.Contains("Joystick");
-  }
-
   public static void FocusUIElement(GameObject element) {
     Pause.eventSystem.SetSelectedGameObject(element, new BaseEventData(Pause.eventSystem));
   }
