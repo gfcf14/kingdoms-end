@@ -19,16 +19,6 @@ public static class Controls {
   public const string DEFAULT_XBOX_ACTION = "leftShoulder";
 
   // variables that define keys to use in game. To be changed only in pause menu
-  public static string currentKeyboardJump = DEFAULT_KEYBOARD_JUMP;
-  public static string currentKeyboardAttack1 = DEFAULT_KEYBOARD_ATTACK_1;
-  public static string currentKeyboardAttack2 = DEFAULT_KEYBOARD_ATTACK_2;
-  public static string currentKeyboardAction = DEFAULT_KEYBOARD_ACTION;
-
-  public static string currentGamepadJump = DEFAULT_GAMEPAD_JUMP;
-  public static string currentGamepadAttack1 = DEFAULT_GAMEPAD_ATTACK_1;
-  public static string currentGamepadAttack2 = DEFAULT_GAMEPAD_ATTACK_2;
-  public static string currentGamepadAction = DEFAULT_GAMEPAD_ACTION;
-
   public static Dictionary<string, Dictionary<ControlActions, string>> defaultControlMappings = new() {
     {"keyboard", new() {
       {ControlActions.Action, DEFAULT_KEYBOARD_ACTION},

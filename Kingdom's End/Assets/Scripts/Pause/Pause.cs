@@ -1515,44 +1515,49 @@ public class Pause : MonoBehaviour {
   }
 
   void UpdateControls() {
-    if (jumpKeyboardString != Controls.currentKeyboardJump) {
-      jumpKeyboardString = Controls.currentKeyboardJump;
+    if (jumpKeyboardString != Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, "keyboard"), ControlActions.Jump)) {
+      jumpKeyboardString = Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, "keyboard"), ControlActions.Jump);
       jumpKeyboardImage.GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keycodeSprites, jumpKeyboardString);
     }
 
-    if (jumpGamepadString != Controls.currentGamepadJump) {
-      jumpGamepadString = Controls.currentGamepadJump;
-      jumpGamepadImage.GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keycodeSprites, jumpGamepadString);
-    }
-
-    if (atk1KeyboardString != Controls.currentKeyboardAttack1) {
-      atk1KeyboardString = Controls.currentKeyboardAttack1;
+    if (atk1KeyboardString != Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, "keyboard"), ControlActions.Attack1)) {
+      atk1KeyboardString = Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, "keyboard"), ControlActions.Attack1);
       atk1KeyboardImage.GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keycodeSprites, atk1KeyboardString);
     }
 
-    if (atk1GamepadString != Controls.currentGamepadAttack1) {
-      atk1GamepadString = Controls.currentGamepadAttack1;
-      atk1GamepadImage.GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keycodeSprites, atk1GamepadString);
-    }
-
-    if (atk2KeyboardString != Controls.currentKeyboardAttack2) {
-      atk2KeyboardString = Controls.currentKeyboardAttack2;
+    if (atk2KeyboardString != Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, "keyboard"), ControlActions.Attack2)) {
+      atk2KeyboardString = Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, "keyboard"), ControlActions.Attack2);
       atk2KeyboardImage.GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keycodeSprites, atk2KeyboardString);
     }
 
-    if (atk2GamepadString != Controls.currentGamepadAttack2) {
-      atk2GamepadString = Controls.currentGamepadAttack2;
-      atk2GamepadImage.GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keycodeSprites, atk2GamepadString);
-    }
-
-    if (actionKeyboardString != Controls.currentKeyboardAction) {
-      actionKeyboardString = Controls.currentKeyboardAction;
+    if (actionKeyboardString != Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, "keyboard"), ControlActions.Action)) {
+      actionKeyboardString = Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, "keyboard"), ControlActions.Action);
       actionKeyboardImage.GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keycodeSprites, actionKeyboardString);
     }
 
-    if (actionGamepadString != Controls.currentGamepadAction) {
-      actionGamepadString = Controls.currentGamepadAction;
-      actionGamepadImage.GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keycodeSprites, actionGamepadString);
+    var currentGamepad = UserInput.GetActiveGamepadKey();
+    if (currentGamepad == null) {
+      currentGamepad = "usb gamepad";
+    }
+
+    if (jumpGamepadString != Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Jump)) {
+      jumpGamepadString = Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Jump);
+      jumpGamepadImage.GetComponent<Image>().sprite = Helpers.GetOrException(Helpers.GetOrException(Sprites.gamepadSprites, currentGamepad), Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Jump));
+    }
+
+    if (atk1GamepadString != Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Attack1)) {
+      atk1GamepadString = Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Attack1);
+      atk1GamepadImage.GetComponent<Image>().sprite = Helpers.GetOrException(Helpers.GetOrException(Sprites.gamepadSprites, currentGamepad), Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Attack1));
+    }
+
+    if (atk2GamepadString != Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Attack2)) {
+      atk2GamepadString = Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Attack2);
+      atk2GamepadImage.GetComponent<Image>().sprite = Helpers.GetOrException(Helpers.GetOrException(Sprites.gamepadSprites, currentGamepad), Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Attack2));
+    }
+
+    if (actionGamepadString != Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Action)) {
+      actionGamepadString = Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Action);
+      actionGamepadImage.GetComponent<Image>().sprite = Helpers.GetOrException(Helpers.GetOrException(Sprites.gamepadSprites, currentGamepad), Helpers.GetOrException(Helpers.GetOrException(Controls.currentControlMappings, currentGamepad), ControlActions.Action));
     }
   }
 

@@ -43,13 +43,13 @@ public class UserInput : MonoBehaviour {
     return null;
   }
 
-  private static string GetActiveGamepadKey() {
+  public static string GetActiveGamepadKey() {
     if (Gamepad.all.Count > 0) {
       foreach (var gamepad in Gamepad.all) {
         string name = gamepad.displayName.ToLower();
 
         if (name.Contains("xbox")) return "xbox";
-        if (name.Contains("playstation")) return "playstation"; // if you add support
+        if (name.Contains("playstation")) return "playstation";
         if (name.Contains("usb") || name.Contains("joystick")) return "usb gamepad";
       }
     }
