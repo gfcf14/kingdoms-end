@@ -150,8 +150,9 @@ public class Pause : MonoBehaviour {
 
   // main footer legends
   [Header("Footer Legends")]
-  [SerializeField] GameObject mainButtonPanel;
+  [SerializeField] GameObject mainGamepadPanel;
   [SerializeField] GameObject mainKeysPanel;
+  [SerializeField] GameObject mainXboxPanel;
   [Space(10)]
 
   // dynamic hero objects
@@ -1507,9 +1508,18 @@ public class Pause : MonoBehaviour {
     }
     hasGamepad = validGamepads.Count > 0;
 
-    if (hasGamepad && Constants.preferredInput == "gamepad" && mainButtonPanel.activeInHierarchy == false ) {
-      ShowGamePadOptions();
-    } else if ((!hasGamepad || Constants.preferredInput == "keyboard") && mainKeysPanel.activeInHierarchy == false) {
+    if (hasGamepad && Constants.preferredInput == "gamepad") {
+      var currentGamepad = UserInput.GetActiveGamepadKey();
+      if (currentGamepad == null) {
+        currentGamepad = "usb gamepad";
+      }
+
+      if (currentGamepad == "xbox" && !mainXboxPanel.activeInHierarchy) {
+        ShowXboxOptions();
+      } else if (currentGamepad == "usb gamepad" && !mainGamepadPanel.activeInHierarchy) {
+        ShowGamePadOptions();
+      }
+    } else if ((!hasGamepad || Constants.preferredInput == "keyboard") && !mainKeysPanel.activeInHierarchy) {
       ShowKeyboardOptions();
     }
   }
@@ -1898,13 +1908,21 @@ public class Pause : MonoBehaviour {
     }
   }
 
+  void ShowXboxOptions() {
+    mainKeysPanel.SetActive(false);
+    mainGamepadPanel.SetActive(false);
+    mainXboxPanel.SetActive(true);
+  }
+
   void ShowGamePadOptions() {
     mainKeysPanel.SetActive(false);
-    mainButtonPanel.SetActive(true);
+    mainXboxPanel.SetActive(false);
+    mainGamepadPanel.SetActive(true);
   }
 
   void ShowKeyboardOptions() {
-    mainButtonPanel.SetActive(false);
+    mainGamepadPanel.SetActive(false);
+    mainXboxPanel.SetActive(false);
     mainKeysPanel.SetActive(true);
   }
 
