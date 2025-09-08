@@ -152,6 +152,7 @@ public class Pause : MonoBehaviour {
   [Header("Footer Legends")]
   [SerializeField] GameObject mainGamepadPanel;
   [SerializeField] GameObject mainKeysPanel;
+  [SerializeField] GameObject mainPlaystationPanel;
   [SerializeField] GameObject mainXboxPanel;
   [Space(10)]
 
@@ -1516,6 +1517,8 @@ public class Pause : MonoBehaviour {
 
       if (currentGamepad == "xbox" && !mainXboxPanel.activeInHierarchy) {
         ShowXboxOptions();
+      } else if (currentGamepad == "playstation" && !mainPlaystationPanel.activeInHierarchy) {
+        ShowPlaystationOptions();
       } else if (currentGamepad == "usb gamepad" && !mainGamepadPanel.activeInHierarchy) {
         ShowGamePadOptions();
       }
@@ -1911,18 +1914,28 @@ public class Pause : MonoBehaviour {
   void ShowXboxOptions() {
     mainKeysPanel.SetActive(false);
     mainGamepadPanel.SetActive(false);
+    mainPlaystationPanel.SetActive(false);
     mainXboxPanel.SetActive(true);
+  }
+
+  void ShowPlaystationOptions() {
+    mainKeysPanel.SetActive(false);
+    mainGamepadPanel.SetActive(false);
+    mainXboxPanel.SetActive(false);
+    mainPlaystationPanel.SetActive(true);
   }
 
   void ShowGamePadOptions() {
     mainKeysPanel.SetActive(false);
     mainXboxPanel.SetActive(false);
+    mainPlaystationPanel.SetActive(false);
     mainGamepadPanel.SetActive(true);
   }
 
   void ShowKeyboardOptions() {
     mainGamepadPanel.SetActive(false);
     mainXboxPanel.SetActive(false);
+    mainPlaystationPanel.SetActive(false);
     mainKeysPanel.SetActive(true);
   }
 

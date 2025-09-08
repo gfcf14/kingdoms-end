@@ -49,7 +49,7 @@ public class UserInput : MonoBehaviour {
         string name = gamepad.displayName.ToLower();
 
         if (name.Contains("xbox")) return "xbox";
-        if (name.Contains("playstation")) return "playstation";
+        if (name.Contains("playstation") || name.Contains("dualshock") || name.Contains("dualsense")) name = "playstation";
         if (name.Contains("usb") || name.Contains("joystick")) return "usb gamepad";
       }
     }
@@ -187,7 +187,7 @@ public class UserInput : MonoBehaviour {
     string name = gamepad.displayName.ToLower();
     ButtonControl button = null;
 
-    if (name.Contains("xbox")) {
+    if (name.Contains("xbox") || name.Contains("playstation") || name.Contains("dualshock") || name.Contains("dualsense")) {
       button = key switch {
         "buttonSouth"   => gamepad.buttonSouth,
         "buttonEast"    => gamepad.buttonEast,
@@ -220,6 +220,7 @@ public class UserInput : MonoBehaviour {
       string name = gamepad.displayName.ToLower();
 
       if (name.Contains("xbox") && gamepad.startButton.wasReleasedThisFrame) return true;
+      if ((name.Contains("playstation") || name.Contains("dualshock") || name.Contains("dualsense")) && gamepad.startButton.wasReleasedThisFrame) return true;
       if (name.Contains("usb gamepad") && gamepad.startButton.wasReleasedThisFrame) return true;
     }
 
@@ -241,6 +242,7 @@ public class UserInput : MonoBehaviour {
       string name = gamepad.displayName.ToLower();
 
       if (name.Contains("xbox") && gamepad.buttonNorth.wasPressedThisFrame) return true;
+      if ((name.Contains("playstation") || name.Contains("dualshock") || name.Contains("dualsense")) && gamepad.buttonNorth.wasPressedThisFrame) return true;
       if (name.Contains("usb gamepad") && gamepad.buttonNorth.wasPressedThisFrame) return true;
     }
 
@@ -271,6 +273,7 @@ public class UserInput : MonoBehaviour {
       string name = gamepad.displayName.ToLower();
 
       if (name.Contains("xbox") && gamepad.startButton.wasPressedThisFrame) return true;
+      if ((name.Contains("playstation") || name.Contains("dualshock") || name.Contains("dualsense")) && gamepad.startButton.wasPressedThisFrame) return true;
       if (name.Contains("usb gamepad") && gamepad.startButton.wasPressedThisFrame) return true;
     }
 

@@ -13,6 +13,11 @@ public static class Controls {
   public const string DEFAULT_GAMEPAD_ATTACK_2 = "button2";
   public const string DEFAULT_GAMEPAD_ACTION = "button7";
 
+  public const string DEFAULT_PLAYSTATION_JUMP = "buttonSouth";
+  public const string DEFAULT_PLAYSTATION_ATTACK_1 = "buttonWest";
+  public const string DEFAULT_PLAYSTATION_ATTACK_2 = "buttonEast";
+  public const string DEFAULT_PLAYSTATION_ACTION = "leftShoulder";
+
   public const string DEFAULT_XBOX_JUMP = "buttonSouth";
   public const string DEFAULT_XBOX_ATTACK_1 = "buttonWest";
   public const string DEFAULT_XBOX_ATTACK_2 = "buttonEast";
@@ -25,6 +30,12 @@ public static class Controls {
       {ControlActions.Attack1, DEFAULT_KEYBOARD_ATTACK_1},
       {ControlActions.Attack2, DEFAULT_KEYBOARD_ATTACK_2},
       {ControlActions.Jump, DEFAULT_KEYBOARD_JUMP},
+    }},
+    {"playstation", new() {
+      {ControlActions.Action, DEFAULT_PLAYSTATION_ACTION},
+      {ControlActions.Attack1, DEFAULT_PLAYSTATION_ATTACK_1},
+      {ControlActions.Attack2, DEFAULT_PLAYSTATION_ATTACK_2},
+      {ControlActions.Jump, DEFAULT_PLAYSTATION_JUMP},
     }},
     {"usb gamepad", new() {
       {ControlActions.Action, DEFAULT_GAMEPAD_ACTION},

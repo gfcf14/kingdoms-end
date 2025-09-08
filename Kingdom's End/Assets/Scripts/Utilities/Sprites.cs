@@ -245,6 +245,20 @@ public class Sprites {
   };
 
   public static Dictionary<string, Dictionary<string, Sprite>> gamepadSprites = new() {
+    {"playstation", new() {
+      {"buttonSouth", keyset[200]},
+      {"buttonEast", keyset[199]},
+      {"buttonWest", keyset[197]},
+      {"buttonNorth", keyset[198]},
+      {"leftShoulder", keyset[139]},
+      {"rightShoulder", keyset[156]},
+      {"leftTrigger", keyset[153]},
+      {"rightTrigger", keyset[168]},
+      {"startButton", keyset[141]},
+      {"selectButton", keyset[140]},
+      {"leftStick", keyset[167]},
+      {"rightStick", keyset[152]}
+    }},
     {"usb gamepad", new() {
       {"button2", keyset[169]},
       {"button3", keyset[170]},
