@@ -3,10 +3,10 @@ using System.Linq;
 
 public static class Controls {
   // DO NOT CHANGE OR RISK THE POSSIBLITY OF UNIVERSE IMPLOSION
-  public const string DEFAULT_KEYBOARD_JUMP = "Space";
-  public const string DEFAULT_KEYBOARD_ATTACK_1 = "Keypad4";
-  public const string DEFAULT_KEYBOARD_ATTACK_2 = "Keypad6";
-  public const string DEFAULT_KEYBOARD_ACTION = "Keypad7";
+  public const string DEFAULT_KEYBOARD_JUMP = "space";
+  public const string DEFAULT_KEYBOARD_ATTACK_1 = "numpad4";
+  public const string DEFAULT_KEYBOARD_ATTACK_2 = "numpad6";
+  public const string DEFAULT_KEYBOARD_ACTION = "numpad7";
 
   public const string DEFAULT_GAMEPAD_JUMP = "button3";
   public const string DEFAULT_GAMEPAD_ATTACK_1 = "button4";
@@ -58,7 +58,7 @@ public static class Controls {
 
   // Forbidden keys grouped by device type
   public static Dictionary<string, string[]> forbiddenKeys = new() {
-    {"keyboard", new[] {"escape", "enter", "return", "w", "a", "s", "d", "UpArrow", "DownArrow", "RightArrow", "LeftArrow", "p"}},
+    {"keyboard", new[] {"escape", "enter", "numpadEnter", "return", "w", "a", "s", "d", "UpArrow", "DownArrow", "RightArrow", "LeftArrow", "p"}},
     {"xbox", new[] {"start", "select", "menu"}},
     {"playstation", new[] {"options", "touchpad"}},
     {"usb gamepad", new[] {"button9"}}

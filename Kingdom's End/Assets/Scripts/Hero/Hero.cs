@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Hero : MonoBehaviour {
@@ -910,6 +911,9 @@ public class Hero : MonoBehaviour {
       if (!isPaused && pauseCase == "") {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+
+        // TODO: based on this line below, use it to check directional keys being held in gamepads and joysticks
+        // Debug.Log($"Axis: {verticalInput}, Left Stick (Gamepad): {(Gamepad.current != null ? Gamepad.current.leftStick.ReadValue().y : "N/A")}, Left Stick (Joystick): {(Joystick.current != null ? Joystick.current.stick.y.ReadValue() : "N/A")}");
 
         if (shieldDropTime != 0) {
           if (Helpers.ExceedsTime(shieldDropTime, currentShieldRecoverTime)) {
