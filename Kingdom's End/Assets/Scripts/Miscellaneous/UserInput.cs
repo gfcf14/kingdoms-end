@@ -352,7 +352,7 @@ public class UserInput : MonoBehaviour {
     // Check if newKey is already mapped to another action
     var existingAction = mapping.FirstOrDefault(kv => kv.Value == newKey).Key;
 
-    if (!existingAction.Equals(default(ControlActions))) { // swap
+    if (!existingAction.Equals(action)) { // swap
       mapping[existingAction] = mapping[action];
     }
 
