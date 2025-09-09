@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Objects {
+public class Objects
+{
   public static Dictionary<string, string[]> enemyKeysByArea = new Dictionary<string, string[]> {
     {"calderas", new string[]{"phoenix"}},
     {"desert", new string[]{"mummy"}},

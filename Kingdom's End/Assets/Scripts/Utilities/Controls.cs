@@ -59,7 +59,7 @@ public static class Controls {
   // Forbidden keys grouped by device type
   public static Dictionary<string, string[]> forbiddenKeys = new() {
     {"keyboard", new[] {"escape", "enter", "numpadEnter", "return", "w", "a", "s", "d", "UpArrow", "DownArrow", "RightArrow", "LeftArrow", "p"}},
-    {"xbox", new[] {"start", "select", "menu"}},
+    {"xbox", new[] {"start", "select", "menu", "up", "down", "left", "right"}},
     {"playstation", new[] {"options", "touchpad"}},
     {"usb gamepad", new[] {"button9"}}
   };

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
 public class Hero : MonoBehaviour {
@@ -864,6 +865,28 @@ public class Hero : MonoBehaviour {
     return ((isFacingLeft && groundType == "descent") || (!isFacingLeft && groundType == "incline")) && isRunning && isGrounded;
   }
 
+  public float GetInput(string axis) {
+    float axisInput = Input.GetAxis(axis == "x" ? "Horizontal" : "Vertical");
+    float gamepadStick = Gamepad.current != null ? (
+      axis == "x" ? Gamepad.current.leftStick.ReadValue().x : Gamepad.current.leftStick.ReadValue().y
+    ) : 0;
+    float gamepadDpad = Gamepad.current != null ? (
+      axis == "x" ? Gamepad.current.dpad.x.value : Gamepad.current.dpad.y.value
+    ): 0;
+    float joystickInput = Joystick.current != null ? (
+      axis == "x" ? Joystick.current.stick.x.ReadValue() : Joystick.current.stick.y.ReadValue()
+    ) : 0;
+
+    float input = Mathf.Max(Mathf.Abs(axisInput), Mathf.Abs(gamepadStick), Mathf.Abs(gamepadDpad), Mathf.Abs(joystickInput));
+
+    if (input == Mathf.Abs(axisInput)) return axisInput;
+    if (input == Mathf.Abs(gamepadStick)) return gamepadStick;
+    if (input == Mathf.Abs(gamepadDpad)) return gamepadDpad;
+    if (input == Mathf.Abs(joystickInput)) return joystickInput;
+
+    return 0;
+  }
+
   // called on every frame of the game
   private void Update() {
     direction = isFacingLeft ? -1 : 1;
@@ -906,14 +929,10 @@ public class Hero : MonoBehaviour {
         // InGame.instance.GetTileName(transform.position);
     // END of DEBUG FOR TILE
 
-
     if (!isAutonomous) {
       if (!isPaused && pauseCase == "") {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-
-        // TODO: based on this line below, use it to check directional keys being held in gamepads and joysticks
-        // Debug.Log($"Axis: {verticalInput}, Left Stick (Gamepad): {(Gamepad.current != null ? Gamepad.current.leftStick.ReadValue().y : "N/A")}, Left Stick (Joystick): {(Joystick.current != null ? Joystick.current.stick.y.ReadValue() : "N/A")}");
+        horizontalInput = GetInput("x");
+        verticalInput = GetInput("y") * (Gamepad.current != null ? (Gamepad.current.dpad.y.value != 0 ? -1 : 1) : 1);
 
         if (shieldDropTime != 0) {
           if (Helpers.ExceedsTime(shieldDropTime, currentShieldRecoverTime)) {
