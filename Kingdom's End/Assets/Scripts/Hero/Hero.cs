@@ -187,7 +187,7 @@ public class Hero : MonoBehaviour {
       new HeroMagicResistance() {name = "dark", frequency = 0}
     };
 
-    [NonSerialized] public Dictionary<string, int> magicResistanceTypeIndex = new Dictionary<string, int> {
+    [NonSerialized] public Dictionary<string, int> magicResistanceTypeIndex = new() {
       {"Earth", 0},
       {"Air", 1},
       {"Water", 2},
@@ -255,7 +255,7 @@ public class Hero : MonoBehaviour {
 
   [NonSerialized] public int bossTransitionDirection = 0;
 
-  [NonSerialized] private Dictionary<string, string> npcNodes = new Dictionary<string, string> {
+  [NonSerialized] private Dictionary<string, string> npcNodes = new() {
     {"peasant-girl", ""}
   };
 

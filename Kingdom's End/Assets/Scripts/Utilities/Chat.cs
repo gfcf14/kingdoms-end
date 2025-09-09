@@ -11,8 +11,8 @@ public class Chat {
     outcomeValue = ""
   };
 
-  public static Dictionary<string, Dictionary<string, ChatNode>> chatNodes = new Dictionary<string, Dictionary<string, ChatNode>> {
-    {"peasant-girl", new Dictionary<string, ChatNode> {
+  public static Dictionary<string, Dictionary<string, ChatNode>> chatNodes = new() {
+    {"peasant-girl", new() {
       {"", new ChatNode() {
         nodeCondition = blankCondition,
         nodeLines = new ChatLine[] {

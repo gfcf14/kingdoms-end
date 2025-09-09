@@ -111,48 +111,48 @@ public class GlobalGradients : MonoBehaviour {
   public bool canUpdateGradients = false;
 
   void Start() {
-    areaGradients = new Dictionary<string, Dictionary<string, Gradient>> {
-      {"calderas", new Dictionary<string, Gradient> {
+    areaGradients = new() {
+      {"calderas", new() {
           {"sky", calderasSkyGradient}, {"ground", calderasGroundGradient}, {"buildings", calderasBuildingsGradient}
         }
       },
-      {"desert", new Dictionary<string, Gradient> {
+      {"desert", new() {
           {"sky", desertSkyGradient}, {"ground", desertGroundGradient}, {"buildings", desertBuildingsGradient}
         }
       },
-      {"forest", new Dictionary<string, Gradient> {
+      {"forest", new() {
           {"sky", forestSkyGradient}, {"ground", forestGroundGradient}, {"buildings", forestBuildingsGradient}
         }
       },
-      {"glaciers", new Dictionary<string, Gradient> {
+      {"glaciers", new() {
           {"sky", glaciersSkyGradient}, {"ground", glaciersGroundGradient}, {"buildings", glaciersBuildingsGradient}
         }
       },
-      {"meadows", new Dictionary<string, Gradient> {
+      {"meadows", new() {
           {"sky", meadowsSkyGradient}, {"ground", meadowsGroundGradient}, {"buildings", meadowsBuildingsGradient}
         }
       },
-      {"mountains", new Dictionary<string, Gradient> {
+      {"mountains", new() {
           {"sky", mountainsSkyGradient}, {"ground", mountainsGroundGradient}, {"buildings", mountainsBuildingsGradient}
         }
       },
-      {"oceans", new Dictionary<string, Gradient> {
+      {"oceans", new() {
           {"sky", oceansSkyGradient}, {"ground", oceansGroundGradient}, {"buildings", oceansBuildingsGradient}
         }
       },
-      {"ruins", new Dictionary<string, Gradient> {
+      {"ruins", new() {
           {"sky", ruinsSkyGradient}, {"ground", ruinsGroundGradient}, {"buildings", ruinsBuildingsGradient}
         }
       },
-      {"seaside", new Dictionary<string, Gradient> {
+      {"seaside", new() {
           {"sky", seasideSkyGradient}, {"ground", seasideGroundGradient}, {"buildings", seasideBuildingsGradient}
         }
       },
-      {"swamps", new Dictionary<string, Gradient> {
+      {"swamps", new() {
           {"sky", swampsSkyGradient}, {"ground", swampsGroundGradient}, {"buildings", swampsBuildingsGradient}
         }
       },
-      {"wasteland", new Dictionary<string, Gradient> {
+      {"wasteland", new() {
           {"sky", wastelandSkyGradient}, {"ground", wastelandGroundGradient}, {"buildings", wastelandBuildingsGradient}
         }
       }

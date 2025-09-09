@@ -2,17 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Colors {
-  public static Dictionary<string, Color> elementResistancesColors = new Dictionary<string, Color> {
+  public static Dictionary<string, Color> elementResistancesColors = new() {
     {"fire", new Color(0.9f, 0, 0)},
     {"poison", new Color(0.7f, 0.86f, 0.19f)}
   };
 
-  public static Dictionary<string, Color> statusColors = new Dictionary<string, Color> {
+  public static Dictionary<string, Color> statusColors = new() {
     {"burned", new Color(0.3f, 0.3f, 0.3f)},
     {"poisoned", new Color(0.4f, 0, 0.4f)}
   };
 
-  public static Dictionary<string, Color> pauseStatsColors = new Dictionary<string, Color> {
+  public static Dictionary<string, Color> pauseStatsColors = new() {
     {"higher", new Color(0, 1, 0)},
     {"lower", new Color(1, 0, 0)}
   };
@@ -33,14 +33,14 @@ public class Colors {
   public static Color effect = new Color(0, 192f/255f, 1);
   public static Color transparent = new Color(0, 0, 0, 0);
 
-  public static Dictionary<string, Color> vaseColors = new Dictionary<string, Color> {
+  public static Dictionary<string, Color> vaseColors = new() {
     {"gold", new Color(1, 1, 0.5f)},
     {"bronze", new Color(0.31f, 0.2f, 0.08f)},
     {"brass", new Color(0.88f, 0.76f, 0.43f)},
     {"silver", new Color(0.75f, 0.75f, 0.75f)}
   };
 
-  public static Dictionary<string, Color> chestColors = new Dictionary<string, Color> {
+  public static Dictionary<string, Color> chestColors = new() {
     {"brown", new Color(148f/255f, 107f/255f, 80f/255f)},
     {"green", new Color(47f/255f, 141f/255f, 69f/255f)},
     {"blue", new Color(0, 89f/255f, 155f/255f)},
@@ -56,16 +56,16 @@ public class Colors {
     // {"", new Color()}
   };
 
-  public static Dictionary<string, Color> chestFrameColors = new Dictionary<string, Color> {
+  public static Dictionary<string, Color> chestFrameColors = new() {
     {"bronze", new Color(1, 158f/255f, 62f/255f)},
     {"gold", new Color(1, 238f/255f, 51f/255f)}
   };
 
-  public static Dictionary<string, Color> heroCastColors = new Dictionary<string, Color> {
+  public static Dictionary<string, Color> heroCastColors = new() {
     {"chat", new Color(0, 90f/255f, 43f/255f)}
   };
 
-  public static Dictionary<string, Color> raycastColors = new Dictionary<string, Color> {
+  public static Dictionary<string, Color> raycastColors = new() {
     {"defense", new Color(0, 0, 192f/255f, 1)},
     {"edge", new Color(0, 0, 0, 1)},
     {"jump", new Color(0.75f, 0.75f, 1, 1)},
@@ -76,7 +76,7 @@ public class Colors {
     {"vxy", new Color(1, 0, 1, 1)}
   };
 
-  public static Dictionary<string, Color> wingsColors = new Dictionary<string, Color> {
+  public static Dictionary<string, Color> wingsColors = new() {
     {"calderas", new Color(150/255f, 150/255f, 90/255f, 1)},
     {"desert", new Color(255/255f, 90/255f, 0/255f, 1)},
     {"forest", new Color(120/255f, 160/255f, 70/255f, 1)},

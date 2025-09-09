@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Objects
 {
-  public static Dictionary<string, string[]> enemyKeysByArea = new Dictionary<string, string[]> {
+  public static Dictionary<string, string[]> enemyKeysByArea = new() {
     {"calderas", new string[]{"phoenix"}},
     {"desert", new string[]{"mummy"}},
     {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
@@ -19,12 +19,12 @@ public class Objects
     {"wasteland", new string[]{"skeleton", "skeleton-king", "skelewing"}}
   };
 
-  public static Dictionary<string, string[]> enemyTypesByCondition = new Dictionary<string, string[]> {
+  public static Dictionary<string, string[]> enemyTypesByCondition = new() {
     {"bounded", new string[]{"bewitcher", "champion", "charger", "exploder", "patroller", "teleporter"}},
     {"unbounded", new string[]{"ambusher", "bomber", "bouncer", "idler", "sentinel", "shooter"}}
   };
 
-  public static Dictionary<string, GameObject> prefabs = new Dictionary<string, GameObject> {
+  public static Dictionary<string, GameObject> prefabs = new() {
     {"ambush-floor", Resources.Load("Prefabs/AmbushFloor") as GameObject},
     {"arrow", Resources.Load("Prefabs/Arrow") as GameObject},
     {"arrow-burn", Resources.Load("Prefabs/ArrowBurn") as GameObject},
@@ -76,12 +76,12 @@ public class Objects
     {"throwable", Resources.Load("Prefabs/Throwable") as GameObject}
   };
 
-  public static Dictionary<string, string[]> itemProjectiles = new Dictionary<string, string[]> {
+  public static Dictionary<string, string[]> itemProjectiles = new() {
     {"basic-bow", new string[]{"arrow-standard", "arrow-poison", "arrow-fire"}}
   };
 
   // initialize constructable RegularItem objects by: new RelicItem(thumbnail, image, name, description, effect)
-  public static Dictionary<string, RelicItem> relicItems = new Dictionary<string, RelicItem> {
+  public static Dictionary<string, RelicItem> relicItems = new() {
     {"dawn-gem", new RelicItem(Sprites.relicItemThumbnails[3], Sprites.relicItemImages[3], "Dawn Gem", "Crystalline fragment said to hold the first rays of dawn, increasing glow", new RelicEffect("enable", "hasLightUnderground"))},
     {"magic-talisman", new RelicItem(Sprites.relicItemThumbnails[1], Sprites.relicItemImages[1], "Magic Talisman", "Enables the user to cast magic.", new RelicEffect("enable", "canCastMagic"))},
     {"royal-lamp", new RelicItem(Sprites.relicItemThumbnails[2], Sprites.relicItemImages[2], "Royal Lamp", "A symbol of royal heritage that grants the user some sight in darkness", new RelicEffect("enable", "hasLightUnderground"))},
@@ -90,7 +90,7 @@ public class Objects
   };
 
   // initialize constructable RegularItem objects by: new RegularItem(thumbnail, image, name, description, type, effects)
-  public static Dictionary<string, RegularItem> regularItems = new Dictionary<string, RegularItem> {
+  public static Dictionary<string, RegularItem> regularItems = new() {
     {"basic-longsword", new RegularItem(Sprites.itemThumbnails[0], Sprites.itemImages[0], "Basic Longsword", "Useful two-handed weapon.", "double", new Effects() {atk=40})},
     {"basic-sword", new RegularItem(Sprites.itemThumbnails[1], Sprites.itemImages[1], "Basic Sword", "Standard adventurer's sword.", "single", new Effects() {atk=20})},
     {"basic-shield", new RegularItem(Sprites.itemThumbnails[2], Sprites.itemImages[2], "Basic Shield", "Can also be used to start a campfire.", "defense", new Effects() {def=10})},
@@ -202,7 +202,7 @@ public class Objects
     // {"chicken-drumstick", new RegularItem(Sprites.itemThumbnails[3], Sprites.itemImages[3], "Chicken Drumstick", "From range-free raised fowl.", "food", new Effects() {hp = 99, mp=99, statusHeal=new string[]{"Poison", "Curse", "Drain"}, atk=-99, def=99, crit=0.5f, luck=-0.2f, magicResistances=new MagicResistance[]{new MagicResistance(){name="Earth", type="add"}, new MagicResistance(){name="Air", type="add"}, new MagicResistance(){name="Water", type="add"}, new MagicResistance(){name="Fire", type="add"}, new MagicResistance(){name="Lightning", type="remove"}, new MagicResistance(){name="Ice", type="remove"}, new MagicResistance(){name="Light", type="remove"}, new MagicResistance(){name="Dark", type="remove"}}})}
   };
 
-  public static Dictionary<string, int> projectileDamages = new Dictionary<string, int> {
+  public static Dictionary<string, int> projectileDamages = new() {
     {"bunyip-tooth", 30},
     {"centaur-spear", 50},
     {"cyclops-hillstone", 50},
@@ -237,16 +237,16 @@ public class Objects
     {"yanmabel-stinger", 30}
   };
 
-  public static Dictionary<string, FragmentOutcome> itemFragments = new Dictionary<string, FragmentOutcome> {
+  public static Dictionary<string, FragmentOutcome> itemFragments = new() {
     {"watermelon", new FragmentOutcome(){key="watermelon-slice", count=8}}
   };
 
-  public static Dictionary<string, float> fragmentOffsets = new Dictionary<string, float> {
+  public static Dictionary<string, float> fragmentOffsets = new() {
     {"watermelon-slice", 0.5f}
   };
 
   // TODO: this Dictionary will be used until all enemies are added to the game and all items they can drop are defined. Be sure to then update all enemies that use it
-  public static Dictionary<string, ProbabilityItem[]> genericItemDictionary = new Dictionary<string, ProbabilityItem[]> {
+  public static Dictionary<string, ProbabilityItem[]> genericItemDictionary = new() {
     {"low", new ProbabilityItem[] {
       new ProbabilityItem(){key="low-potions", probability=0.8f},
       new ProbabilityItem(){key="low-money", probability=0.9f},
@@ -269,9 +269,9 @@ public class Objects
 
   // To get item probabilities, order them with the highest probability item first, then descending. the next item's probability has to be its inteded probability PLUS the previous ones
   // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%, then A's probability is 0.8, B is 0.9, C is 0.96, and D is 1
-  public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new Dictionary<string, Dictionary<string, ProbabilityItem[]>> {
+  public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new() {
     {"centaur", genericItemDictionary},
-    {"dwarf", new Dictionary<string, ProbabilityItem[]> {
+    {"dwarf", new() {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="low-food", probability=0.7f},
         new ProbabilityItem(){key="low-money", probability=0.85f},
@@ -291,7 +291,7 @@ public class Objects
         new ProbabilityItem(){key="war-maul", probability=1},
       }}
     }},
-    {"goblin", new Dictionary<string, ProbabilityItem[]> {
+    {"goblin", new() {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="low-food", probability=0.5f},
         new ProbabilityItem(){key="low-money", probability=0.8f},
@@ -311,7 +311,7 @@ public class Objects
         new ProbabilityItem(){key="goblin-high-item4", probability=1},
       }}
     }},
-    {"nymph", new Dictionary<string, ProbabilityItem[]> {
+    {"nymph", new() {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="low-food", probability=0.6f},
         new ProbabilityItem(){key="low-potions", probability=0.8f},
@@ -331,7 +331,7 @@ public class Objects
         new ProbabilityItem(){key="flower-wreath", probability=1},
       }}
     }},
-    {"pixie", new Dictionary<string, ProbabilityItem[]> {
+    {"pixie", new() {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="low-food", probability=0.5f},
         new ProbabilityItem(){key="low-potions", probability=0.8f},
@@ -351,7 +351,7 @@ public class Objects
         new ProbabilityItem(){key="gold-pixie-belt", probability=1},
       }}
     }},
-    {"skeleton", new Dictionary<string, ProbabilityItem[]> {
+    {"skeleton", new() {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="low-potions", probability=0.8f},
         new ProbabilityItem(){key="low-money", probability=0.9f},
@@ -371,7 +371,7 @@ public class Objects
         new ProbabilityItem(){key="precious-calcite", probability=1},
       }}
     }},
-    { "skeleton-king", new Dictionary<string, ProbabilityItem[]> {
+    { "skeleton-king", new() {
       {"low", new ProbabilityItem[] {
         new ProbabilityItem(){key="skeleton-king-giant-bone", probability=0.7f},
         new ProbabilityItem(){key="mid-potions", probability=0.9f},
@@ -419,7 +419,7 @@ public class Objects
     {"bunyip", genericItemDictionary}
   };
 
-  public static Dictionary<string, string[]> itemGroups = new Dictionary<string, string[]> {
+  public static Dictionary<string, string[]> itemGroups = new() {
     {"goblin-high-item4", Constants.goblinHighItem4},
     {"goblin-knives", Constants.goblinKnives},
     {"goblin-mid-item4", Constants.goblinMidItem4},
@@ -435,7 +435,7 @@ public class Objects
     {"mid-potions", Constants.midLevelPotions}
   };
 
-  public static Dictionary<string, MoneyItem> moneyItems = new Dictionary<string, MoneyItem> {
+  public static Dictionary<string, MoneyItem> moneyItems = new() {
     {"money-50", new MoneyItem(){ image = Sprites.moneyImages[0], increment = 50, text = "$50"}},
     {"money-100", new MoneyItem(){ image = Sprites.moneyImages[1], increment = 100, text = "$100"}},
     {"money-200", new MoneyItem(){ image = Sprites.moneyImages[2], increment = 200, text = "$200"}},
@@ -445,13 +445,13 @@ public class Objects
     {"money-5000", new MoneyItem(){ image = Sprites.moneyImages[6], increment = 5000, text = "$5000"}}
   };
 
-  public static Dictionary<string, CompositePauseImage> compositePauseImages = new Dictionary<string, CompositePauseImage> {
+  public static Dictionary<string, CompositePauseImage> compositePauseImages = new() {
     {"basic-bow-with-arrow-standard", new CompositePauseImage(){thumbnail = Sprites.itemCombinedThumbnails[0], name = "Basic Bow with Std. Arrow"}},
     {"basic-bow-with-arrow-poison", new CompositePauseImage(){thumbnail = Sprites.itemCombinedThumbnails[1], name = "Basic Bow with Poison Arrow"}},
     {"basic-bow-with-arrow-fire", new CompositePauseImage(){thumbnail = Sprites.itemCombinedThumbnails[2], name = "Basic Bow with Fire Arrow"}}
   };
 
-  public static Dictionary<string, RuntimeAnimatorController> animationControllers = new Dictionary<string, RuntimeAnimatorController> {
+  public static Dictionary<string, RuntimeAnimatorController> animationControllers = new() {
     {"ambusher", Resources.Load("Animations/Enemy/ambusher") as RuntimeAnimatorController},
     {"bewitcher", Resources.Load("Animations/Enemy/bewitcher") as RuntimeAnimatorController},
     {"bomber", Resources.Load("Animations/Enemy/bomber") as RuntimeAnimatorController},
@@ -471,19 +471,19 @@ public class Objects
     {"throwable", Resources.Load("Animations/Throwable/Throwable") as RuntimeAnimatorController}
   };
 
-  public static Dictionary<string, BreakableDimension> breakableSizes = new Dictionary<string, BreakableDimension> {
+  public static Dictionary<string, BreakableDimension> breakableSizes = new() {
     {"barrel", new BreakableDimension() {offset = new Vector2(0, 0.52f), size = new Vector2(0.8f, 1.05f)}},
     {"box", new BreakableDimension() {offset = new Vector2(0, 0.55f), size = new Vector2(1, 1.1f)}},
     {"jar", new BreakableDimension() {offset = new Vector2(0, 0.35f), size = new Vector2(0.6f, 0.7f)}},
     {"vase", new BreakableDimension() {offset = new Vector2(0, 0.72f), size = new Vector2(0.95f, 1.45f)}}
   };
 
-  public static Dictionary<string, float> decrementBarMultipliers = new Dictionary<string, float> {
+  public static Dictionary<string, float> decrementBarMultipliers = new() {
     {"hp", Constants.hpAdjustDifference},
     {"mp", Constants.mpAdjustDifference}
   };
 
-  public static Dictionary<string, EnemyStats> enemyStats = new Dictionary<string, EnemyStats> {
+  public static Dictionary<string, EnemyStats> enemyStats = new() {
     {"bunyip", new EnemyStats() {name = "Bunyip", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 3, reach = 0.2f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"centaur", new EnemyStats() {name = "Centaur", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"cyclops", new EnemyStats() {name = "Cyclops", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.001f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
@@ -519,7 +519,7 @@ public class Objects
     {"yanmabel", new EnemyStats() {name = "Yanmabel", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
   };
 
-  public static Dictionary<string, Vector2> enemyDimensions = new Dictionary<string, Vector2> {
+  public static Dictionary<string, Vector2> enemyDimensions = new() {
     {"bunyip", new Vector2(2.06f, 1.83f)},
     {"centaur", new Vector2(2.28f, 2.77f)},
     {"cyclops", new Vector2(1.01f, 2.66f)},
@@ -555,7 +555,7 @@ public class Objects
     {"yanmabel", new Vector2(1.59f, 0.78f)}
   };
 
-  public static Dictionary<string, Vector2> enemyWingOffsets = new Dictionary<string, Vector2> {
+  public static Dictionary<string, Vector2> enemyWingOffsets = new() {
     {"bunyip", new Vector2(0.25f, 1.55f)},
     {"centaur", new Vector2(0.4f, 2.8f)},
     {"cyclops", new Vector2(-0.1f, 1.75f)},
@@ -586,7 +586,7 @@ public class Objects
   public static Vector2 defaultDeathOrigin = new Vector2(0, 0.1f);
 
   // TODO: consider if it'd be needed to use these custom origin values when dying only by burning/poison
-  public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new Dictionary<string, Vector2> {
+  public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new() {
     {"bunyip", defaultDeathOrigin},
     {"centaur", defaultDeathOrigin},
     {"cyclops", defaultDeathOrigin},
@@ -622,15 +622,15 @@ public class Objects
     {"yanmabel", defaultDeathOrigin}
   };
 
-  public static Dictionary<string, TMP_FontAsset> fonts = new Dictionary<string, TMP_FontAsset> {
+  public static Dictionary<string, TMP_FontAsset> fonts = new() {
     {"levi-rebrushed", Resources.Load("Fonts/LeviRebrushed SDF") as TMP_FontAsset}
   };
 
-  public static Dictionary<string, string> equipmentBaseMaterial = new Dictionary<string, string> {
+  public static Dictionary<string, string> equipmentBaseMaterial = new() {
     {"body-1", "boots"}
   };
 
-  public static Dictionary<string, int> characterWidths = new Dictionary<string, int> {
+  public static Dictionary<string, int> characterWidths = new() {
     {"'", 6},
     {"i ", 7},
     {"Ij", 8},
@@ -654,7 +654,7 @@ public class Objects
   };
 
   // TODO: modify impact types for appropriate sounds
-  public static Dictionary<string, string> throwableImpactType = new Dictionary<string, string> {
+  public static Dictionary<string, string> throwableImpactType = new() {
     {"bunyip-tooth", "blunt"},
     {"centaur-spear", "blunt"},
     {"cyclops-hillstone", "blunt"},
@@ -690,7 +690,7 @@ public class Objects
     {"yanmabel-stinger", "blunt"}
   };
 
-  public static Dictionary<string, ThrowableSpecs> throwableSpecs = new Dictionary<string, ThrowableSpecs> {
+  public static Dictionary<string, ThrowableSpecs> throwableSpecs = new() {
     {"axe", new ThrowableSpecs() {colliderOffset = new ValuePair(0.67f, 0), colliderSize = new ValuePair(0.65f, 0.75f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"bomb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0.22f), colliderSize = new ValuePair(0.6f, 0.4f), freezeRotation = true, hDisplacement = 1.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
     {"hatchet", new ThrowableSpecs() {colliderOffset = new ValuePair(0.45f, 0), colliderSize = new ValuePair(0.55f, 0.45f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 5f, speed = 20f, steepness = 200f}},
@@ -702,7 +702,7 @@ public class Objects
     {"shuriken-6", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, -0.14f), colliderSize = new ValuePair(0.65f, 0.65f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, rotationFactor = 8, speed = 40f, steepness = 300f}},
     {"watermelon", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1.02f, 1.15f), hDisplacement = 1.5f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
   };
-  public static Dictionary<string, ThrowableSpecs> projectileSpecs = new Dictionary<string, ThrowableSpecs> {
+  public static Dictionary<string, ThrowableSpecs> projectileSpecs = new() {
     {"bunyip-tooth", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"centaur-spear", new ThrowableSpecs() {colliderOffset = new ValuePair(1.4f, -0.14f), colliderSize = new ValuePair(0.37f, 1.26f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 10f, speed = 20f, steepness = 20f}},
     {"cyclops-hillstone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
@@ -737,7 +737,7 @@ public class Objects
     {"yanmabel-stinger", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
   };
 
-  public static Dictionary<string, string> projectileKeys = new Dictionary<string, string> {
+  public static Dictionary<string, string> projectileKeys = new() {
     {"bunyip", "bunyip-tooth"},
     {"centaur", "centaur-spear"},
     {"cyclops", "cyclops-hillstone"},
@@ -773,7 +773,7 @@ public class Objects
     {"yanmabel", "yanmabel-stinger"}
   };
 
-  public static Dictionary<string, ZoneSpecs> zoneSpecs = new Dictionary<string, ZoneSpecs> {
+  public static Dictionary<string, ZoneSpecs> zoneSpecs = new() {
     {"ice", new ZoneSpecs() {moveFriction = 0.2f}},
     {"snow", new ZoneSpecs() {moveSpeed = 0.66f}},
     {"water-deep", new ZoneSpecs() {animSpeed = 0.66f, jumpHeight = 10f}},

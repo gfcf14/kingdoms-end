@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sounds {
-  public static Dictionary<string, Dictionary<string, AudioClip[]>> runningSounds = new Dictionary<string, Dictionary<string, AudioClip[]>> {
-    {"bentgrass", new Dictionary<string, AudioClip[]> {
+  public static Dictionary<string, Dictionary<string, AudioClip[]>> runningSounds = new() {
+    {"bentgrass", new() {
       {"boots", new AudioClip[] {
         Resources.Load<AudioClip>("SFX/running/bentgrass/boots-1"),
         Resources.Load<AudioClip>("SFX/running/bentgrass/boots-2"),
@@ -12,7 +12,7 @@ public class Sounds {
         Resources.Load<AudioClip>("SFX/running/bentgrass/boots-5"),
       }}
     }},
-    {"dirt", new Dictionary<string, AudioClip[]> {
+    {"dirt", new() {
       {"barefoot", new AudioClip[] {
         Resources.Load<AudioClip>("SFX/running/dirt/barefoot-1"),
         Resources.Load<AudioClip>("SFX/running/dirt/barefoot-2"),
@@ -28,7 +28,7 @@ public class Sounds {
         Resources.Load<AudioClip>("SFX/running/dirt/boots-5"),
       }}
     }},
-    {"grass", new Dictionary<string, AudioClip[]> {
+    {"grass", new() {
       {"barefoot", new AudioClip[] {
         Resources.Load<AudioClip>("SFX/running/grass/barefoot-1"),
         Resources.Load<AudioClip>("SFX/running/grass/barefoot-2"),
@@ -44,7 +44,7 @@ public class Sounds {
         Resources.Load<AudioClip>("SFX/running/grass/boots-5"),
       }}
     }},
-    {"tile", new Dictionary<string, AudioClip[]> {
+    {"tile", new() {
       // TODO: consider if at any time barefoot tile sound effects will be needed
       {"boots", new AudioClip[] {
         Resources.Load<AudioClip>("SFX/running/tile/boots-1"),
@@ -70,14 +70,14 @@ public class Sounds {
     Resources.Load<AudioClip>("SFX/breakables/vase/breaking-1")
   };
 
-  public static Dictionary<string, AudioClip[]> breakableSounds = new Dictionary<string, AudioClip[]> {
+  public static Dictionary<string, AudioClip[]> breakableSounds = new() {
     {"barrel", woodBreakingSounds},
     {"box", woodBreakingSounds},
     {"jar", jarBreakingSounds},
     {"vase", vaseBreakingSounds}
   };
 
-  public static Dictionary<string, AudioClip[]> woodFallingSounds = new Dictionary<string, AudioClip[]> {
+  public static Dictionary<string, AudioClip[]> woodFallingSounds = new() {
     {"barrel", new AudioClip[] {
       Resources.Load<AudioClip>("SFX/breakables/box/falling/on-box-1"),
       Resources.Load<AudioClip>("SFX/breakables/box/falling/on-box-2"),
@@ -96,10 +96,10 @@ public class Sounds {
   };
 
   // falling sounds for anything which base material is not changeable
-  public static Dictionary<string, Dictionary<string, AudioClip[]>> fallingSounds = new Dictionary<string, Dictionary<string, AudioClip[]>> {
+  public static Dictionary<string, Dictionary<string, AudioClip[]>> fallingSounds = new() {
     {"barrel", woodFallingSounds},
     {"box", woodFallingSounds},
-    {"character", new Dictionary<string, AudioClip[]> {
+    {"character", new() {
       {"dirt", new AudioClip[] {
         Resources.Load<AudioClip>("SFX/falling/dirt/boots"),
       }},
@@ -112,31 +112,31 @@ public class Sounds {
     }}
   };
 
-  public static Dictionary<string, Dictionary<string, AudioClip>> characterFallingSounds = new Dictionary<string, Dictionary<string, AudioClip>> {
-    {"barrel", new Dictionary<string, AudioClip> {
+  public static Dictionary<string, Dictionary<string, AudioClip>> characterFallingSounds = new() {
+    {"barrel", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
     }},
-    {"box", new Dictionary<string, AudioClip> {
+    {"box", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
     }},
-    {"jar", new Dictionary<string, AudioClip> {
+    {"jar", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
     }},
-    {"vase", new Dictionary<string, AudioClip> {
+    {"vase", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
     }},
-    {"dirt", new Dictionary<string, AudioClip> {
+    {"dirt", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/dirt/boots")}
     }},
-    {"grass", new Dictionary<string, AudioClip> {
+    {"grass", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/grass/boots")}
     }},
-    {"tile", new Dictionary<string, AudioClip> {
+    {"tile", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/tile/boots")}
     }}
   };
 
-  public static Dictionary<string, AudioClip> droppableFallingSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> droppableFallingSounds = new() {
     {"dirt", Resources.Load<AudioClip>("SFX/falling/dirt/barefoot")},
     {"grass", Resources.Load<AudioClip>("SFX/items/falling/on-grass")},
     {"interactable", Resources.Load<AudioClip>("SFX/breakables/box/falling/on-box-1")}
@@ -144,7 +144,7 @@ public class Sounds {
 
   // TODO: since not all sounds of a type will involve weapons of the same material (e.g. not all singles will be swords),
   // at some point some differentiation will be needed
-  public static Dictionary<string, AudioClip> attackSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> attackSounds = new() {
     {"bow", Resources.Load<AudioClip>("SFX/weapons/bow/basic")},
     {"double", Resources.Load<AudioClip>("SFX/weapons/double/sword")},
     {"single", Resources.Load<AudioClip>("SFX/weapons/single/sword")},
@@ -156,51 +156,51 @@ public class Sounds {
     {"kick", Resources.Load<AudioClip>("SFX/unequipped/kick")},
   };
 
-  public static Dictionary<string, Dictionary<string, AudioClip>> impactSounds = new Dictionary<string, Dictionary<string, AudioClip>> {
-    {"punch", new Dictionary<string, AudioClip> {
+  public static Dictionary<string, Dictionary<string, AudioClip>> impactSounds = new() {
+    {"punch", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/punch")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/punch")}
     }},
-    {"kick", new Dictionary<string, AudioClip> {
+    {"kick", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/kick")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/kick")}
     }},
-    {"sword", new Dictionary<string, AudioClip> {
+    {"sword", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/sword")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/sword")}
     }},
-    {"throwable-small", new Dictionary<string, AudioClip> {
+    {"throwable-small", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-small")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-small")}
     }},
-    {"throwable-middle", new Dictionary<string, AudioClip> {
+    {"throwable-middle", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-middle")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-middle")}
     }},
-    {"throwable-double-large", new Dictionary<string, AudioClip> {
+    {"throwable-double-large", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-double-large")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-double-large")}
     }},
-    {"throwable-fruit", new Dictionary<string, AudioClip> {
+    {"throwable-fruit", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-fruit")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-fruit")}
     }},
-    {"arrow", new Dictionary<string, AudioClip> {
+    {"arrow", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/arrow")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/arrow")}
     }},
-    {"blunt", new Dictionary<string, AudioClip> {
+    {"blunt", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/blunt")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/blunt")}
     }},
-    {"explosion", new Dictionary<string, AudioClip> {
+    {"explosion", new() {
       {"normal", Resources.Load<AudioClip>("SFX/explosions/basic")},
       {"critical", Resources.Load<AudioClip>("SFX/explosions/basic")}
     }},
   };
 
   // TODO: modify these as soon as more sounds are added
-  public static Dictionary<string, AudioClip> ambushFloorSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> ambushFloorSounds = new() {
     {"calderas", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
     {"desert", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
     {"forest", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
@@ -220,18 +220,18 @@ public class Sounds {
   // TODO: modify bewitch sound when more sounds are added
   public static AudioClip bewitchSound = Resources.Load<AudioClip>("SFX/hitting/critical/arrow") as AudioClip;
 
-  public static Dictionary<string, AudioClip> blockSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> blockSounds = new() {
     {"basic", Resources.Load<AudioClip>("SFX/hitting/block/basic")}
   };
 
-  public static Dictionary<string, AudioClip> explosionSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> explosionSounds = new() {
     {"arrow", Resources.Load<AudioClip>("SFX/explosions/arrow")},
     {"bomb", Resources.Load<AudioClip>("SFX/explosions/basic")},
     {"damage", Resources.Load<AudioClip>("SFX/explosions/basic")},
     {"enemy", Resources.Load<AudioClip>("SFX/explosions/enemy")}
   };
 
-  public static Dictionary<string, AudioClip> menuSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> menuSounds = new() {
     {"attention", Resources.Load<AudioClip>("SFX/menu/attention")},
     {"back", Resources.Load<AudioClip>("SFX/menu/back")},
     {"move", Resources.Load<AudioClip>("SFX/menu/move")},
@@ -239,40 +239,40 @@ public class Sounds {
     {"use", Resources.Load<AudioClip>("SFX/menu/use")}
   };
 
-  public static Dictionary<string, AudioClip> itemPickSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> itemPickSounds = new() {
     {"money", Resources.Load<AudioClip>("SFX/items/pick/money")},
     {"normal", Resources.Load<AudioClip>("SFX/items/pick/normal")},
     {"rare", Resources.Load<AudioClip>("SFX/items/pick/rare")}
   };
 
-  public static Dictionary<string, AudioClip> chestSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> chestSounds = new() {
     {"chest-small", Resources.Load<AudioClip>("SFX/chests/small")},
     {"chest-large", Resources.Load<AudioClip>("SFX/chests/large")},
   };
 
-  public static Dictionary<string, AudioClip> notificationSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> notificationSounds = new() {
     {"levelup", Resources.Load<AudioClip>("SFX/notifications/levelup")},
   };
 
-  public static Dictionary<string, AudioClip> poisonSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> poisonSounds = new() {
     {"basic", Resources.Load<AudioClip>("SFX/poison/basic")},
   };
 
-  public static Dictionary<string, AudioClip> meleeSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> meleeSounds = new() {
     {"smash", Resources.Load<AudioClip>("SFX/melee/smash")},
   };
 
-  public static Dictionary<string, AudioClip> loops = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> loops = new() {
     {"arrow-burn", Resources.Load<AudioClip>("SFX/loops/arrow-burn")},
   };
 
-  public static Dictionary<string, AudioClip> introSounds = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> introSounds = new() {
     {"last", Resources.Load<AudioClip>("SFX/intro/last")},
     {"suspense", Resources.Load<AudioClip>("SFX/intro/suspense")}
   };
 
   // TODO: modify soundtrack directories once songs are ready
-  public static Dictionary<string, AudioClip> soundtracks = new Dictionary<string, AudioClip> {
+  public static Dictionary<string, AudioClip> soundtracks = new() {
     {"calderas", Resources.Load<AudioClip>("OST/meadows-1")},
     {"desert", Resources.Load<AudioClip>("OST/meadows-1")},
     {"forest", Resources.Load<AudioClip>("OST/meadows-1")},

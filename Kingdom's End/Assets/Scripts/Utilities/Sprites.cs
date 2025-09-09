@@ -61,7 +61,7 @@ public class Sprites {
 
   public static Sprite[] areaAmbushSprites = Resources.LoadAll<Sprite>("Tilemaps/miscellaneous/ambush");
 
-  public static Dictionary<string, Sprite> ambushInitialSprites = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> ambushInitialSprites = new() {
     {"calderas", areaAmbushSprites[4]},
     {"desert", areaAmbushSprites[8]},
     {"forest", areaAmbushSprites[1]},
@@ -78,7 +78,7 @@ public class Sprites {
     {"wasteland", areaAmbushSprites[10]},
   };
 
-  public static Dictionary<string, Sprite> equipmentIcons = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> equipmentIcons = new() {
     {"body", equipmentButtonIcons[0]},
     {"arm1", equipmentButtonIcons[1]},
     {"arm2", equipmentButtonIcons[5]},
@@ -89,7 +89,7 @@ public class Sprites {
     {"ring2", equipmentButtonIcons[7]},
   };
 
-  public static Dictionary<string, Sprite> magicResistances = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> magicResistances = new() {
     {"air", elements[0]},
     {"dark", elements[1]},
     {"earth", elements[2]},
@@ -100,7 +100,7 @@ public class Sprites {
     {"water", elements[7]}
   };
 
-  public static Dictionary<string, Sprite> keycodeSprites = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> keycodeSprites = new() {
     {"none", keyset[0]},
     {"backspace", keyset[123]},
     {"delete", keyset[1]},
@@ -292,7 +292,7 @@ public class Sprites {
   };
 
   // TODO: update these with the actual image directories once they're done
-  public static Dictionary<string, Sprite> areaImages = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> areaImages = new() {
     {"calderas", areaSprites[4]},
     {"desert", areaSprites[8]},
     {"forest", areaSprites[1]},
@@ -309,12 +309,12 @@ public class Sprites {
     {"wasteland", areaSprites[10]},
   };
 
-  public static Dictionary<string, Sprite> pauseAvatars = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> pauseAvatars = new() {
     {"body-1", Resources.Load<Sprite>("Pause/PlayerAvatars/body-1")}
   };
 
   // refers to the sprites for throwables - weapons BOTH the player and enemies can throw
-  public static Dictionary<string, Sprite> throwableSprites = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> throwableSprites = new() {
     {"axe", Resources.Load<Sprite>("Sprites/axe")},
     {"bomb", bombSprites[0]},
     {"hatchet", Resources.Load<Sprite>("Sprites/hatchet")},
@@ -328,7 +328,7 @@ public class Sprites {
   };
 
   // refers to the sprites for projectiles that only enemies (like the shooter) can throw
-  public static Dictionary<string, Sprite> projectileSprites = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> projectileSprites = new() {
     {"bunyip-tooth", Resources.Load<Sprite>("Sprites/projectiles/bunyip-tooth")},
     {"centaur-spear", Resources.Load<Sprite>("Sprites/projectiles/centaur-spear")},
     {"cyclops-hillstone", Resources.Load<Sprite>("Sprites/projectiles/cyclops-hillstone")},
@@ -363,7 +363,7 @@ public class Sprites {
     {"yanmabel-stinger", Resources.Load<Sprite>("Sprites/projectiles/yanmabel-stinger")}
   };
 
-  public static Dictionary<string, Sprite> droppableSprites = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> droppableSprites = new() {
     {"basic-longsword", droppableImages[0]},
     {"basic-sword", droppableImages[1]},
     {"basic-shield", droppableImages[2]},
@@ -471,7 +471,7 @@ public class Sprites {
     {"skeleton-king-giant-bone", droppableImages[104]}
   };
 
-  public static Dictionary<string, Sprite> relicSprites = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> relicSprites = new() {
     {"dawn-gem", relicImages[3]},
     {"magic-talisman", relicImages[1]},
     {"royal-lamp", relicImages[2]},
@@ -479,21 +479,21 @@ public class Sprites {
     {"swift-boots", relicImages[0]},
   };
 
-  public static Dictionary<string, Sprite> breakableSprites = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> breakableSprites = new() {
     {"barrel", breakableBarrels[0]},
     {"box", breakableBoxes[0]},
     {"jar", breakableJars[0]},
     {"vase", breakableVases[0]}
   };
 
-  public static Dictionary<string, Sprite> uiElements = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> uiElements = new() {
     {"checkbox-checked", Resources.Load<Sprite>("Sprites/UI/Pause/checkbox-checked")},
     {"checkbox-unchecked", Resources.Load<Sprite>("Sprites/UI/Pause/checkbox-unchecked")},
     {"radio-checked", Resources.Load<Sprite>("Sprites/UI/Pause/radio-checked")},
     {"radio-unchecked", Resources.Load<Sprite>("Sprites/UI/Pause/radio-unchecked")}
   };
 
-  public static Dictionary<string, Sprite> firstBossSprites = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> firstBossSprites = new() {
     {"bunyip", bunyipSprites[0]},
     {"centaur", centaurSprites[0]},
     {"cyclops", cyclopsSprites[0]},
@@ -529,8 +529,8 @@ public class Sprites {
     {"yanmabel", yanmabelSprites[0]}
   };
 
-  public static Dictionary<string, Dictionary<string, Sprite>> emotions = new Dictionary<string, Dictionary<string, Sprite>> {
-    {"peasant-girl", new Dictionary<string, Sprite> {
+  public static Dictionary<string, Dictionary<string, Sprite>> emotions = new() {
+    {"peasant-girl", new() {
       {"affective", peasantGirlSprites[15]},
       {"afraid", peasantGirlSprites[7]},
       {"angry", peasantGirlSprites[19]},
@@ -545,7 +545,7 @@ public class Sprites {
     }}
   };
 
-  public static Dictionary<string, Sprite> arrows = new Dictionary<string, Sprite> {
+  public static Dictionary<string, Sprite> arrows = new() {
     {"arrow-fire", Resources.Load<Sprite>("Sprites/arrow-fire")},
     {"arrow-poison", Resources.Load<Sprite>("Sprites/arrow-poison")},
     {"arrow-standard", Resources.Load<Sprite>("Sprites/arrow-standard")}
