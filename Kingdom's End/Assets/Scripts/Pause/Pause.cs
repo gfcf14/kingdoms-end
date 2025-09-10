@@ -670,6 +670,27 @@ public class Pause : MonoBehaviour {
     }
   }
 
+  public void DisplayItemEffect(string type, GameObject effectCurrent, float itemEffectAmount, bool isPercentage = false) {
+    if (isPercentage) {
+      // For items who recover a percentage, round up to the nearest multiple of 5
+      itemEffectAmount = Mathf.CeilToInt((int)(itemEffectAmount * Hero.instance.maxHP) / 5f) * 5;
+    }
+
+    Text effect = effectCurrent.transform.Find("Text").gameObject.GetComponent<Text>();
+    effect.text = (itemEffectAmount >= 0 ? "+" : "") + itemEffectAmount;
+
+    if (itemEffectAmount < 0) {
+      effect.color = Helpers.GetOrException(Colors.uiColors, "red");
+    } else {
+      effect.color = Helpers.GetOrException(Colors.uiColors, "green");
+    }
+
+    effectCurrent.SetActive(true);
+
+    // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
+    Hero.instance.UpdateStats(type, (int)itemEffectAmount);
+  }
+
   public void UseItem() {
     canPlayDeselect = false;
     Item heroItem = Hero.instance.items.ElementAt(currentItemButtonIndex);
@@ -682,47 +703,22 @@ public class Pause : MonoBehaviour {
 
       if (itemEffects.duration == null) {
         if (itemEffects.hp != null) {
-          effectsCurrentHP.transform.Find("Text").gameObject.GetComponent<Text>().text = (itemEffects.hp >= 0 ? "+" : "") + itemEffects.hp;
-          effectsCurrentHP.SetActive(true);
-
-          // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
-          Hero.instance.UpdateStats("hp", itemEffects.hp);
+          DisplayItemEffect("hp", effectsCurrentHP, (float)itemEffects.hp, false);
         }
 
         if (itemEffects.hpPercentage != null) {
-          int hpTotal = (int)(itemEffects.hpPercentage * Hero.instance.maxHP);
-
-          // For items who recover a percentage, round up to the nearest multiple of 5
-          hpTotal = Mathf.CeilToInt(hpTotal / 5f) * 5;
-
-          effectsCurrentHP.transform.Find("Text").gameObject.GetComponent<Text>().text = (hpTotal >= 0 ? "+" : "") + hpTotal;
-          effectsCurrentHP.SetActive(true);
-
-          // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
-          Hero.instance.UpdateStats("hp", hpTotal);
+          DisplayItemEffect("hp", effectsCurrentHP, (float)itemEffects.hpPercentage, true);
         }
 
-        // TODO: build the others as more items are created!
         if (itemEffects.mp != null) {
-          effectsCurrentMP.transform.Find("Text").gameObject.GetComponent<Text>().text = (itemEffects.mp >= 0 ? "+" : "") + itemEffects.mp;
-          effectsCurrentMP.SetActive(true);
-
-          // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
-          Hero.instance.UpdateStats("mp", itemEffects.mp);
+          DisplayItemEffect("mp", effectsCurrentMP, (float)itemEffects.mp, false);
         }
 
         if (itemEffects.mpPercentage != null) {
-          int mpTotal = (int)(itemEffects.mpPercentage * Hero.instance.maxMP);
-
-          // For items who recover a percentage, round up to the nearest multiple of 5
-          mpTotal = Mathf.CeilToInt(mpTotal / 5f) * 5;
-
-          effectsCurrentMP.transform.Find("Text").gameObject.GetComponent<Text>().text = (mpTotal >= 0 ? "+" : "") + mpTotal;
-          effectsCurrentMP.SetActive(true);
-
-          // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
-          Hero.instance.UpdateStats("mp", mpTotal);
+          DisplayItemEffect("mp", effectsCurrentMP, (float)itemEffects.mpPercentage, true);
         }
+
+        // TODO: build the others as more items are created!
       } else {
         Hero.instance.AddConsumable(new Consumable(){key=heroItem.key, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
       }

@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Colors {
+public class Colors
+{
   public static Dictionary<string, Color> elementResistancesColors = new() {
     {"fire", new Color(0.9f, 0, 0)},
     {"poison", new Color(0.7f, 0.86f, 0.19f)}
@@ -17,20 +18,20 @@ public class Colors {
     {"lower", new Color(1, 0, 0)}
   };
 
-  public static Color pauseBackground = new Color(20f/255f, 44f/255f, 36f/255f);
+  public static Color pauseBackground = new Color(20f / 255f, 44f / 255f, 36f / 255f);
   public static Color hpDecrement = new Color(1, 0, 0);
-  public static Color barHPAbove40 = new Color(25f/255f, 159f/255f, 19f/255f);
-  public static Color barHPAbove20 = new Color(197f/255f, 214f/255f, 94f/255f);
-  public static Color barHPBelow20 = new Color(173f/255f, 45f/255f, 51f/255f);
+  public static Color barHPAbove40 = new Color(25f / 255f, 159f / 255f, 19f / 255f);
+  public static Color barHPAbove20 = new Color(197f / 255f, 214f / 255f, 94f / 255f);
+  public static Color barHPBelow20 = new Color(173f / 255f, 45f / 255f, 51f / 255f);
 
   public static Color miniHPFull = new Color(1, 1, 1);
-  public static Color miniHPNotFull = new Color(195f/255f, 200f/255f, 150f/255f);
-  public static Color miniHPBelow20 = new Color(165f/255f, 100f/255f, 115f/255f);
+  public static Color miniHPNotFull = new Color(195f / 255f, 200f / 255f, 150f / 255f);
+  public static Color miniHPBelow20 = new Color(165f / 255f, 100f / 255f, 115f / 255f);
 
-  public static Color criticalColorBottom = new Color(1, 0 , 0);
+  public static Color criticalColorBottom = new Color(1, 0, 0);
   public static Color criticalColorOutline = new Color(1, 1, 1);
-  public static Color criticalColorTop = new Color(0, 0 , 0);
-  public static Color effect = new Color(0, 192f/255f, 1);
+  public static Color criticalColorTop = new Color(0, 0, 0);
+  public static Color effect = new Color(0, 192f / 255f, 1);
   public static Color transparent = new Color(0, 0, 0, 0);
 
   public static Dictionary<string, Color> vaseColors = new() {
@@ -91,5 +92,10 @@ public class Colors {
     {"swamps", new Color(180/255f, 160/255f, 130/255f, 1)},
     {"underground", new Color(160/255f, 200/255f, 170/255f, 1)},
     {"wasteland", new Color(0/255f, 190/255f, 255/255f, 1)}
+  };
+
+  public static Dictionary<string, Color> uiColors = new() {
+    {"green", new Color(0, 1, 0, 1)},
+    {"red", new Color(1, 0, 0, 1)}
   };
 }
