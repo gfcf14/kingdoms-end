@@ -1079,7 +1079,7 @@ public class Hero : MonoBehaviour {
         }
 
         // arm 1
-        if (UserInput.IsAction(ControlActions.Attack1, KeyState.Down)) {
+        if (!isRunning && UserInput.IsAction(ControlActions.Attack1, KeyState.Down)) {
           DecideAttackType(arm1Equipment, 1);
         }
         if (UserInput.IsAction(ControlActions.Attack1, KeyState.Up)) {
@@ -1088,7 +1088,7 @@ public class Hero : MonoBehaviour {
         }
 
         // arm 2
-        if (UserInput.IsAction(ControlActions.Attack2, KeyState.Down)) {
+        if (!isRunning && UserInput.IsAction(ControlActions.Attack2, KeyState.Down)) {
           DecideAttackType(arm2Equipment, 2);
         }
         if (UserInput.IsAction(ControlActions.Attack2, KeyState.Up)) {
