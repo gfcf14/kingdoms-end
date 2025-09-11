@@ -11,7 +11,8 @@ public class UserInput : MonoBehaviour {
 
   void Update() {
     if (!Hero.instance.isAutonomous) {
-      if (Hero.instance.isPaused && Pause.currentlyMapping != "") { // block to customize buttons
+      // Customize gamepad/keyboard buttons
+      if (Hero.instance.isPaused && Pause.currentlyMapping != "") {
         var input = DetectInputForRemapping();
         if (input != null) {
           if (Hero.instance.canMap) {
@@ -30,6 +31,23 @@ public class UserInput : MonoBehaviour {
             }
           } else {
             Hero.instance.canMap = true;
+          }
+        }
+      }
+
+      // Resume game
+      if (IsPauseKeyUp() && Hero.instance.pauseCase == "" && Pause.currentlyMapping == "") {
+        Hero.instance.ResumeGame();
+      }
+
+      // Perform back on pause UI
+      if (IsBackKeyDown() && Hero.instance.isPaused) {
+        // do not perform "BACK" if a key is being mapped
+        if (Pause.canvasStatus != "mapping") {
+          if (Pause.canvasStatus == "main") {
+            Hero.instance.ResumeGame();
+          } else {
+            InGame.instance.pauseCanvas.GetComponent<Pause>().PerformBack();
           }
         }
       }

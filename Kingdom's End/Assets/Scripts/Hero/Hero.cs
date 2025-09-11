@@ -1048,21 +1048,6 @@ public class Hero : MonoBehaviour {
         isRunning = Helpers.IsBeyondOrUnderRange(horizontalInput, Constants.inputThreshold) && !isJumping && !isFalling && !isAttackingSingle;
       }
 
-      if (UserInput.IsPauseKeyUp() && pauseCase == "" && Pause.currentlyMapping == "") {
-        ResumeGame();
-      }
-
-      if (UserInput.IsBackKeyDown() && isPaused) {
-        // do not perform "BACK" if a key is being mapped
-        if (Pause.canvasStatus != "mapping") {
-          if (Pause.canvasStatus == "main") {
-            ResumeGame();
-          } else {
-            InGame.instance.pauseCanvas.GetComponent<Pause>().PerformBack();
-          }
-        }
-      }
-
       // checks for invulnerability time
       if (isInvulnerable) {
         if (Helpers.ExceedsTime(damageStartTime, damageRecoverTime)) {
