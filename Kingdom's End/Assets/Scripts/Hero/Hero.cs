@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
 public class Hero : MonoBehaviour {
@@ -61,17 +60,6 @@ public class Hero : MonoBehaviour {
 
   public bool canCastMagic = false;
   public bool hasLightUnderground = false;
-
-  // public bool isJetpackUp;
-  // public string jetpackHorizontal = "";
-  // public float maxJetpackTime = 1500;
-  // public float jetpackTime = 0;
-
-  public float currentYPosition = 0;
-  public float currentXPosition = 0;
-
-  public float throwbackHeight = 0;
-
   public int isHurt = 0;
   public bool isSlammed = false;
   public bool isFallingSlammed = false;
@@ -81,8 +69,6 @@ public class Hero : MonoBehaviour {
   public bool isDefending = false;
   public bool isParrying = false;
   public bool isClashing = false;
-
-  // public bool isGliding;
   public bool isFacingLeft;
 
   public bool isAttackingSingle;
@@ -102,14 +88,8 @@ public class Hero : MonoBehaviour {
   public bool isPunching;
   public bool isAirPunching;
 
-  // public bool isAirShooting;
-
   // isThrowing determines a throw in an int, so it's 0 when not throwing, but 1 or 2 depending on what arm throws
   public int isThrowing;
-  public bool startThrow = false;
-
-  // public bool isShootingSingle;
-  // public bool isShootingAuto;
 
   public bool isShootingPull;
 
@@ -117,7 +97,6 @@ public class Hero : MonoBehaviour {
 
   public bool isOnChat = false;
 
-  public bool bombNearby = false;
   public float damageStartTime = 0;
 
   // TODO: develop a logic to ensure this time can be influenced by level, i.e. the higher the level, the higher the recover time (the longer invulnerability lasts)
@@ -131,13 +110,7 @@ public class Hero : MonoBehaviour {
   public float verticalInput = 0;
   public int armUsed = 0;
 
-  // public string[] weapons = new string[] {"fists", "single", "heavy", "throwables", "projectile-single", "projectile-heavy", "projectile-auto", "projectile-pull"};
-
   public int direction = 1;
-
-  // public int weaponIndex = 0;
-
-  // public string currentWeapon;
 
   public GameObject nearbyInteractableObject;
 
@@ -241,8 +214,6 @@ public class Hero : MonoBehaviour {
   // TODO: remove these variables and add a new dictionary when adding another shield sprite
   public int dummyShieldHP = 5;
   public float dummyShieldRecoverTime = 2000;
-
-  private GameObject arrowAnchor;
   private GameObject arrowMask;
 
   private Vector2 transportLocation;
@@ -294,8 +265,6 @@ public class Hero : MonoBehaviour {
     maxShieldHP = dummyShieldHP;
     currentShieldHP = maxShieldHP;
     currentShieldRecoverTime = dummyShieldRecoverTime;
-
-    // arrowAnchor = transform.Find("ArrowAnchor").gameObject;
 
     //test items and equipment
     #if UNITY_EDITOR
@@ -974,7 +943,7 @@ public class Hero : MonoBehaviour {
         }
 
         if (isClashing) {
-          // TODO: modify the 2 to make it a multiplie based on enemy strength (?)
+          // TODO: modify the 2 to make it a multiplier based on enemy strength (?)
           body.velocity = new Vector2( (isFacingLeft ? 1 : -1) * speed * 2, body.velocity.y);
         }
 
@@ -982,49 +951,6 @@ public class Hero : MonoBehaviour {
           body.velocity = new Vector2(0, body.velocity.y);
         }
 
-        // // jumping + actions (kick, drop kick)
-        // if (UserInput.IsKeyHeld(Controls.currentKeyboardJump) || UserInput.IsKeyHeld(Controls.currentGamepadJump)) {
-        //   if (isGrounded) {
-        //     if (isHoldingDown) {
-        //       if (!isRunning && !isKicking && canKick) {
-        //         isKicking = true;
-        //         anim.SetTrigger("isKicking");
-        //         weaponCollider.SetActive(true);
-        //       }
-        //     }
-        //   } else {
-        //     if (isHoldingDown && isJumping && !isFalling && canDropKick) {
-        //       DropKick();
-        //     }
-        //   }
-        //   // userInput += "$";
-        //   // if (isGrounded) {
-        //   //   if (userInput.Contains(jetpackUp)) {
-        //   //     JetpackUp();
-        //   //     userInput = "";
-        //   //   } else {
-        //   //     Jump();
-        //   //     userInput = "";
-        //   //   }
-        //   // } else {
-        //   //   if (userInput.Contains(jetpackLeft)) {
-        //   //     JetpackHorizontal("left");
-        //   //     userInput = "";
-        //   //   } else if (userInput.Contains(jetpackRight)) {
-        //   //     JetpackHorizontal("right");
-        //   //     userInput = "";
-        //   //   }
-        //   // }
-
-        // // jumping
-        // } else if ((UserInput.IsKeyUp(Controls.currentKeyboardJump) || UserInput.IsKeyUp((Controls.currentGamepadJump))) && !isHoldingDown) {
-        //   if (isGrounded || (canDoubleJump && jumpsExecuted < GameData.maxJumpLimit)) {
-        //     jumpsExecuted++;
-        //     Jump();
-        //   }
-        // }
-
-        // TODO: for some reason, a gamepad's d-pad down button doesn't trigger vertical input. Investigate a workaround
         if (verticalInput < -Constants.inputThreshold) { // if DOWN key is being held
           if (UserInput.IsAction(ControlActions.Jump, KeyState.Down)) { // Perform actions if JUMP key is also held
             if (isGrounded) {
@@ -1096,47 +1022,9 @@ public class Hero : MonoBehaviour {
           isParrying = false;
         }
 
-        // if (!isGrounded && verticalSpeed < -1 && jetpackHorizontal == "") {
-
-
-        // if (Input.GetKey(KeyCode.Keypad4) && currentWeapon == "projectile-auto") {
-        //   isShootingAuto = true;
-        // }
-
-        // if (Input.GetKeyUp(KeyCode.Keypad4) && isShootingAuto) {
-        //   isShootingAuto = false;
-        // }
-
-
-        // if (Input.GetKeyDown(KeyCode.Keypad7)) {
-        //   PlayerHurt(1);
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.Keypad8) && isGrounded) {
-        //   PlayerHurt(2);
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.Keypad9)) {
-        //   PlayerHurt(3);
-        // }
-
         if (isDropKicking) {
           body.velocity = new Vector2(body.velocity.x + (jumpHeight * direction), -(float)(jumpHeight * 0.75));
         }
-
-        // if (isGliding) {
-        //   body.velocity = new Vector2(body.velocity.x + (jumpHeight * direction), -(float)(jumpHeight * 0.25));
-        // }
-
-        // if (jetpackHorizontal != "") {
-        //   body.velocity = new Vector2(body.velocity.x + (jetpackHeight * (jetpackHorizontal == "left" ? -1 : 1)), body.velocity.y);
-        //   transform.position = new Vector2(transform.position.x, currentYPosition);
-        //   if ((Time.time * 1000) > jetpackTime + maxJetpackTime) {
-        //     jetpackHorizontal = "";
-        //     jetpackTime = 0;
-        //     body.velocity = new Vector2(0, 0);
-        //   }
-        // }
 
         if (isDead == 2) {
           if (isGrounded) {
@@ -1156,28 +1044,9 @@ public class Hero : MonoBehaviour {
         }
       }
 
-      // gliding
-      // if (Input.GetKey(KeyCode.UpArrow)) {
-      //   if (!isGrounded) {
-      //     if (Input.GetKey(KeyCode.Space)) {
-      //       Glide();
-      //     } else {
-      //       isGliding = false;
-      //     }
-      //   }
-      // } else {
-      //   isGliding = false;
-      // }
-
       if (pauseCase == "") { // only update isRunning if it's not paused in any way
-        isRunning = Helpers.IsBeyondOrUnderRange(horizontalInput, Constants.inputThreshold) && !isJumping && !isFalling && !isAttackingSingle; // && !isJetpackUp;
-        // Debug.Log("horizontalInput: " + horizontalInput + ", isJumping: " + isJumping + ", isFalling: " + isFalling + ", isAttackingSingle: " + isAttackingSingle);
+        isRunning = Helpers.IsBeyondOrUnderRange(horizontalInput, Constants.inputThreshold) && !isJumping && !isFalling && !isAttackingSingle;
       }
-
-      // TESTING FOR PROGRAMMATIC PLAY
-      // if (isRunning) {
-      //   anim.Play("running-1", -1, 0f);
-      // }
 
       if (UserInput.IsPauseKeyUp() && pauseCase == "" && Pause.currentlyMapping == "") {
         ResumeGame();
@@ -1208,15 +1077,9 @@ public class Hero : MonoBehaviour {
     anim.SetBool("isGrounded", isGrounded);
     anim.SetBool("isFalling", isFalling);
     anim.SetBool("isJumping", isJumping);
-    // anim.SetBool("isJetpackUp", isJetpackUp);
     anim.SetBool("horizontalCollision", horizontalCollision);
     anim.SetBool("isDropKicking", isDropKicking);
-    // anim.SetBool("isShootingSingle", isShootingSingle);
-    // anim.SetBool("isShootingAuto", isShootingAuto);
     anim.SetBool("isShootingPull", isShootingPull);
-    // anim.SetBool("isAirShooting", isAirShooting);
-    // anim.SetBool("isJetpackHorizontal", jetpackHorizontal != "");
-    // anim.SetBool("isGliding", isGliding);
     anim.SetBool("isTired", (float)currentHP / (float)maxHP <= 0.2f);
     anim.SetInteger("isHurt", isHurt);
     anim.SetInteger("isDead", isDead);
@@ -1267,8 +1130,6 @@ public class Hero : MonoBehaviour {
                 isParrying = true;
               } else {
                 isAttackingHeavy = true;
-                // TESTING FOR PROGRAMMATIC PLAY
-                // anim.Play("attack-longsword-1", -1, 0f);
                 weaponCollider.SetActive(true);
                 anim.SetTrigger("isAttackingHeavy");
               }
@@ -1449,10 +1310,6 @@ public class Hero : MonoBehaviour {
     weaponCollider.SetActive(false);
   }
 
-  // void ClearAirShooting() {
-  //   isAirShooting = false;
-  // }
-
   void ClearKick() {
     isKicking = false;
     weaponCollider.SetActive(false);
@@ -1462,9 +1319,6 @@ public class Hero : MonoBehaviour {
     isThrowing = 0;
   }
 
-  // void ClearShootingSingle() {
-  //   isShootingSingle = false;
-  // }
 
   // TODO: rather than creating and firing at different times in the animation, ensure the refactored arrow script fires immediately after creating (when the player sprite changes to release the bow)
   void CreateArrow() {
@@ -1474,15 +1328,6 @@ public class Hero : MonoBehaviour {
     arrowScript.isFacingLeft = isFacingLeft;
     arrowScript.type = projectileEquipment;
     ConsumeProjectile(projectileEquipment);
-  }
-
-  void ShowCurrentArrowMask() {
-    // arrowMask.GetComponent<SpriteMask>().enabled = true;
-  }
-
-  void FireArrow() {
-    // Destroy(arrowMask);
-    // arrowScript.hasFired = true;
   }
 
   void ClearShootingPull() {
@@ -1501,8 +1346,6 @@ public class Hero : MonoBehaviour {
     armUsed = 0;
     weaponCollider.SetActive(false);
     AdjustGroundType();
-    // TESTING FOR PROGRAMMATIC PLAY
-    // anim.Play("idle-1", -1, 0f);
   }
 
   void DropDefense() {
@@ -1534,22 +1377,16 @@ public class Hero : MonoBehaviour {
                       "Grounded: " + isGrounded + "\n" +
                       "Falling: " + isFalling + "\n" +
                       "Jumping: " + isJumping + "\n" +
-                      // "Gliding: " + isGliding + "\n" +
-                      // "JetpackUp: " + isJetpackUp + "\n" +
-                      // "JetpackHorizontal: " + (jetpackHorizontal != "" ? jetpackHorizontal : "none") + "\n" +
                       "horizontalCollision: " + horizontalCollision + "\n" +
-                      // "Equipment: " + currentWeapon + "\n" +
                       "Attack_Single: " + isAttackingSingle + "\n" +
                       "Attack_Heavy: " + isAttackingHeavy + "\n" +
                       "Air_Attack_Single: " + isAirAttackSingle + "\n" +
                       "Air_Attack_Heavy: " + isAirAttackHeavy + "\n" +
-                      // "Air_Shooting: " + isAirShooting + "\n" +
                       "Kick: " + isKicking + "\n" +
                       "Drop_Kick: " + isDropKicking + "\n" +
                       "Punching: " + isPunching + "\n" +
                       "Air_Punch: " + isAirPunching + "\n" +
                       "Throwing: " + (isThrowing > 0) + "\n" +
-                      // "Shooting: " + (isShootingSingle || isShootingAuto || isShootingPull || isAirShooting) + "\n" +
                       "Shooting: " + isShootingPull + "\n" +
                       "Shield HP: " + currentShieldHP + "\n" : "";
     GUI.Label(new Rect(0, 0, 200, 400), guiLabel);
@@ -1568,8 +1405,6 @@ public class Hero : MonoBehaviour {
       isRecoveringFromSlam = false;
     }
 
-    // TESTING FOR PROGRAMMATIC PLAY
-    // anim.Play("falling-1", -1, 0f);
     DropDefense();
   }
 
@@ -1595,29 +1430,8 @@ public class Hero : MonoBehaviour {
     body.velocity = new Vector2(body.velocity.x, jumpHeight);
 
     isJumping = true;
-    // TESTING FOR PROGRAMMATIC PLAY
-    // anim.Play("jumping-1", -1, 0f);
     isGrounded = false;
   }
-
-  // private void Glide() {
-  //   isGliding = true;
-  // }
-
-  // private void JetpackUp() {
-  //   body.velocity = new Vector2(body.velocity.x, jetpackHeight);
-  //   isJetpackUp = true;
-  //   isJumping = false;
-  //   isGrounded = false;
-  // }
-
-  // private void JetpackHorizontal(string direction) {
-  //   jetpackHorizontal = direction;
-  //   jetpackTime = Time.time * 1000;
-  //   currentYPosition = transform.position.y;
-  //   isJumping = false;
-  //   isGrounded = false;
-  // }
 
   private void DropKick() {
     canFlipOnAir = false;
