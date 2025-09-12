@@ -33,18 +33,8 @@ public class Arrow : MonoBehaviour {
     objectRenderer = GetComponent<SpriteRenderer>();
     extraSprite = transform.Find("Extra").gameObject;
     directionFactor = isFacingLeft ? -1 : 1;
-
-    // TODO: consider if any other arrow types could use an extra
-    if (type != "arrow-fire") {
-      DestroyExtra();
-    } else {
-      extraSprite.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-
-      if (isFacingLeft) {
-        extraSprite.transform.localScale = new Vector3(1, -1, 1);
-        // TODO: try to modify the extra's position when facing left
-      }
-    }
+    extraSprite.transform.localScale = new Vector3(1, directionFactor, 1);
+    extraSprite.transform.localPosition = new Vector2(isFacingLeft ? 0.35f: 0.4f, 0.05f * directionFactor);
 
     objectRenderer.sprite = Helpers.GetOrException(Sprites.arrows, type);
   }
