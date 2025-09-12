@@ -619,4 +619,14 @@ public class Helpers {
     Hero.instance.gameObject.transform.Find("ProximityCheck").gameObject.SetActive(false);
     GameData.area = scene.ToLower();
   }
+
+  public static void DestroyGameSingletons() {
+    UnityEngine.Object.Destroy(InGame.instance.gameObject);
+    UnityEngine.Object.Destroy(Hero.instance.gameObject);
+  }
+
+  public static void ClearDataManager() {
+    DataManager.instance.newCameraPosition = null;
+    DataManager.instance.playerPosition = null;
+  }
 }

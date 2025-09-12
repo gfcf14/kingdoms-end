@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class GameOverOverlay : MonoBehaviour {
   [SerializeField] GameObject titleCanvas;
   void Start() {
-    Destroy(Hero.instance);
-    Destroy(InGame.instance);
+    Helpers.DestroyGameSingletons();
+    Helpers.ClearDataManager();
   }
   void Update() {}
 

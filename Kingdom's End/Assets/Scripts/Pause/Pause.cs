@@ -398,6 +398,9 @@ public class Pause : MonoBehaviour {
       yield return null;
     }
 
+    Helpers.DestroyGameSingletons();
+    Helpers.ClearDataManager();
+
     SceneManager.LoadScene("Title");
   }
 

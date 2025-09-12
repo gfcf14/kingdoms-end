@@ -10,19 +10,9 @@ public class FadeOutOverlay : MonoBehaviour {
     InGame.instance.Cover();
   }
 
-  void DestroyGameSingletons() {
-    Destroy(InGame.instance.gameObject);
-    Destroy(Hero.instance.gameObject);
-  }
-
-  void ClearDataManager() {
-    DataManager.instance.newCameraPosition = null;
-    DataManager.instance.playerPosition = null;
-  }
-
   public void GameOver() {
-    DestroyGameSingletons();
-    ClearDataManager();
+    Helpers.DestroyGameSingletons();
+    Helpers.ClearDataManager();
 
     SceneManager.LoadScene("GameOver");
     Time.timeScale = 1; // starts time again so game can keep playing if player starts over
