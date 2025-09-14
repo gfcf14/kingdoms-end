@@ -972,7 +972,7 @@ public class Hero : MonoBehaviour {
           }
         } else {
           // JUMP
-          if (UserInput.IsAction(ControlActions.Jump, KeyState.Up)) {
+          if (UserInput.IsAction(ControlActions.Jump, KeyState.Down)) {
             if (isGrounded || (canDoubleJump && jumpsExecuted < GameData.maxJumpLimit)) {
               jumpsExecuted++;
               Jump();
