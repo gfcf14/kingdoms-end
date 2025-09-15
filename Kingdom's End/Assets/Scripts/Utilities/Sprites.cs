@@ -15,7 +15,7 @@ public class Sprites {
   public static Sprite[] relicItemThumbnails = Resources.LoadAll<Sprite>("Pause/Relics/thumbnails");
   public static Sprite[] relicItemImages = Resources.LoadAll<Sprite>("Pause/Relics/images");
   public static Sprite[] moneyImages = Resources.LoadAll<Sprite>("Spritesheets/money");
-
+  public static Sprite[] arrowImages = Resources.LoadAll<Sprite>("Spritesheets/weapons/arrows/arrows");
   public static Sprite[] breakableBoxes = Resources.LoadAll<Sprite>("Spritesheets/breakables/box");
   public static Sprite[] breakableBarrels = Resources.LoadAll<Sprite>("Spritesheets/breakables/barrel");
   public static Sprite[] breakableJars = Resources.LoadAll<Sprite>("Spritesheets/breakables/jar");
@@ -546,8 +546,9 @@ public class Sprites {
   };
 
   public static Dictionary<string, Sprite> arrows = new() {
-    {"arrow-fire", Resources.Load<Sprite>("Sprites/arrow-fire")},
-    {"arrow-poison", Resources.Load<Sprite>("Sprites/arrow-poison")},
-    {"arrow-standard", Resources.Load<Sprite>("Sprites/arrow-standard")}
+    {"arrow-fire", arrowImages[2]},
+    {"arrow-ice", arrowImages[3]},
+    {"arrow-poison", arrowImages[1]},
+    {"arrow-standard", arrowImages[0]}
   };
 }
