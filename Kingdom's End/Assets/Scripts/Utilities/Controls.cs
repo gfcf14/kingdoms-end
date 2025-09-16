@@ -21,7 +21,7 @@ public static class Controls {
   #endif
 
   #if UNITY_WEBGL && !UNITY_EDITOR
-    public const string GAMEPAD_BACK_BUTTON = "Trigger";
+    public const string GAMEPAD_BACK_BUTTON = "Button 1";
     public const string GAMEPAD_START_BUTTON = "Button 9";
   #else
     public const string GAMEPAD_BACK_BUTTON = "trigger";

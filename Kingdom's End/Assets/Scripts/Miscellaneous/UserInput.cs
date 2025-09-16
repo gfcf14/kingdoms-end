@@ -278,17 +278,16 @@ public class UserInput : MonoBehaviour {
 
     // Joystick check
     foreach (var joystick in Joystick.all) {
-      // FOR DEBUG PURPOSES, SHOULD SHOW A BUTTON BEING PRESSED AND ITS NAME
-      // foreach (var control in joystick.allControls) {
-      //   if (control is ButtonControl button) {
-      //     if (button.isPressed)
-      //       Debug.Log($"Button: {button.name}, Pressed: {button.isPressed}");
-      //   }
-      // }
-
-      var backButton = joystick.TryGetChildControl<ButtonControl>(Controls.GAMEPAD_BACK_BUTTON);
-
-      if (backButton != null && backButton.wasPressedThisFrame) return true;
+      foreach (var control in joystick.allControls) {
+        if (control is ButtonControl button && button.wasPressedThisFrame) {
+          if (button.name.Equals(Controls.GAMEPAD_BACK_BUTTON, StringComparison.OrdinalIgnoreCase)) {
+            // Debug.Log($"[BackCheck] MATCH: {button.name} == {Controls.GAMEPAD_BACK_BUTTON}");
+            return true; // treat as Back
+          // } else {
+            // Debug.Log($"[BackCheck] Other button pressed: {button.name}, Path: {button.path}");
+          }
+        }
+      }
     }
 
     return false;
