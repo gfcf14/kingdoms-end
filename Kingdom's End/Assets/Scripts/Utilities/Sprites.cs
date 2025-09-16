@@ -265,15 +265,25 @@ public class Sprites {
     }},
     {"usb gamepad", new() {
       {"button2", keyset[169]},
+      {"Button 2", keyset[169]},
       {"button3", keyset[170]},
+      {"Button 3", keyset[170]},
       {"button4", keyset[154]},
+      {"Button 4", keyset[154]},
       {"button5", keyset[153]},
+      {"Button 5", keyset[153]},
       {"button6", keyset[168]},
+      {"Button 6", keyset[168]},
       {"button7", keyset[139]},
+      {"Button 7", keyset[139]},
       {"button8", keyset[156]},
+      {"Button 8", keyset[156]},
       {"trigger", keyset[155]},
+      {"Trigger", keyset[155]},
       {"select", keyset[140]},
-      {"start", keyset[141]}
+      {"Select", keyset[140]},
+      {"start", keyset[141]},
+      {"Start", keyset[141]}
     }},
     {"xbox", new() {
       {"buttonSouth", keyset[212]},

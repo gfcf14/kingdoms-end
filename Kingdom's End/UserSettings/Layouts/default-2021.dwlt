@@ -43,7 +43,7 @@ MonoBehaviour:
     width: 2560
     height: 1357.3334
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Console
   m_RootView: {fileID: 5}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -67,8 +67,8 @@ MonoBehaviour:
     y: 0
     width: 641.3334
     height: 607.3334
-  m_MinSize: {x: 641, y: 603}
-  m_MaxSize: {x: 4001, y: 4023}
+  m_MinSize: {x: 640, y: 580}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_MinSize: {x: 641, y: 603}
   m_MaxSize: {x: 4001, y: 4023}
   vertical: 0
-  controlID: 5824
+  controlID: 279
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 162
+  controlID: 25
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 73
+  controlID: 26
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 74
+  controlID: 27
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -344,17 +344,17 @@ MonoBehaviour:
     y: 696
     width: 2144.6667
     height: 611.3334
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 22}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 22}
   - {fileID: 23}
   - {fileID: 24}
   - {fileID: 25}
   - {fileID: 26}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -463,10 +463,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_ShowAlpha: 0
   m_MipLevel: 0
-  m_Zoom: -1
+  m_Zoom: 5.205
   m_ScrollPosition: {x: 0, y: 0}
   m_SelectedObject: {fileID: 0}
-  m_SelectedSpriteRectGUID: 8f71336929423c3c0800000000000000
+  m_SelectedSpriteRectGUID: 00000000000000000000000000000000
   m_LastUsedModuleTypeName: UnityEditor.U2D.Sprites.SpriteFrameModule
 --- !u!114 &18
 MonoBehaviour:
@@ -502,7 +502,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c8cafcff74cbfcffdacdfcff6ecefcff02cffcff28d2fcff1ed4fcff60d6fcff86d9fcff84dcfcfffedffcffa0e8fcff3eebfcff2eeefcff2ef1fcfff2f4fcff9cfbfcffacfbfcffbcfbfcff0452fdffa66ffdff3a71fdffe471fdff4a74fdffde74fdff7275fdff9878fdff8e7afdffd07cfdfff67ffdfff482fdff6e86fdff108ffdffae91fdff9e94fdff9e97fdff629bfdff0ca2fdff1ca2fdff2ca2fdff6c8bfeff148cfeff7a8efeff0e8ffeffa28ffeffc892feffbe94feff0097feff269afeff249dfeff9ea0feff40a9feffdeabfeffceaefeffceb1feff92b5feff3cbcfeff4cbcfeff5cbcfeffcaf2feffb814ffff8c36ffff3674ffff947affff4ed5ffff76d9ffff0afbfffff4ffffff
+      m_ExpandedIDs: 86bfffff2ec0ffff94c2ffff28c3ffffbcc3ffffe2c6ffffd8c8ffff1acbffff40ceffff3ed1ffffb8d4ffff5addfffff8dfffffe8e2ffffe8e5fffface9ffff56f0ffff66f0ffff78f0ffff0afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -818,9 +818,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -37.78632, y: 12.045787, z: -1.7782817}
+    m_Target: {x: -124.44149, y: 2.0931752, z: -0.058937773}
     speed: 2
-    m_Value: {x: -37.78632, y: 12.045787, z: -1.7782817}
+    m_Value: {x: -124.44149, y: 2.0931752, z: -0.058937773}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -871,9 +871,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 179.6033
+    m_Target: 7.6696205
     speed: 2
-    m_Value: 179.6033
+    m_Value: 7.6696205
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1067,23 +1067,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Inputs
+    - Assets/Resources/Spritesheets/weapons
     m_Globs: []
     m_OriginalText: 
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Inputs
+  - Assets/Resources/Spritesheets/weapons
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Carlos\Documents\GitHub\kingdoms-end\Kingdom's End
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 73.666626}
-    m_SelectedIDs: 3e6e0100
-    m_LastClickedID: 93758
-    m_ExpandedIDs: 000000006635010068350100606e010000ca9a3b
+    scrollPos: {x: 0, y: 105.666626}
+    m_SelectedIDs: 866e0100
+    m_LastClickedID: 93830
+    m_ExpandedIDs: 000000006435010066350100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1111,7 +1111,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006635010068350100
+    m_ExpandedIDs: 000000006435010066350100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

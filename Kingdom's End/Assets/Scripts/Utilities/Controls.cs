@@ -8,10 +8,25 @@ public static class Controls {
   public const string DEFAULT_KEYBOARD_ATTACK_2 = "numpad6";
   public const string DEFAULT_KEYBOARD_ACTION = "numpad7";
 
-  public const string DEFAULT_GAMEPAD_JUMP = "button3";
-  public const string DEFAULT_GAMEPAD_ATTACK_1 = "button4";
-  public const string DEFAULT_GAMEPAD_ATTACK_2 = "button2";
-  public const string DEFAULT_GAMEPAD_ACTION = "button7";
+  #if UNITY_WEBGL && !UNITY_EDITOR
+    public const string DEFAULT_GAMEPAD_JUMP = "Button 3";
+    public const string DEFAULT_GAMEPAD_ATTACK_1 = "Button 4";
+    public const string DEFAULT_GAMEPAD_ATTACK_2 = "Button 2";
+    public const string DEFAULT_GAMEPAD_ACTION = "Button 7";
+  #else
+    public const string DEFAULT_GAMEPAD_JUMP = "button3";
+    public const string DEFAULT_GAMEPAD_ATTACK_1 = "button4";
+    public const string DEFAULT_GAMEPAD_ATTACK_2 = "button2";
+    public const string DEFAULT_GAMEPAD_ACTION = "button7";
+  #endif
+
+  #if UNITY_WEBGL && !UNITY_EDITOR
+    public const string GAMEPAD_BACK_BUTTON = "Trigger";
+    public const string GAMEPAD_START_BUTTON = "Button 9";
+  #else
+    public const string GAMEPAD_BACK_BUTTON = "trigger";
+    public const string GAMEPAD_START_BUTTON = "button9";
+  #endif
 
   public const string DEFAULT_PLAYSTATION_JUMP = "buttonSouth";
   public const string DEFAULT_PLAYSTATION_ATTACK_1 = "buttonWest";

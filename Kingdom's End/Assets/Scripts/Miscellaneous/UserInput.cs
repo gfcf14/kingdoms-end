@@ -107,7 +107,9 @@ public class UserInput : MonoBehaviour {
       // Legacy USB joystick-style names
       "button0" or "button1" or "button2" or "button3" or "button4" or
       "button5" or "button6" or "button7" or "button8" or "button9" or
-      "trigger" => true,
+      "trigger" or "Button 1" or "Button 2" or "Button 3" or "Button 4" or
+      "Button 5" or "Button 6" or "Button 7" or "Button 8" or "Button 9" or
+      "Trigger" => true,
 
       _ => false
     };
@@ -186,6 +188,16 @@ public class UserInput : MonoBehaviour {
           "button8" => joystick["button8"],
           "button9" => joystick["button9"],
           "trigger" => joystick.trigger,
+          "Button 1" => joystick["Button 1"],
+          "Button 2" => joystick["Button 2"],
+          "Button 3" => joystick["Button 3"],
+          "Button 4" => joystick["Button 4"],
+          "Button 5" => joystick["Button 5"],
+          "Button 6" => joystick["Button 6"],
+          "Button 7" => joystick["Button 7"],
+          "Button 8" => joystick["Button 8"],
+          "Button 9" => joystick["Button 9"],
+          "Trigger" => joystick.trigger,
           _ => null
       };
 
@@ -274,9 +286,9 @@ public class UserInput : MonoBehaviour {
       //   }
       // }
 
-      var triggerButton = joystick.TryGetChildControl<ButtonControl>("trigger");
+      var backButton = joystick.TryGetChildControl<ButtonControl>(Controls.GAMEPAD_BACK_BUTTON);
 
-      if (triggerButton != null && triggerButton.wasPressedThisFrame) return true;
+      if (backButton != null && backButton.wasPressedThisFrame) return true;
     }
 
     return false;
@@ -297,9 +309,9 @@ public class UserInput : MonoBehaviour {
 
     // Joystick check
     foreach (var joystick in Joystick.all) {
-      var button9 = joystick.TryGetChildControl<ButtonControl>("button9");
+      var startButton = joystick.TryGetChildControl<ButtonControl>(Controls.GAMEPAD_START_BUTTON);
 
-      if (button9 != null && button9.wasPressedThisFrame) return true;
+      if (startButton != null && startButton.wasPressedThisFrame) return true;
     }
 
     return false;
