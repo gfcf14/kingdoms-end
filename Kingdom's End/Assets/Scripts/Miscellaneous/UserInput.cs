@@ -256,9 +256,9 @@ public class UserInput : MonoBehaviour {
 
     // Joystick check
     foreach (var joystick in Joystick.all) {
-      var button9 = joystick.TryGetChildControl<ButtonControl>("button9");
+      var startButton = joystick.TryGetChildControl<ButtonControl>(Controls.GAMEPAD_START_BUTTON);
 
-      if (button9 != null && button9.wasReleasedThisFrame) return true;
+      if (startButton != null && startButton.wasReleasedThisFrame) return true;
     }
 
     return false;

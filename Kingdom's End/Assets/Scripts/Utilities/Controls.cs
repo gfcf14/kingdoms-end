@@ -28,6 +28,8 @@ public static class Controls {
     public const string GAMEPAD_START_BUTTON = "button9";
   #endif
 
+  public const string WEBGL_ACTION_BUTTON = "Button 3";
+
   public const string DEFAULT_PLAYSTATION_JUMP = "buttonSouth";
   public const string DEFAULT_PLAYSTATION_ATTACK_1 = "buttonWest";
   public const string DEFAULT_PLAYSTATION_ATTACK_2 = "buttonEast";
