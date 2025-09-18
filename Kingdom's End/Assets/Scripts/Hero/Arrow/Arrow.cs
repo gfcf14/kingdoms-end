@@ -28,13 +28,23 @@ public class Arrow : MonoBehaviour {
   [NonSerialized] public int directionFactor = 0;
 
   void Start() {
+    Debug.Log(type);
     body = GetComponent<Rigidbody2D>();
     arrowCollider = transform.Find("ArrowCollider").gameObject;
     objectRenderer = GetComponent<SpriteRenderer>();
-    extraSprite = transform.Find("Extra").gameObject;
     directionFactor = isFacingLeft ? -1 : 1;
-    extraSprite.transform.localScale = new Vector3(1, directionFactor, 1);
-    extraSprite.transform.localPosition = new Vector2(isFacingLeft ? 0.35f: 0.4f, 0.05f * directionFactor);
+    extraSprite = transform.Find("Extra").gameObject;
+
+    // TODO: expand if there are other types which require an extra
+    if (type == "arrow-fire")
+    {
+      extraSprite.transform.localScale = new Vector3(1, directionFactor, 1);
+      extraSprite.transform.localPosition = new Vector2(isFacingLeft ? 0.35f : 0.4f, 0.05f * directionFactor);
+    }
+    else
+    {
+      DestroyExtra();
+    }
 
     objectRenderer.sprite = Helpers.GetOrException(Sprites.arrows, type);
   }
@@ -110,9 +120,7 @@ public class Arrow : MonoBehaviour {
   }
 
   void DestroyExtra() {
-    if (extraSprite != null) {
-      Destroy(extraSprite);
-    }
+    Destroy(extraSprite);
   }
 
   public void DestroyArrow() {

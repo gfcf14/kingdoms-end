@@ -322,6 +322,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("fire-med", 1));
       items.Add(new Item("dark-med", 1));
       items.Add(new Item("watermelon-slice", 1));
+      items.Add(new Item("arrow-ice", 100));
 
       bodyEquipment = "body-1";
       canKick = true;
@@ -353,6 +354,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("watermelon", 10));
       items.Add(new Item("honeydew", 10));
       items.Add(new Item("coconut", 10));
+      items.Add(new Item("arrow-ice", 10));
 
       items.Add(new Item("darklord-sword", 1));
     #endif

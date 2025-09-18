@@ -29,6 +29,8 @@ public class ArrowCollider : MonoBehaviour {
 
         if (parentArrow.type == "arrow-poison") {
           pierceEffect.GetComponent<Pierce>().color = Helpers.GetOrException(Colors.statusColors, "poisoned");
+        } if (parentArrow.type == "arrow-ice") {
+          pierceEffect.GetComponent<Pierce>().color = Helpers.GetOrException(Colors.statusColors, "frozen");
         } else {
           pierceEffect.GetComponent<Pierce>().color = Color.white;
         }

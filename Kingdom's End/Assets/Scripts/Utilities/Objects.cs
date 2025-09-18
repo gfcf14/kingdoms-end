@@ -77,7 +77,7 @@ public class Objects
   };
 
   public static Dictionary<string, string[]> itemProjectiles = new() {
-    {"basic-bow", new string[]{"arrow-standard", "arrow-poison", "arrow-fire"}}
+    {"basic-bow", new string[]{"arrow-standard", "arrow-poison", "arrow-fire", "arrow-ice"}}
   };
 
   // initialize constructable RegularItem objects by: new RelicItem(thumbnail, image, name, description, effect)
@@ -197,6 +197,7 @@ public class Objects
     {"silver-king-skull", new RegularItem(Sprites.itemThumbnails[102], Sprites.itemImages[102], "Silver King Skull", "Silver skeleton king skull with a gold laurel crown", "valuable")},
     {"royal-pelt", new RegularItem(Sprites.itemThumbnails[103], Sprites.itemImages[103], "Royal Pelt", "Comfortable pelt worn by skeleton kings", "valuable")},
     {"skeleton-king-giant-bone", new RegularItem(Sprites.itemThumbnails[104], Sprites.itemImages[104], "Giant Bone", "Thrown by the skeleton king. Quite deadly when it hits", "throwable-double", new Effects() {atk=80})},
+    {"arrow-ice", new RegularItem(Sprites.itemThumbnails[105], Sprites.itemImages[105], "Ice Arrow", "Arrows with magic water to freeze weakened enemies.", "arrow", new Effects() {atk=30})},
 
     // Example of having everything
     // {"chicken-drumstick", new RegularItem(Sprites.itemThumbnails[3], Sprites.itemImages[3], "Chicken Drumstick", "From range-free raised fowl.", "food", new Effects() {hp = 99, mp=99, statusHeal=new string[]{"Poison", "Curse", "Drain"}, atk=-99, def=99, crit=0.5f, luck=-0.2f, magicResistances=new MagicResistance[]{new MagicResistance(){name="Earth", type="add"}, new MagicResistance(){name="Air", type="add"}, new MagicResistance(){name="Water", type="add"}, new MagicResistance(){name="Fire", type="add"}, new MagicResistance(){name="Lightning", type="remove"}, new MagicResistance(){name="Ice", type="remove"}, new MagicResistance(){name="Light", type="remove"}, new MagicResistance(){name="Dark", type="remove"}}})}
@@ -448,7 +449,8 @@ public class Objects
   public static Dictionary<string, CompositePauseImage> compositePauseImages = new() {
     {"basic-bow-with-arrow-standard", new CompositePauseImage(){thumbnail = Sprites.itemCombinedThumbnails[0], name = "Basic Bow with Std. Arrow"}},
     {"basic-bow-with-arrow-poison", new CompositePauseImage(){thumbnail = Sprites.itemCombinedThumbnails[1], name = "Basic Bow with Poison Arrow"}},
-    {"basic-bow-with-arrow-fire", new CompositePauseImage(){thumbnail = Sprites.itemCombinedThumbnails[2], name = "Basic Bow with Fire Arrow"}}
+    {"basic-bow-with-arrow-fire", new CompositePauseImage(){thumbnail = Sprites.itemCombinedThumbnails[2], name = "Basic Bow with Fire Arrow"}},
+    {"basic-bow-with-arrow-ice", new CompositePauseImage(){thumbnail = Sprites.itemCombinedThumbnails[3], name = "Basic Bow with Ice Arrow"}}
   };
 
   public static Dictionary<string, RuntimeAnimatorController> animationControllers = new() {
