@@ -99,6 +99,9 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 | unequipped/kick                    | https://pixabay.com/sound-effects/swoosh-6339/                   |
 | unequipped/punch                   | https://pixabay.com/sound-effects/swoosh-6339/                   |
 | weapons/bow/basic                  | https://pixabay.com/sound-effects/swoosh-6339/                   |
+| weapons/bow/ice                    | https://pixabay.com/sound-effects/wind-magic-2-378627/           |
+|                                    | https://pixabay.com/sound-effects/ice-5-85026/                   |
+|                                    | https://pixabay.com/sound-effects/clang-4-87972/                 |
 | weapons/double/sword               | https://pixabay.com/sound-effects/sword-swipes-7174/             |
 | weapons/single/sword               | https://pixabay.com/sound-effects/clean-fast-swooshaiff-14784/   |
 | weapons/throwable/middle           | https://pixabay.com/sound-effects/swoosh-6339/                   |

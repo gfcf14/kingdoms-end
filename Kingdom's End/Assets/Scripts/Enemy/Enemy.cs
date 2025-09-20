@@ -88,6 +88,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] public bool isCharging = false;
     [SerializeField] public bool isDead = false;
     [SerializeField] public bool isDeadByBurning = false;
+    [SerializeField] public bool isDeadByFreezing = false;
     [SerializeField] public bool isDeadByPoison = false;
     [SerializeField] public bool isDefending = false;
     [SerializeField] public bool isDistracted;
@@ -397,6 +398,16 @@ public class Enemy : MonoBehaviour {
     if (Settings.playSFX) {
       audioSource.PlayOneShot(Helpers.GetOrException(Sounds.attackSounds, normalAttackType));
     }
+  }
+
+  void Freeze() {
+    InGame.instance.PlaySound(Sounds.iceblockSound, transform.position);
+
+    if (!gaveExp) {
+      awardExp();
+    }
+
+    Destroy();
   }
 
   void Update() {
@@ -730,9 +741,15 @@ public class Enemy : MonoBehaviour {
 
             if (mustTakeDamage) {
               int damage = (def * (isDefending ? 2 : 1)) - ((Helpers.GetDamage(arrowUsed) + Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (isCritical ? 2 : 1));
+              int expectedDamage = damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt;
+
+              if (expectedDamage >= currentHP && parentArrow.type == "arrow-ice" && !isDeadByFreezing) {
+                isDeadByFreezing = true;
+                Freeze();
+              }
 
               // do not play standard damage sound if the arrow used is a fire arrow
-              TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position), isCritical, parentArrow.type == "arrow-fire" ? "" : "arrow");
+              TakeDamage(expectedDamage, col.ClosestPoint(transform.position), isCritical, parentArrow.type == "arrow-fire" ? "" : "arrow");
 
               if (parentArrow.type == "arrow-poison" && !Helpers.IsPoisonResistant(elementResistances)) {
                 isPoisoned = true;
@@ -997,11 +1014,22 @@ public class Enemy : MonoBehaviour {
 
     // instantiates the dropped item
     string[] droppableAndRarity = (specificDrop == "" ? Helpers.GetDroppableItem(key, level, Hero.instance.luckPercentage + Hero.instance.equippedLUCK + Hero.instance.effectLCK) : "" + specificDrop + "|rare").Split('|');
-    InGame.instance.InstantiatePrefab("droppable", droppableAndRarity[0], droppableAndRarity[1], transform.parent.gameObject, deathOrigin, enemyRenderer, false, "", spawnedFrom);
+    if (isDeadByFreezing) {
+      GameObject iceBlock = Instantiate(Helpers.GetOrException(Objects.prefabs, $"ice-block-{UnityEngine.Random.Range(1, 6)}"), deathOrigin, Quaternion.identity, transform.parent);
 
-    // instantiates the explosion of the enemy
-    GameObject enemyExplosion = Instantiate(Helpers.GetOrException(Objects.prefabs, "explosion"), deathOrigin, Quaternion.identity);
-    enemyExplosion.GetComponent<Explosion>().type = "enemy";
+      iceBlock.transform.Find("Enemy").GetComponent<SpriteRenderer>().sprite = enemyRenderer.sprite;
+
+      IceBlock iceBlockScript = iceBlock.GetComponent<IceBlock>();
+      iceBlockScript.itemKey = droppableAndRarity[0];
+      iceBlockScript.itemRarity = droppableAndRarity[1];
+      iceBlockScript.isFacingLeft = isFacingLeft;
+    } else {
+      InGame.instance.InstantiatePrefab("droppable", droppableAndRarity[0], droppableAndRarity[1], transform.parent.gameObject, deathOrigin, enemyRenderer, false, "", spawnedFrom);
+
+      // instantiates the explosion of the enemy
+      GameObject enemyExplosion = Instantiate(Helpers.GetOrException(Objects.prefabs, "explosion"), deathOrigin, Quaternion.identity);
+      enemyExplosion.GetComponent<Explosion>().type = "enemy";
+    }
 
     if (isMiniBoss) {
       GameObject.Find("BossStatusCanvas").SetActive(false);

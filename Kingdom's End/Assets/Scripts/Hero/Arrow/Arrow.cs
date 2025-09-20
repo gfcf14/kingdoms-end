@@ -28,7 +28,6 @@ public class Arrow : MonoBehaviour {
   [NonSerialized] public int directionFactor = 0;
 
   void Start() {
-    Debug.Log(type);
     body = GetComponent<Rigidbody2D>();
     arrowCollider = transform.Find("ArrowCollider").gameObject;
     objectRenderer = GetComponent<SpriteRenderer>();
