@@ -52,6 +52,7 @@ public class Objects
     {"money-loss", Resources.Load("Prefabs/MoneyLoss") as GameObject},
     {"pierce", Resources.Load("Prefabs/Pierce") as GameObject},
     {"projectile", Resources.Load("Prefabs/Projectile") as GameObject},
+    {"rock-explosion", Resources.Load("Prefabs/RockExplosion") as GameObject},
     {"savepoint-calderas", Resources.Load("Prefabs/Save Point - Calderas") as GameObject},
     {"savepoint-desert", Resources.Load("Prefabs/Save Point - Desert") as GameObject},
     {"savepoint-forest", Resources.Load("Prefabs/Save Point - Forest") as GameObject},

@@ -26,6 +26,10 @@ public class Weapon : MonoBehaviour {
         }
       }
     }
+
+    if (col.gameObject.name.Contains("IceBlock")) {
+      col.gameObject.GetComponent<IceBlock>().DestroyBlock();
+    }
   }
 
   private void OnTriggerExit2D(Collider2D col) {
