@@ -19,7 +19,7 @@ public class IceBlock : MonoBehaviour {
 
   public void DestroyBlock() {
     InGame.instance.InstantiatePrefab("droppable", itemKey, itemRarity, transform.parent.gameObject, transform.position, enemy.GetComponent<SpriteRenderer>(), false, "", transform.parent.gameObject);
-    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.breakableSounds, "vase")[0], transform.position);
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.rockExplosionSounds, "ice"), transform.position);
     Destroy(gameObject);
 
     GameObject rockExplosionLeft = Instantiate(Helpers.GetOrException(Objects.prefabs, "rock-explosion"), transform.position, Quaternion.identity);
