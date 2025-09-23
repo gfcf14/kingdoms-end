@@ -193327,9 +193327,6 @@ MonoBehaviour:
   jumpsExecuted: 0
   canCastMagic: 0
   hasLightUnderground: 0
-  currentYPosition: 0
-  currentXPosition: 0
-  throwbackHeight: 0
   isHurt: 0
   isSlammed: 0
   isFallingSlammed: 0
@@ -193350,11 +193347,9 @@ MonoBehaviour:
   isPunching: 0
   isAirPunching: 0
   isThrowing: 0
-  startThrow: 0
   isShootingPull: 0
   isInvulnerable: 0
   isOnChat: 0
-  bombNearby: 0
   damageStartTime: 0
   damageRecoverTime: 3000
   horizontalCollision: 0
@@ -193362,7 +193357,6 @@ MonoBehaviour:
   horizontalInput: 0
   verticalInput: 0
   armUsed: 0
-  timeoutDuration: 1
   direction: 1
   nearbyInteractableObject: {fileID: 0}
   bombCheck: {fileID: 447071657}
@@ -386194,26 +386188,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -19, y: -80, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 202
-      m_TileSpriteIndex: 117
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 167
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -90, y: -50, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 202
-      m_TileSpriteIndex: 117
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 167
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -155, y: -41, z: 0}
     second:
       serializedVersion: 2
@@ -386730,7 +386704,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: 2bab768aead7e124a8333766e4b73057, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -391533,7 +391507,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data: {fileID: -4902929392018886965, guid: e3af25b2af02fbc42bb85aaf1c116a14, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -396272,7 +396246,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 8598636524609568261, guid: b343aabf09768c2458c424b94a7b72b6, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 157
+  - m_RefCount: 155
     m_Data:
       e00: 1
       e01: 0
@@ -396625,7 +396599,7 @@ Tilemap:
     m_Data: {r: 2.4453375e-23, g: 2.4453375e-23, b: 2.4453375e-23, a: 2.4453375e-23}
   - m_RefCount: 0
     m_Data: {r: 2.4453375e-23, g: 2.4453375e-23, b: 2.4453375e-23, a: 2.4453375e-23}
-  - m_RefCount: 157
+  - m_RefCount: 155
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
