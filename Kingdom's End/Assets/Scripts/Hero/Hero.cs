@@ -1952,10 +1952,8 @@ public class Hero : MonoBehaviour {
     // closes the action canvas when the chat canvas activates
     InGame.instance.actionCanvas.SetActive(false);
 
-    // if the info canvas is active, then it should return to its left alignment
-    if (InGame.instance.infoCanvas.activeSelf) {
-      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
-    }
+    // return the info canvas to its left alignment regardless of if it's displaying
+    InGame.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
 
     // resets the action canvas so when the chat closes and it should show again, it won't show at full width
     InGame.instance.actionCanvas.GetComponent<ActionCanvas>().ClearAction();

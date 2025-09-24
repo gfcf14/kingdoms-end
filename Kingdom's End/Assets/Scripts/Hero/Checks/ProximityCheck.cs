@@ -40,10 +40,8 @@ public class ProximityCheck : MonoBehaviour {
   void ClearActionOnExit() {
     InGame.instance.actionCanvas.SetActive(false);
 
-    // if the info canvas is active, ensure it shows on the left of the screen
-    if (InGame.instance.infoCanvas.activeSelf) {
-      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
-    }
+    // ensure the info canvas shows on the left of the screen regardless of being active
+    InGame.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
 
     InGame.instance.actionCanvas.GetComponent<ActionCanvas>().ClearAction();
   }
