@@ -19,6 +19,7 @@ public class Hero : MonoBehaviour {
   [SerializeField] public float jumpHeight = GameData.playerJumpHeight;
   [SerializeField] public float moveFriction = GameData.playerMovementFriction;
   [SerializeField] public float moveSpeed = GameData.playerMovementSpeed;
+  [SerializeField] public string groundMaterial = "";
   [SerializeField] private float jetpackHeight;
 
   [SerializeField] public GameObject mpBarContainer;
@@ -721,17 +722,8 @@ public class Hero : MonoBehaviour {
   }
 
   public void PlayRunningSound() {
-    string materialRunningOn = InGame.instance.GetTileMaterial(new Vector3(transform.position.x + direction, transform.position.y + 0.1f, transform.position.z));
-
-    // if there is no tile material, falling sound will be assumed from location
-    if (materialRunningOn == null) {
-      materialRunningOn = Helpers.GetMaterial(location);
-    }
-
-    if (materialRunningOn != null) {
-      AudioClip[] materialClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.runningSounds, materialRunningOn), Helpers.GetOrException(Objects.equipmentBaseMaterial, bodyEquipment));
-      PlaySound(materialClips[UnityEngine.Random.Range(0, materialClips.Length)]);
-    }
+    AudioClip[] materialClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.runningSounds, groundMaterial != "" ? groundMaterial : Helpers.GetOrException(Objects.materialsPerArea, GameData.area)), Helpers.GetOrException(Objects.equipmentBaseMaterial, bodyEquipment));
+    PlaySound(materialClips[UnityEngine.Random.Range(0, materialClips.Length)]);
   }
 
   public GameObject GetObjectUnder() {

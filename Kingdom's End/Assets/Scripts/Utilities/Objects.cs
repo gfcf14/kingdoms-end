@@ -781,6 +781,24 @@ public class Objects
     {"yanmabel", "yanmabel-stinger"}
   };
 
+  // TODO: find sounds for each of the different areas as needed
+  public static Dictionary<string, string> materialsPerArea = new() {
+    {"calderas", "grass"},
+    {"desert", "grass"},
+    {"forest", "grass"},
+    {"glaciers", "grass"},
+    {"hellscape", "grass"},
+    {"meadows", "grass"},
+    {"mountains", "grass"},
+    {"oceans", "grass"},
+    {"ruins", "grass"},
+    {"seaside", "grass"},
+    {"skyway", "grass"},
+    {"swamps", "grass"},
+    {"underground", "grass"},
+    {"wasteland", "grass"}
+  };
+
   public static Dictionary<string, ZoneSpecs> zoneSpecs = new() {
     {"ice", new ZoneSpecs() {moveFriction = 0.2f}},
     {"snow", new ZoneSpecs() {moveSpeed = 0.66f}},
