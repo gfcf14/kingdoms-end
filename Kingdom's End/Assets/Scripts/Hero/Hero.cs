@@ -1443,6 +1443,10 @@ public class Hero : MonoBehaviour {
       if (currZoneSpecs.moveFriction != null) {
         moveFriction = (float)currZoneSpecs.moveFriction;
       }
+
+      if (currZoneSpecs.groundMaterial != null) {
+        groundMaterial = currZoneSpecs.groundMaterial;
+      }
     } else if (colTag == "DamageExplosion") {
       Explosion currentExplosion = col.gameObject.GetComponent<Explosion>();
 
@@ -1471,6 +1475,7 @@ public class Hero : MonoBehaviour {
         anim.speed = 1;
         moveSpeed = GameData.playerMovementSpeed;
         moveFriction = GameData.playerMovementFriction;
+        groundMaterial = "";
       }
     }
   }
