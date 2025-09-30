@@ -801,6 +801,7 @@ public class Objects
 
   public static Dictionary<string, ZoneSpecs> zoneSpecs = new() {
     {"dirt", new ZoneSpecs() {groundMaterial = "dirt"}},
+    {"grass", new ZoneSpecs() {groundMaterial = "grass"}},
     {"ice", new ZoneSpecs() {moveFriction = 0.2f}},
     {"snow", new ZoneSpecs() {moveSpeed = 0.66f}},
     {"water-deep", new ZoneSpecs() {animSpeed = 0.66f, jumpHeight = 10f}},
