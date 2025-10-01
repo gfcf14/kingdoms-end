@@ -1432,25 +1432,11 @@ public class Hero : MonoBehaviour {
 
       ZoneSpecs currZoneSpecs = Helpers.GetOrException(Objects.zoneSpecs, zoneScript.type);
 
-      if (currZoneSpecs.jumpHeight != null) {
-        jumpHeight = (float)currZoneSpecs.jumpHeight;
-      }
-
-      if (currZoneSpecs.animSpeed != null) {
-        anim.speed = (float)currZoneSpecs.animSpeed;
-      }
-
-      if (currZoneSpecs.moveSpeed != null) {
-        moveSpeed = (float)currZoneSpecs.moveSpeed;
-      }
-
-      if (currZoneSpecs.moveFriction != null) {
-        moveFriction = (float)currZoneSpecs.moveFriction;
-      }
-
-      if (currZoneSpecs.groundMaterial != null) {
-        groundMaterial = currZoneSpecs.groundMaterial;
-      }
+      jumpHeight = currZoneSpecs.jumpHeight;
+      anim.speed = currZoneSpecs.animSpeed;
+      moveSpeed = currZoneSpecs.moveSpeed;
+      moveFriction = currZoneSpecs.moveFriction;
+      groundMaterial = currZoneSpecs.groundMaterial;
     } else if (colTag == "DamageExplosion") {
       Explosion currentExplosion = col.gameObject.GetComponent<Explosion>();
 

@@ -635,25 +635,17 @@ public class Helpers {
     if (IsValueInArray(Constants.zonedAreas, newArea)) {
       ZoneSpecs zoneForNewArea = GetOrException(Objects.zoneSpecs, GetOrException(Objects.materialsPerArea, newArea));
 
-      if (zoneForNewArea.jumpHeight != null) {
-        GameData.playerJumpHeight = (float)zoneForNewArea.jumpHeight;
-        Hero.instance.jumpHeight = (float)zoneForNewArea.jumpHeight;
-      }
+      GameData.playerJumpHeight = zoneForNewArea.jumpHeight;
+      Hero.instance.jumpHeight = zoneForNewArea.jumpHeight;
 
-      if (zoneForNewArea.animSpeed != null) {
-        GameData.playerAnimationSpeed = (float)zoneForNewArea.animSpeed;
-        Hero.instance.anim.speed = (float)zoneForNewArea.animSpeed;
-      }
+      GameData.playerAnimationSpeed = zoneForNewArea.animSpeed;
+      Hero.instance.anim.speed = zoneForNewArea.animSpeed;
 
-      if (zoneForNewArea.moveSpeed != null) {
-        GameData.playerMovementSpeed = (float)zoneForNewArea.moveSpeed;
-        Hero.instance.moveSpeed = (float)zoneForNewArea.moveSpeed;
-      }
+      GameData.playerMovementSpeed = zoneForNewArea.moveSpeed;
+      Hero.instance.moveSpeed = zoneForNewArea.moveSpeed;
 
-      if (zoneForNewArea.moveFriction != null) {
-        GameData.playerMovementFriction = (float)zoneForNewArea.moveFriction;
-        Hero.instance.moveFriction = (float)zoneForNewArea.moveFriction;
-      }
+      GameData.playerMovementFriction = zoneForNewArea.moveFriction;
+      Hero.instance.moveFriction = zoneForNewArea.moveFriction;
     } else {
       GameData.playerJumpHeight = Constants.defaultPlayerJumpHeight;
       GameData.playerAnimationSpeed = 1;

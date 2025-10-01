@@ -798,11 +798,16 @@ public class Objects
   };
 
   public static Dictionary<string, ZoneSpecs> zoneSpecs = new() {
-    {"dirt", new ZoneSpecs() {groundMaterial = "dirt"}},
-    {"grass", new ZoneSpecs() {groundMaterial = "grass"}},
-    {"ice", new ZoneSpecs() {groundMaterial = "ice", moveFriction = 0.2f}},
-    {"snow", new ZoneSpecs() {groundMaterial = "snow", moveSpeed = 0.66f}},
-    {"water-deep", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 10f}},
-    {"water-shallow", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland"}}
+    {"bedrock", new ZoneSpecs() {animSpeed = 1, groundMaterial = "bedrock", jumpHeight = 8f, moveFriction = 0, moveSpeed = 1}},
+    {"bentgrass", new ZoneSpecs() {animSpeed = 1, groundMaterial = "bentgrass", jumpHeight = 8f, moveFriction = 0, moveSpeed = 1}},
+    {"dirt", new ZoneSpecs() {animSpeed = 1, groundMaterial = "dirt", jumpHeight = 8f, moveFriction = 0, moveSpeed = 1}},
+    {"grass", new ZoneSpecs() {animSpeed = 1, groundMaterial = "grass", jumpHeight = 8f, moveFriction = 0, moveSpeed = 1}},
+    {"gravel", new ZoneSpecs() {animSpeed = 1, groundMaterial = "gravel", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
+    {"ice", new ZoneSpecs() {animSpeed = 1, groundMaterial = "ice", jumpHeight = 8f, moveFriction = 0.2f, moveSpeed = 1.5f}},
+    {"sand", new ZoneSpecs() {animSpeed = 1, groundMaterial = "sand", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
+    {"snow", new ZoneSpecs() {animSpeed = 1, groundMaterial = "snow", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.66f}},
+    {"water-deep", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 10f, moveFriction = 0, moveSpeed = 0.8f}},
+    {"water-shallow", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
+    {"wetland", new ZoneSpecs() {animSpeed = 0.8f, groundMaterial = "wetland", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
   };
 }

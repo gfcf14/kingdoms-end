@@ -205,15 +205,11 @@ public class ThrowableSpecs {
 }
 
 public class ZoneSpecs {
-  public float? animSpeed; // how fast the player changes frames in an animation
-
-  #nullable enable
-    public string? groundMaterial; // different material type for running sounds
-  #nullable disable
-
-  public float? jumpHeight; // how high the player jumps
-  public float? moveFriction; // how fast the player stops moving
-  public float? moveSpeed; // how fast the player moves
+  public float animSpeed; // how fast the player changes frames in an animation
+  public string groundMaterial; // different material type for running sounds
+  public float jumpHeight; // how high the player jumps
+  public float moveFriction; // how fast the player stops moving
+  public float moveSpeed; // how fast the player moves
 }
 
 public class AreaGradients {
