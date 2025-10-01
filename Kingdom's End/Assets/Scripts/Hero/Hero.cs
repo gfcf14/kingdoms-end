@@ -16,10 +16,14 @@ public class Hero : MonoBehaviour {
   // to hold onto the ground type value should an action modify it
   [SerializeField] public string tempGroundType = "";
   [SerializeField] public float inclineSlope = 0.125f;
-  [SerializeField] public float jumpHeight = GameData.playerJumpHeight;
-  [SerializeField] public float moveFriction = GameData.playerMovementFriction;
-  [SerializeField] public float moveSpeed = GameData.playerMovementSpeed;
-  [SerializeField] public string groundMaterial = "";
+
+  [Header("Movement Specific Properties")]
+    [SerializeField] public float jumpHeight = GameData.playerJumpHeight;
+    [SerializeField] public float moveFriction = GameData.playerMovementFriction;
+    [SerializeField] public float moveSpeed = GameData.playerMovementSpeed;
+    [SerializeField] public string groundMaterial = "";
+  [Space(10)]
+
   [SerializeField] private float jetpackHeight;
 
   [SerializeField] public GameObject mpBarContainer;
@@ -33,7 +37,7 @@ public class Hero : MonoBehaviour {
 
   public BoxCollider2D heroCollider;
   public Rigidbody2D body;
-  private Animator anim;
+  public Animator anim;
   private SpriteRenderer heroRenderer;
   private AudioSource audioSource;
 

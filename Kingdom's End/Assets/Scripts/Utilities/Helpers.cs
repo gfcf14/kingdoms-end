@@ -618,6 +618,7 @@ public class Helpers {
     InGame.instance.actionCanvas.SetActive(false);
     Hero.instance.gameObject.transform.Find("ProximityCheck").gameObject.SetActive(false);
     GameData.area = scene.ToLower();
+    SetZoneByArea(scene.ToLower());
   }
 
   public static void DestroyGameSingletons() {
@@ -628,5 +629,41 @@ public class Helpers {
   public static void ClearDataManager() {
     DataManager.instance.newCameraPosition = null;
     DataManager.instance.playerPosition = null;
+  }
+
+  public static void SetZoneByArea(string newArea) {
+    if (IsValueInArray(Constants.zonedAreas, newArea)) {
+      ZoneSpecs zoneForNewArea = GetOrException(Objects.zoneSpecs, GetOrException(Objects.materialsPerArea, newArea));
+
+      if (zoneForNewArea.jumpHeight != null) {
+        GameData.playerJumpHeight = (float)zoneForNewArea.jumpHeight;
+        Hero.instance.jumpHeight = (float)zoneForNewArea.jumpHeight;
+      }
+
+      if (zoneForNewArea.animSpeed != null) {
+        GameData.playerAnimationSpeed = (float)zoneForNewArea.animSpeed;
+        Hero.instance.anim.speed = (float)zoneForNewArea.animSpeed;
+      }
+
+      if (zoneForNewArea.moveSpeed != null) {
+        GameData.playerMovementSpeed = (float)zoneForNewArea.moveSpeed;
+        Hero.instance.moveSpeed = (float)zoneForNewArea.moveSpeed;
+      }
+
+      if (zoneForNewArea.moveFriction != null) {
+        GameData.playerMovementFriction = (float)zoneForNewArea.moveFriction;
+        Hero.instance.moveFriction = (float)zoneForNewArea.moveFriction;
+      }
+    } else {
+      GameData.playerJumpHeight = Constants.defaultPlayerJumpHeight;
+      GameData.playerAnimationSpeed = 1;
+      GameData.playerMovementSpeed = Constants.defaultPlayerMovementSpeed;
+      GameData.playerMovementFriction = Constants.defaultPlayerMovementFriction;
+
+      Hero.instance.jumpHeight = GameData.playerJumpHeight;
+      Hero.instance.anim.speed = GameData.playerAnimationSpeed;
+      Hero.instance.moveSpeed = GameData.playerMovementSpeed;
+      Hero.instance.moveFriction = GameData.playerMovementFriction;
+    }
   }
 }

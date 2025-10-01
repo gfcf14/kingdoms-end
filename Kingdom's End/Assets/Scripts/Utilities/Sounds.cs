@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class Sounds {
   public static Dictionary<string, Dictionary<string, AudioClip[]>> runningSounds = new() {
+    {"bedrock", new() {
+      {"boots", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/running/bedrock/boots-1"),
+        Resources.Load<AudioClip>("SFX/running/bedrock/boots-2"),
+        Resources.Load<AudioClip>("SFX/running/bedrock/boots-3"),
+        Resources.Load<AudioClip>("SFX/running/bedrock/boots-4"),
+        Resources.Load<AudioClip>("SFX/running/bedrock/boots-5"),
+      }}
+    }},
     {"bentgrass", new() {
       {"boots", new AudioClip[] {
         Resources.Load<AudioClip>("SFX/running/bentgrass/boots-1"),
@@ -44,6 +53,42 @@ public class Sounds {
         Resources.Load<AudioClip>("SFX/running/grass/boots-5"),
       }}
     }},
+    {"gravel", new() {
+      {"boots", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/running/gravel/boots-1"),
+        Resources.Load<AudioClip>("SFX/running/gravel/boots-2"),
+        Resources.Load<AudioClip>("SFX/running/gravel/boots-3"),
+        Resources.Load<AudioClip>("SFX/running/gravel/boots-4"),
+        Resources.Load<AudioClip>("SFX/running/gravel/boots-5"),
+      }}
+    }},
+    {"ice", new() {
+      {"boots", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/running/ice/boots-1"),
+        Resources.Load<AudioClip>("SFX/running/ice/boots-2"),
+        Resources.Load<AudioClip>("SFX/running/ice/boots-3"),
+        Resources.Load<AudioClip>("SFX/running/ice/boots-4"),
+        Resources.Load<AudioClip>("SFX/running/ice/boots-5"),
+      }}
+    }},
+    {"sand", new() {
+      {"boots", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/running/sand/boots-1"),
+        Resources.Load<AudioClip>("SFX/running/sand/boots-2"),
+        Resources.Load<AudioClip>("SFX/running/sand/boots-3"),
+        Resources.Load<AudioClip>("SFX/running/sand/boots-4"),
+        Resources.Load<AudioClip>("SFX/running/sand/boots-5"),
+      }}
+    }},
+    {"snow", new() {
+      {"boots", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/running/snow/boots-1"),
+        Resources.Load<AudioClip>("SFX/running/snow/boots-2"),
+        Resources.Load<AudioClip>("SFX/running/snow/boots-3"),
+        Resources.Load<AudioClip>("SFX/running/snow/boots-4"),
+        Resources.Load<AudioClip>("SFX/running/snow/boots-5"),
+      }}
+    }},
     {"tile", new() {
       // TODO: consider if at any time barefoot tile sound effects will be needed
       {"boots", new AudioClip[] {
@@ -52,6 +97,15 @@ public class Sounds {
         Resources.Load<AudioClip>("SFX/running/tile/boots-3"),
         Resources.Load<AudioClip>("SFX/running/tile/boots-4"),
         Resources.Load<AudioClip>("SFX/running/tile/boots-5"),
+      }}
+    }},
+    {"wetland", new() {
+      {"boots", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/running/wetland/boots-1"),
+        Resources.Load<AudioClip>("SFX/running/wetland/boots-2"),
+        Resources.Load<AudioClip>("SFX/running/wetland/boots-3"),
+        Resources.Load<AudioClip>("SFX/running/wetland/boots-4"),
+        Resources.Load<AudioClip>("SFX/running/wetland/boots-5"),
       }}
     }},
   };

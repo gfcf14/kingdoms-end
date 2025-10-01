@@ -780,31 +780,29 @@ public class Objects
     {"werewolf", "werewolf-fang"},
     {"yanmabel", "yanmabel-stinger"}
   };
-
-  // TODO: find sounds for each of the different areas as needed
   public static Dictionary<string, string> materialsPerArea = new() {
-    {"calderas", "grass"},
-    {"desert", "grass"},
+    {"calderas", "gravel"},
+    {"desert", "sand"},
     {"forest", "grass"},
-    {"glaciers", "grass"},
-    {"hellscape", "grass"},
+    {"glaciers", "snow"},
+    {"hellscape", "bedrock"},
     {"meadows", "grass"},
-    {"mountains", "grass"},
-    {"oceans", "grass"},
-    {"ruins", "grass"},
-    {"seaside", "grass"},
+    {"mountains", "bentgrass"},
+    {"oceans", "sand"},
+    {"ruins", "sand"},
+    {"seaside", "sand"},
     {"skyway", "grass"},
-    {"swamps", "grass"},
-    {"underground", "grass"},
-    {"wasteland", "grass"}
+    {"swamps", "wetland"},
+    {"underground", "gravel"},
+    {"wasteland", "bedrock"}
   };
 
   public static Dictionary<string, ZoneSpecs> zoneSpecs = new() {
     {"dirt", new ZoneSpecs() {groundMaterial = "dirt"}},
     {"grass", new ZoneSpecs() {groundMaterial = "grass"}},
-    {"ice", new ZoneSpecs() {moveFriction = 0.2f}},
-    {"snow", new ZoneSpecs() {moveSpeed = 0.66f}},
-    {"water-deep", new ZoneSpecs() {animSpeed = 0.66f, jumpHeight = 10f}},
-    {"water-shallow", new ZoneSpecs() {animSpeed = 0.66f}}
+    {"ice", new ZoneSpecs() {groundMaterial = "ice", moveFriction = 0.2f}},
+    {"snow", new ZoneSpecs() {groundMaterial = "snow", moveSpeed = 0.66f}},
+    {"water-deep", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 10f}},
+    {"water-shallow", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland"}}
   };
 }

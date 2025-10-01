@@ -93,6 +93,8 @@ public class Constants {
 
   public static string[] partialLightRelics = {"dawn-gem", "royal-lamp"};
 
+  public static string[] zonedAreas = {"glaciers"};
+
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};
 
@@ -146,12 +148,6 @@ public class Constants {
   // ensures that each HP unit (until reaching 500) displays in 2 UI units
   public static int containerMultiplier = 2;
 
-  public static int infoCanvasRightAlignOffset = 30;
-
-  public static int relicSparkleLimit = 6;
-  public static int sparkleRelativeMin = 500;
-  public static int sparkleRelativeMax = 601;
-
   public static float fragmentOffset = 0.1f;
 
   public static float itemLossHeight = 0.6f;
@@ -163,6 +159,16 @@ public class Constants {
   public static float sparkleOffsetDistance = 0.11f;
   public static float enemyBombWidth = 0.8f;
   public static float enemyEdgeforwardOffset = 0.1f;
+
+  public static float defaultPlayerJumpHeight = 8f;
+  public static float defaultPlayerMovementFriction = 0;
+  public static float defaultPlayerMovementSpeed = 1;
+
+  public static int infoCanvasRightAlignOffset = 30;
+
+  public static int relicSparkleLimit = 6;
+  public static int sparkleRelativeMin = 500;
+  public static int sparkleRelativeMax = 601;
 
   public static Vector2[] fragmentPositions = { new Vector2(-fragmentOffset, fragmentOffset), new Vector2(0, fragmentOffset), new Vector2(fragmentOffset, fragmentOffset),
                                                 new Vector2(-fragmentOffset, 0),              new Vector2(0, 0),              new Vector2(fragmentOffset, 0),
