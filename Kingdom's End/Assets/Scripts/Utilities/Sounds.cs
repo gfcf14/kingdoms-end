@@ -159,15 +159,36 @@ public class Sounds {
     {"barrel", woodFallingSounds},
     {"box", woodFallingSounds},
     {"character", new() {
+      {"bedrock", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/falling/bedrock/boots"),
+      }},
+      {"bentgrass", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/falling/bentgrass/boots"),
+      }},
+      {"box", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/falling/breakables/box/boots"),
+      }},
       {"dirt", new AudioClip[] {
         Resources.Load<AudioClip>("SFX/falling/dirt/boots"),
       }},
       {"grass", new AudioClip[] {
         Resources.Load<AudioClip>("SFX/falling/grass/boots"),
       }},
-      {"box", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/falling/breakables/box/boots"),
-      }}
+      {"gravel", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/falling/gravel/boots"),
+      }},
+      {"ice", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/falling/ice/boots"),
+      }},
+      {"sand", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/falling/sand/boots"),
+      }},
+      {"snow", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/falling/snow/boots"),
+      }},
+      {"wetland", new AudioClip[] {
+        Resources.Load<AudioClip>("SFX/falling/wetland/boots"),
+      }},
     }}
   };
 
@@ -175,13 +196,13 @@ public class Sounds {
     {"barrel", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
     }},
+    {"bedrock", new() {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/bedrock/boots")}
+    }},
+    {"bentgrass", new() {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/bentgrass/boots")}
+    }},
     {"box", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
-    }},
-    {"jar", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
-    }},
-    {"vase", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
     }},
     {"dirt", new() {
@@ -190,9 +211,30 @@ public class Sounds {
     {"grass", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/grass/boots")}
     }},
+    {"gravel", new() {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/gravel/boots")}
+    }},
+    {"ice", new() {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/ice/boots")}
+    }},
+    {"jar", new() {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
+    }},
+    {"sand", new() {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/sand/boots")}
+    }},
+    {"snow", new() {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/snow/boots")}
+    }},
     {"tile", new() {
       {"boots", Resources.Load<AudioClip>("SFX/falling/tile/boots")}
-    }}
+    }},
+    {"vase", new() {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
+    }},
+    {"wetland", new() {
+      {"boots", Resources.Load<AudioClip>("SFX/falling/wetland/boots")}
+    }},
   };
 
   public static Dictionary<string, AudioClip> droppableFallingSounds = new() {

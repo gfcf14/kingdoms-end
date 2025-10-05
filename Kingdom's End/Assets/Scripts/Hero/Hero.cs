@@ -761,15 +761,10 @@ public class Hero : MonoBehaviour {
   }
 
   public void PerformGroundFall() {
-    // when falling, y position may need to be adjusted by 0.1f to avoid null tile recognition
-    string tileMaterial = InGame.instance.GetTileMaterial(new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z));
+    string materialUnder = groundMaterial != "" ? groundMaterial : Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
 
-    // if there is no tile material, falling sound will be assumed from location
-    if (tileMaterial == null) {
-      tileMaterial = Helpers.GetMaterial(location);
-    }
-
-    PlayFallingSound(tileMaterial, Helpers.GetOrException(Objects.equipmentBaseMaterial, bodyEquipment));
+    // TODO: it's pointless to try to develop different sounds based on what the player has equipped. Ensure a refactoring of sound names is done so second parameter is no longer needed
+    PlayFallingSound(materialUnder, Helpers.GetOrException(Objects.equipmentBaseMaterial, bodyEquipment));
   }
 
   public void PlayFallingSound(string fallen, string fallingOn) {
