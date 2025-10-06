@@ -9,7 +9,7 @@ public class Droppable : MonoBehaviour {
   [SerializeField] public GameObject room;
   [SerializeField] public bool shouldRotate;
   [SerializeField] public string rotateDirection;
-
+  [SerializeField] public string fallingOn;
   [SerializeField] public bool canBePicked = false;
   [SerializeField] public bool isDropping = false;
   [SerializeField] public bool isDropped = false;
@@ -157,12 +157,8 @@ public class Droppable : MonoBehaviour {
       }
 
       if (!isRising && InGame.instance.IsInRoom(InGame.instance.FindRoom(transform.parent))) {
-        string materialFallingOn = InGame.instance.GetTileMaterial(transform.position);
-        if (materialFallingOn == null) {
-          // TODO: find a better way to get the location
-          materialFallingOn = Helpers.GetMaterial(Hero.instance.location);
-        }
-        PlaySound(Helpers.GetOrException(Sounds.droppableFallingSounds, gameObjectTag == "Interactable" ? "interactable" : materialFallingOn));
+        Debug.Log($"Play sound {fallingOn}");
+        PlaySound(Helpers.GetOrException(Sounds.droppableFallingSounds, gameObjectTag == "Interactable" ? "interactable" : fallingOn));
       }
 
       // destroys the rigid body and makes the collider a trigger so that
@@ -202,6 +198,9 @@ public class Droppable : MonoBehaviour {
 
       InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, itemPickSoundIndex), transform.position);
       DestroyDroppable();
+    } else if (gameObjectTag == "Zone") {
+      ZoneSpecs currZoneSpecs = Helpers.GetOrException(Objects.zoneSpecs, col.gameObject.GetComponent<Zone>().type);
+      fallingOn = currZoneSpecs.groundMaterial;
     }
   }
 

@@ -136,6 +136,7 @@ public class Sounds {
     {"ice", Resources.Load<AudioClip>("SFX/breakables/vase/breaking-1")}
   };
 
+  // TODO: it's pointless to keep two sounds for boxes/barrels. Consider removing the second one of each
   public static Dictionary<string, AudioClip[]> woodFallingSounds = new() {
     {"barrel", new AudioClip[] {
       Resources.Load<AudioClip>("SFX/breakables/box/falling/on-box-1"),
@@ -151,6 +152,31 @@ public class Sounds {
     }},
     {"item", new AudioClip[] {
       Resources.Load<AudioClip>("SFX/items/falling/on-box"),
+    }},
+    // TODO: these sounds are placeholders. Use "SFX/breakables/box/falling/on-box-2" as background for falling sounds
+    {"bedrock", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/falling/bedrock/boots"),
+    }},
+    {"bentgrass", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/falling/bentgrass/boots"),
+    }},
+    {"dirt", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/falling/dirt/boots"),
+    }},
+    {"gravel", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/falling/gravel/boots"),
+    }},
+    {"ice", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/falling/ice/boots"),
+    }},
+    {"sand", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/falling/sand/boots"),
+    }},
+    {"snow", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/falling/snow/boots"),
+    }},
+    {"wetland", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/falling/wetland/boots"),
     }}
   };
 
@@ -238,8 +264,16 @@ public class Sounds {
   };
 
   public static Dictionary<string, AudioClip> droppableFallingSounds = new() {
-    {"dirt", Resources.Load<AudioClip>("SFX/falling/dirt/barefoot")},
+    {"bedrock", Resources.Load<AudioClip>("SFX/items/falling/on-bedrock")},
+    {"bentgrass", Resources.Load<AudioClip>("SFX/items/falling/on-bentgrass")},
+    {"dirt", Resources.Load<AudioClip>("SFX/items/falling/on-dirt")},
     {"grass", Resources.Load<AudioClip>("SFX/items/falling/on-grass")},
+    {"gravel", Resources.Load<AudioClip>("SFX/items/falling/on-gravel")},
+    {"ice", Resources.Load<AudioClip>("SFX/items/falling/on-ice")},
+    {"sand", Resources.Load<AudioClip>("SFX/items/falling/on-sand")},
+    {"snow", Resources.Load<AudioClip>("SFX/items/falling/on-snow")},
+    {"tile", Resources.Load<AudioClip>("SFX/items/falling/on-tile")},
+    {"wetland", Resources.Load<AudioClip>("SFX/items/falling/on-wetland")},
     {"interactable", Resources.Load<AudioClip>("SFX/breakables/box/falling/on-box-1")}
   };
 

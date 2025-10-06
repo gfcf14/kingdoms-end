@@ -22,6 +22,7 @@ public class Breakable : MonoBehaviour {
   private BoxCollider2D breakableCollider;
   private AudioSource audioSource;
   private bool inGameReady = false;
+  private string fallingOn = "";
 
   IEnumerator Start() {
     while (InGame.instance == null) yield return null;
@@ -57,6 +58,8 @@ public class Breakable : MonoBehaviour {
       Destroy(body);
       breakableCollider.isTrigger = true;
     }
+
+    fallingOn = Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
   }
 
   void Update() {}
@@ -140,6 +143,11 @@ public class Breakable : MonoBehaviour {
 
       anim.Play("breakable-" + type);
     }
+
+    if (colTag == "Zone") {
+      ZoneSpecs currZoneSpecs = Helpers.GetOrException(Objects.zoneSpecs, col.gameObject.GetComponent<Zone>().type);
+      fallingOn = currZoneSpecs.groundMaterial;
+    }
   }
 
   public void DestroyBreakable() {
@@ -158,14 +166,7 @@ public class Breakable : MonoBehaviour {
         PlaySound(Helpers.GetRandomClipFromGroup(breakableClips));
       break;
       case "Floor":
-        string materialFallingOn = InGame.instance.GetTileMaterial(transform.position);
-
-        // if there is no tile material, falling sound will be assumed from location
-        if (materialFallingOn == null) {
-          // TODO: find a better way to get the location
-          materialFallingOn = Helpers.GetMaterial(Hero.instance.location);
-        }
-        AudioClip[] groundClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), materialFallingOn);
+        AudioClip[] groundClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), fallingOn);
         PlaySound(Helpers.GetRandomClipFromGroup(groundClips));
       break;
       case "Item":

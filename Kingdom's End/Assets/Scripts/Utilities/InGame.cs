@@ -181,6 +181,7 @@ public class InGame : MonoBehaviour {
     droppableScript.rarity = rarity;
     droppableScript.isDropped = true;
     droppableScript.room = room;
+    droppableScript.fallingOn = Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
 
     if (shouldRotate) {
       droppableScript.shouldRotate = shouldRotate;
@@ -204,56 +205,6 @@ public class InGame : MonoBehaviour {
     string material = tileName.Split('_')[0].Split('-')[1];
 
     return Helpers.GetMaterial(material, tileName);
-  }
-
-  // public string GetTileName(Vector3 objectPosition) {
-  //   Vector3Int groundTileCoordinates = groundTiles.WorldToCell(objectPosition);
-  //   Vector3 tileCenter = groundTiles.GetCellCenterWorld(groundTileCoordinates);
-  //   Vector3 tileHalfSize = groundTiles.cellSize / 2;
-  //   Vector3Int groundTileBelowCoordinates = groundTileCoordinates;
-  //   TileBase groundTileBelowPlayer = groundTiles.GetTile(groundTileBelowCoordinates);
-
-  //   // if not found, get the tile below
-  //   if (groundTileBelowPlayer == null) {
-  //     groundTileCoordinates = groundTileCoordinates + new Vector3Int(0, -1, 0);
-  //     tileCenter = groundTiles.GetCellCenterWorld(groundTileCoordinates);
-  //     groundTileBelowCoordinates = groundTileCoordinates;
-  //     groundTileBelowPlayer = groundTiles.GetTile(groundTileBelowCoordinates);
-  //   }
-
-  //   // Draw lines around the boundaries of the selected tile
-  //   Debug.DrawLine(tileCenter + new Vector3(-tileHalfSize.x, -tileHalfSize.y), tileCenter + new Vector3(tileHalfSize.x, -tileHalfSize.y), Color.red);
-  //   Debug.DrawLine(tileCenter + new Vector3(tileHalfSize.x, -tileHalfSize.y), tileCenter + new Vector3(tileHalfSize.x, tileHalfSize.y), Color.red);
-  //   Debug.DrawLine(tileCenter + new Vector3(tileHalfSize.x, tileHalfSize.y), tileCenter + new Vector3(-tileHalfSize.x, tileHalfSize.y), Color.red);
-  //   Debug.DrawLine(tileCenter + new Vector3(-tileHalfSize.x, tileHalfSize.y), tileCenter + new Vector3(-tileHalfSize.x, -tileHalfSize.y), Color.red);
-
-  //   return groundTileBelowPlayer ? groundTileBelowPlayer.name : "";
-  // }
-
-  // TODO: refactor to use the location, or a specific grid in the room, ensuring that this grid allows a material, to use this for sounds
-  public string GetTileMaterial(Vector3 objectPosition) {
-    return "grass";
-    // Vector3Int groundTileCoordinates = groundTiles.WorldToCell(objectPosition);
-    // Vector3Int groundTileBelowCoordinates = groundTileCoordinates + new Vector3Int(0, -1, 0);
-
-    // Vector3Int detailTileCoordinates = detailTiles.WorldToCell(objectPosition);
-    // Vector3Int detailTileBelowCoordinates = detailTileCoordinates + new Vector3Int(0, -1, 0);
-
-    // TileBase groundTileBelowPlayer = groundTiles.GetTile(groundTileBelowCoordinates);
-    // TileBase detailTileBelowPlayer = detailTiles.GetTile(detailTileBelowCoordinates);
-
-    // if (detailTileBelowPlayer != null) {
-    //   return "grass";
-    //   // int detailTileIndex = int.Parse(detailTileBelowPlayer.name.Replace("tiles-details_", ""));
-
-    //   // if (Helpers.IsValueInArray(Constants.detailDirt, detailTileIndex)) {
-    //   //   return "dirt";
-    //   // } else {
-    //   //   return GetGroundMaterial(groundTileBelowPlayer == null ? "" : groundTileBelowPlayer.name);
-    //   // }
-    // } else {
-    //   return GetGroundMaterial(groundTileBelowPlayer == null ? "" : groundTileBelowPlayer.name);
-    // }
   }
 
   public bool IsInRoom(string roomName) {
