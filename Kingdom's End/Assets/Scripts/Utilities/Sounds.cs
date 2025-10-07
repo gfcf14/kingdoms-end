@@ -2,111 +2,76 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sounds {
-  public static Dictionary<string, Dictionary<string, AudioClip[]>> runningSounds = new() {
-    {"bedrock", new() {
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/bedrock/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/bedrock/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/bedrock/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/bedrock/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/bedrock/boots-5"),
-      }}
+  public static Dictionary<string, AudioClip[]> runningSounds = new() {
+    {"bedrock", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/bedrock/1"),
+      Resources.Load<AudioClip>("SFX/running/bedrock/2"),
+      Resources.Load<AudioClip>("SFX/running/bedrock/3"),
+      Resources.Load<AudioClip>("SFX/running/bedrock/4"),
+      Resources.Load<AudioClip>("SFX/running/bedrock/5"),
     }},
-    {"bentgrass", new() {
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/bentgrass/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/bentgrass/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/bentgrass/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/bentgrass/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/bentgrass/boots-5"),
-      }}
+    {"bentgrass", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/bentgrass/1"),
+      Resources.Load<AudioClip>("SFX/running/bentgrass/2"),
+      Resources.Load<AudioClip>("SFX/running/bentgrass/3"),
+      Resources.Load<AudioClip>("SFX/running/bentgrass/4"),
+      Resources.Load<AudioClip>("SFX/running/bentgrass/5"),
     }},
-    {"dirt", new() {
-      {"barefoot", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/dirt/barefoot-1"),
-        Resources.Load<AudioClip>("SFX/running/dirt/barefoot-2"),
-        Resources.Load<AudioClip>("SFX/running/dirt/barefoot-3"),
-        Resources.Load<AudioClip>("SFX/running/dirt/barefoot-4"),
-        Resources.Load<AudioClip>("SFX/running/dirt/barefoot-5"),
-      }},
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/dirt/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/dirt/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/dirt/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/dirt/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/dirt/boots-5"),
-      }}
+    {"dirt", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/dirt/1"),
+      Resources.Load<AudioClip>("SFX/running/dirt/2"),
+      Resources.Load<AudioClip>("SFX/running/dirt/3"),
+      Resources.Load<AudioClip>("SFX/running/dirt/4"),
+      Resources.Load<AudioClip>("SFX/running/dirt/5"),
     }},
-    {"grass", new() {
-      {"barefoot", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/grass/barefoot-1"),
-        Resources.Load<AudioClip>("SFX/running/grass/barefoot-2"),
-        Resources.Load<AudioClip>("SFX/running/grass/barefoot-3"),
-        Resources.Load<AudioClip>("SFX/running/grass/barefoot-4"),
-        Resources.Load<AudioClip>("SFX/running/grass/barefoot-5"),
-      }},
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/grass/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/grass/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/grass/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/grass/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/grass/boots-5"),
-      }}
+    {"grass", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/grass/1"),
+      Resources.Load<AudioClip>("SFX/running/grass/2"),
+      Resources.Load<AudioClip>("SFX/running/grass/3"),
+      Resources.Load<AudioClip>("SFX/running/grass/4"),
+      Resources.Load<AudioClip>("SFX/running/grass/5"),
     }},
-    {"gravel", new() {
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/gravel/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/gravel/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/gravel/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/gravel/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/gravel/boots-5"),
-      }}
+    {"gravel", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/gravel/1"),
+      Resources.Load<AudioClip>("SFX/running/gravel/2"),
+      Resources.Load<AudioClip>("SFX/running/gravel/3"),
+      Resources.Load<AudioClip>("SFX/running/gravel/4"),
+      Resources.Load<AudioClip>("SFX/running/gravel/5"),
     }},
-    {"ice", new() {
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/ice/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/ice/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/ice/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/ice/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/ice/boots-5"),
-      }}
+    {"ice", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/ice/1"),
+      Resources.Load<AudioClip>("SFX/running/ice/2"),
+      Resources.Load<AudioClip>("SFX/running/ice/3"),
+      Resources.Load<AudioClip>("SFX/running/ice/4"),
+      Resources.Load<AudioClip>("SFX/running/ice/5"),
     }},
-    {"sand", new() {
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/sand/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/sand/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/sand/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/sand/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/sand/boots-5"),
-      }}
+    {"sand", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/sand/1"),
+      Resources.Load<AudioClip>("SFX/running/sand/2"),
+      Resources.Load<AudioClip>("SFX/running/sand/3"),
+      Resources.Load<AudioClip>("SFX/running/sand/4"),
+      Resources.Load<AudioClip>("SFX/running/sand/5"),
     }},
-    {"snow", new() {
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/snow/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/snow/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/snow/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/snow/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/snow/boots-5"),
-      }}
+    {"snow", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/snow/1"),
+      Resources.Load<AudioClip>("SFX/running/snow/2"),
+      Resources.Load<AudioClip>("SFX/running/snow/3"),
+      Resources.Load<AudioClip>("SFX/running/snow/4"),
+      Resources.Load<AudioClip>("SFX/running/snow/5"),
     }},
-    {"tile", new() {
-      // TODO: consider if at any time barefoot tile sound effects will be needed
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/tile/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/tile/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/tile/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/tile/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/tile/boots-5"),
-      }}
+    {"tile", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/tile/1"),
+      Resources.Load<AudioClip>("SFX/running/tile/2"),
+      Resources.Load<AudioClip>("SFX/running/tile/3"),
+      Resources.Load<AudioClip>("SFX/running/tile/4"),
+      Resources.Load<AudioClip>("SFX/running/tile/5"),
     }},
-    {"wetland", new() {
-      {"boots", new AudioClip[] {
-        Resources.Load<AudioClip>("SFX/running/wetland/boots-1"),
-        Resources.Load<AudioClip>("SFX/running/wetland/boots-2"),
-        Resources.Load<AudioClip>("SFX/running/wetland/boots-3"),
-        Resources.Load<AudioClip>("SFX/running/wetland/boots-4"),
-        Resources.Load<AudioClip>("SFX/running/wetland/boots-5"),
-      }}
+    {"wetland", new AudioClip[] {
+      Resources.Load<AudioClip>("SFX/running/wetland/1"),
+      Resources.Load<AudioClip>("SFX/running/wetland/2"),
+      Resources.Load<AudioClip>("SFX/running/wetland/3"),
+      Resources.Load<AudioClip>("SFX/running/wetland/4"),
+      Resources.Load<AudioClip>("SFX/running/wetland/5"),
     }},
   };
 

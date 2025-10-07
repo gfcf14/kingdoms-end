@@ -726,7 +726,9 @@ public class Hero : MonoBehaviour {
   }
 
   public void PlayRunningSound() {
-    AudioClip[] materialClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.runningSounds, groundMaterial != "" ? groundMaterial : Helpers.GetOrException(Objects.materialsPerArea, GameData.area)), Helpers.GetOrException(Objects.equipmentBaseMaterial, bodyEquipment));
+    string runningOn = groundMaterial != "" ? groundMaterial : Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
+
+    AudioClip[] materialClips = Helpers.GetOrException(Sounds.runningSounds, runningOn);
     PlaySound(materialClips[UnityEngine.Random.Range(0, materialClips.Length)]);
   }
 

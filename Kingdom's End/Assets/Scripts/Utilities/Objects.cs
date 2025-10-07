@@ -634,6 +634,7 @@ public class Objects
     {"levi-rebrushed", Resources.Load("Fonts/LeviRebrushed SDF") as TMP_FontAsset}
   };
 
+  // TODO: consider if this will need to be kept
   public static Dictionary<string, string> equipmentBaseMaterial = new() {
     {"body-1", "boots"}
   };
