@@ -128,8 +128,10 @@ public class Hero : MonoBehaviour {
   public bool hurtFromBehind = false;
   public bool isCollidingWithCeiling = false;
 
+  public bool isIndoors = false;
+
   // PLAYER STATS
-    [NonSerialized] public int playerLevel = 1;
+  [NonSerialized] public int playerLevel = 1;
     [NonSerialized] public int currentHP = GameData.baseHP;
     [NonSerialized] public int maxHP = GameData.baseHP;
     [NonSerialized] public int currentMP = GameData.baseHP;
@@ -726,7 +728,9 @@ public class Hero : MonoBehaviour {
   }
 
   public void PlayRunningSound() {
-    string runningOn = groundMaterial != "" ? groundMaterial : Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
+    string runningOn = isIndoors ? "tile" :
+      groundMaterial != "" ? groundMaterial :
+      Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
 
     AudioClip[] materialClips = Helpers.GetOrException(Sounds.runningSounds, runningOn);
     PlaySound(materialClips[UnityEngine.Random.Range(0, materialClips.Length)]);
@@ -763,7 +767,9 @@ public class Hero : MonoBehaviour {
   }
 
   public void PerformGroundFall() {
-    string fallingOn = groundMaterial != "" ? groundMaterial : Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
+    string fallingOn = isIndoors ? "tile" :
+      groundMaterial != "" ? groundMaterial :
+      Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
 
     PlayFallingSound("character", fallingOn);
   }

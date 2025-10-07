@@ -807,7 +807,8 @@ public class Objects
     {"ice", new ZoneSpecs() {animSpeed = 1, groundMaterial = "ice", jumpHeight = 8f, moveFriction = 0.2f, moveSpeed = 1.5f}},
     {"sand", new ZoneSpecs() {animSpeed = 1, groundMaterial = "sand", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
     {"snow", new ZoneSpecs() {animSpeed = 1, groundMaterial = "snow", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.66f}},
-    {"water-deep", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 10f, moveFriction = 0, moveSpeed = 0.8f}},
+    {"tile", new ZoneSpecs() {animSpeed = 1, groundMaterial = "tile", jumpHeight = 8f, moveFriction = 0, moveSpeed = 1}},
+    { "water-deep", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 10f, moveFriction = 0, moveSpeed = 0.8f}},
     {"water-shallow", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
     {"wetland", new ZoneSpecs() {animSpeed = 0.8f, groundMaterial = "wetland", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
   };

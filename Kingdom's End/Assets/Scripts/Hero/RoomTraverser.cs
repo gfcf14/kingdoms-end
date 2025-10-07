@@ -24,6 +24,7 @@ public class RoomTraverser : MonoBehaviour {
         }
 
         if (location == "indoors") {
+          Hero.instance.isIndoors = true;
           InGame.instance.globalGradients.isIndoors = true;
         } else {
           GameData.area = location;
@@ -31,6 +32,10 @@ public class RoomTraverser : MonoBehaviour {
           InGame.instance.globalGradients.area = location;
 
           Helpers.SetZoneByArea(location);
+        }
+      } else {
+        if (location != "indoors") {
+          Hero.instance.isIndoors = false;
         }
       }
 
