@@ -761,14 +761,13 @@ public class Hero : MonoBehaviour {
   }
 
   public void PerformGroundFall() {
-    string materialUnder = groundMaterial != "" ? groundMaterial : Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
+    string fallingOn = groundMaterial != "" ? groundMaterial : Helpers.GetOrException(Objects.materialsPerArea, GameData.area);
 
-    // TODO: it's pointless to try to develop different sounds based on what the player has equipped. Ensure a refactoring of sound names is done so second parameter is no longer needed
-    PlayFallingSound(materialUnder, Helpers.GetOrException(Objects.equipmentBaseMaterial, bodyEquipment));
+    PlayFallingSound("character", fallingOn);
   }
 
-  public void PlayFallingSound(string fallen, string fallingOn) {
-    PlaySound(Helpers.GetOrException(Helpers.GetOrException(Sounds.characterFallingSounds, fallen), fallingOn));
+  public void PlayFallingSound(string type, string fallingOn) {
+    PlaySound(Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), fallingOn));
   }
 
   public void ToggleAirCheck(bool activate) {
@@ -1533,11 +1532,10 @@ public class Hero : MonoBehaviour {
           if (collider.tag == "Floor" && isFalling) {
             PerformGroundFall();
           } else if  (collider.tag == "Breakable") {
-            // TODO: This will fail for barrels. Prepare falling sound for barrels
-            PlayFallingSound(collider.gameObject.GetComponent<Breakable>().type, Helpers.GetOrException(Objects.equipmentBaseMaterial, bodyEquipment));
+            PlayFallingSound("character", "box");
           } else if (collider.tag == "Interactable") {
             // TODO: for now, box sounds appear to work fine. If interactables made of non-wood material are implemented, consider changing this
-            PlayFallingSound("box", "boots");
+            PlayFallingSound("character", "box");
           }
 
           ToggleAirCheck(false);

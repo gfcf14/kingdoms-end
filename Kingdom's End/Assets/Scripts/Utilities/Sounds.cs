@@ -136,7 +136,7 @@ public class Sounds {
     {"ice", Resources.Load<AudioClip>("SFX/breakables/vase/breaking-1")}
   };
 
-  public static Dictionary<string, AudioClip> woodFallingSounds = new() {
+  static Dictionary<string, AudioClip> woodFallingSounds = new() {
     {"barrel", Resources.Load<AudioClip>("SFX/breakables/box/falling/on-box")},
     {"bedrock", Resources.Load<AudioClip>("SFX/breakables/box/falling/on-bedrock")},
     {"bentgrass", Resources.Load<AudioClip>("SFX/breakables/box/falling/on-bentgrass")},
@@ -151,70 +151,21 @@ public class Sounds {
     {"wetland", Resources.Load<AudioClip>("SFX/breakables/box/falling/on-wetland")}
   };
 
-  // falling sounds for anything which base material is not changeable
-  public static Dictionary<string, Dictionary<string, AudioClip>> fallingSounds = new() {
-    {"barrel", woodFallingSounds},
-    {"box", woodFallingSounds},
-    {"character", new() {
-      {"bedrock", Resources.Load<AudioClip>("SFX/falling/bedrock/boots")},
-      {"bentgrass", Resources.Load<AudioClip>("SFX/falling/bentgrass/boots")},
-      {"box", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")},
-      {"dirt", Resources.Load<AudioClip>("SFX/falling/dirt/boots")},
-      {"grass", Resources.Load<AudioClip>("SFX/falling/grass/boots")},
-      {"gravel", Resources.Load<AudioClip>("SFX/falling/gravel/boots")},
-      {"ice", Resources.Load<AudioClip>("SFX/falling/ice/boots")},
-      {"sand", Resources.Load<AudioClip>("SFX/falling/sand/boots")},
-      {"snow", Resources.Load<AudioClip>("SFX/falling/snow/boots")},
-      {"wetland", Resources.Load<AudioClip>("SFX/falling/wetland/boots")}
-    }}
+  static Dictionary<string, AudioClip> characterFallingSounds = new() {
+    {"bedrock", Resources.Load<AudioClip>("SFX/falling/character/on-bedrock")},
+    {"bentgrass", Resources.Load<AudioClip>("SFX/falling/character/on-bentgrass")},
+    {"box", Resources.Load<AudioClip>("SFX/falling/character/on-breakables/box")},
+    {"dirt", Resources.Load<AudioClip>("SFX/falling/character/on-dirt")},
+    {"grass", Resources.Load<AudioClip>("SFX/falling/character/on-grass")},
+    {"gravel", Resources.Load<AudioClip>("SFX/falling/character/on-gravel")},
+    {"ice", Resources.Load<AudioClip>("SFX/falling/character/on-ice")},
+    {"sand", Resources.Load<AudioClip>("SFX/falling/character/on-sand")},
+    {"snow", Resources.Load<AudioClip>("SFX/falling/character/on-snow")},
+    {"tile", Resources.Load<AudioClip>("SFX/falling/character/on-tile")},
+    {"wetland", Resources.Load<AudioClip>("SFX/falling/character/on-wetland")}
   };
 
-  public static Dictionary<string, Dictionary<string, AudioClip>> characterFallingSounds = new() {
-    {"barrel", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
-    }},
-    {"bedrock", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/bedrock/boots")}
-    }},
-    {"bentgrass", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/bentgrass/boots")}
-    }},
-    {"box", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
-    }},
-    {"dirt", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/dirt/boots")}
-    }},
-    {"grass", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/grass/boots")}
-    }},
-    {"gravel", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/gravel/boots")}
-    }},
-    {"ice", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/ice/boots")}
-    }},
-    {"jar", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
-    }},
-    {"sand", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/sand/boots")}
-    }},
-    {"snow", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/snow/boots")}
-    }},
-    {"tile", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/tile/boots")}
-    }},
-    {"vase", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/breakables/box/boots")}
-    }},
-    {"wetland", new() {
-      {"boots", Resources.Load<AudioClip>("SFX/falling/wetland/boots")}
-    }},
-  };
-
-  public static Dictionary<string, AudioClip> droppableFallingSounds = new() {
+  static Dictionary<string, AudioClip> droppableFallingSounds = new() {
     {"bedrock", Resources.Load<AudioClip>("SFX/items/falling/on-bedrock")},
     {"bentgrass", Resources.Load<AudioClip>("SFX/items/falling/on-bentgrass")},
     {"dirt", Resources.Load<AudioClip>("SFX/items/falling/on-dirt")},
@@ -226,6 +177,13 @@ public class Sounds {
     {"tile", Resources.Load<AudioClip>("SFX/items/falling/on-tile")},
     {"wetland", Resources.Load<AudioClip>("SFX/items/falling/on-wetland")},
     {"interactable", Resources.Load<AudioClip>("SFX/breakables/box/falling/on-box")}
+  };
+
+  public static Dictionary<string, Dictionary<string, AudioClip>> fallingSounds = new() {
+    {"barrel", woodFallingSounds},
+    {"box", woodFallingSounds},
+    {"character", characterFallingSounds},
+    {"item", droppableFallingSounds}
   };
 
   // TODO: since not all sounds of a type will involve weapons of the same material (e.g. not all singles will be swords),

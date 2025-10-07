@@ -157,7 +157,7 @@ public class Droppable : MonoBehaviour {
       }
 
       if (!isRising && InGame.instance.IsInRoom(InGame.instance.FindRoom(transform.parent))) {
-        PlaySound(Helpers.GetOrException(Sounds.droppableFallingSounds, gameObjectTag == "Interactable" ? "interactable" : fallingOn));
+        PlaySound(Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, "item"), gameObjectTag == "Interactable" ? "interactable" : fallingOn));
       }
 
       // destroys the rigid body and makes the collider a trigger so that
