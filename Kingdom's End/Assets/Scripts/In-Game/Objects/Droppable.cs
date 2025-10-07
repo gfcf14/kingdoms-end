@@ -157,7 +157,6 @@ public class Droppable : MonoBehaviour {
       }
 
       if (!isRising && InGame.instance.IsInRoom(InGame.instance.FindRoom(transform.parent))) {
-        Debug.Log($"Play sound {fallingOn}");
         PlaySound(Helpers.GetOrException(Sounds.droppableFallingSounds, gameObjectTag == "Interactable" ? "interactable" : fallingOn));
       }
 

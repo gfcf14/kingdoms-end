@@ -162,16 +162,16 @@ public class Breakable : MonoBehaviour {
   public void PlayFalling(GameObject objectUnder) {
     switch (objectUnder.tag) {
       case "Breakable":
-        AudioClip[] breakableClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), objectUnder.GetComponent<Breakable>().type);
-        PlaySound(Helpers.GetRandomClipFromGroup(breakableClips));
+        AudioClip breakableClip = Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), objectUnder.GetComponent<Breakable>().type);
+        PlaySound(breakableClip);
       break;
       case "Floor":
-        AudioClip[] groundClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), fallingOn);
-        PlaySound(Helpers.GetRandomClipFromGroup(groundClips));
+        AudioClip groundClip = Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), fallingOn);
+        PlaySound(groundClip);
       break;
       case "Item":
-        AudioClip[] itemClips = Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), objectUnder.tag.ToLower());
-        PlaySound(Helpers.GetRandomClipFromGroup(itemClips));
+        AudioClip itemClip = Helpers.GetOrException(Helpers.GetOrException(Sounds.fallingSounds, type), objectUnder.tag.ToLower());
+        PlaySound(itemClip);
       break;
       default:
         Debug.Log("Consider adding sound for when falling on " + objectUnder.name + "(tagged " + objectUnder.tag + ")");
