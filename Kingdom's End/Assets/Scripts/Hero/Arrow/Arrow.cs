@@ -35,13 +35,10 @@ public class Arrow : MonoBehaviour {
     extraSprite = transform.Find("Extra").gameObject;
 
     // TODO: expand if there are other types which require an extra
-    if (type == "arrow-fire")
-    {
+    if (type == "arrow-fire") {
       extraSprite.transform.localScale = new Vector3(1, directionFactor, 1);
       extraSprite.transform.localPosition = new Vector2(isFacingLeft ? 0.35f : 0.4f, 0.05f * directionFactor);
-    }
-    else
-    {
+    } else {
       DestroyExtra();
     }
 

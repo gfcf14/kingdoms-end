@@ -98,7 +98,8 @@ public class Sounds {
 
   // TODO: add other rock explosion sounds (e.g. for meadows) when rune pillars are implemented
   public static Dictionary<string, AudioClip> rockExplosionSounds = new() {
-    {"ice", Resources.Load<AudioClip>("SFX/breakables/vase/breaking-1")}
+    {"ice", Resources.Load<AudioClip>("SFX/breakables/vase/breaking-1")},
+    {"pillar", Resources.Load<AudioClip>("SFX/explosions/pillar")}
   };
 
   static Dictionary<string, AudioClip> woodFallingSounds = new() {

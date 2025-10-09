@@ -30,6 +30,7 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 | explosions/arrow                    | https://pixabay.com/sound-effects/fire-sound-efftect-21991/                 |
 | explosions/basic                    | https://pixabay.com/sound-effects/hq-explosion-6288/                        |
 | explosions/enemy                    | https://pixabay.com/sound-effects/lighting-a-fire-14421/                    |
+| explosions/pillar                   | https://pixabay.com/sound-effects/rock-smash-6304/                          |
 | falling/character/on-bedrock        | https://pixabay.com/sound-effects/stone-slide-sound-effects-322794/         |
 | falling/character/on-bentgrass      | https://pixabay.com/sound-effects/walking-through-beech-leaves-260718/      |
 | falling/character/on-breakables/box | https://pixabay.com/sound-effects/wood-door-slam-46791/                     |
