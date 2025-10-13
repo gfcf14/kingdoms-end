@@ -14,7 +14,7 @@ public class Sprites {
   public static Sprite[] relicImages = Resources.LoadAll<Sprite>("Spritesheets/relics");
   public static Sprite[] relicItemThumbnails = Resources.LoadAll<Sprite>("Pause/Relics/thumbnails");
   public static Sprite[] relicItemImages = Resources.LoadAll<Sprite>("Pause/Relics/images");
-  public static Sprite[] runeImages = Resources.LoadAll<Sprite>("Spritesheets/runes");
+  public static Sprite[] runeAndOutlineImages = Resources.LoadAll<Sprite>("Spritesheets/runes");
   public static Sprite[] moneyImages = Resources.LoadAll<Sprite>("Spritesheets/money");
   public static Sprite[] arrowImages = Resources.LoadAll<Sprite>("Spritesheets/weapons/arrows/arrows");
   public static Sprite[] breakableBoxes = Resources.LoadAll<Sprite>("Spritesheets/breakables/box");
@@ -500,6 +500,36 @@ public class Sprites {
     {"talisman-tymerin", relicImages[9]},
     {"talisman-unithr", relicImages[16]},
     {"talisman-verdun", relicImages[11]}
+  };
+
+  public static Dictionary<string, Sprite> runeImages = new() {
+    {"abdunn", runeAndOutlineImages[10]},
+    {"astras", runeAndOutlineImages[1]},
+    {"communis", runeAndOutlineImages[5]},
+    {"crux", runeAndOutlineImages[3]},
+    {"darseeth", runeAndOutlineImages[8]},
+    {"karthos", runeAndOutlineImages[2]},
+    {"rosolis", runeAndOutlineImages[9]},
+    {"seryn", runeAndOutlineImages[0]},
+    {"terras", runeAndOutlineImages[7]},
+    {"tymerin", runeAndOutlineImages[4]},
+    {"unithr", runeAndOutlineImages[11]},
+    {"verdun", runeAndOutlineImages[6]}
+  };
+
+  public static Dictionary<string, Sprite> runeOutlines = new() {
+    {"abdunn", runeAndOutlineImages[22]},
+    {"astras", runeAndOutlineImages[13]},
+    {"communis", runeAndOutlineImages[17]},
+    {"crux", runeAndOutlineImages[15]},
+    {"darseeth", runeAndOutlineImages[20]},
+    {"karthos", runeAndOutlineImages[14]},
+    {"rosolis", runeAndOutlineImages[21]},
+    {"seryn", runeAndOutlineImages[12]},
+    {"terras", runeAndOutlineImages[19]},
+    {"tymerin", runeAndOutlineImages[16]},
+    {"unithr", runeAndOutlineImages[23]},
+    {"verdun", runeAndOutlineImages[18]}
   };
 
   public static Dictionary<string, Sprite> breakableSprites = new() {
