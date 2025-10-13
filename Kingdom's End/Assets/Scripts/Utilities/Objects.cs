@@ -92,7 +92,19 @@ public class Objects
     {"magic-talisman", new RelicItem(Sprites.relicItemThumbnails[1], Sprites.relicItemImages[1], "Magic Talisman", "Enables the user to cast magic.", new RelicEffect("enable", "canCastMagic"))},
     {"royal-lamp", new RelicItem(Sprites.relicItemThumbnails[2], Sprites.relicItemImages[2], "Royal Lamp", "A symbol of royal heritage that grants the user some sight in darkness", new RelicEffect("enable", "hasLightUnderground"))},
     {"sundrop", new RelicItem(Sprites.relicItemThumbnails[4], Sprites.relicItemImages[4], "Sun Drop", "A droplet of pure sunlight said to vanish cavern shadows yet leaving natural light untouched", new RelicEffect("enable", "hasLightUnderground"))},
-    {"swift-boots", new RelicItem(Sprites.relicItemThumbnails[0], Sprites.relicItemImages[0], "Swift Boots", "Enables the user to do a double jump.", new RelicEffect("enable", "canDoubleJump"))}
+    {"swift-boots", new RelicItem(Sprites.relicItemThumbnails[0], Sprites.relicItemImages[0], "Swift Boots", "Enables the user to do a double jump.", new RelicEffect("enable", "canDoubleJump"))},
+    {"talisman-abdunn", new RelicItem(Sprites.relicItemThumbnails[15], Sprites.relicItemImages[15], "Talisman of Abdunn", "Rune that represents fury and triumph.", null)},
+    {"talisman-astras", new RelicItem(Sprites.relicItemThumbnails[6], Sprites.relicItemImages[6], "Talisman of Astras", "Rune that represents insatiable creation and hunger.", null)},
+    {"talisman-communis", new RelicItem(Sprites.relicItemThumbnails[10], Sprites.relicItemImages[10], "Talisman of Communis", "Rune that represents communion and spiritual gateway.", null)},
+    {"talisman-crux", new RelicItem(Sprites.relicItemThumbnails[8], Sprites.relicItemImages[8], "Talisman of Crux", "Rune that represents truth and moral clarity.", null)},
+    {"talisman-darseeth", new RelicItem(Sprites.relicItemThumbnails[13], Sprites.relicItemImages[13], "Talisman of Darseeth", "Rune that represents cunning and silent action.", null)},
+    {"talisman-karthos", new RelicItem(Sprites.relicItemThumbnails[7], Sprites.relicItemImages[7], "Talisman of Karthos", "Rune that represents dominion and control.", null)},
+    {"talisman-rosolis", new RelicItem(Sprites.relicItemThumbnails[14], Sprites.relicItemImages[14], "Talisman of Rosolis", "Rune that represents serenity and freedom from worry.", null)},
+    {"talisman-seryn", new RelicItem(Sprites.relicItemThumbnails[5], Sprites.relicItemImages[5], "Talisman of Seryn", "Rune that represents passion and creation through fire.", null)},
+    {"talisman-terras", new RelicItem(Sprites.relicItemThumbnails[12], Sprites.relicItemImages[12], "Talisman of Terras", "Rune that represents endurance and stoicism.", null)},
+    {"talisman-tymerin", new RelicItem(Sprites.relicItemThumbnails[9], Sprites.relicItemImages[9], "Talisman of Tymerin", "Rune that represents order and balance of time.", null)},
+    {"talisman-unithr", new RelicItem(Sprites.relicItemThumbnails[16], Sprites.relicItemImages[16], "Talisman of Unithr", "Rune that represents unity and shared understanding.", null)},
+    {"talisman-verdun", new RelicItem(Sprites.relicItemThumbnails[11], Sprites.relicItemImages[11], "Talisman of Verdun", "Rune that represents renewal and nature's ascent.", null)}
   };
 
   // initialize constructable RegularItem objects by: new RegularItem(thumbnail, image, name, description, type, effects)

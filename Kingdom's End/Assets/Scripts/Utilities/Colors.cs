@@ -99,4 +99,19 @@ public class Colors
     {"green", new Color(0, 1, 0, 1)},
     {"red", new Color(1, 0, 0, 1)}
   };
+
+  public static Dictionary<string, Color> runeOutlineColors = new() {
+    {"abdunn", new Color(141/255f, 0, 132/255f)},
+    {"astras", new Color(1, 118/255f, 0)},
+    {"communis", new Color(0, 1, 1)},
+    {"crux", new Color(1, 1, 0)},
+    {"darseeth", new Color(0, 130/255f, 1)},
+    {"karthos", new Color(1, 189/255f, 0)},
+    {"rosolis", new Color(0, 0, 1)},
+    {"seryn", new Color(1, 0, 0)},
+    {"terras", new Color(0, 152/255f, 0)},
+    {"tymerin", new Color(152/255f, 244/255f, 0)},
+    {"unithr", new Color(125/255f, 64/255f, 1/255f)},
+    {"verdun", new Color(0, 1, 0)}
+  };
 }

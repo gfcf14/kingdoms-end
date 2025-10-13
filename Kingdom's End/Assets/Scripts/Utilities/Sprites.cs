@@ -14,6 +14,7 @@ public class Sprites {
   public static Sprite[] relicImages = Resources.LoadAll<Sprite>("Spritesheets/relics");
   public static Sprite[] relicItemThumbnails = Resources.LoadAll<Sprite>("Pause/Relics/thumbnails");
   public static Sprite[] relicItemImages = Resources.LoadAll<Sprite>("Pause/Relics/images");
+  public static Sprite[] runeImages = Resources.LoadAll<Sprite>("Spritesheets/runes");
   public static Sprite[] moneyImages = Resources.LoadAll<Sprite>("Spritesheets/money");
   public static Sprite[] arrowImages = Resources.LoadAll<Sprite>("Spritesheets/weapons/arrows/arrows");
   public static Sprite[] breakableBoxes = Resources.LoadAll<Sprite>("Spritesheets/breakables/box");
@@ -487,6 +488,18 @@ public class Sprites {
     {"royal-lamp", relicImages[2]},
     {"sundrop", relicImages[4]},
     {"swift-boots", relicImages[0]},
+    {"talisman-abdunn", relicImages[15]},
+    {"talisman-astras", relicImages[6]},
+    {"talisman-communis", relicImages[10]},
+    {"talisman-crux", relicImages[8]},
+    {"talisman-darseeth", relicImages[13]},
+    {"talisman-karthos", relicImages[7]},
+    {"talisman-rosolis", relicImages[14]},
+    {"talisman-seryn", relicImages[5]},
+    {"talisman-terras", relicImages[12]},
+    {"talisman-tymerin", relicImages[9]},
+    {"talisman-unithr", relicImages[16]},
+    {"talisman-verdun", relicImages[11]}
   };
 
   public static Dictionary<string, Sprite> breakableSprites = new() {

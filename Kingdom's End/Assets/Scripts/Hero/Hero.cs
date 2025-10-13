@@ -404,7 +404,11 @@ public class Hero : MonoBehaviour {
 
       // TODO: though this sets a hero property given the relic effect value (a string), it's necessary to create a switch block to determine how
       // this should happen given the effect type as well
-      this.GetType().GetField(Helpers.GetOrException(Objects.relicItems, relicKey).effect.value).SetValue(this, true);
+      RelicEffect newRelicEffect = Helpers.GetOrException(Objects.relicItems, relicKey).effect;
+
+      if (newRelicEffect != null) {
+        this.GetType().GetField(newRelicEffect.value).SetValue(this, true);
+      }
 
       // modifies the area depending on if the relic involves light
       if (relicKey == "royal-lamp") {
