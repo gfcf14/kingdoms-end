@@ -4764,7 +4764,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.03371811, y: 0}
@@ -128889,6 +128889,7 @@ MonoBehaviour:
   jumpHeight: 8
   moveFriction: 0
   moveSpeed: 1
+  groundMaterial: 
   jetpackHeight: 20
   mpBarContainer: {fileID: 0}
   weaponCollider: {fileID: 1552469822}
@@ -128900,6 +128901,7 @@ MonoBehaviour:
   proximityCheckScript: {fileID: 0}
   heroCollider: {fileID: 0}
   body: {fileID: 0}
+  anim: {fileID: 0}
   heroHeight: 0
   heroWidth: 0
   collidingTop: 0
@@ -128956,6 +128958,7 @@ MonoBehaviour:
   blockedDirection: 
   hurtFromBehind: 0
   isCollidingWithCeiling: 0
+  isIndoors: 0
   effectSTR: 0
   effectSTA: 0
   effectCRIT: 0
