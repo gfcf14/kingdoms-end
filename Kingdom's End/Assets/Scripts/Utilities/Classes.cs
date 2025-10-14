@@ -204,6 +204,11 @@ public class ThrowableSpecs {
   public float steepness;
 }
 
+public class RuneSpecs {
+  public ValuePair position;
+  public ValuePair scale;
+}
+
 public class ZoneSpecs {
   public float animSpeed; // how fast the player changes frames in an animation
   public string groundMaterial; // different material type for running sounds

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Objects
 {
@@ -116,6 +117,21 @@ public class Objects
     {"talisman-tymerin", new RelicItem(Sprites.relicItemThumbnails[9], Sprites.relicItemImages[9], "Talisman of Tymerin", "Rune that represents order and balance of time.", null)},
     {"talisman-unithr", new RelicItem(Sprites.relicItemThumbnails[16], Sprites.relicItemImages[16], "Talisman of Unithr", "Rune that represents unity and shared understanding.", null)},
     {"talisman-verdun", new RelicItem(Sprites.relicItemThumbnails[11], Sprites.relicItemImages[11], "Talisman of Verdun", "Rune that represents renewal and nature's ascent.", null)}
+  };
+
+  public static Dictionary<string, RuneSpecs> runeSpecs = new() {
+    {"abdunn", new RuneSpecs() {position = new ValuePair(0.5f, 2), scale = new ValuePair(1.2f, 1.2f)}},
+    {"astras", new RuneSpecs() {position = new ValuePair(0.5f, 2), scale = new ValuePair(1.7f, 1.7f)}},
+    {"communis", new RuneSpecs() {position = new ValuePair(0.5075f, 2), scale = new ValuePair(1.3f, 1.3f)}},
+    {"crux", new RuneSpecs() {position = new ValuePair(0.495f, 2), scale = new ValuePair(1.45f, 1.45f)}},
+    {"darseeth", new RuneSpecs() {position = new ValuePair(0.5f, 2), scale = new ValuePair(1.2f, 1.2f)}},
+    {"karthos", new RuneSpecs() {position = new ValuePair(0.5f, 2), scale = new ValuePair(1.2f, 1.2f)}},
+    {"rosolis", new RuneSpecs() {position = new ValuePair(0.5f, 2), scale = new ValuePair(1.2f, 1.2f)}},
+    {"seryn", new RuneSpecs() {position = new ValuePair(0.51f, 2), scale = new ValuePair(1.75f, 1.75f)}},
+    {"terras", new RuneSpecs() {position = new ValuePair(0.505f, 2), scale = new ValuePair(1.1f, 1.1f)}},
+    {"tymerin", new RuneSpecs() {position = new ValuePair(0.5f, 2), scale = new ValuePair(1.275f, 1.275f)}},
+    {"unithr", new RuneSpecs() {position = new ValuePair(0.5f, 2), scale = new ValuePair(1.2f, 1.2f)}},
+    {"verdun", new RuneSpecs() {position = new ValuePair(0.5f, 2), scale = new ValuePair(1.15f, 1.15f)}}
   };
 
   // initialize constructable RegularItem objects by: new RegularItem(thumbnail, image, name, description, type, effects)
