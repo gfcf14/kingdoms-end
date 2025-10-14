@@ -30,6 +30,14 @@ public class Pillar : MonoBehaviour {
   }
 
   void Update() {}
-  
-  // TODO: define OnCollisionEnter2D to determine actions when attacking with and without talisman relic
+
+  void OnTriggerEnter2D(Collider2D col) {
+    if (col.gameObject.tag == "Weapon") {
+      if (Helpers.HasItem(Hero.instance.relicItems, $"talisman-{rune}")) {
+        // TODO: implement pillar destruction here
+      } else {
+        InGame.instance.Block(col.ClosestPoint(transform.position), Hero.instance.isFacingLeft);
+      }
+    }
+  }
 }

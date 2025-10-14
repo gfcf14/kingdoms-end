@@ -205,6 +205,12 @@ public class Helpers {
     return string.Concat(input.Split('-').Select(word => char.ToUpper(word[0]) + word.Substring(1)));
   }
 
+  public static bool HasItem(List<Item> items, string key) {
+    Item itemFound = Helpers.GetItemFromList(items, key);
+
+    return itemFound != null;
+  }
+
   public static bool HasAll(List<Item> items, string[] itemsToCheck) {
     return itemsToCheck.All(key => items.Any(item => item.key == key));
   }
