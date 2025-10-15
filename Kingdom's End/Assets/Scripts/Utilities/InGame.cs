@@ -259,8 +259,9 @@ public class InGame : MonoBehaviour {
   }
 
   // instantiates a defense/block sprite on a contact point
-  public void Block(Vector2 position, bool isFacingLeft) {
+  public void Block(Vector2 position, bool isFacingLeft, float volume = 1) {
     GameObject defenseEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "defense"), position, Quaternion.identity);
+    defenseEffect.GetComponent<Defense>().volume = volume;
     defenseEffect.GetComponent<Defense>().isFacingLeft = isFacingLeft;
   }
 
@@ -336,5 +337,18 @@ public class InGame : MonoBehaviour {
 
   public void SetBossName(string bossName) {
     bossStatusCanvas.GetComponent<BossBarsCanvas>().SetName(bossName);
+  }
+
+  public void PrepareFullRockExplosion(GameObject originator, string soundType, string rockType) {
+    Vector2 soundOrigin = originator.transform.position;
+    PlaySound(Helpers.GetOrException(Sounds.rockExplosionSounds, soundType), soundOrigin);
+    Destroy(originator);
+
+    GameObject rockExplosionLeft = Instantiate(Helpers.GetOrException(Objects.prefabs, "rock-explosion"), soundOrigin, Quaternion.identity);
+    GameObject rockExplosionRight = Instantiate(Helpers.GetOrException(Objects.prefabs, "rock-explosion"), soundOrigin, Quaternion.identity);
+
+    rockExplosionLeft.GetComponent<RockExplosion>().type = rockType;
+    rockExplosionRight.GetComponent<RockExplosion>().type = rockType;
+    rockExplosionRight.transform.localScale = new Vector2(-1, 1);
   }
 }

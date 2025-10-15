@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 public class Defense : MonoBehaviour {
+  [NonSerialized] public float volume;
   [NonSerialized] public bool isFacingLeft;
 
   void Start() {
@@ -14,6 +15,6 @@ public class Defense : MonoBehaviour {
   }
 
   public void PlayBlockSound() {
-    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position, volume);
   }
 }
