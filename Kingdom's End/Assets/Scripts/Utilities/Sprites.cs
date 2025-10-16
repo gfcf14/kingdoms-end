@@ -328,7 +328,9 @@ public class Sprites {
   public static Dictionary<string, Sprite> throwableSprites = new() {
     {"axe", Resources.Load<Sprite>("Sprites/axe")},
     {"bomb", bombSprites[0]},
+    {"coconut", droppableImages[67]},
     {"hatchet", Resources.Load<Sprite>("Sprites/hatchet")},
+    {"honeydew", droppableImages[68]},
     {"lance", Resources.Load<Sprite>("Sprites/lance")},
     {"skeleton-king-giant-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-king-giant-bone")},
     {"knife", Resources.Load<Sprite>("Sprites/knife")},

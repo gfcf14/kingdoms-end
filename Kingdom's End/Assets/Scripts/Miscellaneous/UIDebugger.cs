@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem.Controls;
 
 public class UIDebugger : MonoBehaviour {
   [SerializeField] GameObject eventSystemObject;
