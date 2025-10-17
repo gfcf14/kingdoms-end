@@ -13,6 +13,7 @@ public class InfoCanvas : MonoBehaviour {
 
   [NonSerialized] float maxDisplayTime = 2000;
   [NonSerialized] public float startTime = 0;
+  [NonSerialized] string mustAlign = "";
 
   private HorizontalLayoutGroup infoLayout;
   private RectTransform infoRect;
@@ -55,6 +56,17 @@ public class InfoCanvas : MonoBehaviour {
     }
 
     gameObject.SetActive(true);
+
+    // when activated, if mustAlign has a value, info canvas should align as indicated
+    if (mustAlign != "") {
+      if (mustAlign == "right") {
+        AlignRight();
+      } else {
+        AlignLeft();
+      }
+
+      mustAlign = "";
+    }
     startTime = Time.time * 1000;
 
     if (enemyHealth != null) {
@@ -67,14 +79,22 @@ public class InfoCanvas : MonoBehaviour {
   }
 
   public void AlignRight() {
-    RectOffset newPadding = infoLayout.padding;
-    newPadding.right = (int)(infoRect.sizeDelta.x) + Constants.infoCanvasRightAlignOffset;
-    infoLayout.padding = newPadding;
+    if (gameObject.activeSelf) {
+      RectOffset newPadding = infoLayout.padding;
+      newPadding.right = (int)(infoRect.sizeDelta.x) + Constants.infoCanvasRightAlignOffset;
+      infoLayout.padding = newPadding;
 
-    infoLayout.childAlignment = TextAnchor.LowerRight;
+      infoLayout.childAlignment = TextAnchor.LowerRight;
+    } else { // if not active, mustAlign helps keep memory of next alignment
+      mustAlign = "right";
+    }
   }
 
   public void AlignLeft() {
-    infoLayout.childAlignment = TextAnchor.LowerLeft;
+    if (gameObject.activeSelf) {
+      infoLayout.childAlignment = TextAnchor.LowerLeft;
+    } else { // if not active, mustAlign helps keep memory of next alignment
+      mustAlign = "left";
+    }
   }
 }
