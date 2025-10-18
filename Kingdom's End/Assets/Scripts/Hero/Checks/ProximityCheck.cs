@@ -66,6 +66,11 @@ public class ProximityCheck : MonoBehaviour {
 
         SetObjectAction(action);
       }
+    } else if (colTag == "Interactable") {
+      if (col.gameObject.name.Contains("Sign")) {
+        Hero.instance.nearbyInteractableObject = col.gameObject;
+        SetObjectAction("read");
+      }
     }
   }
 
@@ -83,6 +88,11 @@ public class ProximityCheck : MonoBehaviour {
       // when transported by it
 
       if (Hero.instance.nearbyInteractableObject != null && Hero.instance.nearbyInteractableObject.name == col.gameObject.name) {
+        Hero.instance.nearbyInteractableObject = null;
+        ClearActionOnExit();
+      }
+    } else if (colTag == "Interactable") {
+      if (col.gameObject.name.Contains("Sign")) {
         Hero.instance.nearbyInteractableObject = null;
         ClearActionOnExit();
       }
