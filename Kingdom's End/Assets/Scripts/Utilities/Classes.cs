@@ -165,6 +165,11 @@ public class ChatLine {
   public Outcome outcome;
 }
 
+public class MessageLine {
+  public string line;
+  public Outcome outcome; // needed if any message (like finding a note on a desk) allows the player to get an item, e.g. "Under this paper you will find a key", thus the player gets a key
+}
+
 public class Condition {
   public string conditionCheck;
   public string conditionValue;

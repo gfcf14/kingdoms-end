@@ -102,6 +102,8 @@ public class Hero : MonoBehaviour {
 
   public bool isOnChat = false;
 
+  public bool isReading = false;
+
   public float damageStartTime = 0;
 
   // TODO: develop a logic to ensure this time can be influenced by level, i.e. the higher the level, the higher the recover time (the longer invulnerability lasts)
@@ -999,6 +1001,10 @@ public class Hero : MonoBehaviour {
                   InGame.instance.globalGradients.area = "underground";
                   TransportViaPortal(interactingPortal.transportLocation);
                 }
+              } else if (nearbyInteractableObject.tag == "Interactable") {
+                if (nearbyInteractableObject.name.Contains("Sign")) {
+                  ReadSign();
+                }
               }
             } else {
               if (NPCnearbyAction == "chat") {
@@ -1894,8 +1900,10 @@ public class Hero : MonoBehaviour {
     InGame.instance.actionCanvas.GetComponent<ActionCanvas>().SetAction(action);
   }
 
-  public bool SatisfiesCondition(Condition nodeCondition) {
-    switch (nodeCondition.conditionCheck) {
+  public bool SatisfiesCondition(Condition nodeCondition)
+  {
+    switch (nodeCondition.conditionCheck)
+    {
       case "items":
         string[] itemsToCheck = nodeCondition.conditionValue.Split(',');
 
@@ -1903,15 +1911,55 @@ public class Hero : MonoBehaviour {
       case "money":
         int moneyValue;
 
-        if (int.TryParse(nodeCondition.conditionValue, out moneyValue)) {
+        if (int.TryParse(nodeCondition.conditionValue, out moneyValue))
+        {
           return gold >= moneyValue;
-        } else {
+        }
+        else
+        {
           return false;
         }
       default:
         Debug.Log("Returning false for unknown case: check=" + nodeCondition.conditionCheck + ", value=" + nodeCondition.conditionValue);
         return false;
     }
+  }
+
+  public void ModifyCanvasesOnChatOpen() {
+    // closes the action canvas when the chat canvas activates
+    InGame.instance.actionCanvas.SetActive(false);
+
+    // return the info canvas to its left alignment regardless of if it's displaying
+    InGame.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
+
+    // resets the action canvas so when the chat closes and it should show again, it won't show at full width
+    InGame.instance.actionCanvas.GetComponent<ActionCanvas>().ClearAction();
+
+    InGame.instance.chatCanvas.SetActive(true);
+  }
+
+  public MessageLine[] GetMessageLines(string locationKey, string index) {
+    return Helpers.GetOrException(Helpers.GetOrException(Message.messages, locationKey), index);
+  }
+
+  public void ReadSign() {
+    string[] messageKeys = new string[] {};
+    string originator = "";
+
+    if (nearbyInteractableObject.name.Contains("Sign")) {
+      messageKeys = nearbyInteractableObject.GetComponent<Sign>().id.Split("-");
+      originator = "Sign";
+    } // TODO: Add more message originators here (e.g. Paper, Label, etc.)
+
+    ChatCanvas chatCanvasScript = InGame.instance.chatCanvas.GetComponent<ChatCanvas>();
+
+    chatCanvasScript.messageLines = GetMessageLines(locationKey: messageKeys[0], index: messageKeys[1]);
+    chatCanvasScript.messageOriginator = originator;
+
+    ModifyCanvasesOnChatOpen();
+
+    isReading = true;
+    chatCanvasScript.StartMessage();
   }
 
   public ChatLine[] GetChatLines(string npcKey, string nodeKey) {
@@ -1941,16 +1989,8 @@ public class Hero : MonoBehaviour {
     chatCanvasScript.startingNPC = npcKey;
     chatCanvasScript.nextNode = Helpers.GetOrException(Helpers.GetOrException(Chat.chatNodes, npcKey), Helpers.GetOrException(npcNodes, npcKey)).nextNode;
 
-    // closes the action canvas when the chat canvas activates
-    InGame.instance.actionCanvas.SetActive(false);
+    ModifyCanvasesOnChatOpen();
 
-    // return the info canvas to its left alignment regardless of if it's displaying
-    InGame.instance.infoCanvas.GetComponent<InfoCanvas>().AlignLeft();
-
-    // resets the action canvas so when the chat closes and it should show again, it won't show at full width
-    InGame.instance.actionCanvas.GetComponent<ActionCanvas>().ClearAction();
-
-    InGame.instance.chatCanvas.SetActive(true);
     isOnChat = true;
     chatCanvasScript.StartChat();
   }

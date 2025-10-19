@@ -8,6 +8,8 @@ public class ChatCanvas : MonoBehaviour {
   [SerializeField] GameObject textObject;
   [SerializeField] GameObject continuePrompt;
   [SerializeField] public ChatLine[] chatLines;
+  [SerializeField] public MessageLine[] messageLines;
+  [SerializeField] public string messageOriginator;
   [SerializeField] public string startingNPC;
   [SerializeField] public string nextNode;
   [SerializeField] float textSpeed;
@@ -16,6 +18,10 @@ public class ChatCanvas : MonoBehaviour {
   private Text characterComponent;
   private Text textComponent;
 
+  void Read() {
+    RunOutcome(messageLines[lineIndex].outcome);
+    ClearText();
+  }
   void Chat() {
     SetCharacter(chatLines[lineIndex].character);
     SetEmotion(chatLines[lineIndex].character, chatLines[lineIndex].emotion);
@@ -27,18 +33,42 @@ public class ChatCanvas : MonoBehaviour {
     characterComponent = characterObject.GetComponent<Text>();
     textComponent = textObject.GetComponent<Text>();
 
-    StartChat();
+    if (chatLines != null) {
+      StartChat();
+    } else if (messageLines != null) {
+      StartMessage();
+    }
   }
   void Update() {
     if (UserInput.IsAction(ControlActions.Action, KeyState.Up)) {
       // if the entire text is on screen, get the next line
-      if (textComponent.text == chatLines[lineIndex].line) {
-        NextLine();
+      if (chatLines != null && textComponent.text == chatLines[lineIndex].line) {
+        NextChatLine();
+      } else if (messageLines != null && textComponent.text == messageLines[lineIndex].line) {
+        NextMessageLine();
       } else { // otherwise, show the entire line right away
         StopAllCoroutines();
-        textComponent.text = chatLines[lineIndex].line;
+
+        if (chatLines != null) {
+          textComponent.text = chatLines[lineIndex].line;
+        } else if (messageLines != null) {
+          textComponent.text = messageLines[lineIndex].line;
+        }
+
         continuePrompt.SetActive(true);
       }
+    }
+  }
+
+  public void StartMessage() {
+    if (characterComponent != null) {
+      characterComponent.text = $"{messageOriginator}:";
+    }
+
+    lineIndex = 0;
+    Read();
+    if (textComponent != null) {
+      StartCoroutine(ShowMessageLine());
     }
   }
 
@@ -47,13 +77,26 @@ public class ChatCanvas : MonoBehaviour {
       lineIndex = 0;
       Chat();
       if (textComponent != null) {
-        StartCoroutine(ShowLine());
+        StartCoroutine(ShowChatLine());
       }
     }
   }
 
   // adds a line character by character based on the textSpeed
-  IEnumerator ShowLine() {
+  IEnumerator ShowMessageLine() {
+    foreach (char c in messageLines[lineIndex].line.ToCharArray()) {
+      textComponent.text += c;
+      if(textComponent.text.Length == messageLines[lineIndex].line.Length) {
+        continuePrompt.SetActive(true);
+      } else {
+        continuePrompt.SetActive(false);
+      }
+      yield return new WaitForSeconds(textSpeed);
+    }
+  }
+
+  // adds a line character by character based on the textSpeed
+  IEnumerator ShowChatLine() {
     foreach (char c in chatLines[lineIndex].line.ToCharArray()) {
       textComponent.text += c;
       if(textComponent.text.Length == chatLines[lineIndex].line.Length) {
@@ -152,11 +195,21 @@ public class ChatCanvas : MonoBehaviour {
     }
   }
 
-  void NextLine() {
+  void NextMessageLine() {
+    if (lineIndex < messageLines.Length - 1) {
+      lineIndex++;
+      Read();
+      StartCoroutine(ShowMessageLine());
+    } else { // if there are no more lines, hide the chat window
+      FinishMessage(playerLeft: false);
+    }
+  }
+
+  void NextChatLine() {
     if (lineIndex < chatLines.Length - 1) {
       lineIndex++;
       Chat();
-      StartCoroutine(ShowLine());
+      StartCoroutine(ShowChatLine());
     } else { // if there are no more lines, hide the chat window
       FinishChat(playerLeft: false);
     }
@@ -169,6 +222,13 @@ public class ChatCanvas : MonoBehaviour {
     }
 
     SetEmotion(startingNPC, "default");
+    chatLines = null;
+    Hero.instance.CloseChat();
+  }
+
+  public void FinishMessage(bool playerLeft = false) {
+    messageOriginator = "";
+    messageLines = null;
     Hero.instance.CloseChat();
   }
 }
