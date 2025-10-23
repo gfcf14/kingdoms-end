@@ -121,6 +121,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] public GameObject spawnedFrom;
 
     [NonSerialized] GameObject extra;
+  [NonSerialized] GameObject originator;
 
     Vector2 forwardCastDirection;
     public float wanderStart = 0;
@@ -199,6 +200,7 @@ public class Enemy : MonoBehaviour {
     flashEffect = GetComponent<SimpleFlash>();
     weaponSpriteRenderer = GameObject.Find("Weapon").GetComponent<SpriteRenderer>();
     extra = transform.Find("Extra").gameObject;
+    originator = transform.Find("Originator").gameObject;
 
     isFacingLeft = Hero.instance.transform.position.x < transform.position.x;
 
@@ -1042,7 +1044,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void ThrowWeapon(float distance) {
-    GameObject throwableWeapon = Instantiate(Helpers.GetOrException(Objects.prefabs, "throwable"), extra.transform.position, Quaternion.identity);
+    GameObject throwableWeapon = Instantiate(Helpers.GetOrException(Objects.prefabs, "throwable"), originator.transform.position, Quaternion.identity);
     Throwable throwableInstance = throwableWeapon.GetComponent<Throwable>();
 
     throwableInstance.isFacingLeft = isFacingLeft;
@@ -1060,7 +1062,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void ThrowProjectile() {
-    GameObject projectile = Instantiate(Helpers.GetOrException(Objects.prefabs, "projectile"), extra.transform.position, Quaternion.identity, transform);
+    GameObject projectile = Instantiate(Helpers.GetOrException(Objects.prefabs, "projectile"), originator.transform.position, Quaternion.identity, transform);
     Projectile projectileScript = projectile.GetComponent<Projectile>();
 
     projectileScript.fromFacingLeft = isFacingLeft;
