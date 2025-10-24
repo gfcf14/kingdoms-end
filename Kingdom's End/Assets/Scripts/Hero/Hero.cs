@@ -32,6 +32,7 @@ public class Hero : MonoBehaviour {
   [SerializeField] public GameObject bow;
   [SerializeField] public GameObject airEdgeCheck;
   [SerializeField] public GameObject undergroundLight;
+  [SerializeField] public GameObject indicator;
   public AirEdgeCheck airEdgeCheckScript;
   public ProximityCheck proximityCheckScript;
 
@@ -2006,10 +2007,8 @@ public class Hero : MonoBehaviour {
     npcNodes[npcKey] = newNodeKey;
   }
 
-  public void InstantiateLoss(string prefabKey, bool isItem, string multiplierText, Sprite itemLossImage) {
-    Vector2 lossPosition = new Vector2(transform.position.x + (((heroWidth / 2) + (Constants.itemLossWidth / 2)) * direction), transform.position.y + heroHeight);
-
-    GameObject lossObject = Instantiate(Helpers.GetOrException(Objects.prefabs, prefabKey), lossPosition, Quaternion.identity);
+  public void InstantiateLoss(string prefabKey, bool isItem, string multiplierText, Sprite itemLossImage, int amount = 1) {
+    GameObject lossObject = Instantiate(Helpers.GetOrException(Objects.prefabs, prefabKey), Hero.instance.indicator.transform.position, Quaternion.identity);
     ItemLoss itemLossScript = lossObject.GetComponent<ItemLoss>();
     itemLossScript.multiplierText = multiplierText;
     itemLossScript.isItem = isItem;
@@ -2017,6 +2016,7 @@ public class Hero : MonoBehaviour {
 
     if (isItem) {
       itemLossScript.itemLossImage = itemLossImage;
+      itemLossScript.singleItem = amount == 1;
     }
   }
 

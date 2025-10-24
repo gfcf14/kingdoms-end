@@ -139,7 +139,6 @@ public class ChatCanvas : MonoBehaviour {
 
     if (Settings.showItemInfo) {
       bool displayMoney = itemKey.Contains("money");
-      Debug.Log(itemKey);
       InGame.instance.infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? Helpers.GetOrException(Objects.moneyItems, itemKey).text : Helpers.GetOrException(Objects.regularItems, itemKey).name);
     }
   }
@@ -160,7 +159,7 @@ public class ChatCanvas : MonoBehaviour {
       }
 
       // TODO: if at some point the player has to give more than 2 of the same item, the multiplier text should reflect this
-      Hero.instance.InstantiateLoss("item-loss", isItem: true, "", Helpers.GetOrException(Objects.regularItems, itemKey).thumbnail);
+      Hero.instance.InstantiateLoss("item-loss", isItem: true, "", Helpers.GetOrException(Objects.regularItems, itemKey).thumbnail, currItem.amount);
     }
   }
 

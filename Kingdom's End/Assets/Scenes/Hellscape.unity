@@ -142388,6 +142388,7 @@ Transform:
   - {fileID: 838788232}
   - {fileID: 568159849}
   - {fileID: 505512310}
+  - {fileID: 1207809827}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -142439,6 +142440,7 @@ MonoBehaviour:
   bow: {fileID: 639711664}
   airEdgeCheck: {fileID: 568159848}
   undergroundLight: {fileID: 505512309}
+  indicator: {fileID: 1207809826}
   airEdgeCheckScript: {fileID: 0}
   proximityCheckScript: {fileID: 0}
   heroCollider: {fileID: 0}
@@ -142484,6 +142486,7 @@ MonoBehaviour:
   isShootingPull: 0
   isInvulnerable: 0
   isOnChat: 0
+  isReading: 0
   damageStartTime: 0
   damageRecoverTime: 3000
   horizontalCollision: 0
@@ -142860,6 +142863,37 @@ Transform:
   - {fileID: 432366902}
   m_Father: {fileID: 823973219}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1207809826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1207809827}
+  m_Layer: 7
+  m_Name: Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1207809827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207809826}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1177825372}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1234704721
 GameObject:
