@@ -28,27 +28,27 @@ public class Chat {
         },
         // nextNode = "emotion-dialogue",
         // nextNode = "pay-dialogue",
-        nextNode = "pie-dialogue",
+        nextNode = "fruit-salad-dialogue",
         fallbackNode = ""
       }},
-      {"pie-dialogue", new ChatNode() {
+      {"fruit-salad-dialogue", new ChatNode() {
         nodeCondition = new Condition() {
-          conditionCheck = "items",
-          conditionValue = "apple@7"
+          conditionCheck = "resources",
+          conditionValue = "apple@3,strawberry@8,banana@2,pineapple,mango@2,honeydew,money-50"
         },
         nodeLines = new ChatLine[] {
           new ChatLine() {
             character = "peasant-girl",
             emotion = "happy",
-            line = "Thanks! I'll treat you to a slice once it's ready!",
+            line = "Thanks! I'll save you a helping once it's ready!",
             outcome = new Outcome() {
               outcomeCase = "trade",
-              outcomeValue = "apple@7|"
+              outcomeValue = "apple@3,strawberry@8,banana@2,pineapple,mango@2,honeydew,money-50|"
             }
           }
         },
         nextNode = "pay-dialogue",
-        fallbackNode = "no-pie-dialogue"
+        fallbackNode = "no-fruit-salad-dialogue"
       }},
       {"pay-dialogue", new ChatNode() {
         nodeCondition = new Condition() {
@@ -82,17 +82,17 @@ public class Chat {
         nextNode = "pay-dialogue",
         fallbackNode = ""
       }},
-      {"no-pie-dialogue", new ChatNode() {
+      {"no-fruit-salad-dialogue", new ChatNode() {
         nodeCondition = blankCondition,
         nodeLines = new ChatLine[] {
           new ChatLine() {
             character = "peasant-girl",
             emotion = "default",
-            line = "I'm craving something sweet. Could you please bring me 7 apples to bake a pie?",
+            line = "I need to make a fruit salad. Do you think you could bring me 3 apples, 8 strawberries, 2 bananas, one pineapple, 2 mangoes, and 1 honeydew? Oh, and I'd need $50 to buy some honey for it.",
             outcome = blankOutcome
           }
         },
-        nextNode = "pie-dialogue",
+        nextNode = "fruit-salad-dialogue",
         fallbackNode = ""
       }},
       {"emotion-dialogue", new ChatNode() {

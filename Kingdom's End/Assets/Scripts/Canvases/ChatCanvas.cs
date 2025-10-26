@@ -124,6 +124,7 @@ public class ChatCanvas : MonoBehaviour {
     GameObject.Find(Helpers.KebabToObject(character)).GetComponent<SpriteRenderer>().sprite = Helpers.GetOrException(Helpers.GetOrException(Sprites.emotions, character), emotion);
   }
 
+  // Gives item(s) to the player
   void GiveItem(string itemKey) {
     Item currItem = Helpers.GetItemFromList(Hero.instance.items, itemKey);
 
@@ -143,6 +144,7 @@ public class ChatCanvas : MonoBehaviour {
     }
   }
 
+  // Takes item(s) from the player
   void TakeItem(string itemKey) {
     if (itemKey.Contains("money")) { // if there is money involved, remove from the gold value
       string moneyValue = itemKey.Split('-')[1];
@@ -167,6 +169,13 @@ public class ChatCanvas : MonoBehaviour {
     }
   }
 
+  private IEnumerator TakeItemsCoroutine(string[] heroItems) {
+    foreach (string item in heroItems) {
+      TakeItem(item);
+      yield return new WaitForSeconds(0.375f);
+    }
+  }
+
   void RunOutcome(Outcome outcome) {
     switch (outcome.outcomeCase) {
       case "":
@@ -184,9 +193,7 @@ public class ChatCanvas : MonoBehaviour {
         string[] heroItems = outcomeValues[0].Split(',');
         string[] npcItems = outcomeValues[1] != "" ? outcomeValues[1].Split(',') : new string[] { };
 
-        foreach (string item in heroItems) {
-          TakeItem(item);
-        }
+        StartCoroutine(TakeItemsCoroutine(heroItems));
 
         foreach(string item in npcItems) {
           GiveItem(item);

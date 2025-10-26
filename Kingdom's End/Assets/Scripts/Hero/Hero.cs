@@ -1905,11 +1905,11 @@ public class Hero : MonoBehaviour {
   {
     switch (nodeCondition.conditionCheck)
     {
-      case "items":
+      case "items": // checks for which items (and how many of each) the player has
         string[] itemsToCheck = nodeCondition.conditionValue.Split(',');
 
         return Helpers.HasAll(items, itemsToCheck);
-      case "money":
+      case "money": // checks if the player has a specified amount of money
         int moneyValue;
 
         if (int.TryParse(nodeCondition.conditionValue, out moneyValue))
@@ -1920,6 +1920,12 @@ public class Hero : MonoBehaviour {
         {
           return false;
         }
+      case "resources": // checks if the player has both specified items and money. Works by checking for a single "money-<amount>" condition
+        string[] resourcesToCheck = nodeCondition.conditionValue.Split(',');
+        string[] itemsFromResources = resourcesToCheck.Where(currResource => !currResource.Contains("money")).ToArray();
+        int moneyFromResources = int.Parse(resourcesToCheck.FirstOrDefault(currResource => currResource.Contains("money")).Split('-')[1]);
+
+        return Helpers.HasAll(items, itemsFromResources) && gold >= moneyFromResources;
       default:
         Debug.Log("Returning false for unknown case: check=" + nodeCondition.conditionCheck + ", value=" + nodeCondition.conditionValue);
         return false;
