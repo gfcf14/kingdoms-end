@@ -2008,7 +2008,8 @@ public class Hero : MonoBehaviour {
   }
 
   public void InstantiateLoss(string prefabKey, bool isItem, string multiplierText, Sprite itemLossImage, int amount = 1) {
-    GameObject lossObject = Instantiate(Helpers.GetOrException(Objects.prefabs, prefabKey), Hero.instance.indicator.transform.position, Quaternion.identity);
+    Vector2 lossPosition = new Vector2(Hero.instance.indicator.transform.position.x + (amount > 1 ? (isFacingLeft ? 0 : -0.5f) : 0), Hero.instance.indicator.transform.position.y);
+    GameObject lossObject = Instantiate(Helpers.GetOrException(Objects.prefabs, prefabKey), lossPosition, Quaternion.identity);
     ItemLoss itemLossScript = lossObject.GetComponent<ItemLoss>();
     itemLossScript.multiplierText = multiplierText;
     itemLossScript.isItem = isItem;
@@ -2017,6 +2018,9 @@ public class Hero : MonoBehaviour {
     if (isItem) {
       itemLossScript.itemLossImage = itemLossImage;
       itemLossScript.singleItem = amount == 1;
+      if (amount > 1) {
+        itemLossScript.multiplierText = $"x{amount}";
+      }
     }
   }
 

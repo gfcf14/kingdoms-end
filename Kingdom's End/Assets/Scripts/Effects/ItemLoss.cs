@@ -19,11 +19,8 @@ public class ItemLoss : MonoBehaviour {
 
     if (isItem) {
       wrapper.Find("Image").GetComponent<SpriteRenderer>().sprite = itemLossImage;
-
-      if (singleItem) {
-        wrapperRect.sizeDelta = new Vector2(0.57f, 0.6f);
-        wrapperRect.anchoredPosition = new Vector2(wrapperRect.anchoredPosition.x + (alignRight ? -0.75f : 0.75f), wrapperRect.anchoredPosition.y);
-      }
+      wrapperRect.sizeDelta = new Vector2(singleItem ? 0.57f : 0.87f, 0.6f);
+      wrapperRect.anchoredPosition = new Vector2(wrapperRect.anchoredPosition.x + (alignRight ? -0.75f : 0.75f), wrapperRect.anchoredPosition.y);
     }
 
     wrapper.Find("Multiplier").GetComponent<TextMeshPro>().text = multiplierText;

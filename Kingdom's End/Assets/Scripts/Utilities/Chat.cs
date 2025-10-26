@@ -27,8 +27,28 @@ public class Chat {
           }
         },
         // nextNode = "emotion-dialogue",
-        nextNode = "pay-dialogue",
+        // nextNode = "pay-dialogue",
+        nextNode = "pie-dialogue",
         fallbackNode = ""
+      }},
+      {"pie-dialogue", new ChatNode() {
+        nodeCondition = new Condition() {
+          conditionCheck = "items",
+          conditionValue = "apple@7"
+        },
+        nodeLines = new ChatLine[] {
+          new ChatLine() {
+            character = "peasant-girl",
+            emotion = "happy",
+            line = "Thanks! I'll treat you to a slice once it's ready!",
+            outcome = new Outcome() {
+              outcomeCase = "trade",
+              outcomeValue = "apple@7|"
+            }
+          }
+        },
+        nextNode = "pay-dialogue",
+        fallbackNode = "no-pie-dialogue"
       }},
       {"pay-dialogue", new ChatNode() {
         nodeCondition = new Condition() {
@@ -60,6 +80,19 @@ public class Chat {
           }
         },
         nextNode = "pay-dialogue",
+        fallbackNode = ""
+      }},
+      {"no-pie-dialogue", new ChatNode() {
+        nodeCondition = blankCondition,
+        nodeLines = new ChatLine[] {
+          new ChatLine() {
+            character = "peasant-girl",
+            emotion = "default",
+            line = "I'm craving something sweet. Could you please bring me 7 apples to bake a pie?",
+            outcome = blankOutcome
+          }
+        },
+        nextNode = "pie-dialogue",
         fallbackNode = ""
       }},
       {"emotion-dialogue", new ChatNode() {

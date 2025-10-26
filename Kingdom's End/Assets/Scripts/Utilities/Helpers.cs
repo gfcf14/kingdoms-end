@@ -211,8 +211,16 @@ public class Helpers {
     return itemFound != null;
   }
 
-  public static bool HasAll(List<Item> items, string[] itemsToCheck) {
-    return itemsToCheck.All(key => items.Any(item => item.key == key));
+  // each item to check should be split by @. If resulting array only has one element, only one of that item is expected
+  public static bool HasAll(List<Item> items, string[] itemsToCheck)
+  {
+    return itemsToCheck.All(key => items.Any(item => {
+      string[] itemAndCount = key.Split('@');
+
+      if (itemAndCount.Length == 1) return item.key == key;
+
+      return HasAmount(items, itemAndCount[0], int.Parse(itemAndCount[1]));
+      }));
   }
 
   public static bool HasAmount(List<Item> items, string key, int amount) {

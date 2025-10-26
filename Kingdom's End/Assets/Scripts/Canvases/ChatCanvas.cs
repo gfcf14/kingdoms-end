@@ -150,16 +150,20 @@ public class ChatCanvas : MonoBehaviour {
 
       Hero.instance.InstantiateLoss("money-loss", isItem: false, moneyValue, null);
     } else { // if there is no money involved, remove from the hero item list
-      Item currItem = Helpers.GetItemFromList(Hero.instance.items, itemKey);
+      string[] itemAndCount = itemKey.Split('@');
+      string itemToRemove = itemAndCount[0];
+      int itemToRemoveAmount = itemAndCount.Length > 1 ? int.Parse(itemAndCount[1]) : 1;
 
-      if (currItem.amount > 1) { // if more than one, just decrement
-        currItem.amount--;
+      Item currItem = Helpers.GetItemFromList(Hero.instance.items, itemToRemove);
+
+      if (currItem.amount > itemToRemoveAmount) { // if more than the amount, simply subtract
+        currItem.amount -= itemToRemoveAmount;
       } else { // otherwise, remove it from the item list
-        Hero.instance.RemoveItem(Helpers.GetItemIndex(Hero.instance.items, itemKey));
+        Hero.instance.RemoveItem(Helpers.GetItemIndex(Hero.instance.items, itemToRemove));
       }
 
       // TODO: if at some point the player has to give more than 2 of the same item, the multiplier text should reflect this
-      Hero.instance.InstantiateLoss("item-loss", isItem: true, "", Helpers.GetOrException(Objects.regularItems, itemKey).thumbnail, currItem.amount);
+      Hero.instance.InstantiateLoss("item-loss", isItem: true, "", Helpers.GetOrException(Objects.regularItems, itemToRemove).thumbnail, itemToRemoveAmount);
     }
   }
 
@@ -178,7 +182,7 @@ public class ChatCanvas : MonoBehaviour {
       case "trade":
         string[] outcomeValues = outcome.outcomeValue.Split('|'); // splits the outcome value by | in two, where the left part is what the hero gives, and the right side is what the NPC gives
         string[] heroItems = outcomeValues[0].Split(',');
-        string[] npcItems = outcomeValues[1].Split(',');
+        string[] npcItems = outcomeValues[1] != "" ? outcomeValues[1].Split(',') : new string[] { };
 
         foreach (string item in heroItems) {
           TakeItem(item);
