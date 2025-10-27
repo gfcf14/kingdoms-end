@@ -176,7 +176,7 @@ public class ChatCanvas : MonoBehaviour {
     }
   }
 
-  void RunOutcome(Outcome outcome) {
+  public void RunOutcome(Outcome outcome) {
     switch (outcome.outcomeCase) {
       case "":
         // do nothing

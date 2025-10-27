@@ -1086,6 +1086,17 @@ public class Hero : MonoBehaviour {
     anim.SetBool("isSlammed", isSlammed);
     anim.SetBool("isFallingSlammed", isFallingSlammed);
     anim.SetBool("isRecoveringFromSlam", isRecoveringFromSlam);
+
+    // TO TEST outcomes, comment this out and change outcomeValue
+    // if (Input.GetKeyDown(KeyCode.BackQuote))
+    // {
+    //   InGame.instance.chatCanvas.SetActive(true);
+    //   InGame.instance.chatCanvas.GetComponent<ChatCanvas>().RunOutcome(new Outcome()
+    //   {
+    //     outcomeCase = "trade",
+    //     outcomeValue = "money-9999|"
+    //   });
+    // }
   }
 
   void FixedUpdate() {
@@ -2037,6 +2048,23 @@ public class Hero : MonoBehaviour {
 
       lossRect.sizeDelta = new Vector2(amount == 1 ? 0.57f : 0.87f, 0.6f);
       lossRect.anchoredPosition = new Vector2(lossRect.anchoredPosition.x + (isFacingLeft ? -0.75f : 0.75f), lossRect.anchoredPosition.y);
+    } else {
+      int moneyValue = int.Parse(multiplierText);
+      float rectWidth = 1.45f;
+      float rectDisp;
+
+      if (moneyValue < 100) {
+        rectWidth = 1;
+        rectDisp = isFacingLeft ? -0.3f : 0.5f;
+      } else if (moneyValue < 1000) {
+        rectWidth = 1.25f;
+        rectDisp = isFacingLeft ? -0.2f : 0.3f;
+      } else {
+        rectDisp = isFacingLeft ? 0 : 0.2f;
+      }
+
+      lossRect.sizeDelta = new Vector2(rectWidth, 0.6f);
+      lossRect.anchoredPosition = new Vector2(lossRect.anchoredPosition.x + rectDisp, lossRect.anchoredPosition.y);
     }
   }
 
