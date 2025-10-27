@@ -2017,16 +2017,26 @@ public class Hero : MonoBehaviour {
     Vector2 lossPosition = new Vector2(Hero.instance.indicator.transform.position.x + (amount > 1 ? (isFacingLeft ? 0 : -0.5f) : 0), Hero.instance.indicator.transform.position.y);
     GameObject lossObject = Instantiate(Helpers.GetOrException(Objects.prefabs, prefabKey), lossPosition, Quaternion.identity);
     ItemLoss itemLossScript = lossObject.GetComponent<ItemLoss>();
+    RectTransform lossRect = lossObject.transform.Find("Wrapper").GetComponent<RectTransform>();
+
     itemLossScript.multiplierText = multiplierText;
     itemLossScript.isItem = isItem;
     itemLossScript.alignRight = isFacingLeft;
 
+    if (isFacingLeft) {
+      lossRect.anchoredPosition = new Vector2(lossRect.anchoredPosition.x + (isItem ? 2.2f : 1.7f), lossRect.anchoredPosition.y);
+    }
+
     if (isItem) {
       itemLossScript.itemLossImage = itemLossImage;
       itemLossScript.singleItem = amount == 1;
+
       if (amount > 1) {
         itemLossScript.multiplierText = $"x{amount}";
       }
+
+      lossRect.sizeDelta = new Vector2(amount == 1 ? 0.57f : 0.87f, 0.6f);
+      lossRect.anchoredPosition = new Vector2(lossRect.anchoredPosition.x + (isFacingLeft ? -0.75f : 0.75f), lossRect.anchoredPosition.y);
     }
   }
 
