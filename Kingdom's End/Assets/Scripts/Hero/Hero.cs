@@ -2024,50 +2024,6 @@ public class Hero : MonoBehaviour {
     npcNodes[npcKey] = newNodeKey;
   }
 
-  public void InstantiateLoss(string prefabKey, bool isItem, string multiplierText, Sprite itemLossImage, int amount = 1) {
-    Vector2 lossPosition = new Vector2(Hero.instance.indicator.transform.position.x + (amount > 1 ? (isFacingLeft ? 0 : -0.5f) : 0), Hero.instance.indicator.transform.position.y);
-    GameObject lossObject = Instantiate(Helpers.GetOrException(Objects.prefabs, prefabKey), lossPosition, Quaternion.identity);
-    ItemLoss itemLossScript = lossObject.GetComponent<ItemLoss>();
-    RectTransform lossRect = lossObject.transform.Find("Wrapper").GetComponent<RectTransform>();
-
-    itemLossScript.multiplierText = multiplierText;
-    itemLossScript.isItem = isItem;
-    itemLossScript.alignRight = isFacingLeft;
-
-    if (isFacingLeft) {
-      lossRect.anchoredPosition = new Vector2(lossRect.anchoredPosition.x + (isItem ? 2.2f : 1.7f), lossRect.anchoredPosition.y);
-    }
-
-    if (isItem) {
-      itemLossScript.itemLossImage = itemLossImage;
-      itemLossScript.singleItem = amount == 1;
-
-      if (amount > 1) {
-        itemLossScript.multiplierText = $"x{amount}";
-      }
-
-      lossRect.sizeDelta = new Vector2(amount == 1 ? 0.57f : 0.87f, 0.6f);
-      lossRect.anchoredPosition = new Vector2(lossRect.anchoredPosition.x + (isFacingLeft ? -0.75f : 0.75f), lossRect.anchoredPosition.y);
-    } else {
-      int moneyValue = int.Parse(multiplierText);
-      float rectWidth = 1.45f;
-      float rectDisp;
-
-      if (moneyValue < 100) {
-        rectWidth = 1;
-        rectDisp = isFacingLeft ? -0.3f : 0.5f;
-      } else if (moneyValue < 1000) {
-        rectWidth = 1.25f;
-        rectDisp = isFacingLeft ? -0.2f : 0.3f;
-      } else {
-        rectDisp = isFacingLeft ? 0 : 0.2f;
-      }
-
-      lossRect.sizeDelta = new Vector2(rectWidth, 0.6f);
-      lossRect.anchoredPosition = new Vector2(lossRect.anchoredPosition.x + rectDisp, lossRect.anchoredPosition.y);
-    }
-  }
-
   public void FinishActionFromWallBump() {
     isJumping = false;
     isDropKicking = false;

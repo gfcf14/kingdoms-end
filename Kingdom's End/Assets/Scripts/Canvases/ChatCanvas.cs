@@ -150,7 +150,7 @@ public class ChatCanvas : MonoBehaviour {
       string moneyValue = itemKey.Split('-')[1];
       Hero.instance.gold -= int.Parse(moneyValue);
 
-      Hero.instance.InstantiateLoss("money-loss", isItem: false, moneyValue, null);
+      InGame.instance.InstantiateLoss("money-loss", isItem: false, moneyValue, null);
     } else { // if there is no money involved, remove from the hero item list
       string[] itemAndCount = itemKey.Split('@');
       string itemToRemove = itemAndCount[0];
@@ -164,8 +164,7 @@ public class ChatCanvas : MonoBehaviour {
         Hero.instance.RemoveItem(Helpers.GetItemIndex(Hero.instance.items, itemToRemove));
       }
 
-      // TODO: if at some point the player has to give more than 2 of the same item, the multiplier text should reflect this
-      Hero.instance.InstantiateLoss("item-loss", isItem: true, "", Helpers.GetOrException(Objects.regularItems, itemToRemove).thumbnail, itemToRemoveAmount);
+      InGame.instance.InstantiateLoss("item-loss", isItem: true, "", Helpers.GetOrException(Objects.regularItems, itemToRemove).thumbnail, itemToRemoveAmount);
     }
   }
 
