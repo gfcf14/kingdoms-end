@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityRandom = UnityEngine.Random;
 
 public class Droppable : MonoBehaviour {
+  [SerializeField] public bool isIndependent;
   [SerializeField] public string key;
   [SerializeField] public string rarity;
   [SerializeField] public GameObject room;
@@ -82,22 +83,26 @@ public class Droppable : MonoBehaviour {
     // Set the CircleCollider2D's radius (half of the largest dimension)
     droppableCollider.radius = largestDimension / 2f;
 
-    if (shouldRotate) {
-      initialPosition = body.position;
+    if (isIndependent) {
+      body.gravityScale = 1;
+      gameObject.layer = LayerMask.NameToLayer("Dropped");
     } else {
-      body.freezeRotation = true;
-      droppableCollider.isTrigger = false;
+      if (shouldRotate) {
+        initialPosition = body.position;
+      } else {
+        body.freezeRotation = true;
+        droppableCollider.isTrigger = false;
 
-      StartCoroutine(RiseAndFall());
+        StartCoroutine(RiseAndFall());
+      }
     }
-
   }
 
   void Update() {
     if (!canBePicked) {
       if (shouldRotate) {
         float horizontalSpeed = speed * directionFactor;
-        float time = (body.position.x - initialPosition.x);
+        float time = body.position.x - initialPosition.x;
 
         // Calculate vertical velocity based on parabolic function f(x) = -a(x - h)^2 + k
         // then multiply by the direction factor
@@ -176,9 +181,10 @@ public class Droppable : MonoBehaviour {
             body.gravityScale = 1;
             body.velocity = Vector2.zero;
           } else {
-            Destroy(body);
-            droppableCollider.isTrigger = true;
-            gameObject.layer = LayerMask.NameToLayer("Dropped");
+            if (!isIndependent) {
+              droppableCollider.isTrigger = true;
+              gameObject.layer = LayerMask.NameToLayer("Dropped");
+            }
           }
         }
       }
