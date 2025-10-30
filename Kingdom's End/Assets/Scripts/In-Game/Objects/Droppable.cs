@@ -79,9 +79,11 @@ public class Droppable : MonoBehaviour {
 
     // Find the larger dimension
     float largestDimension = Mathf.Max(widthInUnits, heightInUnits);
+    float expectedRadius = largestDimension / 2f;
 
-    // Set the CircleCollider2D's radius (half of the largest dimension)
-    droppableCollider.radius = largestDimension / 2f;
+    // Set the CircleCollider2D's radius (minimum value should be the minimunDroppableColliderRadius)
+    droppableCollider.radius = Mathf.Max(expectedRadius, Constants.minimunDroppableColliderRadius);
+    droppableCollider.offset = new Vector2(0, Mathf.Max(Constants.minimunDroppableColliderRadius - expectedRadius, 0));
 
     if (isIndependent) {
       body.gravityScale = 1;
