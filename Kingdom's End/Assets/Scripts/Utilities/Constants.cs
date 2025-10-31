@@ -148,6 +148,7 @@ public class Constants {
   // ensures that each HP unit (until reaching 500) displays in 2 UI units
   public static int containerMultiplier = 2;
 
+  public static float defaultDroppableItemHeight = 0.8f;
   public static float minimunDroppableColliderRadius = 0.27f;
   public static float fragmentOffset = 0.1f;
 

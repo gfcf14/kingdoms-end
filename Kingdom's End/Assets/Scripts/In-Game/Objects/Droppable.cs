@@ -57,6 +57,9 @@ public class Droppable : MonoBehaviour {
       isRising = false;
     }
 
+    // captures the placeholder bottom to align with actual image once changed
+    float placeholderBottom = droppableSprite.bounds.min.y;
+
     if (key.Contains("money")) {
       moneyItem = Helpers.GetOrException(Objects.moneyItems, key);
 
@@ -88,6 +91,13 @@ public class Droppable : MonoBehaviour {
     if (isIndependent) {
       body.gravityScale = 1;
       gameObject.layer = LayerMask.NameToLayer("Dropped");
+
+      float actualBottom = droppableSprite.bounds.min.y;
+      float yOffset = placeholderBottom - actualBottom;
+
+      // transition the image by the difference against the placeholder image radius
+      // if the image is smaller, it will be moved down. If bigger, it will move up. Both match placeholder bottom
+      transform.position = new Vector2(transform.position.x, transform.position.y + yOffset);
     } else {
       if (shouldRotate) {
         initialPosition = body.position;
