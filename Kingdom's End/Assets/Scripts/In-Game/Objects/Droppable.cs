@@ -47,6 +47,11 @@ public class Droppable : MonoBehaviour {
     droppableSprite = GetComponent<SpriteRenderer>();
     audioSource = GetComponent<AudioSource>();
 
+    // check to ensure an independent item is given an image on editor (to ensure it's at ground level)
+    if (isIndependent && droppableSprite.sprite.name.Contains("item-placeholder")) {
+      throw new Exception($"Independent item {gameObject.name}(parent: {(transform.parent == null ? "Scene" : transform.parent.name)}) should have a predefined image in editor");
+    }
+
     body = gameObject.AddComponent<Rigidbody2D>();
     body.gravityScale = 0;
 
@@ -56,9 +61,6 @@ public class Droppable : MonoBehaviour {
     if (rotateDirection != "") {
       isRising = false;
     }
-
-    // captures the placeholder bottom to align with actual image once changed
-    float placeholderBottom = droppableSprite.bounds.min.y;
 
     if (key.Contains("money")) {
       moneyItem = Helpers.GetOrException(Objects.moneyItems, key);
@@ -91,13 +93,6 @@ public class Droppable : MonoBehaviour {
     if (isIndependent) {
       body.gravityScale = 1;
       gameObject.layer = LayerMask.NameToLayer("Dropped");
-
-      float actualBottom = droppableSprite.bounds.min.y;
-      float yOffset = placeholderBottom - actualBottom;
-
-      // transition the image by the difference against the placeholder image radius
-      // if the image is smaller, it will be moved down. If bigger, it will move up. Both match placeholder bottom
-      transform.position = new Vector2(transform.position.x, transform.position.y + yOffset);
     } else {
       if (shouldRotate) {
         initialPosition = body.position;

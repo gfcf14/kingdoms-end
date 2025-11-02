@@ -142,7 +142,7 @@ public class Hero : MonoBehaviour {
     [NonSerialized] public string status = "good";
     [NonSerialized] public int exp = 0;
     [NonSerialized] public int next = 0;
-    [NonSerialized] public int gold = 500;
+    [NonSerialized] public int gold = 20000;
     [NonSerialized] public int strength = GameData.baseSTR;
     [NonSerialized] public int stamina = GameData.baseSTA;
     [NonSerialized] public float luckPercentage = GameData.baseLCK;
@@ -341,6 +341,13 @@ public class Hero : MonoBehaviour {
       // TODO: use this code to navigate while underwater
       // anim.speed = 0.66f;
       // jumpHeight = 10;
+
+      items.Add(new Item("apple", 3));
+      items.Add(new Item("strawberry", 8));
+      items.Add(new Item("banana", 2));
+      items.Add(new Item("pineapple", 1));
+      items.Add(new Item("mango", 2));
+      items.Add(new Item("apple", 3));
 
     #else
       items.Add(new Item("arrow-fire", 25));
