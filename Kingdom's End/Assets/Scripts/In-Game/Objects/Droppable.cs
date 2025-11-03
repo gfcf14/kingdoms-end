@@ -91,6 +91,7 @@ public class Droppable : MonoBehaviour {
     droppableCollider.offset = new Vector2(0, Mathf.Max(Constants.minimunDroppableColliderRadius - expectedRadius, 0));
 
     if (isIndependent) {
+      canBePicked = true;
       body.gravityScale = 1;
       gameObject.layer = LayerMask.NameToLayer("Dropped");
     } else {
@@ -150,9 +151,22 @@ public class Droppable : MonoBehaviour {
       audioSource.PlayOneShot(droppableSound);
     }
   }
+  
+  void PickLogic(string gameObjectTag) {
+    if (gameObjectTag == "Hero" && canBePicked) {
+      string itemPickSoundIndex = rarity == "" ? (Helpers.IsValueInArray(Constants.moneyItemKeys, key) ? "money" : "normal") : rarity;
+
+      InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, itemPickSoundIndex), transform.position);
+      DestroyDroppable();
+    }
+  }
 
   private void OnCollisionEnter2D(Collision2D col) {
     string gameObjectTag = col.gameObject.tag;
+
+    if (isIndependent) {
+      PickLogic(gameObjectTag);
+    }
 
     if (gameObjectTag == "Floor" || (shouldRotate && gameObjectTag == "Wall") || gameObjectTag == "Interactable") {
       if (shouldRotate) {
@@ -188,10 +202,9 @@ public class Droppable : MonoBehaviour {
             body.gravityScale = 1;
             body.velocity = Vector2.zero;
           } else {
-            if (!isIndependent) {
-              droppableCollider.isTrigger = true;
-              gameObject.layer = LayerMask.NameToLayer("Dropped");
-            }
+            Destroy(body); // DO NOT REMOVE as this allows an item to stop on the ground
+            droppableCollider.isTrigger = true;
+            gameObject.layer = LayerMask.NameToLayer("Dropped");
           }
         }
       }
@@ -205,12 +218,10 @@ public class Droppable : MonoBehaviour {
 
   private void OnTriggerEnter2D(Collider2D col) {
     string gameObjectTag = col.gameObject.tag;
-    if (gameObjectTag == "Hero" && canBePicked) {
-      string itemPickSoundIndex = rarity == "" ? (Helpers.IsValueInArray(Constants.moneyItemKeys, key) ? "money" : "normal") : rarity;
 
-      InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, itemPickSoundIndex), transform.position);
-      DestroyDroppable();
-    } else if (gameObjectTag == "Zone") {
+    PickLogic(gameObjectTag);
+
+    if (gameObjectTag == "Zone") {
       ZoneSpecs currZoneSpecs = Helpers.GetOrException(Objects.zoneSpecs, col.gameObject.GetComponent<Zone>().type);
       fallingOn = currZoneSpecs.groundMaterial;
     }
