@@ -723,7 +723,7 @@ public class Enemy : MonoBehaviour {
               }
 
               if (Helpers.IsValueInArray(Constants.fragmentableThrowables, weaponWielded)) {
-                InstantiateFragments(Helpers.GetOrException(Objects.itemFragments, weaponWielded), col.ClosestPoint(transform.position));
+                InstantiateFragments(Helpers.GetOrException(Objects.itemFragments, weaponWielded), new Vector2(col.ClosestPoint(transform.position).x, col.ClosestPoint(transform.position).y + Helpers.GetItemDimensions(weaponWielded).y));
                 parentThrowable.DestroyThrowable();
               } else {
                 parentThrowable.collideTime = Time.time * 1000;

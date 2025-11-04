@@ -672,4 +672,15 @@ public class Helpers {
       Hero.instance.moveFriction = GameData.playerMovementFriction;
     }
   }
+
+  public static Vector2 GetItemDimensions(string key) {
+    Sprite currItem = GetOrException(Sprites.droppableSprites, key);
+
+    Rect textureRect = currItem.textureRect;
+    float pixelsPerUnit = currItem.pixelsPerUnit;
+
+    float widthInUnits = textureRect.width / pixelsPerUnit;
+    float heightInUnits = textureRect.height / pixelsPerUnit;
+    return new Vector2(widthInUnits, heightInUnits);
+  }
 }

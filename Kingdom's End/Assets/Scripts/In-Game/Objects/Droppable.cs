@@ -74,16 +74,10 @@ public class Droppable : MonoBehaviour {
 
     droppableCollider = gameObject.AddComponent<CircleCollider2D>();
 
-    // Calculate the bounds of the visible sprite in pixels
-    Rect textureRect = droppableSprite.sprite.textureRect;
-    float pixelsPerUnit = droppableSprite.sprite.pixelsPerUnit;
-
-    // Determine the actual size in Unity units
-    float widthInUnits = textureRect.width / pixelsPerUnit;
-    float heightInUnits = textureRect.height / pixelsPerUnit;
+    Vector2 droppableDimensions = Helpers.GetItemDimensions(key);
 
     // Find the larger dimension
-    float largestDimension = Mathf.Max(widthInUnits, heightInUnits);
+    float largestDimension = Mathf.Max(droppableDimensions.x, droppableDimensions.y);
     float expectedRadius = largestDimension / 2f;
 
     // Set the CircleCollider2D's radius (minimum value should be the minimunDroppableColliderRadius)
@@ -151,7 +145,7 @@ public class Droppable : MonoBehaviour {
       audioSource.PlayOneShot(droppableSound);
     }
   }
-  
+
   void PickLogic(string gameObjectTag) {
     if (gameObjectTag == "Hero" && canBePicked) {
       string itemPickSoundIndex = rarity == "" ? (Helpers.IsValueInArray(Constants.moneyItemKeys, key) ? "money" : "normal") : rarity;
