@@ -254,6 +254,7 @@ public class Objects
     {"royal-pelt", new RegularItem(Sprites.itemThumbnails[103], Sprites.itemImages[103], "Royal Pelt", "Comfortable pelt worn by skeleton kings", "valuable")},
     {"skeleton-king-giant-bone", new RegularItem(Sprites.itemThumbnails[104], Sprites.itemImages[104], "Giant Bone", "Thrown by the skeleton king. Quite deadly when it hits", "throwable-double", new Effects() {atk=80})},
     {"arrow-ice", new RegularItem(Sprites.itemThumbnails[105], Sprites.itemImages[105], "Ice Arrow", "Arrows with magic water to freeze weakened enemies.", "arrow", new Effects() {atk=30})},
+    {"leprechaun-mushroom", new RegularItem(Sprites.itemThumbnails[106], Sprites.itemImages[106], "Leprechaun Mushroom", "Rare mushroom found by leprechauns. Can heal poison but hurt if not poisoned.", "valuable")},
 
     // Example of having everything
     // {"chicken-drumstick", new RegularItem(Sprites.itemThumbnails[3], Sprites.itemImages[3], "Chicken Drumstick", "From range-free raised fowl.", "food", new Effects() {hp = 99, mp=99, statusHeal=new string[]{"Poison", "Curse", "Drain"}, atk=-99, def=99, crit=0.5f, luck=-0.2f, magicResistances=new MagicResistance[]{new MagicResistance(){name="Earth", type="add"}, new MagicResistance(){name="Air", type="add"}, new MagicResistance(){name="Water", type="add"}, new MagicResistance(){name="Fire", type="add"}, new MagicResistance(){name="Lightning", type="remove"}, new MagicResistance(){name="Ice", type="remove"}, new MagicResistance(){name="Light", type="remove"}, new MagicResistance(){name="Dark", type="remove"}}})}

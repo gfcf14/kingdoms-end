@@ -481,7 +481,9 @@ public class Sprites {
     {"polished-king-skull", droppableImages[101]},
     {"silver-king-skull", droppableImages[102]},
     {"royal-pelt", droppableImages[103]},
-    {"skeleton-king-giant-bone", droppableImages[104]}
+    {"skeleton-king-giant-bone", droppableImages[104]},
+    {"arrow-ice", droppableImages[105]},
+    {"leprechaun-mushroom", droppableImages[106]}
   };
 
   public static Dictionary<string, Sprite> relicSprites = new() {

@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour {
   [NonSerialized] public int directionFactor = 0;
   // TODO: consider if this value should be modified depending on enemy level
   [NonSerialized] float speed = 10f;
-  [NonSerialized] SpriteRenderer projectileSprite;
+  [NonSerialized] public SpriteRenderer projectileSprite;
   [NonSerialized] Rigidbody2D body;
   [NonSerialized] CapsuleCollider2D projectileCollider;
 

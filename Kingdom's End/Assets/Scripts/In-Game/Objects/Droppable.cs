@@ -225,6 +225,7 @@ public class Droppable : MonoBehaviour {
     if (key.Contains("money")) {
       Hero.instance.gold += moneyItem.increment;
     } else {
+      // TODO: this logic to add items should be moved to a more usable, recyclable location
       Item currItem = Helpers.GetItemFromList(Hero.instance.items, key);
 
       if (currItem == null) { // if not found, the item must be added

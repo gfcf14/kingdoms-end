@@ -3,6 +3,7 @@ using UnityEngine;
 public class Constants {
   public static string preferredInput = "gamepad";
   public static string[] fragmentableThrowables = { "watermelon" };
+  public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
   public static string[] nonBouncingProjectiles = {"bunyip-tooth", "cyclops-hillstone", "dwarf-cobble", "dryad-twig", "fairy-blast", "faun-horn", "frostbird-orb", "gnome-truffle", "goblin-knife", "hippocampus-scale", "kelpie-fin", "leprechaun-mushroom", "mermaid-scale", "merman-scale", "mummy-rib", "nereid-seashell", "neret-orb", "nixie-cattail", "nymph-acorn", "ogre-stump", "phoenix-orb", "pishtaco-vertebra", "pixie-fireball", "samodiva-stalagtip", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder", "unicorn-shard", "werewolf-fang", "yanmabel-stinger"};
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
