@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// NOTE: Keep in mind the functions here correspond from a non-player point of view. As such GiveItem = give item to player, and TakeItem = take item from player
 public class ChatCanvas : MonoBehaviour {
   [SerializeField] GameObject characterObject;
   [SerializeField] GameObject textObject;
@@ -126,22 +126,7 @@ public class ChatCanvas : MonoBehaviour {
 
   // Gives item(s) to the player
   void GiveItem(string itemKey) {
-    Item currItem = Helpers.GetItemFromList(Hero.instance.items, itemKey);
-
-    if (itemKey.Contains("money")) {
-      Hero.instance.gold += Helpers.GetOrException(Objects.moneyItems, itemKey).increment;
-    } else {
-      if (currItem == null) { // if not found, the item must be added
-        Hero.instance.items.Add(new Item(itemKey, 1));
-      } else { // if found, the item is incremented
-        currItem.amount++;
-      }
-    }
-
-    if (Settings.showItemInfo) {
-      bool displayMoney = itemKey.Contains("money");
-      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? Helpers.GetOrException(Objects.moneyItems, itemKey).text : Helpers.GetOrException(Objects.regularItems, itemKey).name);
-    }
+    InGame.instance.PickItem(itemKey);
   }
 
   // Takes item(s) from the player

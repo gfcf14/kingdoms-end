@@ -222,23 +222,7 @@ public class Droppable : MonoBehaviour {
   }
 
   public void DestroyDroppable() {
-    if (key.Contains("money")) {
-      Hero.instance.gold += moneyItem.increment;
-    } else {
-      // TODO: this logic to add items should be moved to a more usable, recyclable location
-      Item currItem = Helpers.GetItemFromList(Hero.instance.items, key);
-
-      if (currItem == null) { // if not found, the item must be added
-        Hero.instance.items.Add(new Item(key, 1));
-      } else { // if found, the item is incremented
-        currItem.amount++;
-      }
-    }
-
-    if (Settings.showItemInfo) {
-      bool displayMoney = key.Contains("money");
-      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? moneyItem.text : Helpers.GetOrException(Objects.regularItems, key).name);
-    }
+    InGame.instance.PickItem(key);
 
     // interaction with enemy spawner happens here if provided
     if (spawnedFrom) {

@@ -18,7 +18,7 @@ public class IceBlock : MonoBehaviour {
   void Update() {}
 
   public void DestroyBlock() {
-    InGame.instance.InstantiatePrefab("droppable", itemKey, itemRarity, transform.parent.gameObject, transform.position, enemy.GetComponent<SpriteRenderer>(), false, "", transform.parent.gameObject);
+    InGame.instance.InstantiatePrefab("droppable", itemKey, itemRarity, transform.parent.gameObject, transform.position, shouldRotate: false, "", transform.parent.gameObject);
     InGame.instance.PrepareFullRockExplosion(gameObject, "ice", "ice");
   }
 }

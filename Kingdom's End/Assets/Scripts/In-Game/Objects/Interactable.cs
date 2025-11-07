@@ -47,6 +47,6 @@ public class Interactable : MonoBehaviour {
 
     string rarity = itemRarity != "" ? itemRarity : (Helpers.IsValueInArray(Constants.moneyItemKeys, item) ? "money" : "normal");
     Vector2 droppableOrigin = new Vector2(transform.position.x, transform.position.y + spriteRenderer.bounds.size.y);
-    InGame.instance.InstantiatePrefab("droppable", item, rarity, transform.parent.gameObject, droppableOrigin, spriteRenderer);
+    InGame.instance.InstantiatePrefab("droppable", item, rarity, transform.parent.gameObject, droppableOrigin);
   }
 }

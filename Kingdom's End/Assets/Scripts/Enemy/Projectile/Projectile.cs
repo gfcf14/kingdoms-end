@@ -16,9 +16,6 @@ public class Projectile : MonoBehaviour {
   [NonSerialized] Rigidbody2D body;
   [NonSerialized] CapsuleCollider2D projectileCollider;
 
-  // TODO: investigate how NOT to depend on this variable for damage
-  [NonSerialized] public float criticalRate = 0;
-
   void Start() {
     projectileSprite = GetComponent<SpriteRenderer>();
 

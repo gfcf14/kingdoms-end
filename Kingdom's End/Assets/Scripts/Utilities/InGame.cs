@@ -171,10 +171,47 @@ public class InGame : MonoBehaviour {
     GameObject.Find("MainOverlay").GetComponent<Image>().color = new Color(0, 0, 0, 1);
   }
 
-  public void InstantiatePrefab(string prefab, string key, string rarity, GameObject room, Vector2 position, SpriteRenderer spr, bool shouldRotate = false, string rotateDirection = "", GameObject spawnedFrom = null) {
-    // mainly so items instantiated from stacked breakables do not overlap fully
-    float randomOffset = UnityEngine.Random.Range(-0.2f, 0.2f);
+  public void PickItem(string itemKey) {
+    Item currItem = Helpers.GetItemFromList(Hero.instance.items, itemKey);
 
+    if (itemKey.Contains("money")) {
+      Hero.instance.gold += Helpers.GetOrException(Objects.moneyItems, itemKey).increment;
+    } else {
+      if (currItem == null) { // if not found, the item must be added
+        Hero.instance.items.Add(new Item(itemKey, 1));
+      } else { // if found, the item is incremented
+        currItem.amount++;
+      }
+    }
+
+    if (Settings.showItemInfo) {
+      bool displayMoney = itemKey.Contains("money");
+      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? Helpers.GetOrException(Objects.moneyItems, itemKey).text : Helpers.GetOrException(Objects.regularItems, itemKey).name);
+    }
+  }
+
+  public void InstantiateFragments(FragmentOutcome fragmentOutcome, Vector2 collisionOrigin, GameObject parent, bool isProjectile = false) {
+    List<int> randomList = Helpers.Shuffle(Helpers.GenerateNumberList(fragmentOutcome.count));
+
+    foreach (int offsetIndex in randomList) {
+      Vector2 fragmentPositionOffset = isProjectile ? Vector2.zero : Constants.fragmentPositions[offsetIndex];
+      string rotateDirection = "west"; // Constants.rotateDirections[UnityEngine.Random.Range(0, 1)];
+
+      if (isProjectile) {
+        rotateDirection = Hero.instance.isFacingLeft ? "west" : "east";
+      } else {
+        if (fragmentPositionOffset.x < 0) {
+          rotateDirection = "west";
+        } else if (fragmentPositionOffset.x > 0) {
+          rotateDirection = "east";
+        }
+      }
+
+      InGame.instance.InstantiatePrefab("droppable", fragmentOutcome.key, "normal", parent, collisionOrigin + fragmentPositionOffset, shouldRotate: true, rotateDirection);
+    }
+  }
+
+  public void InstantiatePrefab(string prefab, string key, string rarity, GameObject room, Vector2 position, bool shouldRotate = false, string rotateDirection = "", GameObject spawnedFrom = null) {
     GameObject droppedItem = Instantiate(Helpers.GetOrException(Objects.prefabs, prefab), position, Quaternion.identity, room.transform);
     Droppable droppableScript = droppedItem.transform.GetComponent<Droppable>();
     droppableScript.key = key;

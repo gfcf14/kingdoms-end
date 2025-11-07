@@ -604,22 +604,6 @@ public class Enemy : MonoBehaviour {
     }
   }
 
-  public void InstantiateFragments(FragmentOutcome fragmentOutcome, Vector2 collisionOrigin) {
-    List<int> randomList = Helpers.Shuffle(Helpers.GenerateNumberList(fragmentOutcome.count));
-
-    foreach (int offsetIndex in randomList) {
-      Vector2 fragmentPositionOffset = Constants.fragmentPositions[offsetIndex];
-      string rotateDirection = Constants.rotateDirections[UnityEngine.Random.Range(0, 1)];
-      if (fragmentPositionOffset.x < 0) {
-        rotateDirection = "west";
-      } else if (fragmentPositionOffset.x > 0) {
-        rotateDirection = "east";
-      }
-
-      InGame.instance.InstantiatePrefab("droppable", fragmentOutcome.key, "normal", transform.parent.gameObject, collisionOrigin + fragmentPositionOffset, enemyRenderer, shouldRotate: true, rotateDirection);
-    }
-  }
-
   public void Collision(Collision2D col) {
     CheckAttackToPlayer(col.collider);
   }
@@ -723,7 +707,9 @@ public class Enemy : MonoBehaviour {
               }
 
               if (Helpers.IsValueInArray(Constants.fragmentableThrowables, weaponWielded)) {
-                InstantiateFragments(Helpers.GetOrException(Objects.itemFragments, weaponWielded), new Vector2(col.ClosestPoint(transform.position).x, col.ClosestPoint(transform.position).y + Helpers.GetItemDimensions(weaponWielded).y));
+                Vector2 fragmentOrigin = new Vector2(col.ClosestPoint(transform.position).x, col.ClosestPoint(transform.position).y + Helpers.GetItemDimensions(weaponWielded).y);
+
+                InGame.instance.InstantiateFragments(Helpers.GetOrException(Objects.itemFragments, weaponWielded), fragmentOrigin, transform.parent.gameObject, isProjectile: false);
                 parentThrowable.DestroyThrowable();
               } else {
                 parentThrowable.collideTime = Time.time * 1000;
@@ -1026,7 +1012,7 @@ public class Enemy : MonoBehaviour {
       iceBlockScript.itemRarity = droppableAndRarity[1];
       iceBlockScript.isFacingLeft = isFacingLeft;
     } else {
-      InGame.instance.InstantiatePrefab("droppable", droppableAndRarity[0], droppableAndRarity[1], transform.parent.gameObject, deathOrigin, enemyRenderer, false, "", spawnedFrom);
+      InGame.instance.InstantiatePrefab("droppable", droppableAndRarity[0], droppableAndRarity[1], transform.parent.gameObject, deathOrigin, shouldRotate: false, "", spawnedFrom);
 
       // instantiates the explosion of the enemy
       GameObject enemyExplosion = Instantiate(Helpers.GetOrException(Objects.prefabs, "explosion"), deathOrigin, Quaternion.identity);

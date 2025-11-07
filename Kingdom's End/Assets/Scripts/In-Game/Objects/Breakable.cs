@@ -121,7 +121,7 @@ public class Breakable : MonoBehaviour {
       string rarity = itemRarity != "" ? itemRarity : (Helpers.IsValueInArray(Constants.moneyItemKeys, item) ? "money" : "normal");
 
       // ensure the droppable to instantiate appears at the middle of the breakable (i.e. a bit off the breakable's ground) to avoid issues with ground collision at the beginning
-      InGame.instance.InstantiatePrefab("droppable", item, rarity, GetItemSpawnedParent(), new Vector2(transform.position.x, transform.position.y + spriteRenderer.size.y / 2), spriteRenderer);
+      InGame.instance.InstantiatePrefab("droppable", item, rarity, GetItemSpawnedParent(), new Vector2(transform.position.x, transform.position.y + spriteRenderer.size.y / 2));
 
       GameObject parentObject = col.transform.parent != null ? col.transform.parent.gameObject : null;
       if (parentObject != null && parentObject.name.Contains("Throwable")) {
