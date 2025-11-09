@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour {
 
   // Properties
     [NonSerialized] public bool isFacingLeft = false;
+    [NonSerialized] public string forceDirection = "";
     [NonSerialized] public bool needsCoolDown = false;
     [NonSerialized] public bool diesFlying = false;
     [NonSerialized] public bool isFlyingEnemy = false;
@@ -202,7 +203,7 @@ public class Enemy : MonoBehaviour {
     extra = transform.Find("Extra").gameObject;
     originator = transform.Find("Originator").gameObject;
 
-    isFacingLeft = Hero.instance.transform.position.x < transform.position.x;
+    isFacingLeft = forceDirection != "" ? forceDirection == "left" : Hero.instance.transform.position.x < transform.position.x;
 
     if (isFacingLeft) {
       Flip();

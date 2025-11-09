@@ -10,8 +10,13 @@ public class EnemySpawner : MonoBehaviour {
   [SerializeField] public List<string> dropConditions = new List<string>();
   [SerializeField] public string specificDrop = "";
   [SerializeField] public bool isMiniBoss = false;
+  [SerializeField] string forceDirection = "";
 
-  void Start() {}
+  void Start() {
+    if (forceDirection != "" && !Helpers.IsValueInArray(Constants.possibleEnemyDirections, forceDirection)) {
+      throw new Exception($"Enemy Spawner ({gameObject.name}) at room \"{transform.parent.gameObject.name}\" has no valid forceDirection property: {forceDirection}");
+    }
+  }
   void Update() {}
   public Tuple<string, EnemyType> PopulateValuesPriorToSpawn() {
     string spawnKey = "";
@@ -56,7 +61,7 @@ public class EnemySpawner : MonoBehaviour {
       ambushFloorScript.specificDrop = specificDrop;
       ambushFloorScript.isMiniBoss = false; // ambushers should NEVER be minibosses
     } else {
-      InGame.instance.SpawnEnemy(transform.position, spawnKey, spawnType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform);
+      InGame.instance.SpawnEnemy(transform.position, spawnKey, spawnType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform, forceDirection);
     }
   }
 

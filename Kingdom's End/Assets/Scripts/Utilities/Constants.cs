@@ -87,14 +87,11 @@ public class Constants {
   public static string[] explodingThrowables = {"fairy-blast", "frostbird-orb", "neret-orb", "phoenix-orb", "pixie-fireball", "skelewing-orb", "thunderbird-orb"};
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
-
   public static string[] canBreakTags = {"DamageExplosion", "Explosion", "Weapon"};
-
   public static string[] lowReachingEnemies = {"fairy", "pixie"};
-
   public static string[] partialLightRelics = {"dawn-gem", "royal-lamp"};
-
   public static string[] zonedAreas = {"glaciers"};
+  public static string[] possibleEnemyDirections = {"left", "right"};
 
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};
