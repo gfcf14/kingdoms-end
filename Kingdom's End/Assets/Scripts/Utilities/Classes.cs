@@ -1,4 +1,5 @@
 using System;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Classes {}
@@ -163,6 +164,18 @@ public class ChatLine {
   public string emotion;
   public string line;
   public Outcome outcome;
+
+  public ChatLine(string character, string emotion, string line, Outcome outcome) {
+    this.character = character;
+    this.emotion = emotion;
+    this.outcome = outcome;
+
+    if (line.Length > Constants.maxChatLineLength) {
+      throw new Exception($"A chat line for the character {character} (emotion: {emotion}) exceeds {Constants.maxChatLineLength} characters. Line: '{line}'");
+    } else {
+      this.line = line;
+    }
+  }
 }
 
 public class MessageLine {
