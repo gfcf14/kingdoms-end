@@ -7,6 +7,7 @@ public class ChatCanvas : MonoBehaviour {
   [SerializeField] GameObject characterObject;
   [SerializeField] GameObject textObject;
   [SerializeField] GameObject continuePrompt;
+  [SerializeField] GameObject decisionPrompt;
   [SerializeField] public ChatLine[] chatLines;
   [SerializeField] public MessageLine[] messageLines;
   [SerializeField] public string messageOriginator;
@@ -224,5 +225,9 @@ public class ChatCanvas : MonoBehaviour {
     messageOriginator = "";
     messageLines = null;
     Hero.instance.CloseChat();
+  }
+
+  public void SetDecision(string decision) {
+    Debug.Log($"Decided {decision}");
   }
 }
