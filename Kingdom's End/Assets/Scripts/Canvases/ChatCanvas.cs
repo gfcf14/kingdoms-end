@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // NOTE: Keep in mind the functions here correspond from a non-player point of view. As such GiveItem = give item to player, and TakeItem = take item from player
@@ -8,6 +9,7 @@ public class ChatCanvas : MonoBehaviour {
   [SerializeField] GameObject textObject;
   [SerializeField] GameObject continuePrompt;
   [SerializeField] GameObject decisionPrompt;
+  [SerializeField] GameObject decisionFirstSelected;
   [SerializeField] public ChatLine[] chatLines;
   [SerializeField] public MessageLine[] messageLines;
   [SerializeField] public string messageOriginator;
@@ -18,6 +20,8 @@ public class ChatCanvas : MonoBehaviour {
   private int lineIndex;
   private Text characterComponent;
   private Text textComponent;
+  [SerializeField] public static EventSystem chatEventSystem;
+  private bool hasDecision = false;
 
   void Read() {
     RunOutcome(messageLines[lineIndex].outcome);
@@ -31,6 +35,7 @@ public class ChatCanvas : MonoBehaviour {
   }
 
   void Start() {
+    chatEventSystem = EventSystem.current;
     characterComponent = characterObject.GetComponent<Text>();
     textComponent = textObject.GetComponent<Text>();
 
@@ -56,8 +61,18 @@ public class ChatCanvas : MonoBehaviour {
           textComponent.text = messageLines[lineIndex].line;
         }
 
-        continuePrompt.SetActive(true);
+        DecidePromptDisplay();
       }
+    }
+  }
+
+  void DecidePromptDisplay() {
+    // if the current line has a decision field, it should be shown instead
+    if (hasDecision) {
+      decisionPrompt.SetActive(true);
+      chatEventSystem.SetSelectedGameObject(decisionFirstSelected);
+    } else {
+      continuePrompt.SetActive(true);
     }
   }
 
@@ -98,10 +113,13 @@ public class ChatCanvas : MonoBehaviour {
 
   // adds a line character by character based on the textSpeed
   IEnumerator ShowChatLine() {
+    // prior to showing the chat line we check if there is a decision, so when it's done showing it shows that instead of the continue prompt
+    hasDecision = chatLines[lineIndex].decision != null;
+
     foreach (char c in chatLines[lineIndex].line.ToCharArray()) {
       textComponent.text += c;
       if(textComponent.text.Length == chatLines[lineIndex].line.Length) {
-        continuePrompt.SetActive(true);
+        DecidePromptDisplay();
       } else {
         continuePrompt.SetActive(false);
       }
@@ -201,6 +219,8 @@ public class ChatCanvas : MonoBehaviour {
   }
 
   void NextChatLine() {
+    hasDecision = false;
+
     if (lineIndex < chatLines.Length - 1) {
       lineIndex++;
       Chat();

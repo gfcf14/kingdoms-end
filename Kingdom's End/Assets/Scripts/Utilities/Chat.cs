@@ -28,6 +28,50 @@ public class Chat {
         },
         // nextNode = "emotion-dialogue",
         // nextNode = "pay-dialogue",
+        // nextNode = "fruit-salad-dialogue",
+        nextNode = "friendship",
+        fallbackNode = ""
+      }},
+      {"friendship", new ChatNode() {
+        nodeCondition = blankCondition,
+        nodeLines = new ChatLine[] {
+          new ChatLine(
+            character: "peasant-girl",
+            emotion: "default",
+            line: "Do you want to be my friend?",
+            decision: new Decision() {
+              yes = "friendship-yes",
+              no = "friendship-no"
+            },
+            outcome: blankOutcome
+          )
+        },
+        nextNode = "friendship",
+        fallbackNode = ""
+      }},
+      {"friendship-yes", new ChatNode() {
+        nodeCondition = blankCondition,
+        nodeLines = new ChatLine[] {
+          new ChatLine(
+            character: "peasant-girl",
+            emotion: "happy",
+            line: "Yayyy!!!!",
+            outcome: blankOutcome
+          )
+        },
+        nextNode = "fruit-salad-dialogue",
+        fallbackNode = ""
+      }},
+      {"friendship-no", new ChatNode() {
+        nodeCondition = blankCondition,
+        nodeLines = new ChatLine[] {
+          new ChatLine(
+            character: "peasant-girl",
+            emotion: "jealous",
+            line: "Well, I never...!!",
+            outcome: blankOutcome
+          )
+        },
         nextNode = "fruit-salad-dialogue",
         fallbackNode = ""
       }},

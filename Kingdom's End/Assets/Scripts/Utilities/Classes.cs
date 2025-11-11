@@ -164,11 +164,13 @@ public class ChatLine {
   public string emotion;
   public string line;
   public Outcome outcome;
+  public Decision decision;
 
-  public ChatLine(string character, string emotion, string line, Outcome outcome) {
+  public ChatLine(string character, string emotion, string line, Outcome outcome, Decision decision = null) {
     this.character = character;
     this.emotion = emotion;
     this.outcome = outcome;
+    this.decision = decision;
 
     if (line.Length > Constants.maxChatLineLength) {
       throw new Exception($"A chat line for the character {character} (emotion: {emotion}) exceeds {Constants.maxChatLineLength} characters. Line: '{line}'");
@@ -176,6 +178,11 @@ public class ChatLine {
       this.line = line;
     }
   }
+}
+
+public class Decision {
+  public string yes;
+  public string no;
 }
 
 public class MessageLine {
