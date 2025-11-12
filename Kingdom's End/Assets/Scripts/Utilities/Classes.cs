@@ -183,6 +183,14 @@ public class ChatLine {
 public class Decision {
   public string yes;
   public string no;
+
+  public string Get(string key) {
+    return key switch {
+      "yes" => yes,
+      "no" => no,
+      _ => null,
+    };
+  }
 }
 
 public class MessageLine {

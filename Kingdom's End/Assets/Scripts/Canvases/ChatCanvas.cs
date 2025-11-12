@@ -47,8 +47,12 @@ public class ChatCanvas : MonoBehaviour {
   }
   void Update() {
     if (UserInput.IsAction(ControlActions.Action, KeyState.Up)) {
+      if (decisionPrompt.activeSelf) {
+        // selects either YES or NO
+        ExecuteEvents.Execute(chatEventSystem.currentSelectedGameObject, new BaseEventData(chatEventSystem), ExecuteEvents.submitHandler);
+
       // if the entire text is on screen, get the next line
-      if (chatLines != null && textComponent.text == chatLines[lineIndex].line) {
+      } else if (chatLines != null && textComponent.text == chatLines[lineIndex].line) {
         NextChatLine();
       } else if (messageLines != null && textComponent.text == messageLines[lineIndex].line) {
         NextMessageLine();
@@ -248,6 +252,12 @@ public class ChatCanvas : MonoBehaviour {
   }
 
   public void SetDecision(string decision) {
-    Debug.Log($"Decided {decision}");
+    decisionPrompt.SetActive(false);
+    string decisionNode = chatLines[lineIndex].decision.Get(decision);
+
+    // TODO: include support for actions (e.g. open shop)
+
+    Hero.instance.UpdateChatNode(startingNPC, decisionNode);
+    Hero.instance.OpenChat();
   }
 }
