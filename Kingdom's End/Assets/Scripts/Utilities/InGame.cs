@@ -434,4 +434,13 @@ public class InGame : MonoBehaviour {
       lossRect.anchoredPosition = new Vector2(lossRect.anchoredPosition.x + rectDisp, lossRect.anchoredPosition.y);
     }
   }
+
+  public void CloseChat() {
+    chatCanvas.GetComponent<ChatCanvas>().HideDecisionPrompt();
+    chatCanvas.SetActive(false);
+  }
+
+  public bool IsMakingDecision() {
+    return chatCanvas.GetComponent<ChatCanvas>().IsOnDecision();
+  }
 }

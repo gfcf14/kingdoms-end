@@ -1883,7 +1883,6 @@ public class Hero : MonoBehaviour {
   }
 
   public void GetRelic() {
-
     InGame.instance.ToggleSoundtrack(isPaused: false);
     InGame.instance.PlaySound(Helpers.GetOrException(Sounds.notificationSounds, "levelup"), transform.position);
     InGame.instance.fanfareCanvas.SetActive(true);
@@ -2022,7 +2021,7 @@ public class Hero : MonoBehaviour {
 
   // TODO: other properties, such as changing the emotion sprites, should be done inside below
   public void CloseChat() {
-    InGame.instance.chatCanvas.SetActive(false);
+    InGame.instance.CloseChat();
     isOnChat = false;
     proximityCheckScript.DecideActionShow();
   }

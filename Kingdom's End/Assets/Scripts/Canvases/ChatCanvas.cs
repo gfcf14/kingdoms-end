@@ -260,4 +260,12 @@ public class ChatCanvas : MonoBehaviour {
     Hero.instance.UpdateChatNode(startingNPC, decisionNode);
     Hero.instance.OpenChat();
   }
+
+  public void HideDecisionPrompt() {
+    decisionPrompt.SetActive(false);
+  }
+
+  public bool IsOnDecision() {
+    return decisionPrompt.activeSelf;
+  }
 }

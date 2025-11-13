@@ -10,7 +10,8 @@ public class UserInput : MonoBehaviour {
   private static readonly Dictionary<(string, string), ButtonControl> _buttonCache = new();
 
   void Update() {
-    if (!Hero.instance.isAutonomous) {
+    // disables pausing/mapping when hero is autonomus or involved in a chat decision
+    if (!Hero.instance.isAutonomous && !InGame.instance.IsMakingDecision()) {
       // Customize gamepad/keyboard buttons
       if (Hero.instance.isPaused && Pause.currentlyMapping != "") {
         var input = DetectInputForRemapping();
