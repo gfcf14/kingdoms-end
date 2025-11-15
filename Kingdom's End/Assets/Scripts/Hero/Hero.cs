@@ -2009,8 +2009,10 @@ public class Hero : MonoBehaviour {
     currentNPC.DecideFlip(transform.position);
     ChatCanvas chatCanvasScript = InGame.instance.chatCanvas.GetComponent<ChatCanvas>();
 
-    chatCanvasScript.chatLines = GetChatLines(npcKey, Helpers.GetOrException(npcNodes, npcKey));
+    string currentNode = Helpers.GetOrException(npcNodes, npcKey);
+    chatCanvasScript.chatLines = GetChatLines(npcKey, currentNode);
     chatCanvasScript.startingNPC = npcKey;
+    chatCanvasScript.currentNode = currentNode;
     chatCanvasScript.nextNode = Helpers.GetOrException(Helpers.GetOrException(Chat.chatNodes, npcKey), Helpers.GetOrException(npcNodes, npcKey)).nextNode;
 
     ModifyCanvasesOnChatOpen();

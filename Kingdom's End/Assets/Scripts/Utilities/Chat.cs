@@ -30,7 +30,8 @@ public class Chat {
         // nextNode = "pay-dialogue",
         // nextNode = "fruit-salad-dialogue",
         nextNode = "friendship",
-        fallbackNode = ""
+        fallbackNode = "",
+        continueOnLeave = true,
       }},
       {"friendship", new ChatNode() {
         nodeCondition = blankCondition,
@@ -60,7 +61,8 @@ public class Chat {
           )
         },
         nextNode = "fruit-salad-dialogue",
-        fallbackNode = ""
+        fallbackNode = "",
+        continueOnLeave = true,
       }},
       {"friendship-no", new ChatNode() {
         nodeCondition = blankCondition,
@@ -73,7 +75,8 @@ public class Chat {
           )
         },
         nextNode = "fruit-salad-dialogue",
-        fallbackNode = ""
+        fallbackNode = "",
+        continueOnLeave = true,
       }},
       {"fruit-salad-dialogue", new ChatNode() {
         nodeCondition = new Condition() {
@@ -92,7 +95,8 @@ public class Chat {
           )
         },
         nextNode = "pay-dialogue",
-        fallbackNode = "no-fruit-salad-dialogue"
+        fallbackNode = "no-fruit-salad-dialogue",
+        continueOnLeave = true,
       }},
       {"pay-dialogue", new ChatNode() {
         nodeCondition = new Condition() {
@@ -111,7 +115,8 @@ public class Chat {
           )
         },
         nextNode = "emotion-dialogue",
-        fallbackNode = "no-pay-dialogue"
+        fallbackNode = "no-pay-dialogue",
+        continueOnLeave = true,
       }},
       {"no-pay-dialogue", new ChatNode() {
         nodeCondition = blankCondition,

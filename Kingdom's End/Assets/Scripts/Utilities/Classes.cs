@@ -208,6 +208,7 @@ public class ChatNode {
   public ChatLine[] nodeLines;
   public string nextNode;
   public string fallbackNode;
+  public bool continueOnLeave;
 }
 
 public class FragmentOutcome {

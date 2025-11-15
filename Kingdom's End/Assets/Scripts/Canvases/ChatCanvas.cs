@@ -14,6 +14,7 @@ public class ChatCanvas : MonoBehaviour {
   [SerializeField] public MessageLine[] messageLines;
   [SerializeField] public string messageOriginator;
   [SerializeField] public string startingNPC;
+  [SerializeField] public string currentNode;
   [SerializeField] public string nextNode;
   [SerializeField] float textSpeed;
 
@@ -27,7 +28,7 @@ public class ChatCanvas : MonoBehaviour {
     RunOutcome(messageLines[lineIndex].outcome);
     ClearText();
   }
-  void Chat() {
+  void ShowChat() {
     SetCharacter(chatLines[lineIndex].character);
     SetEmotion(chatLines[lineIndex].character, chatLines[lineIndex].emotion);
     RunOutcome(chatLines[lineIndex].outcome);
@@ -95,7 +96,7 @@ public class ChatCanvas : MonoBehaviour {
   public void StartChat() {
     if (characterComponent != null) {
       lineIndex = 0;
-      Chat();
+      ShowChat();
       if (textComponent != null) {
         StartCoroutine(ShowChatLine());
       }
@@ -227,7 +228,7 @@ public class ChatCanvas : MonoBehaviour {
 
     if (lineIndex < chatLines.Length - 1) {
       lineIndex++;
-      Chat();
+      ShowChat();
       StartCoroutine(ShowChatLine());
     } else { // if there are no more lines, hide the chat window
       FinishChat(playerLeft: false);
@@ -238,6 +239,13 @@ public class ChatCanvas : MonoBehaviour {
   public void FinishChat(bool playerLeft = false) {
     if (!playerLeft) {
       Hero.instance.UpdateChatNode(startingNPC, nextNode);
+    } else {
+      // TODO: consider if it's a good idea to have a variable chat to set when the player leaves without finishing the chat. Then maybe the NPC, when talked to again, can reply like "You know, it's rude to leave when someone talks to you."
+      ChatNode currentChatNode = Helpers.GetOrException(Helpers.GetOrException(Chat.chatNodes, startingNPC), currentNode);
+
+      if (currentChatNode.continueOnLeave) {
+        Hero.instance.UpdateChatNode(startingNPC, nextNode);
+      }
     }
 
     SetEmotion(startingNPC, "default");
