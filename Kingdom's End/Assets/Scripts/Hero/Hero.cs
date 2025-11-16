@@ -316,8 +316,6 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("skeleton-king-giant-bone", 16));
       items.Add(new Item("elixir", 99));
       items.Add(new Item("theriac", 1));
-      items.Add(new Item("strawberry", 1));
-      items.Add(new Item("pineapple", 1));
       items.Add(new Item("skull", 1));
       items.Add(new Item("textiles", 1));
       items.Add(new Item("amethyst", 1));
@@ -347,7 +345,6 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("banana", 2));
       items.Add(new Item("pineapple", 1));
       items.Add(new Item("mango", 2));
-      items.Add(new Item("apple", 3));
 
     #else
       items.Add(new Item("arrow-fire", 25));
