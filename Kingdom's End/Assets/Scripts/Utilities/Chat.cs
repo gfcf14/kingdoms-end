@@ -42,7 +42,8 @@ public class Chat {
             line: "Do you want to be my friend?",
             decision: new Decision() {
               yes = "friendship-yes",
-              no = "friendship-no"
+              // no = "friendship-no"
+              no = "@shop"
             },
             outcome: blankOutcome
           )

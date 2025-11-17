@@ -263,10 +263,15 @@ public class ChatCanvas : MonoBehaviour {
     decisionPrompt.SetActive(false);
     string decisionNode = chatLines[lineIndex].decision.Get(decision);
 
-    // TODO: include support for actions (e.g. open shop)
-
-    Hero.instance.UpdateChatNode(startingNPC, decisionNode);
-    Hero.instance.OpenChat();
+    if (decisionNode.StartsWith("@")) {
+      Debug.Log($"Execute action instead of calling new chat node. Action: {decisionNode.Substring(1)}");
+      // regardless of action, the chat canvas should either close, or make sure to call the alternate decision
+      // Example: if the current chat line is "Do you want to see my items?" YES would open the shop, NO would say something like "Come back anytime if you wish to buy or sell something!",
+      // but if the shop was opened, upon closing it the same text should show.
+    } else {
+      Hero.instance.UpdateChatNode(startingNPC, decisionNode);
+      Hero.instance.OpenChat();
+    }
   }
 
   public void HideDecisionPrompt() {
