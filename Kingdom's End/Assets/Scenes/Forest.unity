@@ -177162,7 +177162,7 @@ MonoBehaviour:
   direction: 1
   nearbyInteractableObject: {fileID: 0}
   bombCheck: {fileID: 447071657}
-  NPCnearby: 
+  NPCnearby: {fileID: 0}
   NPCnearbyAction: 
   collisionDirection: 
   blockedDirection: 
@@ -322286,7 +322286,7 @@ GameObject:
   - component: {fileID: 1774359708}
   - component: {fileID: 1774359707}
   m_Layer: 11
-  m_Name: PeasantGirl
+  m_Name: NPC - Peasant Girl
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322304,6 +322304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938818b3da948f5449f1f345f300352b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  key: peasant-girl
   isFacingLeft: 1
   actionAvailable: chat
 --- !u!61 &1774359708

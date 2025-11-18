@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class NPC : MonoBehaviour {
+  [SerializeField] public string key = "";
   [SerializeField] public bool isFacingLeft = false;
   [SerializeField] public string actionAvailable = "";
   void Start() {

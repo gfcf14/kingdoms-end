@@ -50,7 +50,7 @@ public class ProximityCheck : MonoBehaviour {
     string colTag = col.gameObject.tag;
 
     if (colTag == "NPC") {
-      Hero.instance.NPCnearby = col.gameObject.name;
+      Hero.instance.NPCnearby = col.gameObject;
       SetNPCAction(col.gameObject.GetComponent<NPC>());
     } else if (colTag == "Portal") {
       if (!Hero.instance.isFightingBoss) {
@@ -79,7 +79,7 @@ public class ProximityCheck : MonoBehaviour {
 
     if (colTag == "NPC") {
       ClearActionOnExit();
-      Hero.instance.NPCnearby = "";
+      Hero.instance.NPCnearby = null;
       Hero.instance.NPCnearbyAction = "";
     } else if (colTag == "Portal") {
       // when entering a building, action should not hide immediately as it should change to
@@ -119,7 +119,7 @@ public class ProximityCheck : MonoBehaviour {
     GameObject overlappedObject = OverlapsWith("NPC");
 
     if (overlappedObject != null) {
-      Hero.instance.NPCnearby = overlappedObject.name;
+      Hero.instance.NPCnearby = overlappedObject;
       SetNPCAction(overlappedObject.GetComponent<NPC>());
     }
   }

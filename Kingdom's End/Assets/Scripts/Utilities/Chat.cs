@@ -12,11 +12,44 @@ public class Chat {
   };
 
   public static Dictionary<string, Dictionary<string, ChatNode>> chatNodes = new() {
+    {"meadows-peddler", new() {
+      {"", new ChatNode() {
+        nodeCondition = blankCondition,
+        nodeLines = new ChatLine[] {
+          new ChatLine(
+            character: "meadows-peddler",
+            emotion: "default",
+            line: "Hi! Interested in shopping?",
+            decision: new Decision() {
+              yes = "@shop",
+              no = "til-next-time"
+            },
+            outcome: blankOutcome
+          )
+        },
+        nextNode = "friendship",
+        fallbackNode = ""
+      }},
+      {"til-next-time", new ChatNode() {
+        nodeCondition = blankCondition,
+        nodeLines = new ChatLine[] {
+          new ChatLine(
+            character: "meadows-peddler",
+            emotion: "default",
+            line: "Come back anytime if you wish to buy or sell me something!",
+            outcome: blankOutcome
+          )
+        },
+        nextNode = "",
+        fallbackNode = ""
+      }},
+    }},
     {"peasant-girl", new() {
       {"", new ChatNode() {
         nodeCondition = blankCondition,
         nodeLines = new ChatLine[] {
           new ChatLine(
+            // TODO: decide how and if this field is even necessary (considering the key already defines the character)
             character: "peasant-girl",
             emotion: "default",
             line: "Hi! Nice to meet ya! I'm a peasant girl! Here! Have a Pineapple and a Watermelon!",
@@ -42,8 +75,7 @@ public class Chat {
             line: "Do you want to be my friend?",
             decision: new Decision() {
               yes = "friendship-yes",
-              // no = "friendship-no"
-              no = "@shop"
+              no = "friendship-no"
             },
             outcome: blankOutcome
           )

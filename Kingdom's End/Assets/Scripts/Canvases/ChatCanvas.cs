@@ -13,11 +13,12 @@ public class ChatCanvas : MonoBehaviour {
   [SerializeField] public ChatLine[] chatLines;
   [SerializeField] public MessageLine[] messageLines;
   [SerializeField] public string messageOriginator;
-  [SerializeField] public string startingNPC;
+  [SerializeField] public GameObject startingNPC;
   [SerializeField] public string currentNode;
   [SerializeField] public string nextNode;
   [SerializeField] float textSpeed;
 
+  private string NPCChatKey;
   private int lineIndex;
   private Text characterComponent;
   private Text textComponent;
@@ -94,6 +95,8 @@ public class ChatCanvas : MonoBehaviour {
   }
 
   public void StartChat() {
+    NPCChatKey = startingNPC.GetComponent<NPC>().key;
+
     if (characterComponent != null) {
       lineIndex = 0;
       ShowChat();
@@ -145,7 +148,7 @@ public class ChatCanvas : MonoBehaviour {
   }
 
   void SetEmotion(string character, string emotion) {
-    GameObject.Find(Helpers.KebabToObject(character)).GetComponent<SpriteRenderer>().sprite = Helpers.GetOrException(Helpers.GetOrException(Sprites.emotions, character), emotion);
+    startingNPC.GetComponent<SpriteRenderer>().sprite = Helpers.GetOrException(Helpers.GetOrException(Sprites.emotions, character), emotion);
   }
 
   // Gives item(s) to the player
@@ -238,17 +241,17 @@ public class ChatCanvas : MonoBehaviour {
   // Finishes the chat, but only sets the next node if the player left, otherwise a line could potentially not be read by player
   public void FinishChat(bool playerLeft = false) {
     if (!playerLeft) {
-      Hero.instance.UpdateChatNode(startingNPC, nextNode);
+      Hero.instance.UpdateChatNode(NPCChatKey, nextNode);
     } else {
       // TODO: consider if it's a good idea to have a variable chat to set when the player leaves without finishing the chat. Then maybe the NPC, when talked to again, can reply like "You know, it's rude to leave when someone talks to you."
-      ChatNode currentChatNode = Helpers.GetOrException(Helpers.GetOrException(Chat.chatNodes, startingNPC), currentNode);
+      ChatNode currentChatNode = Helpers.GetOrException(Helpers.GetOrException(Chat.chatNodes, NPCChatKey), currentNode);
 
       if (currentChatNode.continueOnLeave) {
-        Hero.instance.UpdateChatNode(startingNPC, nextNode);
+        Hero.instance.UpdateChatNode(NPCChatKey, nextNode);
       }
     }
 
-    SetEmotion(startingNPC, "default");
+    SetEmotion(NPCChatKey, "default");
     chatLines = null;
     Hero.instance.CloseChat();
   }
@@ -269,7 +272,7 @@ public class ChatCanvas : MonoBehaviour {
       // Example: if the current chat line is "Do you want to see my items?" YES would open the shop, NO would say something like "Come back anytime if you wish to buy or sell something!",
       // but if the shop was opened, upon closing it the same text should show.
     } else {
-      Hero.instance.UpdateChatNode(startingNPC, decisionNode);
+      Hero.instance.UpdateChatNode(NPCChatKey, decisionNode);
       Hero.instance.OpenChat();
     }
   }

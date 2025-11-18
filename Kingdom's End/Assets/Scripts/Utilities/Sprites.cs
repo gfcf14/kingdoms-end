@@ -55,6 +55,7 @@ public class Sprites {
   public static Sprite[] pishtacoSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/pishtaco");
   public static Sprite[] bunyipSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/bunyip");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
+  public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
   public static Sprite[] bombSprites = Resources.LoadAll<Sprite>("Spritesheets/bomb");
 
@@ -587,6 +588,20 @@ public class Sprites {
   };
 
   public static Dictionary<string, Dictionary<string, Sprite>> emotions = new() {
+    // TODO: modify this guy if he is ever given a bigger role
+    {"meadows-peddler", new() {
+      {"affective", meadowsPeddlerSprites[0]},
+      {"afraid", meadowsPeddlerSprites[0]},
+      {"angry", meadowsPeddlerSprites[0]},
+      {"ashamed", meadowsPeddlerSprites[0]},
+      {"confused", meadowsPeddlerSprites[0]},
+      {"default", meadowsPeddlerSprites[0]},
+      {"happy", meadowsPeddlerSprites[0]},
+      {"jealous", meadowsPeddlerSprites[0]},
+      {"lonely", meadowsPeddlerSprites[0]},
+      {"sad", meadowsPeddlerSprites[0]},
+      {"surprised", meadowsPeddlerSprites[0]}
+    }},
     {"peasant-girl", new() {
       {"affective", peasantGirlSprites[15]},
       {"afraid", peasantGirlSprites[7]},

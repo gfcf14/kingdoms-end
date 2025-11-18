@@ -124,7 +124,7 @@ public class Hero : MonoBehaviour {
 
   [SerializeField] public GameObject bombCheck;
   BombCheck bombCheckScript;
-  public string NPCnearby;
+  public GameObject NPCnearby;
   public string NPCnearbyAction;
   [SerializeField] public string collisionDirection = "";
   [SerializeField] public string blockedDirection = "";
@@ -237,6 +237,7 @@ public class Hero : MonoBehaviour {
   [NonSerialized] public int bossTransitionDirection = 0;
 
   [NonSerialized] private Dictionary<string, string> npcNodes = new() {
+    {"meadows-peddler", ""},
     {"peasant-girl", ""}
   };
 
@@ -2001,14 +2002,14 @@ public class Hero : MonoBehaviour {
 
   // TODO: player and/or NPC should change their current sprite to the appropriate emotion sprite
   public void OpenChat() {
-    string npcKey = Helpers.PascalToKebab(NPCnearby);
-    NPC currentNPC = GameObject.Find(NPCnearby).GetComponent<NPC>();
+    NPC currentNPC = NPCnearby.GetComponent<NPC>();
+    string npcKey = currentNPC.key;
     currentNPC.DecideFlip(transform.position);
     ChatCanvas chatCanvasScript = InGame.instance.chatCanvas.GetComponent<ChatCanvas>();
 
     string currentNode = Helpers.GetOrException(npcNodes, npcKey);
     chatCanvasScript.chatLines = GetChatLines(npcKey, currentNode);
-    chatCanvasScript.startingNPC = npcKey;
+    chatCanvasScript.startingNPC = NPCnearby;
     chatCanvasScript.currentNode = currentNode;
     chatCanvasScript.nextNode = Helpers.GetOrException(Helpers.GetOrException(Chat.chatNodes, npcKey), Helpers.GetOrException(npcNodes, npcKey)).nextNode;
 
