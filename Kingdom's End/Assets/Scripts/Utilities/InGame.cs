@@ -22,6 +22,7 @@ public class InGame : MonoBehaviour {
   public GameObject fanfareCanvas;
   public GameObject infoCanvas;
   public GameObject pauseCanvas;
+  public GameObject shopCanvas;
   public GameObject hpBarContainer;
   public GlobalGradients globalGradients;
 
@@ -442,5 +443,10 @@ public class InGame : MonoBehaviour {
 
   public bool IsMakingDecision() {
     return chatCanvas.GetComponent<ChatCanvas>().IsOnDecision();
+  }
+
+  public void ShowShop() {
+    CloseChat();
+    shopCanvas.SetActive(true);
   }
 }
