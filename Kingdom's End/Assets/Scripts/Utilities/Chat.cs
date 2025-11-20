@@ -27,7 +27,7 @@ public class Chat {
             outcome: blankOutcome
           )
         },
-        nextNode = "friendship",
+        nextNode = "",
         fallbackNode = ""
       }},
       {"til-next-time", new ChatNode() {

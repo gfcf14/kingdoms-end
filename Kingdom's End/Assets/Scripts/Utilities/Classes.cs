@@ -191,6 +191,14 @@ public class Decision {
       _ => null,
     };
   }
+
+  public string GetOther(string key) {
+    return key switch {
+      "yes" => no,
+      "no" => yes,
+      _ => null,
+    };
+  }
 }
 
 public class MessageLine {

@@ -2030,6 +2030,11 @@ public class Hero : MonoBehaviour {
     npcNodes[npcKey] = newNodeKey;
   }
 
+  public void ShowClosingChat(string vendor, string closingMessage) {
+    UpdateChatNode(vendor, closingMessage);
+    OpenChat();
+  }
+
   public void FinishActionFromWallBump() {
     isJumping = false;
     isDropKicking = false;

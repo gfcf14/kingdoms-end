@@ -26,6 +26,8 @@ public class InGame : MonoBehaviour {
   public GameObject hpBarContainer;
   public GlobalGradients globalGradients;
 
+  private Shop shopScript;
+
   public static InGame instance;
   private void Awake() {
     if (instance == null) {
@@ -41,12 +43,10 @@ public class InGame : MonoBehaviour {
   }
 
   public void SetComponents() {
-    // groundTiles = GameObject.Find("Floors").GetComponent<Tilemap>();
-    // detailTiles = GameObject.Find("Detail").GetComponent<Tilemap>();
-    // mainOverlay = GameObject.Find("MainOverlay");
     soundtrack = GetComponent<AudioSource>();
     soundtrack.volume = Settings.maxSoundtrackVolume;
     soundtrack.loop = true;
+    shopScript = shopCanvas.GetComponent<Shop>();
 
     GameObject.Find("MainOverlay").GetComponent<MainOverlay>().AssignTilemaps();
   }
@@ -445,8 +445,20 @@ public class InGame : MonoBehaviour {
     return chatCanvas.GetComponent<ChatCanvas>().IsOnDecision();
   }
 
-  public void ShowShop() {
+  public void ShowShop(string vendor, string closingChat) {
     CloseChat();
+    shopScript.vendor = vendor;
+    shopScript.closingChat = closingChat;
     shopCanvas.SetActive(true);
+    Hero.instance.SetPauseCase("shopping");
+  }
+
+  public void CloseShop() {
+    shopCanvas.SetActive(false);
+    string vendor = shopScript.vendor;
+    string closingChat = shopScript.closingChat;
+
+    Hero.instance.ClearPauseCase();
+    Hero.instance.ShowClosingChat(vendor, closingChat);
   }
 }

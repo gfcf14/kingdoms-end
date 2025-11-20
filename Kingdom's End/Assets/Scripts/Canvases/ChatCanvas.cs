@@ -271,9 +271,8 @@ public class ChatCanvas : MonoBehaviour {
 
       switch (action) {
         case "shop":
-          InGame.instance.ShowShop();
-          Hero.instance.SetPauseCase("shopping");
-          // TODO: set the Shop Canvas script info here! Particularly the node to open upon finish
+          string otherDecisionNode = chatLines[lineIndex].decision.GetOther(decision);
+          InGame.instance.ShowShop(NPCChatKey, otherDecisionNode);
         break;
         default:
           Debug.Log($"Action {action} not implemented.");

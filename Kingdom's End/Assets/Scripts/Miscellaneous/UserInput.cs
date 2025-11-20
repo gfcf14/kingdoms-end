@@ -52,6 +52,15 @@ public class UserInput : MonoBehaviour {
           }
         }
       }
+
+      // Perform back on shop UI
+      if (IsBackKeyDown() && Hero.instance.pauseCase == "shopping") {
+        if (Shop.canvasStatus == "action") {
+          InGame.instance.CloseShop();
+        } else {
+          InGame.instance.shopCanvas.GetComponent<Shop>().PerformBack();
+        }
+      }
     }
   }
 
