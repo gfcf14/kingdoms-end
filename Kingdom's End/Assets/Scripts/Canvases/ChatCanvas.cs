@@ -264,6 +264,7 @@ public class ChatCanvas : MonoBehaviour {
 
   public void SetDecision(string decision) {
     decisionPrompt.SetActive(false);
+    chatEventSystem.SetSelectedGameObject(decisionFirstSelected);
     string decisionNode = chatLines[lineIndex].decision.Get(decision);
 
     if (decisionNode.StartsWith("@")) {
