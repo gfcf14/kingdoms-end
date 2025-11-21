@@ -55,7 +55,7 @@ public class UserInput : MonoBehaviour {
 
       // Perform back on shop UI
       if (IsBackKeyDown() && Hero.instance.pauseCase == "shopping") {
-        if (Shop.canvasStatus == "action") {
+        if (Shop.canvasStatus == "action" && InGame.instance.IsShopReady()) {
           InGame.instance.CloseShop();
         } else {
           InGame.instance.shopCanvas.GetComponent<Shop>().PerformBack();

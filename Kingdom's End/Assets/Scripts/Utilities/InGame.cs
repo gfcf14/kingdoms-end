@@ -461,4 +461,8 @@ public class InGame : MonoBehaviour {
     Hero.instance.ClearPauseCase();
     Hero.instance.ShowClosingChat(vendor, closingChat);
   }
+
+  public bool IsShopReady() {
+    return shopScript.isReady;
+  }
 }
