@@ -864,4 +864,8 @@ public class Objects
     {"water-shallow", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
     {"wetland", new ZoneSpecs() {animSpeed = 0.8f, groundMaterial = "wetland", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
   };
+
+  public static Dictionary<string, string> vendorNames = new() {
+    {"meadows-peddler", "Meadows Peddler"}
+  };
 }

@@ -458,6 +458,7 @@ public class InGame : MonoBehaviour {
     string vendor = shopScript.vendor;
     string closingChat = shopScript.closingChat;
 
+    shopScript.HideContent();
     Hero.instance.ClearPauseCase();
     Hero.instance.ShowClosingChat(vendor, closingChat);
   }

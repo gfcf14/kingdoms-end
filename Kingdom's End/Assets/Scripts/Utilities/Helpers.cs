@@ -682,4 +682,8 @@ public class Helpers {
     float heightInUnits = textureRect.height / pixelsPerUnit;
     return new Vector2(widthInUnits, heightInUnits);
   }
+
+  public static string GetVendorByKey(string key) {
+    return GetOrException(Objects.vendorNames, key);
+  }
 }
