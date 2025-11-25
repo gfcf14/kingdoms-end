@@ -114,4 +114,9 @@ public class Colors
     {"unithr", new Color(125/255f, 64/255f, 1/255f)},
     {"verdun", new Color(0, 1, 0)}
   };
+
+  public static Dictionary<string, Color> shopButtonColors = new() {
+    {"highlighted", new Color(49/255f, 124/255f, 52/255f)},
+    {"normal", new Color(0, 0, 0, 0)},
+  };
 }
