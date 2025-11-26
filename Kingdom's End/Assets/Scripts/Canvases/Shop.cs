@@ -21,6 +21,14 @@ public class Shop : MonoBehaviour {
   [Header("Section - Categories")]
   [Space(10)]
   [SerializeField] GameObject sectionCategories;
+  [SerializeField] GameObject categoryWeapons;
+  [SerializeField] GameObject categoryThrowables;
+  [SerializeField] GameObject categoryNecklaces;
+  [SerializeField] GameObject categoryBraces;
+  [SerializeField] GameObject categoryRings;
+  [SerializeField] GameObject categoryFood;
+  [SerializeField] GameObject categoryPotions;
+  [SerializeField] GameObject categoryMiscellaneous;
 
   [Header("Section - Item List")]
   [Space(10)]
@@ -44,16 +52,21 @@ public class Shop : MonoBehaviour {
   [Header("Properties")]
   [SerializeField] public string vendor;
   [SerializeField] public string closingChat;
+  [SerializeField] private int categoryIndex = 0;
   [NonSerialized] public static string canvasStatus = "action";
   [NonSerialized] public bool isReady = false;
   [NonSerialized] bool hasGamepad = false;
   [NonSerialized] private int moneyValue = 0;
-  [NonSerialized] private int categoryIndex = 0;
   private AudioSource audioSource;
   private GameObject previouslyFocusedButton = null;
+  private List<GameObject> itemCategories = new();
+  private int totalCategories = 0;
+
   void Start() {
     audioSource = GetComponent<AudioSource>();
     eventSystem = EventSystem.current;
+    itemCategories = new List<GameObject>() { categoryWeapons, categoryThrowables, categoryNecklaces, categoryBraces, categoryRings, categoryFood, categoryPotions, categoryMiscellaneous };
+    totalCategories = itemCategories.Count;
   }
 
   void Update() {
@@ -97,12 +110,20 @@ public class Shop : MonoBehaviour {
     money.GetComponent<Text>().text = moneyValue.ToString();
   }
 
+  public void SelectCategory() {
+    itemCategories[categoryIndex].GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "highlighted");
+  }
+
+  public void ClearCategory() {
+    itemCategories[categoryIndex].GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "normal");
+  }
+
   public void ShowBodySections(string action) {
     // TODO: populate item lists here, based on action (buy or sell)
     // TODO: populate item UI container here, given the category index and select first item
     // TODO: show description info based on first item selected
     // TODO: show effects based on first item selected
-    // TODO: "select" category based on category index
+    SelectCategory();
 
     sectionCategories.SetActive(true);
     sectionItemList.SetActive(true);
@@ -116,7 +137,7 @@ public class Shop : MonoBehaviour {
     sectionItemList.SetActive(false);
     sectionCategories.SetActive(false);
 
-    // TODO: clear category "selection"
+    ClearCategory();
     // TODO: clear effects
     // TODO: clear description
     // TODO: clear item UI container, set category index to 0
