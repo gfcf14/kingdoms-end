@@ -466,4 +466,16 @@ public class InGame : MonoBehaviour {
   public bool IsShopReady() {
     return shopScript.isReady;
   }
+
+  public void NextShopCategory() {
+    shopScript.ClearCategory();
+    shopScript.categoryIndex = (shopScript.categoryIndex + 1) % shopScript.totalCategories;
+    shopScript.SelectCategory();
+  }
+
+  public void PreviousShopCategory() {
+    shopScript.ClearCategory();
+    shopScript.categoryIndex = (shopScript.categoryIndex - 1 + shopScript.totalCategories) % shopScript.totalCategories;
+    shopScript.SelectCategory();
+  }
 }

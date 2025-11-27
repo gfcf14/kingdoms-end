@@ -52,15 +52,15 @@ public class Shop : MonoBehaviour {
   [Header("Properties")]
   [SerializeField] public string vendor;
   [SerializeField] public string closingChat;
-  [SerializeField] private int categoryIndex = 0;
-  [NonSerialized] public static string canvasStatus = "action";
+  [SerializeField] public int categoryIndex = 0;
+  [SerializeField] public static string canvasStatus = "action";
   [NonSerialized] public bool isReady = false;
   [NonSerialized] bool hasGamepad = false;
   [NonSerialized] private int moneyValue = 0;
   private AudioSource audioSource;
   private GameObject previouslyFocusedButton = null;
   private List<GameObject> itemCategories = new();
-  private int totalCategories = 0;
+  public int totalCategories = 0;
 
   void Start() {
     audioSource = GetComponent<AudioSource>();

@@ -139,6 +139,10 @@ public class Helpers {
     return Time.time * 1000 > start + limit;
   }
 
+  public static bool ExceedsUnscaledTime(float start, float limit) {
+    return Time.unscaledTime * 1000 > start + limit;
+}
+
   public static int ChildCountWithTag(Transform tr, string tag, bool checkInactive = false) {
     int count = 0;
     Transform [] trs = tr.GetComponentsInChildren<Transform>(checkInactive);

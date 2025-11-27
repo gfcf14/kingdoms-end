@@ -8,6 +8,41 @@ using UnityEngine.InputSystem.Controls;
 public class UserInput : MonoBehaviour {
   // Cache for mapping results to avoid repeated lookups
   private static readonly Dictionary<(string, string), ButtonControl> _buttonCache = new();
+  public float horizontalShopInputStart = 0;
+  private float horizontalShopInputCooldown = 200;
+
+  float GetHorizontalInput() {
+    float axis = Input.GetAxisRaw("Horizontal"); // keyboard axis (Old system)
+    float stick = Gamepad.current?.leftStick.ReadValue().x ?? 0;
+
+    int dpad = 0;
+    if (Gamepad.current != null) {
+        if (Gamepad.current.dpad.right.isPressed) dpad = 1;
+        else if (Gamepad.current.dpad.left.isPressed) dpad = -1;
+    }
+
+    // Combine them
+    float input = axis;
+
+    if (Mathf.Abs(stick) > Mathf.Abs(input))
+        input = stick;
+
+    if (dpad != 0)
+        input = dpad;
+
+    return input;
+  }
+  void ProcessShopHorizontalInput() {
+    float horizontalInput = GetHorizontalInput();
+
+    if (horizontalInput > 0) {
+      InGame.instance.NextShopCategory();
+      horizontalShopInputStart = Time.unscaledTime * 1000;
+    } else if (horizontalInput < 0) {
+      InGame.instance.PreviousShopCategory();
+      horizontalShopInputStart = Time.unscaledTime * 1000;
+    }
+  }
 
   void Update() {
     // disables pausing/mapping when hero is autonomus or involved in a chat decision
@@ -53,12 +88,23 @@ public class UserInput : MonoBehaviour {
         }
       }
 
-      // Perform back on shop UI
-      if (IsBackKeyDown() && Hero.instance.pauseCase == "shopping") {
-        if (Shop.canvasStatus == "action" && InGame.instance.IsShopReady()) {
-          InGame.instance.CloseShop();
-        } else {
-          InGame.instance.shopCanvas.GetComponent<Shop>().PerformBack();
+      if (Hero.instance.pauseCase == "shopping") {
+        string currentShopStatus = Shop.canvasStatus;
+
+        // perform back on shop UI
+        if (IsBackKeyDown()) {
+          if (currentShopStatus == "action" && InGame.instance.IsShopReady()) {
+            InGame.instance.CloseShop();
+          } else {
+            InGame.instance.shopCanvas.GetComponent<Shop>().PerformBack();
+          }
+        }
+
+        // to determine when to change item category based on horizontal input
+        if (currentShopStatus == "buy" || currentShopStatus == "sell") {
+          if (Helpers.ExceedsUnscaledTime(horizontalShopInputStart, horizontalShopInputCooldown)) {
+            ProcessShopHorizontalInput();
+          }
         }
       }
     }
