@@ -60,6 +60,10 @@ public class Shop : MonoBehaviour {
   private AudioSource audioSource;
   private GameObject previouslyFocusedButton = null;
   private List<GameObject> itemCategories = new();
+  private List<Item> activeShopList = new();
+
+  // TODO: might need to make this a List<Item> to account for amount that can be sold
+  private List<string> shopList = new();
   public int totalCategories = 0;
 
   void Start() {
@@ -110,16 +114,49 @@ public class Shop : MonoBehaviour {
     money.GetComponent<Text>().text = moneyValue.ToString();
   }
 
+  public void AssignActiveShopList(string action) {
+    if (action == "buy") {
+      activeShopList = Helpers.GetOrException(GameData.vendorItems, vendor);
+    } else { // sell
+      activeShopList = Hero.instance.items;
+      // TODO: use the hero's equipmentArray to subtract equipped items from the activeShopList
+    }
+  }
+
+  public void ClearActiveShopList() {
+    activeShopList.Clear();
+  }
+
+  public void PopulateShopItemsContainer() {
+    string[] currentCategoryTypes = Constants.categoryItemTypeArray[categoryIndex];
+
+    foreach (Item item in activeShopList) {
+      string currItemType = Helpers.GetOrException(Objects.regularItems, item.key).type;
+      if (Helpers.IsValueInArray(currentCategoryTypes, currItemType)) {
+        shopList.Add(item.key);
+      }
+    }
+
+    // TODO: remove after container is populate successfully
+    Debug.Log($"Shop List: {string.Join(", ", shopList)}");
+  }
+
+  public void ClearShopItemsContainer() {
+    shopList = new();
+  }
+
   public void SelectCategory() {
     itemCategories[categoryIndex].GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "highlighted");
+    PopulateShopItemsContainer();
   }
 
   public void ClearCategory() {
+    ClearShopItemsContainer();
     itemCategories[categoryIndex].GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "normal");
   }
 
   public void ShowBodySections(string action) {
-    // TODO: populate item lists here, based on action (buy or sell)
+    AssignActiveShopList(action);
     // TODO: populate item UI container here, given the category index and select first item
     // TODO: show description info based on first item selected
     // TODO: show effects based on first item selected
@@ -141,7 +178,7 @@ public class Shop : MonoBehaviour {
     // TODO: clear effects
     // TODO: clear description
     // TODO: clear item UI container, set category index to 0
-    // TODO: clear item lists
+    ClearActiveShopList();
   }
 
   public void PopulateShopLists(bool isVendor) {

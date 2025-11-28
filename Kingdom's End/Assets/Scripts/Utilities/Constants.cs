@@ -2,6 +2,16 @@ using UnityEngine;
 
 public class Constants {
   public static string preferredInput = "gamepad";
+  public static string[][] categoryItemTypeArray = {
+    new string[] {"defense", "double", "single"},
+    new string[] {"arrow", "bow", "throwable", "throwable-double"},
+    new string[] {"neck"},
+    new string[] {"armwear"},
+    new string[] {"ring"},
+    new string[] {"food", "throwable-food"},
+    new string[] {"consumable"},
+    new string[] {"valuable"},
+  };
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
