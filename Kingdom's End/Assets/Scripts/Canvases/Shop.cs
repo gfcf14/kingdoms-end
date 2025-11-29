@@ -31,6 +31,7 @@ public class Shop : MonoBehaviour {
   [SerializeField] GameObject categoryMiscellaneous;
 
   [Header("Section - Item List")]
+  [SerializeField] GameObject itemsContainer;
   [Space(10)]
   [SerializeField] GameObject sectionItemList;
 
@@ -61,9 +62,7 @@ public class Shop : MonoBehaviour {
   private GameObject previouslyFocusedButton = null;
   private List<GameObject> itemCategories = new();
   private List<Item> activeShopList = new();
-
-  // TODO: might need to make this a List<Item> to account for amount that can be sold
-  private List<string> shopList = new();
+  private List<Item> shopList = new();
   public int totalCategories = 0;
 
   void Start() {
@@ -127,31 +126,56 @@ public class Shop : MonoBehaviour {
     activeShopList.Clear();
   }
 
-  public void PopulateShopItemsContainer() {
+  public void PopulateItemsContainer() {
+    int itemIndex = 0;
+    foreach (Item item in shopList) {
+      RegularItem currRegItem = Helpers.GetOrException(Objects.regularItems, item.key);
+      GameObject shopItem = Instantiate(Helpers.GetOrException(Objects.prefabs, "item-button"), Vector2.zero, Quaternion.identity);
+
+      shopItem.transform.SetParent(itemsContainer.transform);
+      shopItem.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, Constants.startShopItemY + (itemIndex * Constants.itemIncrementY * -1));
+      shopItem.transform.localScale = Vector3.one;
+      shopItem.transform.Find("Image").gameObject.GetComponent<Image>().sprite = currRegItem.thumbnail;
+      shopItem.transform.Find("Text").gameObject.GetComponent<Text>().text = currRegItem.name;
+      shopItem.transform.Find("Amount").gameObject.GetComponent<Text>().text = item.amount.ToString();
+
+      itemIndex++;
+    }
+  }
+
+  public void ClearItemsContainer() {
+    foreach (Transform child in itemsContainer.transform) {
+      Destroy(child.gameObject);
+    }
+  }
+
+  public void PopulateShopList() {
     string[] currentCategoryTypes = Constants.categoryItemTypeArray[categoryIndex];
 
     foreach (Item item in activeShopList) {
       string currItemType = Helpers.GetOrException(Objects.regularItems, item.key).type;
       if (Helpers.IsValueInArray(currentCategoryTypes, currItemType)) {
-        shopList.Add(item.key);
+        shopList.Add(item);
       }
     }
 
     // TODO: remove after container is populate successfully
-    Debug.Log($"Shop List: {string.Join(", ", shopList)}");
+    // Debug.Log($"Shop List: {string.Join(", ", shopList)}");
   }
 
-  public void ClearShopItemsContainer() {
+  public void ClearShopList() {
     shopList = new();
   }
 
   public void SelectCategory() {
     itemCategories[categoryIndex].GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "highlighted");
-    PopulateShopItemsContainer();
+    PopulateShopList();
+    PopulateItemsContainer();
   }
 
   public void ClearCategory() {
-    ClearShopItemsContainer();
+    ClearItemsContainer();
+    ClearShopList();
     itemCategories[categoryIndex].GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "normal");
   }
 

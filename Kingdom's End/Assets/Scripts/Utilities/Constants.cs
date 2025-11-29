@@ -133,6 +133,7 @@ public class Constants {
   public static int maxDayLength = 1440;
 
   public static float startItemY = 375;
+  public static float startShopItemY = 320;
   public static float itemIncrementY = 60;
 
   public static float hpAdjustDifference = 15;
