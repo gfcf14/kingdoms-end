@@ -268,6 +268,7 @@ public class ChatCanvas : MonoBehaviour {
     string decisionNode = chatLines[lineIndex].decision.Get(decision);
 
     if (decisionNode.StartsWith("@")) {
+      // TODO: play attention sound
       string action = decisionNode.Substring(1);
 
       switch (action) {

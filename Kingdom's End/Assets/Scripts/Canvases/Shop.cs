@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -126,24 +128,61 @@ public class Shop : MonoBehaviour {
     activeShopList.Clear();
   }
 
+  // sets navigation for shop list items when switching categories
+  private IEnumerator SetupNavigationNextFrame() {
+    yield return null; // allows to wait for shop list rebuild in UI
+
+    GameObject[] containerChildren = itemsContainer.transform.Cast<Transform>().Select(t => t.gameObject).ToArray();
+    int totalShopItems = containerChildren.Length;
+
+    for (int i = 0; i < totalShopItems; i++) {
+      Button btn = containerChildren[i].GetComponent<Button>();
+      Navigation nav = new Navigation {
+        mode = Navigation.Mode.Explicit,
+        selectOnUp = containerChildren[i == 0 ? totalShopItems - 1 : i - 1].GetComponent<Button>(),
+        selectOnDown = containerChildren[i == totalShopItems - 1 ? 0 : i + 1].GetComponent<Button>()
+      };
+
+      btn.navigation = nav;
+    }
+
+    eventSystem.SetSelectedGameObject(containerChildren[0]);
+  }
+
   public void PopulateItemsContainer() {
     int itemIndex = 0;
+    Debug.Log($"ShopList count: {shopList.Count}");
     foreach (Item item in shopList) {
       RegularItem currRegItem = Helpers.GetOrException(Objects.regularItems, item.key);
       GameObject shopItem = Instantiate(Helpers.GetOrException(Objects.prefabs, "item-button"), Vector2.zero, Quaternion.identity);
 
-      shopItem.transform.SetParent(itemsContainer.transform);
-      shopItem.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, Constants.startShopItemY + (itemIndex * Constants.itemIncrementY * -1));
-      shopItem.transform.localScale = Vector3.one;
-      shopItem.transform.Find("Image").gameObject.GetComponent<Image>().sprite = currRegItem.thumbnail;
-      shopItem.transform.Find("Text").gameObject.GetComponent<Text>().text = currRegItem.name;
-      shopItem.transform.Find("Amount").gameObject.GetComponent<Text>().text = item.amount.ToString();
+      // sets current button properties
+        shopItem.transform.SetParent(itemsContainer.transform);
+        shopItem.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, Constants.startShopItemY + (itemIndex * Constants.itemIncrementY * -1));
+        shopItem.transform.localScale = Vector3.one;
+        shopItem.transform.Find("Image").gameObject.GetComponent<Image>().sprite = currRegItem.thumbnail;
+        shopItem.transform.Find("Text").gameObject.GetComponent<Text>().text = currRegItem.name;
+        shopItem.transform.Find("Amount").gameObject.GetComponent<Text>().text = item.amount.ToString();
+
+      // sets submit event trigger for current button
+        EventTrigger eventTrigger = shopItem.GetComponent<EventTrigger>();
+        EventTrigger.Entry submitEntry = new EventTrigger.Entry();
+        submitEntry.eventID = EventTriggerType.Submit;
+        submitEntry.callback.AddListener((data) => {
+          PlayMenuSound("select");
+        });
+
+        eventTrigger.triggers.Add(submitEntry);
 
       itemIndex++;
     }
+
+    StartCoroutine(SetupNavigationNextFrame());
   }
 
   public void ClearItemsContainer() {
+    eventSystem.SetSelectedGameObject(null);
+
     foreach (Transform child in itemsContainer.transform) {
       Destroy(child.gameObject);
     }
@@ -158,13 +197,10 @@ public class Shop : MonoBehaviour {
         shopList.Add(item);
       }
     }
-
-    // TODO: remove after container is populate successfully
-    // Debug.Log($"Shop List: {string.Join(", ", shopList)}");
   }
 
   public void ClearShopList() {
-    shopList = new();
+    shopList.Clear();
   }
 
   public void SelectCategory() {
@@ -181,7 +217,6 @@ public class Shop : MonoBehaviour {
 
   public void ShowBodySections(string action) {
     AssignActiveShopList(action);
-    // TODO: populate item UI container here, given the category index and select first item
     // TODO: show description info based on first item selected
     // TODO: show effects based on first item selected
     SelectCategory();
@@ -201,7 +236,6 @@ public class Shop : MonoBehaviour {
     ClearCategory();
     // TODO: clear effects
     // TODO: clear description
-    // TODO: clear item UI container, set category index to 0
     ClearActiveShopList();
   }
 
