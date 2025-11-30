@@ -9,7 +9,7 @@ public class UserInput : MonoBehaviour {
   // Cache for mapping results to avoid repeated lookups
   private static readonly Dictionary<(string, string), ButtonControl> _buttonCache = new();
   public float horizontalShopInputStart = 0;
-  private float horizontalShopInputCooldown = 200;
+  private float horizontalShopInputCooldown = 150;
 
   float GetHorizontalInput() {
     float axis = Input.GetAxisRaw("Horizontal"); // keyboard axis (Old system)
