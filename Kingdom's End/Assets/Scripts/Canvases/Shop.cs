@@ -151,7 +151,6 @@ public class Shop : MonoBehaviour {
 
   public void PopulateItemsContainer() {
     int itemIndex = 0;
-    Debug.Log($"ShopList count: {shopList.Count}");
     foreach (Item item in shopList) {
       RegularItem currRegItem = Helpers.GetOrException(Objects.regularItems, item.key);
       GameObject shopItem = Instantiate(Helpers.GetOrException(Objects.prefabs, "item-button"), Vector2.zero, Quaternion.identity);
@@ -234,6 +233,8 @@ public class Shop : MonoBehaviour {
     sectionCategories.SetActive(false);
 
     ClearCategory();
+    // sets the categoryIndex to 0 so when selecting an action again, it starts from the first category
+    categoryIndex = 0;
     // TODO: clear effects
     // TODO: clear description
     ClearActiveShopList();
