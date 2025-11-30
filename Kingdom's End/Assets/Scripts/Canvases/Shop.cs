@@ -125,7 +125,7 @@ public class Shop : MonoBehaviour {
   }
 
   public void ClearActiveShopList() {
-    activeShopList.Clear();
+    activeShopList = new List<Item>();
   }
 
   // sets navigation for shop list items when switching categories
