@@ -66,6 +66,8 @@ public class Shop : MonoBehaviour {
   private List<Item> activeShopList = new();
   private List<Item> shopList = new();
   public int totalCategories = 0;
+  public string currentActionSelected = "";
+  public string currentItemKey = "";
 
   void Start() {
     audioSource = GetComponent<AudioSource>();
@@ -74,8 +76,66 @@ public class Shop : MonoBehaviour {
     totalCategories = itemCategories.Count;
   }
 
+  void CheckIfGamepad() {
+    List<string> validGamepads = new List<String>();
+    foreach (string s in Input.GetJoystickNames()) {
+      if (s != "") {
+        validGamepads.Add(s);
+      }
+    }
+    hasGamepad = validGamepads.Count > 0;
+
+    if (hasGamepad && Constants.preferredInput == "gamepad") {
+      var currentGamepad = UserInput.GetActiveGamepadKey();
+      if (currentGamepad == null) {
+        currentGamepad = "usb gamepad";
+      }
+
+      if (currentGamepad == "xbox" && !mainXboxPanel.activeInHierarchy) {
+        ShowXboxOptions();
+      } else if (currentGamepad == "playstation" && !mainPlaystationPanel.activeInHierarchy) {
+        ShowPlaystationOptions();
+      } else if (currentGamepad == "usb gamepad" && !mainGamepadPanel.activeInHierarchy) {
+        ShowGamePadOptions();
+      }
+    } else if ((!hasGamepad || Constants.preferredInput == "keyboard") && !mainKeysPanel.activeInHierarchy) {
+      ShowKeyboardOptions();
+    }
+  }
+
+  void CheckButtonChange() {
+    if (canvasStatus == "action") {
+      string currentSelectedItem = eventSystem.currentSelectedGameObject.name;
+
+      if (currentSelectedItem != currentActionSelected) {
+        // only when moving to choose a shop action will the move sound be played
+        if (currentSelectedItem != "" && Helpers.IsValueInArray(Constants.ShopActionButtonNames, currentActionSelected)) {
+          PlayMenuSound("move");
+        }
+        currentActionSelected = currentSelectedItem;
+      }
+    }
+  }
+
+  void UpdateItemView() {
+    if ((canvasStatus == "buy" || canvasStatus == "sell") && shopList.Count > 0 && eventSystem.currentSelectedGameObject != null && eventSystem.currentSelectedGameObject?.GetComponent<ItemButton>()?.key != null) {
+      string currentSelectedItem = eventSystem.currentSelectedGameObject.GetComponent<ItemButton>().key;
+
+      if (currentSelectedItem != currentItemKey) {
+        // if both variables have a value, then we didn't just enter the category, thus the move sound can safely be played
+        if (currentSelectedItem != "" && currentItemKey != "") {
+          PlayMenuSound("move");
+        }
+        currentItemKey = currentSelectedItem;
+        // SetItemInfo();
+      }
+    }
+  }
+
   void Update() {
     CheckIfGamepad();
+    CheckButtonChange();
+    UpdateItemView();
   }
 
   public void StartAfterGrow() {
@@ -162,6 +222,7 @@ public class Shop : MonoBehaviour {
         shopItem.transform.Find("Image").gameObject.GetComponent<Image>().sprite = currRegItem.thumbnail;
         shopItem.transform.Find("Text").gameObject.GetComponent<Text>().text = currRegItem.name;
         shopItem.transform.Find("Amount").gameObject.GetComponent<Text>().text = item.amount.ToString();
+        shopItem.GetComponent<ItemButton>().key = item.key;
 
       // sets submit event trigger for current button
         EventTrigger eventTrigger = shopItem.GetComponent<EventTrigger>();
@@ -241,10 +302,10 @@ public class Shop : MonoBehaviour {
   }
 
   public void PopulateShopLists(bool isVendor) {
+    PlayMenuSound("select");
     canvasStatus = isVendor ? "buy" : "sell";
     mainPrompt.SetActive(false);
     previouslyFocusedButton = eventSystem.currentSelectedGameObject;
-    Debug.Log($"Shop lists to use vendor items? {isVendor}");
     ShowBodySections(action: canvasStatus);
   }
 
@@ -281,32 +342,5 @@ public class Shop : MonoBehaviour {
     mainXboxPanel.SetActive(false);
     mainPlaystationPanel.SetActive(false);
     mainKeysPanel.SetActive(true);
-  }
-
-  void CheckIfGamepad() {
-    List<string> validGamepads = new List<String>();
-    foreach (string s in Input.GetJoystickNames()) {
-      if (s != "") {
-        validGamepads.Add(s);
-      }
-    }
-    hasGamepad = validGamepads.Count > 0;
-
-    if (hasGamepad && Constants.preferredInput == "gamepad") {
-      var currentGamepad = UserInput.GetActiveGamepadKey();
-      if (currentGamepad == null) {
-        currentGamepad = "usb gamepad";
-      }
-
-      if (currentGamepad == "xbox" && !mainXboxPanel.activeInHierarchy) {
-        ShowXboxOptions();
-      } else if (currentGamepad == "playstation" && !mainPlaystationPanel.activeInHierarchy) {
-        ShowPlaystationOptions();
-      } else if (currentGamepad == "usb gamepad" && !mainGamepadPanel.activeInHierarchy) {
-        ShowGamePadOptions();
-      }
-    } else if ((!hasGamepad || Constants.preferredInput == "keyboard") && !mainKeysPanel.activeInHierarchy) {
-      ShowKeyboardOptions();
-    }
   }
 }

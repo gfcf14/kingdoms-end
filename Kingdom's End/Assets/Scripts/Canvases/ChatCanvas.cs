@@ -268,7 +268,7 @@ public class ChatCanvas : MonoBehaviour {
     string decisionNode = chatLines[lineIndex].decision.Get(decision);
 
     if (decisionNode.StartsWith("@")) {
-      // TODO: play attention sound
+      InGame.instance.PlaySound(Helpers.GetOrException(Sounds.menuSounds, "attention"), transform.position);
       string action = decisionNode.Substring(1);
 
       switch (action) {
@@ -281,6 +281,7 @@ public class ChatCanvas : MonoBehaviour {
         break;
       }
     } else {
+      InGame.instance.PlaySound(Helpers.GetOrException(Sounds.menuSounds, "select"), transform.position);
       Hero.instance.UpdateChatNode(NPCChatKey, decisionNode);
       Hero.instance.OpenChat();
     }

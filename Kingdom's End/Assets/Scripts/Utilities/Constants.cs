@@ -102,6 +102,7 @@ public class Constants {
   public static string[] partialLightRelics = {"dawn-gem", "royal-lamp"};
   public static string[] zonedAreas = {"glaciers"};
   public static string[] possibleEnemyDirections = {"left", "right"};
+  public static string[]ShopActionButtonNames = {"ButtonBuy", "ButtonSell"};
 
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};

@@ -487,6 +487,7 @@ public class Pause : MonoBehaviour {
           currentItemButton.transform.localScale = Vector3.one;
           currentItemButton.transform.Find("Image").gameObject.GetComponent<Image>().sprite = currentRegularItem.thumbnail;
           currentItemButton.transform.Find("Text").gameObject.GetComponent<Text>().text = currentRegularItem.name;
+          currentItemButton.GetComponent<ItemButton>().key = currentKey;
 
           currentItemButton.transform.Find("Amount").gameObject.GetComponent<Text>().text = canvasStatus != "relics" ? (canvasStatus == "equipment" ? currentAmount - (Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey) ? 0 : itemUsageFrequency) : currentAmount).ToString() : "";
 

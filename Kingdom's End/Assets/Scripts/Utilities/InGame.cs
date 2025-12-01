@@ -454,6 +454,7 @@ public class InGame : MonoBehaviour {
   }
 
   public void CloseShop() {
+    PlaySound(Helpers.GetOrException(Sounds.menuSounds, "back"), shopCanvas.transform.position);
     shopCanvas.SetActive(false);
     string vendor = shopScript.vendor;
     string closingChat = shopScript.closingChat;
