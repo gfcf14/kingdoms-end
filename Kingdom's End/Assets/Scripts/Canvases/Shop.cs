@@ -63,8 +63,10 @@ public class Shop : MonoBehaviour {
   private AudioSource audioSource;
   private GameObject previouslyFocusedButton = null;
   private List<GameObject> itemCategories = new();
+  private List<GameObject> shopItemButtons = new();
   private List<Item> activeShopList = new();
   private List<Item> shopList = new();
+  private int previousItemIndex = -1;
   public int totalCategories = 0;
   public string currentActionSelected = "";
   public string currentItemKey = "";
@@ -119,16 +121,68 @@ public class Shop : MonoBehaviour {
 
   void UpdateItemView() {
     if ((canvasStatus == "buy" || canvasStatus == "sell") && shopList.Count > 0 && eventSystem.currentSelectedGameObject != null && eventSystem.currentSelectedGameObject?.GetComponent<ItemButton>()?.key != null) {
-      string currentSelectedItem = eventSystem.currentSelectedGameObject.GetComponent<ItemButton>().key;
+      GameObject selectedItemObject = eventSystem.currentSelectedGameObject;
 
-      if (currentSelectedItem != currentItemKey) {
-        // if both variables have a value, then we didn't just enter the category, thus the move sound can safely be played
-        if (currentSelectedItem != "" && currentItemKey != "") {
-          PlayMenuSound("move");
+      int currentItemIndex = shopItemButtons.IndexOf(selectedItemObject);
+      if (currentItemIndex == -1) return; // to avoid the logic to occur right after action selection
+
+      // movement sound play logic
+        string currentSelectedItem = selectedItemObject.GetComponent<ItemButton>().key;
+
+        if (currentSelectedItem != currentItemKey) {
+          // if both variables have a value, then we didn't just enter the category, thus the move sound can safely be played
+          if (currentSelectedItem != "" && currentItemKey != "") {
+            PlayMenuSound("move");
+          }
+          currentItemKey = currentSelectedItem;
         }
-        currentItemKey = currentSelectedItem;
-        // SetItemInfo();
-      }
+
+      // container scroll logic
+        int indexDifference = currentItemIndex - previousItemIndex;
+        if (indexDifference == 0) return; // do nothing if the indices are the same, i.e. no movement
+
+        RectTransform itemsContainerRect = itemsContainer.GetComponent<RectTransform>();
+        int maxVisibleItems = Constants.maxShopItemContainerHeight;
+        int totalShopItems = shopItemButtons.Count;
+        float itemYIncrement = Constants.itemIncrementY;
+        float startItemY = Constants.startShopItemY;
+
+        // TODO: should this be limited to only when indices are not equal? (i.e. difference is 0)
+
+        // going down
+        if (indexDifference == 1) {
+          if (currentItemIndex > maxVisibleItems - 1) {
+            int movingItemLocation = (int)(startItemY - (itemYIncrement * (maxVisibleItems - 1)));
+            int selectedItemLocation = (int)(shopItemButtons.ElementAt(currentItemIndex - 1).GetComponent<RectTransform>().anchoredPosition.y + itemsContainerRect.anchoredPosition.y);
+
+            // to avoid moving the container up if the selected button is not at the bottom
+            if (selectedItemLocation == movingItemLocation) {
+              itemsContainerRect.anchoredPosition = new Vector2(itemsContainerRect.anchoredPosition.x, itemsContainerRect.anchoredPosition.y + itemYIncrement);
+            }
+          }
+
+        // going up
+        } else if (indexDifference == -1) {
+          if (currentItemIndex <= (totalShopItems - maxVisibleItems - 1)) {
+            int movingItemLocation = (int)(startItemY - (itemYIncrement * (totalShopItems - maxVisibleItems)));
+            int selectedItemLocation = (int)(shopItemButtons.ElementAt(currentItemIndex).GetComponent<RectTransform>().anchoredPosition.y + (itemsContainerRect.anchoredPosition.y - ((totalShopItems + 1 - maxVisibleItems) * itemYIncrement)));
+
+            // to avoid moving the container down if the selected button is not at the top
+            if (selectedItemLocation == movingItemLocation) {
+              itemsContainerRect.anchoredPosition = new Vector2(itemsContainerRect.anchoredPosition.x, itemsContainerRect.anchoredPosition.y - itemYIncrement);
+            }
+          }
+        // for first to last
+        } else if (indexDifference == totalShopItems - 1 && totalShopItems > maxVisibleItems) {
+          itemsContainerRect.anchoredPosition = new Vector2(itemsContainerRect.anchoredPosition.x, (itemYIncrement * (totalShopItems - maxVisibleItems)));
+
+        // from last to first
+        } else if (indexDifference == -(totalShopItems - 1)) {
+          itemsContainerRect.anchoredPosition = Vector2.zero;
+        }
+
+      previousItemIndex = currentItemIndex;
+      // SetItemInfo(currentItemIndex);
     }
   }
 
@@ -211,6 +265,9 @@ public class Shop : MonoBehaviour {
 
   public void PopulateItemsContainer() {
     int itemIndex = 0;
+    shopItemButtons.Clear();
+    itemsContainer.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
     foreach (Item item in shopList) {
       RegularItem currRegItem = Helpers.GetOrException(Objects.regularItems, item.key);
       GameObject shopItem = Instantiate(Helpers.GetOrException(Objects.prefabs, "item-button"), Vector2.zero, Quaternion.identity);
@@ -223,6 +280,9 @@ public class Shop : MonoBehaviour {
         shopItem.transform.Find("Text").gameObject.GetComponent<Text>().text = currRegItem.name;
         shopItem.transform.Find("Amount").gameObject.GetComponent<Text>().text = item.amount.ToString();
         shopItem.GetComponent<ItemButton>().key = item.key;
+
+        // adds the current button to the list to be able to track them on movement
+        shopItemButtons.Add(shopItem);
 
       // sets submit event trigger for current button
         EventTrigger eventTrigger = shopItem.GetComponent<EventTrigger>();
