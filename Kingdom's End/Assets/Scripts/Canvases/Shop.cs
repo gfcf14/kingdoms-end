@@ -363,6 +363,10 @@ public class Shop : MonoBehaviour {
   public void HideBodySections() {
     sectionEffects.SetActive(false);
     sectionDescription.SetActive(false);
+
+    // this is cleared so when we select an action we don't play the move sound
+    currentItemKey = "";
+
     sectionItemList.SetActive(false);
     sectionCategories.SetActive(false);
 
