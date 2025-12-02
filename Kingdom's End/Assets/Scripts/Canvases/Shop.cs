@@ -33,13 +33,17 @@ public class Shop : MonoBehaviour {
   [SerializeField] GameObject categoryMiscellaneous;
 
   [Header("Section - Item List")]
+  [SerializeField] GameObject sectionItemList;
   [SerializeField] GameObject itemsContainer;
   [Space(10)]
-  [SerializeField] GameObject sectionItemList;
 
   [Header("Section - Description")]
   [Space(10)]
   [SerializeField] GameObject sectionDescription;
+  [SerializeField] GameObject itemName;
+  [SerializeField] GameObject itemPrice;
+  [SerializeField] GameObject itemImage;
+  [SerializeField] GameObject itemDescription;
 
   [Header("Section - Effects")]
   [Space(10)]
@@ -119,6 +123,14 @@ public class Shop : MonoBehaviour {
     }
   }
 
+  void SetItemInfo(int itemIndex) {
+    RegularItem currentItem = Helpers.GetOrException(Objects.regularItems, shopList.ElementAt(itemIndex).key);
+    itemName.GetComponent<Text>().text = currentItem.name;
+    itemPrice.GetComponent<Text>().text = currentItem.price.ToString();
+    itemDescription.GetComponent<Text>().text = currentItem.description;
+    itemImage.GetComponent<Image>().sprite = currentItem.image;
+  }
+
   void UpdateItemView() {
     if ((canvasStatus == "buy" || canvasStatus == "sell") && shopList.Count > 0 && eventSystem.currentSelectedGameObject != null && eventSystem.currentSelectedGameObject?.GetComponent<ItemButton>()?.key != null) {
       GameObject selectedItemObject = eventSystem.currentSelectedGameObject;
@@ -182,7 +194,7 @@ public class Shop : MonoBehaviour {
         }
 
       previousItemIndex = currentItemIndex;
-      // SetItemInfo(currentItemIndex);
+      SetItemInfo(currentItemIndex);
     }
   }
 
@@ -261,6 +273,8 @@ public class Shop : MonoBehaviour {
     }
 
     eventSystem.SetSelectedGameObject(containerChildren[0]);
+    // sets the item info as soon as category is changed
+    SetItemInfo(0);
   }
 
   public void PopulateItemsContainer() {
@@ -337,7 +351,6 @@ public class Shop : MonoBehaviour {
 
   public void ShowBodySections(string action) {
     AssignActiveShopList(action);
-    // TODO: show description info based on first item selected
     // TODO: show effects based on first item selected
     SelectCategory();
 
@@ -356,7 +369,6 @@ public class Shop : MonoBehaviour {
     ClearCategory();
     // sets the categoryIndex to 0 so when selecting an action again, it starts from the first category
     categoryIndex = 0;
-    // TODO: clear effects
     // TODO: clear description
     ClearActiveShopList();
   }
