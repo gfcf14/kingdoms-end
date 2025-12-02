@@ -85,10 +85,12 @@ public class PauseItem {
 
 public class RegularItem : PauseItem {
   public string type;
+  public int price;
   public Effects effects;
 
-  public RegularItem(Sprite thumbnail, Sprite image, string name, string description, string type, Effects effects = null) : base(thumbnail, image, name, description) {
+  public RegularItem(Sprite thumbnail, Sprite image, string name, string description, string type, int price, Effects effects = null) : base(thumbnail, image, name, description) {
     this.type = type;
+    this.price = price;
 
     if (effects != null) {
       this.effects = effects;

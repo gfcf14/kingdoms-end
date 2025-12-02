@@ -865,7 +865,7 @@ public class Pause : MonoBehaviour {
     string currentItemKey = currentEquipmentItems.ElementAt(currentItemButtonIndex).key;
 
     // grab current selected based on index
-    RegularItem selectedEquipment = currentItemKey.Contains("unequip") ? new RegularItem(null, null, "", "", currentEquipment.type, new Effects(){}) : Helpers.GetOrException(Objects.regularItems, currentItemKey);
+    RegularItem selectedEquipment = currentItemKey.Contains("unequip") ? new RegularItem(null, null, "", "", currentEquipment.type, 0, new Effects(){}) : Helpers.GetOrException(Objects.regularItems, currentItemKey);
 
     // check if the selected equipment is a double handed item
     bool isEquippingDouble = Helpers.IsValueInArray(Constants.doubleHandedWeaponTypes, selectedEquipment.type);
