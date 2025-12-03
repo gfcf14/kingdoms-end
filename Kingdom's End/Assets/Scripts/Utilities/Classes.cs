@@ -49,6 +49,12 @@ public class Effects {
   public MagicResistance[] magicResistances;
 }
 
+public class EffectItem {
+  public int spriteIndex;
+  public string key;
+  public object value; // since it can be int or float
+}
+
 public class RelicEffect {
   public string type;
   public string value;

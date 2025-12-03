@@ -33,9 +33,9 @@ public class Shop : MonoBehaviour {
   [SerializeField] GameObject categoryMiscellaneous;
 
   [Header("Section - Item List")]
+  [Space(10)]
   [SerializeField] GameObject sectionItemList;
   [SerializeField] GameObject itemsContainer;
-  [Space(10)]
 
   [Header("Section - Description")]
   [Space(10)]
@@ -48,6 +48,12 @@ public class Shop : MonoBehaviour {
   [Header("Section - Effects")]
   [Space(10)]
   [SerializeField] GameObject sectionEffects;
+  [SerializeField] GameObject itemEffectsPanel;
+  [SerializeField] GameObject itemEffectsGroupPanel;
+  [SerializeField] GameObject itemEffectsStatusHealLabel;
+  [SerializeField] GameObject itemEffectsAddsPanel;
+  [SerializeField] GameObject itemEffectsRemovesPanel;
+  [SerializeField] GameObject itemEffectsTimeLabel;
 
   [Header("Footer")]
   [SerializeField] GameObject mainGamepadPanel;
@@ -64,6 +70,12 @@ public class Shop : MonoBehaviour {
   [NonSerialized] public bool isReady = false;
   [NonSerialized] bool hasGamepad = false;
   [NonSerialized] private int moneyValue = 0;
+  // tracks each effect in the effect panel
+  [NonSerialized] List<GameObject> effectsList = new List<GameObject>();
+  // tracks each magic resistance in the adds list
+  [NonSerialized] List<GameObject> addsList = new List<GameObject>();
+  // tracks each magic resistance in the removes list
+  [NonSerialized] List<GameObject> removesList = new List<GameObject>();
   private AudioSource audioSource;
   private GameObject previouslyFocusedButton = null;
   private List<GameObject> itemCategories = new();
@@ -80,6 +92,27 @@ public class Shop : MonoBehaviour {
     eventSystem = EventSystem.current;
     itemCategories = new List<GameObject>() { categoryWeapons, categoryThrowables, categoryNecklaces, categoryBraces, categoryRings, categoryFood, categoryPotions, categoryMiscellaneous };
     totalCategories = itemCategories.Count;
+
+    // adds all single effects to the list
+    foreach (Transform currentChild in itemEffectsGroupPanel.transform) {
+      if (currentChild.name == "SingleEffect") {
+        effectsList.Add(currentChild.gameObject);
+      }
+    }
+
+    // adds all magic resistances to the adds list
+    foreach (Transform currentChild in itemEffectsAddsPanel.transform) {
+      if (currentChild.name == "MagicResistance") {
+        addsList.Add(currentChild.gameObject);
+      }
+    }
+
+    // adds all magic resistances to the removes list
+    foreach (Transform currentChild in itemEffectsRemovesPanel.transform) {
+      if (currentChild.name == "MagicResistance") {
+        addsList.Add(currentChild.gameObject);
+      }
+    }
   }
 
   void CheckIfGamepad() {
@@ -123,12 +156,123 @@ public class Shop : MonoBehaviour {
     }
   }
 
+  string GetEffectText(string key, object value) {
+    bool isPercentage = Helpers.IsValueInArray(Constants.effectPercentageKeys, key);
+    float numericValue = Convert.ToSingle(value);
+
+    return $"{(numericValue >= 0 ? "+" : "")}{(isPercentage ? $"{Helpers.TwoDecimalPlaces(numericValue * 100, ignoreWhenWhole: true)}%" : numericValue.ToString())}";
+  }
+
+  void HideEffectsObjects() {
+    foreach(GameObject child in effectsList) {
+      child.SetActive(false);
+    }
+
+    itemEffectsStatusHealLabel.SetActive(false);
+
+    foreach(GameObject child in addsList) {
+      child.SetActive(false);
+    }
+    itemEffectsAddsPanel.SetActive(false);
+
+    foreach(GameObject child in removesList) {
+      child.SetActive(false);
+    }
+    itemEffectsRemovesPanel.SetActive(false);
+
+    itemEffectsTimeLabel.SetActive(false);
+  }
+
+  void SetEffectsInfo(RegularItem currentItem) {
+    HideEffectsObjects();
+
+    if (currentItem.effects != null) {
+      Effects itemEffects = currentItem.effects;
+      List<EffectItem> activeEffects = new List<EffectItem>() {
+        new EffectItem {spriteIndex = 0, key = "hp", value = itemEffects.hp},
+        new EffectItem {spriteIndex = 0, key = "hpPercentage", value = itemEffects.hpPercentage},
+        new EffectItem {spriteIndex = 1, key = "mp", value = itemEffects.mp},
+        new EffectItem {spriteIndex = 1, key = "mpPercentage", value = itemEffects.mpPercentage},
+        new EffectItem {spriteIndex = 6, key = "atk", value = itemEffects.atk},
+        new EffectItem {spriteIndex = 7, key = "def", value = itemEffects.def},
+        new EffectItem {spriteIndex = 10, key = "crit", value = itemEffects.crit},
+        new EffectItem {spriteIndex = 11, key = "luck", value = itemEffects.luck},
+      }.Where(e => e.value != null).ToList();
+
+      for (int i = 0; i < activeEffects.Count; i++) {
+        EffectItem currentEffect = activeEffects[i];
+
+        GameObject currentEffectWidget = effectsList.ElementAt(i);
+        currentEffectWidget.transform.Find("EffectIcon").GetComponent<Image>().sprite = Sprites.statsIcons[currentEffect.spriteIndex];
+        currentEffectWidget.transform.Find("EffectText").GetComponent<Text>().text = GetEffectText(currentEffect.key, currentEffect.value);
+        currentEffectWidget.SetActive(true);
+      }
+
+      // if there are no effects then the container should hide
+      if (activeEffects.Count == 0) {
+        itemEffectsGroupPanel.SetActive(false);
+      } else {
+        itemEffectsGroupPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(335.66f, activeEffects.Count < 3 ? 31 : 62);
+        itemEffectsGroupPanel.SetActive(true);
+      }
+
+      if (itemEffects.statusHeal != null) {
+        string statusEffectsText = "Heals ";
+
+        int i = 0;
+        foreach (string currStatusHeal in itemEffects.statusHeal) {
+          statusEffectsText += currStatusHeal + (i < itemEffects.statusHeal.Length - 1 ? ", " : "\n");
+          i++;
+        }
+
+        itemEffectsStatusHealLabel.GetComponent<Text>().text = statusEffectsText;
+        itemEffectsStatusHealLabel.SetActive(true);
+      }
+
+      if (itemEffects.magicResistances != null) {
+        int addsElementCounter = 0;
+        int removesElementCounter = 0;
+
+        foreach (MagicResistance currMagicResistance in itemEffects.magicResistances) {
+          if (currMagicResistance.type == "add") {
+            addsList.ElementAt(addsElementCounter).GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.magicResistances, currMagicResistance.name.ToLower());
+            addsList.ElementAt(addsElementCounter).SetActive(true);
+            addsElementCounter++;
+          } else if (currMagicResistance.type == "remove") {
+            addsList.ElementAt(removesElementCounter).GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.magicResistances, currMagicResistance.name.ToLower());
+            addsList.ElementAt(removesElementCounter).SetActive(true);
+            removesElementCounter++;
+          }
+        }
+
+        if (addsElementCounter > 0) {
+          itemEffectsAddsPanel.SetActive(true);
+        }
+
+        if (removesElementCounter > 0) {
+          itemEffectsRemovesPanel.SetActive(true);
+        }
+      }
+
+      if (itemEffects.duration != null) {
+        itemEffectsTimeLabel.GetComponent<Text>().text = $"{itemEffects.duration} {(itemEffects.duration == 1 ? "sec" : "secs")}";
+        itemEffectsTimeLabel.SetActive(true);
+      }
+
+      itemEffectsPanel.SetActive(true);
+    } else {
+      itemEffectsPanel.SetActive(false);
+    }
+  }
+
   void SetItemInfo(int itemIndex) {
     RegularItem currentItem = Helpers.GetOrException(Objects.regularItems, shopList.ElementAt(itemIndex).key);
     itemName.GetComponent<Text>().text = currentItem.name;
     itemPrice.GetComponent<Text>().text = currentItem.price.ToString();
     itemDescription.GetComponent<Text>().text = currentItem.description;
     itemImage.GetComponent<Image>().sprite = currentItem.image;
+
+    SetEffectsInfo(currentItem);
   }
 
   void UpdateItemView() {
@@ -351,7 +495,6 @@ public class Shop : MonoBehaviour {
 
   public void ShowBodySections(string action) {
     AssignActiveShopList(action);
-    // TODO: show effects based on first item selected
     SelectCategory();
 
     sectionCategories.SetActive(true);
@@ -373,7 +516,6 @@ public class Shop : MonoBehaviour {
     ClearCategory();
     // sets the categoryIndex to 0 so when selecting an action again, it starts from the first category
     categoryIndex = 0;
-    // TODO: clear description
     ClearActiveShopList();
   }
 
