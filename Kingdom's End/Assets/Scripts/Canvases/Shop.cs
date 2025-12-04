@@ -44,16 +44,16 @@ public class Shop : MonoBehaviour {
   [SerializeField] GameObject itemPrice;
   [SerializeField] GameObject itemImage;
   [SerializeField] GameObject itemDescription;
-
-  [Header("Section - Effects")]
-  [Space(10)]
-  [SerializeField] GameObject sectionEffects;
   [SerializeField] GameObject itemEffectsPanel;
   [SerializeField] GameObject itemEffectsGroupPanel;
   [SerializeField] GameObject itemEffectsStatusHealLabel;
   [SerializeField] GameObject itemEffectsAddsPanel;
   [SerializeField] GameObject itemEffectsRemovesPanel;
   [SerializeField] GameObject itemEffectsTimeLabel;
+
+  [Header("Section - Comparison")]
+  [Space(10)]
+  [SerializeField] GameObject sectionComparison;
 
   [Header("Footer")]
   [SerializeField] GameObject mainGamepadPanel;
@@ -500,11 +500,11 @@ public class Shop : MonoBehaviour {
     sectionCategories.SetActive(true);
     sectionItemList.SetActive(true);
     sectionDescription.SetActive(true);
-    sectionEffects.SetActive(true);
+    sectionComparison.SetActive(true);
   }
 
   public void HideBodySections() {
-    sectionEffects.SetActive(false);
+    sectionComparison.SetActive(false);
     sectionDescription.SetActive(false);
 
     // this is cleared so when we select an action we don't play the move sound
