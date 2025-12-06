@@ -194,6 +194,8 @@ public class Hero : MonoBehaviour {
     [NonSerialized] public static string projectileEquipment = "";
 
     [NonSerialized] public string[] equipmentArray = { bodyEquipment, arm1Equipment, arm2Equipment, neckEquipment, armwear1Equipment, armwear2Equipment, ring1Equipment, ring2Equipment};
+    // this one should correspond with the shop categories
+    [NonSerialized] public string[][] shopComparisonArray = {new string[] {arm1Equipment, arm2Equipment}, new string[] {arm1Equipment, arm2Equipment}, new string[] {neckEquipment}, new string[] {armwear1Equipment, armwear2Equipment}, new string[] {}, new string[] {}, new string[] {}, new string[] {}};
 
   // PLAYER EQUIPPED STATS
     [NonSerialized] public float equippedSTR = 0f;

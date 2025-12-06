@@ -41,7 +41,6 @@ public class Shop : MonoBehaviour {
   [Space(10)]
   [SerializeField] GameObject sectionDescription;
   [SerializeField] GameObject itemName;
-  [SerializeField] GameObject itemPrice;
   [SerializeField] GameObject itemImage;
   [SerializeField] GameObject itemDescription;
   [SerializeField] GameObject itemEffectsPanel;
@@ -54,6 +53,10 @@ public class Shop : MonoBehaviour {
   [Header("Section - Comparison")]
   [Space(10)]
   [SerializeField] GameObject sectionComparison;
+  [SerializeField] GameObject comparisonContainer;
+  [SerializeField] GameObject[] comparisonGroups;
+  [SerializeField] GameObject itemPrice;
+  [SerializeField] GameObject proceedPrompt;
 
   [Header("Footer")]
   [SerializeField] GameObject mainGamepadPanel;
@@ -183,6 +186,37 @@ public class Shop : MonoBehaviour {
     itemEffectsTimeLabel.SetActive(false);
   }
 
+  void SetComparisonInfo(RegularItem currentItem, int categoryIndex) {
+    string[] comparisonElements = Hero.instance.shopComparisonArray[categoryIndex];
+
+    if (comparisonElements.Length == 0) {
+      comparisonContainer.SetActive(false);
+      return;
+    }
+
+    int i = 0;
+    foreach(string equippedItem in comparisonElements) {
+      GameObject currentComparisonGroup = comparisonGroups[i];
+      // TO FIX: equippedItem should have a special check prior to getting the RegularItem. If blank, the user has nothing equipped. Modify to add the generic equipment icon here instead
+      RegularItem currentEquippedItem = Helpers.GetOrException(Objects.regularItems, equippedItem);
+
+      currentComparisonGroup.transform.Find("CurrentItem").GetComponent<Image>().sprite = currentEquippedItem.thumbnail;
+      currentComparisonGroup.transform.Find("NewItem").GetComponent<Image>().sprite = currentItem.thumbnail;
+
+      // TODO: check children effects here
+      // GameObject[] singleEffects = currentComparisonGroup.transform.Find("EffectsContainer").GetComponentsInChildren<GameObject>();
+
+      // for (int j = 0; j < Constants.comparisonChecks.Length; j++) {
+        
+      // }
+
+      currentComparisonGroup.SetActive(true);
+      i++;
+    }
+
+    comparisonContainer.SetActive(true);
+  }
+
   void SetEffectsInfo(RegularItem currentItem) {
     HideEffectsObjects();
 
@@ -273,6 +307,7 @@ public class Shop : MonoBehaviour {
     itemImage.GetComponent<Image>().sprite = currentItem.image;
 
     SetEffectsInfo(currentItem);
+    SetComparisonInfo(currentItem, categoryIndex);
   }
 
   void UpdateItemView() {
