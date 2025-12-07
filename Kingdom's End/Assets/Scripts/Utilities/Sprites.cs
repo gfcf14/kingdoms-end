@@ -623,4 +623,15 @@ public class Sprites {
     {"arrow-poison", arrowImages[1]},
     {"arrow-standard", arrowImages[0]}
   };
+
+  public static Sprite[][] unequippedIcons = {
+    new Sprite[] {equipmentButtonIcons[1], equipmentButtonIcons[5]},
+    new Sprite[] {equipmentButtonIcons[1], equipmentButtonIcons[5]},
+    new Sprite[] {equipmentButtonIcons[4]},
+    new Sprite[] {equipmentButtonIcons[2], equipmentButtonIcons[6]},
+    new Sprite[] {equipmentButtonIcons[3], equipmentButtonIcons[7]},
+    new Sprite[] {},
+    new Sprite[] {},
+    new Sprite[] {}
+  };
 }

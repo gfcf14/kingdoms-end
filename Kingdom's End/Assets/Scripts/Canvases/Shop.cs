@@ -196,19 +196,24 @@ public class Shop : MonoBehaviour {
 
     int i = 0;
     foreach(string equippedItem in comparisonElements) {
+      bool isUnequipped = equippedItem == "";
       GameObject currentComparisonGroup = comparisonGroups[i];
-      // TO FIX: equippedItem should have a special check prior to getting the RegularItem. If blank, the user has nothing equipped. Modify to add the generic equipment icon here instead
-      RegularItem currentEquippedItem = Helpers.GetOrException(Objects.regularItems, equippedItem);
+      RegularItem currentEquippedItem = isUnequipped ? null : Helpers.GetOrException(Objects.regularItems, equippedItem);
 
-      currentComparisonGroup.transform.Find("CurrentItem").GetComponent<Image>().sprite = currentEquippedItem.thumbnail;
+      currentComparisonGroup.transform.Find("CurrentItem").GetComponent<Image>().sprite = isUnequipped ? Sprites.unequippedIcons[categoryIndex][i] : currentEquippedItem.thumbnail;
       currentComparisonGroup.transform.Find("NewItem").GetComponent<Image>().sprite = currentItem.thumbnail;
 
       // TODO: check children effects here
+      // intends to get all children and use them in an array
       // GameObject[] singleEffects = currentComparisonGroup.transform.Find("EffectsContainer").GetComponentsInChildren<GameObject>();
 
-      // for (int j = 0; j < Constants.comparisonChecks.Length; j++) {
-        
-      // }
+      // keep an incrementable index j
+      // check each of the fields in Constants.comparisonChecks using reflection as per the example below:
+          // object obj = /* your object instance */;
+          // string propertyName = "someProp";
+          // var propertyValue = obj.GetType().GetProperty(propertyName)?.GetValue(obj);
+      // for each value found, modify the EffectIcon and EffectText to be a difference, ensuring the text is green for positive and red for negative
+      // if found, increment the index j
 
       currentComparisonGroup.SetActive(true);
       i++;
@@ -307,7 +312,11 @@ public class Shop : MonoBehaviour {
     itemImage.GetComponent<Image>().sprite = currentItem.image;
 
     SetEffectsInfo(currentItem);
-    SetComparisonInfo(currentItem, categoryIndex);
+
+    // only show comparison info when buying, no use showing it when selling since player can compare items in pause menu
+    if (canvasStatus == "buy") {
+      SetComparisonInfo(currentItem, categoryIndex);
+    }
   }
 
   void UpdateItemView() {
@@ -528,6 +537,15 @@ public class Shop : MonoBehaviour {
     itemCategories[categoryIndex].GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "normal");
   }
 
+  public void ShowComparisonInfo() {
+    proceedPrompt.GetComponent<Text>().text = $"{canvasStatus.ToUpper()}?";
+    comparisonContainer.SetActive(canvasStatus == "buy");
+  }
+
+  public void HideComparisonInfo() {
+    proceedPrompt.GetComponent<Text>().text = "";
+  }
+
   public void ShowBodySections(string action) {
     AssignActiveShopList(action);
     SelectCategory();
@@ -557,6 +575,7 @@ public class Shop : MonoBehaviour {
   public void PopulateShopLists(bool isVendor) {
     PlayMenuSound("select");
     canvasStatus = isVendor ? "buy" : "sell";
+    ShowComparisonInfo();
     mainPrompt.SetActive(false);
     previouslyFocusedButton = eventSystem.currentSelectedGameObject;
     ShowBodySections(action: canvasStatus);
@@ -566,6 +585,7 @@ public class Shop : MonoBehaviour {
     HideBodySections();
     eventSystem.SetSelectedGameObject(previouslyFocusedButton);
     mainPrompt.SetActive(true);
+    HideComparisonInfo();
     canvasStatus = "action";
   }
 
