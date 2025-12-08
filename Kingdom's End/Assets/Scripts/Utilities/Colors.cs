@@ -97,7 +97,8 @@ public class Colors
 
   public static Dictionary<string, Color> uiColors = new() {
     {"green", new Color(0, 1, 0, 1)},
-    {"red", new Color(1, 0, 0, 1)}
+    {"red", new Color(1, 0, 0, 1)},
+    {"white", new Color(1, 1, 1, 1)}
   };
 
   public static Dictionary<string, Color> runeOutlineColors = new() {

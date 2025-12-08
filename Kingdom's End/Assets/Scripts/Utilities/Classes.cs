@@ -103,6 +103,22 @@ public class RegularItem : PauseItem {
     }
   }
 
+  public float? GetEffectValue(string key) {
+    if (effects == null) return null;
+
+    return key switch {
+        "hp"            => effects.hp,
+        "hpPercentage"  => effects.hpPercentage,
+        "mp"            => effects.mp,
+        "mpPercentage"  => effects.mpPercentage,
+        "atk"           => effects.atk,
+        "def"           => effects.def,
+        "crit"          => effects.crit,
+        "luck"          => effects.luck,
+        _               => null
+    };
+  }
+
   // TODO: add values to increase player stats (atk, def, two-handed, etc.)
 }
 

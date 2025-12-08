@@ -442,10 +442,13 @@ public class Helpers {
   }
 
   public static string TwoDecimalPlaces(float decimalValue, bool ignoreWhenWhole = false) {
-    if (ignoreWhenWhole && (decimalValue == (int)decimalValue)) {
-      return ((int) decimalValue).ToString();
+    float rounded = Mathf.Round(decimalValue * 100f) / 100f;
+
+    if (ignoreWhenWhole && Mathf.Approximately(rounded, Mathf.Round(rounded))) {
+      return Mathf.RoundToInt(rounded).ToString();
     }
-    return String.Format("{0:0.00}", decimalValue);
+
+    return rounded.ToString("0.00");
   }
 
   public static string TwoDecimalPlaces(float? decimalValue, bool ignoreWhenWhole = false) {

@@ -194,6 +194,10 @@ public class Shop : MonoBehaviour {
       return;
     }
 
+    if (comparisonElements.Length == 1) {
+      comparisonGroups[1].SetActive(false);
+    }
+
     int i = 0;
     foreach(string equippedItem in comparisonElements) {
       bool isUnequipped = equippedItem == "";
@@ -203,17 +207,46 @@ public class Shop : MonoBehaviour {
       currentComparisonGroup.transform.Find("CurrentItem").GetComponent<Image>().sprite = isUnequipped ? Sprites.unequippedIcons[categoryIndex][i] : currentEquippedItem.thumbnail;
       currentComparisonGroup.transform.Find("NewItem").GetComponent<Image>().sprite = currentItem.thumbnail;
 
-      // TODO: check children effects here
       // intends to get all children and use them in an array
-      // GameObject[] singleEffects = currentComparisonGroup.transform.Find("EffectsContainer").GetComponentsInChildren<GameObject>();
+      GameObject[] singleEffects = currentComparisonGroup.transform.Find("EffectsContainer").GetComponentsInChildren<Transform>(includeInactive: true).Where(t => t.name == "SingleEffect").Select(t => t.gameObject).ToArray();
+      int usedEffectCounter = 0;
 
-      // keep an incrementable index j
-      // check each of the fields in Constants.comparisonChecks using reflection as per the example below:
-          // object obj = /* your object instance */;
-          // string propertyName = "someProp";
-          // var propertyValue = obj.GetType().GetProperty(propertyName)?.GetValue(obj);
-      // for each value found, modify the EffectIcon and EffectText to be a difference, ensuring the text is green for positive and red for negative
-      // if found, increment the index j
+      // loops through each comparison check. If found on both, get the difference and modify corresponding single effect to display
+      for (int j = 0; j < Constants.comparisonChecks.Length; j++) {
+        string currentCheck = Constants.comparisonChecks[j];
+
+        float? currentComparisonValue = isUnequipped ? 0 : currentEquippedItem.GetEffectValue(key: currentCheck);
+        float? newComparisonValue = currentItem.GetEffectValue(key: currentCheck);
+
+        // if both properties are null, then there isn't anything to compare, so this check can be skipped
+        if ((isUnequipped && newComparisonValue == null) || (currentComparisonValue == null && newComparisonValue == null)) {
+          continue;
+        } else {
+          GameObject currentEffect = singleEffects[usedEffectCounter];
+          float difference = (newComparisonValue == null ? 0 : newComparisonValue.Value) - (currentComparisonValue == null ? 0 : currentComparisonValue.Value);
+          string text = $"{(difference > 0 ? "+" : "")}{(Helpers.IsValueInArray(Constants.decimalComparisons, currentCheck) ? Helpers.TwoDecimalPlaces(difference * 100, ignoreWhenWhole: true) + " %" : difference.ToString())}";
+          Debug.Log($"displaying: {text} for check: {currentCheck} from value {difference}");
+          Color color = Helpers.GetOrException(Colors.uiColors, "white");
+          if (difference != 0) {
+            color = Helpers.GetOrException(Colors.uiColors, difference < 0 ? "red" : "green");
+          }
+
+          currentEffect.transform.Find("EffectIcon").GetComponent<Image>().sprite = Sprites.comparisonStatIcons[j];
+          Text effectText = currentEffect.transform.Find("EffectText").GetComponent<Text>();
+          effectText.text = text;
+          effectText.color = color;
+
+          usedEffectCounter++;
+        }
+      }
+
+      // if usedEffectCounter remained at 0, then there weren't any effects to compare, so everything should hide
+      if (usedEffectCounter > 0) {
+        for (int j = 0; j < singleEffects.Length; j++) {
+          // display only the used effects
+          singleEffects[j].SetActive(j < usedEffectCounter);
+        }
+      }
 
       currentComparisonGroup.SetActive(true);
       i++;

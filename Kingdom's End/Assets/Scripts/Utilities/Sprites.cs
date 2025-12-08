@@ -634,4 +634,6 @@ public class Sprites {
     new Sprite[] {},
     new Sprite[] {}
   };
+
+  public static Sprite[] comparisonStatIcons = { statsIcons[8], statsIcons[9], statsIcons[10], statsIcons[11]};
 }
