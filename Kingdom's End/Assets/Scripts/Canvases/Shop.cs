@@ -57,6 +57,7 @@ public class Shop : MonoBehaviour {
   [SerializeField] GameObject[] comparisonGroups;
   [SerializeField] GameObject itemPrice;
   [SerializeField] GameObject proceedPrompt;
+  [SerializeField] GameObject buttonUseYes;
 
   [Header("Footer")]
   [SerializeField] GameObject mainGamepadPanel;
@@ -81,6 +82,7 @@ public class Shop : MonoBehaviour {
   [NonSerialized] List<GameObject> removesList = new List<GameObject>();
   private AudioSource audioSource;
   private GameObject previouslyFocusedButton = null;
+  private GameObject previouslyFocusedItem = null;
   private List<GameObject> itemCategories = new();
   private List<GameObject> shopItemButtons = new();
   private List<Item> activeShopList = new();
@@ -225,7 +227,7 @@ public class Shop : MonoBehaviour {
           GameObject currentEffect = singleEffects[usedEffectCounter];
           float difference = (newComparisonValue == null ? 0 : newComparisonValue.Value) - (currentComparisonValue == null ? 0 : currentComparisonValue.Value);
           string text = $"{(difference > 0 ? "+" : "")}{(Helpers.IsValueInArray(Constants.decimalComparisons, currentCheck) ? Helpers.TwoDecimalPlaces(difference * 100, ignoreWhenWhole: true) + " %" : difference.ToString())}";
-          Debug.Log($"displaying: {text} for check: {currentCheck} from value {difference}");
+
           Color color = Helpers.GetOrException(Colors.uiColors, "white");
           if (difference != 0) {
             color = Helpers.GetOrException(Colors.uiColors, difference < 0 ? "red" : "green");
@@ -440,6 +442,10 @@ public class Shop : MonoBehaviour {
       case "sell":
         GoBackToActionSelect();
       break;
+      case "buy_proceed":
+      case "sell_proceed":
+        GoBackToItemSelect();
+      break;
       default:
         Debug.Log("unknown canvas status: " + canvasStatus);
       break;
@@ -498,6 +504,46 @@ public class Shop : MonoBehaviour {
     SetItemInfo(0);
   }
 
+  public void ProceedToPrompt() {
+    PlayMenuSound("select");
+    canvasStatus = $"{canvasStatus}_proceed";
+    previouslyFocusedItem = eventSystem.currentSelectedGameObject;
+    eventSystem.SetSelectedGameObject(buttonUseYes);
+  }
+
+  public void GoBackToItemSelect() {
+    eventSystem.SetSelectedGameObject(previouslyFocusedItem);
+    previouslyFocusedItem = null;
+    canvasStatus = canvasStatus.Replace("_proceed", "");
+    PlayMenuSound("back");
+  }
+
+  public void ProceedWithTransaction() {
+    // RegularItem itemToProceedWith = Helpers.GetOrException(Objects.regularItems, eventSystem.currentSelectedGameObject.GetComponent<ItemButton>().key);
+    // // TODO: implement a function to add/subtract gold! This prop should probably not be public
+    // Hero.instance.gold += itemToProceedWith.price * (canvasStatus == "buy" ? -1 : 1);
+
+    GoBackToItemSelect();
+  }
+
+  public void CancelTransaction() {
+    GoBackToItemSelect();
+  }
+
+  public void CheckProceed() {
+    if (canvasStatus == "sell") {
+      ProceedToPrompt();
+
+    // for buy, first the player has to have enough money
+    } else {
+      RegularItem itemToProceedWith = Helpers.GetOrException(Objects.regularItems, eventSystem.currentSelectedGameObject.GetComponent<ItemButton>().key);
+
+      if (moneyValue >= itemToProceedWith.price) {
+        ProceedToPrompt();
+      }
+    }
+  }
+
   public void PopulateItemsContainer() {
     int itemIndex = 0;
     shopItemButtons.Clear();
@@ -515,6 +561,9 @@ public class Shop : MonoBehaviour {
         shopItem.transform.Find("Text").gameObject.GetComponent<Text>().text = currRegItem.name;
         shopItem.transform.Find("Amount").gameObject.GetComponent<Text>().text = item.amount.ToString();
         shopItem.GetComponent<ItemButton>().key = item.key;
+
+      // sets current button action on press
+        shopItem.GetComponent<Button>().onClick.AddListener(CheckProceed);
 
         // adds the current button to the list to be able to track them on movement
         shopItemButtons.Add(shopItem);
