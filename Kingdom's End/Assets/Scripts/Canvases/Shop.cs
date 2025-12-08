@@ -482,7 +482,7 @@ public class Shop : MonoBehaviour {
   }
 
   // sets navigation for shop list items when switching categories
-  private IEnumerator SetupNavigationNextFrame() {
+  private IEnumerator SetupNavigationNextFrame(int specificItemIndex = 0) {
     yield return null; // allows to wait for shop list rebuild in UI
 
     GameObject[] containerChildren = itemsContainer.transform.Cast<Transform>().Select(t => t.gameObject).ToArray();
@@ -499,9 +499,19 @@ public class Shop : MonoBehaviour {
       btn.navigation = nav;
     }
 
-    eventSystem.SetSelectedGameObject(containerChildren[0]);
+    eventSystem.SetSelectedGameObject(containerChildren[specificItemIndex]);
     // sets the item info as soon as category is changed
-    SetItemInfo(0);
+    SetItemInfo(specificItemIndex);
+  }
+
+  void UpdateDisplays() {
+    moneyValue = Hero.instance.gold;
+    money.GetComponent<Text>().text = moneyValue.ToString();
+
+    ClearItemsContainer();
+    ClearShopList();
+    PopulateShopList();
+    PopulateItemsContainer(previousItemIndex);
   }
 
   public void ProceedToPrompt() {
@@ -519,10 +529,31 @@ public class Shop : MonoBehaviour {
   }
 
   public void ProceedWithTransaction() {
-    // RegularItem itemToProceedWith = Helpers.GetOrException(Objects.regularItems, eventSystem.currentSelectedGameObject.GetComponent<ItemButton>().key);
-    // // TODO: implement a function to add/subtract gold! This prop should probably not be public
-    // Hero.instance.gold += itemToProceedWith.price * (canvasStatus == "buy" ? -1 : 1);
+    string currentItemKey = previouslyFocusedItem.GetComponent<ItemButton>().key;
+    RegularItem itemToProceedWith = Helpers.GetOrException(Objects.regularItems, currentItemKey);
+    // TODO: implement a function to add/subtract gold! This prop should probably not be public
+    Hero.instance.gold += itemToProceedWith.price * (canvasStatus == "buy_proceed" ? -1 : 1);
 
+    Item transactionItem = activeShopList.FirstOrDefault(i => i.key == currentItemKey);
+    List<Item> receivingList = canvasStatus == "buy_proceed" ? Hero.instance.items : Helpers.GetOrException(GameData.vendorItems, vendor);
+
+    // updates the active shop list item amount, or removes it if only one left
+    if (transactionItem.amount > 1) {
+      transactionItem.amount -= 1;
+    } else {
+      activeShopList.Remove(transactionItem);
+    }
+
+    // adds the item to the receiving list or increments its amount if present
+    Item newItem = receivingList.FirstOrDefault(i => i.key == currentItemKey);
+    if (newItem != null) {
+      newItem.amount += 1;
+    } else {
+      receivingList.Add(new Item(currentItemKey, 1));
+    }
+
+    UpdateDisplays();
+    // TODO: consider what to do if we try to go back to an item that was removed
     GoBackToItemSelect();
   }
 
@@ -544,7 +575,7 @@ public class Shop : MonoBehaviour {
     }
   }
 
-  public void PopulateItemsContainer() {
+  public void PopulateItemsContainer(int specificItemIndex = 0) {
     int itemIndex = 0;
     shopItemButtons.Clear();
     itemsContainer.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -581,7 +612,7 @@ public class Shop : MonoBehaviour {
       itemIndex++;
     }
 
-    StartCoroutine(SetupNavigationNextFrame());
+    StartCoroutine(SetupNavigationNextFrame(specificItemIndex));
   }
 
   public void ClearItemsContainer() {
