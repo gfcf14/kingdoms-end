@@ -342,6 +342,7 @@ public class Shop : MonoBehaviour {
   void SetItemInfo(int itemIndex) {
     RegularItem currentItem = Helpers.GetOrException(Objects.regularItems, shopList.ElementAt(itemIndex).key);
     itemName.GetComponent<Text>().text = currentItem.name;
+    // TODO: set text color to red if user can't afford it
     itemPrice.GetComponent<Text>().text = currentItem.price.ToString();
     itemDescription.GetComponent<Text>().text = currentItem.description;
     itemImage.GetComponent<Image>().sprite = currentItem.image;
@@ -504,14 +505,14 @@ public class Shop : MonoBehaviour {
     SetItemInfo(specificItemIndex);
   }
 
-  void UpdateDisplays() {
+  void UpdateDisplays(bool removalHappened = false) {
     moneyValue = Hero.instance.gold;
     money.GetComponent<Text>().text = moneyValue.ToString();
 
     ClearItemsContainer();
     ClearShopList();
     PopulateShopList();
-    PopulateItemsContainer(previousItemIndex);
+    PopulateItemsContainer(removalHappened ? 0 : previousItemIndex);
   }
 
   public void ProceedToPrompt() {
@@ -529,6 +530,7 @@ public class Shop : MonoBehaviour {
   }
 
   public void ProceedWithTransaction() {
+    bool removalHappened = false;
     string currentItemKey = previouslyFocusedItem.GetComponent<ItemButton>().key;
     RegularItem itemToProceedWith = Helpers.GetOrException(Objects.regularItems, currentItemKey);
     // TODO: implement a function to add/subtract gold! This prop should probably not be public
@@ -542,6 +544,7 @@ public class Shop : MonoBehaviour {
       transactionItem.amount -= 1;
     } else {
       activeShopList.Remove(transactionItem);
+      removalHappened = true;
     }
 
     // adds the item to the receiving list or increments its amount if present
@@ -552,8 +555,7 @@ public class Shop : MonoBehaviour {
       receivingList.Add(new Item(currentItemKey, 1));
     }
 
-    UpdateDisplays();
-    // TODO: consider what to do if we try to go back to an item that was removed
+    UpdateDisplays(removalHappened);
     GoBackToItemSelect();
   }
 
