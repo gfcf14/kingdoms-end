@@ -88,6 +88,7 @@ public class Shop : MonoBehaviour {
   private List<Item> activeShopList = new();
   private List<Item> shopList = new();
   private int previousItemIndex = -1;
+  private bool transactionHappened = false;
   public int totalCategories = 0;
   public string currentActionSelected = "";
   public string currentItemKey = "";
@@ -368,7 +369,11 @@ public class Shop : MonoBehaviour {
         if (currentSelectedItem != currentItemKey) {
           // if both variables have a value, then we didn't just enter the category, thus the move sound can safely be played
           if (currentSelectedItem != "" && currentItemKey != "") {
-            PlayMenuSound("move");
+            if (!transactionHappened) {
+              PlayMenuSound("move");
+            } else {
+              transactionHappened = false;
+            }
           }
           currentItemKey = currentSelectedItem;
         }
@@ -526,7 +531,11 @@ public class Shop : MonoBehaviour {
     eventSystem.SetSelectedGameObject(previouslyFocusedItem);
     previouslyFocusedItem = null;
     canvasStatus = canvasStatus.Replace("_proceed", "");
-    PlayMenuSound("back");
+    if (transactionHappened) {
+      InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, "money"), transform.position);
+    } else {
+      PlayMenuSound("back");
+    }
   }
 
   public void ProceedWithTransaction() {
@@ -554,6 +563,8 @@ public class Shop : MonoBehaviour {
     } else {
       receivingList.Add(new Item(currentItemKey, 1));
     }
+
+    transactionHappened = true;
 
     UpdateDisplays(removalHappened);
     GoBackToItemSelect();
