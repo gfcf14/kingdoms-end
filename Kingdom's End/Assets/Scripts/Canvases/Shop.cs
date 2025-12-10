@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ThisOtherThing.UI.Shapes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -55,9 +56,12 @@ public class Shop : MonoBehaviour {
   [SerializeField] GameObject sectionComparison;
   [SerializeField] GameObject comparisonContainer;
   [SerializeField] GameObject[] comparisonGroups;
+  [SerializeField] GameObject saleRectangle;
+  [SerializeField] GameObject priceLabel;
   [SerializeField] GameObject itemPrice;
   [SerializeField] GameObject proceedPrompt;
   [SerializeField] GameObject buttonUseYes;
+  [SerializeField] GameObject buttonUseNo;
 
   [Header("Footer")]
   [SerializeField] GameObject mainGamepadPanel;
@@ -340,13 +344,30 @@ public class Shop : MonoBehaviour {
     }
   }
 
+  void ToggleSaleRectangle(bool canAfford) {
+    Color displayColor = canAfford ? Color.white : new Color(1, 1, 1, 0.5f);
+    var rect = saleRectangle.GetComponent<Rectangle>();
+    var shape = rect.ShapeProperties;
+
+    shape.OutlineColor = displayColor;
+    rect.ShapeProperties = shape;
+    rect.SetAllDirty();
+
+    priceLabel.GetComponent<Text>().color = displayColor;
+    itemPrice.GetComponent<Text>().color = displayColor;
+    proceedPrompt.GetComponent<Text>().color = displayColor;
+    buttonUseYes.transform.Find("Text").GetComponent<Text>().color = displayColor;
+    buttonUseNo.transform.Find("Text").GetComponent<Text>().color = displayColor;
+  }
+
   void SetItemInfo(int itemIndex) {
     RegularItem currentItem = Helpers.GetOrException(Objects.regularItems, shopList.ElementAt(itemIndex).key);
     itemName.GetComponent<Text>().text = currentItem.name;
-    // TODO: set text color to red if user can't afford it
     itemPrice.GetComponent<Text>().text = currentItem.price.ToString();
     itemDescription.GetComponent<Text>().text = currentItem.description;
     itemImage.GetComponent<Image>().sprite = currentItem.image;
+
+    ToggleSaleRectangle(canAfford: currentItem.price < moneyValue);
 
     SetEffectsInfo(currentItem);
 
