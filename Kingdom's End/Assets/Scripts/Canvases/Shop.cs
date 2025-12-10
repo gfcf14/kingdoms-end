@@ -367,12 +367,11 @@ public class Shop : MonoBehaviour {
     itemDescription.GetComponent<Text>().text = currentItem.description;
     itemImage.GetComponent<Image>().sprite = currentItem.image;
 
-    ToggleSaleRectangle(canAfford: currentItem.price < moneyValue);
-
     SetEffectsInfo(currentItem);
 
     // only show comparison info when buying, no use showing it when selling since player can compare items in pause menu
     if (canvasStatus == "buy") {
+      ToggleSaleRectangle(canAfford: currentItem.price < moneyValue);
       SetComparisonInfo(currentItem, categoryIndex);
     }
   }
