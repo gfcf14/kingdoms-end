@@ -118,6 +118,6 @@ public class Colors
 
   public static Dictionary<string, Color> shopButtonColors = new() {
     {"highlighted", new Color(49/255f, 124/255f, 52/255f)},
-    {"normal", new Color(0, 0, 0, 0)},
+    {"unselected", new Color(0, 0, 0, 0)}
   };
 }

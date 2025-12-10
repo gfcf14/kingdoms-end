@@ -680,7 +680,7 @@ public class Shop : MonoBehaviour {
   public void ClearCategory() {
     ClearItemsContainer();
     ClearShopList();
-    itemCategories[categoryIndex].GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "normal");
+    itemCategories[categoryIndex].GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "unselected");
   }
 
   public void ShowComparisonInfo() {
@@ -718,17 +718,29 @@ public class Shop : MonoBehaviour {
     ClearActiveShopList();
   }
 
+  public void HighlightActionButton(GameObject buttonPressed) {
+    buttonPressed.GetComponent<Button>().enabled = false;
+    buttonPressed.transform.Find("BackgroundImage").GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "highlighted");
+  }
+
+  public void BlurActionButton(GameObject buttonReturningTo) {
+    buttonReturningTo.transform.Find("BackgroundImage").GetComponent<Image>().color = Helpers.GetOrException(Colors.shopButtonColors, "unselected");
+    buttonReturningTo.GetComponent<Button>().enabled = true;
+  }
+
   public void PopulateShopLists(bool isVendor) {
     PlayMenuSound("select");
     canvasStatus = isVendor ? "buy" : "sell";
     ShowComparisonInfo();
     mainPrompt.SetActive(false);
     previouslyFocusedButton = eventSystem.currentSelectedGameObject;
+    HighlightActionButton(previouslyFocusedButton);
     ShowBodySections(action: canvasStatus);
   }
 
   public void GoBackToActionSelect() {
     HideBodySections();
+    BlurActionButton(previouslyFocusedButton);
     eventSystem.SetSelectedGameObject(previouslyFocusedButton);
     mainPrompt.SetActive(true);
     HideComparisonInfo();
