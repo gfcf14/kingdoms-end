@@ -128,7 +128,7 @@ public class Constants {
 
   // indicates the maximum "whole" items the items container can visualize
   public static int maxItemContainerHeight = 13;
-  public static int maxShopItemContainerHeight = 10;
+  public static int maxShopItemContainerHeight = 11;
 
   // Marks the default mandatory additional width for the Action Canvas text container
   public static int defaultActionTextContainerWidth = 76;
