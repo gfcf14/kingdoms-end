@@ -408,8 +408,6 @@ public class Shop : MonoBehaviour {
         float itemYIncrement = Constants.itemIncrementY;
         float startItemY = Constants.startShopItemY;
 
-        // TODO: should this be limited to only when indices are not equal? (i.e. difference is 0)
-
         // going down
         if (indexDifference == 1) {
           if (currentItemIndex > maxVisibleItems - 1) {
@@ -497,9 +495,27 @@ public class Shop : MonoBehaviour {
   public void AssignActiveShopList(string action) {
     if (action == "buy") {
       activeShopList = Helpers.GetOrException(GameData.vendorItems, vendor);
-    } else { // sell
-      activeShopList = Hero.instance.items;
-      // TODO: use the hero's equipmentArray to subtract equipped items from the activeShopList
+
+    // sell
+    } else {
+      activeShopList = Hero.instance.items.Select(item => new Item(item.key, item.amount)).ToList();
+
+      // this allows to skip the bodyEquipment as body equipment is not sellable and the arm2 equipment if equipping a two-handed weapon
+      string[] removeArray = Hero.instance.equipmentArray.Skip(Hero.arm1Equipment == Hero.arm2Equipment ? 2 : 1).ToArray();
+
+      foreach(string removeItem in removeArray) {
+        // if item is not equipped, skip
+        if (removeItem != "") {
+          Item itemToRemove = activeShopList.FirstOrDefault(i => i.key == removeItem);
+
+          // removes item corresponding to what the player has equipped
+          if (itemToRemove.amount > 1) {
+            itemToRemove.amount -= 1;
+          } else {
+            activeShopList.Remove(itemToRemove);
+          }
+        }
+      }
     }
   }
 
@@ -574,6 +590,17 @@ public class Shop : MonoBehaviour {
     } else {
       activeShopList.Remove(transactionItem);
       removalHappened = true;
+    }
+
+    // when selling, the item should also be removed from the hero's items
+    if (canvasStatus == "sell_proceed") {
+      Item itemToRemove = Hero.instance.items.FirstOrDefault(i => i.key == currentItemKey);
+
+      if (itemToRemove.amount > 1) {
+        itemToRemove.amount -= 1;
+      } else {
+        Hero.instance.items.Remove(itemToRemove);
+      }
     }
 
     // adds the item to the receiving list or increments its amount if present
