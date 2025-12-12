@@ -158,7 +158,7 @@ public class Shop : MonoBehaviour {
 
       if (currentSelectedItem != currentActionSelected) {
         // only when moving to choose a shop action will the move sound be played
-        if (currentSelectedItem != "" && Helpers.IsValueInArray(Constants.ShopActionButtonNames, currentActionSelected)) {
+        if (isReady && currentSelectedItem != "" && Helpers.IsValueInArray(Constants.ShopActionButtonNames, currentActionSelected)) {
           PlayMenuSound("move");
         }
         currentActionSelected = currentSelectedItem;
@@ -483,6 +483,7 @@ public class Shop : MonoBehaviour {
   }
 
   public void HideContent() {
+    isReady = false;
     contentContainer.SetActive(false);
   }
 
