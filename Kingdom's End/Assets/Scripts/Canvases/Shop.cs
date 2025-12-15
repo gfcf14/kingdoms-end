@@ -720,6 +720,7 @@ public class Shop : MonoBehaviour {
     proceedPrompt.GetComponent<Text>().text = "";
   }
 
+  // TODO: consider a similar process for the other images used in this canvas. Maybe consider an hourglass image to symbolize loading?
   void HideEffectContainers() {
     foreach (GameObject compGroup in comparisonGroups) {
       foreach (Transform child in compGroup.transform.Find("EffectsContainer")) {
