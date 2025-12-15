@@ -720,6 +720,14 @@ public class Shop : MonoBehaviour {
     proceedPrompt.GetComponent<Text>().text = "";
   }
 
+  void HideEffectContainers() {
+    foreach (GameObject compGroup in comparisonGroups) {
+      foreach (Transform child in compGroup.transform.Find("EffectsContainer")) {
+        child.gameObject.SetActive(false);
+      }
+    }
+  }
+
   public void ShowBodySections(string action) {
     AssignActiveShopList(action);
     SelectCategory();
@@ -727,6 +735,9 @@ public class Shop : MonoBehaviour {
     sectionCategories.SetActive(true);
     sectionItemList.SetActive(true);
     sectionDescription.SetActive(true);
+
+    HideEffectContainers();
+
     sectionComparison.SetActive(true);
   }
 
