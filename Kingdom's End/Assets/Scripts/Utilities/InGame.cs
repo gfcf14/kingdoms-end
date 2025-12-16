@@ -176,7 +176,7 @@ public class InGame : MonoBehaviour {
     Item currItem = Helpers.GetItemFromList(Hero.instance.items, itemKey);
 
     if (itemKey.Contains("money")) {
-      Hero.instance.gold += Helpers.GetOrException(Objects.moneyItems, itemKey).increment;
+      Hero.instance.UpdateGold(Helpers.GetOrException(Objects.moneyItems, itemKey).increment);
     } else {
       if (currItem == null) { // if not found, the item must be added
         Hero.instance.items.Add(new Item(itemKey, 1));

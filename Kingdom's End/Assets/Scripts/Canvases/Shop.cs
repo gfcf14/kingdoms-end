@@ -579,8 +579,7 @@ public class Shop : MonoBehaviour {
     bool removalHappened = false;
     string currentItemKey = previouslyFocusedItem.GetComponent<ItemButton>().key;
     RegularItem itemToProceedWith = Helpers.GetOrException(Objects.regularItems, currentItemKey);
-    // TODO: implement a function to add/subtract gold! This prop should probably not be public
-    Hero.instance.gold += itemToProceedWith.price * (canvasStatus == "buy_proceed" ? -1 : 1);
+    Hero.instance.UpdateGold(itemToProceedWith.price * (canvasStatus == "buy_proceed" ? -1 : 1));
 
     Item transactionItem = activeShopList.FirstOrDefault(i => i.key == currentItemKey);
     List<Item> receivingList = canvasStatus == "buy_proceed" ? Hero.instance.items : Helpers.GetOrException(GameData.vendorItems, vendor);

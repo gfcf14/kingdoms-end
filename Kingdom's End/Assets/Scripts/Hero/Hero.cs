@@ -1910,6 +1910,10 @@ public class Hero : MonoBehaviour {
     Time.timeScale = 0;
   }
 
+  public void UpdateGold(int amount) {
+    gold += amount;
+  }
+
   public void ClearPauseCase(bool resumeSoundtrack = false, bool waitIfLevelingUp = false) {
     if (pauseCase == "got-relic") {
       InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, "normal"), transform.position);

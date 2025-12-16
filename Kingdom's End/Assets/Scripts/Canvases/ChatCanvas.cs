@@ -160,7 +160,7 @@ public class ChatCanvas : MonoBehaviour {
   void TakeItem(string itemKey) {
     if (itemKey.Contains("money")) { // if there is money involved, remove from the gold value
       string moneyValue = itemKey.Split('-')[1];
-      Hero.instance.gold -= int.Parse(moneyValue);
+      Hero.instance.UpdateGold(-int.Parse(moneyValue));
 
       InGame.instance.InstantiateLoss("money-loss", isItem: false, moneyValue, null);
     } else { // if there is no money involved, remove from the hero item list
