@@ -14,7 +14,7 @@ public class Objects
     {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
     {"ruins", new string[]{"neret"}},
     {"seaside", new string[]{"kelpie", "nereid"}},
-    {"swamps", new string[]{"bunyip", "nixie", "ogre", "pishtaco", "yanmabel"}},
+    {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
     {"underground", new string[]{"samodiva"}},
     {"wasteland", new string[]{"skeleton", "skeleton-king", "skelewing"}}
   };
@@ -277,6 +277,7 @@ public class Objects
     {"leprechaun-mushroom", 35},
     {"mermaid-scale", 35},
     {"merman-scale", 40},
+    {"mosswyn-dagger", 40},
     {"mummy-rib", 30},
     {"nereid-seashell", 35},
     {"neret-orb", 40},
@@ -475,7 +476,8 @@ public class Objects
     {"gnome", genericItemDictionary},
     {"nixie", genericItemDictionary},
     {"pishtaco", genericItemDictionary},
-    {"bunyip", genericItemDictionary}
+    {"bunyip", genericItemDictionary},
+    {"mosswyn", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -559,6 +561,7 @@ public class Objects
     {"leprechaun", new EnemyStats() {name = "Leprechaun", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"mermaid", new EnemyStats() {name = "Mermaid", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 15, def = 10, crit = 0.0035f, exp = 30, speed= 4, reach = 0.3f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"merman", new EnemyStats() {name = "Merman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 6.75f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
+    {"mosswyn", new EnemyStats() {name = "Mosswyn", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"mummy", new EnemyStats() {name = "Mummy", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"nereid", new EnemyStats() {name = "Nereid", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"neret", new EnemyStats() {name = "Neret", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
@@ -595,6 +598,7 @@ public class Objects
     {"leprechaun", new Vector2(0.67f, 1.63f)},
     {"mermaid", new Vector2(0.67f, 2.22f)},
     {"merman", new Vector2(1.05f, 2.32f)},
+    {"mosswyn", new Vector2(0.71f, 1.63f)},
     {"mummy", new Vector2(1.19f, 2.24f)},
     {"nereid", new Vector2(0.66f, 2.23f)},
     {"neret", new Vector2(0.89f, 1.26f)},
@@ -629,6 +633,7 @@ public class Objects
     {"leprechaun", new Vector2(0, 1)},
     {"mermaid", new Vector2(-0.09f, 1.6f)},
     {"merman", new Vector2(0.1f, 2)},
+    {"mosswyn", new Vector2(0, 1)},
     {"mummy", new Vector2(0.125f, 2.125f)},
     {"nereid", new Vector2(-0.09f, 1.6f)},
     {"nixie", new Vector2(-0.09f, 1.6f)},
@@ -662,6 +667,7 @@ public class Objects
     {"leprechaun", defaultDeathOrigin},
     {"mermaid", defaultDeathOrigin},
     {"merman", defaultDeathOrigin},
+    {"mosswyn", defaultDeathOrigin},
     {"mummy", defaultDeathOrigin},
     {"nereid", new Vector2(-0.7025f, 0.5f)},
     {"neret", defaultDeathOrigin},
@@ -731,6 +737,7 @@ public class Objects
     {"leprechaun-mushroom", "blunt"},
     {"mermaid-scale", "blunt"},
     {"merman-scale", "blunt"},
+    {"mosswyn-dagger", "blunt"},
     {"mummy-rib", "blunt"},
     {"nereid-seashell", "blunt"},
     {"neret-orb", "blunt"},
@@ -781,6 +788,7 @@ public class Objects
     {"leprechaun-mushroom", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"mermaid-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"merman-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"mosswyn-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"mummy-rib", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nereid-seashell", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"neret-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
@@ -816,6 +824,7 @@ public class Objects
     {"leprechaun", "leprechaun-mushroom"},
     {"mermaid", "mermaid-scale"},
     {"merman", "merman-scale"},
+    {"mosswyn", "mosswyn-dagger"},
     {"mummy", "mummy-rib"},
     {"nereid", "nereid-seashell"},
     {"neret", "neret-orb"},
