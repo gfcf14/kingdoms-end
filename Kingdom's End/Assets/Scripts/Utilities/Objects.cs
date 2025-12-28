@@ -16,7 +16,7 @@ public class Objects
     {"seaside", new string[]{"kelpie", "nereid"}},
     {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "sugecapre", "yanmabel"}},
     {"underground", new string[]{"samodiva"}},
-    {"wasteland", new string[]{"skeleton", "skeleton-king", "skelewing"}}
+    {"wasteland", new string[]{"hellhound", "skeleton", "skeleton-king", "skelewing"}}
   };
 
   public static Dictionary<string, string[]> enemyTypesByCondition = new() {
@@ -273,6 +273,7 @@ public class Objects
     {"glupus-fang", 35},
     {"gnome-truffle", 30},
     {"goblin-knife", 50},
+    {"hellhound-fang", 35},
     {"hippocampus-scale", 35},
     {"kelpie-fin", 35},
     {"leprechaun-mushroom", 35},
@@ -481,7 +482,8 @@ public class Objects
     {"bunyip", genericItemDictionary},
     {"mosswyn", genericItemDictionary},
     {"sugecapre", genericItemDictionary},
-    {"glupus", genericItemDictionary}
+    {"glupus", genericItemDictionary},
+    {"hellhound", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -561,6 +563,7 @@ public class Objects
     {"glupus", new EnemyStats() {name = "Glupus", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"gnome", new EnemyStats() {name = "Gnome", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"goblin", new EnemyStats() {name = "Goblin", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
+    {"hellhound", new EnemyStats() {name = "Hellhound", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"hippocampus", new EnemyStats() {name = "Hippocampus", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"kelpie", new EnemyStats() {name = "Kelpie", baseMaterial = "barefoot", normalAttackType = "kick", hp = 45, atk = 20, def = 10, crit = 0.003f, exp = 45, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"leprechaun", new EnemyStats() {name = "Leprechaun", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
@@ -600,6 +603,7 @@ public class Objects
     {"glupus", new Vector2(2.26f, 1.86f)},
     {"gnome", new Vector2(0.69f, 1.62f)},
     {"goblin", new Vector2(1.38f, 2.37f)},
+    {"hellhound", new Vector2(2.26f, 1.86f)},
     {"hippocampus", new Vector2(2.72f, 2.12f)},
     {"kelpie", new Vector2(2.79f, 2.12f)},
     {"leprechaun", new Vector2(0.67f, 1.63f)},
@@ -637,6 +641,7 @@ public class Objects
     {"glupus", new Vector2(0.25f, 1.55f)},
     {"gnome", new Vector2(0, 1)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
+    {"hellhound", new Vector2(0.25f, 1.55f)},
     {"hippocampus", new Vector2(0.25f, 2.25f)},
     {"kelpie", new Vector2(0.25f, 2.25f)},
     {"leprechaun", new Vector2(0, 1)},
@@ -673,6 +678,7 @@ public class Objects
     {"glupus", defaultDeathOrigin},
     {"gnome", defaultDeathOrigin},
     {"goblin", defaultDeathOrigin},
+    {"hellhound", defaultDeathOrigin},
     {"hippocampus", defaultDeathOrigin},
     {"kelpie", defaultDeathOrigin},
     {"leprechaun", defaultDeathOrigin},
@@ -745,6 +751,7 @@ public class Objects
     {"glupus-fang", "blunt"},
     {"gnome-truffle", "blunt"},
     {"goblin-knife", "blunt"},
+    {"hellhound-fang", "blunt"},
     {"hippocampus-scale", "blunt"},
     {"kelpie-fin", "blunt"},
     {"leprechaun-mushroom", "blunt"},
@@ -798,6 +805,7 @@ public class Objects
     {"glupus-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"gnome-truffle", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"hellhound-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"hippocampus-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"kelpie-fin", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"leprechaun-mushroom", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -836,6 +844,7 @@ public class Objects
     {"glupus", "glupus-fang"},
     {"gnome", "gnome-truffle"},
     {"goblin", "goblin-knife"},
+    {"hellhound", "hellhound-fang"},
     {"hippocampus", "hippocampus-scale"},
     {"kelpie", "kelpie-fin"},
     {"leprechaun", "leprechaun-mushroom"},
