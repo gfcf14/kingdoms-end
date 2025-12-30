@@ -60,6 +60,7 @@ public class Sprites {
   public static Sprite[] hellhoundSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/hellhound");
   public static Sprite[] shangsenSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/shangsen");
   public static Sprite[] kitsuneSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/kitsune");
+  public static Sprite[] karasuSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/karasu");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -362,6 +363,7 @@ public class Sprites {
     {"goblin-knife", Resources.Load<Sprite>("Sprites/projectiles/goblin-knife")},
     {"hellhound-fang", Resources.Load<Sprite>("Sprites/projectiles/hellhound-fang")},
     {"hippocampus-scale", Resources.Load<Sprite>("Sprites/projectiles/hippocampus-scale")},
+    {"karasu-feather", Resources.Load<Sprite>("Sprites/projectiles/karasu-feather")},
     {"kelpie-fin", Resources.Load<Sprite>("Sprites/projectiles/kelpie-fin")},
     {"kitsune-kunai", Resources.Load<Sprite>("Sprites/projectiles/kitsune-kunai")},
     {"leprechaun-mushroom", Resources.Load<Sprite>("Sprites/projectiles/leprechaun-mushroom")},
@@ -577,6 +579,7 @@ public class Sprites {
     {"goblin", goblinSprites[0]},
     {"hellhound", hellhoundSprites[0]},
     {"hippocampus", hippocampusSprites[0]},
+    {"karasu", karasuSprites[0]},
     {"kelpie", kelpieSprites[0]},
     {"kitsune", kitsuneSprites[0]},
     {"leprechaun", leprechaunSprites[0]},

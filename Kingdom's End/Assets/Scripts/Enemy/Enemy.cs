@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour {
     [NonSerialized] public bool needsCoolDown = false;
     [NonSerialized] public bool diesFlying = false;
     [NonSerialized] public bool isFlyingEnemy = false;
+    [NonSerialized] public bool isWingedEnemy = false;
     [NonSerialized] public bool isAerialEnemy = false;
 
     [NonSerialized] public float arrowBurnPosition = 0;
@@ -248,6 +249,7 @@ public class Enemy : MonoBehaviour {
 
     diesFlying = Helpers.IsValueInArray(Constants.flyingDeathEnemies, key);
     isFlyingEnemy = Helpers.IsValueInArray(Constants.flyingEnemies, key);
+    isWingedEnemy = Helpers.IsValueInArray(Constants.wingedEnemies, key);
     isAerialEnemy = Helpers.IsValueInArray(Constants.aerialEnemies, key);
 
     if (type == "patroller") {
@@ -349,7 +351,7 @@ public class Enemy : MonoBehaviour {
       transform.Find("Grounder").gameObject.SetActive(false);
     }
 
-    if (!isFlyingEnemy && !isAerialEnemy && Helpers.IsValueInArray(Constants.flyingEnemyTypes, type)) {
+    if (!isFlyingEnemy && !isWingedEnemy && !isAerialEnemy && Helpers.IsValueInArray(Constants.flyingEnemyTypes, type)) {
       // instantiates wings only only enemies who cannot naturally fly get wings and based on a position offset ("cheaper" to store a Vector2 than a Sprite object in a Dictionary)
       Vector2 wingOffset = Helpers.GetOrException(Objects.enemyWingOffsets, key);
       GameObject wings = Instantiate(Helpers.GetOrException(Objects.prefabs, "enemy-wings"), new Vector2(transform.position.x + wingOffset.x * (isFacingLeft ? -1 : 1), transform.position.y + wingOffset.y), Quaternion.identity, transform);
