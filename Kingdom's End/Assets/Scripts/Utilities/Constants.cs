@@ -26,6 +26,7 @@ public class Constants {
     "glupus-fang",
     "gnome-truffle",
     "goblin-knife",
+    "harpy-feather",
     "hellhound-fang",
     "hippocampus-scale",
     "karasu-feather",
@@ -93,7 +94,7 @@ public class Constants {
   // refers to enemies who can naturally fly
   public static string[] flyingEnemies = {"fairy", "frostbird", "neret", "phoenix", "pixie", "skelewing", "thunderbird", "yanmabel"};
   // refers to enemies who are normally on the ground but can naturally fly
-  public static string[] wingedEnemies = {"karasu"};
+  public static string[] wingedEnemies = {"harpy", "karasu"};
   // refers to enemies who are mostly grounded but by unique means can fly
   public static string[] aerialEnemies = {"shangsen"};
   // refers to beast like enemies whose width is a lot bigger than their height
@@ -152,6 +153,7 @@ public class Constants {
     "glupus-fang",
     "gnome-truffle",
     "goblin-knife",
+    "harpy-feather",
     "hellhound-fang",
     "hippocampus-scale",
     "karasu-feather",

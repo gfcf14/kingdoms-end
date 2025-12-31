@@ -5,7 +5,7 @@ using UnityEngine;
 public class Objects
 {
   public static Dictionary<string, string[]> enemyKeysByArea = new() {
-    {"calderas", new string[]{"karasu"}}, // , "phoenix"}},
+    {"calderas", new string[]{"harpy", "karasu", "phoenix"}},
     {"desert", new string[]{"mummy"}},
     {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
     {"glaciers", new string[]{"frostbird", "glupus"}},
@@ -273,6 +273,7 @@ public class Objects
     {"glupus-fang", 35},
     {"gnome-truffle", 30},
     {"goblin-knife", 50},
+    {"harpy-feather", 30},
     {"hellhound-fang", 35},
     {"hippocampus-scale", 35},
     {"karasu-feather", 30},
@@ -489,7 +490,8 @@ public class Objects
     {"hellhound", genericItemDictionary},
     {"shangsen", genericItemDictionary},
     {"kitsune", genericItemDictionary},
-    {"karasu", genericItemDictionary}
+    {"karasu", genericItemDictionary},
+    {"harpy", genericItemDictionary},
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -569,6 +571,7 @@ public class Objects
     {"glupus", new EnemyStats() {name = "Glupus", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"gnome", new EnemyStats() {name = "Gnome", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"goblin", new EnemyStats() {name = "Goblin", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
+    {"harpy", new EnemyStats() {name = "Harpy", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"hellhound", new EnemyStats() {name = "Hellhound", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"hippocampus", new EnemyStats() {name = "Hippocampus", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"karasu", new EnemyStats() {name = "Karasu", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
@@ -612,6 +615,7 @@ public class Objects
     {"glupus", new Vector2(2.26f, 1.86f)},
     {"gnome", new Vector2(0.69f, 1.62f)},
     {"goblin", new Vector2(1.38f, 2.37f)},
+    {"harpy", new Vector2(1.86f, 2.21f)},
     {"hellhound", new Vector2(2.26f, 1.86f)},
     {"hippocampus", new Vector2(2.72f, 2.12f)},
     {"karasu", new Vector2(2.49f, 2.4f)},
@@ -679,6 +683,7 @@ public class Objects
   public static Vector2 defaultDeathOrigin = new Vector2(0, 0.1f);
 
   // TODO: consider if it'd be needed to use these custom origin values when dying only by burning/poison
+  // TODO: if all female enemies (average size) use the same death origin, consider making a variable out of it
   public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new() {
     {"bunyip", defaultDeathOrigin},
     {"centaur", defaultDeathOrigin},
@@ -691,6 +696,7 @@ public class Objects
     {"glupus", defaultDeathOrigin},
     {"gnome", defaultDeathOrigin},
     {"goblin", defaultDeathOrigin},
+    {"harpy", new Vector2(-0.7025f, 0.5f)},
     {"hellhound", defaultDeathOrigin},
     {"hippocampus", defaultDeathOrigin},
     {"karasu", defaultDeathOrigin},
@@ -767,6 +773,7 @@ public class Objects
     {"glupus-fang", "blunt"},
     {"gnome-truffle", "blunt"},
     {"goblin-knife", "blunt"},
+    {"harpy-feather", "blunt"},
     {"hellhound-fang", "blunt"},
     {"hippocampus-scale", "blunt"},
     {"karasu-feather", "blunt"},
@@ -824,6 +831,7 @@ public class Objects
     {"glupus-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"gnome-truffle", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"harpy-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"hellhound-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"hippocampus-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"karasu-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -866,6 +874,7 @@ public class Objects
     {"glupus", "glupus-fang"},
     {"gnome", "gnome-truffle"},
     {"goblin", "goblin-knife"},
+    {"harpy", "harpy-feather"},
     {"hellhound", "hellhound-fang"},
     {"hippocampus", "hippocampus-scale"},
     {"karasu", "karasu-feather"},
