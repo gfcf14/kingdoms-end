@@ -62,6 +62,7 @@ public class Sprites {
   public static Sprite[] kitsuneSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/kitsune");
   public static Sprite[] karasuSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/karasu");
   public static Sprite[] harpySprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/harpy");
+  public static Sprite[] flygmySprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/flygmy");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -358,6 +359,7 @@ public class Sprites {
     {"dwarf-cobble", Resources.Load<Sprite>("Sprites/projectiles/dwarf-cobble")},
     {"fairy-blast", Resources.Load<Sprite>("Sprites/projectiles/fairy-blast")},
     {"faun-horn", Resources.Load<Sprite>("Sprites/projectiles/faun-horn")},
+    {"flygmy-blast", Resources.Load<Sprite>("Sprites/projectiles/flygmy-blast")},
     {"frostbird-orb", Resources.Load<Sprite>("Sprites/projectiles/frostbird-orb")},
     {"glupus-fang", Resources.Load<Sprite>("Sprites/projectiles/glupus-fang")},
     {"gnome-truffle", Resources.Load<Sprite>("Sprites/projectiles/gnome-truffle")},
@@ -575,6 +577,7 @@ public class Sprites {
     {"dwarf", dwarfSprites[0]},
     {"fairy", fairySprites[0]},
     {"faun", faunSprites[0]},
+    {"flygmy", flygmySprites[0]},
     {"frostbird", frostbirdSprites[0]},
     {"glupus", glupusSprites[0]},
     {"gnome", gnomeSprites[0]},
