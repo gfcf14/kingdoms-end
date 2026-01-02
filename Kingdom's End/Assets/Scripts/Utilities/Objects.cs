@@ -5,7 +5,7 @@ using UnityEngine;
 public class Objects
 {
   public static Dictionary<string, string[]> enemyKeysByArea = new() {
-    {"calderas", new string[]{"flygmy"}},  // "harpy", "karasu", "phoenix"}},
+    {"calderas", new string[]{"flygmy", "harpy", "karasu", "phoenix"}},
     {"desert", new string[]{"mummy"}},
     {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
     {"glaciers", new string[]{"frostbird", "glupus"}},
