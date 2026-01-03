@@ -63,6 +63,7 @@ public class Sprites {
   public static Sprite[] karasuSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/karasu");
   public static Sprite[] harpySprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/harpy");
   public static Sprite[] flygmySprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/flygmy");
+  public static Sprite[] snowmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/snowman");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -387,6 +388,7 @@ public class Sprites {
     {"shangsen-dart", Resources.Load<Sprite>("Sprites/projectiles/shangsen-dart")},
     {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")},
     {"skelewing-orb", Resources.Load<Sprite>("Sprites/projectiles/skelewing-orb")},
+    {"snowman-snowball", Resources.Load<Sprite>("Sprites/projectiles/snowman-snowball")},
     {"sugecapre-fang", Resources.Load<Sprite>("Sprites/projectiles/sugecapre-fang")},
     {"thunderbird-orb", Resources.Load<Sprite>("Sprites/projectiles/thunderbird-orb")},
     {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")},
@@ -606,6 +608,7 @@ public class Sprites {
     {"skeleton", skeletonSprites[35]},
     {"skeleton-king", skeletonKingSprites[0]},
     {"skelewing", skelewingSprites[0]},
+    {"snowman", snowmanSprites[0]},
     {"sugecapre", sugecapreSprites[0]},
     {"thunderbird", thunderbirdSprites[0]},
     {"troll", trollSprites[0]},
