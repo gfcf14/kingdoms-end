@@ -56,7 +56,8 @@ public class Constants {
     "troll-boulder",
     "unicorn-shard",
     "werewolf-fang",
-    "yanmabel-stinger"
+    "yanmabel-stinger",
+    "yukionna-kunai"
   };
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
   public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
@@ -185,7 +186,8 @@ public class Constants {
     "troll-boulder",
     "unicorn-shard",
     "werewolf-fang",
-    "yanmabel-stinger"
+    "yanmabel-stinger",
+    "yukionna-kunai"
   };
   public static string[] explodingThrowables = {"fairy-blast", "flygmy-blast", "frostbird-orb", "neret-orb", "phoenix-orb", "pixie-fireball", "skelewing-orb", "thunderbird-orb"};
   public static string[] shortCastEnemies = {"skeleton-king"};

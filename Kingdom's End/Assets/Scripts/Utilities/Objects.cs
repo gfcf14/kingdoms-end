@@ -8,7 +8,7 @@ public class Objects
     {"calderas", new string[]{"flygmy", "harpy", "karasu", "phoenix"}},
     {"desert", new string[]{"mummy"}},
     {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
-    {"glaciers", new string[]{"frostbird", "glupus", "snowman"}},
+    {"glaciers", new string[]{"yukionna"}}, // "frostbird", "glupus", "snowman", "yukionna"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
     {"mountains", new string[]{"cyclops", "gnome", "kitsune", "shangsen", "sugecapre", "thunderbird"}},
     {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
@@ -303,7 +303,8 @@ public class Objects
     {"troll-boulder", 50},
     {"unicorn-shard", 30},
     {"werewolf-fang", 40},
-    {"yanmabel-stinger", 30}
+    {"yanmabel-stinger", 30},
+    {"yukionna-kunai", 50}
   };
 
   public static Dictionary<string, FragmentOutcome> itemFragments = new() {
@@ -495,7 +496,8 @@ public class Objects
     {"karasu", genericItemDictionary},
     {"harpy", genericItemDictionary},
     {"flygmy", genericItemDictionary},
-    {"snowman", genericItemDictionary}
+    {"snowman", genericItemDictionary},
+    {"yukionna", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -607,6 +609,7 @@ public class Objects
     {"unicorn", new EnemyStats() {name = "Unicorn", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"werewolf", new EnemyStats() {name = "Werewolf", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.0025f, exp = 50, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"yanmabel", new EnemyStats() {name = "Yanmabel", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
+    {"yukionna", new EnemyStats() {name = "Yukionna", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new() {
@@ -652,7 +655,8 @@ public class Objects
     {"troll", new Vector2(1.01f, 2.68f)},
     {"unicorn", new Vector2(2.82f, 2.11f)},
     {"werewolf", new Vector2(1.21f, 2.60f)},
-    {"yanmabel", new Vector2(1.59f, 0.78f)}
+    {"yanmabel", new Vector2(1.59f, 0.78f)},
+    {"yukionna", new Vector2(0.67f, 2.24f)}
   };
 
   public static Dictionary<string, Vector2> enemyWingOffsets = new() {
@@ -687,7 +691,8 @@ public class Objects
     {"sugecapre", new Vector2(0.25f, 1.55f)},
     {"troll", new Vector2(0.1f, 1.4f)},
     {"unicorn", new Vector2(0.25f, 2.25f)},
-    {"werewolf", new Vector2(0.1f, 2f)}
+    {"werewolf", new Vector2(0.1f, 2f)},
+    {"yukionna", new Vector2(-0.09f, 1.6f)}
   };
 
   public static Vector2 defaultDeathOrigin = new Vector2(0, 0.1f);
@@ -737,7 +742,8 @@ public class Objects
     {"troll", defaultDeathOrigin},
     {"unicorn", defaultDeathOrigin},
     {"werewolf", defaultDeathOrigin},
-    {"yanmabel", defaultDeathOrigin}
+    {"yanmabel", defaultDeathOrigin},
+    {"yukionna", new Vector2(-0.7025f, 0.5f)}
   };
 
   public static Dictionary<string, TMP_FontAsset> fonts = new() {
@@ -816,7 +822,8 @@ public class Objects
     {"troll-boulder", "blunt" },
     {"unicorn-shard", "blunt"},
     {"werewolf-fang", "blunt"},
-    {"yanmabel-stinger", "blunt"}
+    {"yanmabel-stinger", "blunt"},
+    {"yukionna-kunai", "blunt"}
   };
 
   public static Dictionary<string, ThrowableSpecs> throwableSpecs = new() {
@@ -876,6 +883,7 @@ public class Objects
     {"unicorn-shard", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"werewolf-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"yanmabel-stinger", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
+    {"yukionna-kunai", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
   };
 
   public static Dictionary<string, string> projectileKeys = new() {
@@ -921,7 +929,8 @@ public class Objects
     {"troll", "troll-boulder"},
     {"unicorn", "unicorn-shard"},
     {"werewolf", "werewolf-fang"},
-    {"yanmabel", "yanmabel-stinger"}
+    {"yanmabel", "yanmabel-stinger"},
+    {"yukionna", "yukionna-kunai"}
   };
   public static Dictionary<string, string> materialsPerArea = new() {
     {"calderas", "gravel"},
