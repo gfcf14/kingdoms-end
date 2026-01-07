@@ -5,7 +5,7 @@ using UnityEngine;
 public class Objects
 {
   public static Dictionary<string, string[]> enemyKeysByArea = new() {
-    {"calderas", new string[]{"flygmy", "harpy", "karasu", "phoenix"}},
+    {"calderas", new string[]{"bulgae", "flygmy", "harpy", "karasu", "phoenix"}},
     {"desert", new string[]{"mummy"}},
     {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
     {"glaciers", new string[]{"frostbird", "glupus", "jotunn", "snowman", "yukionna"}},
@@ -262,6 +262,7 @@ public class Objects
   };
 
   public static Dictionary<string, int> projectileDamages = new() {
+    {"bulgae-fang", 35},
     {"bunyip-tooth", 30},
     {"centaur-spear", 50},
     {"cyclops-hillstone", 50},
@@ -499,7 +500,8 @@ public class Objects
     {"flygmy", genericItemDictionary},
     {"snowman", genericItemDictionary},
     {"yukionna", genericItemDictionary},
-    {"jotunn", genericItemDictionary}
+    {"jotunn", genericItemDictionary},
+    {"bulgae", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -568,6 +570,7 @@ public class Objects
   };
 
   public static Dictionary<string, EnemyStats> enemyStats = new() {
+    {"bulgae", new EnemyStats() {name = "Bulgae", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"bunyip", new EnemyStats() {name = "Bunyip", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 3, reach = 0.2f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"centaur", new EnemyStats() {name = "Centaur", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"cyclops", new EnemyStats() {name = "Cyclops", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.001f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
@@ -616,6 +619,7 @@ public class Objects
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new() {
+    {"bulgae", new Vector2(2.26f, 1.86f)},
     {"bunyip", new Vector2(2.06f, 1.83f)},
     {"centaur", new Vector2(2.28f, 2.77f)},
     {"cyclops", new Vector2(1.01f, 2.66f)},
@@ -664,6 +668,7 @@ public class Objects
   };
 
   public static Dictionary<string, Vector2> enemyWingOffsets = new() {
+    {"bulgae", new Vector2(0.25f, 1.55f)},
     {"bunyip", new Vector2(0.25f, 1.55f)},
     {"centaur", new Vector2(0.4f, 2.8f)},
     {"cyclops", new Vector2(-0.1f, 1.75f)},
@@ -705,6 +710,7 @@ public class Objects
   // TODO: consider if it'd be needed to use these custom origin values when dying only by burning/poison
   // TODO: if all female enemies (average size) use the same death origin, consider making a variable out of it
   public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new() {
+    {"bulgae", defaultDeathOrigin},
     {"bunyip", defaultDeathOrigin},
     {"centaur", defaultDeathOrigin},
     {"cyclops", defaultDeathOrigin},
@@ -786,6 +792,7 @@ public class Objects
 
   // TODO: modify impact types for appropriate sounds
   public static Dictionary<string, string> throwableImpactType = new() {
+    {"bulgae-fang", "blunt"},
     {"bunyip-tooth", "blunt"},
     {"centaur-spear", "blunt"},
     {"cyclops-hillstone", "blunt"},
@@ -848,6 +855,7 @@ public class Objects
     {"watermelon", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1.02f, 1.15f), hDisplacement = 1.5f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
   };
   public static Dictionary<string, ThrowableSpecs> projectileSpecs = new() {
+    {"bulgae-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"bunyip-tooth", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"centaur-spear", new ThrowableSpecs() {colliderOffset = new ValuePair(1.4f, -0.14f), colliderSize = new ValuePair(0.37f, 1.26f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 10f, speed = 20f, steepness = 20f}},
     {"cyclops-hillstone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
@@ -895,6 +903,7 @@ public class Objects
   };
 
   public static Dictionary<string, string> projectileKeys = new() {
+    {"bulgae", "bulgae-fang"},
     {"bunyip", "bunyip-tooth"},
     {"centaur", "centaur-spear"},
     {"cyclops", "cyclops-hillstone"},

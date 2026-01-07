@@ -16,6 +16,7 @@ public class Constants {
   public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
   public static string[] nonBouncingProjectiles = {
+    "bulgae-fang",
     "bunyip-tooth",
     "cyclops-hillstone",
     "dwarf-cobble",
@@ -102,7 +103,7 @@ public class Constants {
   // refers to enemies who are mostly grounded but by unique means can fly
   public static string[] aerialEnemies = {"shangsen"};
   // refers to beast like enemies whose width is a lot bigger than their height
-  public static string[] longEnemies = {"bunyip", "centaur", "glupus", "hellhound", "hippocampus", "kelpie", "sugecapre", "unicorn"};
+  public static string[] longEnemies = {"bulgae", "bunyip", "centaur", "glupus", "hellhound", "hippocampus", "kelpie", "sugecapre", "unicorn"};
   // refers to very small enemies where regular cast lengths may not work correctly
   public static string[] smallEnemies = { "dwarf", "fairy", "flygmy", "gnome", "leprechaun", "mosswyn", "pixie" };
 
@@ -146,6 +147,7 @@ public class Constants {
   public static string[] enemyBombBounceTags = {"Hero", "Weapon"};
 
   public static string[] enemyProjectiles = {
+    "bulgae-fang",
     "bunyip-tooth",
     "centaur-spear",
     "cyclops-hillstone",
