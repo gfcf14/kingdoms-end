@@ -8,7 +8,7 @@ public class Objects
     {"calderas", new string[]{"flygmy", "harpy", "karasu", "phoenix"}},
     {"desert", new string[]{"mummy"}},
     {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
-    {"glaciers", new string[]{"jotunn"}}, // "frostbird", "glupus", "jotunn", "snowman", "yukionna"}},
+    {"glaciers", new string[]{"frostbird", "glupus", "jotunn", "snowman", "yukionna"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
     {"mountains", new string[]{"cyclops", "gnome", "kitsune", "shangsen", "sugecapre", "thunderbird"}},
     {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
