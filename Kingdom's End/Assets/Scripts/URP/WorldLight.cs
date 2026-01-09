@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 namespace WorldTime {
-  [RequireComponent(typeof(UnityEngine.Rendering.Universal.Light2D))]
+  // [RequireComponent(typeof(UnityEngine.Rendering.Universal.Light2D))]
   public class WorldLight : MonoBehaviour {
     // [SerializeField] Gradient gradient;
 
