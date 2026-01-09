@@ -19,8 +19,9 @@ public class Constants {
     "bulgae-fang",
     "bunyip-tooth",
     "cyclops-hillstone",
-    "dwarf-cobble",
     "dryad-twig",
+    "dunestiff-fang",
+    "dwarf-cobble",
     "fairy-blast",
     "faun-horn",
     "flygmy-blast",
@@ -103,7 +104,7 @@ public class Constants {
   // refers to enemies who are mostly grounded but by unique means can fly
   public static string[] aerialEnemies = {"shangsen"};
   // refers to beast like enemies whose width is a lot bigger than their height
-  public static string[] longEnemies = {"bulgae", "bunyip", "centaur", "glupus", "hellhound", "hippocampus", "kelpie", "sugecapre", "unicorn"};
+  public static string[] longEnemies = {"bulgae", "bunyip", "centaur", "dunestiff", "glupus", "hellhound", "hippocampus", "kelpie", "sugecapre", "unicorn"};
   // refers to very small enemies where regular cast lengths may not work correctly
   public static string[] smallEnemies = { "dwarf", "fairy", "flygmy", "gnome", "leprechaun", "mosswyn", "pixie" };
 
@@ -152,6 +153,7 @@ public class Constants {
     "centaur-spear",
     "cyclops-hillstone",
     "dryad-twig",
+    "dunestiff-fang",
     "dwarf-cobble",
     "fairy-blast",
     "faun-horn",
