@@ -11,7 +11,7 @@ public class DirectionCheck : MonoBehaviour {
 
       if (direction == "back" && col.tag == "Wall") { // starts the slam sequence
         if (Hero.instance.isHurt == 3) {
-          Hero.instance.body.velocity = Vector2.zero;
+          Hero.instance.body.linearVelocity = Vector2.zero;
           Hero.instance.isSlammed = true;
           Hero.instance.ModifyPosition(new Vector2(transform.position.x + ((Hero.instance.heroWidth * Hero.instance.direction) / 3), transform.position.y));
         }

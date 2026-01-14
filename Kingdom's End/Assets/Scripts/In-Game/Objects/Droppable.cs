@@ -110,7 +110,7 @@ public class Droppable : MonoBehaviour {
         // then multiply by the direction factor
         float verticalSpeed = directionFactor * (-1 * parabolaConstant * Mathf.Pow(2,(time - 1)) + parabolaConstant);
 
-        body.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+        body.linearVelocity = new Vector2(horizontalSpeed, verticalSpeed);
 
         float rotationAmount = rotationSpeed * Time.fixedDeltaTime;
         transform.Rotate(0f, 0f, rotationAmount * -1 * directionFactor);
@@ -165,7 +165,7 @@ public class Droppable : MonoBehaviour {
     if (gameObjectTag == "Floor" || (shouldRotate && gameObjectTag == "Wall") || gameObjectTag == "Interactable") {
       if (shouldRotate) {
         body.gravityScale = 1;
-        body.velocity = Vector2.zero;
+        body.linearVelocity = Vector2.zero;
         body.freezeRotation = true;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         canBePicked = true;
@@ -194,7 +194,7 @@ public class Droppable : MonoBehaviour {
             isRising = false;
             canBePicked = true;
             body.gravityScale = 1;
-            body.velocity = Vector2.zero;
+            body.linearVelocity = Vector2.zero;
           } else {
             Destroy(body); // DO NOT REMOVE as this allows an item to stop on the ground
             droppableCollider.isTrigger = true;
@@ -243,7 +243,7 @@ public class Droppable : MonoBehaviour {
       }
 
       elapsedTime += Time.deltaTime;
-      body.velocity = new Vector2(0, riseVelocity);
+      body.linearVelocity = new Vector2(0, riseVelocity);
 
       yield return null;
     }
@@ -251,6 +251,6 @@ public class Droppable : MonoBehaviour {
     isRising = false;
     canBePicked = true;
     body.gravityScale = 1;
-    body.velocity = Vector2.zero;
+    body.linearVelocity = Vector2.zero;
   }
 }

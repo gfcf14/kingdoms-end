@@ -63,7 +63,7 @@ public class Arrow : MonoBehaviour {
     float verticalSpeed = horizontalSpeed * parabolaSlope;
 
     // Set the Rigidbody velocity
-    body.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+    body.linearVelocity = new Vector2(horizontalSpeed, verticalSpeed);
 
     // Rotates the throwable to conform to parabola
     // gets an angle for the throwable (in radians first then converted to degrees) based on the speed
@@ -78,7 +78,7 @@ public class Arrow : MonoBehaviour {
       Debug.DrawRay(currentPosition, new Vector2(0, verticalSpeed), Helpers.GetOrException(Colors.raycastColors, "vy"));
 
       // overall speed direction
-      Debug.DrawRay(transform.position, body.velocity, Helpers.GetOrException(Colors.raycastColors, "vxy"));
+      Debug.DrawRay(transform.position, body.linearVelocity, Helpers.GetOrException(Colors.raycastColors, "vxy"));
   }
 
   void Update() {

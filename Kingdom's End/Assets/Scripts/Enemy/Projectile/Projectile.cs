@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour {
     body.gravityScale = 0;
 
     Vector2 direction = (targetPoint - (Vector2) transform.position).normalized;
-    body.velocity = direction * speed;
+    body.linearVelocity = direction * speed;
 
     directionFactor = fromFacingLeft ? 1 : -1;
 
@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour {
     }
 
     if (!Helpers.IsValueInArray(Constants.rotatingProjectiles.Concat(Constants.rotatingThrowables).ToArray(), key)) {
-      float angle = Mathf.Atan2(body.velocity.y, body.velocity.x) * Mathf.Rad2Deg;
+      float angle = Mathf.Atan2(body.linearVelocity.y, body.linearVelocity.x) * Mathf.Rad2Deg;
       transform.rotation = Quaternion.Euler(0, 0, angle);
     }
   }
@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour {
   }
 
   public void StopProjectile() {
-    body.velocity = Vector2.zero;
+    body.linearVelocity = Vector2.zero;
     Destroy(projectileSprite);
   }
 }

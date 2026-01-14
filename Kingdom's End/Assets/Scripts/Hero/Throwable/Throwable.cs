@@ -103,7 +103,7 @@ public class Throwable : MonoBehaviour {
     float verticalSpeed = horizontalSpeed * parabolaSlope;
 
     // Set the Rigidbody velocity
-    body.velocity = new Vector2(horizontalSpeed, verticalSpeed);
+    body.linearVelocity = new Vector2(horizontalSpeed, verticalSpeed);
 
     // Rotates the throwable to conform to parabola
     if (!freezeRotation) {
@@ -127,7 +127,7 @@ public class Throwable : MonoBehaviour {
       Debug.DrawRay(currentPosition, new Vector2(0, verticalSpeed), Helpers.GetOrException(Colors.raycastColors, "vy"));
 
       // overall speed direction
-      Debug.DrawRay(transform.position, body.velocity, Helpers.GetOrException(Colors.raycastColors, "vxy"));
+      Debug.DrawRay(transform.position, body.linearVelocity, Helpers.GetOrException(Colors.raycastColors, "vxy"));
   }
 
   void Update() {
@@ -182,7 +182,7 @@ public class Throwable : MonoBehaviour {
   }
 
   public void StopAndFade() {
-    body.velocity = Vector2.zero;
+    body.linearVelocity = Vector2.zero;
     RemovePhysics();
   }
 
@@ -211,7 +211,7 @@ public class Throwable : MonoBehaviour {
 
       DestroyThrowable();
     } else {
-      body.velocity = Vector2.zero;
+      body.linearVelocity = Vector2.zero;
       Destroy(objectRenderer);
 
       GameObject projectileExplosion = Instantiate(Helpers.GetOrException(Objects.prefabs, "explosion"), transform.position, Quaternion.identity, transform);

@@ -574,7 +574,7 @@ public class Enemy : MonoBehaviour {
         if (currentHP <= 0) {
           isDeadByPoison = true;
           isWalking = false;
-          body.velocity = Vector2.zero;
+          body.linearVelocity = Vector2.zero;
           // so flying enemies drop dead
           body.gravityScale = 1;
 
@@ -635,12 +635,12 @@ public class Enemy : MonoBehaviour {
   public void PerformFlyingDeath() {
     transform.Find("EnemyCollider").GetComponent<CapsuleCollider2D>().isTrigger = false;
     transform.Find("Grounder").gameObject.SetActive(false);
-    body.velocity = Vector2.zero;
+    body.linearVelocity = Vector2.zero;
     float horizontalDirection = -direction * (attackedFromBehind ? -1 : 1);
 
     float deathMass = body.mass / (Helpers.IsValueInArray(Constants.smallEnemies, key) ? 2 : 5);
     Vector2 deathForce = new Vector2(deathMass * horizontalDirection * 4, deathMass * 2.5f);
-    body.velocity = deathForce;
+    body.linearVelocity = deathForce;
   }
 
   public void DeathSequence() {
@@ -655,7 +655,7 @@ public class Enemy : MonoBehaviour {
     if (isDead && (!isBurning || !isDeadByBurning || !isDeadByPoison) && diesFlying) {
       PerformFlyingDeath();
     } else {
-      body.velocity = Vector2.zero;
+      body.linearVelocity = Vector2.zero;
     }
 
     deadPosition = new Vector2(transform.position.x, transform.position.y);
@@ -850,7 +850,7 @@ public class Enemy : MonoBehaviour {
               // immediately sets the enemy color so the enemy looks burned
               enemyColor = Helpers.GetOrException(Colors.statusColors, "burned");
               isWalking = false;
-              body.velocity = Vector2.zero;
+              body.linearVelocity = Vector2.zero;
             }
           } else {
             if (!Helpers.IsFireResistant(elementResistances)) {
@@ -908,7 +908,7 @@ public class Enemy : MonoBehaviour {
     enemyRenderer.color = Color.white;
     isWalking = false;
 
-    body.velocity = Vector2.zero;
+    body.linearVelocity = Vector2.zero;
   }
 
   void Recover() {
@@ -1152,7 +1152,7 @@ public class Enemy : MonoBehaviour {
 
     if (playerCast && playerCast.collider.tag == "Hero" && !playerCast.collider.GetComponent<Hero>().isInvulnerable) {
       isAttacking = true;
-      body.velocity = Vector2.zero;
+      body.linearVelocity = Vector2.zero;
     }
   }
 
@@ -1180,13 +1180,13 @@ public class Enemy : MonoBehaviour {
       if (type == "exploder") {
         isExploding = true;
         isWalking = false;
-        body.velocity = Vector2.zero;
+        body.linearVelocity = Vector2.zero;
       }
 
       if (type == "bewitcher") {
         isAttacking = true;
         isWalking = false;
-        body.velocity = Vector2.zero;
+        body.linearVelocity = Vector2.zero;
       }
     } else { // if player is not found
       if (wanderStart == 0) {
@@ -1206,7 +1206,7 @@ public class Enemy : MonoBehaviour {
             isWalking = UnityEngine.Random.Range(0, 2) != 0;
 
             if (!isWalking) {
-              body.velocity = Vector2.zero;
+              body.linearVelocity = Vector2.zero;
             }
           }
         }
@@ -1223,10 +1223,10 @@ public class Enemy : MonoBehaviour {
 
   public void DecideMovement() {
     if (ShouldMove()) {
-      body.velocity = new Vector2(direction * (speed * (type == "charger" && isCharging ? 2 : 1)), body.velocity.y);
+      body.linearVelocity = new Vector2(direction * (speed * (type == "charger" && isCharging ? 2 : 1)), body.linearVelocity.y);
     } else {
       if (!isDead) {
-        body.velocity = Vector2.zero;
+        body.linearVelocity = Vector2.zero;
       }
     }
   }
@@ -1324,9 +1324,9 @@ public class Enemy : MonoBehaviour {
 
   public void Bounce() {
     if (ShouldMove()) {
-      body.velocity = new Vector2(speed * direction, speed * yDirection);
+      body.linearVelocity = new Vector2(speed * direction, speed * yDirection);
     } else {
-      body.velocity = Vector2.zero;
+      body.linearVelocity = Vector2.zero;
     }
   }
 

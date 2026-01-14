@@ -62,7 +62,7 @@ public class EnemyCollider : MonoBehaviour {
           if (col.gameObject.CompareTag("Floor")) {
               if (enemy.canLand && !enemy.isWatching) {
               enemy.isWatching = true;
-              enemy.body.velocity = Vector2.zero;
+              enemy.body.linearVelocity = Vector2.zero;
               enemy.transform.position = col.ClosestPoint(transform.position);
             }
           } else if (col.gameObject.CompareTag("Hero")) { // if meeting the player in air, enemy should be able to land
@@ -93,11 +93,11 @@ public class EnemyCollider : MonoBehaviour {
         Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>(); // Get Rigidbody2D to check velocity
 
         // Check if touching the top or bottom and moving in that direction
-        if ((enemyPos.y + halfHeight >= roomBounds.max.y && rb.velocity.y > 0) || (enemyPos.y - halfHeight <= roomBounds.min.y && rb.velocity.y < 0)) {
+        if ((enemyPos.y + halfHeight >= roomBounds.max.y && rb.linearVelocity.y > 0) || (enemyPos.y - halfHeight <= roomBounds.min.y && rb.linearVelocity.y < 0)) {
           enemy.yDirection *= -1; // Flip Y direction only if moving out
         }
         // Check if touching the left or right and moving in that direction
-        else if ((enemyPos.x - halfWidth <= roomBounds.min.x && rb.velocity.x < 0) || (enemyPos.x + halfWidth >= roomBounds.max.x && rb.velocity.x > 0)) {
+        else if ((enemyPos.x - halfWidth <= roomBounds.min.x && rb.linearVelocity.x < 0) || (enemyPos.x + halfWidth >= roomBounds.max.x && rb.linearVelocity.x > 0)) {
           enemy.TurnAround(); // Flip X direction only if moving out
         }
       }

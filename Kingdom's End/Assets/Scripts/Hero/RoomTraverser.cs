@@ -8,7 +8,7 @@ public class RoomTraverser : MonoBehaviour {
   public void OnTriggerEnter2D(Collider2D col) {
     if (col.tag == "Room") {
       // if entering room, move based on speed to scape the previous room's bounds. Avoid displacements if on inclines
-      float xDisp = ((Hero.instance.heroWidth / 4) * Hero.instance.body.velocity.x) * (Hero.instance.groundType == "level" ? 1 : 0);
+      float xDisp = ((Hero.instance.heroWidth / 4) * Hero.instance.body.linearVelocity.x) * (Hero.instance.groundType == "level" ? 1 : 0);
       // TODO: consider if there would be any cases where it could be necessary to switch vertical positions.
       // Currently this is "off" as it gets messed up when transitioning due to a jump or falling
       float yDisp = 0; // Hero.instance.isDropKicking ? 0 : ((Hero.instance.heroHeight / 4) * Hero.instance.body.velocity.y) * (Hero.instance.groundType == "level" ? 1 : 0);

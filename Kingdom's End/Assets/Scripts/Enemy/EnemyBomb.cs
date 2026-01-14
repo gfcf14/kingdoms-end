@@ -45,7 +45,7 @@ public class EnemyBomb : MonoBehaviour {
   void Bounce() {
    InGame.instance.PlaySound(Helpers.GetOrException(Helpers.GetOrException(Sounds.impactSounds, "kick"), "normal"), transform.position);
 
-    body.velocity = new Vector2(0, 8f); // Mathf.Abs(body.velocity.y));
+    body.linearVelocity = new Vector2(0, 8f); // Mathf.Abs(body.velocity.y));
     body.gravityScale = 0;
     wasKickedBack = true;
     dropper.bombReturned = true;

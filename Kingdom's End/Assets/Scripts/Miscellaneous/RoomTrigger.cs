@@ -51,7 +51,7 @@ public class RoomTrigger : MonoBehaviour {
           Hero heroScript = Hero.instance.gameObject.GetComponent<Hero>();
 
           Hero.instance.SetPauseCase("boss-room-entry");
-          Hero.instance.bossTransitionDirection = (int)(heroBody.velocity.x / Math.Abs(heroBody.velocity.x));
+          Hero.instance.bossTransitionDirection = (int)(heroBody.linearVelocity.x / Math.Abs(heroBody.linearVelocity.x));
           StartCoroutine(PauseRoomWhileOnBossEntry());
         }
       }
@@ -82,7 +82,7 @@ public class RoomTrigger : MonoBehaviour {
     if (col.gameObject.name == "ProximityCheck") {
       if (Hero.instance.isAutonomous && Hero.instance.mustTransitionOnAir) {
         Hero.instance.mustTransitionOnAir = false;
-        Hero.instance.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        Hero.instance.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
       }
     }
   }
@@ -95,7 +95,7 @@ public class RoomTrigger : MonoBehaviour {
     Hero.instance.ClearPauseCase();
     Hero.instance.isFightingBoss = true;
     Hero.instance.isAutonomous = true;
-    Hero.instance.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    Hero.instance.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
 
     if (Hero.instance.isFacingLeft && Hero.instance.bossTransitionDirection == 1) {
       Hero.instance.transform.localScale = Vector3.one;

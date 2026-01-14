@@ -482,7 +482,7 @@ public class Hero : MonoBehaviour {
 
   public float GetGroundVerticalModifier(string groundType, float currentSpeed) {
     if (!isGrounded) {
-      return body.velocity.y;
+      return body.linearVelocity.y;
     }
 
     if (groundType == "level") {
@@ -887,13 +887,13 @@ public class Hero : MonoBehaviour {
 
     // DEBUG for VELOCITY: draws the speeds used by the player to attempt to understand the direction taken on movement
       // x velocity
-      Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 0.01f), Vector2.right * body.velocity.x, Helpers.GetOrException(Colors.raycastColors, "vx"));
+      Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 0.01f), Vector2.right * body.linearVelocity.x, Helpers.GetOrException(Colors.raycastColors, "vx"));
 
       // y velocity
-      Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.01f), Vector2.up * body.velocity.y, Helpers.GetOrException(Colors.raycastColors, "vy"));
+      Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.01f), Vector2.up * body.linearVelocity.y, Helpers.GetOrException(Colors.raycastColors, "vy"));
 
       // overall speed direction
-      Debug.DrawRay(transform.position, body.velocity, Helpers.GetOrException(Colors.raycastColors, "vxy"));
+      Debug.DrawRay(transform.position, body.linearVelocity, Helpers.GetOrException(Colors.raycastColors, "vxy"));
     // END of DEBUG for VELOCITY
 
     // PLAYER FALLING ALGORITHM: checks if player collides with anything. If not, player should fall
@@ -912,7 +912,7 @@ public class Hero : MonoBehaviour {
       // if only the player collider is found, nothing else was found and player should fall
       // TODO: check if other attack types cause the player to lift off the ground, even but slightly, and add them here
       // TODO: consider if at any point it'd be necessary to include some form of list of animations where falling shouldn't happen
-      if (/*!Helpers.IsAnyPlaying(anim, Constants.heroNonFallingAnimations) && */isHurt == 0 && !collidingBottom  && !IsOnIncline() && !IsMovingUphill() && !isAttackingHeavy && colliderCount <= 1 && ((!collidingBottom && body.velocity.y < Constants.yAirVelocityThreshold) || (collidingBottom && /*proximityCheckScript.OverlapsWithGround() &&*/ body.velocity.y < Constants.yInclineVelocityThreshold)) /*&& GroundFallDistance() > Constants.fallThreshold*/) {
+      if (/*!Helpers.IsAnyPlaying(anim, Constants.heroNonFallingAnimations) && */isHurt == 0 && !collidingBottom  && !IsOnIncline() && !IsMovingUphill() && !isAttackingHeavy && colliderCount <= 1 && ((!collidingBottom && body.linearVelocity.y < Constants.yAirVelocityThreshold) || (collidingBottom && /*proximityCheckScript.OverlapsWithGround() &&*/ body.linearVelocity.y < Constants.yInclineVelocityThreshold)) /*&& GroundFallDistance() > Constants.fallThreshold*/) {
         Fall();
       }
     // end of PLAYER FALLING ALGORITHM
@@ -944,7 +944,7 @@ public class Hero : MonoBehaviour {
             float xMovement = moveFriction > 0 ? Mathf.Lerp(horizontalInput, speed * moveSpeed * direction, moveFriction) : horizontalInput * speed * moveSpeed;
 
             // movement happens on this line
-            body.velocity = new Vector2(!isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? xMovement : 0, GetGroundVerticalModifier(groundType, horizontalInput * speed));
+            body.linearVelocity = new Vector2(!isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? xMovement : 0, GetGroundVerticalModifier(groundType, horizontalInput * speed));
           }
 
           // flip player back when moving right
@@ -967,11 +967,11 @@ public class Hero : MonoBehaviour {
 
         if (isClashing) {
           // TODO: modify the 2 to make it a multiplier based on enemy strength (?)
-          body.velocity = new Vector2( (isFacingLeft ? 1 : -1) * speed * 2, body.velocity.y);
+          body.linearVelocity = new Vector2( (isFacingLeft ? 1 : -1) * speed * 2, body.linearVelocity.y);
         }
 
         if (isHurt == 1) {
-          body.velocity = new Vector2(0, body.velocity.y);
+          body.linearVelocity = new Vector2(0, body.linearVelocity.y);
         }
 
         if (verticalInput < -Constants.inputThreshold) { // if DOWN key is being held
@@ -1050,12 +1050,12 @@ public class Hero : MonoBehaviour {
         }
 
         if (isDropKicking) {
-          body.velocity = new Vector2(body.velocity.x + (jumpHeight * direction), -(float)(jumpHeight * 0.75));
+          body.linearVelocity = new Vector2(body.linearVelocity.x + (jumpHeight * direction), -(float)(jumpHeight * 0.75));
         }
 
         if (isDead == 2) {
           if (isGrounded) {
-            body.velocity = Vector2.zero;
+            body.linearVelocity = Vector2.zero;
           }
         }
 
@@ -1119,12 +1119,12 @@ public class Hero : MonoBehaviour {
     if (isAutonomous) {
       if (isGrounded) {
         isRunning = true;
-        body.velocity = new Vector2(speed * bossTransitionDirection, GetGroundVerticalModifier(groundType, speed * bossTransitionDirection));
+        body.linearVelocity = new Vector2(speed * bossTransitionDirection, GetGroundVerticalModifier(groundType, speed * bossTransitionDirection));
       } else {
         isFalling = true;
         anim.Play("falling-1", -1, normalizedTime: 0);
         if (mustTransitionOnAir) {
-          body.velocity = new Vector2(speed * bossTransitionDirection, 0);
+          body.linearVelocity = new Vector2(speed * bossTransitionDirection, 0);
         }
       }
     }
@@ -1223,15 +1223,15 @@ public class Hero : MonoBehaviour {
   }
 
   void PlayerHurt(int hurtLevel) {
-    body.velocity = Vector2.zero;
+    body.linearVelocity = Vector2.zero;
     isHurt = hurtLevel;
 
     switch (hurtLevel) {
       case 2: // pushed away (in ground)
-        body.velocity = new Vector2(2 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 0);
+        body.linearVelocity = new Vector2(2 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 0);
       break;
       case 3: // thrown back (air "parabola")
-        body.velocity = new Vector2(6 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 2 * hurtLevel);
+        body.linearVelocity = new Vector2(6 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 2 * hurtLevel);
       break;
     }
   }
@@ -1385,7 +1385,7 @@ public class Hero : MonoBehaviour {
   }
 
   void DropParry() {
-    body.velocity = Vector2.zero;
+    body.linearVelocity = Vector2.zero;
 
     isClashing = false;
     isParrying = false;
@@ -1450,7 +1450,7 @@ public class Hero : MonoBehaviour {
       weaponCollider.SetActive(false);
     }
 
-    body.velocity = new Vector2(body.velocity.x, jumpHeight);
+    body.linearVelocity = new Vector2(body.linearVelocity.x, jumpHeight);
 
     isJumping = true;
     isGrounded = false;
@@ -2054,7 +2054,7 @@ public class Hero : MonoBehaviour {
     isJumping = false;
     isDropKicking = false;
     isFalling = true;
-    body.velocity = Vector2.zero;
+    body.linearVelocity = Vector2.zero;
     Bump(bumpX: (heroWidth * -direction) / 4, specificBlockDirection: isFacingLeft ? "left" : "right");
   }
 

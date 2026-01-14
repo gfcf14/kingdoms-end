@@ -11,7 +11,7 @@ public class PlayerStopper : MonoBehaviour {
       if (hero.isAutonomous) {
         hero.isAutonomous = false;
         hero.isRunning = false;
-        col.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        col.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
 
         // Sets bounds around the room so player doesn't leave until boss is killed
         GameObject bounds = hero.currentRoom.transform.Find("Bounds").gameObject;

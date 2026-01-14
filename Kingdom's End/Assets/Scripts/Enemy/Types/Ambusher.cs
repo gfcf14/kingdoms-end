@@ -9,7 +9,7 @@ public class Ambusher : MonoBehaviour {
     public float jumpHeight = 8f;
 
   void Emerge() {
-    enemy.body.velocity = new Vector2(0, jumpHeight);
+    enemy.body.linearVelocity = new Vector2(0, jumpHeight);
   }
 
   void Start() {
