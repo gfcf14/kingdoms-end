@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour {
 
     [NonSerialized] public string enemyName;
     [NonSerialized] public string type;
+    [NonSerialized] public string form;
     [NonSerialized] public string baseMaterial;
     [NonSerialized] public string normalAttackType;
 
@@ -228,6 +229,7 @@ public class Enemy : MonoBehaviour {
     enemyRenderer.color = enemyColor;
 
     EnemyStats enemyStats = Helpers.GetOrException(Objects.enemyStats, key);
+    form = enemyStats.form;
     enemyName = enemyStats.name + " Lvl " + level;
     baseMaterial = enemyStats.baseMaterial;
     normalAttackType = enemyStats.normalAttackType;
@@ -297,7 +299,8 @@ public class Enemy : MonoBehaviour {
     // if no such object (same type and key) was found, instantiate a new copy and assign clips based on key to states
     if (!animatorAlreadyExists) {
       AnimatorOverrideController aoc = new AnimatorOverrideController(Instantiate(Helpers.GetOrException(Objects.animationControllers, type)));
-      AnimatorOverrideController resourceAoc = new AnimatorOverrideController(InGame.instance.gameObject.GetComponent<Animator>().runtimeAnimatorController);
+      // AnimatorOverrideController resourceAoc = new AnimatorOverrideController(InGame.instance.gameObject.GetComponent<Animator>().runtimeAnimatorController);
+      AnimatorOverrideController resourceAoc = new AnimatorOverrideController(InGame.instance.GetEnemyAnimatorControllerByForm(form));
 
       var anims = new List<KeyValuePair<AnimationClip, AnimationClip>>();
       foreach (AnimationClip a in aoc.animationClips) {

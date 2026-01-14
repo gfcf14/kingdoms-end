@@ -163,6 +163,7 @@ public class EnemyHealth {
 
 public class EnemyStats {
   public string name;
+  public string form;
   public string baseMaterial;
   public string normalAttackType;
   public int hp;

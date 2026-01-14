@@ -24,6 +24,12 @@ public class InGame : MonoBehaviour {
   public GameObject pauseCanvas;
   public GameObject shopCanvas;
   public GameObject hpBarContainer;
+  public GameObject enemiesMen;
+  public GameObject enemiesWomen;
+  public GameObject enemiesGiants;
+  public GameObject enemiesSmall;
+  public GameObject enemiesFlying;
+  public GameObject enemiesBeasts;
   public GlobalGradients globalGradients;
 
   private Shop shopScript;
@@ -478,5 +484,17 @@ public class InGame : MonoBehaviour {
     shopScript.ClearCategory();
     shopScript.categoryIndex = (shopScript.categoryIndex - 1 + shopScript.totalCategories) % shopScript.totalCategories;
     shopScript.SelectCategory();
+  }
+
+  public RuntimeAnimatorController GetEnemyAnimatorControllerByForm(string form) {
+    return form switch {
+        "man"    => enemiesMen.GetComponent<Animator>().runtimeAnimatorController,
+        "woman"  => enemiesWomen.GetComponent<Animator>().runtimeAnimatorController,
+        "giant"  => enemiesGiants.GetComponent<Animator>().runtimeAnimatorController,
+        "small"  => enemiesSmall.GetComponent<Animator>().runtimeAnimatorController,
+        "flying" => enemiesFlying.GetComponent<Animator>().runtimeAnimatorController,
+        "beast"  => enemiesBeasts.GetComponent<Animator>().runtimeAnimatorController,
+        _        => null
+    };
   }
 }
