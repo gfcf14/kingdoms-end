@@ -299,7 +299,6 @@ public class Enemy : MonoBehaviour {
     // if no such object (same type and key) was found, instantiate a new copy and assign clips based on key to states
     if (!animatorAlreadyExists) {
       AnimatorOverrideController aoc = new AnimatorOverrideController(Instantiate(Helpers.GetOrException(Objects.animationControllers, type)));
-      // AnimatorOverrideController resourceAoc = new AnimatorOverrideController(InGame.instance.gameObject.GetComponent<Animator>().runtimeAnimatorController);
       AnimatorOverrideController resourceAoc = new AnimatorOverrideController(InGame.instance.GetEnemyAnimatorControllerByForm(form));
 
       var anims = new List<KeyValuePair<AnimationClip, AnimationClip>>();
