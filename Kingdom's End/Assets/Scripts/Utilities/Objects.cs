@@ -15,7 +15,7 @@ public class Objects
     {"ruins", new string[]{"cusith", "neret"}},
     {"seaside", new string[]{"kelpie", "nereid"}},
     {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
-    {"underground", new string[]{"samodiva"}},
+    {"underground", new string[]{"canivernus"}}, //, "samodiva"}},
     {"wasteland", new string[]{"hellhound", "skeleton", "skeleton-king", "skelewing"}}
   };
 
@@ -264,6 +264,7 @@ public class Objects
   public static Dictionary<string, int> projectileDamages = new() {
     {"bulgae-fang", 35},
     {"bunyip-tooth", 30},
+    {"canivernus-fang", 35},
     {"centaur-spear", 50},
     {"cusith-fang", 35},
     {"cyclops-hillstone", 50},
@@ -505,7 +506,8 @@ public class Objects
     {"jotunn", genericItemDictionary},
     {"bulgae", genericItemDictionary},
     {"dunestiff", genericItemDictionary},
-    {"cusith", genericItemDictionary}
+    {"cusith", genericItemDictionary},
+    {"canivernus", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -576,6 +578,7 @@ public class Objects
   public static Dictionary<string, EnemyStats> enemyStats = new() {
     {"bulgae", new EnemyStats() {name = "Bulgae", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"bunyip", new EnemyStats() {name = "Bunyip", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 3, reach = 0.2f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
+    {"canivernus", new EnemyStats() {name = "Canivernus", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"centaur", new EnemyStats() {name = "Centaur", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"cusith", new EnemyStats() {name = "Cusith", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"cyclops", new EnemyStats() {name = "Cyclops", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.001f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
@@ -627,6 +630,7 @@ public class Objects
   public static Dictionary<string, Vector2> enemyDimensions = new() {
     {"bulgae", new Vector2(2.26f, 1.86f)},
     {"bunyip", new Vector2(2.06f, 1.83f)},
+    {"canivernus", new Vector2(2.26f, 1.86f)},
     {"centaur", new Vector2(2.28f, 2.77f)},
     {"cusith", new Vector2(2.26f, 1.86f)},
     {"cyclops", new Vector2(1.01f, 2.66f)},
@@ -678,6 +682,7 @@ public class Objects
   public static Dictionary<string, Vector2> enemyWingOffsets = new() {
     {"bulgae", new Vector2(0.25f, 1.55f)},
     {"bunyip", new Vector2(0.25f, 1.55f)},
+    {"canivernus", new Vector2(0.25f, 1.55f)},
     {"centaur", new Vector2(0.4f, 2.8f)},
     {"cusith", new Vector2(0.25f, 1.55f)},
     {"cyclops", new Vector2(-0.1f, 1.75f)},
@@ -722,6 +727,7 @@ public class Objects
   public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new() {
     {"bulgae", defaultDeathOrigin},
     {"bunyip", defaultDeathOrigin},
+    {"canivernus", defaultDeathOrigin},
     {"centaur", defaultDeathOrigin},
     {"cusith", defaultDeathOrigin},
     {"cyclops", defaultDeathOrigin},
@@ -806,6 +812,7 @@ public class Objects
   public static Dictionary<string, string> throwableImpactType = new() {
     {"bulgae-fang", "blunt"},
     {"bunyip-tooth", "blunt"},
+    {"canivernus-fang", "blunt"},
     {"centaur-spear", "blunt"},
     {"cusith-fang", "blunt"},
     {"cyclops-hillstone", "blunt"},
@@ -871,6 +878,7 @@ public class Objects
   public static Dictionary<string, ThrowableSpecs> projectileSpecs = new() {
     {"bulgae-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"bunyip-tooth", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
+    {"canivernus-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"centaur-spear", new ThrowableSpecs() {colliderOffset = new ValuePair(1.4f, -0.14f), colliderSize = new ValuePair(0.37f, 1.26f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 10f, speed = 20f, steepness = 20f}},
     {"cusith-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"cyclops-hillstone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
@@ -921,6 +929,7 @@ public class Objects
   public static Dictionary<string, string> projectileKeys = new() {
     {"bulgae", "bulgae-fang"},
     {"bunyip", "bunyip-tooth"},
+    {"canivernus", "canivernus-fang"},
     {"centaur", "centaur-spear"},
     {"cusith", "cusith-fang"},
     {"cyclops", "cyclops-hillstone"},
