@@ -70,6 +70,7 @@ public class Sprites {
   public static Sprite[] dunestiffSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/dunestiff");
   public static Sprite[] cusithSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/cusith");
   public static Sprite[] canivernusSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/canivernus");
+  public static Sprite[] dyrgjaSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/dyrgja");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -368,6 +369,7 @@ public class Sprites {
     {"dryad-twig", Resources.Load<Sprite>("Sprites/projectiles/dryad-twig")},
     {"dunestiff-fang", Resources.Load<Sprite>("Sprites/projectiles/dunestiff-fang")},
     {"dwarf-cobble", Resources.Load<Sprite>("Sprites/projectiles/dwarf-cobble")},
+    {"dyrgja-hatchet", Resources.Load<Sprite>("Sprites/projectiles/dyrgja-hatchet")},
     {"fairy-blast", Resources.Load<Sprite>("Sprites/projectiles/fairy-blast")},
     {"faun-horn", Resources.Load<Sprite>("Sprites/projectiles/faun-horn")},
     {"flygmy-blast", Resources.Load<Sprite>("Sprites/projectiles/flygmy-blast")},
@@ -593,6 +595,7 @@ public class Sprites {
     {"dryad", dryadSprites[0]},
     {"dunestiff", dunestiffSprites[0]},
     {"dwarf", dwarfSprites[0]},
+    {"dyrgja", dyrgjaSprites[0]},
     {"fairy", fairySprites[0]},
     {"faun", faunSprites[0]},
     {"flygmy", flygmySprites[0]},

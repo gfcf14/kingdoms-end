@@ -95,10 +95,10 @@ public class Constants {
   public static string[] smallThrowables = {"knife", "kunai", "shuriken-4", "shuriken-6"};
   public static string[] angledThrowables = {"skeleton-king-giant-bone", "hatchet", "axe"};
   public static string[] rotatingThrowables = {"skeleton-king-giant-bone", "shuriken-4", "shuriken-6", "hatchet", "axe"};
-  public static string[] rotatingProjectiles = {"cyclops-hillstone", "fairy-blast", "flygmy-blast", "frostbird-orb", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
+  public static string[] rotatingProjectiles = {"cyclops-hillstone", "dyrgja-hatchet", "fairy-blast", "flygmy-blast", "frostbird-orb", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
-  public static string[] flyingDeathEnemies = {"dwarf", "fairy", "flygmy", "gnome", "goblin", "leprechaun", "mosswyn", "pixie", "skeleton"};
+  public static string[] flyingDeathEnemies = {"dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "leprechaun", "mosswyn", "pixie", "skeleton"};
   // refers to enemies who can naturally fly
   public static string[] flyingEnemies = {"fairy", "frostbird", "neret", "phoenix", "pixie", "skelewing", "thunderbird", "yanmabel"};
   // refers to enemies who are normally on the ground but can naturally fly
@@ -108,7 +108,7 @@ public class Constants {
   // refers to beast like enemies whose width is a lot bigger than their height
   public static string[] longEnemies = {"bulgae", "bunyip", "canivernus", "centaur", "cusith", "dunestiff", "glupus", "hellhound", "hippocampus", "kelpie", "sugecapre", "unicorn"};
   // refers to very small enemies where regular cast lengths may not work correctly
-  public static string[] smallEnemies = { "dwarf", "fairy", "flygmy", "gnome", "leprechaun", "mosswyn", "pixie" };
+  public static string[] smallEnemies = { "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "leprechaun", "mosswyn", "pixie" };
 
   public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
   public static string[] lowLevelMoney = {"money-50", "money-100"};
@@ -159,6 +159,7 @@ public class Constants {
     "dryad-twig",
     "dunestiff-fang",
     "dwarf-cobble",
+    "dyrgja-hatchet",
     "fairy-blast",
     "faun-horn",
     "flygmy-blast",
