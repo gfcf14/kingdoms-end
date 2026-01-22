@@ -190,7 +190,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void FloatEnemy() {
-    transform.position = new Vector2(transform.position.x, transform.position.y + Helpers.GetOrException(Objects.enemyDimensions, key).y);
+    transform.position = new Vector2(transform.position.x, transform.position.y + (Helpers.GetOrException(Objects.enemyDimensions, key).y * (Helpers.IsValueInArray(Constants.largeFlyingEnemies, key) ? 0.5f : 1)));
     body.gravityScale = 0;
     transform.Find("Grounder").gameObject.SetActive(false);
   }

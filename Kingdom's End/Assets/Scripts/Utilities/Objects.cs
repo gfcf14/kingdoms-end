@@ -13,7 +13,7 @@ public class Objects
     {"mountains", new string[]{"cyclops", "gnome", "kitsune", "shangsen", "sugecapre", "thunderbird"}},
     {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
     {"ruins", new string[]{"cusith", "neret"}},
-    {"seaside", new string[]{"kelpie", "nereid"}},
+    {"seaside", new string[]{"kelpie", "nereid", "siren"}},
     {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
     {"underground", new string[]{"canivernus", "samodiva"}},
     {"wasteland", new string[]{"hellhound", "skeleton", "skeleton-king", "skelewing"}}
@@ -301,6 +301,7 @@ public class Objects
     {"pixie-fireball", 60},
     {"samodiva-stalagtip", 50},
     {"shangsen-dart", 30},
+    {"siren-feather", 30},
     {"skeleton-bone", 50},
     {"skelewing-orb", 40},
     {"snowman-snowball", 30},
@@ -509,7 +510,8 @@ public class Objects
     {"dunestiff", genericItemDictionary},
     {"cusith", genericItemDictionary},
     {"canivernus", genericItemDictionary},
-    {"dyrgja", genericItemDictionary}
+    {"dyrgja", genericItemDictionary},
+    {"siren", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -617,6 +619,7 @@ public class Objects
     {"pixie", new EnemyStats() {name = "Pixie", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"samodiva", new EnemyStats() {name = "Samodiva", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"shangsen", new EnemyStats() {name = "Shangsen", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
+    {"siren", new EnemyStats() {name = "Siren", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 15, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 3f, edgeCastLength = 1, arrowBurnPosition = 1, mass = 8f}},
     {"skeleton-king", new EnemyStats() {name = "Skeleton King", form = "giant", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"skelewing", new EnemyStats() {name = "Skelewing", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
@@ -670,6 +673,7 @@ public class Objects
     {"pixie", new Vector2(0.97f, 0.92f)},
     {"samodiva", new Vector2(0.65f, 2.24f)},
     {"shangsen", new Vector2(0.85f, 2.33f)},
+    {"siren", new Vector2(1.43f, 1.78f)},
     {"skeleton", new Vector2(1.23f, 2.30f)},
     {"skeleton-king", new Vector2(1.06f, 2.8f)},
     {"skelewing", new Vector2(0.89f, 1.26f)},
@@ -769,6 +773,7 @@ public class Objects
     {"pixie", defaultDeathOrigin},
     {"samodiva", new Vector2(-0.7025f, 0.5f)},
     {"shangsen", defaultDeathOrigin},
+    {"siren", defaultDeathOrigin},
     {"skeleton", defaultDeathOrigin},
     {"skeleton-king", defaultDeathOrigin},
     {"skelewing", defaultDeathOrigin},
@@ -855,6 +860,7 @@ public class Objects
     {"pixie-fireball", "blunt"},
     {"samodiva-stalagtip", "blunt"},
     {"shangsen-dart", "blunt"},
+    {"siren-feather", "blunt"},
     {"skeleton-bone", "blunt"},
     {"skeleton-king-giant-bone", "blunt"},
     {"skelewing-orb", "blunt"},
@@ -922,6 +928,7 @@ public class Objects
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"samodiva-stalagtip", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"shangsen-dart", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
+    {"siren-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"skelewing-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"snowman-snowball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
@@ -974,6 +981,7 @@ public class Objects
     {"pixie", "pixie-fireball"},
     {"samodiva", "samodiva-stalagtip"},
     {"shangsen", "shangsen-dart"},
+    {"siren", "siren-feather"},
     {"skeleton", "skeleton-bone"},
     {"skeleton-king", "skeleton-king-giant-bone"},
     {"skelewing", "skelewing-orb"},
