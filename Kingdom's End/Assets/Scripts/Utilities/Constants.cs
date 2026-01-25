@@ -35,6 +35,7 @@ public class Constants {
     "hellhound-fang",
     "hippocampus-scale",
     "jotunn-spike",
+    "kappa-carcass",
     "karasu-feather",
     "kelpie-fin",
     "kitsune-kunai",
@@ -99,7 +100,7 @@ public class Constants {
   public static string[] rotatingProjectiles = {"cyclops-hillstone", "dyrgja-hatchet", "fairy-blast", "flygmy-blast", "frostbird-orb", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
-  public static string[] flyingDeathEnemies = {"dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "leprechaun", "mosswyn", "pixie", "skeleton"};
+  public static string[] flyingDeathEnemies = {"dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kappa", "leprechaun", "mosswyn", "pixie", "skeleton"};
   // refers to enemies who can naturally fly
   public static string[] flyingEnemies = {"fairy", "frostbird", "neret", "phoenix", "pixie", "siren", "skelewing", "thunderbird", "yanmabel"};
   // refers to enemies who are normally on the ground but can naturally fly
@@ -173,6 +174,7 @@ public class Constants {
     "hellhound-fang",
     "hippocampus-scale",
     "jotunn-spike",
+    "kappa-carcass",
     "karasu-feather",
     "kelpie-fin",
     "kitsune-kunai",
@@ -207,7 +209,7 @@ public class Constants {
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
   public static string[] canBreakTags = {"DamageExplosion", "Explosion", "Weapon"};
-  public static string[] lowReachingEnemies = {"fairy", "pixie", "siren"};
+  public static string[] lowReachingEnemies = {"fairy", "pixie", "kappa", "siren"};
   public static string[] partialLightRelics = {"dawn-gem", "royal-lamp"};
   public static string[] zonedAreas = {"glaciers"};
   public static string[] possibleEnemyDirections = {"left", "right"};

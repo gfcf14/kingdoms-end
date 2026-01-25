@@ -13,7 +13,7 @@ public class Objects
     {"mountains", new string[]{"cyclops", "gnome", "kitsune", "shangsen", "sugecapre", "thunderbird"}},
     {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
     {"ruins", new string[]{"cusith", "neret"}},
-    {"seaside", new string[]{"kelpie", "nereid", "siren"}},
+    {"seaside", new string[]{"kappa", "kelpie", "nereid", "siren"}},
     {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
     {"underground", new string[]{"canivernus", "samodiva"}},
     {"wasteland", new string[]{"hellhound", "skeleton", "skeleton-king", "skelewing"}}
@@ -283,6 +283,7 @@ public class Objects
     {"hellhound-fang", 35},
     {"hippocampus-scale", 35},
     {"jotunn-spike", 50},
+    {"kappa-carcass", 30},
     {"karasu-feather", 30},
     {"kelpie-fin", 35},
     {"kitsune-kunai", 50},
@@ -511,7 +512,8 @@ public class Objects
     {"cusith", genericItemDictionary},
     {"canivernus", genericItemDictionary},
     {"dyrgja", genericItemDictionary},
-    {"siren", genericItemDictionary}
+    {"siren", genericItemDictionary},
+    {"kappa", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -601,6 +603,7 @@ public class Objects
     {"hellhound", new EnemyStats() {name = "Hellhound", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"hippocampus", new EnemyStats() {name = "Hippocampus", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"jotunn", new EnemyStats() {name = "Jotunn", form = "giant", baseMaterial = "boots", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
+    {"kappa", new EnemyStats() {name = "Kappa", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"karasu", new EnemyStats() {name = "Karasu", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"kelpie", new EnemyStats() {name = "Kelpie", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 45, atk = 20, def = 10, crit = 0.003f, exp = 45, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"kitsune", new EnemyStats() {name = "Kitsune", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
@@ -655,6 +658,7 @@ public class Objects
     {"hellhound", new Vector2(2.26f, 1.86f)},
     {"hippocampus", new Vector2(2.72f, 2.12f)},
     {"jotunn", new Vector2(0.95f, 2.65f)},
+    {"kappa", new Vector2(0.88f, 2.33f)},
     {"karasu", new Vector2(2.49f, 2.4f)},
     {"kelpie", new Vector2(2.79f, 2.12f)},
     {"kitsune", new Vector2(0.67f, 2.24f)},
@@ -706,6 +710,7 @@ public class Objects
     {"hellhound", new Vector2(0.25f, 1.55f)},
     {"hippocampus", new Vector2(0.25f, 2.25f)},
     {"jotunn", new Vector2(0.1f, 1.75f)},
+    {"kappa", new Vector2(-0.05f, 1.5f)},
     {"kelpie", new Vector2(0.25f, 2.25f)},
     {"kitsune", new Vector2(-0.09f, 1.6f)},
     {"leprechaun", new Vector2(0, 1)},
@@ -755,6 +760,7 @@ public class Objects
     {"hellhound", defaultDeathOrigin},
     {"hippocampus", defaultDeathOrigin},
     {"jotunn", defaultDeathOrigin},
+    {"kappa", defaultDeathOrigin},
     {"karasu", defaultDeathOrigin},
     {"kelpie", defaultDeathOrigin},
     {"kitsune", new Vector2(-0.7025f, 0.5f)},
@@ -842,6 +848,7 @@ public class Objects
     {"hellhound-fang", "blunt"},
     {"hippocampus-scale", "blunt"},
     {"jotunn-spike", "blunt"},
+    {"kappa-carcass", "blunt"},
     {"karasu-feather", "blunt"},
     {"kelpie-fin", "blunt"},
     {"kitsune-kunai", "blunt"},
@@ -910,6 +917,7 @@ public class Objects
     {"hellhound-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"hippocampus-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"jotunn-spike", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
+    {"kappa-carcass", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"karasu-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"kelpie-fin", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"kitsune-kunai", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -963,6 +971,7 @@ public class Objects
     {"hellhound", "hellhound-fang"},
     {"hippocampus", "hippocampus-scale"},
     {"jotunn", "jotunn-spike"},
+    {"kappa", "kappa-carcass"},
     {"karasu", "karasu-feather"},
     {"kelpie", "kelpie-fin"},
     {"kitsune", "kitsune-kunai"},

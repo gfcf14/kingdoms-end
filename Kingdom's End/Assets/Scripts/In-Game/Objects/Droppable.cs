@@ -74,6 +74,7 @@ public class Droppable : MonoBehaviour {
 
     droppableCollider = gameObject.AddComponent<CircleCollider2D>();
 
+    // TODO: when enemy instantiates money it causes an error. Consider passing an arg that looks up money dimensions somewhere other than droppableSprites
     Vector2 droppableDimensions = Helpers.GetItemDimensions(key);
 
     // Find the larger dimension
