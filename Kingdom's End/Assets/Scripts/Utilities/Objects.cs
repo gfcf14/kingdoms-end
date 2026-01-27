@@ -13,7 +13,7 @@ public class Objects
     {"mountains", new string[]{"cyclops", "gnome", "kitsune", "shangsen", "sugecapre", "thunderbird"}},
     {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
     {"ruins", new string[]{"cusith", "neret"}},
-    {"seaside", new string[]{"kappa", "kelpie", "nereid", "siren"}},
+    {"seaside", new string[]{"kappa", "kelpie", "menehune", "nereid", "siren"}},
     {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
     {"underground", new string[]{"canivernus", "samodiva"}},
     {"wasteland", new string[]{"hellhound", "skeleton", "skeleton-king", "skelewing"}}
@@ -288,6 +288,7 @@ public class Objects
     {"kelpie-fin", 35},
     {"kitsune-kunai", 50},
     {"leprechaun-mushroom", 35},
+    {"menehune-shingle", 35},
     {"mermaid-scale", 35},
     {"merman-scale", 40},
     {"mosswyn-dagger", 40},
@@ -513,7 +514,8 @@ public class Objects
     {"canivernus", genericItemDictionary},
     {"dyrgja", genericItemDictionary},
     {"siren", genericItemDictionary},
-    {"kappa", genericItemDictionary}
+    {"kappa", genericItemDictionary},
+    {"menehune", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -608,6 +610,7 @@ public class Objects
     {"kelpie", new EnemyStats() {name = "Kelpie", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 45, atk = 20, def = 10, crit = 0.003f, exp = 45, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"kitsune", new EnemyStats() {name = "Kitsune", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"leprechaun", new EnemyStats() {name = "Leprechaun", form = "small", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
+    {"menehune", new EnemyStats() {name = "Menehune", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"mermaid", new EnemyStats() {name = "Mermaid", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 15, def = 10, crit = 0.0035f, exp = 30, speed= 4, reach = 0.3f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"merman", new EnemyStats() {name = "Merman", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 6.75f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"mosswyn", new EnemyStats() {name = "Mosswyn", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
@@ -663,6 +666,7 @@ public class Objects
     {"kelpie", new Vector2(2.79f, 2.12f)},
     {"kitsune", new Vector2(0.67f, 2.24f)},
     {"leprechaun", new Vector2(0.67f, 1.63f)},
+    {"menehune", new Vector2(0.71f, 1.63f)},
     {"mermaid", new Vector2(0.67f, 2.22f)},
     {"merman", new Vector2(1.05f, 2.32f)},
     {"mosswyn", new Vector2(0.71f, 1.63f)},
@@ -714,6 +718,7 @@ public class Objects
     {"kelpie", new Vector2(0.25f, 2.25f)},
     {"kitsune", new Vector2(-0.09f, 1.6f)},
     {"leprechaun", new Vector2(0, 1)},
+    {"menehune", new Vector2(0, 1)},
     {"mermaid", new Vector2(-0.09f, 1.6f)},
     {"merman", new Vector2(0.1f, 2)},
     {"mosswyn", new Vector2(0, 1)},
@@ -765,6 +770,7 @@ public class Objects
     {"kelpie", defaultDeathOrigin},
     {"kitsune", new Vector2(-0.7025f, 0.5f)},
     {"leprechaun", defaultDeathOrigin},
+    {"menehune", defaultDeathOrigin},
     {"mermaid", defaultDeathOrigin},
     {"merman", defaultDeathOrigin},
     {"mosswyn", defaultDeathOrigin},
@@ -853,6 +859,7 @@ public class Objects
     {"kelpie-fin", "blunt"},
     {"kitsune-kunai", "blunt"},
     {"leprechaun-mushroom", "blunt"},
+    {"menehune-shingle", "blunt"},
     {"mermaid-scale", "blunt"},
     {"merman-scale", "blunt"},
     {"mosswyn-dagger", "blunt"},
@@ -922,6 +929,7 @@ public class Objects
     {"kelpie-fin", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"kitsune-kunai", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"leprechaun-mushroom", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"menehune-shingle", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"mermaid-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"merman-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"mosswyn-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -976,6 +984,7 @@ public class Objects
     {"kelpie", "kelpie-fin"},
     {"kitsune", "kitsune-kunai"},
     {"leprechaun", "leprechaun-mushroom"},
+    {"menehune", "menehune-shingle"},
     {"mermaid", "mermaid-scale"},
     {"merman", "merman-scale"},
     {"mosswyn", "mosswyn-dagger"},

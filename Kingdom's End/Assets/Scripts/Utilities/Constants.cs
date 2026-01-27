@@ -40,6 +40,7 @@ public class Constants {
     "kelpie-fin",
     "kitsune-kunai",
     "leprechaun-mushroom",
+    "menehune-shingle",
     "mermaid-scale",
     "merman-scale",
     "mosswyn-dagger",
@@ -100,7 +101,7 @@ public class Constants {
   public static string[] rotatingProjectiles = {"cyclops-hillstone", "dyrgja-hatchet", "fairy-blast", "flygmy-blast", "frostbird-orb", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
-  public static string[] flyingDeathEnemies = {"dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kappa", "leprechaun", "mosswyn", "pixie", "skeleton"};
+  public static string[] flyingDeathEnemies = {"dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "skeleton"};
   // refers to enemies who can naturally fly
   public static string[] flyingEnemies = {"fairy", "frostbird", "neret", "phoenix", "pixie", "siren", "skelewing", "thunderbird", "yanmabel"};
   // refers to enemies who are normally on the ground but can naturally fly
@@ -110,7 +111,7 @@ public class Constants {
   // refers to beast like enemies whose width is a lot bigger than their height
   public static string[] longEnemies = {"bulgae", "bunyip", "canivernus", "centaur", "cusith", "dunestiff", "glupus", "hellhound", "hippocampus", "kelpie", "sugecapre", "unicorn"};
   // refers to very small enemies where regular cast lengths may not work correctly
-  public static string[] smallEnemies = { "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "leprechaun", "mosswyn", "pixie" };
+  public static string[] smallEnemies = { "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "leprechaun", "menehune", "mosswyn", "pixie" };
   // large flying enemies - to avoid floating them too high given their dimensions
   public static string[] largeFlyingEnemies = {"siren"};
   public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
@@ -179,6 +180,7 @@ public class Constants {
     "kelpie-fin",
     "kitsune-kunai",
     "leprechaun-mushroom",
+    "menehune-shingle",
     "mermaid-scale",
     "merman-scale",
     "mosswyn-dagger",
