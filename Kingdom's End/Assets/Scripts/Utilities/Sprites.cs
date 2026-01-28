@@ -74,6 +74,7 @@ public class Sprites {
   public static Sprite[] sirenSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/siren");
   public static Sprite[] kappaSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/kappa");
   public static Sprite[] menehuneSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/menehune");
+  public static Sprite[] selkieSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/selkie");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -403,6 +404,7 @@ public class Sprites {
     {"pishtaco-vertebra", Resources.Load<Sprite>("Sprites/projectiles/pishtaco-vertebra")},
     {"pixie-fireball", Resources.Load<Sprite>("Sprites/projectiles/pixie-fireball")},
     {"samodiva-stalagtip", Resources.Load<Sprite>("Sprites/projectiles/samodiva-stalagtip")},
+    {"selkie-scale", Resources.Load<Sprite>("Sprites/projectiles/selkie-scale")},
     {"shangsen-dart", Resources.Load<Sprite>("Sprites/projectiles/shangsen-dart")},
     {"siren-feather", Resources.Load<Sprite>("Sprites/projectiles/siren-feather")},
     {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")},
@@ -632,6 +634,7 @@ public class Sprites {
     {"pishtaco", pishtacoSprites[0]},
     {"pixie", pixieSprites[0]},
     {"samodiva", samodivaSprites[0]},
+    {"selkie", selkieSprites[0]},
     {"shangsen", shangsenSprites[0]},
     {"siren", sirenSprites[0]},
     {"skeleton", skeletonSprites[35]},
