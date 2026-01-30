@@ -64,6 +64,7 @@ public class Constants {
     "thunderbird-orb",
     "troll-boulder",
     "unicorn-shard",
+    "waterblade-scale",
     "werewolf-fang",
     "yanmabel-stinger",
     "yukionna-kunai"
@@ -104,7 +105,7 @@ public class Constants {
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
   public static string[] flyingDeathEnemies = {"dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "skeleton"};
   // refers to enemies who can naturally fly
-  public static string[] flyingEnemies = {"fairy", "frostbird", "neret", "phoenix", "pixie", "siren", "skelewing", "thunderbird", "yanmabel"};
+  public static string[] flyingEnemies = {"fairy", "frostbird", "neret", "phoenix", "pixie", "siren", "skelewing", "thunderbird", "yanmabel", "waterblade"};
   // refers to enemies who are normally on the ground but can naturally fly
   public static string[] wingedEnemies = {"harpy", "karasu"};
   // refers to enemies who are mostly grounded but by unique means can fly
@@ -205,6 +206,7 @@ public class Constants {
     "thunderbird-orb",
     "troll-boulder",
     "unicorn-shard",
+    "waterblade-scale",
     "werewolf-fang",
     "yanmabel-stinger",
     "yukionna-kunai"

@@ -11,9 +11,9 @@ public class Objects
     {"glaciers", new string[]{"dyrgja", "frostbird", "glupus", "jotunn", "snowman", "yukionna"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
     {"mountains", new string[]{"cyclops", "gnome", "kitsune", "shangsen", "sugecapre", "thunderbird"}},
-    {"oceans", new string[]{"merman", "mermaid", "hippocampus"}},
+    {"oceans", new string[]{"merman", "mermaid", "hippocampus", "waterblade"}},
     {"ruins", new string[]{"cusith", "neret"}},
-    {"seaside", new string[]{"selkie"}}, // "kappa", "kelpie", "menehune", "nereid", "selkie", "siren"}},
+    {"seaside", new string[]{"kappa", "kelpie", "menehune", "nereid", "selkie", "siren"}},
     {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
     {"underground", new string[]{"canivernus", "samodiva"}},
     {"wasteland", new string[]{"hellhound", "skeleton", "skeleton-king", "skelewing"}}
@@ -312,6 +312,7 @@ public class Objects
     {"thunderbird-orb", 40},
     {"troll-boulder", 50},
     {"unicorn-shard", 30},
+    {"waterblade-scale", 30},
     {"werewolf-fang", 40},
     {"yanmabel-stinger", 30},
     {"yukionna-kunai", 50}
@@ -517,7 +518,8 @@ public class Objects
     {"siren", genericItemDictionary},
     {"kappa", genericItemDictionary},
     {"menehune", genericItemDictionary},
-    {"selkie", genericItemDictionary}
+    {"selkie", genericItemDictionary},
+    {"waterblade", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -637,6 +639,7 @@ public class Objects
     {"thunderbird", new EnemyStats() {name = "Thunderbird", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"troll", new EnemyStats() {name = "Troll", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"unicorn", new EnemyStats() {name = "Unicorn", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
+    {"waterblade", new EnemyStats() {name = "Waterblade", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"werewolf", new EnemyStats() {name = "Werewolf", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.0025f, exp = 50, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"yanmabel", new EnemyStats() {name = "Yanmabel", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"yukionna", new EnemyStats() {name = "Yukionna", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
@@ -694,6 +697,7 @@ public class Objects
     {"thunderbird", new Vector2(0.89f, 1.26f)},
     {"troll", new Vector2(1.01f, 2.68f)},
     {"unicorn", new Vector2(2.82f, 2.11f)},
+    {"waterblade", new Vector2(1.53f, 0.78f)},
     {"werewolf", new Vector2(1.21f, 2.60f)},
     {"yanmabel", new Vector2(1.59f, 0.78f)},
     {"yukionna", new Vector2(0.67f, 2.24f)}
@@ -800,6 +804,7 @@ public class Objects
     {"thunderbird", defaultDeathOrigin},
     {"troll", defaultDeathOrigin},
     {"unicorn", defaultDeathOrigin},
+    {"waterblade", defaultDeathOrigin},
     {"werewolf", defaultDeathOrigin},
     {"yanmabel", defaultDeathOrigin},
     {"yukionna", new Vector2(-0.7025f, 0.5f)}
@@ -890,6 +895,7 @@ public class Objects
     {"thunderbird-orb", "blunt"},
     {"troll-boulder", "blunt" },
     {"unicorn-shard", "blunt"},
+    {"waterblade-scale", "blunt"},
     {"werewolf-fang", "blunt"},
     {"yanmabel-stinger", "blunt"},
     {"yukionna-kunai", "blunt"}
@@ -960,6 +966,7 @@ public class Objects
     {"thunderbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"troll-boulder", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"unicorn-shard", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"waterblade-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"werewolf-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"yanmabel-stinger", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"yukionna-kunai", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1017,6 +1024,7 @@ public class Objects
     {"thunderbird", "thunderbird-orb"},
     {"troll", "troll-boulder"},
     {"unicorn", "unicorn-shard"},
+    {"waterblade", "waterblade-scale"},
     {"werewolf", "werewolf-fang"},
     {"yanmabel", "yanmabel-stinger"},
     {"yukionna", "yukionna-kunai"}

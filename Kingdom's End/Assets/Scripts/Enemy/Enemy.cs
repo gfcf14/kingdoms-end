@@ -308,6 +308,7 @@ public class Enemy : MonoBehaviour {
         // TODO: consider if this is even needed or if it's easier to replicate the nymph_death animation into a nymph_death-by-poison animation
         // Find the corresponding resource animation clip based on the enemy key and state name
         AnimationClip resourceClip = resourceAoc.animationClips.FirstOrDefault(
+            // TODO: Consider if it's better to lookup the video by state name, since some enemies reuse animations (e.g. waterblade uses waterblade_idle.anim for both idle and watch)
             resourceClip => resourceClip.name == key + "_" + stateName ||
             (key == "nymph" && stateName == "death-by-poison" && resourceClip.name == "nymph_death") // nymph edge case since she uses nymph_death for regular death, and poison/burning death
         );
