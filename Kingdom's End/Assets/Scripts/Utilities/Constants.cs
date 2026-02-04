@@ -56,6 +56,7 @@ public class Constants {
     "pishtaco-vertebra",
     "pixie-fireball",
     "samodiva-stalagtip",
+    "saraph-scale",
     "selkie-scale",
     "shangsen-dart",
     "siren-feather",
@@ -107,7 +108,7 @@ public class Constants {
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
   public static string[] flyingDeathEnemies = {"botarosa", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "skeleton"};
   // refers to enemies who can naturally fly
-  public static string[] flyingEnemies = {"fairy", "frostbird", "neret", "phoenix", "pixie", "siren", "skelewing", "thunderbird", "yanmabel", "waterblade"};
+  public static string[] flyingEnemies = {"fairy", "frostbird", "neret", "phoenix", "pixie", "saraph", "siren", "skelewing", "thunderbird", "yanmabel", "waterblade"};
   // refers to enemies who are normally on the ground but can naturally fly
   public static string[] wingedEnemies = {"harpy", "karasu"};
   // refers to enemies who are mostly grounded but by unique means can fly
@@ -200,6 +201,7 @@ public class Constants {
     "pishtaco-vertebra",
     "pixie-fireball",
     "samodiva-stalagtip",
+    "saraph-scale",
     "selkie-scale",
     "shangsen-dart",
     "siren-feather",

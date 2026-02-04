@@ -6,7 +6,7 @@ public class Objects
 {
   public static Dictionary<string, string[]> enemyKeysByArea = new() {
     {"calderas", new string[]{"bulgae", "flygmy", "harpy", "karasu", "phoenix"}},
-    {"desert", new string[]{"dunestiff", "mummy"}},
+    {"desert", new string[]{"saraph"}}, // "dunestiff", "mummy", "saraph"}},
     {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
     {"glaciers", new string[]{"dyrgja", "frostbird", "glupus", "jotunn", "snowman", "yukionna"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
@@ -304,6 +304,7 @@ public class Objects
     {"pishtaco-vertebra", 25},
     {"pixie-fireball", 60},
     {"samodiva-stalagtip", 50},
+    {"saraph-scale", 30},
     {"selkie-scale", 40},
     {"shangsen-dart", 30},
     {"siren-feather", 30},
@@ -523,7 +524,8 @@ public class Objects
     {"selkie", genericItemDictionary},
     {"waterblade", genericItemDictionary},
     {"botarosa", genericItemDictionary},
-    {"myrsel", genericItemDictionary}
+    {"myrsel", genericItemDictionary},
+    {"saraph", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -634,6 +636,7 @@ public class Objects
     {"pishtaco", new EnemyStats() {name = "Pishtaco", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 20, crit = 0.001f, exp = 40, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"pixie", new EnemyStats() {name = "Pixie", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"samodiva", new EnemyStats() {name = "Samodiva", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
+    {"saraph", new EnemyStats() {name = "Saraph", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"selkie", new EnemyStats() {name = "Selkie", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"shangsen", new EnemyStats() {name = "Shangsen", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"siren", new EnemyStats() {name = "Siren", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 15, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 3f, edgeCastLength = 1, arrowBurnPosition = 1, mass = 8f}},
@@ -645,9 +648,9 @@ public class Objects
     {"thunderbird", new EnemyStats() {name = "Thunderbird", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"troll", new EnemyStats() {name = "Troll", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"unicorn", new EnemyStats() {name = "Unicorn", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
-    {"waterblade", new EnemyStats() {name = "Waterblade", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
+    {"waterblade", new EnemyStats() {name = "Waterblade", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"werewolf", new EnemyStats() {name = "Werewolf", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.0025f, exp = 50, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
-    {"yanmabel", new EnemyStats() {name = "Yanmabel", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
+    {"yanmabel", new EnemyStats() {name = "Yanmabel", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"yukionna", new EnemyStats() {name = "Yukionna", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
   };
 
@@ -694,6 +697,7 @@ public class Objects
     {"pishtaco", new Vector2(0.91f, 2.37f)},
     {"pixie", new Vector2(0.97f, 0.92f)},
     {"samodiva", new Vector2(0.65f, 2.24f)},
+    {"saraph", new Vector2(1.49f, 0.7f)},
     {"selkie", new Vector2(0.93f, 2.63f)},
     {"shangsen", new Vector2(0.85f, 2.33f)},
     {"siren", new Vector2(1.43f, 1.78f)},
@@ -805,6 +809,7 @@ public class Objects
     {"pishtaco", defaultDeathOrigin},
     {"pixie", defaultDeathOrigin},
     {"samodiva", new Vector2(-0.7025f, 0.5f)},
+    {"saraph", defaultDeathOrigin},
     {"selkie", defaultDeathOrigin},
     {"shangsen", defaultDeathOrigin},
     {"siren", defaultDeathOrigin},
@@ -898,6 +903,7 @@ public class Objects
     {"pishtaco-vertebra", "blunt"},
     {"pixie-fireball", "blunt"},
     {"samodiva-stalagtip", "blunt"},
+    {"saraph-scale", "blunt"},
     {"selkie-scale", "blunt"},
     {"shangsen-dart", "blunt"},
     {"siren-feather", "blunt"},
@@ -972,6 +978,7 @@ public class Objects
     {"pishtaco-vertebra", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"samodiva-stalagtip", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"saraph-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"selkie-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"shangsen-dart", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"siren-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1031,6 +1038,7 @@ public class Objects
     {"pishtaco", "pishtaco-vertebra"},
     {"pixie", "pixie-fireball"},
     {"samodiva", "samodiva-stalagtip"},
+    {"saraph", "saraph-scale"},
     {"selkie", "selkie-scale"},
     {"shangsen", "shangsen-dart"},
     {"siren", "siren-feather"},
