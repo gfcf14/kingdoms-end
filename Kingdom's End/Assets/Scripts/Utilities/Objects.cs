@@ -6,7 +6,7 @@ public class Objects
 {
   public static Dictionary<string, string[]> enemyKeysByArea = new() {
     {"calderas", new string[]{"bulgae", "flygmy", "harpy", "karasu", "phoenix"}},
-    {"desert", new string[]{"saraph"}}, // "dunestiff", "mummy", "saraph"}},
+    {"desert", new string[]{"naga"}}, //"dunestiff", "mummy", "naga", "saraph"}},
     {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
     {"glaciers", new string[]{"dyrgja", "frostbird", "glupus", "jotunn", "snowman", "yukionna"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
@@ -295,6 +295,7 @@ public class Objects
     {"mosswyn-dagger", 40},
     {"mummy-rib", 30},
     {"myrsel-scale", 40},
+    {"naga-scale", 35},
     {"nereid-seashell", 35},
     {"neret-orb", 40},
     {"nixie-cattail", 35},
@@ -525,7 +526,8 @@ public class Objects
     {"waterblade", genericItemDictionary},
     {"botarosa", genericItemDictionary},
     {"myrsel", genericItemDictionary},
-    {"saraph", genericItemDictionary}
+    {"saraph", genericItemDictionary},
+    {"naga", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -627,6 +629,7 @@ public class Objects
     {"mosswyn", new EnemyStats() {name = "Mosswyn", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"mummy", new EnemyStats() {name = "Mummy", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"myrsel", new EnemyStats() {name = "Myrsel", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
+    {"naga", new EnemyStats() {name = "Naga", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 15, def = 10, crit = 0.0035f, exp = 30, speed= 4, reach = 0.3f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"nereid", new EnemyStats() {name = "Nereid", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"neret", new EnemyStats() {name = "Neret", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"nixie", new EnemyStats() {name = "Nixie", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 15, def = 10, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
@@ -688,6 +691,7 @@ public class Objects
     {"mosswyn", new Vector2(0.71f, 1.63f)},
     {"mummy", new Vector2(1.19f, 2.24f)},
     {"myrsel", new Vector2(0.93f, 2.63f)},
+    {"naga", new Vector2(0.67f, 2.22f)},
     {"nereid", new Vector2(0.66f, 2.23f)},
     {"neret", new Vector2(0.89f, 1.26f)},
     {"nixie", new Vector2(0.65f, 2.22f)},
@@ -745,6 +749,7 @@ public class Objects
     {"mosswyn", new Vector2(0, 1)},
     {"mummy", new Vector2(0.125f, 2.125f)},
     {"myrsel", new Vector2(0.1f, 1.8f)},
+    {"naga", new Vector2(-0.09f, 1.6f)},
     {"nereid", new Vector2(-0.09f, 1.6f)},
     {"nixie", new Vector2(-0.09f, 1.6f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
@@ -800,6 +805,7 @@ public class Objects
     {"mosswyn", defaultDeathOrigin},
     {"mummy", defaultDeathOrigin},
     {"myrsel", defaultDeathOrigin},
+    {"naga", defaultDeathOrigin},
     {"nereid", new Vector2(-0.7025f, 0.5f)},
     {"neret", defaultDeathOrigin},
     {"nixie", new Vector2(-0.7025f, 0.5f)},
@@ -894,6 +900,7 @@ public class Objects
     {"mosswyn-dagger", "blunt"},
     {"mummy-rib", "blunt"},
     {"myrsel-scale", "blunt"},
+    {"naga-scale", "blunt"},
     {"nereid-seashell", "blunt"},
     {"neret-orb", "blunt"},
     {"nixie-cattail", "blunt"},
@@ -969,6 +976,7 @@ public class Objects
     {"mosswyn-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"mummy-rib", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"myrsel-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"naga-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nereid-seashell", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"neret-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"nixie-cattail", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1029,6 +1037,7 @@ public class Objects
     {"mosswyn", "mosswyn-dagger"},
     {"mummy", "mummy-rib"},
     {"myrsel", "myrsel-scale"},
+    {"naga", "naga-scale"},
     {"nereid", "nereid-seashell"},
     {"neret", "neret-orb"},
     {"nixie", "nixie-cattail"},

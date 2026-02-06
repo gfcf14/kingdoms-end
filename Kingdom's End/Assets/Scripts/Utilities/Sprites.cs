@@ -79,6 +79,7 @@ public class Sprites {
   public static Sprite[] botarosaSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/botarosa");
   public static Sprite[] myrselSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/myrsel");
   public static Sprite[] saraphSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/saraph");
+  public static Sprite[] nagaSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/naga");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -401,6 +402,7 @@ public class Sprites {
     {"mosswyn-dagger", Resources.Load<Sprite>("Sprites/projectiles/mosswyn-dagger")},
     {"mummy-rib", Resources.Load<Sprite>("Sprites/projectiles/mummy-rib")},
     {"myrsel-scale", Resources.Load<Sprite>("Sprites/projectiles/myrsel-scale")},
+    {"naga-scale", Resources.Load<Sprite>("Sprites/projectiles/naga-scale")},
     {"nereid-seashell", Resources.Load<Sprite>("Sprites/projectiles/nereid-seashell")},
     {"neret-orb", Resources.Load<Sprite>("Sprites/projectiles/neret-orb")},
     {"nixie-cattail", Resources.Load<Sprite>("Sprites/projectiles/nixie-cattail")},
@@ -635,6 +637,7 @@ public class Sprites {
     {"mosswyn", mosswynSprites[0]},
     {"mummy", mummySprites[0]},
     {"myrsel", myrselSprites[0]},
+    {"naga", nagaSprites[0]},
     {"nereid", nereidSprites[0]},
     {"neret", neretSprites[0]},
     {"nixie", nixieSprites[0]},
