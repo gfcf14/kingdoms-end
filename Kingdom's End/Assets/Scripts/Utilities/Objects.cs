@@ -6,7 +6,7 @@ public class Objects
 {
   public static Dictionary<string, string[]> enemyKeysByArea = new() {
     {"calderas", new string[]{"bulgae", "flygmy", "harpy", "karasu", "phoenix"}},
-    {"desert", new string[]{"naga"}}, //"dunestiff", "mummy", "naga", "saraph"}},
+    {"desert", new string[]{"scarabkin"}}, //"dunestiff", "mummy", "naga", "saraph", "scarabkin"}},
     {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
     {"glaciers", new string[]{"dyrgja", "frostbird", "glupus", "jotunn", "snowman", "yukionna"}},
     {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
@@ -306,6 +306,7 @@ public class Objects
     {"pixie-fireball", 60},
     {"samodiva-stalagtip", 50},
     {"saraph-scale", 30},
+    {"scarabkin-horn", 50},
     {"selkie-scale", 40},
     {"shangsen-dart", 30},
     {"siren-feather", 30},
@@ -527,7 +528,8 @@ public class Objects
     {"botarosa", genericItemDictionary},
     {"myrsel", genericItemDictionary},
     {"saraph", genericItemDictionary},
-    {"naga", genericItemDictionary}
+    {"naga", genericItemDictionary},
+    {"scarabkin", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -640,6 +642,7 @@ public class Objects
     {"pixie", new EnemyStats() {name = "Pixie", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"samodiva", new EnemyStats() {name = "Samodiva", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"saraph", new EnemyStats() {name = "Saraph", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
+    {"scarabkin", new EnemyStats() {name = "Scarabkin", form = "small", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"selkie", new EnemyStats() {name = "Selkie", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"shangsen", new EnemyStats() {name = "Shangsen", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"siren", new EnemyStats() {name = "Siren", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 15, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 3f, edgeCastLength = 1, arrowBurnPosition = 1, mass = 8f}},
@@ -702,6 +705,7 @@ public class Objects
     {"pixie", new Vector2(0.97f, 0.92f)},
     {"samodiva", new Vector2(0.65f, 2.24f)},
     {"saraph", new Vector2(1.49f, 0.7f)},
+    {"scarabkin", new Vector2(0.68f, 1.55f)},
     {"selkie", new Vector2(0.93f, 2.63f)},
     {"shangsen", new Vector2(0.85f, 2.33f)},
     {"siren", new Vector2(1.43f, 1.78f)},
@@ -816,6 +820,7 @@ public class Objects
     {"pixie", defaultDeathOrigin},
     {"samodiva", new Vector2(-0.7025f, 0.5f)},
     {"saraph", defaultDeathOrigin},
+    {"scarabkin", defaultDeathOrigin},
     {"selkie", defaultDeathOrigin},
     {"shangsen", defaultDeathOrigin},
     {"siren", defaultDeathOrigin},
@@ -911,6 +916,7 @@ public class Objects
     {"pixie-fireball", "blunt"},
     {"samodiva-stalagtip", "blunt"},
     {"saraph-scale", "blunt"},
+    {"scarabkin-horn", "blunt"},
     {"selkie-scale", "blunt"},
     {"shangsen-dart", "blunt"},
     {"siren-feather", "blunt"},
@@ -987,6 +993,7 @@ public class Objects
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"samodiva-stalagtip", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"saraph-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"scarabkin-horn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.65f, 1.45f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"selkie-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"shangsen-dart", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"siren-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1048,6 +1055,7 @@ public class Objects
     {"pixie", "pixie-fireball"},
     {"samodiva", "samodiva-stalagtip"},
     {"saraph", "saraph-scale"},
+    {"scarabkin", "scarabkin-horn"},
     {"selkie", "selkie-scale"},
     {"shangsen", "shangsen-dart"},
     {"siren", "siren-feather"},

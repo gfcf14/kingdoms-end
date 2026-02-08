@@ -80,6 +80,7 @@ public class Sprites {
   public static Sprite[] myrselSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/myrsel");
   public static Sprite[] saraphSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/saraph");
   public static Sprite[] nagaSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/naga");
+  public static Sprite[] scarabkinSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/scarabkin");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -413,6 +414,7 @@ public class Sprites {
     {"pixie-fireball", Resources.Load<Sprite>("Sprites/projectiles/pixie-fireball")},
     {"samodiva-stalagtip", Resources.Load<Sprite>("Sprites/projectiles/samodiva-stalagtip")},
     {"saraph-scale", Resources.Load<Sprite>("Sprites/projectiles/saraph-scale")},
+    {"scarabkin-horn", Resources.Load<Sprite>("Sprites/projectiles/scarabkin-horn")},
     {"selkie-scale", Resources.Load<Sprite>("Sprites/projectiles/selkie-scale")},
     {"shangsen-dart", Resources.Load<Sprite>("Sprites/projectiles/shangsen-dart")},
     {"siren-feather", Resources.Load<Sprite>("Sprites/projectiles/siren-feather")},
@@ -648,6 +650,7 @@ public class Sprites {
     {"pixie", pixieSprites[0]},
     {"samodiva", samodivaSprites[0]},
     {"saraph", saraphSprites[0]},
+    {"scarabkin", scarabkinSprites[0]},
     {"selkie", selkieSprites[0]},
     {"shangsen", shangsenSprites[0]},
     {"siren", sirenSprites[0]},
