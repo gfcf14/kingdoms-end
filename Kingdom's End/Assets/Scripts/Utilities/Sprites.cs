@@ -83,6 +83,7 @@ public class Sprites {
   public static Sprite[] scarabkinSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/scarabkin");
   public static Sprite[] redcapSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/redcap");
   public static Sprite[] bluecapSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/bluecap");
+  public static Sprite[] jorogumoSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/jorogumo");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -394,6 +395,7 @@ public class Sprites {
     {"harpy-feather", Resources.Load<Sprite>("Sprites/projectiles/harpy-feather")},
     {"hellhound-fang", Resources.Load<Sprite>("Sprites/projectiles/hellhound-fang")},
     {"hippocampus-scale", Resources.Load<Sprite>("Sprites/projectiles/hippocampus-scale")},
+    {"jorogumo-leg", Resources.Load<Sprite>("jorogumo-leg")},
     {"jotunn-spike", Resources.Load<Sprite>("Sprites/projectiles/jotunn-spike")},
     {"kappa-carcass", Resources.Load<Sprite>("Sprites/projectiles/kappa-carcass")},
     {"karasu-feather", Resources.Load<Sprite>("Sprites/projectiles/karasu-feather")},
@@ -632,6 +634,7 @@ public class Sprites {
     {"harpy", harpySprites[0]},
     {"hellhound", hellhoundSprites[0]},
     {"hippocampus", hippocampusSprites[0]},
+    {"jorogumo", jorogumoSprites[0]},
     {"jotunn", jotunnSprites[0]},
     {"kappa", kappaSprites[0]},
     {"karasu", karasuSprites[0]},
