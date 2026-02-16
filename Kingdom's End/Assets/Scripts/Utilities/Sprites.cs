@@ -84,6 +84,7 @@ public class Sprites {
   public static Sprite[] redcapSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/redcap");
   public static Sprite[] bluecapSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/bluecap");
   public static Sprite[] jorogumoSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/jorogumo");
+  public static Sprite[] empusaSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/empusa");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -385,6 +386,7 @@ public class Sprites {
     {"dunestiff-fang", Resources.Load<Sprite>("Sprites/projectiles/dunestiff-fang")},
     {"dwarf-cobble", Resources.Load<Sprite>("Sprites/projectiles/dwarf-cobble")},
     {"dyrgja-hatchet", Resources.Load<Sprite>("Sprites/projectiles/dyrgja-hatchet")},
+    {"empusa-claw", Resources.Load<Sprite>("Sprites/projectiles/empusa-claw")},
     {"fairy-blast", Resources.Load<Sprite>("Sprites/projectiles/fairy-blast")},
     {"faun-horn", Resources.Load<Sprite>("Sprites/projectiles/faun-horn")},
     {"flygmy-blast", Resources.Load<Sprite>("Sprites/projectiles/flygmy-blast")},
@@ -395,7 +397,7 @@ public class Sprites {
     {"harpy-feather", Resources.Load<Sprite>("Sprites/projectiles/harpy-feather")},
     {"hellhound-fang", Resources.Load<Sprite>("Sprites/projectiles/hellhound-fang")},
     {"hippocampus-scale", Resources.Load<Sprite>("Sprites/projectiles/hippocampus-scale")},
-    {"jorogumo-leg", Resources.Load<Sprite>("jorogumo-leg")},
+    {"jorogumo-leg", Resources.Load<Sprite>("Sprites/projectiles/jorogumo-leg")},
     {"jotunn-spike", Resources.Load<Sprite>("Sprites/projectiles/jotunn-spike")},
     {"kappa-carcass", Resources.Load<Sprite>("Sprites/projectiles/kappa-carcass")},
     {"karasu-feather", Resources.Load<Sprite>("Sprites/projectiles/karasu-feather")},
@@ -624,6 +626,7 @@ public class Sprites {
     {"dunestiff", dunestiffSprites[0]},
     {"dwarf", dwarfSprites[0]},
     {"dyrgja", dyrgjaSprites[0]},
+    {"empusa", empusaSprites[0]},
     {"fairy", fairySprites[0]},
     {"faun", faunSprites[0]},
     {"flygmy", flygmySprites[0]},
