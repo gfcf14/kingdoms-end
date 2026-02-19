@@ -15,8 +15,8 @@ public class Objects
     {"ruins", new string[]{"cusith", "jorogumo", "neret", "redcap"}},
     {"seaside", new string[]{"kappa", "kelpie", "menehune", "nereid", "selkie", "siren"}},
     {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
-    {"underground", new string[]{"bluecap", "canivernus", "samodiva"}},
-    {"wasteland", new string[]{"empusa"}} // , "hellhound", "skeleton", "skeleton-king", "skelewing"}}
+    {"underground", new string[]{"bluecap", "canivernus", "kabouter", "samodiva"}},
+    {"wasteland", new string[]{"empusa", "hellhound", "skeleton", "skeleton-king", "skelewing"}}
   };
 
   public static Dictionary<string, string[]> enemyTypesByCondition = new() {
@@ -287,6 +287,7 @@ public class Objects
     {"hippocampus-scale", 35},
     {"jorogumo-leg", 30},
     {"jotunn-spike", 50},
+    {"kabouter-cobble", 35},
     {"kappa-carcass", 30},
     {"karasu-feather", 30},
     {"kelpie-fin", 35},
@@ -537,7 +538,8 @@ public class Objects
     {"redcap", genericItemDictionary},
     {"bluecap", genericItemDictionary},
     {"jorogumo", genericItemDictionary},
-    {"empusa", genericItemDictionary}
+    {"empusa", genericItemDictionary},
+    {"kabouter", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -631,6 +633,7 @@ public class Objects
     {"hippocampus", new EnemyStats() {name = "Hippocampus", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"jorogumo", new EnemyStats() {name = "Jorogumo", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"jotunn", new EnemyStats() {name = "Jotunn", form = "giant", baseMaterial = "boots", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
+    {"kabouter", new EnemyStats() {name = "Kabouter", form = "small", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"kappa", new EnemyStats() {name = "Kappa", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"karasu", new EnemyStats() {name = "Karasu", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"kelpie", new EnemyStats() {name = "Kelpie", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 45, atk = 20, def = 10, crit = 0.003f, exp = 45, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
@@ -698,6 +701,7 @@ public class Objects
     {"hippocampus", new Vector2(2.72f, 2.12f)},
     {"jorogumo", new Vector2(0.69f, 2.23f)},
     {"jotunn", new Vector2(0.95f, 2.65f)},
+    {"kabouter", new Vector2(0.69f, 1.62f)},
     {"kappa", new Vector2(0.88f, 2.33f)},
     {"karasu", new Vector2(2.49f, 2.4f)},
     {"kelpie", new Vector2(2.79f, 2.12f)},
@@ -762,6 +766,7 @@ public class Objects
     {"hippocampus", new Vector2(0.25f, 2.25f)},
     {"jorogumo", new Vector2(-0.09f, 1.6f)},
     {"jotunn", new Vector2(0.1f, 1.75f)},
+    {"kabouter", new Vector2(0, 1)},
     {"kappa", new Vector2(-0.05f, 1.5f)},
     {"kelpie", new Vector2(0.25f, 2.25f)},
     {"kitsune", new Vector2(-0.09f, 1.6f)},
@@ -821,6 +826,7 @@ public class Objects
     {"hippocampus", defaultDeathOrigin},
     {"jorogumo", new Vector2(-0.7025f, 0.5f)},
     {"jotunn", defaultDeathOrigin},
+    {"kabouter", defaultDeathOrigin},
     {"kappa", defaultDeathOrigin},
     {"karasu", defaultDeathOrigin},
     {"kelpie", defaultDeathOrigin},
@@ -921,6 +927,7 @@ public class Objects
     {"hippocampus-scale", "blunt"},
     {"jorogumo-leg", "blunt"},
     {"jotunn-spike", "blunt"},
+    {"kabouter-cobble", "blunt"},
     {"kappa-carcass", "blunt"},
     {"karasu-feather", "blunt"},
     {"kelpie-fin", "blunt"},
@@ -1002,6 +1009,7 @@ public class Objects
     {"hippocampus-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"jorogumo-leg", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"jotunn-spike", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
+    {"kabouter-cobble", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"kappa-carcass", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"karasu-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"kelpie-fin", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1068,6 +1076,7 @@ public class Objects
     {"hippocampus", "hippocampus-scale"},
     {"jorogumo", "jorogumo-leg"},
     {"jotunn", "jotunn-spike"},
+    {"kabouter", "kabouter-cobble"},
     {"kappa", "kappa-carcass"},
     {"karasu", "karasu-feather"},
     {"kelpie", "kelpie-fin"},

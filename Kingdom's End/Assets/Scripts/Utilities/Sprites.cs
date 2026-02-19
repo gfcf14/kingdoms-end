@@ -85,6 +85,7 @@ public class Sprites {
   public static Sprite[] bluecapSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/bluecap");
   public static Sprite[] jorogumoSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/jorogumo");
   public static Sprite[] empusaSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/empusa");
+  public static Sprite[] kabouterSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/kabouter");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -399,6 +400,7 @@ public class Sprites {
     {"hippocampus-scale", Resources.Load<Sprite>("Sprites/projectiles/hippocampus-scale")},
     {"jorogumo-leg", Resources.Load<Sprite>("Sprites/projectiles/jorogumo-leg")},
     {"jotunn-spike", Resources.Load<Sprite>("Sprites/projectiles/jotunn-spike")},
+    {"kabouter-cobble", Resources.Load<Sprite>("Sprites/projectiles/kabouter-cobble")},
     {"kappa-carcass", Resources.Load<Sprite>("Sprites/projectiles/kappa-carcass")},
     {"karasu-feather", Resources.Load<Sprite>("Sprites/projectiles/karasu-feather")},
     {"kelpie-fin", Resources.Load<Sprite>("Sprites/projectiles/kelpie-fin")},
@@ -639,6 +641,7 @@ public class Sprites {
     {"hippocampus", hippocampusSprites[0]},
     {"jorogumo", jorogumoSprites[0]},
     {"jotunn", jotunnSprites[0]},
+    {"kabouter", kabouterSprites[0]},
     {"kappa", kappaSprites[0]},
     {"karasu", karasuSprites[0]},
     {"kelpie", kelpieSprites[0]},
