@@ -16,7 +16,7 @@ public class Objects
     {"seaside", new string[]{"kappa", "kelpie", "menehune", "nereid", "selkie", "siren"}},
     {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
     {"underground", new string[]{"bluecap", "canivernus", "kabouter", "samodiva"}},
-    {"wasteland", new string[]{"empusa", "hellhound", "skeleton", "skeleton-king", "skelewing"}}
+    {"wasteland", new string[]{"crone", "empusa", "hellhound", "skeleton", "skeleton-king", "skelewing"}}
   };
 
   public static Dictionary<string, string[]> enemyTypesByCondition = new() {
@@ -268,6 +268,7 @@ public class Objects
     {"bunyip-tooth", 30},
     {"canivernus-fang", 35},
     {"centaur-spear", 50},
+    {"crone-dagger", 40},
     {"cusith-fang", 35},
     {"cyclops-hillstone", 50},
     {"dunestiff-fang", 35},
@@ -539,7 +540,8 @@ public class Objects
     {"bluecap", genericItemDictionary},
     {"jorogumo", genericItemDictionary},
     {"empusa", genericItemDictionary},
-    {"kabouter", genericItemDictionary}
+    {"kabouter", genericItemDictionary},
+    {"crone", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -614,6 +616,7 @@ public class Objects
     {"bunyip", new EnemyStats() {name = "Bunyip", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 3, reach = 0.2f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"canivernus", new EnemyStats() {name = "Canivernus", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"centaur", new EnemyStats() {name = "Centaur", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
+    {"crone", new EnemyStats() {name = "Crone", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"cusith", new EnemyStats() {name = "Cusith", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"cyclops", new EnemyStats() {name = "Cyclops", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.001f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"dryad", new EnemyStats() {name = "Dryad", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
@@ -682,6 +685,7 @@ public class Objects
     {"bunyip", new Vector2(2.06f, 1.83f)},
     {"canivernus", new Vector2(2.26f, 1.86f)},
     {"centaur", new Vector2(2.28f, 2.77f)},
+    {"crone", new Vector2(0.71f, 1.63f)},
     {"cusith", new Vector2(2.26f, 1.86f)},
     {"cyclops", new Vector2(1.01f, 2.66f)},
     {"dryad", new Vector2(0.72f, 2.23f)},
@@ -750,6 +754,7 @@ public class Objects
     {"bunyip", new Vector2(0.25f, 1.55f)},
     {"canivernus", new Vector2(0.25f, 1.55f)},
     {"centaur", new Vector2(0.4f, 2.8f)},
+    {"crone", new Vector2(0, 1)},
     {"cusith", new Vector2(0.25f, 1.55f)},
     {"cyclops", new Vector2(-0.1f, 1.75f)},
     {"dryad", new Vector2(-0.09f, 1.6f)},
@@ -807,6 +812,7 @@ public class Objects
     {"bunyip", defaultDeathOrigin},
     {"canivernus", defaultDeathOrigin},
     {"centaur", defaultDeathOrigin},
+    {"crone", defaultDeathOrigin},
     {"cusith", defaultDeathOrigin},
     {"cyclops", defaultDeathOrigin},
     {"dryad", new Vector2(-0.7025f, 0.5f)},
@@ -908,6 +914,7 @@ public class Objects
     {"bunyip-tooth", "blunt"},
     {"canivernus-fang", "blunt"},
     {"centaur-spear", "blunt"},
+    {"crone-dagger", "blunt"},
     {"cusith-fang", "blunt"},
     {"cyclops-hillstone", "blunt"},
     {"dryad-twig", "blunt"},
@@ -990,6 +997,7 @@ public class Objects
     {"bunyip-tooth", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"canivernus-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"centaur-spear", new ThrowableSpecs() {colliderOffset = new ValuePair(1.4f, -0.14f), colliderSize = new ValuePair(0.37f, 1.26f), hDisplacement = 1f, initialRotationValues = new ValuePair(90, 45), maxHeight = 10f, speed = 20f, steepness = 20f}},
+    {"crone-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"cusith-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"cyclops-hillstone", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"dryad-twig", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1057,6 +1065,7 @@ public class Objects
     {"bunyip", "bunyip-tooth"},
     {"canivernus", "canivernus-fang"},
     {"centaur", "centaur-spear"},
+    {"crone", "crone-dagger"},
     {"cusith", "cusith-fang"},
     {"cyclops", "cyclops-hillstone"},
     {"dryad", "dryad-twig"},

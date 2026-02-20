@@ -86,6 +86,7 @@ public class Sprites {
   public static Sprite[] jorogumoSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/jorogumo");
   public static Sprite[] empusaSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/empusa");
   public static Sprite[] kabouterSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/kabouter");
+  public static Sprite[] croneSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/crone");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -381,6 +382,7 @@ public class Sprites {
     {"bunyip-tooth", Resources.Load<Sprite>("Sprites/projectiles/bunyip-tooth")},
     {"canivernus-fang", Resources.Load<Sprite>("Sprites/projectiles/canivernus-fang")},
     {"centaur-spear", Resources.Load<Sprite>("Sprites/projectiles/centaur-spear")},
+    {"crone-dagger", Resources.Load<Sprite>("Sprites/projectiles/crone-dagger")},
     {"cusith-fang", Resources.Load<Sprite>("Sprites/projectiles/cusith-fang")},
     {"cyclops-hillstone", Resources.Load<Sprite>("Sprites/projectiles/cyclops-hillstone")},
     {"dryad-twig", Resources.Load<Sprite>("Sprites/projectiles/dryad-twig")},
@@ -622,6 +624,7 @@ public class Sprites {
     {"bunyip", bunyipSprites[0]},
     {"canivernus", canivernusSprites[0]},
     {"centaur", centaurSprites[0]},
+    {"crone", croneSprites[0]},
     {"cusith", cusithSprites[0]},
     {"cyclops", cyclopsSprites[0]},
     {"dryad", dryadSprites[0]},
