@@ -15,7 +15,7 @@ public class Objects
     {"ruins", new string[]{"cusith", "jorogumo", "neret", "redcap"}},
     {"seaside", new string[]{"kappa", "kelpie", "menehune", "nereid", "selkie", "siren"}},
     {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
-    {"underground", new string[]{"bluecap", "canivernus", "kabouter", "samodiva"}},
+    {"underground", new string[]{"bluecap", "canivernus", "kabouter", "morlock", "samodiva"}},
     {"wasteland", new string[]{"crone", "empusa", "hellhound", "skeleton", "skeleton-king", "skelewing"}}
   };
 
@@ -297,6 +297,7 @@ public class Objects
     {"menehune-shingle", 35},
     {"mermaid-scale", 35},
     {"merman-scale", 40},
+    {"morlock-eloinoggin", 50},
     {"mosswyn-dagger", 40},
     {"mummy-rib", 30},
     {"myrsel-scale", 40},
@@ -541,7 +542,8 @@ public class Objects
     {"jorogumo", genericItemDictionary},
     {"empusa", genericItemDictionary},
     {"kabouter", genericItemDictionary},
-    {"crone", genericItemDictionary}
+    {"crone", genericItemDictionary},
+    {"morlock", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -645,6 +647,7 @@ public class Objects
     {"menehune", new EnemyStats() {name = "Menehune", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"mermaid", new EnemyStats() {name = "Mermaid", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 15, def = 10, crit = 0.0035f, exp = 30, speed= 4, reach = 0.3f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"merman", new EnemyStats() {name = "Merman", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 6.75f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
+    {"morlock", new EnemyStats() {name = "Morlock", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"mosswyn", new EnemyStats() {name = "Mosswyn", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"mummy", new EnemyStats() {name = "Mummy", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"myrsel", new EnemyStats() {name = "Myrsel", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
@@ -714,6 +717,7 @@ public class Objects
     {"menehune", new Vector2(0.71f, 1.63f)},
     {"mermaid", new Vector2(0.67f, 2.22f)},
     {"merman", new Vector2(1.05f, 2.32f)},
+    {"morlock", new Vector2(1.11f, 2.68f)},
     {"mosswyn", new Vector2(0.71f, 1.63f)},
     {"mummy", new Vector2(1.19f, 2.24f)},
     {"myrsel", new Vector2(0.93f, 2.63f)},
@@ -779,6 +783,7 @@ public class Objects
     {"menehune", new Vector2(0, 1)},
     {"mermaid", new Vector2(-0.09f, 1.6f)},
     {"merman", new Vector2(0.1f, 2)},
+    {"morlock", new Vector2(0.1f, 1.4f)},
     {"mosswyn", new Vector2(0, 1)},
     {"mummy", new Vector2(0.125f, 2.125f)},
     {"myrsel", new Vector2(0.1f, 1.8f)},
@@ -841,6 +846,7 @@ public class Objects
     {"menehune", defaultDeathOrigin},
     {"mermaid", defaultDeathOrigin},
     {"merman", defaultDeathOrigin},
+    {"morlock", defaultDeathOrigin},
     {"mosswyn", defaultDeathOrigin},
     {"mummy", defaultDeathOrigin},
     {"myrsel", defaultDeathOrigin},
@@ -943,6 +949,7 @@ public class Objects
     {"menehune-shingle", "blunt"},
     {"mermaid-scale", "blunt"},
     {"merman-scale", "blunt"},
+    {"morlock-eloinoggin", "blunt"},
     {"mosswyn-dagger", "blunt"},
     {"mummy-rib", "blunt"},
     {"myrsel-scale", "blunt"},
@@ -1026,6 +1033,7 @@ public class Objects
     {"menehune-shingle", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"mermaid-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"merman-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"morlock-eloinoggin", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"mosswyn-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"mummy-rib", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"myrsel-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1094,6 +1102,7 @@ public class Objects
     {"menehune", "menehune-shingle"},
     {"mermaid", "mermaid-scale"},
     {"merman", "merman-scale"},
+    {"morlock", "morlock-eloinoggin"},
     {"mosswyn", "mosswyn-dagger"},
     {"mummy", "mummy-rib"},
     {"myrsel", "myrsel-scale"},
