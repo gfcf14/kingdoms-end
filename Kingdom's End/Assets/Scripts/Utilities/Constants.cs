@@ -44,6 +44,7 @@ public class Constants {
     "karasu-feather",
     "kelpie-fin",
     "kitsune-kunai",
+    "leatherwing-fang",
     "leprechaun-mushroom",
     "menehune-shingle",
     "mermaid-scale",
@@ -115,7 +116,7 @@ public class Constants {
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
   public static string[] flyingDeathEnemies = {"botarosa", "crone", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kabouter", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin", "skeleton"};
   // refers to enemies who can naturally fly
-  public static string[] flyingEnemies = {"fairy", "frostbird", "neret", "phoenix", "pixie", "saraph", "siren", "skelewing", "thunderbird", "yanmabel", "waterblade"};
+  public static string[] flyingEnemies = {"fairy", "frostbird", "leatherwing", "neret", "phoenix", "pixie", "saraph", "siren", "skelewing", "thunderbird", "yanmabel", "waterblade"};
   // refers to enemies who are normally on the ground but can naturally fly
   public static string[] wingedEnemies = {"harpy", "karasu", "scarabkin"};
   // refers to enemies who are mostly grounded but by unique means can fly
@@ -197,6 +198,7 @@ public class Constants {
     "karasu-feather",
     "kelpie-fin",
     "kitsune-kunai",
+    "leatherwing-fang",
     "leprechaun-mushroom",
     "naga-scale",
     "menehune-shingle",

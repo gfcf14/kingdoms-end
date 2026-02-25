@@ -88,6 +88,7 @@ public class Sprites {
   public static Sprite[] kabouterSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/kabouter");
   public static Sprite[] croneSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/crone");
   public static Sprite[] morlockSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/morlock");
+  public static Sprite[] leatherwingSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/leatherwing");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -408,6 +409,7 @@ public class Sprites {
     {"karasu-feather", Resources.Load<Sprite>("Sprites/projectiles/karasu-feather")},
     {"kelpie-fin", Resources.Load<Sprite>("Sprites/projectiles/kelpie-fin")},
     {"kitsune-kunai", Resources.Load<Sprite>("Sprites/projectiles/kitsune-kunai")},
+    {"leatherwing-fang", Resources.Load<Sprite>("Sprites/projectiles/leatherwing-fang")},
     {"leprechaun-mushroom", Resources.Load<Sprite>("Sprites/projectiles/leprechaun-mushroom")},
     {"menehune-shingle", Resources.Load<Sprite>("Sprites/projectiles/menehune-shingle")},
     {"mermaid-scale", Resources.Load<Sprite>("Sprites/projectiles/mermaid-scale")},
@@ -651,6 +653,7 @@ public class Sprites {
     {"karasu", karasuSprites[0]},
     {"kelpie", kelpieSprites[0]},
     {"kitsune", kitsuneSprites[0]},
+    {"leatherwing", leatherwingSprites[0]},
     {"leprechaun", leprechaunSprites[0]},
     {"menehune", menehuneSprites[0]},
     {"mermaid", mermaidSprites[0]},

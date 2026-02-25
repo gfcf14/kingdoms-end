@@ -5,18 +5,18 @@ using UnityEngine;
 public class Objects
 {
   public static Dictionary<string, string[]> enemyKeysByArea = new() {
-    {"calderas", new string[]{"bulgae", "flygmy", "harpy", "karasu", "phoenix"}},
-    {"desert", new string[]{"dunestiff", "mummy", "naga", "saraph", "scarabkin"}},
-    {"forest", new string[]{"dryad", "fairy", "faun", "leprechaun", "unicorn", "werewolf"}},
-    {"glaciers", new string[]{"dyrgja", "frostbird", "glupus", "jotunn", "snowman", "yukionna"}},
-    {"meadows", new string[]{"centaur", "dwarf", "goblin", "nymph", "pixie", "troll"}},
-    {"mountains", new string[]{"cyclops", "gnome", "kitsune", "shangsen", "sugecapre", "thunderbird"}},
-    {"oceans", new string[]{"botarosa", "merman", "mermaid", "myrsel", "hippocampus", "waterblade"}},
-    {"ruins", new string[]{"cusith", "jorogumo", "neret", "redcap"}},
-    {"seaside", new string[]{"kappa", "kelpie", "menehune", "nereid", "selkie", "siren"}},
-    {"swamps", new string[]{"bunyip", "mosswyn", "nixie", "ogre", "pishtaco", "yanmabel"}},
-    {"underground", new string[]{"bluecap", "canivernus", "kabouter", "morlock", "samodiva"}},
-    {"wasteland", new string[]{"crone", "empusa", "hellhound", "skeleton", "skeleton-king", "skelewing"}}
+    {"calderas"   , new string[]{ "bulgae"    , "flygmy"    , "harpy"     , "karasu"      , "phoenix"                       }},
+    {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "scarabkin"                     }},
+    {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
+    {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
+    {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
+    {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
+    {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
+    {"ruins"      , new string[]{ "cusith"    , "jorogumo"  , "neret"     , "redcap"                                        }},
+    {"seaside"    , new string[]{ "kappa"     , "kelpie"    , "menehune"  , "nereid"      , "selkie"        , "siren"       }},
+    {"swamps"     , new string[]{ "bunyip"    , "mosswyn"   , "nixie"     , "ogre"        , "pishtaco"      , "yanmabel"    }},
+    {"underground", new string[]{ "bluecap"   , "canivernus", "kabouter"  , "leatherwing" , "morlock"       , "samodiva"    }},
+    {"wasteland"  , new string[]{ "crone"     , "empusa"    , "hellhound" , "skeleton"    , "skeleton-king" , "skelewing"   }}
   };
 
   public static Dictionary<string, string[]> enemyTypesByCondition = new() {
@@ -293,6 +293,7 @@ public class Objects
     {"karasu-feather", 30},
     {"kelpie-fin", 35},
     {"kitsune-kunai", 50},
+    {"leatherwing-fang", 30},
     {"leprechaun-mushroom", 35},
     {"menehune-shingle", 35},
     {"mermaid-scale", 35},
@@ -543,7 +544,8 @@ public class Objects
     {"empusa", genericItemDictionary},
     {"kabouter", genericItemDictionary},
     {"crone", genericItemDictionary},
-    {"morlock", genericItemDictionary}
+    {"morlock", genericItemDictionary},
+    {"leatherwing", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -643,6 +645,8 @@ public class Objects
     {"karasu", new EnemyStats() {name = "Karasu", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"kelpie", new EnemyStats() {name = "Kelpie", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 45, atk = 20, def = 10, crit = 0.003f, exp = 45, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"kitsune", new EnemyStats() {name = "Kitsune", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
+    
+    {"leatherwing", new EnemyStats() {name = "Leatherwing", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"leprechaun", new EnemyStats() {name = "Leprechaun", form = "small", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"menehune", new EnemyStats() {name = "Menehune", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"mermaid", new EnemyStats() {name = "Mermaid", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 15, def = 10, crit = 0.0035f, exp = 30, speed= 4, reach = 0.3f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
@@ -713,6 +717,7 @@ public class Objects
     {"karasu", new Vector2(2.49f, 2.4f)},
     {"kelpie", new Vector2(2.79f, 2.12f)},
     {"kitsune", new Vector2(0.67f, 2.24f)},
+    {"leatherwing", new Vector2(1.22f, 1.13f)},
     {"leprechaun", new Vector2(0.67f, 1.63f)},
     {"menehune", new Vector2(0.71f, 1.63f)},
     {"mermaid", new Vector2(0.67f, 2.22f)},
@@ -842,6 +847,7 @@ public class Objects
     {"karasu", defaultDeathOrigin},
     {"kelpie", defaultDeathOrigin},
     {"kitsune", new Vector2(-0.7025f, 0.5f)},
+    {"leatherwing", defaultDeathOrigin},
     {"leprechaun", defaultDeathOrigin},
     {"menehune", defaultDeathOrigin},
     {"mermaid", defaultDeathOrigin},
@@ -945,6 +951,7 @@ public class Objects
     {"karasu-feather", "blunt"},
     {"kelpie-fin", "blunt"},
     {"kitsune-kunai", "blunt"},
+    {"leatherwing-fang", "blunt"},
     {"leprechaun-mushroom", "blunt"},
     {"menehune-shingle", "blunt"},
     {"mermaid-scale", "blunt"},
@@ -1029,6 +1036,7 @@ public class Objects
     {"karasu-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"kelpie-fin", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"kitsune-kunai", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"leatherwing-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"leprechaun-mushroom", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"menehune-shingle", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"mermaid-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1098,6 +1106,7 @@ public class Objects
     {"karasu", "karasu-feather"},
     {"kelpie", "kelpie-fin"},
     {"kitsune", "kitsune-kunai"},
+    {"leatherwing","leatherwing-fang"},
     {"leprechaun", "leprechaun-mushroom"},
     {"menehune", "menehune-shingle"},
     {"mermaid", "mermaid-scale"},
