@@ -24,6 +24,7 @@ public class InGame : MonoBehaviour {
   public GameObject pauseCanvas;
   public GameObject shopCanvas;
   public GameObject hpBarContainer;
+  public GameObject mpBarContainer;
   public GameObject enemiesMen;
   public GameObject enemiesWomen;
   public GameObject enemiesGiants;
@@ -55,6 +56,10 @@ public class InGame : MonoBehaviour {
     shopScript = shopCanvas.GetComponent<Shop>();
 
     GameObject.Find("MainOverlay").GetComponent<MainOverlay>().AssignTilemaps();
+
+    if (Hero.instance.mpBarContainer == null) {
+      Hero.instance.mpBarContainer = mpBarContainer;
+    }
   }
   void Update() {}
 
