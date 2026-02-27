@@ -89,6 +89,7 @@ public class Sprites {
   public static Sprite[] croneSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/crone");
   public static Sprite[] morlockSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/morlock");
   public static Sprite[] leatherwingSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/leatherwing");
+  public static Sprite[] brazenmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/brazenman");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -380,6 +381,7 @@ public class Sprites {
   public static Dictionary<string, Sprite> projectileSprites = new() {
     {"bluecap-rock", Resources.Load<Sprite>("Sprites/projectiles/bluecap-rock")},
     {"botarosa-scale", Resources.Load<Sprite>("Sprites/projectiles/botarosa-scale")},
+    {"brazenman-dagger", Resources.Load<Sprite>("Sprites/projectiles/brazenman-dagger")},
     {"bulgae-fang", Resources.Load<Sprite>("Sprites/projectiles/bulgae-fang")},
     {"bunyip-tooth", Resources.Load<Sprite>("Sprites/projectiles/bunyip-tooth")},
     {"canivernus-fang", Resources.Load<Sprite>("Sprites/projectiles/canivernus-fang")},
@@ -624,6 +626,7 @@ public class Sprites {
   public static Dictionary<string, Sprite> firstBossSprites = new() {
     {"bluecap", bluecapSprites[0]},
     {"botarosa", botarosaSprites[0]},
+    {"brazenman", brazenmanSprites[0]},
     {"bulgae", bulgaeSprites[0]},
     {"bunyip", bunyipSprites[0]},
     {"canivernus", canivernusSprites[0]},

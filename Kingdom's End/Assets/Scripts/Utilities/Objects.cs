@@ -12,7 +12,7 @@ public class Objects
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
-    {"ruins"      , new string[]{ "cusith"    , "jorogumo"  , "neret"     , "redcap"                                        }},
+    {"ruins"      , new string[]{ "brazenman" , "cusith"    , "jorogumo"  , "neret"       , "redcap"                        }},
     {"seaside"    , new string[]{ "kappa"     , "kelpie"    , "menehune"  , "nereid"      , "selkie"        , "siren"       }},
     {"swamps"     , new string[]{ "bunyip"    , "mosswyn"   , "nixie"     , "ogre"        , "pishtaco"      , "yanmabel"    }},
     {"underground", new string[]{ "bluecap"   , "canivernus", "kabouter"  , "leatherwing" , "morlock"       , "samodiva"    }},
@@ -264,6 +264,7 @@ public class Objects
   public static Dictionary<string, int> projectileDamages = new() {
     {"bluecap-rock", 50},
     {"botarosa-scale", 30},
+    {"brazenman-dagger", 50},
     {"bulgae-fang", 35},
     {"bunyip-tooth", 30},
     {"canivernus-fang", 35},
@@ -545,7 +546,8 @@ public class Objects
     {"kabouter", genericItemDictionary},
     {"crone", genericItemDictionary},
     {"morlock", genericItemDictionary},
-    {"leatherwing", genericItemDictionary}
+    {"leatherwing", genericItemDictionary},
+    {"brazenman", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -616,6 +618,7 @@ public class Objects
   public static Dictionary<string, EnemyStats> enemyStats = new() {
     {"bluecap", new EnemyStats() {name = "Bluecap", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"botarosa", new EnemyStats() {name = "Botarosa", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
+    {"brazenman", new EnemyStats() {name = "Brazenman", form = "giant", baseMaterial = "boots", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"bulgae", new EnemyStats() {name = "Bulgae", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"bunyip", new EnemyStats() {name = "Bunyip", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 3, reach = 0.2f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"canivernus", new EnemyStats() {name = "Canivernus", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
@@ -645,7 +648,6 @@ public class Objects
     {"karasu", new EnemyStats() {name = "Karasu", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"kelpie", new EnemyStats() {name = "Kelpie", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 45, atk = 20, def = 10, crit = 0.003f, exp = 45, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"kitsune", new EnemyStats() {name = "Kitsune", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
-    
     {"leatherwing", new EnemyStats() {name = "Leatherwing", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"leprechaun", new EnemyStats() {name = "Leprechaun", form = "small", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"menehune", new EnemyStats() {name = "Menehune", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
@@ -688,6 +690,7 @@ public class Objects
   public static Dictionary<string, Vector2> enemyDimensions = new() {
     {"bluecap", new Vector2(0.86f, 2.32f)},
     {"botarosa", new Vector2(0.71f, 1.63f)},
+    {"brazenman", new Vector2(1.02f, 2.47f)},
     {"bulgae", new Vector2(2.26f, 1.86f)},
     {"bunyip", new Vector2(2.06f, 1.83f)},
     {"canivernus", new Vector2(2.26f, 1.86f)},
@@ -759,6 +762,7 @@ public class Objects
   public static Dictionary<string, Vector2> enemyWingOffsets = new() {
     {"bluecap", new Vector2(0, 1.6f)},
     {"botarosa", new Vector2(0, 1)},
+    {"brazenman", new Vector2(0.1f, 1.75f)},
     {"bulgae", new Vector2(0.25f, 1.55f)},
     {"bunyip", new Vector2(0.25f, 1.55f)},
     {"canivernus", new Vector2(0.25f, 1.55f)},
@@ -818,6 +822,7 @@ public class Objects
   public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new() {
     {"bluecap", defaultDeathOrigin},
     {"botarosa", defaultDeathOrigin},
+    {"brazenman", defaultDeathOrigin},
     {"bulgae", defaultDeathOrigin},
     {"bunyip", defaultDeathOrigin},
     {"canivernus", defaultDeathOrigin},
@@ -922,6 +927,7 @@ public class Objects
   public static Dictionary<string, string> throwableImpactType = new() {
     {"bluecap-rock", "blunt"},
     {"botarosa-scale", "blunt"},
+    {"brazenman-dagger", "blunt"},
     {"bulgae-fang", "blunt"},
     {"bunyip-tooth", "blunt"},
     {"canivernus-fang", "blunt"},
@@ -1007,6 +1013,7 @@ public class Objects
   public static Dictionary<string, ThrowableSpecs> projectileSpecs = new() {
     {"bluecap-rock", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"botarosa-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"brazenman-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.65f, 1.45f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"bulgae-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"bunyip-tooth", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"canivernus-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
@@ -1077,6 +1084,7 @@ public class Objects
   public static Dictionary<string, string> projectileKeys = new() {
     {"bluecap", "bluecap-rock"},
     {"botarosa", "botarosa-scale"},
+    {"brazenman", "brazenman-dagger"},
     {"bulgae", "bulgae-fang"},
     {"bunyip", "bunyip-tooth"},
     {"canivernus", "canivernus-fang"},

@@ -17,6 +17,7 @@ public class Constants {
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
   public static string[] nonBouncingProjectiles = {
     "botarosa-scale",
+    "brazenman-dagger",
     "bulgae-fang",
     "bunyip-tooth",
     "canivernus-fang",
@@ -169,6 +170,7 @@ public class Constants {
   public static string[] enemyProjectiles = {
     "bluecap-rock",
     "botarosa-scale",
+    "brazenman-dagger",
     "bulgae-fang",
     "bunyip-tooth",
     "canivernus-fang",
