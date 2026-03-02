@@ -35,6 +35,7 @@ public class Constants {
     "glupus-fang",
     "gnome-truffle",
     "goblin-knife",
+    "golem-boulder",
     "harpy-feather",
     "hellhound-fang",
     "hippocampus-scale",
@@ -112,7 +113,7 @@ public class Constants {
   public static string[] smallThrowables = {"knife", "kunai", "shuriken-4", "shuriken-6"};
   public static string[] angledThrowables = {"skeleton-king-giant-bone", "hatchet", "axe"};
   public static string[] rotatingThrowables = {"axe", "bluecap-rock", "hatchet", "redcap-rock", "skeleton-king-giant-bone", "shuriken-4", "shuriken-6"};
-  public static string[] rotatingProjectiles = {"cyclops-hillstone", "dyrgja-hatchet", "fairy-blast", "flygmy-blast", "frostbird-orb", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
+  public static string[] rotatingProjectiles = {"cyclops-hillstone", "dyrgja-hatchet", "fairy-blast", "flygmy-blast", "frostbird-orb", "golem-boulder", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
   public static string[] flyingDeathEnemies = {"botarosa", "crone", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kabouter", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin", "skeleton"};
@@ -190,6 +191,7 @@ public class Constants {
     "glupus-fang",
     "gnome-truffle",
     "goblin-knife",
+    "golem-boulder",
     "harpy-feather",
     "hellhound-fang",
     "hippocampus-scale",

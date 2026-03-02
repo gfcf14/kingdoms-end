@@ -13,6 +13,10 @@ public class Bewitcher : MonoBehaviour {
     if (Helpers.IsValueInArray(Constants.shortCastEnemies, enemy.key)) {
       forwardCastLength = enemy.reach * 1.25f;
     }
+    // TODO: consider if any other enemies should have special values for their cast length
+    if (enemy.key == "golem") {
+      forwardCastLength = enemy.longReach;
+    }
   }
 
   void Update() {

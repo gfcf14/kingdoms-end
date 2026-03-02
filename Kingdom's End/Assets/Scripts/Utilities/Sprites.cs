@@ -90,6 +90,7 @@ public class Sprites {
   public static Sprite[] morlockSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/morlock");
   public static Sprite[] leatherwingSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/leatherwing");
   public static Sprite[] brazenmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/brazenman");
+  public static Sprite[] golemSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/golem");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -401,6 +402,7 @@ public class Sprites {
     {"glupus-fang", Resources.Load<Sprite>("Sprites/projectiles/glupus-fang")},
     {"gnome-truffle", Resources.Load<Sprite>("Sprites/projectiles/gnome-truffle")},
     {"goblin-knife", Resources.Load<Sprite>("Sprites/projectiles/goblin-knife")},
+    {"golem-boulder", Resources.Load<Sprite>("Sprites/projectiles/golem-boulder")},
     {"harpy-feather", Resources.Load<Sprite>("Sprites/projectiles/harpy-feather")},
     {"hellhound-fang", Resources.Load<Sprite>("Sprites/projectiles/hellhound-fang")},
     {"hippocampus-scale", Resources.Load<Sprite>("Sprites/projectiles/hippocampus-scale")},
@@ -646,6 +648,7 @@ public class Sprites {
     {"glupus", glupusSprites[0]},
     {"gnome", gnomeSprites[0]},
     {"goblin", goblinSprites[0]},
+    {"golem", golemSprites[0]},
     {"harpy", harpySprites[0]},
     {"hellhound", hellhoundSprites[0]},
     {"hippocampus", hippocampusSprites[0]},
