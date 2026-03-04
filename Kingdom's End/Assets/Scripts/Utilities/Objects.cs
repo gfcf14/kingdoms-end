@@ -6,7 +6,7 @@ public class Objects
 {
   public static Dictionary<string, string[]> enemyKeysByArea = new() {
     {"calderas"   , new string[]{ "bulgae"    , "flygmy"    , "golem"     , "harpy"       , "karasu"        , "phoenix"     }},
-    {"desert"     , new string[]{ "sandman"}}, // "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
+    {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
