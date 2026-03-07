@@ -92,6 +92,7 @@ public class Sprites {
   public static Sprite[] brazenmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/brazenman");
   public static Sprite[] golemSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/golem");
   public static Sprite[] sandmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/sandman");
+  public static Sprite[] blobSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/blob");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -381,6 +382,7 @@ public class Sprites {
 
   // refers to the sprites for projectiles that only enemies (like the shooter) can throw
   public static Dictionary<string, Sprite> projectileSprites = new() {
+    {"blob-ectoplasm", Resources.Load<Sprite>("Sprites/projectiles/blob-ectoplasm")},
     {"bluecap-rock", Resources.Load<Sprite>("Sprites/projectiles/bluecap-rock")},
     {"botarosa-scale", Resources.Load<Sprite>("Sprites/projectiles/botarosa-scale")},
     {"brazenman-dagger", Resources.Load<Sprite>("Sprites/projectiles/brazenman-dagger")},
@@ -628,6 +630,7 @@ public class Sprites {
   };
 
   public static Dictionary<string, Sprite> firstBossSprites = new() {
+    {"blob", blobSprites[0]},
     {"bluecap", bluecapSprites[0]},
     {"botarosa", botarosaSprites[0]},
     {"brazenman", brazenmanSprites[0]},

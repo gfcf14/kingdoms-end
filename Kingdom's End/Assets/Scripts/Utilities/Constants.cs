@@ -16,6 +16,7 @@ public class Constants {
   public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
   public static string[] nonBouncingProjectiles = {
+    "blob-ectoplasm",
     "botarosa-scale",
     "brazenman-dagger",
     "bulgae-fang",
@@ -114,7 +115,7 @@ public class Constants {
   public static string[] smallThrowables = {"knife", "kunai", "shuriken-4", "shuriken-6"};
   public static string[] angledThrowables = {"skeleton-king-giant-bone", "hatchet", "axe"};
   public static string[] rotatingThrowables = {"axe", "bluecap-rock", "hatchet", "redcap-rock", "skeleton-king-giant-bone", "shuriken-4", "shuriken-6"};
-  public static string[] rotatingProjectiles = {"cyclops-hillstone", "dyrgja-hatchet", "fairy-blast", "flygmy-blast", "frostbird-orb", "golem-boulder", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "sandman-sandrock", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
+  public static string[] rotatingProjectiles = {"blob-ectoplasm", "cyclops-hillstone", "dyrgja-hatchet", "fairy-blast", "flygmy-blast", "frostbird-orb", "golem-boulder", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "sandman-sandrock", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
   public static string[] flyingDeathEnemies = {"botarosa", "crone", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kabouter", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin", "skeleton"};
@@ -127,7 +128,7 @@ public class Constants {
   // refers to beast like enemies whose width is a lot bigger than their height
   public static string[] longEnemies = {"bulgae", "bunyip", "canivernus", "centaur", "cusith", "dunestiff", "glupus", "hellhound", "hippocampus", "kelpie", "sugecapre", "unicorn"};
   // refers to very small enemies where regular cast lengths may not work correctly
-  public static string[] smallEnemies = {"botarosa", "crone", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "kabouter", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin"};
+  public static string[] smallEnemies = {"blob", "botarosa", "crone", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "kabouter", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin"};
   // large flying enemies - to avoid floating them too high given their dimensions
   public static string[] largeFlyingEnemies = {"siren"};
   public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
@@ -170,6 +171,7 @@ public class Constants {
   public static string[] enemyBombBounceTags = {"Hero", "Weapon"};
 
   public static string[] enemyProjectiles = {
+    "blob-ectoplasm",
     "bluecap-rock",
     "botarosa-scale",
     "brazenman-dagger",
