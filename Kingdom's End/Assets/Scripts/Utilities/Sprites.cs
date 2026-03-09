@@ -93,6 +93,7 @@ public class Sprites {
   public static Sprite[] golemSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/golem");
   public static Sprite[] sandmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/sandman");
   public static Sprite[] blobSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/blob");
+  public static Sprite[] nightmareSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nightmare");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -428,6 +429,7 @@ public class Sprites {
     {"naga-scale", Resources.Load<Sprite>("Sprites/projectiles/naga-scale")},
     {"nereid-seashell", Resources.Load<Sprite>("Sprites/projectiles/nereid-seashell")},
     {"neret-orb", Resources.Load<Sprite>("Sprites/projectiles/neret-orb")},
+    {"nightmare-spark", Resources.Load<Sprite>("Sprites/projectiles/nightmare-spark")},
     {"nixie-cattail", Resources.Load<Sprite>("Sprites/projectiles/nixie-cattail")},
     {"nymph-acorn", Resources.Load<Sprite>("Sprites/projectiles/nymph-acorn")},
     {"ogre-stump", Resources.Load<Sprite>("Sprites/projectiles/ogre-stump")},
@@ -676,6 +678,7 @@ public class Sprites {
     {"naga", nagaSprites[0]},
     {"nereid", nereidSprites[0]},
     {"neret", neretSprites[0]},
+    {"nightmare", nightmareSprites[0]},
     {"nixie", nixieSprites[0]},
     {"nymph", nymphSprites[0]},
     {"ogre", ogreSprites[0]},

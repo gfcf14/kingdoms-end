@@ -60,6 +60,7 @@ public class Constants {
     "nereid-seashell",
     "neret-orb",
     "nixie-cattail",
+    "nightmare-spark",
     "nymph-acorn",
     "ogre-stump",
     "phoenix-orb",
@@ -126,7 +127,7 @@ public class Constants {
   // refers to enemies who are mostly grounded but by unique means can fly
   public static string[] aerialEnemies = {"shangsen"};
   // refers to beast like enemies whose width is a lot bigger than their height
-  public static string[] longEnemies = {"bulgae", "bunyip", "canivernus", "centaur", "cusith", "dunestiff", "glupus", "hellhound", "hippocampus", "kelpie", "sugecapre", "unicorn"};
+  public static string[] longEnemies = {"bulgae", "bunyip", "canivernus", "centaur", "cusith", "dunestiff", "glupus", "hellhound", "hippocampus", "kelpie", "nightmare", "sugecapre", "unicorn"};
   // refers to very small enemies where regular cast lengths may not work correctly
   public static string[] smallEnemies = {"blob", "botarosa", "crone", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "kabouter", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin"};
   // large flying enemies - to avoid floating them too high given their dimensions
@@ -217,6 +218,7 @@ public class Constants {
     "myrsel-scale",
     "nereid-seashell",
     "neret-orb",
+    "nightmare-spark",
     "nixie-cattail",
     "nymph-acorn",
     "ogre-stump",
