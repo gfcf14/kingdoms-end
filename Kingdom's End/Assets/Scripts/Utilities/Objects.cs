@@ -15,6 +15,7 @@ public class Objects
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
     {"ruins"      , new string[]{ "blob"      , "brazenman" , "cusith"    , "jorogumo"    , "neret"         , "redcap"      }},
     {"seaside"    , new string[]{ "kappa"     , "kelpie"    , "menehune"  , "nereid"      , "selkie"        , "siren"       }},
+    {"skyway"     , new string[]{ "pegasus"                                                                                 }},
     {"swamps"     , new string[]{ "bunyip"    , "mosswyn"   , "nixie"     , "ogre"        , "pishtaco"      , "yanmabel"    }},
     {"underground", new string[]{ "bluecap"   , "canivernus", "kabouter"  , "leatherwing" , "morlock"       , "samodiva"    }},
     {"wasteland"  , new string[]{ "crone"     , "empusa"    , "hellhound" , "skeleton"    , "skeleton-king" , "skelewing"   }}
@@ -313,6 +314,7 @@ public class Objects
     {"nixie-cattail", 35},
     {"nymph-acorn", 40},
     {"ogre-stump", 50},
+    {"pegasus-feather", 35},
     {"phoenix-orb", 40},
     {"pishtaco-vertebra", 25},
     {"pixie-fireball", 60},
@@ -556,7 +558,8 @@ public class Objects
     {"golem", genericItemDictionary},
     {"sandman", genericItemDictionary},
     {"blob", genericItemDictionary},
-    {"nightmare", genericItemDictionary}
+    {"nightmare", genericItemDictionary},
+    {"pegasus", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -675,6 +678,7 @@ public class Objects
     {"nixie", new EnemyStats() {name = "Nixie", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 15, def = 10, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"nymph", new EnemyStats() {name = "Nymph", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"ogre", new EnemyStats() {name = "Ogre", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
+    {"pegasus", new EnemyStats() {name = "Pegasus", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.2f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"phoenix", new EnemyStats() {name = "Phoenix", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"pishtaco", new EnemyStats() {name = "Pishtaco", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 20, crit = 0.001f, exp = 40, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"pixie", new EnemyStats() {name = "Pixie", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
@@ -751,6 +755,7 @@ public class Objects
     {"nixie", new Vector2(0.65f, 2.22f)},
     {"nymph", new Vector2(0.67f, 2.24f)},
     {"ogre", new Vector2(1.11f, 2.68f)},
+    {"pegasus", new Vector2(2.92f, 2.15f)},
     {"phoenix", new Vector2(0.89f, 1.26f)},
     {"pishtaco", new Vector2(0.91f, 2.37f)},
     {"pixie", new Vector2(0.97f, 0.92f)},
@@ -891,6 +896,7 @@ public class Objects
     {"nightmare", defaultDeathOrigin},
     {"nymph", new Vector2(-0.7025f, 0.5f)},
     {"ogre", defaultDeathOrigin},
+    {"pegasus", defaultDeathOrigin},
     {"phoenix", defaultDeathOrigin},
     {"pishtaco", defaultDeathOrigin},
     {"pixie", defaultDeathOrigin},
@@ -1000,6 +1006,7 @@ public class Objects
     {"nixie-cattail", "blunt"},
     {"nymph-acorn", "blunt"},
     {"ogre-stump", "blunt"},
+    {"pegasus-feather", "blunt"},
     {"phoenix-orb", "blunt"},
     {"pishtaco-vertebra", "blunt"},
     {"pixie-fireball", "blunt"},
@@ -1090,6 +1097,7 @@ public class Objects
     {"nixie-cattail", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"ogre-stump", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
+    {"pegasus-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"phoenix-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"pishtaco-vertebra", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"pixie-fireball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
@@ -1165,6 +1173,7 @@ public class Objects
     {"nixie", "nixie-cattail"},
     {"nymph", "nymph-acorn"},
     {"ogre", "ogre-stump"},
+    {"pegasus", "pegasus-feather"},
     {"phoenix", "phoenix-orb"},
     {"pishtaco", "pishtaco-vertebra"},
     {"pixie", "pixie-fireball"},
