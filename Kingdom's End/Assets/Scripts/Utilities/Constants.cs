@@ -78,6 +78,7 @@ public class Constants {
     "skelewing-orb",
     "snowman-snowball",
     "sugecapre-fang",
+    "sylphid-feather",
     "thunderbird-orb",
     "troll-boulder",
     "unicorn-shard",
@@ -122,7 +123,7 @@ public class Constants {
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
   public static string[] flyingDeathEnemies = {"botarosa", "crone", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kabouter", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin", "skeleton"};
   // refers to enemies who can naturally fly
-  public static string[] flyingEnemies = {"fairy", "frostbird", "leatherwing", "neret", "phoenix", "pixie", "saraph", "siren", "skelewing", "thunderbird", "yanmabel", "waterblade"};
+  public static string[] flyingEnemies = {"fairy", "frostbird", "leatherwing", "neret", "phoenix", "pixie", "saraph", "siren", "skelewing", "sylphid", "thunderbird", "yanmabel", "waterblade"};
   // refers to enemies who are normally on the ground but can naturally fly
   public static string[] wingedEnemies = {"harpy", "karasu", "scarabkin"};
   // refers to enemies who are mostly grounded but by unique means can fly
@@ -132,7 +133,7 @@ public class Constants {
   // refers to very small enemies where regular cast lengths may not work correctly
   public static string[] smallEnemies = {"blob", "botarosa", "crone", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "kabouter", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin"};
   // large flying enemies - to avoid floating them too high given their dimensions
-  public static string[] largeFlyingEnemies = {"siren"};
+  public static string[] largeFlyingEnemies = {"siren", "sylphid"};
   public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
   public static string[] lowLevelMoney = {"money-50", "money-100"};
   public static string[] midLevelFood = {"pineapple", "coconut", "honeydew", "watermelon", "wine"};
@@ -239,6 +240,7 @@ public class Constants {
     "skelewing-orb",
     "snowman-snowball",
     "sugecapre-fang",
+    "sylphid-feather",
     "thunderbird-orb",
     "troll-boulder",
     "unicorn-shard",
@@ -251,7 +253,7 @@ public class Constants {
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
   public static string[] canBreakTags = {"DamageExplosion", "Explosion", "Weapon"};
-  public static string[] lowReachingEnemies = {"fairy", "pixie", "kappa", "siren"};
+  public static string[] lowReachingEnemies = {"fairy", "pixie", "kappa", "siren", "sylphid"};
   public static string[] partialLightRelics = {"dawn-gem", "royal-lamp"};
   public static string[] zonedAreas = {"glaciers"};
   public static string[] possibleEnemyDirections = {"left", "right"};

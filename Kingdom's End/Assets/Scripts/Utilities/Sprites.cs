@@ -95,6 +95,7 @@ public class Sprites {
   public static Sprite[] blobSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/blob");
   public static Sprite[] nightmareSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nightmare");
   public static Sprite[] pegasusSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/pegasus");
+  public static Sprite[] sylphidSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/sylphid");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -450,6 +451,7 @@ public class Sprites {
     {"skelewing-orb", Resources.Load<Sprite>("Sprites/projectiles/skelewing-orb")},
     {"snowman-snowball", Resources.Load<Sprite>("Sprites/projectiles/snowman-snowball")},
     {"sugecapre-fang", Resources.Load<Sprite>("Sprites/projectiles/sugecapre-fang")},
+    {"sylphid-feather", Resources.Load<Sprite>("Sprites/projectiles/sylphid-feather")},
     {"thunderbird-orb", Resources.Load<Sprite>("Sprites/projectiles/thunderbird-orb")},
     {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")},
     {"unicorn-shard", Resources.Load<Sprite>("Sprites/projectiles/unicorn-shard")},
@@ -701,6 +703,7 @@ public class Sprites {
     {"skelewing", skelewingSprites[0]},
     {"snowman", snowmanSprites[0]},
     {"sugecapre", sugecapreSprites[0]},
+    {"sylphid", sylphidSprites[0]},
     {"thunderbird", thunderbirdSprites[0]},
     {"troll", trollSprites[0]},
     {"unicorn", unicornSprites[0]},
