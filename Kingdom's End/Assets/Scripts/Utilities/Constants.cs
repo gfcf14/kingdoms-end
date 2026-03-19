@@ -62,6 +62,7 @@ public class Constants {
     "nixie-cattail",
     "nightmare-spark",
     "nymph-acorn",
+    "ocugoyle-blast",
     "ogre-stump",
     "pegasus-feather",
     "phoenix-orb",
@@ -123,7 +124,7 @@ public class Constants {
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
   public static string[] flyingDeathEnemies = {"botarosa", "crone", "dwarf", "dyrgja", "fairy", "flygmy", "gnome", "goblin", "kabouter", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin", "skeleton"};
   // refers to enemies who can naturally fly
-  public static string[] flyingEnemies = {"fairy", "frostbird", "leatherwing", "neret", "phoenix", "pixie", "saraph", "siren", "skelewing", "sylphid", "thunderbird", "yanmabel", "waterblade"};
+  public static string[] flyingEnemies = {"fairy", "frostbird", "leatherwing", "neret", "ocugoyle", "phoenix", "pixie", "saraph", "siren", "skelewing", "sylphid", "thunderbird", "yanmabel", "waterblade"};
   // refers to enemies who are normally on the ground but can naturally fly
   public static string[] wingedEnemies = {"harpy", "karasu", "scarabkin"};
   // refers to enemies who are mostly grounded but by unique means can fly
@@ -223,6 +224,7 @@ public class Constants {
     "nightmare-spark",
     "nixie-cattail",
     "nymph-acorn",
+    "ocugoyle-blast",
     "ogre-stump",
     "pegasus-feather",
     "phoenix-orb",
@@ -249,7 +251,7 @@ public class Constants {
     "yanmabel-stinger",
     "yukionna-kunai"
   };
-  public static string[] explodingThrowables = {"fairy-blast", "flygmy-blast", "frostbird-orb", "neret-orb", "phoenix-orb", "pixie-fireball", "skelewing-orb", "thunderbird-orb"};
+  public static string[] explodingThrowables = {"fairy-blast", "flygmy-blast", "frostbird-orb", "neret-orb", "ocugoyle-blast", "phoenix-orb", "pixie-fireball", "skelewing-orb", "thunderbird-orb"};
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
   public static string[] canBreakTags = {"DamageExplosion", "Explosion", "Weapon"};

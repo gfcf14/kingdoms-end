@@ -96,6 +96,7 @@ public class Sprites {
   public static Sprite[] nightmareSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nightmare");
   public static Sprite[] pegasusSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/pegasus");
   public static Sprite[] sylphidSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/sylphid");
+  public static Sprite[] ocugoyleSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/ocugoyle");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -434,6 +435,7 @@ public class Sprites {
     {"nightmare-spark", Resources.Load<Sprite>("Sprites/projectiles/nightmare-spark")},
     {"nixie-cattail", Resources.Load<Sprite>("Sprites/projectiles/nixie-cattail")},
     {"nymph-acorn", Resources.Load<Sprite>("Sprites/projectiles/nymph-acorn")},
+    {"ocugoyle-blast", Resources.Load<Sprite>("Sprites/projectiles/ocugoyle-blast")},
     {"ogre-stump", Resources.Load<Sprite>("Sprites/projectiles/ogre-stump")},
     {"pegasus-feather", Resources.Load<Sprite>("Sprites/projectiles/pegasus-feather")},
     {"phoenix-orb", Resources.Load<Sprite>("Sprites/projectiles/phoenix-orb")},
@@ -685,6 +687,7 @@ public class Sprites {
     {"nightmare", nightmareSprites[0]},
     {"nixie", nixieSprites[0]},
     {"nymph", nymphSprites[0]},
+    {"ocugoyle", ocugoyleSprites[0]},
     {"ogre", ogreSprites[0]},
     {"pegasus", pegasusSprites[0]},
     {"phoenix", phoenixSprites[0]},
