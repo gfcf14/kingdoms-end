@@ -98,6 +98,7 @@ public class Sprites {
   public static Sprite[] sylphidSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/sylphid");
   public static Sprite[] ocugoyleSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/ocugoyle");
   public static Sprite[] elfSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/elf");
+  public static Sprite[] impSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/imp");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -415,6 +416,7 @@ public class Sprites {
     {"harpy-feather", Resources.Load<Sprite>("Sprites/projectiles/harpy-feather")},
     {"hellhound-fang", Resources.Load<Sprite>("Sprites/projectiles/hellhound-fang")},
     {"hippocampus-scale", Resources.Load<Sprite>("Sprites/projectiles/hippocampus-scale")},
+    {"imp-dagger", Resources.Load<Sprite>("Sprites/projectiles/imp-dagger")},
     {"jorogumo-leg", Resources.Load<Sprite>("Sprites/projectiles/jorogumo-leg")},
     {"jotunn-spike", Resources.Load<Sprite>("Sprites/projectiles/jotunn-spike")},
     {"kabouter-cobble", Resources.Load<Sprite>("Sprites/projectiles/kabouter-cobble")},
@@ -668,6 +670,7 @@ public class Sprites {
     {"harpy", harpySprites[0]},
     {"hellhound", hellhoundSprites[0]},
     {"hippocampus", hippocampusSprites[0]},
+    {"imp", impSprites[0]},
     {"jorogumo", jorogumoSprites[0]},
     {"jotunn", jotunnSprites[0]},
     {"kabouter", kabouterSprites[0]},
