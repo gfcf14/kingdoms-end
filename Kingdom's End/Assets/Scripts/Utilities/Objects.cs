@@ -15,7 +15,7 @@ public class Objects
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
     {"ruins"      , new string[]{ "blob"      , "brazenman" , "cusith"    , "jorogumo"    , "neret"         , "redcap"      }},
     {"seaside"    , new string[]{ "kappa"     , "kelpie"    , "menehune"  , "nereid"      , "selkie"        , "siren"       }},
-    {"skyway"     , new string[]{ "elf"       , "pegasus"   , "sylphid"                                                     }},
+    {"skyway"     , new string[]{ "angel"     , "elf"       , "pegasus"   , "sylphid"                                       }},
     {"swamps"     , new string[]{ "bunyip"    , "mosswyn"   , "nixie"     , "ogre"        , "pishtaco"      , "yanmabel"    }},
     {"underground", new string[]{ "bluecap"   , "canivernus", "kabouter"  , "leatherwing" , "morlock"       , "samodiva"    }},
     {"wasteland"  , new string[]{ "crone"     , "empusa"    , "hellhound" , "skeleton"    , "skeleton-king" , "skelewing"   }}
@@ -264,6 +264,7 @@ public class Objects
   };
 
   public static Dictionary<string, int> projectileDamages = new() {
+    {"angel-blast", 50},
     {"blob-ectoplasm", 30},
     {"bluecap-rock", 50},
     {"botarosa-scale", 30},
@@ -567,7 +568,8 @@ public class Objects
     {"sylphid", genericItemDictionary},
     {"ocugoyle", genericItemDictionary},
     {"elf", genericItemDictionary},
-    {"imp", genericItemDictionary}
+    {"imp", genericItemDictionary},
+    {"angel", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -636,6 +638,7 @@ public class Objects
   };
 
   public static Dictionary<string, EnemyStats> enemyStats = new() {
+    {"angel", new EnemyStats() {name = "Angel", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"blob", new EnemyStats() {name = "Blob", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"bluecap", new EnemyStats() {name = "Bluecap", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"botarosa", new EnemyStats() {name = "Botarosa", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
@@ -717,6 +720,7 @@ public class Objects
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new() {
+    {"angel", new Vector2(2.49f, 2.41f)},
     {"blob", new Vector2(0.85f, 1.03f)},
     {"bluecap", new Vector2(0.86f, 2.32f)},
     {"botarosa", new Vector2(0.71f, 1.63f)},
@@ -864,6 +868,7 @@ public class Objects
   // TODO: consider if it'd be needed to use these custom origin values when dying only by burning/poison
   // TODO: if all female enemies (average size) use the same death origin, consider making a variable out of it
   public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new() {
+    {"angel", defaultDeathOrigin},
     {"blob", new Vector2(0, 0.25f)},
     {"bluecap", defaultDeathOrigin},
     {"botarosa", defaultDeathOrigin},
@@ -978,6 +983,7 @@ public class Objects
 
   // TODO: modify impact types for appropriate sounds
   public static Dictionary<string, string> throwableImpactType = new() {
+    {"angel-blast", "blunt"},
     {"blob-ectoplasm", "blunt"},
     {"bluecap-rock", "blunt"},
     {"botarosa-scale", "blunt"},
@@ -1073,6 +1079,7 @@ public class Objects
     {"watermelon", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1.02f, 1.15f), hDisplacement = 1.5f, initialRotationValues = new ValuePair(90, 45), maxHeight = 1f, speed = 10f, steepness = 2.5f}},
   };
   public static Dictionary<string, ThrowableSpecs> projectileSpecs = new() {
+    {"angel-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"blob-ectoplasm", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"bluecap-rock", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"botarosa-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1153,6 +1160,7 @@ public class Objects
   };
 
   public static Dictionary<string, string> projectileKeys = new() {
+    {"angel", "angel-blast"},
     {"blob", "blob-ectoplasm"},
     {"bluecap", "bluecap-rock"},
     {"botarosa", "botarosa-scale"},
