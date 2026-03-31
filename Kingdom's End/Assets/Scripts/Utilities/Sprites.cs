@@ -100,6 +100,7 @@ public class Sprites {
   public static Sprite[] elfSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/elf");
   public static Sprite[] impSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/imp");
   public static Sprite[] angelSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/angel");
+  public static Sprite[] demonSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/demon");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -401,6 +402,7 @@ public class Sprites {
     {"crone-dagger", Resources.Load<Sprite>("Sprites/projectiles/crone-dagger")},
     {"cusith-fang", Resources.Load<Sprite>("Sprites/projectiles/cusith-fang")},
     {"cyclops-hillstone", Resources.Load<Sprite>("Sprites/projectiles/cyclops-hillstone")},
+    {"demon-blast", Resources.Load<Sprite>("Sprites/projectiles/demon-blast")},
     {"dryad-twig", Resources.Load<Sprite>("Sprites/projectiles/dryad-twig")},
     {"dunestiff-fang", Resources.Load<Sprite>("Sprites/projectiles/dunestiff-fang")},
     {"dwarf-cobble", Resources.Load<Sprite>("Sprites/projectiles/dwarf-cobble")},
@@ -656,6 +658,7 @@ public class Sprites {
     {"crone", croneSprites[0]},
     {"cusith", cusithSprites[0]},
     {"cyclops", cyclopsSprites[0]},
+    {"demon", demonSprites[0]},
     {"dryad", dryadSprites[0]},
     {"dunestiff", dunestiffSprites[0]},
     {"dwarf", dwarfSprites[0]},
