@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357.3334
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 134
+  controlID: 155
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 48
+  controlID: 156
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 56}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 49
+  controlID: 157
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 42.666668
     width: 2560
     height: 36
   m_SerializedDataModeController:
@@ -673,8 +673,8 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_ShowAlpha: 0
   m_MipLevel: 0
-  m_Zoom: 1
-  m_ScrollPosition: {x: 249.90147, y: 86.32629}
+  m_Zoom: 0.86654955
+  m_ScrollPosition: {x: -505.88663, y: 1039.8594}
   m_SelectedObject: {fileID: 0}
   m_SelectedSpriteRectGUID: 00000000000000000000000000000000
   m_LastUsedModuleTypeName: UnityEditor.U2D.Sprites.SpriteFrameModule
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 78.66667
     width: 259.66666
     height: 668.6667
   m_SerializedDataModeController:
@@ -719,7 +719,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 137290
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
@@ -770,8 +771,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 261.66666
-    y: 24
+    x: 260.6667
+    y: 78.66667
     width: 760
     height: 668.6667
   m_SerializedDataModeController:
@@ -1093,7 +1094,7 @@ MonoBehaviour:
       sizeOverridden: 0
     - dockPosition: 1
       containerId: overlay-toolbar__top
-      displayed: 0
+      displayed: 1
       id: Scene View/Tilemap Focus
       index: 4
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":25.333332061767579},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
@@ -1317,7 +1318,7 @@ MonoBehaviour:
       sizeOverridden: 0
     m_ContainerData:
     - containerId: overlay-toolbar__top
-      scrollOffset: 21.333313
+      scrollOffset: 0
     - containerId: overlay-toolbar__left
       scrollOffset: 0
     - containerId: overlay-dynamic-panel--left
@@ -1358,9 +1359,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -201.03468, y: -227.2242, z: -0.11090905}
+    m_Target: {x: 47.447018, y: -16.681356, z: -0.013236389}
     speed: 2
-    m_Value: {x: -201.03468, y: -227.2242, z: -0.11090905}
+    m_Value: {x: 47.447018, y: -16.681356, z: -0.013236389}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1410,9 +1411,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 12.863213
+    m_Target: 2.8755684
     speed: 2
-    m_Value: 12.863213
+    m_Value: 2.8755684
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1505,8 +1506,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1023.6667
-    y: 24
+    x: 1022.6667
+    y: 78.66667
     width: 1116
     height: 668.6667
   m_SerializedDataModeController:
@@ -1689,7 +1690,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 718.6667
+    y: 773.3334
     width: 2139.6667
     height: 580.6667
   m_SerializedDataModeController:
@@ -1716,7 +1717,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Resources/Spritesheets/enemies
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1726,27 +1727,28 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Resources/Spritesheets/enemies
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Carlos\Documents\Github\kingdoms-end\Kingdom's End
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 1631.3333}
+    scrollPos: {x: 0, y: 1800}
     m_SelectedIDs:
-    - m_Data: 155576
+    - m_Data: 157780
     m_LastClickedID:
-      m_Data: 155576
+      m_Data: 157780
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 149226
-    - m_Data: 149228
-    - m_Data: 149230
-    - m_Data: 149232
-    - m_Data: 149234
-    - m_Data: 149236
-    - m_Data: 149238
+    - m_Data: 151556
+    - m_Data: 151558
+    - m_Data: 151560
+    - m_Data: 151562
+    - m_Data: 151564
+    - m_Data: 151566
+    - m_Data: 151568
+    - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1779,13 +1781,13 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 149226
-    - m_Data: 149228
-    - m_Data: 149230
-    - m_Data: 149232
-    - m_Data: 149234
-    - m_Data: 149236
-    - m_Data: 149238
+    - m_Data: 151556
+    - m_Data: 151558
+    - m_Data: 151560
+    - m_Data: 151562
+    - m_Data: 151564
+    - m_Data: 151566
+    - m_Data: 151568
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1812,9 +1814,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 137290
+    m_LastClickedInstanceID: 137290
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 135080
     - m_Data: 135192
@@ -1926,7 +1929,7 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 0
+  m_LastSelectedObjectID: -2748
 --- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -2298,14 +2301,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.8425167
+    - e00: 0.9524103
       e01: 0
       e02: 0
-      e03: -894.9503
+      e03: -1200.8477
       e10: 0
-      e11: 0.8425167
+      e11: 0.9524103
       e12: 0
-      e13: -625.6832
+      e13: -556.9314
       e20: 0
       e21: 0
       e22: 1
@@ -2346,14 +2349,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.29509184
+    - e00: 0.53880185
       e01: 0
       e02: 0
-      e03: 632.9864
+      e03: 419.5558
       e10: 0
-      e11: 0.29509184
+      e11: 0.53880185
       e12: 0
-      e13: 88.76088
+      e13: 190.90094
       e20: 0
       e21: 0
       e22: 1
@@ -2362,14 +2365,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.8372098
+    - e00: 0.72558206
       e01: 0
       e02: 0
-      e03: -989.5969
+      e03: -408.5089
       e10: 0
-      e11: 0.8372098
+      e11: 0.72558206
       e12: 0
-      e13: -681.18225
+      e13: -480.18533
       e20: 0
       e21: 0
       e22: 1
@@ -2411,9 +2414,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: f07023c62fd9c7545ae4ba676fb1d4b4, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: a25aff1e6c8a732478e829e556d0c811, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 4388651198133533916, guid: f07023c62fd9c7545ae4ba676fb1d4b4, type: 2}
+  - m_Target: {fileID: 4388651198133533916, guid: a25aff1e6c8a732478e829e556d0c811, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -3325,8 +3328,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 2141.6667
-    y: 24
+    x: 2140.6667
+    y: 78.66667
     width: 418.33325
     height: 1275.3334
   m_SerializedDataModeController:

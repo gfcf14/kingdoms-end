@@ -954,6 +954,8 @@ public class Enemy : MonoBehaviour {
       }
     } else {
       ThrowProjectile();
+
+      // TODO: defer this behavior for archeia; include an extra function call for when the bow's string finishes movement
       stunOnAttack = true;
       StunOnAttack();
     }
