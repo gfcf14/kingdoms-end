@@ -17,6 +17,7 @@ public class Constants {
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
   public static string[] nonBouncingProjectiles = {
     "angel-blast",
+    "archeia-blast",
     "blob-ectoplasm",
     "botarosa-scale",
     "brazenman-dagger",
@@ -130,7 +131,7 @@ public class Constants {
   // refers to enemies who can naturally fly
   public static string[] flyingEnemies = {"fairy", "frostbird", "leatherwing", "neret", "ocugoyle", "phoenix", "pixie", "saraph", "siren", "skelewing", "sylphid", "thunderbird", "yanmabel", "waterblade"};
   // refers to enemies who are normally on the ground but can naturally fly
-  public static string[] wingedEnemies = {"angel", "demon", "harpy", "karasu", "scarabkin"};
+  public static string[] wingedEnemies = {"angel", "archeia", "demon", "harpy", "karasu", "scarabkin"};
   // refers to enemies who are mostly grounded but by unique means can fly
   public static string[] aerialEnemies = {"shangsen"};
   // refers to beast like enemies whose width is a lot bigger than their height
@@ -180,6 +181,7 @@ public class Constants {
 
   public static string[] enemyProjectiles = {
     "angel-blast",
+    "archeia-blast",
     "blob-ectoplasm",
     "bluecap-rock",
     "botarosa-scale",
