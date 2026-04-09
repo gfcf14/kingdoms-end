@@ -17,6 +17,7 @@ public class Constants {
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
   public static string[] nonBouncingProjectiles = {
     "angel-blast",
+    "archangel-blast",
     "archeia-blast",
     "blob-ectoplasm",
     "botarosa-scale",
@@ -125,7 +126,7 @@ public class Constants {
   public static string[] smallThrowables = {"knife", "kunai", "shuriken-4", "shuriken-6"};
   public static string[] angledThrowables = {"skeleton-king-giant-bone", "hatchet", "axe"};
   public static string[] rotatingThrowables = {"axe", "bluecap-rock", "hatchet", "redcap-rock", "skeleton-king-giant-bone", "shuriken-4", "shuriken-6"};
-  public static string[] rotatingProjectiles = {"blob-ectoplasm", "cyclops-hillstone", "dyrgja-hatchet", "fairy-blast", "flygmy-blast", "frostbird-orb", "golem-boulder", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "sandman-sandrock", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
+  public static string[] rotatingProjectiles = {"angel-blast", "archangel-blast", "archeia-blast", "blob-ectoplasm", "cyclops-hillstone", "demon-blast", "dyrgja-hatchet", "fairy-blast", "flygmy-blast", "frostbird-orb", "golem-boulder", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "sandman-sandrock", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
   public static string[] flyingDeathEnemies = {"botarosa", "crone", "dwarf", "dyrgja", "elf", "fairy", "flygmy", "gnome", "goblin", "imp", "kabouter", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin", "skeleton"};
@@ -182,6 +183,7 @@ public class Constants {
 
   public static string[] enemyProjectiles = {
     "angel-blast",
+    "archangel-blast",
     "archeia-blast",
     "blob-ectoplasm",
     "bluecap-rock",
@@ -263,7 +265,7 @@ public class Constants {
     "yanmabel-stinger",
     "yukionna-kunai"
   };
-  public static string[] explodingThrowables = {"fairy-blast", "flygmy-blast", "frostbird-orb", "neret-orb", "ocugoyle-blast", "phoenix-orb", "pixie-fireball", "skelewing-orb", "thunderbird-orb"};
+  public static string[] explodingThrowables = {"angel-blast", "archangel-blast", "archeia-blast", "demon-blast", "fairy-blast", "flygmy-blast", "frostbird-orb", "neret-orb", "ocugoyle-blast", "phoenix-orb", "pixie-fireball", "skelewing-orb", "thunderbird-orb"};
   public static string[] shortCastEnemies = {"skeleton-king"};
   public static string[] nonStackableBreakables = {"jar", "vase"};
   public static string[] canBreakTags = {"DamageExplosion", "Explosion", "Weapon"};
