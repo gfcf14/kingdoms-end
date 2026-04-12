@@ -9,7 +9,7 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "demon"     , "imp"       , "nightmare" , "ocugoyle"    , "succubus"                      }},
+    {"hellscape"  , new string[]{ "archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -266,6 +266,7 @@ public class Objects
   public static Dictionary<string, int> projectileDamages = new() {
     {"angel-blast", 50},
     {"archangel-blast", 60},
+    {"archdemon-blast", 60},
     {"archeia-blast", 50},
     {"blob-ectoplasm", 30},
     {"bluecap-rock", 50},
@@ -577,7 +578,8 @@ public class Objects
     {"demon", genericItemDictionary},
     {"archeia", genericItemDictionary},
     {"succubus", genericItemDictionary},
-    {"archangel", genericItemDictionary}
+    {"archangel", genericItemDictionary},
+    {"archdemon", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -648,6 +650,7 @@ public class Objects
   public static Dictionary<string, EnemyStats> enemyStats = new() {
     {"angel", new EnemyStats() {name = "Angel", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"archangel", new EnemyStats() {name = "Archangel", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 1.5f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
+    {"archdemon", new EnemyStats() {name = "Archdemon", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 1.5f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"archeia", new EnemyStats() {name = "Archeia", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"blob", new EnemyStats() {name = "Blob", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"bluecap", new EnemyStats() {name = "Bluecap", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
@@ -734,6 +737,7 @@ public class Objects
   public static Dictionary<string, Vector2> enemyDimensions = new() {
     {"angel", new Vector2(2.49f, 2.41f)},
     {"archangel", new Vector2(1.38f, 2.79f)},
+    {"archdemon", new Vector2(1.39f, 2.79f)},
     {"archeia", new Vector2(1.48f, 2.32f)},
     {"blob", new Vector2(0.85f, 1.03f)},
     {"bluecap", new Vector2(0.86f, 2.32f)},
@@ -886,6 +890,7 @@ public class Objects
   public static Dictionary<string, Vector2> customEnemyDeathOriginModifiers = new() {
     {"angel", defaultDeathOrigin},
     {"archangel", defaultDeathOrigin},
+    {"achrdemon", defaultDeathOrigin},
     {"archeia", new Vector2(-0.7025f, 0.5f)},
     {"blob", new Vector2(0, 0.25f)},
     {"bluecap", defaultDeathOrigin},
@@ -1005,6 +1010,7 @@ public class Objects
   public static Dictionary<string, string> throwableImpactType = new() {
     {"angel-blast", "blunt"},
     {"archangel-blast", "blunt"},
+    {"archdemon-blast", "blunt"},
     {"archeia-blast", "blunt"},
     {"blob-ectoplasm", "blunt"},
     {"bluecap-rock", "blunt"},
@@ -1105,6 +1111,7 @@ public class Objects
   public static Dictionary<string, ThrowableSpecs> projectileSpecs = new() {
     {"angel-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"archangel-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
+    {"archdemon-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"archeia-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"blob-ectoplasm", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"bluecap-rock", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1190,6 +1197,7 @@ public class Objects
   public static Dictionary<string, string> projectileKeys = new() {
     {"angel", "angel-blast"},
     {"archangel", "archangel-blast"},
+    {"archdemon", "archdemon-blast"},
     {"archeia", "archeia-blast"},
     {"blob", "blob-ectoplasm"},
     {"bluecap", "bluecap-rock"},
