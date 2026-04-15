@@ -31,6 +31,7 @@ public class InGame : MonoBehaviour {
   public GameObject enemiesSmall;
   public GameObject enemiesFlying;
   public GameObject enemiesBeasts;
+  public GameObject enemiesFortress;
   public GlobalGradients globalGradients;
 
   private Shop shopScript;
@@ -493,13 +494,14 @@ public class InGame : MonoBehaviour {
 
   public RuntimeAnimatorController GetEnemyAnimatorControllerByForm(string form) {
     return form switch {
-        "man"    => enemiesMen.GetComponent<Animator>().runtimeAnimatorController,
-        "woman"  => enemiesWomen.GetComponent<Animator>().runtimeAnimatorController,
-        "giant"  => enemiesGiants.GetComponent<Animator>().runtimeAnimatorController,
-        "small"  => enemiesSmall.GetComponent<Animator>().runtimeAnimatorController,
-        "flying" => enemiesFlying.GetComponent<Animator>().runtimeAnimatorController,
-        "beast"  => enemiesBeasts.GetComponent<Animator>().runtimeAnimatorController,
-        _        => null
+        "man"      => enemiesMen.GetComponent<Animator>().runtimeAnimatorController,
+        "woman"    => enemiesWomen.GetComponent<Animator>().runtimeAnimatorController,
+        "giant"    => enemiesGiants.GetComponent<Animator>().runtimeAnimatorController,
+        "small"    => enemiesSmall.GetComponent<Animator>().runtimeAnimatorController,
+        "flying"   => enemiesFlying.GetComponent<Animator>().runtimeAnimatorController,
+        "beast"    => enemiesBeasts.GetComponent<Animator>().runtimeAnimatorController,
+        "fortress" => enemiesFortress.GetComponent<Animator>().runtimeAnimatorController,
+        _          => null
     };
   }
 }

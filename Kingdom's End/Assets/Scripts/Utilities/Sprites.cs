@@ -105,6 +105,7 @@ public class Sprites {
   public static Sprite[] succubusSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/succubus");
   public static Sprite[] archangelSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/archangel");
   public static Sprite[] archdemonSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/archdemon");
+  public static Sprite[] knightSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/knight");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -435,6 +436,7 @@ public class Sprites {
     {"karasu-feather", Resources.Load<Sprite>("Sprites/projectiles/karasu-feather")},
     {"kelpie-fin", Resources.Load<Sprite>("Sprites/projectiles/kelpie-fin")},
     {"kitsune-kunai", Resources.Load<Sprite>("Sprites/projectiles/kitsune-kunai")},
+    {"knight-dagger", Resources.Load<Sprite>("Sprites/projectiles/knight-dagger")},
     {"leatherwing-fang", Resources.Load<Sprite>("Sprites/projectiles/leatherwing-fang")},
     {"leprechaun-mushroom", Resources.Load<Sprite>("Sprites/projectiles/leprechaun-mushroom")},
     {"menehune-shingle", Resources.Load<Sprite>("Sprites/projectiles/menehune-shingle")},
@@ -695,6 +697,7 @@ public class Sprites {
     {"karasu", karasuSprites[0]},
     {"kelpie", kelpieSprites[0]},
     {"kitsune", kitsuneSprites[0]},
+    {"knight", knightSprites[0]},
     {"leatherwing", leatherwingSprites[0]},
     {"leprechaun", leprechaunSprites[0]},
     {"menehune", menehuneSprites[0]},
