@@ -9,8 +9,9 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
+    // enemies to include: "knight", "janissary"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "janissary"}},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -299,6 +300,7 @@ public class Objects
     {"hellhound-fang", 35},
     {"hippocampus-scale", 35},
     {"imp-dagger", 45},
+    {"janissary-yatagan", 50},
     {"jorogumo-leg", 30},
     {"jotunn-spike", 50},
     {"kabouter-cobble", 35},
@@ -583,6 +585,7 @@ public class Objects
     {"archangel", genericItemDictionary},
     {"archdemon", genericItemDictionary},
     {"knight", genericItemDictionary},
+    {"janissary", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -685,6 +688,7 @@ public class Objects
     {"hellhound", new EnemyStats() {name = "Hellhound", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"hippocampus", new EnemyStats() {name = "Hippocampus", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"imp", new EnemyStats() {name = "Imp", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
+    {"janissary", new EnemyStats() {name = "Janissary", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"jorogumo", new EnemyStats() {name = "Jorogumo", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"jotunn", new EnemyStats() {name = "Jotunn", form = "giant", baseMaterial = "boots", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"kabouter", new EnemyStats() {name = "Kabouter", form = "small", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
@@ -773,6 +777,7 @@ public class Objects
     {"hellhound", new Vector2(2.26f, 1.86f)},
     {"hippocampus", new Vector2(2.72f, 2.12f)},
     {"imp", new Vector2(0.96f, 1.63f)},
+    {"janissary", new Vector2(0.78f, 2.33f)},
     {"jorogumo", new Vector2(0.69f, 2.23f)},
     {"jotunn", new Vector2(0.95f, 2.65f)},
     {"kabouter", new Vector2(0.69f, 1.62f)},
@@ -853,6 +858,7 @@ public class Objects
     {"hellhound", new Vector2(0.25f, 1.55f)},
     {"hippocampus", new Vector2(0.25f, 2.25f)},
     {"imp", new Vector2(0, 1)},
+    {"janissary", new Vector2(-0.1f, 1.6f)},
     {"jorogumo", new Vector2(-0.09f, 1.6f)},
     {"jotunn", new Vector2(0.1f, 1.75f)},
     {"kabouter", new Vector2(0, 1)},
@@ -928,6 +934,7 @@ public class Objects
     {"hellhound", defaultDeathOrigin},
     {"hippocampus", defaultDeathOrigin},
     {"imp", defaultDeathOrigin},
+    {"janissary", defaultDeathOrigin},
     {"jorogumo", new Vector2(-0.7025f, 0.5f)},
     {"jotunn", defaultDeathOrigin},
     {"kabouter", defaultDeathOrigin},
@@ -1049,6 +1056,7 @@ public class Objects
     {"hellhound-fang", "blunt"},
     {"hippocampus-scale", "blunt"},
     {"imp-dagger", "blunt"},
+    {"janissary-yatagan", "blunt"},
     {"jorogumo-leg", "blunt"},
     {"jotunn-spike", "blunt"},
     {"kabouter-cobble", "blunt"},
@@ -1151,6 +1159,7 @@ public class Objects
     {"hellhound-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"hippocampus-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"imp-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"janissary-yatagan", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"jorogumo-leg", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"jotunn-spike", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"kabouter-cobble", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1238,6 +1247,7 @@ public class Objects
     {"hellhound", "hellhound-fang"},
     {"hippocampus", "hippocampus-scale"},
     {"imp", "imp-dagger"},
+    {"janissary", "janissary-yatagan"},
     {"jorogumo", "jorogumo-leg"},
     {"jotunn", "jotunn-spike"},
     {"kabouter", "kabouter-cobble"},
