@@ -9,9 +9,9 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
-    // enemies to include: "knight", "janissary"
+    // enemies to include: "knight", "janissary", "mamluk"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "janissary"}},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "mamluk"}},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -311,6 +311,7 @@ public class Objects
     {"knight-dagger", 50},
     {"leatherwing-fang", 30},
     {"leprechaun-mushroom", 35},
+    {"mamluk-dagger", 50},
     {"menehune-shingle", 35},
     {"mermaid-scale", 35},
     {"merman-scale", 40},
@@ -585,7 +586,8 @@ public class Objects
     {"archangel", genericItemDictionary},
     {"archdemon", genericItemDictionary},
     {"knight", genericItemDictionary},
-    {"janissary", genericItemDictionary}
+    {"janissary", genericItemDictionary},
+    {"mamluk", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -699,6 +701,7 @@ public class Objects
     {"knight", new EnemyStats() {name = "Knight", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"leatherwing", new EnemyStats() {name = "Leatherwing", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"leprechaun", new EnemyStats() {name = "Leprechaun", form = "small", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
+    {"mamluk", new EnemyStats() {name = "Mamluk", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"menehune", new EnemyStats() {name = "Menehune", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"mermaid", new EnemyStats() {name = "Mermaid", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 15, def = 10, crit = 0.0035f, exp = 30, speed= 4, reach = 0.3f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"merman", new EnemyStats() {name = "Merman", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 6.75f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
@@ -788,6 +791,7 @@ public class Objects
     {"knight", new Vector2(0.78f, 2.36f)},
     {"leatherwing", new Vector2(1.22f, 1.13f)},
     {"leprechaun", new Vector2(0.67f, 1.63f)},
+    {"mamluk", new Vector2(0.78f, 2.35f)},
     {"menehune", new Vector2(0.71f, 1.63f)},
     {"mermaid", new Vector2(0.67f, 2.22f)},
     {"merman", new Vector2(1.05f, 2.32f)},
@@ -867,6 +871,7 @@ public class Objects
     {"kitsune", new Vector2(-0.09f, 1.6f)},
     {"knight", new Vector2(-0.1f, 1.6f)},
     {"leprechaun", new Vector2(0, 1)},
+    {"mamluk", new Vector2(-0.1f, 1.6f)},
     {"menehune", new Vector2(0, 1)},
     {"mermaid", new Vector2(-0.09f, 1.6f)},
     {"merman", new Vector2(0.1f, 2)},
@@ -945,6 +950,7 @@ public class Objects
     {"knight", defaultDeathOrigin},
     {"leatherwing", defaultDeathOrigin},
     {"leprechaun", defaultDeathOrigin},
+    {"mamluk", defaultDeathOrigin},
     {"menehune", defaultDeathOrigin},
     {"mermaid", defaultDeathOrigin},
     {"merman", defaultDeathOrigin},
@@ -1067,6 +1073,7 @@ public class Objects
     {"knight-dagger", "blunt"},
     {"leatherwing-fang", "blunt"},
     {"leprechaun-mushroom", "blunt"},
+    {"mamluk-dagger", "blunt"},
     {"menehune-shingle", "blunt"},
     {"mermaid-scale", "blunt"},
     {"merman-scale", "blunt"},
@@ -1170,6 +1177,7 @@ public class Objects
     {"knight-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"leatherwing-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"leprechaun-mushroom", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"mamluk-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"menehune-shingle", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"mermaid-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"merman-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1258,6 +1266,7 @@ public class Objects
     {"knight", "knight-dagger"},
     {"leatherwing","leatherwing-fang"},
     {"leprechaun", "leprechaun-mushroom"},
+    {"mamluk", "mamluk-dagger"},
     {"menehune", "menehune-shingle"},
     {"mermaid", "mermaid-scale"},
     {"merman", "merman-scale"},
