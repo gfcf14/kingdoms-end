@@ -9,9 +9,9 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
-    // enemies to include: "knight", "janissary", "mamluk"
+    // enemies to include: "knight", "janissary", "mamluk", "entman"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "mamluk"}},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "entman"}},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -288,6 +288,7 @@ public class Objects
     {"dyrgja-hatchet", 40},
     {"elf-dagger", 45},
     {"empusa-claw", 35},
+    {"entman-twig", 50},
     {"fairy-blast", 55},
     {"faun-horn", 35},
     {"flygmy-blast", 35},
@@ -587,7 +588,8 @@ public class Objects
     {"archdemon", genericItemDictionary},
     {"knight", genericItemDictionary},
     {"janissary", genericItemDictionary},
-    {"mamluk", genericItemDictionary}
+    {"mamluk", genericItemDictionary},
+    {"entman", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -678,6 +680,7 @@ public class Objects
     {"dyrgja", new EnemyStats() {name = "Dyrgja", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"elf", new EnemyStats() {name = "Elf", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 3.5f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"empusa", new EnemyStats() {name = "Empusa", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
+    {"entman", new EnemyStats() {name = "Entman", form = "fortress", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"fairy", new EnemyStats() {name = "Fairy", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"faun", new EnemyStats() {name = "Faun", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 10, def = 20, crit = 0.0025f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"flygmy", new EnemyStats() {name = "Flygmy", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
@@ -768,6 +771,7 @@ public class Objects
     {"dyrgja", new Vector2(0.71f, 1.63f)},
     {"elf", new Vector2(0.68f, 1.63f)},
     {"empusa", new Vector2(0.69f, 2.23f)},
+    {"entman", new Vector2(0.85f, 2.33f)},
     {"fairy", new Vector2(0.97f, 0.92f)},
     {"flygmy", new Vector2(0.69f, 1.62f)},
     {"frostbird", new Vector2(0.89f, 1.26f)},
@@ -853,6 +857,7 @@ public class Objects
     {"dyrgja", new Vector2(0, 1)},
     {"elf", new Vector2(0, 1)},
     {"empusa", new Vector2(-0.09f, 1.6f)},
+    {"entman", new Vector2(-0.1f, 1.6f)},
     {"faun", new Vector2(0.1f, 1.75f)},
     {"flygmy", new Vector2(0, 1)},
     {"glupus", new Vector2(0.25f, 1.55f)},
@@ -927,6 +932,7 @@ public class Objects
     {"dyrgja", defaultDeathOrigin},
     {"elf", defaultDeathOrigin},
     {"empusa", new Vector2(-0.7025f, 0.5f)},
+    {"entman", defaultDeathOrigin},
     {"fairy", defaultDeathOrigin},
     {"faun", defaultDeathOrigin},
     {"flygmy", defaultDeathOrigin},
@@ -1050,6 +1056,7 @@ public class Objects
     {"dyrgja-hatchet", "blunt"},
     {"elf-dagger", "blunt"},
     {"empusa-claw", "blunt"},
+    {"entman-twig", "blunt"},
     {"fairy-blast", "blunt"},
     {"faun-horn", "blunt"},
     {"flygmy-blast", "blunt"},
@@ -1154,6 +1161,7 @@ public class Objects
     {"dyrgja-hatchet", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.65f, 1.45f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"elf-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"empusa-claw", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"entman-twig", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"fairy-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"faun-horn", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"flygmy-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
@@ -1243,6 +1251,7 @@ public class Objects
     {"dyrgja", "dyrgja-hatchet"},
     {"elf", "elf-dagger"},
     {"empusa", "empusa-claw"},
+    {"entman", "entman-twig"},
     {"fairy", "fairy-blast"},
     {"faun", "faun-horn"},
     {"flygmy", "flygmy-blast"},
