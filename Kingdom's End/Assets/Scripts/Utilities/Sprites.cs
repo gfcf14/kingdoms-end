@@ -109,6 +109,7 @@ public class Sprites {
   public static Sprite[] janissarySprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/janissary");
   public static Sprite[] mamlukSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/mamluk");
   public static Sprite[] entmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/entman");
+  public static Sprite[] monsmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/monsman");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -448,6 +449,7 @@ public class Sprites {
     {"menehune-shingle", Resources.Load<Sprite>("Sprites/projectiles/menehune-shingle")},
     {"mermaid-scale", Resources.Load<Sprite>("Sprites/projectiles/mermaid-scale")},
     {"merman-scale", Resources.Load<Sprite>("Sprites/projectiles/merman-scale")},
+    {"monsman-rock", Resources.Load<Sprite>("Sprites/projectiles/monsman-rock")},
     {"morlock-eloinoggin", Resources.Load<Sprite>("Sprites/projectiles/morlock-eloinoggin")},
     {"mosswyn-dagger", Resources.Load<Sprite>("Sprites/projectiles/mosswyn-dagger")},
     {"mummy-rib", Resources.Load<Sprite>("Sprites/projectiles/mummy-rib")},
@@ -712,6 +714,7 @@ public class Sprites {
     {"menehune", menehuneSprites[0]},
     {"mermaid", mermaidSprites[0]},
     {"merman", mermanSprites[0]},
+    {"monsman", monsmanSprites[0]},
     {"morlock", morlockSprites[0]},
     {"mosswyn", mosswynSprites[0]},
     {"mummy", mummySprites[0]},
