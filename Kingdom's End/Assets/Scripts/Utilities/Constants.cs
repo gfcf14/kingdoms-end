@@ -99,7 +99,8 @@ public class Constants {
     "waterblade-scale",
     "werewolf-fang",
     "yanmabel-stinger",
-    "yukionna-kunai"
+    "yukionna-kunai",
+    "zombie-bone"
   };
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
   public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
@@ -275,7 +276,8 @@ public class Constants {
     "waterblade-scale",
     "werewolf-fang",
     "yanmabel-stinger",
-    "yukionna-kunai"
+    "yukionna-kunai",
+    "zombie-bone"
   };
   public static string[] explodingThrowables = {"angel-blast", "archangel-blast", "archdemon-blast", "archeia-blast", "demon-blast", "fairy-blast", "flygmy-blast", "frostbird-orb", "neret-orb", "ocugoyle-blast", "phoenix-orb", "pixie-fireball", "skelewing-orb", "thunderbird-orb"};
   public static string[] shortCastEnemies = {"skeleton-king"};

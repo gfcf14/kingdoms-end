@@ -110,6 +110,7 @@ public class Sprites {
   public static Sprite[] mamlukSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/mamluk");
   public static Sprite[] entmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/entman");
   public static Sprite[] monsmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/monsman");
+  public static Sprite[] zombieSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/zombie");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -486,7 +487,8 @@ public class Sprites {
     {"waterblade-scale", Resources.Load<Sprite>("Sprites/projectiles/waterblade-scale")},
     {"werewolf-fang", Resources.Load<Sprite>("Sprites/projectiles/werewolf-fang")},
     {"yanmabel-stinger", Resources.Load<Sprite>("Sprites/projectiles/yanmabel-stinger")},
-    {"yukionna-kunai", Resources.Load<Sprite>("Sprites/projectiles/yukionna-kunai")}
+    {"yukionna-kunai", Resources.Load<Sprite>("Sprites/projectiles/yukionna-kunai")},
+    {"zombie-bone", Resources.Load<Sprite>("Sprites/projectiles/zombie-bone")}
   };
 
   public static Dictionary<string, Sprite> droppableSprites = new() {
@@ -752,7 +754,8 @@ public class Sprites {
     {"waterblade", waterbladeSprites[0]},
     {"werewolf", werewolfSprites[0]},
     {"yanmabel", yanmabelSprites[0]},
-    {"yukionna", yukionnaSprites[0]}
+    {"yukionna", yukionnaSprites[0]},
+    {"zombie", zombieSprites[0]}
   };
 
   public static Dictionary<string, Dictionary<string, Sprite>> emotions = new() {

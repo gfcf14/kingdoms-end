@@ -9,9 +9,9 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
-    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman"
+    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "monsman"}},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "zombie" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -353,7 +353,8 @@ public class Objects
     {"waterblade-scale", 30},
     {"werewolf-fang", 40},
     {"yanmabel-stinger", 30},
-    {"yukionna-kunai", 50}
+    {"yukionna-kunai", 50},
+    {"zombie-bone", 50}
   };
 
   public static Dictionary<string, FragmentOutcome> itemFragments = new() {
@@ -591,7 +592,8 @@ public class Objects
     {"janissary", genericItemDictionary},
     {"mamluk", genericItemDictionary},
     {"entman", genericItemDictionary},
-    {"monsman", genericItemDictionary}
+    {"monsman", genericItemDictionary},
+    {"zombie", genericItemDictionary},
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -749,6 +751,7 @@ public class Objects
     {"werewolf", new EnemyStats() {name = "Werewolf", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.0025f, exp = 50, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"yanmabel", new EnemyStats() {name = "Yanmabel", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"yukionna", new EnemyStats() {name = "Yukionna", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
+    {"zombie", new EnemyStats() {name = "Zombie", form = "fortress", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}}
   };
 
   public static Dictionary<string, Vector2> enemyDimensions = new() {
@@ -840,7 +843,8 @@ public class Objects
     {"waterblade", new Vector2(1.53f, 0.78f)},
     {"werewolf", new Vector2(1.21f, 2.60f)},
     {"yanmabel", new Vector2(1.59f, 0.78f)},
-    {"yukionna", new Vector2(0.67f, 2.24f)}
+    {"yukionna", new Vector2(0.67f, 2.24f)},
+    {"zombie", new Vector2(0.77f, 2.35f)}
   };
 
   public static Dictionary<string, Vector2> enemyWingOffsets = new() {
@@ -907,7 +911,8 @@ public class Objects
     {"troll", new Vector2(0.1f, 1.4f)},
     {"unicorn", new Vector2(0.25f, 2.25f)},
     {"werewolf", new Vector2(0.1f, 2f)},
-    {"yukionna", new Vector2(-0.09f, 1.6f)}
+    {"yukionna", new Vector2(-0.09f, 1.6f)},
+    {"zombie", new Vector2(-0.1f, 1.6f)}
   };
 
   public static Vector2 defaultDeathOrigin = new Vector2(0, 0.1f);
@@ -1003,7 +1008,8 @@ public class Objects
     {"waterblade", defaultDeathOrigin},
     {"werewolf", defaultDeathOrigin},
     {"yanmabel", defaultDeathOrigin},
-    {"yukionna", new Vector2(-0.7025f, 0.5f)}
+    {"yukionna", new Vector2(-0.7025f, 0.5f)},
+    {"zombie", defaultDeathOrigin}
   };
 
   public static Dictionary<string, TMP_FontAsset> fonts = new() {
@@ -1128,7 +1134,8 @@ public class Objects
     {"waterblade-scale", "blunt"},
     {"werewolf-fang", "blunt"},
     {"yanmabel-stinger", "blunt"},
-    {"yukionna-kunai", "blunt"}
+    {"yukionna-kunai", "blunt"},
+    {"zombie-bone", "blunt"}
   };
 
   public static Dictionary<string, ThrowableSpecs> throwableSpecs = new() {
@@ -1234,6 +1241,7 @@ public class Objects
     {"werewolf-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"yanmabel-stinger", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"yukionna-kunai", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"zombie-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}}
   };
 
   public static Dictionary<string, string> projectileKeys = new() {
@@ -1325,7 +1333,8 @@ public class Objects
     {"waterblade", "waterblade-scale"},
     {"werewolf", "werewolf-fang"},
     {"yanmabel", "yanmabel-stinger"},
-    {"yukionna", "yukionna-kunai"}
+    {"yukionna", "yukionna-kunai"},
+    {"zombie", "zombie-bone"}
   };
   public static Dictionary<string, string> materialsPerArea = new() {
     {"calderas", "gravel"},
