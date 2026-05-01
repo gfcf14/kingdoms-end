@@ -111,6 +111,7 @@ public class Sprites {
   public static Sprite[] entmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/entman");
   public static Sprite[] monsmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/monsman");
   public static Sprite[] zombieSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/zombie");
+  public static Sprite[] petromanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/petroman");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -464,6 +465,7 @@ public class Sprites {
     {"ocugoyle-blast", Resources.Load<Sprite>("Sprites/projectiles/ocugoyle-blast")},
     {"ogre-stump", Resources.Load<Sprite>("Sprites/projectiles/ogre-stump")},
     {"pegasus-feather", Resources.Load<Sprite>("Sprites/projectiles/pegasus-feather")},
+    {"petroman-rock", Resources.Load<Sprite>("Sprites/projectiles/petroman-rock")},
     {"phoenix-orb", Resources.Load<Sprite>("Sprites/projectiles/phoenix-orb")},
     {"pishtaco-vertebra", Resources.Load<Sprite>("Sprites/projectiles/pishtaco-vertebra")},
     {"pixie-fireball", Resources.Load<Sprite>("Sprites/projectiles/pixie-fireball")},
@@ -730,6 +732,7 @@ public class Sprites {
     {"ocugoyle", ocugoyleSprites[0]},
     {"ogre", ogreSprites[0]},
     {"pegasus", pegasusSprites[0]},
+    {"petroman", petromanSprites[0]},
     {"phoenix", phoenixSprites[0]},
     {"pishtaco", pishtacoSprites[0]},
     {"pixie", pixieSprites[0]},
