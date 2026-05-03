@@ -112,6 +112,7 @@ public class Sprites {
   public static Sprite[] monsmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/monsman");
   public static Sprite[] zombieSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/zombie");
   public static Sprite[] petromanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/petroman");
+  public static Sprite[] thalassomanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/thalassoman");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -483,6 +484,7 @@ public class Sprites {
     {"succubus-blast", Resources.Load<Sprite>("Sprites/projectiles/succubus-blast")},
     {"sugecapre-fang", Resources.Load<Sprite>("Sprites/projectiles/sugecapre-fang")},
     {"sylphid-feather", Resources.Load<Sprite>("Sprites/projectiles/sylphid-feather")},
+    {"thalassoman-scale", Resources.Load<Sprite>("Sprites/projectiles/thalassoman-scale")},
     {"thunderbird-orb", Resources.Load<Sprite>("Sprites/projectiles/thunderbird-orb")},
     {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")},
     {"unicorn-shard", Resources.Load<Sprite>("Sprites/projectiles/unicorn-shard")},
@@ -751,6 +753,7 @@ public class Sprites {
     {"succubus", succubusSprites[0]},
     {"sugecapre", sugecapreSprites[0]},
     {"sylphid", sylphidSprites[0]},
+    {"thalassoman", thalassomanSprites[0]},
     {"thunderbird", thunderbirdSprites[0]},
     {"troll", trollSprites[0]},
     {"unicorn", unicornSprites[0]},

@@ -9,9 +9,9 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
-    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman"
+    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "petroman" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "thalassoman" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -348,6 +348,7 @@ public class Objects
     {"succubus-blast", 50},
     {"sugecapre-fang", 35},
     {"sylphid-feather", 35},
+    {"thalassoman-scale", 50},
     {"thunderbird-orb", 40},
     {"troll-boulder", 50},
     {"unicorn-shard", 30},
@@ -595,7 +596,8 @@ public class Objects
     {"entman", genericItemDictionary},
     {"monsman", genericItemDictionary},
     {"zombie", genericItemDictionary},
-    {"petroman", genericItemDictionary}
+    {"petroman", genericItemDictionary},
+    {"thalassoman", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -747,6 +749,7 @@ public class Objects
     {"succubus", new EnemyStats() {name = "Succubus", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"sugecapre", new EnemyStats() {name = "Sugecapre", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"sylphid", new EnemyStats() {name = "Sylphid", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 15, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 3f, edgeCastLength = 1, arrowBurnPosition = 1, mass = 8f}},
+    {"thalassoman", new EnemyStats() {name = "Thalassoman", form = "fortress", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"thunderbird", new EnemyStats() {name = "Thunderbird", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"troll", new EnemyStats() {name = "Troll", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"unicorn", new EnemyStats() {name = "Unicorn", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
@@ -841,6 +844,7 @@ public class Objects
     {"succubus", new Vector2(1.47f, 2.32f)},
     {"sugecapre", new Vector2(2.26f, 1.86f)},
     {"sylphid", new Vector2(1.43f, 1.78f)},
+    {"thalassoman", new Vector2(0.78f, 2.3f)},
     {"thunderbird", new Vector2(0.89f, 1.26f)},
     {"troll", new Vector2(1.01f, 2.68f)},
     {"unicorn", new Vector2(2.82f, 2.11f)},
@@ -913,6 +917,7 @@ public class Objects
     {"skeleton-king", new Vector2(0.1f, 2.1f)},
     {"snowman", new Vector2(-0.2f, 1.65f)},
     {"sugecapre", new Vector2(0.25f, 1.55f)},
+    {"thalassoman", new Vector2(-0.1f, 1.6f)},
     {"troll", new Vector2(0.1f, 1.4f)},
     {"unicorn", new Vector2(0.25f, 2.25f)},
     {"werewolf", new Vector2(0.1f, 2f)},
@@ -1008,6 +1013,7 @@ public class Objects
     {"succubus", new Vector2(-0.7025f, 0.5f)},
     {"sugecapre", defaultDeathOrigin},
     {"sylphid", defaultDeathOrigin},
+    {"thalassoman", defaultDeathOrigin},
     {"thunderbird", defaultDeathOrigin},
     {"troll", defaultDeathOrigin},
     {"unicorn", defaultDeathOrigin},
@@ -1135,6 +1141,7 @@ public class Objects
     {"succubus-blast", "blunt"},
     {"sugecapre-fang", "blunt"},
     {"sylphid-feather", "blunt"},
+    {"thalassoman-scale", "blunt"},
     {"thunderbird-orb", "blunt"},
     {"troll-boulder", "blunt" },
     {"unicorn-shard", "blunt"},
@@ -1242,6 +1249,7 @@ public class Objects
     {"succubus-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"sugecapre-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"sylphid-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"thalassoman-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"thunderbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"troll-boulder", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"unicorn-shard", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1336,6 +1344,7 @@ public class Objects
     {"succubus", "succubus-blast"},
     {"sugecapre", "sugecapre-fang"},
     {"sylphid", "sylphid-feather"},
+    {"thalassoman", "thalassoman-scale"},
     {"thunderbird", "thunderbird-orb"},
     {"troll", "troll-boulder"},
     {"unicorn", "unicorn-shard"},
