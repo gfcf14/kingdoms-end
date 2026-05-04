@@ -9,9 +9,9 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
-    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman"
+    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "thalassoman" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "frostman" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -293,6 +293,7 @@ public class Objects
     {"faun-horn", 35},
     {"flygmy-blast", 35},
     {"frostbird-orb", 40},
+    {"frostman-rock", 50},
     {"glupus-fang", 35},
     {"gnome-truffle", 30},
     {"goblin-knife", 50},
@@ -597,7 +598,8 @@ public class Objects
     {"monsman", genericItemDictionary},
     {"zombie", genericItemDictionary},
     {"petroman", genericItemDictionary},
-    {"thalassoman", genericItemDictionary}
+    {"thalassoman", genericItemDictionary},
+    {"frostman", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -693,6 +695,7 @@ public class Objects
     {"faun", new EnemyStats() {name = "Faun", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 10, def = 20, crit = 0.0025f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"flygmy", new EnemyStats() {name = "Flygmy", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"frostbird", new EnemyStats() {name = "Frostbird", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
+    {"frostman", new EnemyStats() {name = "Frostman", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"glupus", new EnemyStats() {name = "Glupus", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"gnome", new EnemyStats() {name = "Gnome", form = "small", baseMaterial = "boots", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"goblin", new EnemyStats() {name = "Goblin", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
@@ -785,9 +788,10 @@ public class Objects
     {"empusa", new Vector2(0.69f, 2.23f)},
     {"entman", new Vector2(0.85f, 2.33f)},
     {"fairy", new Vector2(0.97f, 0.92f)},
+    {"faun", new Vector2(1.01f, 2.35f)},
     {"flygmy", new Vector2(0.69f, 1.62f)},
     {"frostbird", new Vector2(0.89f, 1.26f)},
-    {"faun", new Vector2(1.01f, 2.35f)},
+    {"frostman", new Vector2(0.78f, 2.33f)},
     {"glupus", new Vector2(2.26f, 1.86f)},
     {"gnome", new Vector2(0.69f, 1.62f)},
     {"goblin", new Vector2(1.38f, 2.37f)},
@@ -876,6 +880,7 @@ public class Objects
     {"entman", new Vector2(-0.1f, 1.6f)},
     {"faun", new Vector2(0.1f, 1.75f)},
     {"flygmy", new Vector2(0, 1)},
+    {"frostman", new Vector2(-0.1f, 1.6f)},
     {"glupus", new Vector2(0.25f, 1.55f)},
     {"gnome", new Vector2(0, 1)},
     {"goblin", new Vector2(-0.2f, 1.65f)},
@@ -957,6 +962,7 @@ public class Objects
     {"faun", defaultDeathOrigin},
     {"flygmy", defaultDeathOrigin},
     {"frostbird", defaultDeathOrigin},
+    {"frostman", defaultDeathOrigin},
     {"glupus", defaultDeathOrigin},
     {"gnome", defaultDeathOrigin},
     {"goblin", defaultDeathOrigin},
@@ -1085,6 +1091,7 @@ public class Objects
     {"faun-horn", "blunt"},
     {"flygmy-blast", "blunt"},
     {"frostbird-orb", "blunt"},
+    {"frostman-rock", "blunt"},
     {"glupus-fang", "blunt"},
     {"gnome-truffle", "blunt"},
     {"goblin-knife", "blunt"},
@@ -1194,6 +1201,7 @@ public class Objects
     {"faun-horn", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"flygmy-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"frostbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
+    {"frostman-rock", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"glupus-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"gnome-truffle", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"goblin-knife", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1288,6 +1296,7 @@ public class Objects
     {"faun", "faun-horn"},
     {"flygmy", "flygmy-blast"},
     {"frostbird", "frostbird-orb"},
+    {"frostman", "frostman-rock"},
     {"glupus", "glupus-fang"},
     {"gnome", "gnome-truffle"},
     {"goblin", "goblin-knife"},
