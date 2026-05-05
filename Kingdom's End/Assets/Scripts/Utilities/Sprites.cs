@@ -114,6 +114,7 @@ public class Sprites {
   public static Sprite[] petromanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/petroman");
   public static Sprite[] thalassomanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/thalassoman");
   public static Sprite[] frostmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/frostman");
+  public static Sprite[] vampireSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/vampire");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -490,6 +491,7 @@ public class Sprites {
     {"thunderbird-orb", Resources.Load<Sprite>("Sprites/projectiles/thunderbird-orb")},
     {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")},
     {"unicorn-shard", Resources.Load<Sprite>("Sprites/projectiles/unicorn-shard")},
+    {"vampire-blast", Resources.Load<Sprite>("Sprites/projectiles/vampire-blast")},
     {"waterblade-scale", Resources.Load<Sprite>("Sprites/projectiles/waterblade-scale")},
     {"werewolf-fang", Resources.Load<Sprite>("Sprites/projectiles/werewolf-fang")},
     {"yanmabel-stinger", Resources.Load<Sprite>("Sprites/projectiles/yanmabel-stinger")},
@@ -760,6 +762,7 @@ public class Sprites {
     {"thunderbird", thunderbirdSprites[0]},
     {"troll", trollSprites[0]},
     {"unicorn", unicornSprites[0]},
+    {"vampire", vampireSprites[0]},
     {"waterblade", waterbladeSprites[0]},
     {"werewolf", werewolfSprites[0]},
     {"yanmabel", yanmabelSprites[0]},
