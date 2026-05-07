@@ -115,6 +115,7 @@ public class Sprites {
   public static Sprite[] thalassomanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/thalassoman");
   public static Sprite[] frostmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/frostman");
   public static Sprite[] vampireSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/vampire");
+  public static Sprite[] skullguardSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skullguard");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -483,6 +484,7 @@ public class Sprites {
     {"siren-feather", Resources.Load<Sprite>("Sprites/projectiles/siren-feather")},
     {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")},
     {"skelewing-orb", Resources.Load<Sprite>("Sprites/projectiles/skelewing-orb")},
+    {"skullguard-dagger", Resources.Load<Sprite>("Sprites/projectiles/skullguard-dagger")},
     {"snowman-snowball", Resources.Load<Sprite>("Sprites/projectiles/snowman-snowball")},
     {"succubus-blast", Resources.Load<Sprite>("Sprites/projectiles/succubus-blast")},
     {"sugecapre-fang", Resources.Load<Sprite>("Sprites/projectiles/sugecapre-fang")},
@@ -754,6 +756,7 @@ public class Sprites {
     {"skeleton", skeletonSprites[35]},
     {"skeleton-king", skeletonKingSprites[0]},
     {"skelewing", skelewingSprites[0]},
+    {"skullguard", skullguardSprites[0]},
     {"snowman", snowmanSprites[0]},
     {"succubus", succubusSprites[0]},
     {"sugecapre", sugecapreSprites[0]},

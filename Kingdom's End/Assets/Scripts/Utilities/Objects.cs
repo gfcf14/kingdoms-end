@@ -9,9 +9,9 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
-    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman", "vampire"
+    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman", "vampire", "skullguard"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "vampire" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "skullguard" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -345,6 +345,7 @@ public class Objects
     {"siren-feather", 30},
     {"skeleton-bone", 50},
     {"skelewing-orb", 40},
+    {"skullguard-dagger", 50},
     {"snowman-snowball", 30},
     {"succubus-blast", 50},
     {"sugecapre-fang", 35},
@@ -601,7 +602,8 @@ public class Objects
     {"petroman", genericItemDictionary},
     {"thalassoman", genericItemDictionary},
     {"frostman", genericItemDictionary},
-    {"vampire", genericItemDictionary}
+    {"vampire", genericItemDictionary},
+    {"skullguard", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -750,6 +752,7 @@ public class Objects
     {"skeleton-king", new EnemyStats() {name = "Skeleton King", form = "giant", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"skelewing", new EnemyStats() {name = "Skelewing", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
+    {"skullguard", new EnemyStats() {name = "Skullguard", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"snowman", new EnemyStats() {name = "Snowman", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"succubus", new EnemyStats() {name = "Succubus", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"sugecapre", new EnemyStats() {name = "Sugecapre", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
@@ -847,6 +850,7 @@ public class Objects
     {"skeleton", new Vector2(1.23f, 2.30f)},
     {"skeleton-king", new Vector2(1.06f, 2.8f)},
     {"skelewing", new Vector2(0.89f, 1.26f)},
+    {"skullguard", new Vector2(0.78f, 2.3f)},
     {"snowman", new Vector2(0.91f, 2.31f)},
     {"succubus", new Vector2(1.47f, 2.32f)},
     {"sugecapre", new Vector2(2.26f, 1.86f)},
@@ -924,6 +928,7 @@ public class Objects
     {"selkie", new Vector2(0.1f, 1.8f)},
     {"skeleton", new Vector2(-0.25f, 1.95f)},
     {"skeleton-king", new Vector2(0.1f, 2.1f)},
+    {"skullguard", new Vector2(-0.1f, 1.6f)},
     {"snowman", new Vector2(-0.2f, 1.65f)},
     {"sugecapre", new Vector2(0.25f, 1.55f)},
     {"thalassoman", new Vector2(-0.1f, 1.6f)},
@@ -1019,6 +1024,7 @@ public class Objects
     {"skeleton", defaultDeathOrigin},
     {"skeleton-king", defaultDeathOrigin},
     {"skelewing", defaultDeathOrigin},
+    {"skullguard", defaultDeathOrigin},
     {"snowman", defaultDeathOrigin},
     {"succubus", new Vector2(-0.7025f, 0.5f)},
     {"sugecapre", defaultDeathOrigin},
@@ -1149,6 +1155,7 @@ public class Objects
     {"skeleton-bone", "blunt"},
     {"skeleton-king-giant-bone", "blunt"},
     {"skelewing-orb", "blunt"},
+    {"skullguard-dagger", "blunt"},
     {"snowman-snowball", "blunt"},
     {"succubus-blast", "blunt"},
     {"sugecapre-fang", "blunt"},
@@ -1259,6 +1266,7 @@ public class Objects
     {"siren-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"skelewing-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
+    {"skullguard-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"snowman-snowball", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"succubus-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"sugecapre-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
@@ -1356,6 +1364,7 @@ public class Objects
     {"skeleton", "skeleton-bone"},
     {"skeleton-king", "skeleton-king-giant-bone"},
     {"skelewing", "skelewing-orb"},
+    {"skullguard", "skullguard-dagger"},
     {"snowman", "snowman-snowball"},
     {"succubus", "succubus-blast"},
     {"sugecapre", "sugecapre-fang"},
@@ -1371,6 +1380,7 @@ public class Objects
     {"yukionna", "yukionna-kunai"},
     {"zombie", "zombie-bone"}
   };
+  
   public static Dictionary<string, string> materialsPerArea = new() {
     {"calderas", "gravel"},
     {"desert", "sand"},
