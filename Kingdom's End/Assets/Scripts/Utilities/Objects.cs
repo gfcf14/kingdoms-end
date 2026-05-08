@@ -9,9 +9,9 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
-    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman", "vampire", "skullguard"
+    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman", "vampire", "skullguard", "seraphim"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "skullguard" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "seraphim" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -341,6 +341,7 @@ public class Objects
     {"saraph-scale", 30},
     {"scarabkin-horn", 50},
     {"selkie-scale", 40},
+    {"seraphim-blast", 50},
     {"shangsen-dart", 30},
     {"siren-feather", 30},
     {"skeleton-bone", 50},
@@ -603,7 +604,8 @@ public class Objects
     {"thalassoman", genericItemDictionary},
     {"frostman", genericItemDictionary},
     {"vampire", genericItemDictionary},
-    {"skullguard", genericItemDictionary}
+    {"skullguard", genericItemDictionary},
+    {"seraphim", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -747,6 +749,7 @@ public class Objects
     {"saraph", new EnemyStats() {name = "Saraph", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"scarabkin", new EnemyStats() {name = "Scarabkin", form = "small", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"selkie", new EnemyStats() {name = "Selkie", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
+    {"seraphim", new EnemyStats() {name = "Seraphim", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"shangsen", new EnemyStats() {name = "Shangsen", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"siren", new EnemyStats() {name = "Siren", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 15, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 3f, edgeCastLength = 1, arrowBurnPosition = 1, mass = 8f}},
     {"skeleton-king", new EnemyStats() {name = "Skeleton King", form = "giant", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
@@ -845,6 +848,7 @@ public class Objects
     {"saraph", new Vector2(1.49f, 0.7f)},
     {"scarabkin", new Vector2(0.68f, 1.55f)},
     {"selkie", new Vector2(0.93f, 2.63f)},
+    {"seraphim", new Vector2(1.38f, 2.30f)},
     {"shangsen", new Vector2(0.85f, 2.33f)},
     {"siren", new Vector2(1.43f, 1.78f)},
     {"skeleton", new Vector2(1.23f, 2.30f)},
@@ -1018,6 +1022,7 @@ public class Objects
     {"sandman", defaultDeathOrigin},
     {"saraph", defaultDeathOrigin},
     {"scarabkin", defaultDeathOrigin},
+    {"seraphim", defaultDeathOrigin},
     {"selkie", defaultDeathOrigin},
     {"shangsen", defaultDeathOrigin},
     {"siren", defaultDeathOrigin},
@@ -1150,6 +1155,7 @@ public class Objects
     {"saraph-scale", "blunt"},
     {"scarabkin-horn", "blunt"},
     {"selkie-scale", "blunt"},
+    {"seraphim-blast", "blunt"},
     {"shangsen-dart", "blunt"},
     {"siren-feather", "blunt"},
     {"skeleton-bone", "blunt"},
@@ -1262,6 +1268,7 @@ public class Objects
     {"saraph-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"scarabkin-horn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.65f, 1.45f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"selkie-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"seraphim-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"shangsen-dart", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"siren-feather", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"skeleton-bone", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.2f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1359,6 +1366,7 @@ public class Objects
     {"saraph", "saraph-scale"},
     {"scarabkin", "scarabkin-horn"},
     {"selkie", "selkie-scale"},
+    {"seraphim", "seraphim-blast"},
     {"shangsen", "shangsen-dart"},
     {"siren", "siren-feather"},
     {"skeleton", "skeleton-bone"},
@@ -1380,7 +1388,7 @@ public class Objects
     {"yukionna", "yukionna-kunai"},
     {"zombie", "zombie-bone"}
   };
-  
+
   public static Dictionary<string, string> materialsPerArea = new() {
     {"calderas", "gravel"},
     {"desert", "sand"},

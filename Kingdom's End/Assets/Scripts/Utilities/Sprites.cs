@@ -116,6 +116,7 @@ public class Sprites {
   public static Sprite[] frostmanSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/frostman");
   public static Sprite[] vampireSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/vampire");
   public static Sprite[] skullguardSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skullguard");
+  public static Sprite[] seraphimSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/seraphim");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -480,6 +481,7 @@ public class Sprites {
     {"saraph-scale", Resources.Load<Sprite>("Sprites/projectiles/saraph-scale")},
     {"scarabkin-horn", Resources.Load<Sprite>("Sprites/projectiles/scarabkin-horn")},
     {"selkie-scale", Resources.Load<Sprite>("Sprites/projectiles/selkie-scale")},
+    {"seraphim-blast", Resources.Load<Sprite>("Sprites/projectiles/seraphim-blast")},
     {"shangsen-dart", Resources.Load<Sprite>("Sprites/projectiles/shangsen-dart")},
     {"siren-feather", Resources.Load<Sprite>("Sprites/projectiles/siren-feather")},
     {"skeleton-bone", Resources.Load<Sprite>("Sprites/projectiles/skeleton-bone")},
@@ -751,6 +753,7 @@ public class Sprites {
     {"saraph", saraphSprites[0]},
     {"scarabkin", scarabkinSprites[0]},
     {"selkie", selkieSprites[0]},
+    {"seraphim", seraphimSprites[0]},
     {"shangsen", shangsenSprites[0]},
     {"siren", sirenSprites[0]},
     {"skeleton", skeletonSprites[35]},
