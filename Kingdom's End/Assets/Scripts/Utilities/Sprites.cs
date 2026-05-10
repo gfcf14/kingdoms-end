@@ -117,6 +117,7 @@ public class Sprites {
   public static Sprite[] vampireSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/vampire");
   public static Sprite[] skullguardSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skullguard");
   public static Sprite[] seraphimSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/seraphim");
+  public static Sprite[] fiendlordSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/fiendlord");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -431,6 +432,7 @@ public class Sprites {
     {"entman-twig", Resources.Load<Sprite>("Sprites/projectiles/entman-twig")},
     {"fairy-blast", Resources.Load<Sprite>("Sprites/projectiles/fairy-blast")},
     {"faun-horn", Resources.Load<Sprite>("Sprites/projectiles/faun-horn")},
+    {"fiendlord-blast", Resources.Load<Sprite>("Sprites/projectiles/fiendlord-blast")},
     {"flygmy-blast", Resources.Load<Sprite>("Sprites/projectiles/flygmy-blast")},
     {"frostbird-orb", Resources.Load<Sprite>("Sprites/projectiles/frostbird-orb")},
     {"frostman-rock", Resources.Load<Sprite>("Sprites/projectiles/frostman-rock")},
@@ -703,6 +705,7 @@ public class Sprites {
     {"entman", entmanSprites[0]},
     {"fairy", fairySprites[0]},
     {"faun", faunSprites[0]},
+    {"fiendlord", fiendlordSprites[0]},
     {"flygmy", flygmySprites[0]},
     {"frostbird", frostbirdSprites[0]},
     {"frostman", frostmanSprites[0]},

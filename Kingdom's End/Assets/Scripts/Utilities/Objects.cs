@@ -9,9 +9,9 @@ public class Objects
     {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
-    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman", "vampire", "skullguard", "seraphim"
+    // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman", "vampire", "skullguard", "seraphim", "fiendlord"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "seraphim" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "fiendlord" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -292,6 +292,7 @@ public class Objects
     {"fairy-blast", 55},
     {"faun-horn", 35},
     {"flygmy-blast", 35},
+    {"fiendlord-blast", 50},
     {"frostbird-orb", 40},
     {"frostman-rock", 50},
     {"glupus-fang", 35},
@@ -605,7 +606,8 @@ public class Objects
     {"frostman", genericItemDictionary},
     {"vampire", genericItemDictionary},
     {"skullguard", genericItemDictionary},
-    {"seraphim", genericItemDictionary}
+    {"seraphim", genericItemDictionary},
+    {"fiendlord", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -699,6 +701,7 @@ public class Objects
     {"entman", new EnemyStats() {name = "Entman", form = "fortress", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"fairy", new EnemyStats() {name = "Fairy", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 10, atk = 20, def = 20, crit = 0.0025f, exp = 50, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"faun", new EnemyStats() {name = "Faun", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 10, def = 20, crit = 0.0025f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
+    {"fiendlord", new EnemyStats() {name = "Fiendlord", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"flygmy", new EnemyStats() {name = "Flygmy", form = "small", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 20, def = 15, crit = 0.0015f, exp = 20, speed= 5, reach = 0.2f, longReach = 8f, edgeCastLength = 0.5f, arrowBurnPosition = 0.7f, mass = 5f}},
     {"frostbird", new EnemyStats() {name = "Frostbird", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"frostman", new EnemyStats() {name = "Frostman", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
@@ -798,6 +801,7 @@ public class Objects
     {"entman", new Vector2(0.85f, 2.33f)},
     {"fairy", new Vector2(0.97f, 0.92f)},
     {"faun", new Vector2(1.01f, 2.35f)},
+    {"fiendlord", new Vector2(1.39f, 2.3f)},
     {"flygmy", new Vector2(0.69f, 1.62f)},
     {"frostbird", new Vector2(0.89f, 1.26f)},
     {"frostman", new Vector2(0.78f, 2.33f)},
@@ -848,7 +852,7 @@ public class Objects
     {"saraph", new Vector2(1.49f, 0.7f)},
     {"scarabkin", new Vector2(0.68f, 1.55f)},
     {"selkie", new Vector2(0.93f, 2.63f)},
-    {"seraphim", new Vector2(1.38f, 2.30f)},
+    {"seraphim", new Vector2(1.38f, 2.3f)},
     {"shangsen", new Vector2(0.85f, 2.33f)},
     {"siren", new Vector2(1.43f, 1.78f)},
     {"skeleton", new Vector2(1.23f, 2.30f)},
@@ -973,6 +977,7 @@ public class Objects
     {"entman", defaultDeathOrigin},
     {"fairy", defaultDeathOrigin},
     {"faun", defaultDeathOrigin},
+    {"fiendlord", defaultDeathOrigin},
     {"flygmy", defaultDeathOrigin},
     {"frostbird", defaultDeathOrigin},
     {"frostman", defaultDeathOrigin},
@@ -1105,6 +1110,7 @@ public class Objects
     {"entman-twig", "blunt"},
     {"fairy-blast", "blunt"},
     {"faun-horn", "blunt"},
+    {"fiendlord-blast", "blunt"},
     {"flygmy-blast", "blunt"},
     {"frostbird-orb", "blunt"},
     {"frostman-rock", "blunt"},
@@ -1218,6 +1224,7 @@ public class Objects
     {"entman-twig", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"fairy-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"faun-horn", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"fiendlord-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"flygmy-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"frostbird-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"frostman-rock", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
@@ -1316,6 +1323,7 @@ public class Objects
     {"entman", "entman-twig"},
     {"fairy", "fairy-blast"},
     {"faun", "faun-horn"},
+    {"fiendlord", "fiendlord-blast"},
     {"flygmy", "flygmy-blast"},
     {"frostbird", "frostbird-orb"},
     {"frostman", "frostman-rock"},
