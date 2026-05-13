@@ -11,7 +11,9 @@ public class Objects
     // TODO: include fortress based enemies here when fortresses are available
     // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman", "vampire", "skullguard", "seraphim", "fiendlord"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
-    {"hellscape"  , new string[]{ "fiendlord" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    // TODO: modify enemy spawner instantiation to introduce one variable enemy per room in part 1, 2 in part 2, and 3 in part 3
+    // variable enemies to include: "nomad"
+    {"hellscape"  , new string[]{ "nomad" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -105,7 +107,8 @@ public class Objects
     {"teleportpoint-seaside", Resources.Load("Prefabs/Teleport Point - Seaside") as GameObject},
     {"teleportpoint-swamps", Resources.Load("Prefabs/Teleport Point - Swamps") as GameObject},
     {"teleportpoint-wasteland", Resources.Load("Prefabs/Teleport Point - Wasteland") as GameObject},
-    {"throwable", Resources.Load("Prefabs/Throwable") as GameObject}
+    {"throwable", Resources.Load("Prefabs/Throwable") as GameObject},
+    {"variable-enemy", Resources.Load("Prefabs/VariableEnemy") as GameObject}
   };
 
   public static Dictionary<string, string[]> itemProjectiles = new() {
@@ -328,6 +331,7 @@ public class Objects
     {"neret-orb", 40},
     {"nightmare-spark", 40},
     {"nixie-cattail", 35},
+    {"nomad-dagger", 35},
     {"nymph-acorn", 40},
     {"ocugoyle-blast", 40},
     {"ogre-stump", 50},
@@ -607,7 +611,8 @@ public class Objects
     {"vampire", genericItemDictionary},
     {"skullguard", genericItemDictionary},
     {"seraphim", genericItemDictionary},
-    {"fiendlord", genericItemDictionary}
+    {"fiendlord", genericItemDictionary},
+    {"nomad", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -738,6 +743,7 @@ public class Objects
     {"neret", new EnemyStats() {name = "Neret", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"nightmare", new EnemyStats() {name = "Nightmare", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"nixie", new EnemyStats() {name = "Nixie", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 15, def = 10, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
+    {"nomad", new EnemyStats() {name = "Nomad", form = "variable", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"nymph", new EnemyStats() {name = "Nymph", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"ocugoyle", new EnemyStats() {name = "Ocugoyle", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"ogre", new EnemyStats() {name = "Ogre", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
@@ -838,6 +844,7 @@ public class Objects
     {"neret", new Vector2(0.89f, 1.26f)},
     {"nightmare", new Vector2(2.84f, 2.15f)},
     {"nixie", new Vector2(0.65f, 2.22f)},
+    {"nomad", new Vector2(0.77f, 2.33f)},
     {"nymph", new Vector2(0.67f, 2.24f)},
     {"ocugoyle", new Vector2(0.99f, 1.41f)},
     {"ogre", new Vector2(1.11f, 2.68f)},
@@ -926,6 +933,7 @@ public class Objects
     {"nereid", new Vector2(-0.09f, 1.6f)},
     {"nightmare", new Vector2(0.25f, 2.25f)},
     {"nixie", new Vector2(-0.09f, 1.6f)},
+    {"nomad", new Vector2(-0.1f, 1.6f)},
     {"nymph", new Vector2(-0.09f, 1.6f)},
     {"ogre", new Vector2(0.1f, 1.4f)},
     {"petroman", new Vector2(-0.1f, 1.6f)},
@@ -1014,6 +1022,7 @@ public class Objects
     {"neret", defaultDeathOrigin},
     {"nixie", new Vector2(-0.7025f, 0.5f)},
     {"nightmare", defaultDeathOrigin},
+    {"nomad", defaultDeathOrigin},
     {"nymph", new Vector2(-0.7025f, 0.5f)},
     {"ocugoyle", defaultDeathOrigin},
     {"ogre", defaultDeathOrigin},
@@ -1147,6 +1156,7 @@ public class Objects
     {"neret-orb", "blunt"},
     {"nightmare-spark", "blunt"},
     {"nixie-cattail", "blunt"},
+    {"nomad-dagger", "blunt"},
     {"nymph-acorn", "blunt"},
     {"ocugoyle-blast", "blunt"},
     {"ogre-stump", "blunt"},
@@ -1261,6 +1271,7 @@ public class Objects
     {"neret-orb", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
     {"nightmare-spark", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nixie-cattail", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"nomad-dagger", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"nymph-acorn", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"ocugoyle-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"ogre-stump", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
@@ -1360,6 +1371,7 @@ public class Objects
     {"neret", "neret-orb"},
     {"nightmare", "nightmare-spark"},
     {"nixie", "nixie-cattail"},
+    {"nomad", "nomad-dagger"},
     {"nymph", "nymph-acorn"},
     {"ocugoyle", "ocugoyle-blast"},
     {"ogre", "ogre-stump"},

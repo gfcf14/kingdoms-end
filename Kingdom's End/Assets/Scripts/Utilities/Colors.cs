@@ -95,6 +95,23 @@ public class Colors
     {"wasteland", new Color(0/255f, 190/255f, 255/255f, 1)}
   };
 
+  public static Dictionary<string, Color> variableColors = new() {
+    {"calderas", new Color(167/255f, 167/255f, 61/255f, 1)},      // #A7A73D
+    {"desert", new Color(255/255f, 61/255f, 0/255f, 1)},          // #FF3D00
+    {"forest", new Color(114/255f, 184/255f, 28/255f, 1)},        // #72B81C
+    {"glaciers", new Color(0/255f, 167/255f, 254/255f, 1)},       // #00A7FE
+    {"hellscape", new Color(255/255f, 132/255f, 255/255f, 1)},    // #FF84FF
+    {"meadows", new Color(0/255f, 219/255f, 184/255f, 1)},        // #00DBB8
+    {"mountains", new Color(255/255f, 132/255f, 255/255f, 1)},    // #FF84FF
+    {"oceans", new Color(0/255f, 132/255f, 219/255f, 1)},         // #0084DB
+    {"ruins", new Color(201/255f, 132/255f, 184/255f, 1)},        // #C984B8
+    {"seaside", new Color(236/255f, 61/255f, 255/255f, 1)},       // #EC3DFF
+    {"skyway", new Color(114/255f, 255/255f, 255/255f, 1)},       // #72FFFF
+    {"swamps", new Color(219/255f, 184/255f, 132/255f, 1)},       // #DBB884
+    {"underground", new Color(184/255f, 254/255f, 201/255f, 1)},  // #B8FEC9
+    {"wasteland", new Color(0/255f, 236/255f, 255/255f, 1)}       // #00ECFF
+};
+
   public static Dictionary<string, Color> uiColors = new() {
     {"green", new Color(0, 1, 0, 1)},
     {"red", new Color(1, 0, 0, 1)},

@@ -32,6 +32,7 @@ public class InGame : MonoBehaviour {
   public GameObject enemiesFlying;
   public GameObject enemiesBeasts;
   public GameObject enemiesFortress;
+  public GameObject enemiesVariable;
   public GlobalGradients globalGradients;
 
   private Shop shopScript;
@@ -338,7 +339,9 @@ public class InGame : MonoBehaviour {
   }
 
   public void SpawnEnemy(Vector2 position, string enemyKey, string enemyType, string condition, List<string> dropConditions, string specificDrop, bool isMiniBoss, Transform parent, string forceDirection = "", int level = 1) {
-    GameObject enemySpawned = Instantiate(Helpers.GetOrException(Objects.prefabs, "enemy"), new Vector3(position.x, position.y, 0), Quaternion.identity, parent);
+    string enemyPrefab = $"{(Helpers.IsValueInArray(Constants.variableEnemies, enemyKey) ? "variable-" : "")}enemy";
+
+    GameObject enemySpawned = Instantiate(Helpers.GetOrException(Objects.prefabs, enemyPrefab), new Vector3(position.x, position.y, 0), Quaternion.identity, parent);
     Enemy enemyScript = enemySpawned.GetComponent<Enemy>();
     enemyScript.key = enemyKey != "" ? enemyKey : Helpers.GetRandomItemFromGroup(Helpers.GetOrException(Objects.enemyKeysByArea, GameData.area));
     enemyScript.forceDirection = forceDirection;
@@ -501,6 +504,7 @@ public class InGame : MonoBehaviour {
         "flying"   => enemiesFlying.GetComponent<Animator>().runtimeAnimatorController,
         "beast"    => enemiesBeasts.GetComponent<Animator>().runtimeAnimatorController,
         "fortress" => enemiesFortress.GetComponent<Animator>().runtimeAnimatorController,
+        "variable" => enemiesVariable.GetComponent<Animator>().runtimeAnimatorController,
         _          => null
     };
   }

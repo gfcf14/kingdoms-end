@@ -12,6 +12,8 @@ public class Constants {
     new string[] {"consumable"},
     new string[] {"valuable"},
   };
+
+  public static string[] variableEnemies = { "nomad" };
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
@@ -75,6 +77,7 @@ public class Constants {
     "neret-orb",
     "nixie-cattail",
     "nightmare-spark",
+    "nomad-dagger",
     "nymph-acorn",
     "ocugoyle-blast",
     "ogre-stump",
@@ -258,6 +261,7 @@ public class Constants {
     "neret-orb",
     "nightmare-spark",
     "nixie-cattail",
+    "nomad-dagger",
     "nymph-acorn",
     "ocugoyle-blast",
     "ogre-stump",

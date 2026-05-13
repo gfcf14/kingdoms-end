@@ -118,6 +118,7 @@ public class Sprites {
   public static Sprite[] skullguardSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/skullguard");
   public static Sprite[] seraphimSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/seraphim");
   public static Sprite[] fiendlordSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/fiendlord");
+  public static Sprite[] nomadSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nomad");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -469,6 +470,7 @@ public class Sprites {
     {"neret-orb", Resources.Load<Sprite>("Sprites/projectiles/neret-orb")},
     {"nightmare-spark", Resources.Load<Sprite>("Sprites/projectiles/nightmare-spark")},
     {"nixie-cattail", Resources.Load<Sprite>("Sprites/projectiles/nixie-cattail")},
+    {"nomad-dagger", Resources.Load<Sprite>("Sprites/projectiles/nomad-dagger")},
     {"nymph-acorn", Resources.Load<Sprite>("Sprites/projectiles/nymph-acorn")},
     {"ocugoyle-blast", Resources.Load<Sprite>("Sprites/projectiles/ocugoyle-blast")},
     {"ogre-stump", Resources.Load<Sprite>("Sprites/projectiles/ogre-stump")},
@@ -742,6 +744,7 @@ public class Sprites {
     {"neret", neretSprites[0]},
     {"nightmare", nightmareSprites[0]},
     {"nixie", nixieSprites[0]},
+    {"nomad", nomadSprites[0]},
     {"nymph", nymphSprites[0]},
     {"ocugoyle", ocugoyleSprites[0]},
     {"ogre", ogreSprites[0]},
