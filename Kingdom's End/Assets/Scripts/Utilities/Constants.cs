@@ -13,7 +13,7 @@ public class Constants {
     new string[] {"valuable"},
   };
 
-  public static string[] variableEnemies = { "nomad", "wanderess" };
+  public static string[] variableEnemies = { "luxhusk", "nomad", "wanderess" };
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
@@ -63,6 +63,7 @@ public class Constants {
     "knight-dagger",
     "leatherwing-fang",
     "leprechaun-mushroom",
+    "luxhusk-ball",
     "mamluk-dagger",
     "menehune-shingle",
     "mermaid-scale",
@@ -144,7 +145,7 @@ public class Constants {
   public static string[] smallThrowables = {"knife", "kunai", "shuriken-4", "shuriken-6"};
   public static string[] angledThrowables = {"skeleton-king-giant-bone", "hatchet", "axe"};
   public static string[] rotatingThrowables = {"axe", "bluecap-rock", "hatchet", "redcap-rock", "skeleton-king-giant-bone", "shuriken-4", "shuriken-6"};
-  public static string[] rotatingProjectiles = {"angel-blast", "archangel-blast", "archdemon-blast", "archeia-blast", "blob-ectoplasm", "cyclops-hillstone", "demon-blast", "dyrgja-hatchet", "fairy-blast", "fiendlord-blast", "flygmy-blast", "frostbird-orb", "golem-boulder", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "sandman-sandrock", "seraphim-blast", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder", "vampire-blast"};
+  public static string[] rotatingProjectiles = {"angel-blast", "archangel-blast", "archdemon-blast", "archeia-blast", "blob-ectoplasm", "cyclops-hillstone", "demon-blast", "dyrgja-hatchet", "fairy-blast", "fiendlord-blast", "flygmy-blast", "frostbird-orb", "golem-boulder", "luxhusk-ball", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "sandman-sandrock", "seraphim-blast", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder", "vampire-blast"};
   public static string[] nonGroundableThrowables = {"skeleton-king-giant-bone", "axe", "bomb"};
   // refers to enemies who, when killed in normal conditions, will jump back a bit before dying
   public static string[] flyingDeathEnemies = {"botarosa", "crone", "dwarf", "dyrgja", "elf", "fairy", "flygmy", "gnome", "goblin", "imp", "kabouter", "kappa", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin", "skeleton"};
@@ -248,6 +249,7 @@ public class Constants {
     "knight-dagger",
     "leatherwing-fang",
     "leprechaun-mushroom",
+    "luxhusk-ball",
     "mamluk-dagger",
     "monsman-rock",
     "naga-scale",

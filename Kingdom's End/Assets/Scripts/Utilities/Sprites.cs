@@ -120,6 +120,7 @@ public class Sprites {
   public static Sprite[] fiendlordSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/fiendlord");
   public static Sprite[] nomadSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nomad");
   public static Sprite[] wanderessSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/wanderess");
+  public static Sprite[] luxhuskSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/luxhusk");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -457,6 +458,7 @@ public class Sprites {
     {"knight-dagger", Resources.Load<Sprite>("Sprites/projectiles/knight-dagger")},
     {"leatherwing-fang", Resources.Load<Sprite>("Sprites/projectiles/leatherwing-fang")},
     {"leprechaun-mushroom", Resources.Load<Sprite>("Sprites/projectiles/leprechaun-mushroom")},
+    {"luxhusk-ball", Resources.Load<Sprite>("Sprites/projectiles/luxhusk-ball")},
     {"mamluk-dagger", Resources.Load<Sprite>("Sprites/projectiles/mamluk-dagger")},
     {"menehune-shingle", Resources.Load<Sprite>("Sprites/projectiles/menehune-shingle")},
     {"mermaid-scale", Resources.Load<Sprite>("Sprites/projectiles/mermaid-scale")},
@@ -732,6 +734,7 @@ public class Sprites {
     {"knight", knightSprites[0]},
     {"leatherwing", leatherwingSprites[0]},
     {"leprechaun", leprechaunSprites[0]},
+    {"luxhusk", luxhuskSprites[0]},
     {"mamluk", mamlukSprites[0]},
     {"menehune", menehuneSprites[0]},
     {"mermaid", mermaidSprites[0]},
