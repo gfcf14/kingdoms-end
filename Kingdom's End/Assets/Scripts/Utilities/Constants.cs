@@ -13,7 +13,7 @@ public class Constants {
     new string[] {"valuable"},
   };
 
-  public static string[] variableEnemies = { "nomad" };
+  public static string[] variableEnemies = { "nomad", "wanderess" };
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };
   public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
@@ -106,6 +106,7 @@ public class Constants {
     "troll-boulder",
     "unicorn-shard",
     "vampire-blast",
+    "wanderess-hatchet",
     "waterblade-scale",
     "werewolf-fang",
     "yanmabel-stinger",
@@ -291,6 +292,7 @@ public class Constants {
     "troll-boulder",
     "unicorn-shard",
     "vampire-blast",
+    "wanderess-hatchet",
     "waterblade-scale",
     "werewolf-fang",
     "yanmabel-stinger",

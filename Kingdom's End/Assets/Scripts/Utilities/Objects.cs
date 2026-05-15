@@ -12,8 +12,8 @@ public class Objects
     // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman", "vampire", "skullguard", "seraphim", "fiendlord"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
     // TODO: modify enemy spawner instantiation to introduce one variable enemy per room in part 1, 2 in part 2, and 3 in part 3
-    // variable enemies to include: "nomad"
-    {"hellscape"  , new string[]{ "nomad" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    // variable enemies to include: "nomad", "wanderess"
+    {"hellscape"  , new string[]{ "wanderess" }},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
@@ -361,6 +361,7 @@ public class Objects
     {"troll-boulder", 50},
     {"unicorn-shard", 30},
     {"vampire-blast", 50},
+    {"wanderess-hatchet", 35},
     {"waterblade-scale", 30},
     {"werewolf-fang", 40},
     {"yanmabel-stinger", 30},
@@ -612,7 +613,8 @@ public class Objects
     {"skullguard", genericItemDictionary},
     {"seraphim", genericItemDictionary},
     {"fiendlord", genericItemDictionary},
-    {"nomad", genericItemDictionary}
+    {"nomad", genericItemDictionary},
+    {"wanderess", genericItemDictionary}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
@@ -774,6 +776,7 @@ public class Objects
     {"troll", new EnemyStats() {name = "Troll", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"unicorn", new EnemyStats() {name = "Unicorn", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 25, def = 10, crit = 0.0025f, exp = 50, speed= 4, reach = 0.25f, longReach = 2.75f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
     {"vampire", new EnemyStats() {name = "Vampire", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
+    {"wanderess", new EnemyStats() {name = "Wanderess", form = "variable", baseMaterial = "boots", normalAttackType = "punch", hp = 50, atk = 10, def = 15, crit = 0.003f, exp = 25, speed= 4, reach = 0.2f, longReach = 6f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 9f}},
     {"waterblade", new EnemyStats() {name = "Waterblade", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"werewolf", new EnemyStats() {name = "Werewolf", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 25, def =25, crit = 0.0025f, exp = 50, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"yanmabel", new EnemyStats() {name = "Yanmabel", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 2f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
@@ -875,6 +878,7 @@ public class Objects
     {"troll", new Vector2(1.01f, 2.68f)},
     {"unicorn", new Vector2(2.82f, 2.11f)},
     {"vampire", new Vector2(0.88f, 2.33f)},
+    {"wanderess", new Vector2(0.77f, 2.22f)},
     {"waterblade", new Vector2(1.53f, 0.78f)},
     {"werewolf", new Vector2(1.21f, 2.60f)},
     {"yanmabel", new Vector2(1.59f, 0.78f)},
@@ -950,6 +954,7 @@ public class Objects
     {"thalassoman", new Vector2(-0.1f, 1.6f)},
     {"troll", new Vector2(0.1f, 1.4f)},
     {"unicorn", new Vector2(0.25f, 2.25f)},
+    {"wanderess", new Vector2(-0.09f, 1.6f)},
     {"werewolf", new Vector2(0.1f, 2f)},
     {"yukionna", new Vector2(-0.09f, 1.6f)},
     {"zombie", new Vector2(-0.1f, 1.6f)}
@@ -1053,6 +1058,7 @@ public class Objects
     {"troll", defaultDeathOrigin},
     {"unicorn", defaultDeathOrigin},
     {"vampire", defaultDeathOrigin},
+    {"wanderess", new Vector2(-0.7025f, 0.5f)},
     {"waterblade", defaultDeathOrigin},
     {"werewolf", defaultDeathOrigin},
     {"yanmabel", defaultDeathOrigin},
@@ -1187,6 +1193,7 @@ public class Objects
     {"troll-boulder", "blunt" },
     {"unicorn-shard", "blunt"},
     {"vampire-blast", "blunt"},
+    {"wanderess-hatchet", "blunt"},
     {"waterblade-scale", "blunt"},
     {"werewolf-fang", "blunt"},
     {"yanmabel-stinger", "blunt"},
@@ -1301,6 +1308,7 @@ public class Objects
     {"troll-boulder", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"unicorn-shard", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 2, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"vampire-blast", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.25f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
+    {"wanderess-hatchet", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(0.65f, 1.45f), hDisplacement = 2f, initialRotationValues = new ValuePair(0, 45), maxHeight = 1f, rotationFactor = 4, speed = 10f, steepness = 1.25f}},
     {"waterblade-scale", new ThrowableSpecs() {colliderOffset = new ValuePair(0.15f, 0), colliderSize = new ValuePair(0.5f, 0.5f), hDisplacement = 0.5f, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.25f, rotationFactor = 2, speed = 12f, steepness = 7.5f}},
     {"werewolf-fang", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f} },
     {"yanmabel-stinger", new ThrowableSpecs() {colliderOffset = new ValuePair(0, 0), colliderSize = new ValuePair(1, 0.7f), hDisplacement = 1, initialRotationValues = new ValuePair(0, 45), maxHeight = 0.33f, rotationFactor = 16, speed = 10f, steepness = 10f}},
@@ -1402,6 +1410,7 @@ public class Objects
     {"troll", "troll-boulder"},
     {"unicorn", "unicorn-shard"},
     {"vampire", "vampire-blast"},
+    {"wanderess", "wanderess-hatchet"},
     {"waterblade", "waterblade-scale"},
     {"werewolf", "werewolf-fang"},
     {"yanmabel", "yanmabel-stinger"},

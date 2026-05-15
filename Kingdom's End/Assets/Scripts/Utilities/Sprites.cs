@@ -119,6 +119,7 @@ public class Sprites {
   public static Sprite[] seraphimSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/seraphim");
   public static Sprite[] fiendlordSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/fiendlord");
   public static Sprite[] nomadSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nomad");
+  public static Sprite[] wanderessSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/wanderess");
   public static Sprite[] peasantGirlSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/peasant-girl");
   public static Sprite[] meadowsPeddlerSprites = Resources.LoadAll<Sprite>("Spritesheets/npcs/meadows-peddler");
 
@@ -500,6 +501,7 @@ public class Sprites {
     {"troll-boulder", Resources.Load<Sprite>("Sprites/projectiles/troll-boulder")},
     {"unicorn-shard", Resources.Load<Sprite>("Sprites/projectiles/unicorn-shard")},
     {"vampire-blast", Resources.Load<Sprite>("Sprites/projectiles/vampire-blast")},
+    {"wanderess-hatchet", Resources.Load<Sprite>("Sprites/projectiles/wanderess-hatchet")},
     {"waterblade-scale", Resources.Load<Sprite>("Sprites/projectiles/waterblade-scale")},
     {"werewolf-fang", Resources.Load<Sprite>("Sprites/projectiles/werewolf-fang")},
     {"yanmabel-stinger", Resources.Load<Sprite>("Sprites/projectiles/yanmabel-stinger")},
@@ -775,6 +777,7 @@ public class Sprites {
     {"troll", trollSprites[0]},
     {"unicorn", unicornSprites[0]},
     {"vampire", vampireSprites[0]},
+    {"wanderess", wanderessSprites[0]},
     {"waterblade", waterbladeSprites[0]},
     {"werewolf", werewolfSprites[0]},
     {"yanmabel", yanmabelSprites[0]},
