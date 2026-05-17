@@ -1,11 +1,22 @@
+using System;
 using UnityEngine;
 
 public class VariableSprite : MonoBehaviour {
-  SpriteRenderer variableRenderer;
+  [NonSerialized] SpriteRenderer variableRenderer;
+  [NonSerialized] private SimpleFlash variableFlash;
+  Color variableColor;
   void Start() {
     variableRenderer = GetComponent<SpriteRenderer>();
-    variableRenderer.color = Helpers.GetOrException(Colors.variableColors, GameData.area);
+    variableFlash = GetComponent<SimpleFlash>();
+
+    variableColor = Helpers.GetOrException(Colors.variableColors, GameData.area);
+    variableRenderer.color = variableColor;    
+    variableFlash.repaintColor = variableColor;
   }
 
   void Update() {}
+
+  public void Flash() {
+    variableFlash.Flash();
+  }
 }

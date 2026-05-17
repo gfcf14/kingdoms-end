@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour {
     [NonSerialized] private SimpleFlash flashEffect;
     [NonSerialized] public Rigidbody2D body;
     [NonSerialized] public SpriteRenderer enemyRenderer;
+    [SerializeField] public GameObject variableObject;
 
     private AudioSource audioSource;
 
@@ -118,6 +119,7 @@ public class Enemy : MonoBehaviour {
     bool bossCausingLevelUp = false;
 
     bool isSmallEnemy = false;
+    bool isVariableEnemy = false;
 
   // Player Related Properties
     [NonSerialized] public bool playerFound = false;
@@ -224,6 +226,8 @@ public class Enemy : MonoBehaviour {
     }
 
     elementResistances = new string[] {};
+
+    // TODO: consider removing the enemy color from resistances to use effects instead
     enemyColor = Helpers.GetColorFromResistances(elementResistances);
     flashEffect.repaintColor = enemyColor;
     enemyRenderer.color = enemyColor;
@@ -367,6 +371,7 @@ public class Enemy : MonoBehaviour {
     }
 
     isSmallEnemy = Helpers.IsValueInArray(Constants.smallEnemies, key);
+    isVariableEnemy = Helpers.IsValueInArray(Constants.variableEnemies, key);
 
     // defines conditions to defend if a weapon is incoming:
     if (level - Hero.instance.playerLevel >= 10) { //  1. If the level difference is greater than or equal to 10 (stronger enemies according to story should feel impossible to defeat!)
@@ -763,7 +768,7 @@ public class Enemy : MonoBehaviour {
       if (mustTakeDamage) {
         if (currentHP > 0) {
           if (flashEffect != null && !isDefending) {
-            flashEffect.Flash();
+            Flash();
           }
 
           if (!willBurn) {
@@ -817,7 +822,7 @@ public class Enemy : MonoBehaviour {
         TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position));
 
         if (flashEffect != null) {
-          flashEffect.Flash();
+          Flash();
           if (type != "bouncer") {
             Stun();
           }
@@ -861,7 +866,7 @@ public class Enemy : MonoBehaviour {
               TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position));
 
               if (flashEffect != null) {
-                flashEffect.Flash();
+                Flash();
                 if (type != "bouncer") {
                   Stun();
                 }
@@ -870,6 +875,14 @@ public class Enemy : MonoBehaviour {
           }
         }
       }
+    }
+  }
+
+  public void Flash() {
+    flashEffect.Flash();
+
+    if (isVariableEnemy) {
+      variableObject.GetComponent<VariableSprite>().Flash();
     }
   }
 

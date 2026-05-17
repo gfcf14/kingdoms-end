@@ -188,6 +188,7 @@ MonoBehaviour:
   criticalRate: 0
   isOnCamera: 0
   isMiniBoss: 0
+  variableObject: {fileID: 5626285677870451392}
   enemyColor: {r: 0, g: 0, b: 0, a: 0}
   isAttacking: 0
   isAttackingMelee: 0
@@ -451,6 +452,7 @@ GameObject:
   - component: {fileID: 5393348439597360332}
   - component: {fileID: 5678337374279406290}
   - component: {fileID: 5380933744584069504}
+  - component: {fileID: 8367201859989072481}
   m_Layer: 2
   m_Name: Variable
   m_TagString: Untagged
@@ -544,6 +546,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5f1151b148d6c44a3fcaaf7e6b3d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VariableSprite
+--- !u!114 &8367201859989072481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5626285677870451392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2977ff6e0088614387443a3a4999de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleFlash
+  repaintColor: {r: 0, g: 0, b: 0, a: 0}
+  flashMaterial: {fileID: 2100000, guid: 63d90cac7f8ab5949a6ee1227798459c, type: 2}
+  duration: 0.2
 --- !u!1 &7908589212126734193
 GameObject:
   m_ObjectHideFlags: 0
