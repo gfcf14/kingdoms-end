@@ -1,13 +1,13 @@
 using UnityEngine;
 
 public class IceBlock : MonoBehaviour {
+  [SerializeField] public GameObject enemy;
+  [SerializeField] public GameObject variable;
   [SerializeField] public string itemKey;
   [SerializeField] public string itemRarity;
   [SerializeField] public bool isFacingLeft;
-  GameObject enemy;
-  void Start() {
-    enemy = transform.Find("Enemy").gameObject;
 
+  void Start() {
     if (isFacingLeft) {
       enemy.transform.localScale = new Vector2(-1, 1);
     }

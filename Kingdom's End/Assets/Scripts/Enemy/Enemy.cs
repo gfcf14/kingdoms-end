@@ -1034,10 +1034,16 @@ public class Enemy : MonoBehaviour {
     string[] droppableAndRarity = (specificDrop == "" ? Helpers.GetDroppableItem(key, level, Hero.instance.luckPercentage + Hero.instance.equippedLUCK + Hero.instance.effectLCK) : "" + specificDrop + "|rare").Split('|');
     if (isDeadByFreezing) {
       GameObject iceBlock = Instantiate(Helpers.GetOrException(Objects.prefabs, $"ice-block-{UnityEngine.Random.Range(1, 6)}"), deathOrigin, Quaternion.identity, transform.parent);
-
-      iceBlock.transform.Find("Enemy").GetComponent<SpriteRenderer>().sprite = enemyRenderer.sprite;
-
       IceBlock iceBlockScript = iceBlock.GetComponent<IceBlock>();
+      GameObject iceBlockEnemy = iceBlockScript.enemy;
+      GameObject iceBlockVariable = iceBlockScript.variable;
+
+      iceBlockEnemy.GetComponent<SpriteRenderer>().sprite = enemyRenderer.sprite;
+
+      if (isVariableEnemy) {
+        variableObject.GetComponent<VariableSprite>().SetFrozenVariable(iceBlockVariable);
+      }
+
       iceBlockScript.itemKey = droppableAndRarity[0];
       iceBlockScript.itemRarity = droppableAndRarity[1];
       iceBlockScript.isFacingLeft = isFacingLeft;
