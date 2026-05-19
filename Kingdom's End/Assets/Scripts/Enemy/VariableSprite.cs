@@ -26,4 +26,12 @@ public class VariableSprite : MonoBehaviour {
     variableSprite.color = variableColor;
     variableObject.transform.localPosition = transform.localPosition;
   }
+
+  // combines incoming color with the one obtained from the variableColors dictionary
+  // by multiplying the status color into the variable color
+  public void SetColor(Color newColor) {
+    Color combinedColor = new (variableColor.r * newColor.r, variableColor.g * newColor.g, variableColor.b * newColor.b);
+    variableRenderer.color = combinedColor;
+    variableFlash.repaintColor = combinedColor;
+  }
 }

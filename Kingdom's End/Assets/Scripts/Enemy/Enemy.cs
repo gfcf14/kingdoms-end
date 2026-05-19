@@ -385,7 +385,7 @@ public class Enemy : MonoBehaviour {
     }
   }
 
-  void awardExp() {
+  void AwardExp() {
     gaveExp = true;
     int expToAward = Helpers.GetEnemyEXP(heroLevel: Hero.instance.playerLevel, enemyLevel: level, baseExp: exp);
     Hero.instance.exp += expToAward;
@@ -419,7 +419,7 @@ public class Enemy : MonoBehaviour {
     InGame.instance.PlaySound(Sounds.iceblockSound, transform.position);
 
     if (!gaveExp) {
-      awardExp();
+      AwardExp();
     }
 
     Destroy();
@@ -587,9 +587,9 @@ public class Enemy : MonoBehaviour {
           body.gravityScale = 1;
 
           if (!isDead) { // avoids getting double exp if dying from poison after being attacked
-              if (!gaveExp) {
-              awardExp();
-              }
+            if (!gaveExp) {
+              AwardExp();
+            }
           }
         }
       }
@@ -670,7 +670,7 @@ public class Enemy : MonoBehaviour {
 
     if (!isDeadByPoison) { // avoids getting double exp if attacking while dying from poison
       if (!gaveExp) {
-        awardExp();
+        AwardExp();
       }
     }
   }
@@ -856,7 +856,7 @@ public class Enemy : MonoBehaviour {
               burnTime = currentTime;
               isBurning = true;
               // immediately sets the enemy color so the enemy looks burned
-              enemyColor = Helpers.GetOrException(Colors.statusColors, "burned");
+              SetEnemyColor("burned");
               isWalking = false;
               body.linearVelocity = Vector2.zero;
             }
@@ -875,6 +875,15 @@ public class Enemy : MonoBehaviour {
           }
         }
       }
+    }
+  }
+
+  public void SetEnemyColor(string statusColor) {
+    Color newStatusColor = Helpers.GetOrException(Colors.statusColors, statusColor);
+    enemyColor = newStatusColor;
+
+    if (isVariableEnemy) {
+      variableObject.GetComponent<VariableSprite>().SetColor(newStatusColor);
     }
   }
 

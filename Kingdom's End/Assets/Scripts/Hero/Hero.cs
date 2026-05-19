@@ -323,7 +323,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("basic-bow", 1));
       items.Add(new Item("arrow-standard", 21));
       items.Add(new Item("arrow-poison", 5));
-      items.Add(new Item("arrow-fire", 10));
+      items.Add(new Item("arrow-fire", 50));
       items.Add(new Item("bomb", 99));
       items.Add(new Item("skeleton-king-giant-bone", 16));
       items.Add(new Item("elixir", 99));
