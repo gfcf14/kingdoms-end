@@ -11,6 +11,7 @@ public class Colors
   public static Dictionary<string, Color> statusColors = new() {
     {"burned", new Color(0.3f, 0.3f, 0.3f)},
     {"frozen", new Color(0, 1, 1)},
+    {"normal", new Color(1, 1, 1)},
     {"poisoned", new Color(0.4f, 0, 0.4f)}
   };
 

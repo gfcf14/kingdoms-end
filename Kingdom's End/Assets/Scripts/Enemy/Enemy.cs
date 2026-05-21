@@ -563,7 +563,8 @@ public class Enemy : MonoBehaviour {
 
       if (currentTime > poisonEffectTime + poisonEffectDuration) {
         if (!isStunned) {
-          enemyRenderer.color = enemyColor;
+          // changes poison color back to original
+          SetEnemyColor("normal");
         }
 
         if (poisonAttackCounter == maxPoisonAttacks + 1) {
@@ -576,7 +577,8 @@ public class Enemy : MonoBehaviour {
         InGame.instance.PlaySound(Helpers.GetOrException(Sounds.poisonSounds, "basic"), transform.position);
         TakeDamage(Constants.arrowPoisonDamage);
         poisonEffectTime = Time.time * 1000;
-        enemyRenderer.color = Helpers.GetOrException(Colors.statusColors, "poisoned");
+        // changes to poison color
+        SetEnemyColor("poisoned");
         poisonAttackCounter++;
 
         if (currentHP <= 0) {
@@ -880,6 +882,7 @@ public class Enemy : MonoBehaviour {
 
   public void SetEnemyColor(string statusColor) {
     Color newStatusColor = Helpers.GetOrException(Colors.statusColors, statusColor);
+    enemyRenderer.color = newStatusColor;
     enemyColor = newStatusColor;
 
     if (isVariableEnemy) {
