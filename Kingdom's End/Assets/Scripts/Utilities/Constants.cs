@@ -314,6 +314,8 @@ public class Constants {
   public static string[] comparisonChecks = {"atk", "def", "crit", "luck"};
   public static string[] decimalComparisons = {"crit", "luck"};
 
+  public static string[] colorChangingEnemyTypes = {"bewitcher", "champion", "exploder", "teleporter"};
+
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};
 

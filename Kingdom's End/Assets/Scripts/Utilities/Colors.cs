@@ -111,7 +111,7 @@ public class Colors
     {"swamps", new Color(219/255f, 184/255f, 132/255f, 1)},       // #DBB884
     {"underground", new Color(184/255f, 254/255f, 201/255f, 1)},  // #B8FEC9
     {"wasteland", new Color(0/255f, 236/255f, 255/255f, 1)}       // #00ECFF
-};
+  };
 
   public static Dictionary<string, Color> uiColors = new() {
     {"green", new Color(0, 1, 0, 1)},

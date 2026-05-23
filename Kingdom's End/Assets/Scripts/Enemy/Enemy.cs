@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour {
     [NonSerialized] public Rigidbody2D body;
     [NonSerialized] public SpriteRenderer enemyRenderer;
     [SerializeField] public GameObject variableObject;
+    [NonSerialized] VariableSprite variableSpriteScript;
 
     private AudioSource audioSource;
 
@@ -123,6 +124,7 @@ public class Enemy : MonoBehaviour {
 
   // Player Related Properties
     [NonSerialized] public bool playerFound = false;
+    [SerializeField] public bool isFlashing = false;
     [NonSerialized] SpriteRenderer weaponSpriteRenderer;
     [SerializeField] public GameObject spawnedFrom;
 
@@ -372,6 +374,11 @@ public class Enemy : MonoBehaviour {
 
     isSmallEnemy = Helpers.IsValueInArray(Constants.smallEnemies, key);
     isVariableEnemy = Helpers.IsValueInArray(Constants.variableEnemies, key);
+
+    if (isVariableEnemy) { 
+      variableSpriteScript = variableObject.GetComponent<VariableSprite>();
+      variableSpriteScript.isColorChanging = Helpers.IsValueInArray(Constants.colorChangingEnemyTypes, type);
+    }
 
     // defines conditions to defend if a weapon is incoming:
     if (level - Hero.instance.playerLevel >= 10) { //  1. If the level difference is greater than or equal to 10 (stronger enemies according to story should feel impossible to defeat!)
@@ -886,15 +893,16 @@ public class Enemy : MonoBehaviour {
     enemyColor = newStatusColor;
 
     if (isVariableEnemy) {
-      variableObject.GetComponent<VariableSprite>().SetColor(newStatusColor);
+      variableSpriteScript.SetColor(newStatusColor);
     }
   }
 
   public void Flash() {
+    isFlashing = true;
     flashEffect.Flash();
 
     if (isVariableEnemy) {
-      variableObject.GetComponent<VariableSprite>().Flash();
+      variableSpriteScript.Flash();
     }
   }
 
@@ -1053,7 +1061,7 @@ public class Enemy : MonoBehaviour {
       iceBlockEnemy.GetComponent<SpriteRenderer>().sprite = enemyRenderer.sprite;
 
       if (isVariableEnemy) {
-        variableObject.GetComponent<VariableSprite>().SetFrozenVariable(iceBlockVariable);
+        variableSpriteScript.SetFrozenVariable(iceBlockVariable);
       }
 
       iceBlockScript.itemKey = droppableAndRarity[0];
