@@ -304,28 +304,19 @@ public class Enemy : MonoBehaviour {
 
     // if no such object (same type and key) was found, instantiate a new copy and assign clips based on key to states
     if (!animatorAlreadyExists) {
-      AnimatorOverrideController aoc = new AnimatorOverrideController(Instantiate(Helpers.GetOrException(Objects.animationControllers, type)));
-      AnimatorOverrideController resourceAoc = new AnimatorOverrideController(InGame.instance.GetEnemyAnimatorControllerByForm(form));
+      AnimatorOverrideController aoc = new (Instantiate(Helpers.GetOrException(Objects.animationControllers, type)));
+      AnimatorOverrideController resourceAoc = new (InGame.instance.GetEnemyAnimatorControllerByForm(form));
 
       var anims = new List<KeyValuePair<AnimationClip, AnimationClip>>();
       foreach (AnimationClip a in aoc.animationClips) {
         string stateName = a.name.Split('_')[1];
+        string expectedAnimationOverrideState = $"{key}_{stateName}";
+        AnimationClip resourceClip = Helpers.GetResourceClip(resourceAoc, key, stateName);
 
-        // TODO: consider if this is even needed or if it's easier to replicate the nymph_death animation into a nymph_death-by-poison animation
-        // Find the corresponding resource animation clip based on the enemy key and state name
-        AnimationClip resourceClip = resourceAoc.animationClips.FirstOrDefault(
-            // TODO: Consider if it's better to lookup the video by state name, since some enemies reuse animations (e.g. waterblade uses waterblade_idle.anim for both idle and watch)
-            resourceClip => resourceClip.name == key + "_" + stateName ||
-            (key == "nymph" && stateName == "death-by-poison" && resourceClip.name == "nymph_death") // nymph edge case since she uses nymph_death for regular death, and poison/burning death
-        );
-
-        // Add the original and new animation clip pair to the list
-        anims.Add(new KeyValuePair<AnimationClip, AnimationClip>(a, resourceClip));
-
-        // anims.Add(new KeyValuePair<AnimationClip, AnimationClip>(a, resourceAoc.animationClips.FirstOrDefault(
-        //   resourceClip => resourceClip.name == key + "_" + stateName ||
-        //   (key == "nymph" && stateName == "death-by-poison" && resourceClip.name == "nymph_death") // nymph edge case since she uses nymph_death for regular death, and poison/burning death
-        // )));
+        // add the original and new animation clip pair to the list if it has a value
+        if (resourceClip != null) {
+          anims.Add(new KeyValuePair<AnimationClip, AnimationClip>(a, resourceClip));
+        }
       }
       aoc.ApplyOverrides(anims);
 

@@ -693,4 +693,23 @@ public class Helpers {
   public static string GetVendorByKey(string key) {
     return GetOrException(Objects.vendorNames, key);
   }
+
+  public static AnimationClip GetResourceClip(AnimatorOverrideController resourceAoc, string key, string stateName) {
+    string expectedAnimationOverrideState = $"{key}_{stateName}";
+    AnimationClip resourceClip = resourceAoc[expectedAnimationOverrideState];
+
+    if (resourceClip == null) {
+      if (stateName == "death-by-poison" || stateName == "death-by-burning") {
+        resourceClip = resourceAoc[$"{key}_death"];
+      } else if (stateName == "air-death") {
+        resourceClip = resourceAoc[$"{key}_fly-death"];
+      } else if (stateName == "emerge-attack") {
+        resourceClip = resourceAoc[$"{key}_fly-attack"];
+      } else if (stateName == "watch") {
+        resourceClip = resourceAoc[$"{key}_idle"];
+      }
+    }
+
+    return resourceClip;
+  }
 }
