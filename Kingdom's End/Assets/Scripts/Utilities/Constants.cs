@@ -162,14 +162,14 @@ public class Constants {
   // large flying enemies - to avoid floating them too high given their dimensions
   public static string[] largeFlyingEnemies = {"siren", "sylphid"};
   public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
-  public static string[] lowLevelMoney = {"money-50", "money-100"};
+  public static string[] lowLevelMoney = {"money-20", "money-50"};
   public static string[] midLevelFood = {"pineapple", "coconut", "honeydew", "watermelon", "wine"};
 
   // TODO: wine is on high level food array as placeholder. Remove once better food items are implemented
   public static string[] highLevelFood = {"wine"};
   public static string[] goblinKnives = {"bandit-knife", "knife"};
   public static string[] goblinMidItem4 = {"silver-bar", "bronze-ingot"};
-  public static string[] midLevelMoney = {"money-200", "money-500"};
+  public static string[] midLevelMoney = {"money-100", "money-200"};
   public static string[] goblinHighItem4 = {"silver-ingot", "gold-bar"};
 
   // TODO: silver bracelet is on low level bracelets array as placeholder. Remove once worse bracelets are implemented
@@ -181,7 +181,7 @@ public class Constants {
   public static string[] midLevelPotions = {"mid-potion", "magic-vial"};
   public static string[] highLevelPotions = {"high-potion", "magic-bottle"};
   public static string[] recalculatableItemKeys = {"goblin-high-item4", "goblin-knives", "goblin-mid-item4", "high-food", "high-potions", "low-bracelets", "low-food", "low-money", "low-pendants", "low-potions", "mid-food", "mid-money", "mid-potions"};
-  public static string[] moneyItemKeys = {"money-50", "money-100", "money-200", "money-500", "money-1000", "money-2000", "money-5000"};
+  public static string[] moneyItemKeys = {"money-20", "money-50", "money-100", "money-200", "money-500", "money-1000", "money-2000"};
   public static string[] rotateDirections = {"west", "east"};
 
   public static string[] nonGradientAreas = {"hellscape", "skyway", "underground"};

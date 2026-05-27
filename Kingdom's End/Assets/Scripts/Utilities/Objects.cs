@@ -636,13 +636,13 @@ public class Objects
   };
 
   public static Dictionary<string, MoneyItem> moneyItems = new() {
-    {"money-50", new MoneyItem(){ image = Sprites.moneyImages[0], increment = 50, text = "$50"}},
-    {"money-100", new MoneyItem(){ image = Sprites.moneyImages[1], increment = 100, text = "$100"}},
-    {"money-200", new MoneyItem(){ image = Sprites.moneyImages[2], increment = 200, text = "$200"}},
-    {"money-500", new MoneyItem(){ image = Sprites.moneyImages[3], increment = 500, text = "$500"}},
-    {"money-1000", new MoneyItem(){ image = Sprites.moneyImages[4], increment = 1000, text = "$1000"}},
-    {"money-2000", new MoneyItem(){ image = Sprites.moneyImages[5], increment = 2000, text = "$2000"}},
-    {"money-5000", new MoneyItem(){ image = Sprites.moneyImages[6], increment = 5000, text = "$5000"}}
+    {"money-20", new MoneyItem(){ image = Sprites.moneyImages[0], increment = 20, text = "$20"}},
+    {"money-50", new MoneyItem(){ image = Sprites.moneyImages[1], increment = 50, text = "$50"}},
+    {"money-100", new MoneyItem(){ image = Sprites.moneyImages[2], increment = 100, text = "$100"}},
+    {"money-200", new MoneyItem(){ image = Sprites.moneyImages[3], increment = 200, text = "$200"}},
+    {"money-500", new MoneyItem(){ image = Sprites.moneyImages[4], increment = 500, text = "$500"}},
+    {"money-1000", new MoneyItem(){ image = Sprites.moneyImages[5], increment = 1000, text = "$1000"}},
+    {"money-2000", new MoneyItem(){ image = Sprites.moneyImages[6], increment = 2000, text = "$2000"}}
   };
 
   public static Dictionary<string, CompositePauseImage> compositePauseImages = new() {
