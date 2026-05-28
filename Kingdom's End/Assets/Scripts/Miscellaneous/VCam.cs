@@ -59,7 +59,7 @@ public class VCam : MonoBehaviour
     }
 
     // Find all relics in the scene
-    Relic[] relicObjects = FindObjectsOfType<Relic>();
+    Relic[] relicObjects = Object.FindObjectsByType<Relic>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
     foreach (var relic in relicObjects) {
       // if any relics are found that exist in the HashSet, then the player already owns them and thus these should be destroyed

@@ -31,7 +31,7 @@ public class MainOverlay : MonoBehaviour {
   }
 
   void Start() {
-    if (FindObjectsOfType<InGame>().Length == 0) {
+    if (Object.FindObjectsByType<InGame>(FindObjectsInactive.Include, FindObjectsSortMode.None).Length == 0) {
       Instantiate(Helpers.GetOrException(Objects.prefabs, "in-game"), Vector2.zero, Quaternion.identity);
     } else {
       AssignTilemaps();
