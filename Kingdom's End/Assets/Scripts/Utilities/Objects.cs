@@ -13,7 +13,7 @@ public class Objects
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
     // TODO: modify enemy spawner instantiation to introduce one variable enemy per room in part 1, 2 in part 2, and 3 in part 3
     // variable enemies to include: "nomad", "wanderess", "luxhusk"
-    {"hellscape"  , new string[]{ "werewolf"}},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"hellscape"  , new string[]{ "ogre"}},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
     {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
