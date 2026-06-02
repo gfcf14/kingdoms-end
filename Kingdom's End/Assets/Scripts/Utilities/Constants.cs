@@ -152,7 +152,7 @@ public class Constants {
   // refers to enemies who can naturally fly
   public static string[] flyingEnemies = {"fairy", "frostbird", "leatherwing", "neret", "ocugoyle", "phoenix", "pixie", "saraph", "siren", "skelewing", "sylphid", "thunderbird", "yanmabel", "waterblade"};
   // refers to enemies who are normally on the ground but can naturally fly
-  public static string[] wingedEnemies = {"angel", "archeia", "demon", "fiendlord", "harpy", "karasu", "scarabkin", "seraphim", "succubus"};
+  public static string[] wingedEnemies = {"angel", "archangel", "archdemon", "archeia", "demon", "fiendlord", "harpy", "karasu", "scarabkin", "seraphim", "succubus"};
   // refers to enemies who are mostly grounded but by unique means can fly
   public static string[] aerialEnemies = {"shangsen", "vampire"};
   // refers to beast like enemies whose width is a lot bigger than their height
