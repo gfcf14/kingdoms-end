@@ -707,6 +707,8 @@ public class Helpers {
         resourceClip = resourceAoc[$"{key}_fly-attack"];
       } else if (stateName == "watch") {
         resourceClip = resourceAoc[$"{key}_idle"];
+      } else if (stateName == "fly") {
+        resourceClip = resourceAoc[$"{key}_charge"];
       }
     }
 

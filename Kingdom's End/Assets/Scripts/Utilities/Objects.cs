@@ -6,23 +6,23 @@ public class Objects
 {
   public static Dictionary<string, string[]> enemyKeysByArea = new() {
     {"calderas"   , new string[]{ "bulgae"    , "flygmy"    , "golem"     , "harpy"       , "karasu"        , "phoenix"     }},
-    {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "saraph"      , "sandman"       , "scarabkin"   }},
+    {"desert"     , new string[]{ "dunestiff" , "mummy"     , "naga"      , "sandman"     , "saraph"        , "scarabkin"   }},
     {"forest"     , new string[]{ "dryad"     , "fairy"     , "faun"      , "leprechaun"  , "unicorn"       , "werewolf"    }},
     // TODO: include fortress based enemies here when fortresses are available
     // enemies to include: "knight", "janissary", "mamluk", "entman", "monsman", "zombie", "petroman", "thalassoman", "frostman", "vampire", "skullguard", "seraphim", "fiendlord"
     {"glaciers"   , new string[]{ "dyrgja"    , "frostbird" , "glupus"    , "jotunn"      , "snowman"       , "yukionna"    }},
     // TODO: modify enemy spawner instantiation to introduce one variable enemy per room in part 1, 2 in part 2, and 3 in part 3
     // variable enemies to include: "nomad", "wanderess", "luxhusk"
-    {"hellscape"  , new string[]{ "glupus"}},//"archdemon" , "demon"     , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
-    {"meadows"    , new string[]{ "centaur"   , "dwarf"     , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
-    {"mountains"  , new string[]{ "cyclops"   , "gnome"     , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
-    {"oceans"     , new string[]{ "botarosa"  , "merman"    , "mermaid"   , "myrsel"      , "hippocampus"   , "waterblade"  }},
-    {"ruins"      , new string[]{ "blob"      , "brazenman" , "cusith"    , "jorogumo"    , "neret"         , "redcap"      }},
-    {"seaside"    , new string[]{ "kappa"     , "kelpie"    , "menehune"  , "nereid"      , "selkie"        , "siren"       }},
-    {"skyway"     , new string[]{ "angel"     , "archangel" , "archeia"   , "elf"         , "pegasus"       , "sylphid"     }},
-    {"swamps"     , new string[]{ "bunyip"    , "mosswyn"   , "nixie"     , "ogre"        , "pishtaco"      , "yanmabel"    }},
-    {"underground", new string[]{ "bluecap"   , "canivernus", "kabouter"  , "leatherwing" , "morlock"       , "samodiva"    }},
-    {"wasteland"  , new string[]{ "crone"     , "empusa"    , "hellhound" , "skeleton"    , "skeleton-king" , "skelewing"   }}
+    {"hellscape"  , new string[]{ "archdemon" , "demon"      , "imp"       , "nightmare"   , "ocugoyle"      , "succubus"    }},
+    {"meadows"    , new string[]{ "centaur"   , "dwarf"      , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
+    {"mountains"  , new string[]{ "cyclops"   , "gnome"      , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
+    {"oceans"     , new string[]{ "botarosa"  , "hippocampus", "mermaid"   , "merman"      , "myrsel"        , "waterblade"  }},
+    {"ruins"      , new string[]{ "blob"      , "brazenman"  , "cusith"    , "jorogumo"    , "neret"         , "redcap"      }},
+    {"seaside"    , new string[]{ "kappa"     , "kelpie"     , "menehune"  , "nereid"      , "selkie"        , "siren"       }},
+    {"skyway"     , new string[]{ "angel"     , "archangel"  , "archeia"   , "elf"         , "pegasus"       , "sylphid"     }},
+    {"swamps"     , new string[]{ "bunyip"    , "mosswyn"    , "nixie"     , "ogre"        , "pishtaco"      , "yanmabel"    }},
+    {"underground", new string[]{ "bluecap"   , "canivernus" , "kabouter"  , "leatherwing" , "morlock"       , "samodiva"    }},
+    {"wasteland"  , new string[]{ "crone"     , "empusa"     , "hellhound" , "skeleton"    , "skeleton-king" , "skelewing"   }}
   };
 
   public static Dictionary<string, string[]> enemyTypesByCondition = new() {
@@ -765,7 +765,7 @@ public class Objects
     {"selkie", new EnemyStats() {name = "Selkie", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"seraphim", new EnemyStats() {name = "Seraphim", form = "fortress", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"shangsen", new EnemyStats() {name = "Shangsen", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
-    {"siren", new EnemyStats() {name = "Siren", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 15, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 3f, edgeCastLength = 1, arrowBurnPosition = 1, mass = 8f}},
+    {"siren", new EnemyStats() {name = "Siren", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 15, crit = 0.0035f, exp = 40, speed= 3, reach = 0.1f, longReach = 3f, edgeCastLength = 1, arrowBurnPosition = 1, mass = 8f}},
     {"skeleton-king", new EnemyStats() {name = "Skeleton King", form = "giant", baseMaterial = "boots", normalAttackType = "blunt", hp = 50, atk = 25, def =15, crit = 0.0035f, exp = 50, speed= 2, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
     {"skeleton", new EnemyStats() {name = "Skeleton", form = "man", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 10, crit = 0.001f, exp = 20, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 7.5f}},
     {"skelewing", new EnemyStats() {name = "Skelewing", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.25f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
@@ -773,7 +773,7 @@ public class Objects
     {"snowman", new EnemyStats() {name = "Snowman", form = "man", baseMaterial = "boots", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"succubus", new EnemyStats() {name = "Succubus", form = "woman", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.15f, longReach = 4f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"sugecapre", new EnemyStats() {name = "Sugecapre", form = "beast", baseMaterial = "barefoot", normalAttackType = "kick", hp = 30, atk = 25, def = 20, crit = 0.001f, exp = 40, speed= 4, reach = 0.15f, longReach = 6f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 20f}},
-    {"sylphid", new EnemyStats() {name = "Sylphid", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 15, crit = 0.0035f, exp = 40, speed= 3, reach = 0.3f, longReach = 3f, edgeCastLength = 1, arrowBurnPosition = 1, mass = 8f}},
+    {"sylphid", new EnemyStats() {name = "Sylphid", form = "flying", baseMaterial = "barefoot", normalAttackType = "punch", hp = 40, atk = 20, def = 15, crit = 0.0035f, exp = 40, speed= 3, reach = 0.1f, longReach = 3f, edgeCastLength = 1, arrowBurnPosition = 1, mass = 8f}},
     {"thalassoman", new EnemyStats() {name = "Thalassoman", form = "fortress", baseMaterial = "barefoot", normalAttackType = "punch", hp = 30, atk = 15, def = 15, crit = 0.001f, exp = 25, speed= 3, reach = 0.35f, longReach = 4.5f, edgeCastLength = 0.5f, arrowBurnPosition = 1, mass = 8f}},
     {"thunderbird", new EnemyStats() {name = "Thunderbird", form = "flying", baseMaterial = "barefoot", normalAttackType = "kick", hp = 40, atk = 10, def = 25, crit = 0.0035f, exp = 40, speed= 3, reach = 0.25f, longReach = 7f, edgeCastLength = 1, arrowBurnPosition = 0.4f, mass = 3f}},
     {"troll", new EnemyStats() {name = "Troll", form = "giant", baseMaterial = "barefoot", normalAttackType = "punch", hp = 50, atk = 20, def =25, crit = 0.0035f, exp = 45, speed= 3, reach = 0.175f, longReach = 9f, edgeCastLength = 1, arrowBurnPosition = 1.5f, mass = 15f}},
