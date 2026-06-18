@@ -7,7 +7,10 @@ public class EnemyGrounder : MonoBehaviour {
   void Update(){}
 
   public void OnCollisionEnter2D(Collision2D col) {
-    if (Helpers.IsValueInArray(Constants.enemyNonColliderNames, col.gameObject.name.Replace("(Clone)", ""))) {
+    bool isPlayerRelated = col.gameObject.name.Contains("Hero") || col.gameObject.name.Contains("DirectionCheck");
+    bool isEnemyRelated = Helpers.IsValueInArray(Constants.enemyNonColliderNames, col.gameObject.name.Replace("(Clone)", ""));
+
+    if (isPlayerRelated || isEnemyRelated) {
       Physics2D.IgnoreCollision(col.collider, GetComponent<BoxCollider2D>());
     }
   }
