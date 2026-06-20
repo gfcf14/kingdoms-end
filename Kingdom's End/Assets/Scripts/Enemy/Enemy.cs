@@ -1189,13 +1189,16 @@ public class Enemy : MonoBehaviour {
 
   public void AttackLogic(float xPositionOffset, float castLength) {
     Vector2 proximityVector = new Vector2(transform.position.x + (xPositionOffset * direction), transform.position.y + enemyHeight / 2);
-    RaycastHit2D playerCast = Physics2D.Raycast(proximityVector, forwardCastDirection, castLength);
+    RaycastHit2D[] playerCast = Physics2D.RaycastAll(proximityVector, forwardCastDirection, castLength);
     Debug.DrawRay(proximityVector, forwardCastDirection.normalized * castLength, Helpers.GetOrException(Colors.raycastColors, "player"));
 
-    if (playerCast && playerCast.collider.tag == "Hero" && !playerCast.collider.GetComponent<Hero>().isInvulnerable) {
-      isAttacking = true;
-      body.linearVelocity = Vector2.zero;
+    foreach (RaycastHit2D hit in playerCast) {
+      if (hit.collider && hit.collider.tag == "Hero" && !hit.collider.GetComponent<Hero>().isInvulnerable) {
+        isAttacking = true;
+        body.linearVelocity = Vector2.zero;
+      }
     }
+    
   }
 
   public void CheckForPlayer(float forwardCastLength) {
