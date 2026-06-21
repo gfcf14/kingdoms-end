@@ -60,7 +60,8 @@ public class EnemyCollider : MonoBehaviour {
           }
         } else if (enemy.type == "ambusher" && !enemy.isAttacking) {
           if (col.gameObject.CompareTag("Floor")) {
-              if (enemy.canLand && !enemy.isWatching) {
+            // TODO: consider if this logic is necessary now that the grounder handles collision for ambusher to start watching
+            if (enemy.canLand && !enemy.isWatching) {
               enemy.isWatching = true;
               enemy.body.linearVelocity = Vector2.zero;
               enemy.transform.position = col.ClosestPoint(transform.position);
@@ -70,8 +71,7 @@ public class EnemyCollider : MonoBehaviour {
           }
         } else {
           // flying enemies who need to stay off the ground once landing after an ambush should float
-          if (enemy.type == "ambusher" && enemy.isFlyingEnemy && col.gameObject.CompareTag("Floor"))
-          {
+          if (enemy.type == "ambusher" && enemy.isFlyingEnemy && col.gameObject.CompareTag("Floor")) {
             enemy.FloatEnemy();
           }
 

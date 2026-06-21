@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyGrounder : MonoBehaviour {
-  void Start() {}
+  Enemy enemy;
+
+  void Start() {
+    enemy = gameObject.transform.parent.gameObject.GetComponent<Enemy>();
+  }
   void Update(){}
 
   public void OnCollisionEnter2D(Collision2D col) {
@@ -12,6 +16,12 @@ public class EnemyGrounder : MonoBehaviour {
 
     if (isPlayerRelated || isEnemyRelated) {
       Physics2D.IgnoreCollision(col.collider, GetComponent<BoxCollider2D>());
+    } else {
+      if (enemy.type == "ambusher" && enemy.canLand) {
+        if (col.gameObject.CompareTag("Floor")) {
+          enemy.isWatching = true;
+        }
+      }
     }
   }
 }

@@ -6,7 +6,7 @@ public class Ambusher : MonoBehaviour {
 
   // Raycast properties
     public float forwardCastLength = 2f;
-    public float jumpHeight = 8f;
+    public float jumpHeight = 6f;
 
   void Emerge() {
     enemy.body.linearVelocity = new Vector2(0, jumpHeight);
