@@ -29,8 +29,10 @@ public class AmbushFloor : MonoBehaviour {
   }
 
   public void SpawnEnemy() {
-    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.ambushFloorSounds, area), transform.position);
-    InGame.instance.SpawnEnemy(transform.position, enemyKey, enemyType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform.parent);
+    Vector2 spawnPosition = new (transform.position.x, transform.position.y);
+
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.ambushFloorSounds, area), spawnPosition);
+    InGame.instance.SpawnEnemy(spawnPosition, enemyKey, enemyType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform.parent);
   }
 
   public void Destroy() {

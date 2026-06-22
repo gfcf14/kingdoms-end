@@ -17,7 +17,7 @@ public class Objects
     {"meadows"    , new string[]{ "centaur"   , "dwarf"      , "goblin"    , "nymph"       , "pixie"         , "troll"       }},
     {"mountains"  , new string[]{ "cyclops"   , "gnome"      , "kitsune"   , "shangsen"    , "sugecapre"     , "thunderbird" }},
     {"oceans"     , new string[]{ "botarosa"  , "hippocampus", "mermaid"   , "merman"      , "myrsel"        , "waterblade"  }},
-    {"ruins"      , new string[]{ "jorogumo"}},//"blob"      , "brazenman"  , "cusith"    , "jorogumo"    , "neret"         , "redcap"      }},
+    {"ruins"      , new string[]{ "blob"      , "brazenman"  , "cusith"    , "jorogumo"    , "neret"         , "redcap"      }},
     {"seaside"    , new string[]{ "kappa"     , "kelpie"     , "menehune"  , "nereid"      , "selkie"        , "siren"       }},
     {"skyway"     , new string[]{ "angel"     , "archangel"  , "archeia"   , "elf"         , "pegasus"       , "sylphid"     }},
     {"swamps"     , new string[]{ "bunyip"    , "mosswyn"    , "nixie"     , "ogre"        , "pishtaco"      , "yanmabel"    }},
