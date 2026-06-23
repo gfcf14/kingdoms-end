@@ -96,7 +96,8 @@ public class TitleCanvas : MonoBehaviour {
 
   public void TransitionToWorld() {
     // TODO: ensure this changes for when game data can be loaded from a save slot
-    SceneManager.LoadScene("Meadows");
+    // when loading, make sure GameData.area changes PRIOR to calling the line below
+    SceneManager.LoadScene(Helpers.GetOrException(Objects.areaToScene, GameData.area));
   }
 
   public void Quit() {

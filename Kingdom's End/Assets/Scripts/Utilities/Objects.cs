@@ -1444,6 +1444,23 @@ public class Objects
     {"wasteland", "bedrock"}
   };
 
+  public static Dictionary<string, string> areaToScene = new() {
+    {"calderas", "Calderas"},
+    {"desert", "Desert"},
+    {"forest", "Forest"},
+    {"glaciers", "Glaciers"},
+    {"hellscape", "Hellscape"},
+    {"meadows", "Meadows"},
+    {"mountains", "Mountains"},
+    {"oceans", "Oceans"},
+    {"ruins", "Ruins"},
+    {"seaside", "Seaside"},
+    {"skyway", "Skyway"},
+    {"swamps", "Swamps"},
+    {"underground", "Underground"},
+    {"wasteland", "Wasteland"}
+  };
+
   public static Dictionary<string, ZoneSpecs> zoneSpecs = new() {
     {"bedrock", new ZoneSpecs() {animSpeed = 1, groundMaterial = "bedrock", jumpHeight = 8f, moveFriction = 0, moveSpeed = 1}},
     {"bentgrass", new ZoneSpecs() {animSpeed = 1, groundMaterial = "bentgrass", jumpHeight = 8f, moveFriction = 0, moveSpeed = 1}},
@@ -1454,7 +1471,7 @@ public class Objects
     {"sand", new ZoneSpecs() {animSpeed = 1, groundMaterial = "sand", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
     {"snow", new ZoneSpecs() {animSpeed = 1, groundMaterial = "snow", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.66f}},
     {"tile", new ZoneSpecs() {animSpeed = 1, groundMaterial = "tile", jumpHeight = 8f, moveFriction = 0, moveSpeed = 1}},
-    { "water-deep", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 10f, moveFriction = 0, moveSpeed = 0.8f}},
+    {"water-deep", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 10f, moveFriction = 0, moveSpeed = 0.8f}},
     {"water-shallow", new ZoneSpecs() {animSpeed = 0.66f, groundMaterial = "wetland", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
     {"wetland", new ZoneSpecs() {animSpeed = 0.8f, groundMaterial = "wetland", jumpHeight = 8f, moveFriction = 0, moveSpeed = 0.8f}},
   };
