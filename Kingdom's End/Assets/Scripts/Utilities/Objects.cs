@@ -69,6 +69,7 @@ public class Objects
     {"pillar-swamps", Resources.Load("Prefabs/Pillar - Swamps") as GameObject},
     {"pillar-wasteland", Resources.Load("Prefabs/Pillar - Wasteland") as GameObject},
     {"projectile", Resources.Load("Prefabs/Projectile") as GameObject},
+    {"pulse", Resources.Load("Prefabs/SpritePulse") as GameObject},
     {"rock-explosion", Resources.Load("Prefabs/RockExplosion") as GameObject},
     {"savepoint-calderas", Resources.Load("Prefabs/Save Point - Calderas") as GameObject},
     {"savepoint-desert", Resources.Load("Prefabs/Save Point - Desert") as GameObject},
