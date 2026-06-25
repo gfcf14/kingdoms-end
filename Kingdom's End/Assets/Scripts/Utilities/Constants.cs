@@ -13,6 +13,8 @@ public class Constants {
     new string[] {"valuable"},
   };
 
+  public static string[] elements = {"air", "dark", "earth", "fire", "ice", "light", "lightning", "water"};
+
   public static string[] variableEnemies = { "luxhusk", "nomad", "wanderess" };
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };

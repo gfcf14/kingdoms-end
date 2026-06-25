@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] public string key;
     [SerializeField] public string specificDrop;
     [SerializeField] public string summonKey;
+    [SerializeField] public string elementalMagic = "";
     [SerializeField] public int level;
     [SerializeField] public int currentHP;
     [SerializeField] public int maxHP;
@@ -51,10 +52,6 @@ public class Enemy : MonoBehaviour {
 
     [NonSerialized] public int deadAnimationIncrement = 0;
     [NonSerialized] public int poisonAttackCounter = 1;
-
-
-    [NonSerialized] string[] elementResistances;
-
 
     public Color enemyColor;
 
@@ -226,13 +223,6 @@ public class Enemy : MonoBehaviour {
         isWatching = true;
       }
     }
-
-    elementResistances = new string[] {};
-
-    // TODO: consider removing the enemy color from resistances to use effects instead
-    enemyColor = Helpers.GetColorFromResistances(elementResistances);
-    flashEffect.repaintColor = enemyColor;
-    enemyRenderer.color = enemyColor;
 
     EnemyStats enemyStats = Helpers.GetOrException(Objects.enemyStats, key);
     form = enemyStats.form;
@@ -610,6 +600,7 @@ public class Enemy : MonoBehaviour {
       if (!needsCoolDown) {
         // ensures the hero isn't damaged after being damaged
         if (!Hero.instance.isInvulnerable) {
+          // TODO: ensure elemental magic can pass as elemental magic damage delivered, where appropriate (e.g. bewitchers lower almost all HP so it might not be fair to also add elemental magic damage)
           Hero.instance.ReceiveEnemyAttack(gameObject, col.ClosestPoint(transform.position), bewitch: type == "bewitcher");
         }
         needsCoolDown = true;
@@ -738,7 +729,7 @@ public class Enemy : MonoBehaviour {
             string arrowUsed = parentArrow.type;
 
             mustTakeDamage = !parentArrow.hasCollided;
-            willBurn = parentArrow.type == "arrow-fire" && !Helpers.IsFireResistant(elementResistances) && currentHP <= Constants.arrowExplosionDamage;
+            willBurn = parentArrow.type == "arrow-fire" &&  elementalMagic == "fire" && currentHP <= Constants.arrowExplosionDamage;
 
             if (mustTakeDamage) {
               int damage = (def * (isDefending ? 2 : 1)) - ((Helpers.GetDamage(arrowUsed) + Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (isCritical ? 2 : 1));
@@ -752,7 +743,7 @@ public class Enemy : MonoBehaviour {
               // do not play standard damage sound if the arrow used is a fire arrow
               TakeDamage(expectedDamage, col.ClosestPoint(transform.position), isCritical, parentArrow.type == "arrow-fire" ? "" : "arrow");
 
-              if (parentArrow.type == "arrow-poison" && !Helpers.IsPoisonResistant(elementResistances)) {
+              if (parentArrow.type == "arrow-poison" && elementalMagic != "dark") {
                 isPoisoned = true;
                 poisonTime = Time.time * 1000;
               }
@@ -837,7 +828,7 @@ public class Enemy : MonoBehaviour {
         string colName = col.gameObject.name.Replace("(Clone)", "");
 
         if (colName == "Explosion" || colName == "ArrowBurn") {
-          bool willBurn = !Helpers.IsFireResistant(elementResistances) && currentHP <= Constants.arrowExplosionDamage;
+          bool willBurn = elementalMagic != "fire" && currentHP <= Constants.arrowExplosionDamage;
 
           if (willBurn) {
             float currentTime = Time.time * 1000;
@@ -861,7 +852,7 @@ public class Enemy : MonoBehaviour {
               body.linearVelocity = Vector2.zero;
             }
           } else {
-            if (!Helpers.IsFireResistant(elementResistances)) {
+            if (elementalMagic != "fire") {
               int damage = def - Constants.arrowExplosionDamage;
               TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position));
 

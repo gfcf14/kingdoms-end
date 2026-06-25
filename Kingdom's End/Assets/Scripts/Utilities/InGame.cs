@@ -389,6 +389,22 @@ public class InGame : MonoBehaviour {
 
     // TODO: implement a better way to assign level values
     enemyScript.level = level;
+
+    bool shouldHaveMagic = UnityEngine.Random.Range(0, 2) == 1;
+
+    if (shouldHaveMagic) {
+      GameObject pulseEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "pulse"), Vector2.zero, Quaternion.identity, enemySpawned.transform);
+      pulseEffect.transform.localPosition = Vector2.zero;
+
+      // TODO: remove this once all magic effects are implemented
+      // string enemyElementalMagic = "";
+
+      // TODO: uncomment this once all magic effects are implemented
+      string enemyElementalMagic = Helpers.GetRandomItemFromGroup(Constants.elements);
+
+      enemyScript.elementalMagic = enemyElementalMagic;
+      pulseEffect.GetComponent<Pulse>().SetOutlineColor(Helpers.GetOrException(Colors.pulseEffectColors, enemyElementalMagic));
+    }
   }
 
   public void SetBossName(string bossName) {

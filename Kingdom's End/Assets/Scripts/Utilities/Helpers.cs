@@ -46,14 +46,6 @@ public class Helpers {
     return new Color(r / resistancesLength, g / resistancesLength, b / resistancesLength);
   }
 
-  public static bool IsFireResistant(string[] resistances) {
-    return IsValueInArray(resistances, "fire");
-  }
-
-  public static bool IsPoisonResistant(string[] resistances) {
-    return IsValueInArray(resistances, "poison");
-  }
-
   public static void TogglePause(bool pauseState, GameObject pauseCanvas) {
     if (pauseState) {
       Time.timeScale = 0;

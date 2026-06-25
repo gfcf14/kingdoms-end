@@ -138,4 +138,16 @@ public class Colors
     {"highlighted", new Color(49/255f, 124/255f, 52/255f)},
     {"unselected", new Color(0, 0, 0, 0)}
   };
+
+  public static Dictionary<string, Color> pulseEffectColors = new() {
+    {"air", new Color(124/255f, 252/255f, 0/255f, 1f)},
+    {"dark", new Color(61/255f, 61/255f, 61/255f, 1f)},
+    {"earth", new Color(137/255f, 67/255f, 17/255f, 1f)},
+    {"fire", new Color(255/255f, 69/255f, 0/255f, 1f)},
+    {"ice", new Color(0/255f, 255/255f, 255/255f, 1f)},
+    {"light", new Color(196/255f, 196/255f, 196/255f, 1f)},
+    {"lightning", new Color(255/255f, 215/255f, 0/255f, 1f)},
+    {"speed", new Color(0, 0, 1, 1f)},
+    {"water", new Color(30/255f, 144/255f, 255/255f, 1f)}
+  };
 }
