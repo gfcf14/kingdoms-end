@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour {
     [NonSerialized] public int deadAnimationIncrement = 0;
     [NonSerialized] public int poisonAttackCounter = 1;
 
-    public Color enemyColor;
+    public Color enemyColor = Color.white;
 
 
     [NonSerialized] public Vector2 deadPosition;
@@ -223,6 +223,10 @@ public class Enemy : MonoBehaviour {
         isWatching = true;
       }
     }
+
+    // TODO: consider how to simplify this usage
+    flashEffect.repaintColor = enemyColor;
+    enemyRenderer.color = enemyColor;
 
     EnemyStats enemyStats = Helpers.GetOrException(Objects.enemyStats, key);
     form = enemyStats.form;
@@ -600,8 +604,7 @@ public class Enemy : MonoBehaviour {
       if (!needsCoolDown) {
         // ensures the hero isn't damaged after being damaged
         if (!Hero.instance.isInvulnerable) {
-          // TODO: ensure elemental magic can pass as elemental magic damage delivered, where appropriate (e.g. bewitchers lower almost all HP so it might not be fair to also add elemental magic damage)
-          Hero.instance.ReceiveEnemyAttack(gameObject, col.ClosestPoint(transform.position), bewitch: type == "bewitcher");
+          Hero.instance.ReceiveEnemyAttack(gameObject, col.ClosestPoint(transform.position), elementalMagic, bewitch: type == "bewitcher");
         }
         needsCoolDown = true;
       }

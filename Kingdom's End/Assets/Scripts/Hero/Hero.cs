@@ -1716,13 +1716,13 @@ public class Hero : MonoBehaviour {
     ReceiveAttack(contactPoint, xPosition: explosionScript.transform.position.x, atk: explosionScript.damage, attackType: "", criticalRate: -1);
   }
 
-  public void ReceiveEnemyAttack(GameObject enemy, Vector2 contactPoint, bool bewitch = false) {
+  public void ReceiveEnemyAttack(GameObject enemy, Vector2 contactPoint, string elementalMagic = "", bool bewitch = false) {
     Enemy enemyScript = enemy.GetComponent<Enemy>();
 
-    ReceiveAttack(contactPoint, xPosition: enemyScript.transform.position.x, atk: enemyScript.atk, attackType: enemyScript.normalAttackType, criticalRate: enemyScript.criticalRate,  isAttacking: enemyScript.isAttacking, enemyScript, bewitch);
+    ReceiveAttack(contactPoint, xPosition: enemyScript.transform.position.x, atk: enemyScript.atk, attackType: enemyScript.normalAttackType, criticalRate: enemyScript.criticalRate, elementalMagic,  isAttacking: enemyScript.isAttacking, enemyScript, bewitch);
   }
 
-  public void ReceiveAttack(Vector2 contactPoint, float xPosition, int atk, string attackType, float criticalRate, bool isAttacking = true, Enemy enemyScript = null, bool bewitch = false) {
+  public void ReceiveAttack(Vector2 contactPoint, float xPosition, int atk, string attackType, float criticalRate, string elementalMagic = "", bool isAttacking = true, Enemy enemyScript = null, bool bewitch = false) {
     if (isAttacking) {
       float currentX = transform.position.x;
       float enemyX = xPosition;
@@ -1736,6 +1736,16 @@ public class Hero : MonoBehaviour {
       }
 
       if (mustTakeDamage) {
+        if (elementalMagic != "") {
+          bool resistsElementalDamage = magicResistances.FirstOrDefault(resistance => resistance.name == elementalMagic).frequency > 0 || effectMagicResistances.FirstOrDefault(resistance => resistance.name == elementalMagic).frequency > 0;
+
+          if (!resistsElementalDamage) {
+            InGame.instance.PlaySound(Helpers.GetOrException(Sounds.elementDamageSounds, elementalMagic), transform.position);
+
+            // TODO: implement specific elemental damage effects here
+          }
+        }
+
         bool isCritical = bewitch ? true : Helpers.IsCritical(criticalRate);
         int damage = bewitch ? -(currentHP - Constants.minimumDamageDealt) : (stamina + (int)equippedSTA + (int)effectSTA) - (atk * (isCritical ? 2 : 1));
         // TODO: modify first argument based on different attack type used by the enemy

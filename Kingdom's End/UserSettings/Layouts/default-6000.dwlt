@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2558.6667
     height: 1349.3334
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 106
+  controlID: 181
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 107
+  controlID: 182
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 56}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 74
+  controlID: 183
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -247,8 +247,8 @@ MonoBehaviour:
     y: 0
     width: 1112.6667
     height: 646
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -284,7 +284,7 @@ MonoBehaviour:
   - {fileID: 23}
   - {fileID: 24}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 3
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -304,8 +304,8 @@ MonoBehaviour:
     y: 0
     width: 428.66675
     height: 1293.3334
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 25}
   m_Panes:
   - {fileID: 25}
@@ -675,8 +675,8 @@ MonoBehaviour:
   m_MipLevel: 0
   m_Zoom: -1
   m_ScrollPosition: {x: 0, y: 0}
-  m_SelectedObject: {fileID: 0}
-  m_SelectedSpriteRectGUID: 8f71336929423c3c0800000000000000
+  m_SelectedObject: {fileID: 3071503587199641555, guid: 63a8754ca9ac67b46bcc2986578b240e, type: 3}
+  m_SelectedSpriteRectGUID: 8b41631f3a28ace20800000000000000
   m_LastUsedModuleTypeName: UnityEditor.U2D.Sprites.SpriteFrameModule
 --- !u!114 &15
 MonoBehaviour:
@@ -719,22 +719,35 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 135868
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -27868
-      - m_Data: -19626
-      - m_Data: -1540
+      - m_Data: -77126
+      - m_Data: -76770
+      - m_Data: -72282
+      - m_Data: -62240
+      - m_Data: -53146
+      - m_Data: -21404
+      - m_Data: -6666
+      - m_Data: -6430
+      - m_Data: -6268
       - m_Data: -1342
       - m_Data: -12
-      - m_Data: 133288
-      - m_Data: 134090
-      - m_Data: 134792
+      - m_Data: 162334
+      - m_Data: 162470
+      - m_Data: 162714
+      - m_Data: 162810
+      - m_Data: 162984
+      - m_Data: 179474
+      - m_Data: 184740
+      - m_Data: 184984
+      - m_Data: 185080
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: SpritePulse(Clone)
-        m_OriginalName: SpritePulse(Clone)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
@@ -742,10 +755,10 @@ MonoBehaviour:
           width: 0
           height: 0
         m_UserData:
-          m_Data: -19678
+          m_Data: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 8}
@@ -1365,9 +1378,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -71.32716, y: 1.8383325, z: -0.0010566171}
+    m_Target: {x: -203.6337, y: -224.27682, z: -0.09315537}
     speed: 2
-    m_Value: {x: -71.25646, y: 1.8116161, z: -0.00024785986}
+    m_Value: {x: -203.6337, y: -224.27682, z: -0.09315537}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1417,9 +1430,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1.8781275
+    m_Target: 11.087831
     speed: 2
-    m_Value: 1.7972511
+    m_Value: 11.087831
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1532,7 +1545,7 @@ MonoBehaviour:
   m_SerializedViewNames: []
   m_SerializedViewValues: []
   m_PlayModeViewName: GameView
-  m_ShowGizmos: 0
+  m_ShowGizmos: 1
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
   m_TargetSize: {x: 1597, y: 898.5}
@@ -1542,7 +1555,7 @@ MonoBehaviour:
   m_EnterPlayModeBehavior: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
-  m_Gizmos: 0
+  m_Gizmos: 1
   m_Stats: 0
   m_SelectedSizes: 01000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
@@ -1723,7 +1736,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Pause
+    - Assets/Resources/Prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1733,27 +1746,29 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Resources/Pause
+  - Assets/Resources/Prefabs
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Carlos\Documents\Github\kingdoms-end\Kingdom's End
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 1790.6665}
+    scrollPos: {x: 0, y: 1826.6665}
     m_SelectedIDs:
-    - m_Data: 161616
+    - m_Data: 161652
     m_LastClickedID:
-      m_Data: 161616
+      m_Data: 161652
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 154926
     - m_Data: 154928
     - m_Data: 154930
     - m_Data: 154932
     - m_Data: 154934
     - m_Data: 154936
     - m_Data: 154938
-    - m_Data: 154940
+    - m_Data: 161654
+    - m_Data: 161720
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1787,13 +1802,13 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 154926
     - m_Data: 154928
     - m_Data: 154930
     - m_Data: 154932
     - m_Data: 154934
     - m_Data: 154936
     - m_Data: 154938
-    - m_Data: 154940
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1820,8 +1835,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 135868
+    m_LastClickedInstanceID: 135868
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 135080
@@ -1937,7 +1953,7 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 134574
+  m_LastSelectedObjectID: 135868
 --- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -2011,6 +2027,7 @@ MonoBehaviour:
     - {fileID: -2840342148699539576, guid: ec2aeae44c820de47a7550127a32b76c, type: 2}
     - {fileID: -6468393444071599650, guid: c43a77f644f125d40b92c7c4bb0769ce, type: 2}
     - {fileID: -4295533441494088296, guid: 40bafa9ebaa8caf479f05de08b5ba8a1, type: 2}
+    - {fileID: -5274716630577856750, guid: e0a3e448b27c1364ab54aaf80d7569cc, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.38068965
       e01: 0
@@ -2380,14 +2397,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.7081718
+    - e00: 0.4414202
       e01: 0
       e02: 0
-      e03: 390.82648
+      e03: -179.9574
       e10: 0
-      e11: 0.7081718
+      e11: 0.4414202
       e12: 0
-      e13: -462.9624
+      e13: -7.6203613
       e20: 0
       e21: 0
       e22: 1
@@ -2540,10 +2557,26 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 0}
   m_BreadCrumbs:
-  - m_Target: {fileID: -38889434137698845, guid: 67ec0a470bbbe7641a438cfa18f54302, type: 2}
+  - m_Target: {fileID: -6468393444071599650, guid: c43a77f644f125d40b92c7c4bb0769ce, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}

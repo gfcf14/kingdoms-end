@@ -302,4 +302,15 @@ public class Sounds {
   };
 
   public static AudioClip gameOverSound = Resources.Load<AudioClip>("SFX/gameover/game-over");
+
+  public static Dictionary<string, AudioClip> elementDamageSounds = new() {
+    {"air", Resources.Load<AudioClip>("SFX/hitting/magic/air")},
+    {"dark", Resources.Load<AudioClip>("SFX/hitting/magic/dark")},
+    {"earth", Resources.Load<AudioClip>("SFX/hitting/magic/earth")},
+    {"fire", Resources.Load<AudioClip>("SFX/hitting/magic/fire")},
+    {"ice", Resources.Load<AudioClip>("SFX/hitting/magic/ice")},
+    {"light", Resources.Load<AudioClip>("SFX/hitting/magic/light")},
+    {"lightning", Resources.Load<AudioClip>("SFX/hitting/magic/lightning")},
+    {"water", Resources.Load<AudioClip>("SFX/hitting/magic/water")}
+  };
 }
