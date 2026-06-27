@@ -697,6 +697,8 @@ public class Helpers {
         resourceClip = resourceAoc[$"{key}_fly-death"];
       } else if (stateName == "emerge-attack") {
         resourceClip = resourceAoc[$"{key}_fly-attack"];
+      } else if (stateName == "fly-attack") {
+        resourceClip = resourceAoc[$"{key}_attack"];
       } else if (stateName == "watch") {
         resourceClip = resourceAoc[$"{key}_idle"];
       } else if (stateName == "fly") {
