@@ -180,6 +180,7 @@ MonoBehaviour:
   key: 
   specificDrop: 
   summonKey: 
+  elementalMagic: 
   level: 1
   currentHP: 0
   maxHP: 0
@@ -189,7 +190,7 @@ MonoBehaviour:
   isOnCamera: 0
   isMiniBoss: 0
   variableObject: {fileID: 5626285677870451392}
-  enemyColor: {r: 0, g: 0, b: 0, a: 0}
+  enemyColor: {r: 1, g: 1, b: 1, a: 1}
   isAttacking: 0
   isAttackingMelee: 0
   isBurning: 0
@@ -215,6 +216,7 @@ MonoBehaviour:
   canLand: 0
   direction: 1
   yDirection: 0
+  isFlashing: 0
   spawnedFrom: {fileID: 0}
   wanderStart: 0
   wanderTime: 5000
@@ -546,6 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5f1151b148d6c44a3fcaaf7e6b3d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VariableSprite
+  isColorChanging: 0
 --- !u!114 &8367201859989072481
 MonoBehaviour:
   m_ObjectHideFlags: 0
