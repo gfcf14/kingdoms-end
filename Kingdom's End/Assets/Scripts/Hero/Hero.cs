@@ -296,7 +296,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("luck-flask", 1));
       items.Add(new Item("lightning-med", 1));
       items.Add(new Item("strength-flask", 1));
-      items.Add(new Item("stamina-flask", 1));
+      items.Add(new Item("stamina-flask", 5));
       items.Add(new Item("magic-vial", 1));
       items.Add(new Item("potion", 1));
       items.Add(new Item("chicken-drumstick", 5));
@@ -502,14 +502,17 @@ public class Hero : MonoBehaviour {
     return 0;
   }
 
-  // adds consumable only if it hasn't been consumed before
+  // adds consumable if it hasn't been consumed before, but
+  // update the consumable's use time if it has been consumed before
   public void AddConsumable(Consumable newConsumable) {
-    bool isUsed = consumables.Any(c => c.key == newConsumable.key);
+    Consumable existingConsumable = consumables.FirstOrDefault(c => c.key == newConsumable.key);
 
-    if (!isUsed) {
+    if (existingConsumable == null) { // add consumable if it doesn't currently exist (i.e. not consumed)
       consumables.Add(newConsumable);
       UpdateEffectValues(newConsumable.key, true);
       UpdateEffectMagicResistances();
+    } else { // update the existing consumable's time if it does exist
+      existingConsumable.useTime = newConsumable.useTime;
     }
   }
 

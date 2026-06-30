@@ -1,5 +1,4 @@
 using System;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Classes {}
@@ -24,6 +23,7 @@ public class ProbabilityItem {
   public float probability;
 }
 
+[Serializable]
 public class Consumable {
   public string key;
   public float duration;
