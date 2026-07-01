@@ -15,6 +15,10 @@ public class Constants {
 
   public static string[] elements = {"air", "dark", "earth", "fire", "ice", "light", "lightning", "water"};
 
+  public static string[] statEffects = {"critical-flask", "luck-flask", "stamina-flask", "strength-flask"};
+  public static string[] magicDamageEffects = {"anchored", "encumbered", "frozen", "poisoned", "scorched", "sealed", "shocked", "stunned" };
+  public static string[] consumableEffects = {"air-infusion", "dark-infusion", "earth-infusion", "fire-infusion", "ice-infusion", "light-infusion", "lightning-infusion", "water-infusion"};
+
   public static string[] variableEnemies = { "luxhusk", "nomad", "wanderess" };
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };

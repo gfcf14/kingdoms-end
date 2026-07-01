@@ -21,6 +21,9 @@ public class Sprites {
   public static Sprite[] breakableBarrels = Resources.LoadAll<Sprite>("Spritesheets/breakables/barrel");
   public static Sprite[] breakableJars = Resources.LoadAll<Sprite>("Spritesheets/breakables/jar");
   public static Sprite[] breakableVases = Resources.LoadAll<Sprite>("Spritesheets/breakables/vase");
+
+  public static Sprite[] effectWheelSprites = Resources.LoadAll<Sprite>("Spritesheets/UI/effect-wheel");
+
   public static Sprite[] dwarfSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/dwarf");
   public static Sprite[] goblinSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/goblin");
   public static Sprite[] nymphSprites = Resources.LoadAll<Sprite>("Spritesheets/enemies/nymph");
@@ -850,5 +853,12 @@ public class Sprites {
     new Sprite[] {}
   };
 
-  public static Sprite[] comparisonStatIcons = { statsIcons[8], statsIcons[9], statsIcons[10], statsIcons[11]};
+  public static Sprite[] comparisonStatIcons = { statsIcons[8], statsIcons[9], statsIcons[10], statsIcons[11] };
+
+  public static Dictionary<string, Sprite> keyToEffectSprites = new() {
+    {"critical-flask", effectWheelSprites[23]},
+    {"luck-flask", effectWheelSprites[24]},
+    {"stamina-flask", effectWheelSprites[22]},
+    {"strength-flask", effectWheelSprites[21]}    
+  };
 }

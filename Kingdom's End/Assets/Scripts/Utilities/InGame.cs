@@ -25,6 +25,9 @@ public class InGame : MonoBehaviour {
   public GameObject shopCanvas;
   public GameObject hpBarContainer;
   public GameObject mpBarContainer;
+  public GameObject effectsContainerStats;
+  public GameObject effectsContainerMagicDamage;
+  public GameObject effectsContainerConsumables;
   public GameObject enemiesMen;
   public GameObject enemiesWomen;
   public GameObject enemiesGiants;
@@ -525,5 +528,49 @@ public class InGame : MonoBehaviour {
         "variable" => enemiesVariable.GetComponent<Animator>().runtimeAnimatorController,
         _          => null
     };
+  }
+
+  public void UpdateWheel(string consumableKey, GameObject effectContainer, int index) {
+    GameObject currEffect = effectContainer.transform.GetChild(index).gameObject;
+    currEffect.transform.GetChild(0).GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keyToEffectSprites, consumableKey);
+    currEffect.SetActive(true);
+  }
+
+  public void UpdateEffectWheel() {
+    // hide all effects first
+    foreach (Transform effect in effectsContainerStats.transform) {
+      effect.gameObject.SetActive(false);
+    }
+    foreach (Transform effect in effectsContainerMagicDamage.transform) {
+      effect.gameObject.SetActive(false);
+    }
+    foreach (Transform effect in effectsContainerConsumables.transform) {
+      effect.gameObject.SetActive(false);
+    }
+
+    int statIndex = 0;
+    int magicDamageIndex = 0;
+    int consumableIndex = 0;
+
+
+    foreach (Consumable currConsumable in Hero.instance.consumables) {
+      string currentConsumableKey = currConsumable.key;
+      string effectType = Helpers.GetEffectType(currentConsumableKey);
+
+      switch (effectType) {
+        case "stat":
+          UpdateWheel(currentConsumableKey, effectsContainerStats, statIndex);
+          statIndex++;
+        break;
+        case "magic_damage":
+          UpdateWheel(currentConsumableKey, effectsContainerMagicDamage, magicDamageIndex);
+          magicDamageIndex++;
+        break;
+        case "consumable":
+          UpdateWheel(currentConsumableKey, effectsContainerConsumables, consumableIndex);
+          consumableIndex++;
+        break;
+      }
+    }
   }
 }

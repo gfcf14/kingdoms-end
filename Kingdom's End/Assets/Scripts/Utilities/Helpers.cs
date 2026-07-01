@@ -708,4 +708,12 @@ public class Helpers {
 
     return resourceClip;
   }
+
+  public static string GetEffectType(string key) {
+    if (IsValueInArray(Constants.statEffects, key)) return "stat";
+    if (IsValueInArray(Constants.magicDamageEffects, key)) return "magic_damage";
+    if (IsValueInArray(Constants.consumableEffects, key)) return "consumable";
+
+    throw new KeyNotFoundException("The key '" + key.ToString() + "' is not a valid effect type", new Exception());
+  }
 }

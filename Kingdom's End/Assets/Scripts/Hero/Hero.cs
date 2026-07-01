@@ -511,6 +511,7 @@ public class Hero : MonoBehaviour {
       consumables.Add(newConsumable);
       UpdateEffectValues(newConsumable.key, true);
       UpdateEffectMagicResistances();
+      InGame.instance.UpdateEffectWheel();
     } else { // update the existing consumable's time if it does exist
       existingConsumable.useTime = newConsumable.useTime;
     }
@@ -1069,6 +1070,7 @@ public class Hero : MonoBehaviour {
           if (Helpers.ExceedsTime(currentConsumable.useTime, currentConsumable.duration * 1000)) {
             UpdateEffectValues(currentConsumable.key, false);
             consumables.RemoveAt(i);
+            InGame.instance.UpdateEffectWheel();
             UpdateEffectMagicResistances();
           }
         }
