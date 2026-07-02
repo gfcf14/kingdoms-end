@@ -716,4 +716,11 @@ public class Helpers {
 
     throw new KeyNotFoundException("The key '" + key.ToString() + "' is not a valid effect type", new Exception());
   }
+
+  public static string DefineMagicLevel(int level) {
+    if (level < 21) return "low";
+    if (level < 51) return "mid";
+
+    return "high";
+  }
 }

@@ -857,8 +857,11 @@ public class Sprites {
 
   public static Dictionary<string, Sprite> keyToEffectSprites = new() {
     {"critical-flask", effectWheelSprites[23]},
+    {"earth-1", effectWheelSprites[25]},
+    {"earth-2", effectWheelSprites[25]},
+    {"earth-3", effectWheelSprites[25]},
     {"luck-flask", effectWheelSprites[24]},
     {"stamina-flask", effectWheelSprites[22]},
-    {"strength-flask", effectWheelSprites[21]}    
+    {"strength-flask", effectWheelSprites[21]} 
   };
 }

@@ -705,6 +705,7 @@ public class Pause : MonoBehaviour {
     if (currentRegularItem.effects != null) {
       Effects itemEffects = currentRegularItem.effects;
 
+      // add to consumables only if the item has a duration
       if (itemEffects.duration == null) {
         if (itemEffects.hp != null) {
           DisplayItemEffect("hp", effectsCurrentHP, (float)itemEffects.hp, false);
@@ -1612,11 +1613,6 @@ public class Pause : MonoBehaviour {
       totalMP.GetComponent<Text>().text = (maxMP).ToString();
     }
 
-    if (status != Hero.instance.status) {
-      status = Hero.instance.status;
-      statusObject.GetComponent<Text>().text = char.ToUpper(status[0]) + status.Substring(1);
-    }
-
     if (exp != Hero.instance.exp) {
       exp = Hero.instance.exp;
       expObject.GetComponent<Text>().text = (exp).ToString();
@@ -2163,5 +2159,14 @@ public class Pause : MonoBehaviour {
       break;
     }
     return Hero.instance.equipmentArray[equipmentValue] != "";
+  }
+
+  public void UpdateStatus() {
+    int statusCount = Hero.instance.statuses.Count;
+    string newStatus = statusCount == 0 ? "Good" : (
+      // TODO: come up with something less lame than "Multiple"
+      statusCount == 1 ? Hero.instance.statuses.First() : "Multiple"
+    );
+    statusObject.GetComponent<Text>().text = newStatus;
   }
 }

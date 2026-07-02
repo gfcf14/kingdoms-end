@@ -400,10 +400,10 @@ public class InGame : MonoBehaviour {
       pulseEffect.transform.localPosition = Vector2.zero;
 
       // TODO: remove this once all magic effects are implemented
-      // string enemyElementalMagic = "";
+      string enemyElementalMagic = "earth";
 
       // TODO: uncomment this once all magic effects are implemented
-      string enemyElementalMagic = Helpers.GetRandomItemFromGroup(Constants.elements);
+      // string enemyElementalMagic = Helpers.GetRandomItemFromGroup(Constants.elements);
 
       enemyScript.elementalMagic = enemyElementalMagic;
       pulseEffect.GetComponent<Pulse>().SetOutlineColor(Helpers.GetOrException(Colors.pulseEffectColors, enemyElementalMagic));
@@ -518,15 +518,15 @@ public class InGame : MonoBehaviour {
 
   public RuntimeAnimatorController GetEnemyAnimatorControllerByForm(string form) {
     return form switch {
-        "man"      => enemiesMen.GetComponent<Animator>().runtimeAnimatorController,
-        "woman"    => enemiesWomen.GetComponent<Animator>().runtimeAnimatorController,
-        "giant"    => enemiesGiants.GetComponent<Animator>().runtimeAnimatorController,
-        "small"    => enemiesSmall.GetComponent<Animator>().runtimeAnimatorController,
-        "flying"   => enemiesFlying.GetComponent<Animator>().runtimeAnimatorController,
-        "beast"    => enemiesBeasts.GetComponent<Animator>().runtimeAnimatorController,
-        "fortress" => enemiesFortress.GetComponent<Animator>().runtimeAnimatorController,
-        "variable" => enemiesVariable.GetComponent<Animator>().runtimeAnimatorController,
-        _          => null
+      "man"      => enemiesMen.GetComponent<Animator>().runtimeAnimatorController,
+      "woman"    => enemiesWomen.GetComponent<Animator>().runtimeAnimatorController,
+      "giant"    => enemiesGiants.GetComponent<Animator>().runtimeAnimatorController,
+      "small"    => enemiesSmall.GetComponent<Animator>().runtimeAnimatorController,
+      "flying"   => enemiesFlying.GetComponent<Animator>().runtimeAnimatorController,
+      "beast"    => enemiesBeasts.GetComponent<Animator>().runtimeAnimatorController,
+      "fortress" => enemiesFortress.GetComponent<Animator>().runtimeAnimatorController,
+      "variable" => enemiesVariable.GetComponent<Animator>().runtimeAnimatorController,
+      _          => null
     };
   }
 
@@ -572,5 +572,9 @@ public class InGame : MonoBehaviour {
         break;
       }
     }
+  }
+
+  public void UpdateStatus() {
+    pauseCanvas.GetComponent<Pause>().UpdateStatus();
   }
 }

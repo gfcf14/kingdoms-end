@@ -604,7 +604,8 @@ public class Enemy : MonoBehaviour {
       if (!needsCoolDown) {
         // ensures the hero isn't damaged after being damaged
         if (!Hero.instance.isInvulnerable) {
-          Hero.instance.ReceiveEnemyAttack(gameObject, col.ClosestPoint(transform.position), elementalMagic, bewitch: type == "bewitcher");
+          string elementAndLevel = $"{elementalMagic}-{Helpers.DefineMagicLevel(level)}";
+          Hero.instance.ReceiveEnemyAttack(gameObject, col.ClosestPoint(transform.position), elementAndLevel, bewitch: type == "bewitcher");
         }
         needsCoolDown = true;
       }

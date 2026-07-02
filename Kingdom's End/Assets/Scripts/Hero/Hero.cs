@@ -139,7 +139,7 @@ public class Hero : MonoBehaviour {
     [NonSerialized] public int maxHP = GameData.baseHP;
     [NonSerialized] public int currentMP = GameData.baseHP;
     [NonSerialized] public int maxMP = GameData.baseHP;
-    [NonSerialized] public string status = "good";
+    [NonSerialized] public List<string> statuses = new List<string>();
     [NonSerialized] public int exp = 0;
     [NonSerialized] public int next = 0;
     [NonSerialized] public int gold = 20000;
@@ -221,6 +221,7 @@ public class Hero : MonoBehaviour {
     [SerializeField] public float effectSTA = 0f;
     [SerializeField] public float effectCRIT = 0f;
     [SerializeField] public float effectLCK = 0f;
+    [SerializeField] public float effectSpeed = 0f;
 
   [NonSerialized] public List<Item> items = new List<Item>();
   [NonSerialized] public List<Item> relicItems = new List<Item>();
@@ -505,7 +506,11 @@ public class Hero : MonoBehaviour {
   // adds consumable if it hasn't been consumed before, but
   // update the consumable's use time if it has been consumed before
   public void AddConsumable(Consumable newConsumable) {
-    Consumable existingConsumable = consumables.FirstOrDefault(c => c.key == newConsumable.key);
+    string[] consumableGroup = newConsumable.key.Split('-');
+    string consumableKey = consumableGroup[0];
+    int consumableLevel = consumableGroup.Length > 1 ? int.Parse(consumableGroup[1]) : 0;
+
+    Consumable existingConsumable = consumables.FirstOrDefault(c => c.key.Split('-')[0] == consumableKey);
 
     if (existingConsumable == null) { // add consumable if it doesn't currently exist (i.e. not consumed)
       consumables.Add(newConsumable);
@@ -514,6 +519,13 @@ public class Hero : MonoBehaviour {
       InGame.instance.UpdateEffectWheel();
     } else { // update the existing consumable's time if it does exist
       existingConsumable.useTime = newConsumable.useTime;
+
+      // if the existing consumable is a magical damage (e.g. "<element>-<number>", then check if its level is smaller. If so, update with incoming values)
+      string[] existingGroup = existingConsumable.key.Split('-');
+      if (existingGroup.Length > 1 && consumableLevel > int.Parse(existingGroup[1])) {
+        existingConsumable.key = newConsumable.key;
+        existingConsumable.duration = newConsumable.duration;
+      }
     }
   }
 
@@ -525,6 +537,18 @@ public class Hero : MonoBehaviour {
     effectSTA += (float)(effectItem.effects.def ?? 0) * multiplier;
     effectCRIT += (float)(effectItem.effects.crit ?? 0) * multiplier;
     effectLCK += (float)(effectItem.effects.luck ?? 0) * multiplier;
+
+    effectSpeed += (float)(effectItem.effects.speed ?? 0) * multiplier;
+    anim.speed = (1 * (groundMaterial == "" ? 1 : Helpers.GetOrException(Objects.zoneSpecs, groundMaterial).animSpeed))  * (1 + (effectSpeed / 10));
+
+    if (effectItem.effects.status != null) {
+      if (add) {
+        statuses.Add(effectItem.effects.status);
+      } else {
+        statuses.Remove(effectItem.effects.status);
+      }
+      InGame.instance.UpdateStatus();
+    }
   }
 
   public void UpdateStatsValues() {
@@ -945,10 +969,10 @@ public class Hero : MonoBehaviour {
         // x axis movement
         if (!horizontalCollision && isHurt < 1) {
           if (!isDefending && !isParrying && !isClashing && isThrowing == 0) {
-            float xMovement = moveFriction > 0 ? Mathf.Lerp(horizontalInput, speed * moveSpeed * direction, moveFriction) : horizontalInput * speed * moveSpeed;
+            float xMovement = moveFriction > 0 ? Mathf.Lerp(horizontalInput, (speed + effectSpeed) * moveSpeed * direction, moveFriction) : horizontalInput * (speed + effectSpeed);
 
             // movement happens on this line
-            body.linearVelocity = new Vector2(!isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? xMovement : 0, GetGroundVerticalModifier(groundType, horizontalInput * speed));
+            body.linearVelocity = new Vector2(!isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? xMovement : 0, GetGroundVerticalModifier(groundType, horizontalInput * (speed + effectSpeed)));
           }
 
           // flip player back when moving right
@@ -1067,7 +1091,7 @@ public class Hero : MonoBehaviour {
         for (int i = 0; i < consumables.Count; i++) {
           Consumable currentConsumable = consumables[i];
 
-          if (Helpers.ExceedsTime(currentConsumable.useTime, currentConsumable.duration * 1000)) {
+          if (currentConsumable.duration != -1 && Helpers.ExceedsTime(currentConsumable.useTime, currentConsumable.duration * 1000)) {
             UpdateEffectValues(currentConsumable.key, false);
             consumables.RemoveAt(i);
             InGame.instance.UpdateEffectWheel();
@@ -1478,7 +1502,7 @@ public class Hero : MonoBehaviour {
       ZoneSpecs currZoneSpecs = Helpers.GetOrException(Objects.zoneSpecs, zoneScript.type);
 
       jumpHeight = currZoneSpecs.jumpHeight;
-      anim.speed = currZoneSpecs.animSpeed;
+      anim.speed = currZoneSpecs.animSpeed * (1 + (effectSpeed / 10));
       moveSpeed = currZoneSpecs.moveSpeed;
       moveFriction = currZoneSpecs.moveFriction;
       groundMaterial = currZoneSpecs.groundMaterial;
@@ -1507,7 +1531,7 @@ public class Hero : MonoBehaviour {
     } else if (colTag == "Zone") {
       if (!Helpers.Intersects(heroCollider, col.gameObject.GetComponent<PolygonCollider2D>())) {
         jumpHeight = GameData.playerJumpHeight;
-        anim.speed = 1;
+        anim.speed = 1 + (effectSpeed / 10);
         moveSpeed = GameData.playerMovementSpeed;
         moveFriction = GameData.playerMovementFriction;
         groundMaterial = "";
@@ -1742,12 +1766,19 @@ public class Hero : MonoBehaviour {
 
       if (mustTakeDamage) {
         if (elementalMagic != "") {
-          bool resistsElementalDamage = magicResistances.FirstOrDefault(resistance => resistance.name == elementalMagic).frequency > 0 || effectMagicResistances.FirstOrDefault(resistance => resistance.name == elementalMagic).frequency > 0;
+          string[] elementalMagicGroup = elementalMagic.Split('-');
+          string magicElement = elementalMagicGroup[0];
+          string magicLevel = elementalMagicGroup[1];
+
+          bool resistsElementalDamage = magicResistances.FirstOrDefault(resistance => resistance.name == magicElement).frequency > 0 || effectMagicResistances.FirstOrDefault(resistance => resistance.name == magicElement).frequency > 0;
 
           if (!resistsElementalDamage) {
-            InGame.instance.PlaySound(Helpers.GetOrException(Sounds.elementDamageSounds, elementalMagic), transform.position);
+            InGame.instance.PlaySound(Helpers.GetOrException(Sounds.elementDamageSounds, magicElement), transform.position);
 
-            // TODO: implement specific elemental damage effects here
+            // treat magical damages as consumables so they can be displayed in the effect wheel
+            // TODO: consider how these would be removed when applying the magic medicine
+            RegularItem elementalMagicItem = Helpers.GetOrException(Objects.regularItems, elementalMagic);
+            AddConsumable(new Consumable(){key=elementalMagic, duration=(float)elementalMagicItem.effects.duration, useTime=Time.time * 1000});
           }
         }
 

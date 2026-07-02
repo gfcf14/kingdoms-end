@@ -16,7 +16,7 @@ public class Constants {
   public static string[] elements = {"air", "dark", "earth", "fire", "ice", "light", "lightning", "water"};
 
   public static string[] statEffects = {"critical-flask", "luck-flask", "stamina-flask", "strength-flask"};
-  public static string[] magicDamageEffects = {"anchored", "encumbered", "frozen", "poisoned", "scorched", "sealed", "shocked", "stunned" };
+  public static string[] magicDamageEffects = {"earth-1", "earth-2", "earth-3"};
   public static string[] consumableEffects = {"air-infusion", "dark-infusion", "earth-infusion", "fire-infusion", "ice-infusion", "light-infusion", "lightning-infusion", "water-infusion"};
 
   public static string[] variableEnemies = { "luxhusk", "nomad", "wanderess" };
