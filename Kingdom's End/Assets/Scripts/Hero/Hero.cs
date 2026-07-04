@@ -222,6 +222,7 @@ public class Hero : MonoBehaviour {
     [SerializeField] public float effectCRIT = 0f;
     [SerializeField] public float effectLCK = 0f;
     [SerializeField] public float effectSpeed = 0f;
+    [SerializeField] public float effectJump = 0f;
 
   [NonSerialized] public List<Item> items = new List<Item>();
   [NonSerialized] public List<Item> relicItems = new List<Item>();
@@ -540,6 +541,9 @@ public class Hero : MonoBehaviour {
 
     effectSpeed += (float)(effectItem.effects.speed ?? 0) * multiplier;
     anim.speed = (1 * (groundMaterial == "" ? 1 : Helpers.GetOrException(Objects.zoneSpecs, groundMaterial).animSpeed))  * (1 + (effectSpeed / 10));
+
+    effectJump += (float)(effectItem.effects.jumpHeight ?? 0) * multiplier;
+    jumpHeight = (groundMaterial == "" ? GameData.playerJumpHeight : Helpers.GetOrException(Objects.zoneSpecs, groundMaterial).jumpHeight) * (1 + (effectJump / 10));
 
     if (effectItem.effects.status != null) {
       if (add) {
@@ -1501,7 +1505,7 @@ public class Hero : MonoBehaviour {
 
       ZoneSpecs currZoneSpecs = Helpers.GetOrException(Objects.zoneSpecs, zoneScript.type);
 
-      jumpHeight = currZoneSpecs.jumpHeight;
+      jumpHeight = currZoneSpecs.jumpHeight * (1 + (effectJump / 10));
       anim.speed = currZoneSpecs.animSpeed * (1 + (effectSpeed / 10));
       moveSpeed = currZoneSpecs.moveSpeed;
       moveFriction = currZoneSpecs.moveFriction;
@@ -1530,7 +1534,7 @@ public class Hero : MonoBehaviour {
       groundType = "level";
     } else if (colTag == "Zone") {
       if (!Helpers.Intersects(heroCollider, col.gameObject.GetComponent<PolygonCollider2D>())) {
-        jumpHeight = GameData.playerJumpHeight;
+        jumpHeight = GameData.playerJumpHeight * (1 + (effectJump / 10));
         anim.speed = 1 + (effectSpeed / 10);
         moveSpeed = GameData.playerMovementSpeed;
         moveFriction = GameData.playerMovementFriction;

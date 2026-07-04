@@ -856,6 +856,9 @@ public class Sprites {
   public static Sprite[] comparisonStatIcons = { statsIcons[8], statsIcons[9], statsIcons[10], statsIcons[11] };
 
   public static Dictionary<string, Sprite> keyToEffectSprites = new() {
+    {"air-1", effectWheelSprites[26]},
+    {"air-2", effectWheelSprites[26]},
+    {"air-3", effectWheelSprites[26]},
     {"critical-flask", effectWheelSprites[23]},
     {"earth-1", effectWheelSprites[25]},
     {"earth-2", effectWheelSprites[25]},
