@@ -620,7 +620,12 @@ public class Enemy : MonoBehaviour {
     int damage = def - ((specificDamage + Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (isCritical ? 2 : 1));
 
     if (Helpers.IsValueInArray(Constants.throwableTypes, weaponType) || !(isDefending && !attackedFromBehind)) {
-      TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, col.ClosestPoint(transform.position), isCritical, damageSoundType);
+      // if effectStrength has a non-positive value then the player should have no strength to deal damage (e.g. when scorched)
+      int damageTaken = Hero.instance.effectStrength < 1 ? 0 : (
+        damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt
+      );
+
+      TakeDamage(damageTaken, col.ClosestPoint(transform.position), isCritical, damageSoundType);
       if (!(weaponType == "throwable" || weaponType == "throwable-double")) {
         TurnWhenAttackedFromBehind();
       }

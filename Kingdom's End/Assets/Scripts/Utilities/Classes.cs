@@ -48,7 +48,8 @@ public class Effects {
   public float? luck;
   public int? speed; // multiplier for speed (movement and animation) increased/decreased
   public float? jumpHeight; // multiplier for jump height increased/decreased
-  public int? stamina; //multiplier for stamina
+  public int? stamina; // multiplier for stamina (from elemental magic damage)
+  public int? strength; // multiplier for strength (from elemental magic damage)
   public string? status; // for consumables which display a status in the wheel
   public MagicResistance[] magicResistances;
 }

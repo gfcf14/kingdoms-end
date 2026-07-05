@@ -224,6 +224,7 @@ public class Hero : MonoBehaviour {
     [SerializeField] public float effectSpeed = 0f;
     [SerializeField] public float effectJump = 0f;
     [SerializeField] public int effectStamina = 1;
+    [SerializeField] public int effectStrength = 1;
 
   [NonSerialized] public List<Item> items = new List<Item>();
   [NonSerialized] public List<Item> relicItems = new List<Item>();
@@ -546,7 +547,8 @@ public class Hero : MonoBehaviour {
     effectJump += (float)(effectItem.effects.jumpHeight ?? 0) * multiplier;
     jumpHeight = (groundMaterial == "" ? GameData.playerJumpHeight : Helpers.GetOrException(Objects.zoneSpecs, groundMaterial).jumpHeight) * (1 + (effectJump / 10));
 
-    effectStamina += (int)(effectItem.effects.stamina ?? 0) * multiplier;
+    effectStamina += (effectItem.effects.stamina ?? 0) * multiplier;
+    effectStrength += (effectItem.effects.strength ?? 0) * multiplier;
 
     string statusEffect = effectItem.effects.status;
 
@@ -1792,7 +1794,7 @@ public class Hero : MonoBehaviour {
         }
 
         bool isCritical = bewitch ? true : Helpers.IsCritical(criticalRate);
-        int damage = bewitch ? -(currentHP - Constants.minimumDamageDealt) : ((stamina + (int)equippedSTA + (int)effectSTA) * effectStamina) - (atk * (isCritical ? 2 : 1));
+        int damage = bewitch ? -(currentHP - Constants.minimumDamageDealt) : ((stamina + (int)equippedSTA + (int)effectSTA) * (effectStamina >= 1 ? 1 : 0)) - (atk * (isCritical ? 2 : 1));
         // TODO: modify first argument based on different attack type used by the enemy
         TakeDamage(damage < 0 ? Math.Abs(damage) : (damage == 0 && bewitch ? 0 : Constants.minimumDamageDealt), contactPoint, isCritical, attackType);
 

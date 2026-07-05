@@ -1628,19 +1628,21 @@ public class Pause : MonoBehaviour {
       goldObject.GetComponent<Text>().text = (gold).ToString();
     }
 
-    if (strength != (Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR)) {
-      strength = Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR;
-      strObject.GetComponent<Text>().text = (strength).ToString();
+    if (strength != ((Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (Hero.instance.effectStrength >= 1 ? 1 : 0))) {
+      strength = (Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (Hero.instance.effectStrength >= 1 ? 1 : 0);
+      strObject.GetComponent<Text>().text = strength.ToString();
       if (Hero.instance.effectSTR > 0) {
         strObject.GetComponent<Text>().color = Colors.effect;
+      } else if (Hero.instance.effectStrength < 1) {
+        strObject.GetComponent<Text>().color = Colors.ailment;
       } else {
-        strObject.GetComponent<Text>().color = Color.white;
+        strObject.GetComponent<Text>().color = Colors.normalUI;
       }
     }
 
-    if (stamina != (Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA)) {
-      stamina = (Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA) * Hero.instance.effectStamina;
-      staObject.GetComponent<Text>().text = (stamina).ToString();
+    if (stamina != ((Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA) * (Hero.instance.effectStamina >= 1 ? 1 : 0))) {
+      stamina = (Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA) * (Hero.instance.effectStamina >= 1 ? 1 : 0);
+      staObject.GetComponent<Text>().text = stamina.ToString();
       if (Hero.instance.effectSTA > 0) {
         staObject.GetComponent<Text>().color = Colors.effect;
       } else if (Hero.instance.effectStamina < 1) {
