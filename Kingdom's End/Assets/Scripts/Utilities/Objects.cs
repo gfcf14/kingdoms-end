@@ -271,7 +271,10 @@ public class Objects
     {"air-3", new RegularItem(null, null, "", "", "consumable", 0, new Effects() {jumpHeight=-2.5f, status="Anchored", duration=-1})},
     {"earth-1", new RegularItem(null, null, "", "", "consumable", 0, new Effects() {speed=-2, status="Encumbered", duration=15})},
     {"earth-2", new RegularItem(null, null, "", "", "consumable", 0, new Effects() {speed=-2, status="Encumbered", duration=30})},
-    {"earth-3", new RegularItem(null, null, "", "", "consumable", 0, new Effects() {speed=-2, status="Encumbered", duration=-1})},   
+    {"earth-3", new RegularItem(null, null, "", "", "consumable", 0, new Effects() {speed=-2, status="Encumbered", duration=-1})},
+    {"water-1", new RegularItem(null, null, "", "", "consumable", 0, new Effects() {stamina=-1, status="Drenched", duration=15})},
+    {"water-2", new RegularItem(null, null, "", "", "consumable", 0, new Effects() {stamina=-1, status="Drenched", duration=30})},
+    {"water-3", new RegularItem(null, null, "", "", "consumable", 0, new Effects() {stamina=-1, status="Drenched", duration=-1})},  
 
     // Example of having everything
     // {"chicken-drumstick", new RegularItem(Sprites.itemThumbnails[3], Sprites.itemImages[3], "Chicken Drumstick", "From range-free raised fowl.", "food", 100, new Effects() {hp = 99, mp=99, statusHeal=new string[]{"Poison", "Curse", "Drain"}, atk=-99, def=99, crit=0.5f, luck=-0.2f, magicResistances=new MagicResistance[]{new MagicResistance(){name="Earth", type="add"}, new MagicResistance(){name="Air", type="add"}, new MagicResistance(){name="Water", type="add"}, new MagicResistance(){name="Fire", type="add"}, new MagicResistance(){name="Lightning", type="remove"}, new MagicResistance(){name="Ice", type="remove"}, new MagicResistance(){name="Light", type="remove"}, new MagicResistance(){name="Dark", type="remove"}}})}

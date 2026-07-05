@@ -39,6 +39,7 @@ public class InGame : MonoBehaviour {
   public GlobalGradients globalGradients;
 
   private Shop shopScript;
+  private Pause pauseScript;
 
   public static InGame instance;
   private void Awake() {
@@ -59,6 +60,7 @@ public class InGame : MonoBehaviour {
     soundtrack.volume = Settings.maxSoundtrackVolume;
     soundtrack.loop = true;
     shopScript = shopCanvas.GetComponent<Shop>();
+    pauseScript = pauseCanvas.GetComponent<Pause>();
 
     GameObject.Find("MainOverlay").GetComponent<MainOverlay>().AssignTilemaps();
 
@@ -141,7 +143,7 @@ public class InGame : MonoBehaviour {
   }
 
   public void ChangeArea() {
-    pauseCanvas.GetComponent<Pause>().ChangeArea();
+    pauseScript.ChangeArea();
     GameObject.Find("MainOverlay").GetComponent<MainOverlay>().PrepareAreaTransition();
   }
 
@@ -400,7 +402,7 @@ public class InGame : MonoBehaviour {
       pulseEffect.transform.localPosition = Vector2.zero;
 
       // TODO: remove this once all magic effects are implemented
-      string enemyElementalMagic = "air";
+      string enemyElementalMagic = "water";
 
       // TODO: uncomment this once all magic effects are implemented
       // string enemyElementalMagic = Helpers.GetRandomItemFromGroup(Constants.elements);
@@ -574,7 +576,7 @@ public class InGame : MonoBehaviour {
     }
   }
 
-  public void UpdateStatus() {
-    pauseCanvas.GetComponent<Pause>().UpdateStatus();
+  public void UpdatePauseEffects() {
+    pauseScript.UpdateStatus();
   }
 }

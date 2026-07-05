@@ -1639,12 +1639,14 @@ public class Pause : MonoBehaviour {
     }
 
     if (stamina != (Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA)) {
-      stamina = Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA;
+      stamina = (Hero.instance.stamina + (int)Hero.instance.equippedSTA + (int)Hero.instance.effectSTA) * Hero.instance.effectStamina;
       staObject.GetComponent<Text>().text = (stamina).ToString();
       if (Hero.instance.effectSTA > 0) {
         staObject.GetComponent<Text>().color = Colors.effect;
+      } else if (Hero.instance.effectStamina < 1) {
+        staObject.GetComponent<Text>().color = Colors.ailment;
       } else {
-        staObject.GetComponent<Text>().color = Color.white;
+        staObject.GetComponent<Text>().color = Colors.normalUI;
       }
     }
 

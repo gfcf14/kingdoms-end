@@ -46,8 +46,9 @@ public class Effects {
   public int? def;
   public float? crit; // number between 0 and 1
   public float? luck;
-  public int? speed; // multiplier of speed (movement and animation) increased/decreased
-  public float? jumpHeight; // multiplier of jump height increased/decreased
+  public int? speed; // multiplier for speed (movement and animation) increased/decreased
+  public float? jumpHeight; // multiplier for jump height increased/decreased
+  public int? stamina; //multiplier for stamina
   public string? status; // for consumables which display a status in the wheel
   public MagicResistance[] magicResistances;
 }

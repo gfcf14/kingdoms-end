@@ -865,6 +865,9 @@ public class Sprites {
     {"earth-3", effectWheelSprites[25]},
     {"luck-flask", effectWheelSprites[24]},
     {"stamina-flask", effectWheelSprites[22]},
-    {"strength-flask", effectWheelSprites[21]} 
+    {"strength-flask", effectWheelSprites[21]},
+    {"water-1", effectWheelSprites[27]},
+    {"water-2", effectWheelSprites[27]},
+    {"water-3", effectWheelSprites[27]}
   };
 }
