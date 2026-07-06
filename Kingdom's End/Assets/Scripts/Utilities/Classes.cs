@@ -50,6 +50,7 @@ public class Effects {
   public float? jumpHeight; // multiplier for jump height increased/decreased
   public int? stamina; // multiplier for stamina (from elemental magic damage)
   public int? strength; // multiplier for strength (from elemental magic damage)
+  public int? shock; // property to increment/decrement shock outcome (from elemental magic damage)
   public string? status; // for consumables which display a status in the wheel
   public MagicResistance[] magicResistances;
 }

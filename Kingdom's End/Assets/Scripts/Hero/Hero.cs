@@ -67,6 +67,8 @@ public class Hero : MonoBehaviour {
   public bool canCastMagic = false;
   public bool hasLightUnderground = false;
   public int isHurt = 0;
+
+  public bool isShocked = false;
   public bool isSlammed = false;
   public bool isFallingSlammed = false;
   public bool isRecoveringFromSlam = false;
@@ -225,6 +227,7 @@ public class Hero : MonoBehaviour {
     [SerializeField] public float effectJump = 0f;
     [SerializeField] public int effectStamina = 1;
     [SerializeField] public int effectStrength = 1;
+    [SerializeField] public int effectShock = 0;
 
   [NonSerialized] public List<Item> items = new List<Item>();
   [NonSerialized] public List<Item> relicItems = new List<Item>();
@@ -549,6 +552,7 @@ public class Hero : MonoBehaviour {
 
     effectStamina += (effectItem.effects.stamina ?? 0) * multiplier;
     effectStrength += (effectItem.effects.strength ?? 0) * multiplier;
+    effectShock += (effectItem.effects.shock ?? 0) * multiplier;
 
     string statusEffect = effectItem.effects.status;
 
@@ -962,7 +966,7 @@ public class Hero : MonoBehaviour {
 
     if (!isAutonomous) {
       if (!isPaused && pauseCase == "") {
-        horizontalInput = GetInput("x");
+        horizontalInput = isShocked ? 0 : GetInput("x");
         verticalInput = GetInput("y") * (Gamepad.current != null ? (Gamepad.current.dpad.y.value != 0 ? -1 : 1) : 1);
 
         if (shieldDropTime != 0) {
@@ -1017,25 +1021,33 @@ public class Hero : MonoBehaviour {
           if (UserInput.IsAction(ControlActions.Jump, KeyState.Down)) { // Perform actions if JUMP key is also held
             if (isGrounded) {
               if (!isRunning && !isKicking && canKick) { // KICK
-                isKicking = true;
-
-                if (bombCheckScript.BombNearby()) {
-                  anim.SetTrigger("isKickingBomb");
+                if (effectShock > 0) {
+                  isShocked = true;
                 } else {
-                  anim.SetTrigger("isKicking");
-                }
+                  isKicking = true;
 
-                weaponCollider.SetActive(true);
+                  if (bombCheckScript.BombNearby()) {
+                    anim.SetTrigger("isKickingBomb");
+                  } else {
+                    anim.SetTrigger("isKicking");
+                  }
+
+                  weaponCollider.SetActive(true);
+                }
               }
               // TODO: for now don't execute if double jumping, but check if it'd be necessary
             } else if (isJumping && jumpsExecuted <= 1 && !isFalling && canDropKick) { // DROPKICK
-              DropKick();
+              if (effectShock > 0) {
+                isShocked = true;
+              } else {
+                DropKick();
+              }
             }
           }
         } else {
           // JUMP
           if (UserInput.IsAction(ControlActions.Jump, KeyState.Down)) {
-            if (isGrounded || (canDoubleJump && jumpsExecuted < GameData.maxJumpLimit)) {
+            if (isGrounded && !isShocked || (canDoubleJump && jumpsExecuted < GameData.maxJumpLimit)) {
               jumpsExecuted++;
               Jump();
             }
@@ -1112,7 +1124,7 @@ public class Hero : MonoBehaviour {
       }
 
       if (pauseCase == "") { // only update isRunning if it's not paused in any way
-        isRunning = Helpers.IsBeyondOrUnderRange(horizontalInput, Constants.inputThreshold) && !isJumping && !isFalling && !isAttackingSingle;
+        isRunning = Helpers.IsBeyondOrUnderRange(horizontalInput, Constants.inputThreshold) && !isShocked && !isJumping && !isFalling && !isAttackingSingle;
       }
 
       // checks for invulnerability time
@@ -1142,6 +1154,7 @@ public class Hero : MonoBehaviour {
     anim.SetBool("isSlammed", isSlammed);
     anim.SetBool("isFallingSlammed", isFallingSlammed);
     anim.SetBool("isRecoveringFromSlam", isRecoveringFromSlam);
+    anim.SetBool("isShocked", isShocked);
 
     // TO TEST outcomes, comment this out and change outcomeValue
     // if (Input.GetKeyDown(KeyCode.BackQuote))
@@ -1174,7 +1187,9 @@ public class Hero : MonoBehaviour {
     armUsed = armIndex;
 
     if (isGrounded) {
-        if (armEquipment == "") {
+        if (effectShock > 0) {
+          isShocked = true;
+        } else if (armEquipment == "") {
           isPunching = true;
           anim.SetTrigger("isPunching");
           weaponCollider.SetActive(true);
@@ -1217,7 +1232,9 @@ public class Hero : MonoBehaviour {
           }
         }
       } else if (isJumping || isFalling) {
-        if (armEquipment == "") {
+        if (effectShock > 0) {
+          isShocked = true;
+        } else if (armEquipment == "") {
           isAirPunching = true;
           weaponCollider.SetActive(true);
           anim.SetTrigger("isAirPunching");
@@ -1380,6 +1397,10 @@ public class Hero : MonoBehaviour {
 
   void ClearThrow() {
     isThrowing = 0;
+  }
+
+  void ClearShock() {
+    isShocked = false;
   }
 
 

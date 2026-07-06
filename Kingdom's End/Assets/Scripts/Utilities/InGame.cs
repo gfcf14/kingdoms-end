@@ -402,7 +402,7 @@ public class InGame : MonoBehaviour {
       pulseEffect.transform.localPosition = Vector2.zero;
 
       // TODO: remove this once all magic effects are implemented
-      string enemyElementalMagic = "fire";
+      string enemyElementalMagic = "lightning";
 
       // TODO: uncomment this once all magic effects are implemented
       // string enemyElementalMagic = Helpers.GetRandomItemFromGroup(Constants.elements);
