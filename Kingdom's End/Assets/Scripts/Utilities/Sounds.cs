@@ -239,7 +239,8 @@ public class Sounds {
     {"arrow", Resources.Load<AudioClip>("SFX/explosions/arrow")},
     {"bomb", Resources.Load<AudioClip>("SFX/explosions/basic")},
     {"damage", Resources.Load<AudioClip>("SFX/explosions/basic")},
-    {"enemy", Resources.Load<AudioClip>("SFX/explosions/enemy")}
+    {"enemy", Resources.Load<AudioClip>("SFX/explosions/enemy")},
+    {"shock", Resources.Load<AudioClip>("SFX/explosions/shock")}
   };
 
   public static Dictionary<string, AudioClip> menuSounds = new() {

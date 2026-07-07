@@ -1399,8 +1399,14 @@ public class Hero : MonoBehaviour {
     isThrowing = 0;
   }
 
+  void AddShock() {
+    Instantiate(Helpers.GetOrException(Objects.prefabs, "shock-particle"), new Vector2(transform.position.x, transform.position.y + (heroHeight / 2)), Quaternion.identity, transform);
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.explosionSounds, "shock"), transform.position);
+  }
+
   void ClearShock() {
     isShocked = false;
+    GameObject.Destroy(transform.Find("ShockParticle(Clone)").gameObject);
   }
 
 

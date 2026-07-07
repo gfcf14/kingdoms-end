@@ -82,6 +82,7 @@ public class Objects
     {"savepoint-seaside", Resources.Load("Prefabs/Save Point - Seaside") as GameObject},
     {"savepoint-swamps", Resources.Load("Prefabs/Save Point - Swamps") as GameObject},
     {"savepoint-wasteland", Resources.Load("Prefabs/Save Point - Wasteland") as GameObject},
+    {"shock-particle", Resources.Load("Prefabs/ShockParticle") as GameObject},
     {"sign-calderas", Resources.Load("Prefabs/Sign - Calderas") as GameObject},
     {"sign-desert", Resources.Load("Prefabs/Sign - Desert") as GameObject},
     {"sign-forest", Resources.Load("Prefabs/Sign - Forest") as GameObject},
