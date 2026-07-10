@@ -228,6 +228,7 @@ public class Hero : MonoBehaviour {
     [SerializeField] public int effectStamina = 1;
     [SerializeField] public int effectStrength = 1;
     [SerializeField] public int effectShock = 0;
+    [SerializeField] public int effectFrozen = 0;
 
   [NonSerialized] public List<Item> items = new List<Item>();
   [NonSerialized] public List<Item> relicItems = new List<Item>();
@@ -553,6 +554,7 @@ public class Hero : MonoBehaviour {
     effectStamina += (effectItem.effects.stamina ?? 0) * multiplier;
     effectStrength += (effectItem.effects.strength ?? 0) * multiplier;
     effectShock += (effectItem.effects.shock ?? 0) * multiplier;
+    effectFrozen += (effectItem.effects.iceStrength ?? 0) * multiplier;
 
     string statusEffect = effectItem.effects.status;
 
@@ -1817,6 +1819,18 @@ public class Hero : MonoBehaviour {
             // TODO: consider how these would be removed when applying the magic medicine
             RegularItem elementalMagicItem = Helpers.GetOrException(Objects.regularItems, elementalMagic);
             AddConsumable(new Consumable(){key=elementalMagic, duration=(float)elementalMagicItem.effects.duration, useTime=Time.time * 1000});
+
+            if (magicElement == "ice") {
+              GameObject  iceEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "ice-effect"), new Vector2(transform.position.x, transform.position.y + (heroHeight / 2)), Quaternion.identity);
+              iceEffect.GetComponent<SpriteRenderer>().sprite = Helpers.GetRandomSpriteFromGroup(Sprites.iceBlockSprites);
+              iceEffect.GetComponent<IceEffect>().strength = (int)elementalMagicItem.effects.iceStrength;
+
+              // TODO: - create isFrozen variable and freeze animation, set sprite to 85, restrict movement and jump
+              //       - Add Hero as child of the iceEffect
+              //       - Implement movement while inside the ice so each key release decrements the ice strength until it reaches 0 and breaks
+              //       - Upon breaking, remove the ice-x consumable
+              //       - May need to set the player state so it simply falls down and doesn't fly off in case of hurt-2 or hurt-3 prior to freeze
+            }
           }
         }
 

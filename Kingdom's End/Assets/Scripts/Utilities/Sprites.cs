@@ -21,6 +21,7 @@ public class Sprites {
   public static Sprite[] breakableBarrels = Resources.LoadAll<Sprite>("Spritesheets/breakables/barrel");
   public static Sprite[] breakableJars = Resources.LoadAll<Sprite>("Spritesheets/breakables/jar");
   public static Sprite[] breakableVases = Resources.LoadAll<Sprite>("Spritesheets/breakables/vase");
+  public static Sprite[] iceBlockSprites = Resources.LoadAll<Sprite>("Spritesheets/weapons/arrows/arrow-ice-blocks");
 
   public static Sprite[] effectWheelSprites = Resources.LoadAll<Sprite>("Spritesheets/UI/effect-wheel");
 
@@ -866,6 +867,9 @@ public class Sprites {
     {"fire-1", effectWheelSprites[28]},
     {"fire-2", effectWheelSprites[28]},
     {"fire-3", effectWheelSprites[28]},
+    {"ice-1", effectWheelSprites[30]},
+    {"ice-2", effectWheelSprites[30]},
+    {"ice-3", effectWheelSprites[30]},
     {"lightning-1", effectWheelSprites[29]},
     {"lightning-2", effectWheelSprites[29]},
     {"lightning-3", effectWheelSprites[29]},

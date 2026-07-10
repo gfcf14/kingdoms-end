@@ -153,6 +153,11 @@ public class Helpers {
     return itemGroup[UnityEngine.Random.Range(0, itemGroup.Length)];
   }
 
+  // TODO: consider how to consolidate this with GetRandomItemFromGroup
+  public static Sprite GetRandomSpriteFromGroup(Sprite[] itemGroup) {
+    return itemGroup[UnityEngine.Random.Range(0, itemGroup.Length)];
+  }
+
   public static AudioClip GetRandomClipFromGroup(AudioClip[] audioclipGroup) {
     // if (audioclipGroup.Length == 1) {
     //   return audioclipGroup[0];
