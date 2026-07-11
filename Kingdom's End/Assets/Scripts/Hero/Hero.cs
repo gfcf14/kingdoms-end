@@ -72,6 +72,7 @@ public class Hero : MonoBehaviour {
   public bool isSlammed = false;
   public bool isFallingSlammed = false;
   public bool isRecoveringFromSlam = false;
+  public bool isFrozen = false;
   public int isDead = 0;
 
   public bool isDefending = false;
@@ -1285,13 +1286,15 @@ public class Hero : MonoBehaviour {
     body.linearVelocity = Vector2.zero;
     isHurt = hurtLevel;
 
-    switch (hurtLevel) {
-      case 2: // pushed away (in ground)
-        body.linearVelocity = new Vector2(2 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 0);
-      break;
-      case 3: // thrown back (air "parabola")
-        body.linearVelocity = new Vector2(6 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 2 * hurtLevel);
-      break;
+    if (!isFrozen) {
+      switch (hurtLevel) {
+        case 2: // pushed away (in ground)
+          body.linearVelocity = new Vector2(2 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 0);
+        break;
+        case 3: // thrown back (air "parabola")
+          body.linearVelocity = new Vector2(6 * hurtLevel * direction * (hurtFromBehind ? 1 : -1), 2 * hurtLevel);
+        break;
+      }
     }
   }
 
@@ -1826,7 +1829,14 @@ public class Hero : MonoBehaviour {
               iceEffect.GetComponent<IceEffect>().strength = (int)elementalMagicItem.effects.iceStrength;
 
               // TODO: - create isFrozen variable and freeze animation, set sprite to 85, restrict movement and jump
+              isFrozen = true;
+              anim.enabled = false;
+              heroRenderer.sprite = Helpers.GetOrException(Sprites.heroFrozenSprites, bodyEquipment);
+
               //       - Add Hero as child of the iceEffect
+              body.simulated = false;
+              this.transform.SetParent(iceEffect.transform, true);
+              this.transform.localScale = new Vector3(1f / iceEffect.transform.localScale.x, 1f / iceEffect.transform.localScale.y, 1f / iceEffect.transform.localScale.z);
               //       - Implement movement while inside the ice so each key release decrements the ice strength until it reaches 0 and breaks
               //       - Upon breaking, remove the ice-x consumable
               //       - May need to set the player state so it simply falls down and doesn't fly off in case of hurt-2 or hurt-3 prior to freeze

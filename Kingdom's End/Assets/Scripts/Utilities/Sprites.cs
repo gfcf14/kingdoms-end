@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sprites {
+  public static Sprite[] heroSprites1 = Resources.LoadAll<Sprite>("Spritesheets/hero/equipment-1");
+  public static Sprite[] heroSprites2 = Resources.LoadAll<Sprite>("Spritesheets/hero/equipment-1");
+  public static Sprite[] heroSprites3 = Resources.LoadAll<Sprite>("Spritesheets/hero/equipment-1");
+  public static Sprite[] heroSprites4 = Resources.LoadAll<Sprite>("Spritesheets/hero/equipment-1");
+  public static Sprite[] heroSprites5 = Resources.LoadAll<Sprite>("Spritesheets/hero/equipment-1");
+  public static Sprite[] heroSprites6 = Resources.LoadAll<Sprite>("Spritesheets/hero/equipment-1");
   public static Sprite[] elements = Resources.LoadAll<Sprite>("Pause/elements");
   public static Sprite[] keyset = Resources.LoadAll<Sprite>("Spritesheets/keyset");
   public static Sprite[] itemThumbnails = Resources.LoadAll<Sprite>("Pause/Items/thumbnails");
@@ -879,5 +885,14 @@ public class Sprites {
     {"water-1", effectWheelSprites[27]},
     {"water-2", effectWheelSprites[27]},
     {"water-3", effectWheelSprites[27]}
+  };
+
+  public static Dictionary<string, Sprite> heroFrozenSprites = new() {
+    {"body-1", heroSprites1[85]},
+    {"body-2", heroSprites2[85]},
+    {"body-3", heroSprites3[85]},
+    {"body-4", heroSprites4[85]},
+    {"body-5", heroSprites5[85]},
+    {"body-6", heroSprites6[85]}
   };
 }
