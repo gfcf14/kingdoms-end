@@ -60,7 +60,7 @@ public class RoomTrigger : MonoBehaviour {
 
   // Only destroy enemies if not frozen (since player temporarily removes its physics)
   private void OnTriggerExit2D(Collider2D col) {
-    if (!Hero.instance.isFrozen && col.CompareTag("RoomTraverser")) {
+    if (col.CompareTag("RoomTraverser")) {
       virtualCam.SetActive(false);
       foreach (Transform child in gameObject.transform) {
         if (child.tag == "EnemySpawner") {

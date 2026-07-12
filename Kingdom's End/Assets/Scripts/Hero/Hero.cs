@@ -231,6 +231,8 @@ public class Hero : MonoBehaviour {
     [SerializeField] public int effectShock = 0;
     [SerializeField] public int effectFrozen = 0;
 
+  private int lastSign = 0;
+  private IceEffect currentIceEffect;
   [NonSerialized] public List<Item> items = new List<Item>();
   [NonSerialized] public List<Item> relicItems = new List<Item>();
 
@@ -925,6 +927,31 @@ public class Hero : MonoBehaviour {
     return 0;
   }
 
+  // each horizontal key release decrements the ice strength until it reaches 0 and breaks
+  private bool CheckStruggle(float xInput) {
+    int sign = 0;
+
+    if (xInput > 0) {
+      sign = 1;
+    } else if (xInput < 0) {
+      sign = -1;
+    }
+
+    if (sign == 0) return false;
+
+    if (lastSign == 0) {
+      lastSign = sign;
+      return false;
+    }
+
+    if (sign != lastSign) {
+      lastSign = sign;
+      return true;
+    }
+
+    return false;
+  }
+
   // called on every frame of the game
   private void Update() {
     direction = isFacingLeft ? -1 : 1;
@@ -971,6 +998,10 @@ public class Hero : MonoBehaviour {
       if (!isPaused && pauseCase == "") {
         horizontalInput = isShocked ? 0 : GetInput("x");
         verticalInput = GetInput("y") * (Gamepad.current != null ? (Gamepad.current.dpad.y.value != 0 ? -1 : 1) : 1);
+
+        if (isFrozen && CheckStruggle(horizontalInput)) {
+          currentIceEffect.Damage(1);
+        }
 
         if (shieldDropTime != 0) {
           if (Helpers.ExceedsTime(shieldDropTime, currentShieldRecoverTime)) {
@@ -1824,22 +1855,21 @@ public class Hero : MonoBehaviour {
             AddConsumable(new Consumable(){key=elementalMagic, duration=(float)elementalMagicItem.effects.duration, useTime=Time.time * 1000});
 
             if (magicElement == "ice") {
-              GameObject  iceEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "ice-effect"), new Vector2(transform.position.x, transform.position.y + (heroHeight / 2)), Quaternion.identity);
+              GameObject  iceEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "ice-effect"), new Vector2(transform.position.x + ((heroWidth * direction) / 2), transform.position.y + (heroHeight / 2)), Quaternion.identity);
               iceEffect.GetComponent<SpriteRenderer>().sprite = Helpers.GetRandomSpriteFromGroup(Sprites.iceBlockSprites);
-              iceEffect.GetComponent<IceEffect>().strength = (int)elementalMagicItem.effects.iceStrength;
 
-              // TODO: - create isFrozen variable and freeze animation, set sprite to 85, restrict movement and jump
+              currentIceEffect = iceEffect.GetComponent<IceEffect>();
+              currentIceEffect.strength = (int)elementalMagicItem.effects.iceStrength;
+              currentIceEffect.hero = this;
+              currentIceEffect.consumableKey = elementalMagic;
+
               isFrozen = true;
               anim.enabled = false;
               heroRenderer.sprite = Helpers.GetOrException(Sprites.heroFrozenSprites, bodyEquipment);
 
-              //       - Add Hero as child of the iceEffect
-              body.simulated = false;
-              this.transform.SetParent(iceEffect.transform, true);
-              this.transform.localScale = new Vector3(1f / iceEffect.transform.localScale.x, 1f / iceEffect.transform.localScale.y, 1f / iceEffect.transform.localScale.z);
-              //       - Implement movement while inside the ice so each key release decrements the ice strength until it reaches 0 and breaks
-              //       - Upon breaking, remove the ice-x consumable
-              //       - May need to set the player state so it simply falls down and doesn't fly off in case of hurt-2 or hurt-3 prior to freeze
+              // "freezes the hero in place by clearing velocity and enabling position constraints
+                body.linearVelocity = Vector2.zero;
+                body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             }
           }
         }
@@ -1964,6 +1994,24 @@ public class Hero : MonoBehaviour {
       barDecrement.GetComponent<BarDecrement>().width = mpSpentWidth;
       barDecrement.GetComponent<BarDecrement>().type = "mp";
     }
+  }
+
+  public void BreakOutOfIce() {
+    anim.enabled = true;
+    isFrozen = false;
+
+    // Removes constraints so hero can move again
+    body.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+    string iceEffectKey = currentIceEffect.consumableKey;
+
+    UpdateEffectValues(iceEffectKey, false);
+    consumables.Remove(consumables.FirstOrDefault(currCons => currCons.key == iceEffectKey));
+    InGame.instance.UpdateEffectWheel();
+
+    // TODO: play ice break sound
+
+    currentIceEffect = null;
   }
 
   private bool isBottomCollision(Collider2D collider1, Collider2D collider2) {
