@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 656334788379643732}
   - component: {fileID: 3723095361434751738}
   - component: {fileID: 8979519239891288830}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: IceEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd33fd503b5db0498df600ec7379854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IceEffect
+  hero: {fileID: 0}
+  consumableKey: 
   strength: 0
 --- !u!50 &3723095361434751738
 Rigidbody2D:

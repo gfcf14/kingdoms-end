@@ -1021,7 +1021,7 @@ public class Hero : MonoBehaviour {
             float xMovement = moveFriction > 0 ? Mathf.Lerp(horizontalInput, (speed + effectSpeed) * moveSpeed * direction, moveFriction) : horizontalInput * (speed + effectSpeed);
 
             // movement happens on this line
-            body.linearVelocity = new Vector2(!isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? xMovement : 0, GetGroundVerticalModifier(groundType, horizontalInput * (speed + effectSpeed)));
+            body.linearVelocity = new Vector2(!isFrozen && !isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? xMovement : 0, GetGroundVerticalModifier(groundType, horizontalInput * (speed + effectSpeed)));
           }
 
           // flip player back when moving right
@@ -1855,21 +1855,22 @@ public class Hero : MonoBehaviour {
             AddConsumable(new Consumable(){key=elementalMagic, duration=(float)elementalMagicItem.effects.duration, useTime=Time.time * 1000});
 
             if (magicElement == "ice") {
-              GameObject  iceEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "ice-effect"), new Vector2(transform.position.x + ((heroWidth * direction) / 2), transform.position.y + (heroHeight / 2)), Quaternion.identity);
+              isFrozen = true;
+              anim.enabled = false;
+              heroRenderer.sprite = Helpers.GetOrException(Sprites.heroFrozenSprites, bodyEquipment);
+              heroCollider.enabled = false;
+
+              // "freezes" the hero in place by clearing velocity and enabling position constraints
+                body.linearVelocity = Vector2.zero;
+                body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+
+              GameObject iceEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "ice-effect"), new Vector2(transform.position.x, transform.position.y + (heroHeight / 2)), Quaternion.identity, transform);
               iceEffect.GetComponent<SpriteRenderer>().sprite = Helpers.GetRandomSpriteFromGroup(Sprites.iceBlockSprites);
 
               currentIceEffect = iceEffect.GetComponent<IceEffect>();
               currentIceEffect.strength = (int)elementalMagicItem.effects.iceStrength;
               currentIceEffect.hero = this;
               currentIceEffect.consumableKey = elementalMagic;
-
-              isFrozen = true;
-              anim.enabled = false;
-              heroRenderer.sprite = Helpers.GetOrException(Sprites.heroFrozenSprites, bodyEquipment);
-
-              // "freezes the hero in place by clearing velocity and enabling position constraints
-                body.linearVelocity = Vector2.zero;
-                body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             }
           }
         }
@@ -1964,7 +1965,7 @@ public class Hero : MonoBehaviour {
       InGame.instance.DrawDamage(position, damage, isCritical, soundType);
     }
 
-    if (!isInvulnerable) {
+    if (!isFrozen && !isInvulnerable) {
       damageStartTime = Time.time * 1000;
       isInvulnerable = true;
       body.mass = 0;
@@ -1997,8 +1998,9 @@ public class Hero : MonoBehaviour {
   }
 
   public void BreakOutOfIce() {
-    anim.enabled = true;
     isFrozen = false;
+    anim.enabled = true;    
+    heroCollider.enabled = true;
 
     // Removes constraints so hero can move again
     body.constraints = RigidbodyConstraints2D.FreezeRotation;

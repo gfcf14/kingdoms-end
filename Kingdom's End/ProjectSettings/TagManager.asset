@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - Hero
   - Ground
@@ -32,6 +32,7 @@ TagManager:
   - HeroCheck
   - Darkness
   - Pillar
+  - IceEffect
   layers:
   - Default
   - TransparentFX
@@ -50,7 +51,7 @@ TagManager:
   - Dropped
   - PlayerChecks
   - EnemyObjects
-  - 
+  - Effects
   - 
   - 
   - 
@@ -72,3 +73,5 @@ TagManager:
   - name: Underground Light
     uniqueID: 368105803
     locked: 0
+  m_RenderingLayers:
+  - Default
