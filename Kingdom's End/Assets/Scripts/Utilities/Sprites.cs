@@ -28,6 +28,7 @@ public class Sprites {
   public static Sprite[] breakableJars = Resources.LoadAll<Sprite>("Spritesheets/breakables/jar");
   public static Sprite[] breakableVases = Resources.LoadAll<Sprite>("Spritesheets/breakables/vase");
   public static Sprite[] iceBlockSprites = Resources.LoadAll<Sprite>("Spritesheets/weapons/arrows/arrow-ice-blocks");
+  public static Sprite[] iceCrackSprites = Resources.LoadAll<Sprite>("Spritesheets/weapons/arrows/ice-crack");
 
   public static Sprite[] effectWheelSprites = Resources.LoadAll<Sprite>("Spritesheets/UI/effect-wheel");
 
@@ -894,5 +895,11 @@ public class Sprites {
     {"body-4", heroSprites4[85]},
     {"body-5", heroSprites5[85]},
     {"body-6", heroSprites6[85]}
+  };
+
+  public static Dictionary<int, Sprite> iceCrackSpritesByPercentage = new() {
+    {75, iceCrackSprites[0]},
+    {50, iceCrackSprites[1]},
+    {25, iceCrackSprites[2]}
   };
 }

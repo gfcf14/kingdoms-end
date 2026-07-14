@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class IceEffect : MonoBehaviour {
   public Hero hero;
+  public GameObject iceCrack;
   public string consumableKey;
 
   // refers to the number of "hits" needed to be broken
   [SerializeField] public int strength;
+  [SerializeField] public int totalStrength;
   [SerializeField] private float shakeDistance = 0.08f;
   [SerializeField] private float shakeTime = 0.03f;
 
@@ -38,20 +40,31 @@ public class IceEffect : MonoBehaviour {
   public void Damage(int amount) {
     strength -= amount;
 
-    // TODO: play crack sound
+    InGame.instance.PlaySound(Sounds.iceCrackSound, transform.position);
 
     if (shakeRoutine != null) StopCoroutine(shakeRoutine);
     shakeRoutine = StartCoroutine(Shake());
 
-    // TODO: increase crack sprite
+    float totalToDamageRatio = (float)strength / totalStrength;
+    int expectedCrackIndex = 0;
+
+    if (totalToDamageRatio < 0.75f) {
+      if (totalToDamageRatio <= 0.25) expectedCrackIndex = 25;
+      else if (totalToDamageRatio <= 0.50) expectedCrackIndex = 50;
+      else if (totalToDamageRatio <= 0.75) expectedCrackIndex = 75;
+
+      iceCrack.GetComponent<SpriteRenderer>().sprite = Helpers.GetOrException(Sprites.iceCrackSpritesByPercentage, expectedCrackIndex);
+    }
 
     if (strength <= 0) {
+      InGame.instance.PrepareFullRockExplosion(gameObject, "ice", "ice");
       Break();
     }
   }
 
   private void Break() {
     hero.BreakOutOfIce();
+    Destroy(iceCrack);
     Destroy(gameObject);
   }
 }

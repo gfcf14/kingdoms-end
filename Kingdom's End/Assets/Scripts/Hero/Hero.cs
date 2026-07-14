@@ -233,6 +233,7 @@ public class Hero : MonoBehaviour {
 
   private int lastSign = 0;
   private IceEffect currentIceEffect;
+  private GameObject currentIceCrack;
   [NonSerialized] public List<Item> items = new List<Item>();
   [NonSerialized] public List<Item> relicItems = new List<Item>();
 
@@ -1867,10 +1868,18 @@ public class Hero : MonoBehaviour {
               GameObject iceEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "ice-effect"), new Vector2(transform.position.x, transform.position.y + (heroHeight / 2)), Quaternion.identity, transform);
               iceEffect.GetComponent<SpriteRenderer>().sprite = Helpers.GetRandomSpriteFromGroup(Sprites.iceBlockSprites);
 
+              GameObject iceCrack = Instantiate(Helpers.GetOrException(Objects.prefabs, "ice-crack"), new Vector2(transform.position.x, transform.position.y + (heroHeight * 0.75f)), Quaternion.identity, transform);
+              currentIceCrack = iceCrack;
+
               currentIceEffect = iceEffect.GetComponent<IceEffect>();
-              currentIceEffect.strength = (int)elementalMagicItem.effects.iceStrength;
+
+              int effectStrength = (int)elementalMagicItem.effects.iceStrength;
+              currentIceEffect.strength = effectStrength;
+              currentIceEffect.totalStrength = effectStrength;
+
               currentIceEffect.hero = this;
               currentIceEffect.consumableKey = elementalMagic;
+              currentIceEffect.iceCrack = currentIceCrack;
             }
           }
         }
@@ -2011,9 +2020,8 @@ public class Hero : MonoBehaviour {
     consumables.Remove(consumables.FirstOrDefault(currCons => currCons.key == iceEffectKey));
     InGame.instance.UpdateEffectWheel();
 
-    // TODO: play ice break sound
-
     currentIceEffect = null;
+    currentIceCrack = null;
   }
 
   private bool isBottomCollision(Collider2D collider1, Collider2D collider2) {

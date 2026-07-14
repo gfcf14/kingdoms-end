@@ -230,6 +230,7 @@ public class Sounds {
   // TODO: modify bewitch sound when more sounds are added
   public static AudioClip bewitchSound = Resources.Load<AudioClip>("SFX/hitting/recharge/recharge-1") as AudioClip;
   public static AudioClip iceblockSound = Resources.Load<AudioClip>("SFX/weapons/bow/ice") as AudioClip;
+  public static AudioClip iceCrackSound = Resources.Load<AudioClip>("SFX/hitting/shake/ice-crack") as AudioClip;
 
   public static Dictionary<string, AudioClip> blockSounds = new() {
     {"basic", Resources.Load<AudioClip>("SFX/hitting/block/basic")}

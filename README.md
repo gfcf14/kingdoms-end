@@ -74,6 +74,7 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 | hitting/normal/throwable-middle     | https://pixabay.com/sound-effects/slash1-94367/					                                |
 | hitting/normal/throwable-small      | https://pixabay.com/sound-effects/knife-stab-sound-effect-36354/                                |
 | hitting/recharge/recharge-1         | https://pixabay.com/sound-effects/film-special-effects-electrical-shock-zap-106412/             |
+| hitting/shake/ice-crack             | https://pixabay.com/sound-effects/film-special-effects-breaking-ice-crunching-307632/           |
 | intro/last                          | ORIGINAL                                                                                        |
 | intro/suspense                      | ORIGINAL                                                                                        |
 | items/falling/on-bedrock            | https://pixabay.com/sound-effects/stone-slide-sound-effects-322794/                             |
