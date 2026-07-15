@@ -230,6 +230,7 @@ public class Hero : MonoBehaviour {
     [SerializeField] public int effectStrength = 1;
     [SerializeField] public int effectShock = 0;
     [SerializeField] public int effectFrozen = 0;
+    [SerializeField] public int effectSealed = 0;
 
   private int lastSign = 0;
   private IceEffect currentIceEffect;
@@ -559,6 +560,7 @@ public class Hero : MonoBehaviour {
     effectStrength += (effectItem.effects.strength ?? 0) * multiplier;
     effectShock += (effectItem.effects.shock ?? 0) * multiplier;
     effectFrozen += (effectItem.effects.iceStrength ?? 0) * multiplier;
+    effectSealed += (effectItem.effects.seal ?? 0) * multiplier;
 
     string statusEffect = effectItem.effects.status;
 

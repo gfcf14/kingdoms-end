@@ -447,6 +447,9 @@ public class Pause : MonoBehaviour {
   void PopulateItemsContainer(List<Item> itemsList, GameObject parentContainer, bool isRelics = false) {
     List<string> itemsToRemove = new List<string>();
     List<string> itemTypes = new List<string>();
+
+    bool isSealed = Hero.instance.effectSealed > 0;
+
     foreach (Item currentItem in itemsList) {
       string currentKey = currentItem.key;
 
@@ -486,10 +489,22 @@ public class Pause : MonoBehaviour {
           currentItemButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, Constants.startItemY + (itemButtons.Count * Constants.itemIncrementY * -1));
           currentItemButton.transform.localScale = Vector3.one;
           currentItemButton.transform.Find("Image").gameObject.GetComponent<Image>().sprite = currentRegularItem.thumbnail;
-          currentItemButton.transform.Find("Text").gameObject.GetComponent<Text>().text = currentRegularItem.name;
           currentItemButton.GetComponent<ItemButton>().key = currentKey;
 
-          currentItemButton.transform.Find("Amount").gameObject.GetComponent<Text>().text = canvasStatus != "relics" ? (canvasStatus == "equipment" ? currentAmount - (Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey) ? 0 : itemUsageFrequency) : currentAmount).ToString() : "";
+          Text itemName = currentItemButton.transform.Find("Text").gameObject.GetComponent<Text>();
+          Text itemAmount = currentItemButton.transform.Find("Amount").gameObject.GetComponent<Text>();
+          bool isUsableItem = Helpers.IsUsableItem(Helpers.GetOrException(Objects.regularItems, currentKey).type);
+
+          itemName.text = currentRegularItem.name;
+          itemAmount.text = canvasStatus != "relics" ? (canvasStatus == "equipment" ? currentAmount - (Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey) ? 0 : itemUsageFrequency) : currentAmount).ToString() : "";
+
+          if (canvasStatus == "items" && isUsableItem) {
+            Color textColor = isSealed ? Colors.ailment : Colors.normalUI;
+
+            itemName.color = textColor;
+            itemAmount.color = textColor;
+          }
+
 
           // set the Event Trigger Submit objects and functions
             EventTrigger eventTrigger = currentItemButton.GetComponent<EventTrigger>();
@@ -554,7 +569,7 @@ public class Pause : MonoBehaviour {
         itemButtons.ElementAt(0).GetComponent<Button>().navigation = firstButtonNavigation;
       }
 
-      if (canvasStatus == "items" && Helpers.IsUsableItem(itemTypes[k])) {
+      if (canvasStatus == "items" && !isSealed && Helpers.IsUsableItem(itemTypes[k])) {
         currentItemButton.GetComponent<Button>().onClick.AddListener(ProceedToUse);
       }
 
@@ -1092,7 +1107,7 @@ public class Pause : MonoBehaviour {
     itemName.GetComponent<Text>().text = currentRegularItem.name.ToUpper();
     itemImage.GetComponent<Image>().sprite = currentRegularItem.image;
     itemDescription.GetComponent<Text>().text = currentRegularItem.description;
-    itemUseRectangle.SetActive(Helpers.IsUsableItem(currentRegularItem.type));
+    itemUseRectangle.SetActive(Helpers.IsUsableItem(currentRegularItem.type, shouldDisable: Hero.instance.effectSealed > 0));
 
     if (currentRegularItem.effects != null) {
       Effects itemEffects = currentRegularItem.effects;

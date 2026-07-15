@@ -16,7 +16,7 @@ public class Constants {
   public static string[] elements = {"air", "dark", "earth", "fire", "ice", "light", "lightning", "water"};
 
   public static string[] statEffects = {"critical-flask", "luck-flask", "stamina-flask", "strength-flask"};
-  public static string[] magicDamageEffects = {"air-1", "air-2", "air-3", "earth-1", "earth-2", "earth-3", "fire-1", "fire-2", "fire-3", "ice-1", "ice-2", "ice-3", "lightning-1", "lightning-2", "lightning-3", "water-1", "water-2", "water-3"};
+  public static string[] magicDamageEffects = {"air-1", "air-2", "air-3", "earth-1", "earth-2", "earth-3", "fire-1", "fire-2", "fire-3", "ice-1", "ice-2", "ice-3", "light-1", "light-2", "light-3", "lightning-1", "lightning-2", "lightning-3", "water-1", "water-2", "water-3"};
   public static string[] consumableEffects = {"air-infusion", "dark-infusion", "earth-infusion", "fire-infusion", "ice-infusion", "light-infusion", "lightning-infusion", "water-infusion"};
 
   public static string[] variableEnemies = { "luxhusk", "nomad", "wanderess" };
@@ -123,6 +123,8 @@ public class Constants {
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
   public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
   public static string[] forbiddenKeys = {"Escape", "KeypadEnter", "Return", "W", "A", "S", "D", "UpArrow", "DownArrow", "RightArrow", "LeftArrow", "P"};
+
+  // TODO: to avoid disabling medicine use, ensure a new item type, consumable-med, is included, and that it can be used even while sealed
   public static string[] usableItemTypes = {"consumable", "food", "throwable-food"};
 
   public static string[] bodyEquipmentTypes = {"body"};

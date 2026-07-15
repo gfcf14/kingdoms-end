@@ -34,7 +34,7 @@ public class Colors
   public static Color criticalColorOutline = new Color(1, 1, 1);
   public static Color criticalColorTop = new Color(0, 0, 0);
   public static Color effect = new Color(0, 192f / 255f, 1);
-  public static Color ailment = new Color(0.5f, 0, 0.5f);
+  public static Color ailment = new Color(0.75f, 0.25f, 1);
   public static Color normalUI = new Color(1, 1, 1, 1);
   public static Color transparent = new Color(0, 0, 0, 0);
 

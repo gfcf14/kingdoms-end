@@ -22,7 +22,9 @@ public class Helpers {
     return IsValueInArray(Constants.smallRotatingThrowables, type);
   }
 
-  public static bool IsUsableItem(string type) {
+  public static bool IsUsableItem(string type, bool shouldDisable = false) {
+    if (shouldDisable) return false;
+
     return IsValueInArray(Constants.usableItemTypes, type);
   }
 
