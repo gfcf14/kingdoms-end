@@ -401,11 +401,7 @@ public class InGame : MonoBehaviour {
       GameObject pulseEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "pulse"), Vector2.zero, Quaternion.identity, enemySpawned.transform);
       pulseEffect.transform.localPosition = Vector2.zero;
 
-      // TODO: remove this once all magic effects are implemented
-      string enemyElementalMagic = "light";
-
-      // TODO: uncomment this once all magic effects are implemented
-      // string enemyElementalMagic = Helpers.GetRandomItemFromGroup(Constants.elements);
+      string enemyElementalMagic = Helpers.GetRandomItemFromGroup(Constants.elements);
 
       enemyScript.elementalMagic = enemyElementalMagic;
       pulseEffect.GetComponent<Pulse>().SetOutlineColor(Helpers.GetOrException(Colors.pulseEffectColors, enemyElementalMagic));

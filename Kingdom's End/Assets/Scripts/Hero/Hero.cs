@@ -231,6 +231,15 @@ public class Hero : MonoBehaviour {
     [SerializeField] public int effectShock = 0;
     [SerializeField] public int effectFrozen = 0;
     [SerializeField] public int effectSealed = 0;
+    [SerializeField] public int effectPoisoned = 0;
+    [SerializeField] public string poisonType = "";
+    [SerializeField] public int poisonDamage = 0;
+
+  [NonSerialized] public float poisonAttackInterval = 900;
+  [NonSerialized] public float poisonEffectDuration = 450;
+  [NonSerialized] public float poisonEffectTime = 0;
+  [NonSerialized] public float poisonTime = 0;
+  [NonSerialized] public int poisonAttackCounter = 1;
 
   private int lastSign = 0;
   private IceEffect currentIceEffect;
@@ -541,6 +550,19 @@ public class Hero : MonoBehaviour {
     }
   }
 
+  public int GetPoisonDamage(string damageKey) {
+    int damageLevel = int.Parse(damageKey.Split('-')[1]);
+
+    // damage 5% (or closest multiple of 5) on level 2
+    if (damageLevel == 2) return (int)(Mathf.Floor((maxHP * 0.05f) / 5f) * 5f);
+
+    // damage 10% (or closest multiple of 5) on level 3
+    if (damageLevel == 3) return (int)(Mathf.Floor((maxHP * 0.1f) / 5f) * 5f);
+
+    // level 1 simply damages as little as possible
+    return Constants.minimumDamageDealt;
+  }
+
   public void UpdateEffectValues(string key, bool add) {
     RegularItem effectItem = Helpers.GetOrException(Objects.regularItems, key);
     int multiplier = add ? 1 : -1;
@@ -561,6 +583,11 @@ public class Hero : MonoBehaviour {
     effectShock += (effectItem.effects.shock ?? 0) * multiplier;
     effectFrozen += (effectItem.effects.iceStrength ?? 0) * multiplier;
     effectSealed += (effectItem.effects.seal ?? 0) * multiplier;
+
+    effectPoisoned += (effectItem.effects.poison ?? 0) * multiplier;
+    poisonTime = add ? Time.time * 1000 : 0;
+    poisonType = add ? key : "";
+    poisonDamage = add && key.Contains("dark") ? GetPoisonDamage(key) : 0;
 
     string statusEffect = effectItem.effects.status;
 
@@ -1203,6 +1230,26 @@ public class Hero : MonoBehaviour {
     //     outcomeValue = "money-9999|"
     //   });
     // }
+  }
+
+  void LateUpdate() {
+    if (effectPoisoned > 0) {
+      float currentTime = Time.time * 1000;
+      float nextPoisonAttackTime = poisonTime + (poisonAttackInterval * poisonAttackCounter);
+
+      if (currentTime > poisonEffectTime + poisonEffectDuration) {
+        heroRenderer.color = Color.white;
+      }
+
+      if (currentTime > nextPoisonAttackTime)  {
+        TakeDamage(poisonDamage, null, false, "");
+        InGame.instance.PlaySound(Helpers.GetOrException(Sounds.poisonSounds, "basic"), transform.position);
+        poisonEffectTime = Time.time * 1000;
+        heroRenderer.color = Helpers.GetOrException(Colors.statusColors, "poisoned");
+
+        poisonAttackCounter++;
+      }
+    }
   }
 
   void FixedUpdate() {
@@ -1964,6 +2011,7 @@ public class Hero : MonoBehaviour {
       currentHP = 0;
     }
 
+    // TODO: consider if this should go into the BarCanvas class
     GameObject barDecrement = Instantiate(Helpers.GetOrException(Objects.prefabs, "bar-decrement"), Vector2.zero, Quaternion.identity);
     int damageWidth = (maxHP > Constants.maxHPDisplayableLimit ? (int)(Constants.maxHPDisplayableLimit * ((float)damageToDisplay/(float)maxHP)) : damageToDisplay) * Constants.containerMultiplier + (int)Constants.hpAdjustDifference;
     barDecrement.transform.SetParent(InGame.instance.hpBarContainer.transform, false);

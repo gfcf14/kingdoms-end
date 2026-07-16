@@ -53,6 +53,7 @@ public class Effects {
   public int? shock; // property to increment/decrement shock outcome (from elemental magic damage)
   public int? iceStrength; //property to increment/decrement ice block strength (from elemental magic damage)
   public int? seal; // property to increment/decrement seal outcome (from elemental magic damage)
+  public int? poison; // property to increment/decrement poison outcome (from elemental magic damage)
   public string? status; // for consumables which display a status in the wheel
   public MagicResistance[] magicResistances;
 }
