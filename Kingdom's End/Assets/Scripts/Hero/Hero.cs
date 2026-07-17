@@ -529,7 +529,7 @@ public class Hero : MonoBehaviour {
   public void AddConsumable(Consumable newConsumable) {
     string[] consumableGroup = newConsumable.key.Split('-');
     string consumableKey = consumableGroup[0];
-    int consumableLevel = consumableGroup.Length > 1 ? int.Parse(consumableGroup[1]) : 0;
+    int consumableLevel = consumableGroup.Length > 1 && int.TryParse(consumableGroup[1], out _) ? int.Parse(consumableGroup[1]) : 0;
 
     Consumable existingConsumable = consumables.FirstOrDefault(c => c.key.Split('-')[0] == consumableKey);
 

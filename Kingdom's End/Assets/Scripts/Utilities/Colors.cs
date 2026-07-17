@@ -152,4 +152,36 @@ public class Colors
     {"speed", new Color(0, 0, 1, 1f)},
     {"water", new Color(30/255f, 144/255f, 255/255f, 1f)}
   };
+
+  public static Dictionary<string, Color> effectWheelColors = new() {
+    {"air-1", new Color(0.486f, 0.988f, 0.000f)}, // #7cfc00
+    {"air-2", new Color(0.486f, 0.988f, 0.000f)}, 
+    {"air-3", new Color(0.486f, 0.988f, 0.000f)},
+    {"critical-flask", new Color(1.000f, 0.502f, 0.000f)}, // #ff8000
+    {"dark-1", new Color(0.251f, 0.251f, 0.251f)}, // #404040
+    {"dark-2", new Color(0.251f, 0.251f, 0.251f)},
+    {"dark-3", new Color(0.251f, 0.251f, 0.251f)},
+    {"earth-1", new Color(0.545f, 0.271f, 0.075f)}, // #8b4513
+    {"earth-2", new Color(0.545f, 0.271f, 0.075f)},
+    {"earth-3", new Color(0.545f, 0.271f, 0.075f)},
+    {"fire-1", new Color(1.000f, 0.271f, 0.000f)}, // #ff4500
+    {"fire-2", new Color(1.000f, 0.271f, 0.000f)},
+    {"fire-3", new Color(1.000f, 0.271f, 0.000f)},
+    {"ice-1", new Color(0.000f, 1.000f, 1.000f)}, // #00ffff
+    {"ice-2", new Color(0.000f, 1.000f, 1.000f)},
+    {"ice-3", new Color(0.000f, 1.000f, 1.000f)},
+    {"light-1", new Color(0.753f, 0.753f, 0.753f)}, // #c0c0c0
+    {"light-2", new Color(0.753f, 0.753f, 0.753f)},
+    {"light-3", new Color(0.753f, 0.753f, 0.753f)},
+    {"lightning-1", new Color(1.000f, 0.843f, 0.000f)}, // #ffd700
+    {"lightning-2", new Color(1.000f, 0.843f, 0.000f)},
+    {"lightning-3", new Color(1.000f, 0.843f, 0.000f)},
+    {"luck-flask", new Color(0.000f, 0.882f, 0.196f)}, // #00e162
+    {"stamina-flask", new Color(0.769f, 0.769f, 0.769f)}, // #c4c4c4
+    {"strength-flask", new Color(0.937f, 0.749f, 0.016f)}, // #efbf04
+    {"water-1", new Color(0.118f, 0.565f, 1.000f)}, // #1e90ff
+    {"water-2", new Color(0.118f, 0.565f, 1.000f)},
+    {"water-3", new Color(0.118f, 0.565f, 1.000f)}
+    // TODO: add speed {"", new Color(0.000f, 0.000f, 1.000f)}, // #0000ff
+  };
 }

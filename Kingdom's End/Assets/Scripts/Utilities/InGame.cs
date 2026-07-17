@@ -530,6 +530,7 @@ public class InGame : MonoBehaviour {
 
   public void UpdateWheel(string consumableKey, GameObject effectContainer, int index) {
     GameObject currEffect = effectContainer.transform.GetChild(index).gameObject;
+    currEffect.GetComponent<Image>().color = Helpers.GetOrException(Colors.effectWheelColors, consumableKey);
     currEffect.transform.GetChild(0).GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keyToEffectSprites, consumableKey);
     currEffect.SetActive(true);
   }
