@@ -404,6 +404,8 @@ public class Constants {
   public static int sparkleRelativeMin = 500;
   public static int sparkleRelativeMax = 601;
 
+  public static Vector2 frozenSpriteOffset = new Vector2(0, 1.17f);
+
   public static Vector2[] fragmentPositions = { new Vector2(-fragmentOffset, fragmentOffset), new Vector2(0, fragmentOffset), new Vector2(fragmentOffset, fragmentOffset),
                                                 new Vector2(-fragmentOffset, 0),              new Vector2(0, 0),              new Vector2(fragmentOffset, 0),
                                                 new Vector2(-fragmentOffset, -fragmentOffset), new Vector2(0, -fragmentOffset), new Vector2(fragmentOffset, -fragmentOffset)};

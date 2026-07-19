@@ -152318,6 +152318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a4ac7d665334d44bed9563472f7dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  consumables: []
   speed: 5
   groundType: level
   tempGroundType: 
@@ -152357,9 +152358,11 @@ MonoBehaviour:
   canCastMagic: 0
   hasLightUnderground: 0
   isHurt: 0
+  isShocked: 0
   isSlammed: 0
   isFallingSlammed: 0
   isRecoveringFromSlam: 0
+  isFrozen: 0
   isDead: 0
   isDefending: 0
   isParrying: 0
@@ -152401,6 +152404,16 @@ MonoBehaviour:
   effectSTA: 0
   effectCRIT: 0
   effectLCK: 0
+  effectSpeed: 0
+  effectJump: 0
+  effectStamina: 1
+  effectStrength: 1
+  effectShock: 0
+  effectFrozen: 0
+  effectSealed: 0
+  effectPoisoned: 0
+  poisonType: 
+  poisonDamage: 0
   tiredThreshold: 40
   dummyShieldHP: 5
   dummyShieldRecoverTime: 2000

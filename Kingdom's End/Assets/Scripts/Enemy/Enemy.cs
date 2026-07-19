@@ -597,7 +597,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void CheckAttackToPlayer(Collider2D col) {
-    if (col.gameObject.tag == "Hero" && isAttacking) {
+    if (col.gameObject.tag == "Hero" && !Hero.instance.isFrozen && isAttacking) {
       // isAttacking = false;
       coolDownStart = Time.time * 1000;
 
@@ -1195,7 +1195,7 @@ public class Enemy : MonoBehaviour {
     Debug.DrawRay(proximityVector, forwardCastDirection.normalized * castLength, Helpers.GetOrException(Colors.raycastColors, "player"));
 
     foreach (RaycastHit2D hit in playerCast) {
-      if (hit.collider && hit.collider.tag == "Hero" && !hit.collider.GetComponent<Hero>().isInvulnerable) {
+      if (hit.collider && hit.collider.tag == "Hero" && !Hero.instance.isFrozen && !hit.collider.GetComponent<Hero>().isInvulnerable) {
         isAttacking = true;
         body.linearVelocity = Vector2.zero;
       }
@@ -1209,7 +1209,7 @@ public class Enemy : MonoBehaviour {
     Debug.DrawRay(forwardCast, forwardCastDirection.normalized * forwardCastLength, Helpers.GetOrException(Colors.raycastColors, "search"));
 
     // if enemy stumbles upon the player
-    if (searchCast && searchCast.collider.tag == "Hero") {
+    if (searchCast && searchCast.collider.tag == "Hero" && !Hero.instance.isFrozen) {
       playerFound = true;
       if (type == "charger") {
         // TODO: consider checking if the hero is hurt (currently enemy will charge and push an invincible player)
@@ -1349,7 +1349,7 @@ public class Enemy : MonoBehaviour {
     RaycastHit2D searchCast = Physics2D.Raycast(searchOrigin, searchDirection, searchCastLength);
     Debug.DrawRay(searchOrigin, searchDirection * searchCastLength, Helpers.GetOrException(Colors.raycastColors, "player"));
 
-    if (searchCast && searchCast.collider.tag == "Hero")
+    if (searchCast && searchCast.collider.tag == "Hero" && !Hero.instance.isFrozen)
     {
       searchPosition = searchCast.point;
       isThrowingWeapon = true;

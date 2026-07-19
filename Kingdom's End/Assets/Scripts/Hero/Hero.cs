@@ -1055,7 +1055,7 @@ public class Hero : MonoBehaviour {
           }
 
           // flip player back when moving right
-          if (horizontalInput > 0.01f && (isGrounded || canFlipOnAir) && !isAttackingSingle) {
+          if (!isFrozen && horizontalInput > 0.01f && (isGrounded || canFlipOnAir) && !isAttackingSingle) {
             transform.localScale = Vector3.one;
 
             if (!isDropKicking) {
@@ -1063,7 +1063,7 @@ public class Hero : MonoBehaviour {
             }
           }
           // flip player when moving left
-          else if (horizontalInput < -0.01f && (isGrounded || canFlipOnAir) && !isAttackingSingle && !isSlammed && !isFallingSlammed) {
+          else if (!isFrozen && horizontalInput < -0.01f && (isGrounded || canFlipOnAir) && !isAttackingSingle && !isSlammed && !isFallingSlammed) {
             FlipPlayer();
 
             if (!isDropKicking) {
@@ -1912,15 +1912,27 @@ public class Hero : MonoBehaviour {
 
               // "freezes" the hero in place by clearing velocity and enabling position constraints
                 body.linearVelocity = Vector2.zero;
-                body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
-              GameObject iceEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "ice-effect"), new Vector2(transform.position.x, transform.position.y + (heroHeight / 2)), Quaternion.identity, transform);
-              iceEffect.GetComponent<SpriteRenderer>().sprite = Helpers.GetRandomSpriteFromGroup(Sprites.iceBlockSprites);
+              Vector2 iceBlockPosition = new Vector2(transform.position.x, transform.position.y + (heroHeight / 2));
+              GameObject iceBlock = Instantiate(Helpers.GetOrException(Objects.prefabs, $"ice-block-{UnityEngine.Random.Range(1, 6)}"), iceBlockPosition, Quaternion.identity, transform);
+              IceEffect iceEffect = iceBlock.AddComponent<IceEffect>();
+              currentIceEffect = iceEffect;
+
+              // copies the PolygonCollider2D from the ice block prefab to pass it to the hero, then destroy the prefab one to avoid physics with it
+                PolygonCollider2D sourceCollider = iceBlock.GetComponent<PolygonCollider2D>();
+                Vector2[] colliderShapePoints = sourceCollider.points;
+
+                PolygonCollider2D targetCollider = gameObject.AddComponent<PolygonCollider2D>();
+                targetCollider.points = colliderShapePoints;
+                // add offset to match with the sprite location
+                targetCollider.offset = Constants.frozenSpriteOffset;
+                Destroy(sourceCollider);
+                // also destroy the rigid body it normally uses for enemy ice blocks
+                Destroy(iceBlock.GetComponent<Rigidbody2D>());
 
               GameObject iceCrack = Instantiate(Helpers.GetOrException(Objects.prefabs, "ice-crack"), new Vector2(transform.position.x, transform.position.y + (heroHeight * 0.75f)), Quaternion.identity, transform);
               currentIceCrack = iceCrack;
-
-              currentIceEffect = iceEffect.GetComponent<IceEffect>();
 
               int effectStrength = (int)elementalMagicItem.effects.iceStrength;
               currentIceEffect.strength = effectStrength;
@@ -2058,7 +2070,8 @@ public class Hero : MonoBehaviour {
 
   public void BreakOutOfIce() {
     isFrozen = false;
-    anim.enabled = true;    
+    anim.enabled = true;
+    Destroy(GetComponent<PolygonCollider2D>());
     heroCollider.enabled = true;
 
     // Removes constraints so hero can move again

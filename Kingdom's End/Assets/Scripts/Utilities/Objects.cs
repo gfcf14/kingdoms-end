@@ -53,7 +53,6 @@ public class Objects
     {"ice-block-4", Resources.Load("Prefabs/IceBlock-Icosahedron") as GameObject},
     {"ice-block-5", Resources.Load("Prefabs/IceBlock-Buckyball") as GameObject},
     {"ice-crack", Resources.Load("Prefabs/IceCrack") as GameObject},
-    {"ice-effect", Resources.Load("Prefabs/IceEffect") as GameObject},
     {"in-game", Resources.Load("Prefabs/InGame") as GameObject},
     {"item-button", Resources.Load("Prefabs/ItemButton") as GameObject},
     {"item-loss", Resources.Load("Prefabs/ItemLoss") as GameObject},
