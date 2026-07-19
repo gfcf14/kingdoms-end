@@ -70,7 +70,6 @@ public class SimpleFlash : MonoBehaviour {
       yield return new WaitForSeconds(duration);
 
       // After the pause, swap back to the original material.
-      Debug.Log(repaintColor);
       if (gameObject.name.Contains("Enemy")) {
         gameObject.GetComponent<Enemy>().isFlashing = false;
       }

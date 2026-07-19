@@ -104,7 +104,6 @@ GameObject:
   - component: {fileID: 8845075180607292003}
   - component: {fileID: 4815400616788930559}
   - component: {fileID: 5063873969706324727}
-  - component: {fileID: 1684635821705966633}
   m_Layer: 13
   m_Name: IceBlock-Buckyball
   m_TagString: Breakable
@@ -177,7 +176,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1879582850, guid: affe4fdb8fef7754f8cdf19b6cf5aafe, type: 3}
+  m_Sprite: {fileID: -1507477516732709687, guid: e1177ac50e643684ca2a2be4c177c50f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -225,7 +224,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -233,26 +232,26 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.45, y: 2}
-      - {x: -0.45, y: 2}
-      - {x: -0.85, y: 1.87}
-      - {x: -1.5, y: 1.37}
-      - {x: -1.77, y: 0.97}
-      - {x: -2, y: 0.22}
-      - {x: -2, y: -0.25}
-      - {x: -1.74, y: -1.03}
-      - {x: -1.47, y: -1.4}
-      - {x: -0.8, y: -1.88}
-      - {x: -0.45, y: -2}
-      - {x: 0.45, y: -2}
-      - {x: 0.85, y: -1.85}
-      - {x: 1.5, y: -1.37}
-      - {x: 1.75, y: -1}
-      - {x: 2, y: -0.25}
-      - {x: 2, y: 0.25}
-      - {x: 1.74, y: 1.05}
-      - {x: 1.45, y: 1.42}
-      - {x: 0.8, y: 1.88}
+    - - {x: 0.3418869, y: 1.4980464}
+      - {x: -0.34426445, y: 1.4982044}
+      - {x: -0.66243845, y: 1.3934404}
+      - {x: -1.1267909, y: 1.0350686}
+      - {x: -1.3370618, y: 0.71964884}
+      - {x: -1.5049566, y: 0.17049567}
+      - {x: -1.5041233, y: -0.18851672}
+      - {x: -1.3136349, y: -0.7649622}
+      - {x: -1.1242983, y: -1.022033}
+      - {x: -0.59321266, y: -1.4204724}
+      - {x: -0.33005136, y: -1.5019014}
+      - {x: 0.3287964, y: -1.5034558}
+      - {x: 0.63980865, y: -1.3910501}
+      - {x: 1.1297547, y: -1.0190383}
+      - {x: 1.3251568, y: -0.73668593}
+      - {x: 1.4932863, y: -0.16591653}
+      - {x: 1.494584, y: 0.19448082}
+      - {x: 1.2977607, y: 0.7934631}
+      - {x: 1.0863236, y: 1.0708178}
+      - {x: 0.6262468, y: 1.3973522}
   m_UseDelaunayMesh: 1
 --- !u!50 &5063873969706324727
 Rigidbody2D:
@@ -281,23 +280,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1684635821705966633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158287118899160401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f62aea78452219458cd714a4c8e9b24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 882151682408450738}
-  variable: {fileID: 8058403431822734267}
-  itemKey: 
-  itemRarity: 
-  isFacingLeft: 0
 --- !u!1 &8058403431822734267
 GameObject:
   m_ObjectHideFlags: 0

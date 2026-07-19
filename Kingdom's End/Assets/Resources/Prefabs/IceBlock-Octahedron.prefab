@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6280266269757197099}
   - component: {fileID: 2015509889203516051}
   - component: {fileID: 2588232550658694927}
-  - component: {fileID: 5200845470751593154}
+  - component: {fileID: -8860137908072067836}
   m_Layer: 13
   m_Name: IceBlock-Octahedron
   m_TagString: Breakable
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1292209335, guid: affe4fdb8fef7754f8cdf19b6cf5aafe, type: 3}
+  m_Sprite: {fileID: -1822084427343878783, guid: e1177ac50e643684ca2a2be4c177c50f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,7 +132,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -140,30 +140,50 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 2}
-      - {x: -2, y: 1}
-      - {x: -2, y: -1}
-      - {x: 0, y: -2}
-      - {x: 2, y: -1}
-      - {x: 2, y: 1}
+    - - {x: 1.497185, y: -0.31809473}
+      - {x: 1.4996943, y: 0.28232446}
+      - {x: 1.2650226, y: 0.8892513}
+      - {x: 0.6558943, y: 1.3781666}
+      - {x: 0.33231458, y: 1.4989583}
+      - {x: -0.34050867, y: 1.4987041}
+      - {x: -0.6602302, y: 1.3838971}
+      - {x: -1.2582904, y: 0.8953149}
+      - {x: -1.511638, y: 0.28814277}
+      - {x: -1.4941139, y: -0.376053}
+      - {x: -1.4281597, y: -0.84404296}
+      - {x: -0.8200327, y: -1.4571766}
+      - {x: -0.3528297, y: -1.5064281}
+      - {x: 0.2909795, y: -1.5063381}
+      - {x: 0.8157189, y: -1.454377}
+      - {x: 1.4220728, y: -0.8157579}
   m_UseDelaunayMesh: 1
---- !u!114 &5200845470751593154
-MonoBehaviour:
+--- !u!50 &-8860137908072067836
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175599320861955489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f62aea78452219458cd714a4c8e9b24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 7856119276401588802}
-  variable: {fileID: 7715759499888294823}
-  itemKey: 
-  itemRarity: 
-  isFacingLeft: 0
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7715759499888294823
 GameObject:
   m_ObjectHideFlags: 0

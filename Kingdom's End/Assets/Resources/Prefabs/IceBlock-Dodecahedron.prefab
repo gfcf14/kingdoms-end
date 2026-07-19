@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3770574581418350217}
   - component: {fileID: 882843793870600981}
   - component: {fileID: 636623908816504349}
-  - component: {fileID: -2845680638248620566}
   m_Layer: 13
   m_Name: IceBlock-Dodecahedron
   m_TagString: Breakable
@@ -85,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 413299650, guid: affe4fdb8fef7754f8cdf19b6cf5aafe, type: 3}
+  m_Sprite: {fileID: -4652533016663213889, guid: e1177ac50e643684ca2a2be4c177c50f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,7 +132,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -141,16 +140,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 2}
-      - {x: -1.2, y: 1.7}
-      - {x: -2, y: 0.67}
-      - {x: -2, y: -0.6}
-      - {x: -1.33, y: -1.5}
-      - {x: 0, y: -2}
-      - {x: 1.33, y: -1.5}
-      - {x: 2, y: -0.6}
-      - {x: 1.91, y: 0.7}
-      - {x: 1.2, y: 1.7}
+    - - {x: -0.0028330088, y: 1.5013897}
+      - {x: -0.9087189, y: 1.2878681}
+      - {x: -1.4360658, y: 0.5218515}
+      - {x: -1.4970301, y: -0.43979484}
+      - {x: -0.9872356, y: -1.1237044}
+      - {x: 0, y: -1.497726}
+      - {x: 1.0051445, y: -1.123969}
+      - {x: 1.4962423, y: -0.45742708}
+      - {x: 1.4443592, y: 0.5142981}
+      - {x: 0.9166987, y: 1.2807142}
   m_UseDelaunayMesh: 1
 --- !u!50 &636623908816504349
 Rigidbody2D:
@@ -179,23 +178,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-2845680638248620566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297928694077272507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f62aea78452219458cd714a4c8e9b24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 4804717180816858712}
-  variable: {fileID: 8772921408158895279}
-  itemKey: 
-  itemRarity: 
-  isFacingLeft: 0
 --- !u!1 &4804717180816858712
 GameObject:
   m_ObjectHideFlags: 0
