@@ -20,7 +20,7 @@ public class SummonEnergy : MonoBehaviour {
   }
 
   public void SummonEnemy() {
-    InGame.instance.SpawnEnemy(transform.position, summonKey, enemyType, null, null, null, false, parent.transform, "", enemyLevel);
+    InGame.instance.SpawnEnemy(transform.position, summonKey, enemyType, null, null, null, false, parent.transform, "", "", enemyLevel);
   }
 
   public void DestroySummon() {

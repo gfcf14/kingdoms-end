@@ -171320,6 +171320,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5441866141893687804, guid: 60fb5eafd86f95340ad378e241cb6804, type: 3}
+      propertyPath: elementalMagic
+      value: ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 5441866141893687804, guid: 60fb5eafd86f95340ad378e241cb6804, type: 3}
       propertyPath: enemyKeyTypeCondition
       value: 2
       objectReference: {fileID: 0}
@@ -286669,6 +286673,10 @@ MonoBehaviour:
   effectStrength: 1
   effectShock: 0
   effectFrozen: 0
+  effectSealed: 0
+  effectPoisoned: 0
+  poisonType: 
+  poisonDamage: 0
   tiredThreshold: 40
   dummyShieldHP: 5
   dummyShieldRecoverTime: 2000

@@ -343,7 +343,7 @@ public class InGame : MonoBehaviour {
     }
   }
 
-  public void SpawnEnemy(Vector2 position, string enemyKey, string enemyType, string condition, List<string> dropConditions, string specificDrop, bool isMiniBoss, Transform parent, string forceDirection = "", int level = 1) {
+  public void SpawnEnemy(Vector2 position, string enemyKey, string enemyType, string condition, List<string> dropConditions, string specificDrop, bool isMiniBoss, Transform parent, string forceDirection = "", string elementalMagic = "", int level = 1) {
     bool isVariableEnemy = Helpers.IsValueInArray(Constants.variableEnemies, enemyKey);
     string enemyPrefab = $"{(isVariableEnemy ? "variable-" : "")}enemy";
 
@@ -401,7 +401,7 @@ public class InGame : MonoBehaviour {
       GameObject pulseEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "pulse"), Vector2.zero, Quaternion.identity, enemySpawned.transform);
       pulseEffect.transform.localPosition = Vector2.zero;
 
-      string enemyElementalMagic = Helpers.GetRandomItemFromGroup(Constants.elements);
+      string enemyElementalMagic = elementalMagic == "" ? Helpers.GetRandomItemFromGroup(Constants.elements) : elementalMagic;
 
       enemyScript.elementalMagic = enemyElementalMagic;
       pulseEffect.GetComponent<Pulse>().SetOutlineColor(Helpers.GetOrException(Colors.pulseEffectColors, enemyElementalMagic));
