@@ -1880,13 +1880,7 @@ public class Hero : MonoBehaviour {
       float currentX = transform.position.x;
       float enemyX = xPosition;
 
-      hurtFromBehind = (currentX < enemyX && isFacingLeft) || (currentX > enemyX && !isFacingLeft);
-
-      bool mustTakeDamage = (!isDefending || (isDefending && hurtFromBehind)) && (!isParrying || (isParrying && hurtFromBehind));
-
-      if (hurtFromBehind) {
-        FlipPlayer(true);
-      }
+      bool mustTakeDamage = (!isDefending || (isDefending && hurtFromBehind)) && (!isParrying || (isParrying && hurtFromBehind));      
 
       if (mustTakeDamage) {
         if (elementalMagic != "") {
@@ -1994,6 +1988,14 @@ public class Hero : MonoBehaviour {
             enemyScript.stunOnAttack = true;
           }
         }
+      }
+
+      // decide if player is hurt from behind at the end to ensure any special states (e.g. frozen)
+      // can be taken into account (e.g. cannot flip when hurt from behind when frozen, as it implies
+      // the hero can move even when frozen)
+      hurtFromBehind = !isFrozen && ((currentX < enemyX && isFacingLeft) || (currentX > enemyX && !isFacingLeft));
+      if (hurtFromBehind) {
+        FlipPlayer(true);
       }
     }
   }
