@@ -630,13 +630,6 @@ public class Sprites {
     {"skeleton-king-giant-bone", droppableImages[104]},
     {"arrow-ice", droppableImages[105]},
     {"leprechaun-mushroom", droppableImages[106]},
-    // {"money-50", moneyImages[0]},
-    // {"money-100", moneyImages[1]},
-    // {"money-200", moneyImages[2]},
-    // {"money-500", moneyImages[3]},
-    // {"money-1000", moneyImages[4]},
-    // {"money-2000", moneyImages[5]},
-    // {"money-5000", moneyImages[6]}
     {"money-20", moneyImages[0]},
     {"money-50", moneyImages[1]},
     {"money-100", moneyImages[2]},
