@@ -2038,7 +2038,7 @@ public class Hero : MonoBehaviour {
       InGame.instance.DrawDamage(position, damage, isCritical, soundType);
     }
 
-    if (!isFrozen && !isInvulnerable) {
+    if (!isFrozen && effectPoisoned <= 0 && !isInvulnerable) {
       damageStartTime = Time.time * 1000;
       isInvulnerable = true;
       body.mass = 0;
