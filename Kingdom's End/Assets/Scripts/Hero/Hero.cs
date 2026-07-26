@@ -589,6 +589,10 @@ public class Hero : MonoBehaviour {
     poisonType = add ? key : "";
     poisonDamage = add && key.Contains("dark") ? GetPoisonDamage(key) : 0;
 
+    // reset the poison counter to allow for subsequent dark damages to occur
+    // (since the timed damage depends on the counter's value)
+    poisonAttackCounter = 1;
+
     string statusEffect = effectItem.effects.status;
 
     if (statusEffect != null) {
