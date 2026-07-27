@@ -395,8 +395,7 @@ public class InGame : MonoBehaviour {
     // TODO: implement a better way to assign level values
     enemyScript.level = level;
 
-    // TODO: ensure that if elemental magic is set, to assign magic regardless
-    bool shouldHaveMagic = UnityEngine.Random.Range(0, 2) == 1;
+    bool shouldHaveMagic = elementalMagic != "" || UnityEngine.Random.Range(0, 2) == 1;
 
     if (shouldHaveMagic) {
       GameObject pulseEffect = Instantiate(Helpers.GetOrException(Objects.prefabs, "pulse"), Vector2.zero, Quaternion.identity, enemySpawned.transform);

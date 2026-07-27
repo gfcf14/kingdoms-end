@@ -1113,6 +1113,7 @@ public class Hero : MonoBehaviour {
             }
           }
         } else {
+          // TODO: ensure hero cannot jump if frozen!
           // JUMP
           if (UserInput.IsAction(ControlActions.Jump, KeyState.Down)) {
             if (isGrounded && !isShocked || (canDoubleJump && jumpsExecuted < GameData.maxJumpLimit)) {
