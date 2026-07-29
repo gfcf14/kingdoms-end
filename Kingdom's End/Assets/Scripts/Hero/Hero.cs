@@ -317,6 +317,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("coconut", 10));
       items.Add(new Item("luck-flask", 1));
       items.Add(new Item("lightning-med", 1));
+      items.Add(new Item("random-flask", 5));
       items.Add(new Item("strength-flask", 1));
       items.Add(new Item("stamina-flask", 5));
       items.Add(new Item("magic-vial", 1));
@@ -384,6 +385,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("arrow-fire", 25));
       items.Add(new Item("arrow-poison", 25));
       items.Add(new Item("arrow-standard", 25));
+      items.Add(new Item("random-flask", 5));
       items.Add(new Item("axe", 25));
       items.Add(new Item("basic-shield", 1));
       items.Add(new Item("basic-sword", 1));
@@ -543,7 +545,7 @@ public class Hero : MonoBehaviour {
 
       // if the existing consumable is a magical damage (e.g. "<element>-<number>", then check if its level is smaller. If so, update with incoming values)
       string[] existingGroup = existingConsumable.key.Split('-');
-      if (existingGroup.Length > 1 && consumableLevel > int.Parse(existingGroup[1])) {
+      if (existingGroup.Length > 1 && int.TryParse(existingGroup[1], out _) && consumableLevel > int.Parse(existingGroup[1])) {
         existingConsumable.key = newConsumable.key;
         existingConsumable.duration = newConsumable.duration;
       }

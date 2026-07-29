@@ -713,7 +713,8 @@ public class Pause : MonoBehaviour {
   public void UseItem() {
     canPlayDeselect = false;
     Item heroItem = Hero.instance.items.ElementAt(currentItemButtonIndex);
-    RegularItem currentRegularItem = Helpers.GetOrException(Objects.regularItems, heroItem.key);
+    string itemKey = heroItem.key == "random-flask" ? Helpers.GetRandomItemFromGroup(Constants.itemsFromRandomFlask) : heroItem.key;
+    RegularItem currentRegularItem = Helpers.GetOrException(Objects.regularItems, itemKey);
 
     canvasStatus = "items";
 
@@ -740,11 +741,12 @@ public class Pause : MonoBehaviour {
 
         // TODO: build the others as more items are created!
       } else {
-        Hero.instance.AddConsumable(new Consumable(){key=heroItem.key, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
+        Hero.instance.AddConsumable(new Consumable(){key=itemKey, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
       }
 
       // determines what to do with the item and its amount
       if (heroItem.amount > 1) {
+        // do not use itemKey here to avoid using up an item whose effect was obtained at random
         Hero.instance.ConsumeItem(heroItem.key);
         itemButtons.ElementAt(currentItemButtonIndex).transform.Find("Amount").gameObject.GetComponent<Text>().text = (heroItem.amount).ToString();
         Helpers.FocusUIElement(itemButtons.ElementAt(currentItemButtonIndex));

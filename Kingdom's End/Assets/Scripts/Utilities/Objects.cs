@@ -237,8 +237,7 @@ public class Objects
     {"ra-ring", new RegularItem(Sprites.itemThumbnails[179], Sprites.itemImages[179], "Ring of Ra", "Said to have been created by the people of Atlantis.", "ring", 100, new Effects() {def=50, magicResistances=new MagicResistance[]{new MagicResistance(){name="Dark", type="add"}}})},
     {"rabbit-paw", new RegularItem(Sprites.itemThumbnails[130], Sprites.itemImages[130], "Rabbit's Paw", "Carefully crafted from grade-A bunnies.", "neck", 150, new Effects() {luck=0.2f})},
     {"rainbow-bracer", new RegularItem(Sprites.itemThumbnails[175], Sprites.itemImages[175], "Rainbow Bracer", "Protects against most magic elements.", "armwear", 200, new Effects() {magicResistances=new MagicResistance[]{new MagicResistance(){name="Earth", type="add"}, new MagicResistance(){name="Air", type="add"}, new MagicResistance(){name="Water", type="add"}, new MagicResistance(){name="Fire", type="add"}, new MagicResistance(){name="Lightning", type="add"}, new MagicResistance(){name="Ice", type="add"}, new MagicResistance(){name="Light", type="add"}}})},
-    // TODO: implement a randomized effect
-    {"random-flask", new RegularItem(Sprites.itemThumbnails[236], Sprites.itemImages[236], "Random Flask", "Temporarily increases a random atttribute.", "consumable", 350, new Effects() {luck=0.1f, duration=30})},
+    {"random-flask", new RegularItem(Sprites.itemThumbnails[236], Sprites.itemImages[236], "Random Flask", "Temporarily increases a random atttribute.", "consumable", 350)},
     // must delete
     {"refined-calcite", new RegularItem(Sprites.itemThumbnails[277], Sprites.itemImages[277], "Refined Calcite", "Belonging to higher ranked skeletons, it requires a more complex composition.", "valuable", 1000)},
     {"reinforced-axe", new RegularItem(Sprites.itemThumbnails[56], Sprites.itemImages[56], "Reinforced Axe", "A strong dwarf’s weapon of choice.", "throwable-double", 400, new Effects() {atk=80})},

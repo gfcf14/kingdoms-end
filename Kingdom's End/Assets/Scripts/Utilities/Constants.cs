@@ -122,7 +122,9 @@ public class Constants {
   };
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
   public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
-  public static string[] forbiddenKeys = {"Escape", "KeypadEnter", "Return", "W", "A", "S", "D", "UpArrow", "DownArrow", "RightArrow", "LeftArrow", "P"};
+
+  // TODO: consider if magic medicines, infusions, etc. should also be included here
+  public static string[] itemsFromRandomFlask = {"critical-flask", "luck-flask", "stamina-flask", "strength-flask"};
 
   // TODO: to avoid disabling medicine use, ensure a new item type, consumable-med, is included, and that it can be used even while sealed
   public static string[] usableItemTypes = {"consumable", "food", "throwable-food"};
