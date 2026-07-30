@@ -130,7 +130,7 @@ public class Breakable : MonoBehaviour {
         Transform parentTransform = parentObject.GetComponent<Transform>();
 
         if(Helpers.IsNonBouncingThrowable(weaponWielded)) {
-          parentThrowable.SetBounce(parentTransform, col.ClosestPoint(transform.position));
+          parentThrowable.SetBounce(col.ClosestPoint(transform.position));
 
           // ensures that the throwables start their bounce back at the point of contact
           col.transform.parent.parent.position = parentTransform.position;

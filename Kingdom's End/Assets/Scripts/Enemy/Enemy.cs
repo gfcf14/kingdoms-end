@@ -616,7 +616,7 @@ public class Enemy : MonoBehaviour {
     CheckAttackToPlayer(col.collider);
   }
 
-  public void DamageCalculation(Collider2D col, int specificDamage, string damageSoundType, string weaponType = "", bool isCritical = false) {
+  public void DamageCalculation(Vector2 damageLocation, int specificDamage, string damageSoundType, string weaponType = "", bool isCritical = false) {
     int damage = def - ((specificDamage + Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (isCritical ? 2 : 1));
 
     if (Helpers.IsValueInArray(Constants.throwableTypes, weaponType) || !(isDefending && !attackedFromBehind)) {
@@ -625,7 +625,7 @@ public class Enemy : MonoBehaviour {
         damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt
       );
 
-      TakeDamage(damageTaken, col.ClosestPoint(transform.position), isCritical, damageSoundType);
+      TakeDamage(damageTaken, damageLocation, isCritical, damageSoundType);
       if (!(weaponType == "throwable" || weaponType == "throwable-double")) {
         TurnWhenAttackedFromBehind();
       }
@@ -690,19 +690,19 @@ public class Enemy : MonoBehaviour {
       attackedFromBehind = (currentX < enemyX && isFacingLeft) || (currentX > enemyX && !isFacingLeft);
 
       if (Hero.instance.isKicking || Hero.instance.isDropKicking && !isDefending) {
-        DamageCalculation(col, Constants.kickDamage, "kick", "", isCritical);
+        DamageCalculation(col.ClosestPoint(transform.position), Constants.kickDamage, "kick", "", isCritical);
       } else {
         currentWeapon = Hero.instance.armUsed == 1 ? Hero.arm1Equipment : Hero.arm2Equipment;
         currentEquippedATK = Hero.instance.armUsed == 1 ? Hero.equippedATK1 : Hero.equippedATK2;
 
         if (currentWeapon == "" && !isDefending) {
-          DamageCalculation(col, Constants.punchDamage, "punch", "", isCritical);
+          DamageCalculation(col.ClosestPoint(transform.position), Constants.punchDamage, "punch", "", isCritical);
         } else {
           string weaponType = Helpers.GetOrException(Objects.regularItems, currentWeapon).type;
 
           if (weaponType == "single" || weaponType == "double" && !isDefending) {
             // TODO: might need to adjust to different types other than swords
-            DamageCalculation(col, currentEquippedATK, "sword", weaponType, isCritical);
+            DamageCalculation(col.ClosestPoint(transform.position), currentEquippedATK, "sword", weaponType, isCritical);
           } else if (Helpers.IsValueInArray(Constants.throwableTypes, weaponType)) {
             GameObject parentObject = col.transform.parent.gameObject;
             Throwable parentThrowable = parentObject.GetComponent<Throwable>();
@@ -712,11 +712,10 @@ public class Enemy : MonoBehaviour {
 
             if (mustTakeDamage) {
               string throwableSoundType = Helpers.GetThrowableSoundType(currentWeapon);
-              DamageCalculation(col, currentEquippedATK, throwableSoundType, weaponType, isCritical);
-              Transform parentTransform = parentObject.GetComponent<Transform>();
+              DamageCalculation(col.ClosestPoint(transform.position), currentEquippedATK, throwableSoundType, weaponType, isCritical);
 
               if(Helpers.IsNonBouncingThrowable(weaponWielded)) {
-                parentThrowable.SetBounce(parentTransform, col.ClosestPoint(transform.position));
+                parentThrowable.SetBounce(col.ClosestPoint(transform.position));
               }
 
               if (Helpers.IsValueInArray(Constants.fragmentableThrowables, weaponWielded)) {

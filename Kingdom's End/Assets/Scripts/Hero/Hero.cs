@@ -1640,14 +1640,14 @@ public class Hero : MonoBehaviour {
       Explosion currentExplosion = col.gameObject.GetComponent<Explosion>();
 
       if (!currentExplosion.hasDamaged) {
-        ReceiveExplosionDamage(col.gameObject, col.ClosestPoint(transform.position));
+        ReceiveExplosionDamage(col.gameObject.GetComponent<Explosion>(), col.ClosestPoint(transform.position));
         currentExplosion.hasDamaged = true;
       }
     } else if (colTag == "Explosion") {
       Explosion currentExplosion = col.gameObject.GetComponent<Explosion>();
 
       if (currentExplosion.type == "bomb" && !currentExplosion.hasDamaged) {
-        ReceiveExplosionDamage(col.gameObject, col.ClosestPoint(transform.position));
+        ReceiveExplosionDamage(col.gameObject.GetComponent<Explosion>(), col.ClosestPoint(transform.position));
         currentExplosion.hasDamaged = true;
       }
     }
@@ -1812,12 +1812,11 @@ public class Hero : MonoBehaviour {
     ReceiveFlyingWeapon(contactPoint, currentX, throwableX, throwableType, criticalRate, isCritical);
   }
 
-  public void ReceiveProjectile(GameObject projectile, Vector2 contactPoint) {
+  public void ReceiveProjectile(float xPosition, Vector2 contactPoint) {
     float currentX = transform.position.x;
-    float throwableX = projectile.transform.position.x;
 
     // TODO: ensure properties for other enemy throwables besides the king-bone are implemented, along with different sounds for impact
-    ReceiveFlyingWeapon(contactPoint, currentX, throwableX, type: "skeleton-king-giant-bone", criticalRate: 0, isCritical: false);
+    ReceiveFlyingWeapon(contactPoint, currentX, xPosition, type: "skeleton-king-giant-bone", criticalRate: 0, isCritical: false);
   }
 
   public void ReceiveFlyingWeapon(Vector2 contactPoint, float currentX, float flyingX, string type, float criticalRate, bool isCritical) {
@@ -1869,10 +1868,8 @@ public class Hero : MonoBehaviour {
     }
   }
 
-  public void ReceiveExplosionDamage(GameObject explosion, Vector2 contactPoint) {
-    Explosion explosionScript = explosion.GetComponent<Explosion>();
-
-    ReceiveAttack(contactPoint, xPosition: explosionScript.transform.position.x, atk: explosionScript.damage, attackType: "", criticalRate: -1);
+  public void ReceiveExplosionDamage(Explosion explosion, Vector2 contactPoint) {
+    ReceiveAttack(contactPoint, xPosition: explosion.transform.position.x, atk: explosion.damage, attackType: "", criticalRate: -1);
   }
 
   public void ReceiveEnemyAttack(GameObject enemy, Vector2 contactPoint, string elementalMagic = "", bool bewitch = false) {

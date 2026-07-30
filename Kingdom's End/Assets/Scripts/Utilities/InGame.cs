@@ -347,7 +347,7 @@ public class InGame : MonoBehaviour {
     bool isVariableEnemy = Helpers.IsValueInArray(Constants.variableEnemies, enemyKey);
     string enemyPrefab = $"{(isVariableEnemy ? "variable-" : "")}enemy";
 
-    GameObject enemySpawned = Instantiate(Helpers.GetOrException(Objects.prefabs, enemyPrefab), new Vector3(position.x, position.y, 0), Quaternion.identity, parent);
+    GameObject enemySpawned = Instantiate(Helpers.GetOrException(Objects.prefabs, enemyPrefab), new Vector2(position.x, position.y), Quaternion.identity, parent);
     Enemy enemyScript = enemySpawned.GetComponent<Enemy>();
     
     enemyScript.key = enemyKey != "" ? enemyKey : Helpers.GetRandomItemFromGroup(Helpers.GetOrException(Objects.enemyKeysByArea, GameData.area));
@@ -528,8 +528,7 @@ public class InGame : MonoBehaviour {
     };
   }
 
-  public void UpdateWheel(string consumableKey, GameObject effectContainer, int index) {
-    GameObject currEffect = effectContainer.transform.GetChild(index).gameObject;
+  public void UpdateWheel(string consumableKey, GameObject currEffect) {
     currEffect.GetComponent<Image>().color = Helpers.GetOrException(Colors.effectWheelColors, consumableKey);
     currEffect.transform.GetChild(0).GetComponent<Image>().sprite = Helpers.GetOrException(Sprites.keyToEffectSprites, consumableKey);
     currEffect.SetActive(true);
@@ -558,15 +557,15 @@ public class InGame : MonoBehaviour {
 
       switch (effectType) {
         case "stat":
-          UpdateWheel(currentConsumableKey, effectsContainerStats, statIndex);
+          UpdateWheel(currentConsumableKey, effectsContainerStats.transform.GetChild(statIndex).gameObject);
           statIndex++;
         break;
         case "magic_damage":
-          UpdateWheel(currentConsumableKey, effectsContainerMagicDamage, magicDamageIndex);
+          UpdateWheel(currentConsumableKey, effectsContainerMagicDamage.transform.GetChild(magicDamageIndex).gameObject);
           magicDamageIndex++;
         break;
         case "consumable":
-          UpdateWheel(currentConsumableKey, effectsContainerConsumables, consumableIndex);
+          UpdateWheel(currentConsumableKey, effectsContainerConsumables.transform.GetChild(consumableIndex).gameObject);
           consumableIndex++;
         break;
       }

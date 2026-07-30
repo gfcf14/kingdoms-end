@@ -23,7 +23,7 @@ public class ThrowableCollider : MonoBehaviour {
       if (colliderTag == "Floor" || colliderTag == "Wall") {
         Debug.Log("Ground Check for type: " + parentThrowable.type);
         if (Helpers.IsValueInArray(Constants.explodingThrowables, parentThrowable.type)) {
-          parentThrowable.SetBounce(parentThrowable.transform, col.ClosestPoint(transform.position));
+          parentThrowable.SetBounce(col.ClosestPoint(transform.position));
         } else if (!Helpers.IsValueInArray(Constants.nonGroundableThrowables, parentThrowable.type)) {
           parentThrowable.hasCollided = true;
           parentThrowable.collideTime = Time.time * 1000;
@@ -46,7 +46,7 @@ public class ThrowableCollider : MonoBehaviour {
         parentThrowable.hasCollided = true;
         parentThrowable.collideTime = Time.time * 1000;
 
-        parentThrowable.SetBounce(parentThrowable.transform, col.ClosestPoint(transform.position));
+        parentThrowable.SetBounce(col.ClosestPoint(transform.position));
 
         // ensures the animation starts at the impact point
         if (gameObject.tag == "EnemyWeapon") {

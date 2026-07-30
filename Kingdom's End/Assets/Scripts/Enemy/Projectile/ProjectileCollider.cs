@@ -21,7 +21,7 @@ public class ProjectileCollider : MonoBehaviour {
       if (colliderTag == "Hero") {
         // ensures the hero isn't damaged after being damaged
         if (!Hero.instance.isInvulnerable) {
-          Hero.instance.ReceiveProjectile(parentObject, col.ClosestPoint(transform.position));
+          Hero.instance.ReceiveProjectile(parentObject.transform.position.x, col.ClosestPoint(transform.position));
           hit = true;
         }
       }

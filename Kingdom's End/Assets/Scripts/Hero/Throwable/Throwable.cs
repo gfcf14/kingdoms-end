@@ -195,7 +195,7 @@ public class Throwable : MonoBehaviour {
     DestroyThrowable();
   }
 
-  public void SetBounce(Transform t, Vector3 collisionPoint) {
+  public void SetBounce(Vector2 collisionPoint) {
     if (!Helpers.IsValueInArray(Constants.explodingThrowables, type)) {
       // TODO: this simple fix instantiates a new throwable that is meant to bounce and fade out, while the one that collided is
       // destroyed. I.e. one collision = two objects. While both eventually get destroyed, consider if it's worth changing the
