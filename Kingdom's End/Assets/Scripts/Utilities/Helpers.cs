@@ -677,8 +677,6 @@ public class Helpers {
       Hero.instance.moveFriction = GameData.playerMovementFriction;
     }
   }
-
-  // TODO: modify to include usage of moneyImages from Sprites.cs
   public static Vector2 GetItemDimensions(string key) {
     Sprite currItem = GetOrException(Sprites.droppableSprites, key);
 

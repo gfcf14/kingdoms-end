@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2558.6667
     height: 1349.3334
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -274,17 +274,17 @@ MonoBehaviour:
     y: 646
     width: 2130
     height: 647.3334
-  m_MinSize: {x: 101, y: 126}
-  m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 21}
+  m_MinSize: {x: 231, y: 276}
+  m_MaxSize: {x: 10001, y: 10026}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
   - {fileID: 21}
   - {fileID: 22}
   - {fileID: 23}
   - {fileID: 24}
-  m_Selected: 1
-  m_LastSelected: 3
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1186,9 +1186,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -84.31335, y: -16.903349, z: -0.688176}
+    m_Target: {x: 32.694477, y: 846.1877, z: -0.23714747}
     speed: 2
-    m_Value: {x: -85.440445, y: -15.236606, z: -0.6577781}
+    m_Value: {x: 32.694477, y: 846.1877, z: -0.23714747}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1238,9 +1238,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 70.58993
+    m_Target: 25.486069
     speed: 2
-    m_Value: 67.55017
+    m_Value: 25.486069
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1314,18 +1314,13 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 336}
+      scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
       - m_Data: 134582
       m_LastClickedID:
         m_Data: 134582
       m_ExpandedIDs:
-      - m_Data: -2040
-      - m_Data: -1350
-      - m_Data: -12
-      - m_Data: 133998
-      - m_Data: 134098
-      - m_Data: 134800
+      - m_Data: -1342
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1450,7 +1445,7 @@ MonoBehaviour:
   m_Zoom: -1
   m_ScrollPosition: {x: 0, y: 0}
   m_SelectedObject: {fileID: 0}
-  m_SelectedSpriteRectGUID: 8f71336929423c3c0800000000000000
+  m_SelectedSpriteRectGUID: 00000000000000000000000000000000
   m_LastUsedModuleTypeName: UnityEditor.U2D.Sprites.SpriteFrameModule
 --- !u!114 &17
 MonoBehaviour:
@@ -1722,7 +1717,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs
+    - Assets/Resources/Spritesheets/UI
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1732,7 +1727,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Resources/Prefabs
+  - Assets/Resources/Spritesheets/UI
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Carlos\Documents\Github\kingdoms-end\Kingdom's End
   m_LockTracker:
@@ -1741,9 +1736,9 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 495}
     m_SelectedIDs:
-    - m_Data: 163362
+    - m_Data: 163392
     m_LastClickedID:
-      m_Data: 163362
+      m_Data: 163392
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 155010
@@ -1752,6 +1747,7 @@ MonoBehaviour:
     - m_Data: 155016
     - m_Data: 155018
     - m_Data: 155020
+    - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

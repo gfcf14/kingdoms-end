@@ -636,8 +636,17 @@ public class Sprites {
     {"water-med", droppableImages[248]},
     {"watermelon", droppableImages[214]},
     {"watermelon-slice", droppableImages[192]},
-    // must rename
-    {"wine", droppableImages[216]}
+    // must rename: wine-demijohn
+    {"wine", droppableImages[216]},
+
+    // added money images to avoid instantiation errors
+    {"money-20", moneyImages[0]},
+    {"money-50", moneyImages[1]},
+    {"money-100", moneyImages[2]},
+    {"money-200", moneyImages[3]},
+    {"money-500", moneyImages[4]},
+    {"money-1000", moneyImages[5]},
+    {"money-2000", moneyImages[6]}
   };
 
   public static Dictionary<string, Sprite> relicSprites = new() {
@@ -857,6 +866,8 @@ public class Sprites {
 
   public static Sprite[] comparisonStatIcons = { statsIcons[8], statsIcons[9], statsIcons[10], statsIcons[11] };
 
+  // TODO: sprites for element damages (<element>-<level>) should not be the element images, as these would be applied to
+  // indicate resistance to a specific element damage. Must change
   public static Dictionary<string, Sprite> keyToEffectSprites = new() {
     {"air-1", effectWheelSprites[26]},
     {"air-2", effectWheelSprites[26]},
