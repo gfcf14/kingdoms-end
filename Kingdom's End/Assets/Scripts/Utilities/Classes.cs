@@ -41,7 +41,7 @@ public class Effects {
   public float? hpPercentage;
   public int? mp;
   public float? mpPercentage;
-  public string[] statusHeal;
+  public string statusHeal; // either a single status heal (element magic) or "all"
   public int? atk;
   public int? def;
   public float? crit; // number between 0 and 1

@@ -721,8 +721,10 @@ public class Pause : MonoBehaviour {
     if (currentRegularItem.effects != null) {
       Effects itemEffects = currentRegularItem.effects;
 
-      // add to consumables only if the item has a duration
-      if (itemEffects.duration == null) {
+      if (itemEffects.statusHeal != null) { // if statusHeal is set, item will remove a consumable and update status effects
+        // TODO: play a sound here to indicate healing a status
+        Hero.instance.RemoveStatusEffects(itemEffects.statusHeal);
+      } else if (itemEffects.duration == null) { // add to consumables only if the item has a duration
         if (itemEffects.hp != null) {
           DisplayItemEffect("hp", effectsCurrentHP, (float)itemEffects.hp, false);
         }
@@ -739,7 +741,7 @@ public class Pause : MonoBehaviour {
           DisplayItemEffect("mp", effectsCurrentMP, (float)itemEffects.mpPercentage, true);
         }
 
-        // TODO: build the others as more items are created!
+        // TODO: build the others (e.g. for the flasks) as more items are created!
       } else {
         Hero.instance.AddConsumable(new Consumable(){key=itemKey, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
       }
@@ -1186,14 +1188,8 @@ public class Pause : MonoBehaviour {
       }
 
       if (itemEffects.statusHeal != null) {
-        string statusEffectsText = "Heals ";
-
-        int i = 0;
-        foreach (string currStatusHeal in itemEffects.statusHeal) {
-          statusEffectsText += currStatusHeal + (i < itemEffects.statusHeal.Length - 1 ? ", " : "\n");
-          i++;
-        }
-
+        string healText = itemEffects.statusHeal == "all" ? "all magic ailments" : itemEffects.statusHeal;
+        string statusEffectsText = $"Heals {healText}";
         itemEffectsStatusHealLabel.GetComponent<Text>().text = statusEffectsText;
         itemEffectsStatusHealLabel.SetActive(true);
       }

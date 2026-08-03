@@ -296,14 +296,8 @@ public class Shop : MonoBehaviour {
       }
 
       if (itemEffects.statusHeal != null) {
-        string statusEffectsText = "Heals ";
-
-        int i = 0;
-        foreach (string currStatusHeal in itemEffects.statusHeal) {
-          statusEffectsText += currStatusHeal + (i < itemEffects.statusHeal.Length - 1 ? ", " : "\n");
-          i++;
-        }
-
+        string healText = itemEffects.statusHeal == "all" ? "all magic ailments" : itemEffects.statusHeal;
+        string statusEffectsText = $"Heals {healText}";
         itemEffectsStatusHealLabel.GetComponent<Text>().text = statusEffectsText;
         itemEffectsStatusHealLabel.SetActive(true);
       }

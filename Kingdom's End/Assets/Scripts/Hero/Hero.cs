@@ -316,7 +316,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("honeydew", 10));
       items.Add(new Item("coconut", 10));
       items.Add(new Item("luck-flask", 1));
-      items.Add(new Item("lightning-med", 1));
+      items.Add(new Item("lightning-med", 2));
       items.Add(new Item("random-flask", 5));
       items.Add(new Item("strength-flask", 1));
       items.Add(new Item("stamina-flask", 5));
@@ -524,6 +524,26 @@ public class Hero : MonoBehaviour {
     }
 
     return 0;
+  }
+
+  public void RemoveStatusEffects(string statusHeal) {
+    // start from last to first to safely remove as we check each consumable
+    for (int i = consumables.Count - 1; i >= 0; i--) {
+      Consumable currentConsumable = consumables[i];
+
+      // only work with consumables which are magic damage effects
+      if (!Helpers.IsValueInArray(Constants.magicDamageEffects, currentConsumable.key)) continue;
+
+      bool shouldRemove = statusHeal == "all" || currentConsumable.key.StartsWith($"{statusHeal}-");
+
+      if (shouldRemove) {
+        UpdateEffectValues(currentConsumable.key, false);
+        consumables.RemoveAt(i);
+      }
+    }
+
+    UpdateEffectMagicResistances();
+    InGame.instance.UpdateEffectWheel();
   }
 
   // adds consumable if it hasn't been consumed before, but
