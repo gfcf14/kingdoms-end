@@ -689,7 +689,7 @@ public class Pause : MonoBehaviour {
     }
   }
 
-  public void DisplayItemEffect(string type, GameObject effectCurrent, float itemEffectAmount, bool isPercentage = false) {
+  public void DisplayItemEffect(string type, GameObject effectCurrent, float itemEffectAmount, bool isPercentage = false, bool isTemporary = false) {
     if (isPercentage) {
       // For items who recover a percentage, round up to the nearest multiple of 5
       itemEffectAmount = Mathf.CeilToInt((int)(itemEffectAmount * Hero.instance.maxHP) / 5f) * 5;
@@ -706,8 +706,7 @@ public class Pause : MonoBehaviour {
 
     effectCurrent.SetActive(true);
 
-    // TODO: ensure that this can be either temporary (for potions of limited time use) or permanent (for single use items)
-    Hero.instance.UpdateStats(type, (int)itemEffectAmount);
+    if (!isTemporary) Hero.instance.UpdateStats(type, (int)itemEffectAmount);
   }
 
   public void UseItem() {
@@ -725,24 +724,26 @@ public class Pause : MonoBehaviour {
         // TODO: play a sound here to indicate healing a status
         Hero.instance.RemoveStatusEffects(itemEffects.statusHeal);
       } else if (itemEffects.duration == null) { // add to consumables only if the item has a duration
-        if (itemEffects.hp != null) {
-          DisplayItemEffect("hp", effectsCurrentHP, (float)itemEffects.hp, false);
-        }
+        // hp
+        if (itemEffects.hp != null) DisplayItemEffect("hp", effectsCurrentHP, (float)itemEffects.hp, false);
+        if (itemEffects.hpPercentage != null) DisplayItemEffect("hp", effectsCurrentHP, (float)itemEffects.hpPercentage, true);
 
-        if (itemEffects.hpPercentage != null) {
-          DisplayItemEffect("hp", effectsCurrentHP, (float)itemEffects.hpPercentage, true);
-        }
-
-        if (itemEffects.mp != null) {
-          DisplayItemEffect("mp", effectsCurrentMP, (float)itemEffects.mp, false);
-        }
-
-        if (itemEffects.mpPercentage != null) {
-          DisplayItemEffect("mp", effectsCurrentMP, (float)itemEffects.mpPercentage, true);
-        }
-
-        // TODO: build the others (e.g. for the flasks) as more items are created!
+        // mp
+        if (itemEffects.mp != null) DisplayItemEffect("mp", effectsCurrentMP, (float)itemEffects.mp, false);
+        if (itemEffects.mpPercentage != null) DisplayItemEffect("mp", effectsCurrentMP, (float)itemEffects.mpPercentage, true);
       } else {
+        // strength
+        if (itemEffects.atk != null) DisplayItemEffect("", effectSTR, (float)itemEffects.atk, false, true);
+
+        // stamina
+        if (itemEffects.def != null) DisplayItemEffect("", effectSTA, (float)itemEffects.def, false, true);
+
+        // critical
+        if (itemEffects.crit != null) DisplayItemEffect("", effectCRIT, (float)itemEffects.crit, true, true);
+
+        // luck
+        if (itemEffects.luck != null) DisplayItemEffect("", effectLCK, (float)itemEffects.luck, true, true);
+
         Hero.instance.AddConsumable(new Consumable(){key=itemKey, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
       }
 
