@@ -137,7 +137,7 @@ public class Hero : MonoBehaviour {
   public bool isIndoors = false;
 
   // PLAYER STATS
-    [NonSerialized] public int playerLevel = 1;
+    [NonSerialized] public int playerLevel = 100;
     [NonSerialized] public int currentHP = GameData.baseHP;
     [NonSerialized] public int maxHP = GameData.baseHP;
     [NonSerialized] public int currentMP = GameData.baseHP;

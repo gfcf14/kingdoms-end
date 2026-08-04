@@ -695,8 +695,12 @@ public class Pause : MonoBehaviour {
       itemEffectAmount = Mathf.CeilToInt((int)(itemEffectAmount * Hero.instance.maxHP) / 5f) * 5;
     }
 
+    // only when the effect is for critical rate or luck, which is measured in percentage, should % display,
+    // hp, mp and other cases expect a calculated value instead
+    bool showPercentage = isPercentage && (type == "crit" || type == "luck");
+
     Text effect = effectCurrent.transform.Find("Text").gameObject.GetComponent<Text>();
-    effect.text = (itemEffectAmount >= 0 ? "+" : "") + itemEffectAmount;
+    effect.text = (itemEffectAmount >= 0 ? "+" : "") + itemEffectAmount + (showPercentage ? "%" : "");
 
     if (itemEffectAmount < 0) {
       effect.color = Helpers.GetOrException(Colors.uiColors, "red");
@@ -733,16 +737,16 @@ public class Pause : MonoBehaviour {
         if (itemEffects.mpPercentage != null) DisplayItemEffect("mp", effectsCurrentMP, (float)itemEffects.mpPercentage, true);
       } else {
         // strength
-        if (itemEffects.atk != null) DisplayItemEffect("", effectSTR, (float)itemEffects.atk, false, true);
+        if (itemEffects.atk != null) DisplayItemEffect("str", effectSTR, (float)itemEffects.atk, false, true);
 
         // stamina
-        if (itemEffects.def != null) DisplayItemEffect("", effectSTA, (float)itemEffects.def, false, true);
+        if (itemEffects.def != null) DisplayItemEffect("sta", effectSTA, (float)itemEffects.def, false, true);
 
         // critical
-        if (itemEffects.crit != null) DisplayItemEffect("", effectCRIT, (float)itemEffects.crit, true, true);
+        if (itemEffects.crit != null) DisplayItemEffect("crit", effectCRIT, (float)itemEffects.crit, true, true);
 
         // luck
-        if (itemEffects.luck != null) DisplayItemEffect("", effectLCK, (float)itemEffects.luck, true, true);
+        if (itemEffects.luck != null) DisplayItemEffect("luck", effectLCK, (float)itemEffects.luck, true, true);
 
         Hero.instance.AddConsumable(new Consumable(){key=itemKey, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
       }
