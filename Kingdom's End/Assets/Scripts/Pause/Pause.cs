@@ -690,9 +690,16 @@ public class Pause : MonoBehaviour {
   }
 
   public void DisplayItemEffect(string type, GameObject effectCurrent, float itemEffectAmount, bool isPercentage = false, bool isTemporary = false) {
+    int totalAmountByType = Hero.instance.maxHP;
+
+    // only include critical and luck percentage since hp and mp grow the same
+    if (isPercentage && (type == "crit" || type == "luck")){
+      totalAmountByType = 100;
+    }    
+
     if (isPercentage) {
       // For items who recover a percentage, round up to the nearest multiple of 5
-      itemEffectAmount = Mathf.CeilToInt((int)(itemEffectAmount * Hero.instance.maxHP) / 5f) * 5;
+      itemEffectAmount = Mathf.CeilToInt((int)(itemEffectAmount * totalAmountByType) / 5f) * 5;
     }
 
     // only when the effect is for critical rate or luck, which is measured in percentage, should % display,
