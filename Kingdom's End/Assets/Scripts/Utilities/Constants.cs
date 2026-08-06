@@ -22,7 +22,7 @@ public class Constants {
   public static string[] variableEnemies = { "luxhusk", "nomad", "wanderess" };
   public static string[] fragmentableThrowables = { "watermelon" };
   public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };
-  public static string[] nonBouncingThrowables = { "lance", "knife", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
+  public static string[] nonBouncingThrowables = { "lance", "dagger", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
   public static string[] nonBouncingProjectiles = {
     "angel-blast",
     "archangel-blast",
@@ -121,7 +121,7 @@ public class Constants {
     "zombie-bone"
   };
   public static string[] smallRotatingThrowables = { "shuriken-4", "shuriken-6", "hatchet" };
-  public static string[] nonSymmetricalThrowables = { "hatchet", "knife" };
+  public static string[] nonSymmetricalThrowables = { "hatchet", "dagger" };
 
   // TODO: consider if magic medicines, infusions, etc. should also be included here
   public static string[] itemsFromRandomFlask = {"critical-flask", "luck-flask", "stamina-flask", "strength-flask"};
@@ -152,7 +152,7 @@ public class Constants {
   public static string[] droppableNonColliderNames = {"ProximityCheck", "ChestOpener", "Grounder"};
   public static string[] droppableNonColliderTags = {"Enemy", "Hero"};
 
-  public static string[] smallThrowables = {"knife", "kunai", "shuriken-4", "shuriken-6"};
+  public static string[] smallThrowables = {"dagger", "kunai", "shuriken-4", "shuriken-6"};
   public static string[] angledThrowables = {"skeleton-king-giant-bone", "hatchet", "axe"};
   public static string[] rotatingThrowables = {"axe", "bluecap-rock", "hatchet", "redcap-rock", "skeleton-king-giant-bone", "shuriken-4", "shuriken-6"};
   public static string[] rotatingProjectiles = {"angel-blast", "archangel-blast", "archdemon-blast", "archeia-blast", "blob-ectoplasm", "cyclops-hillstone", "demon-blast", "dyrgja-hatchet", "fairy-blast", "fiendlord-blast", "flygmy-blast", "frostbird-orb", "golem-boulder", "luxhusk-ball", "mummy-rib", "neret-orb", "pishtaco-vertebra", "phoenix-orb", "pixie-fireball", "sandman-sandrock", "seraphim-blast", "skeleton-bone", "skelewing-orb", "thunderbird-orb", "troll-boulder", "vampire-blast"};
@@ -171,26 +171,27 @@ public class Constants {
   public static string[] smallEnemies = {"blob", "botarosa", "crone", "dwarf", "dyrgja", "elf", "fairy", "flygmy", "gnome", "imp", "kabouter", "leprechaun", "menehune", "mosswyn", "pixie", "scarabkin"};
   // large flying enemies - to avoid floating them too high given their dimensions
   public static string[] largeFlyingEnemies = {"siren", "sylphid"};
-  public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
-  public static string[] lowLevelMoney = {"money-20", "money-50"};
-  public static string[] midLevelFood = {"pineapple", "coconut", "honeydew", "watermelon", "wine"};
 
-  // TODO: wine is on high level food array as placeholder. Remove once better food items are implemented
-  public static string[] highLevelFood = {"wine"};
-  public static string[] goblinKnives = {"bandit-knife", "knife"};
-  public static string[] goblinMidItem4 = {"silver-bar", "bronze-ingot"};
-  public static string[] midLevelMoney = {"money-100", "money-200"};
-  public static string[] goblinHighItem4 = {"silver-ingot", "gold-bar"};
+  // ITEM GROUPS
+    public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
+    public static string[] lowLevelMoney = {"money-20", "money-50"};
+    public static string[] midLevelFood = {"pineapple", "coconut", "honeydew", "watermelon", "wine-demijohn"};
 
-  // TODO: silver bracelet is on low level bracelets array as placeholder. Remove once worse bracelets are implemented
-  public static string[] lowLevelBracelets = {"silver-bracelet"};
-  public static string[] lowLevelPotions = {"potion", "magic-ampoule"};
+    // TODO: wine is on high level food array as placeholder. Remove once better food items are implemented
+    public static string[] highLevelFood = {"wine-demijohn"};
+    public static string[] midLevelMoney = {"money-100", "money-200"};
 
-  // TODO: moonlight-pendant should not have such low stats. Remove from this list when worse pendants have been implemented
-  public static string[] lowLevelPendants = {"moonlight-pendant"};
-  public static string[] midLevelPotions = {"mid-potion", "magic-vial"};
-  public static string[] highLevelPotions = {"high-potion", "magic-bottle"};
-  public static string[] recalculatableItemKeys = {"goblin-high-item4", "goblin-knives", "goblin-mid-item4", "high-food", "high-potions", "low-bracelets", "low-food", "low-money", "low-pendants", "low-potions", "mid-food", "mid-money", "mid-potions"};
+    // TODO: silver bracelet is on low level bracelets array as placeholder. Remove once worse bracelets are implemented
+    public static string[] lowLevelBracelets = {"silver-bracelet"};
+    public static string[] lowLevelPotions = {"potion", "magic-ampoule"};
+
+    // TODO: moonlight-pendant should not have such low stats. Remove from this list when worse pendants have been implemented
+    public static string[] lowLevelPendants = {"moonlight-pendant"};
+    public static string[] midLevelPotions = {"mid-potion", "magic-vial"};
+    public static string[] highLevelPotions = {"high-potion", "magic-bottle"};
+
+  // END ITEM GROUPS
+  public static string[] recalculatableItemKeys = {"high-food", "high-potions", "low-bracelets", "low-food", "low-money", "low-pendants", "low-potions", "mid-food", "mid-money", "mid-potions"};
   public static string[] moneyItemKeys = {"money-20", "money-50", "money-100", "money-200", "money-500", "money-1000", "money-2000"};
   public static string[] rotateDirections = {"west", "east"};
 

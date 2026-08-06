@@ -341,7 +341,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("hatchet", 14));
       items.Add(new Item("shuriken-6", 23));
       items.Add(new Item("shuriken-4", 50));
-      items.Add(new Item("knife", 30));
+      items.Add(new Item("dagger", 30));
       items.Add(new Item("kunai", 37));
       items.Add(new Item("basic-bow", 1));
       items.Add(new Item("arrow-standard", 21));
@@ -395,7 +395,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("chicken-drumstick", 2));
       items.Add(new Item("hatchet", 25));
       items.Add(new Item("skeleton-king-giant-bone", 25));
-      items.Add(new Item("knife", 25));
+      items.Add(new Item("dagger", 25));
       items.Add(new Item("kunai", 25));
       items.Add(new Item("lance", 25));
       items.Add(new Item("potion", 25));
