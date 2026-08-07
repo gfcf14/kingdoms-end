@@ -175,16 +175,34 @@ public class Helpers {
   public static string GetDroppableItem(string key, int level, float playerLuck) {
     string enemyLevel = GetLevelString(level);
     ProbabilityItem[] itemProbabilities = GetOrException(GetOrException(Objects.enemyDroppables, key), enemyLevel);
-    float randomOutcome = UnityEngine.Random.Range(0.0f, 1.0f) + playerLuck;
 
-    if (randomOutcome > 1) {
-      randomOutcome = 1;
+    float roll = UnityEngine.Random.Range(0f, 100f);
+
+    // adds player luck to ensure it affects probability outcome
+    roll += playerLuck * 100f;
+
+    // if due to adding playerLuck the probability exceeds 100% then use that limit
+    roll = Mathf.Min(roll, 100f);
+
+    float cumulativeProbability = 0f;
+    ProbabilityItem selectedItem = null;
+
+    // loops through all ProbabilityItems in values by level in order (e.g. 50, 30, 12, 8) until its accumulation exceeds it
+    // which then implies that's the value obtained
+    foreach (ProbabilityItem item in itemProbabilities) {
+      cumulativeProbability += item.probability;
+
+      if (roll <= cumulativeProbability) {
+        selectedItem = item;
+        break;
+      }
     }
 
-    string randomItemKey = itemProbabilities.FirstOrDefault(item => randomOutcome <= item.probability).key;
+    // Safety check in case the probabilities don't total 100.
+    if (selectedItem == null) selectedItem = itemProbabilities.Last();
+    string randomItemKey = selectedItem.key;
 
-    // gets the rarity of an item to play a sound when the item is picked
-    bool isRare = itemProbabilities.FirstOrDefault(item => randomItemKey == item.key).probability == 1;
+    bool isRare = selectedItem.probability <= 10;
     string rarity = randomItemKey.Contains("money") || IsValueInArray(Constants.moneyItemKeys, randomItemKey) ? "money" : (isRare ? "rare" : "normal");
 
     // if the item is from a group, it needs to be recalculated

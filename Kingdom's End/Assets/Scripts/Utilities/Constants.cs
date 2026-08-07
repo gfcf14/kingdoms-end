@@ -173,13 +173,14 @@ public class Constants {
   public static string[] largeFlyingEnemies = {"siren", "sylphid"};
 
   // ITEM GROUPS
+    public static string[] berries = {"blueberries", "raspberries", "strawberry"};
     public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
     public static string[] lowLevelMoney = {"money-20", "money-50"};
     public static string[] midLevelFood = {"pineapple", "coconut", "honeydew", "watermelon", "wine-demijohn"};
 
     // TODO: wine is on high level food array as placeholder. Remove once better food items are implemented
     public static string[] highLevelFood = {"wine-demijohn"};
-    public static string[] midLevelMoney = {"money-100", "money-200"};
+    public static string[] midLevelMoney = {"money-100", "money-200", "money-500"};
 
     // TODO: silver bracelet is on low level bracelets array as placeholder. Remove once worse bracelets are implemented
     public static string[] lowLevelBracelets = {"silver-bracelet"};
@@ -188,10 +189,10 @@ public class Constants {
     // TODO: moonlight-pendant should not have such low stats. Remove from this list when worse pendants have been implemented
     public static string[] lowLevelPendants = {"moonlight-pendant"};
     public static string[] midLevelPotions = {"mid-potion", "magic-vial"};
-    public static string[] highLevelPotions = {"high-potion", "magic-bottle"};
+    public static string[] highLevelMoney = {"money-1000", "money-2000"};
 
   // END ITEM GROUPS
-  public static string[] recalculatableItemKeys = {"high-food", "high-potions", "low-bracelets", "low-food", "low-money", "low-pendants", "low-potions", "mid-food", "mid-money", "mid-potions"};
+  public static string[] recalculatableItemKeys = {"berries", "high-food", "high-money", "low-bracelets", "low-food", "low-money", "low-pendants", "low-potions", "mid-food", "mid-money", "mid-potions"};
   public static string[] moneyItemKeys = {"money-20", "money-50", "money-100", "money-200", "money-500", "money-1000", "money-2000"};
   public static string[] rotateDirections = {"west", "east"};
 
