@@ -755,10 +755,30 @@ public class Objects
     }}
   };
 
-  // To get item probabilities, order them with the highest probability item first, then descending. the next item's probability has to be its inteded probability PLUS the previous ones
-  // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%, then A's probability is 0.8, B is 0.9, C is 0.96, and D is 1
+  // Item probablities are calculated with a human readable format
+  // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%,
+  // then A's probability is 80, B is 10, C is 6, and D is 4
   public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new() {
-    {"centaur", genericItemDictionary},
+    {"centaur", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="centaur-spear", probability=80},
+        new (){key="low-potions", probability=13},
+        new (){key="grapes", probability=5},
+        new (){key="gold-bar", probability=2},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="centaur-spear", probability=80},
+        new (){key="mid-potions", probability=13},
+        new (){key="wine-bottle", probability=5},
+        new (){key="gold-ingot", probability=2},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="centaur-spear", probability=80},
+        new (){key="mid-potions", probability=13},
+        new (){key="wine-demijohn", probability=5},
+        new (){key="diamond", probability=2},
+      }}
+    }},
     {"dwarf", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=70},
@@ -879,7 +899,26 @@ public class Objects
         new (){key="silver-king-skull", probability=3},
       }}
     }},
-    {"troll", genericItemDictionary},
+    {"troll", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="club", probability=50},
+        new (){key="low-food", probability=25},
+        new (){key="low-money", probability=15},
+        new (){key="bronze-ingot", probability=10},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="club", probability=50},
+        new (){key="mid-food", probability=25},
+        new (){key="mid-money", probability=15},
+        new (){key="silver-ingot", probability=10},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="club", probability=50},
+        new (){key="mid-food", probability=25},
+        new (){key="high-money", probability=15},
+        new (){key="gold-ingot", probability=10},
+      }}
+    }},
     {"unicorn", genericItemDictionary},
     {"nereid", genericItemDictionary},
     {"fairy", genericItemDictionary},
