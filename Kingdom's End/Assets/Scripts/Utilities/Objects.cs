@@ -397,12 +397,12 @@ public class Objects
     {"luck-flask", new RegularItem(Sprites.itemThumbnails[235], Sprites.itemImages[235], "Luck Flask", "Temporarily increases luck.", "consumable", 350, new Effects() {luck=0.1f, duration=30})},
     {"machete", new RegularItem(Sprites.itemThumbnails[13], Sprites.itemImages[13], "Machete", "Simple hunting machete.", "single", 250, new Effects() {atk=20})},
     {"magma-necklace", new RegularItem(Sprites.itemThumbnails[127], Sprites.itemImages[127], "Magma Necklace", "Fire necklace with fire properties.", "neck", 150, new Effects() {def=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Fire", type="add"}}})},
-    {"mallet", new RegularItem(Sprites.itemThumbnails[51], Sprites.itemImages[51], "Mallet", "Long wooden weapon with blunt force.", "double", 500, new Effects() {atk=40})},
     {"magic-ampoule", new RegularItem(Sprites.itemThumbnails[240], Sprites.itemImages[240], "Magic Ampoule", "Substance with magic properties.", "consumable", 350, new Effects() {mpPercentage=0.25f})},
     {"magic-bottle", new RegularItem(Sprites.itemThumbnails[242], Sprites.itemImages[242], "Magic Bottle", "Greatly replenishes magic expenditure.", "consumable", 350, new Effects() {mpPercentage=1f})},
     {"magic-vial", new RegularItem(Sprites.itemThumbnails[241], Sprites.itemImages[241], "Magic Vial", "Potent magic restorer.", "consumable", 350, new Effects() {mpPercentage=0.5f})},
     {"magma-sabertooth", new RegularItem(Sprites.itemThumbnails[373], Sprites.itemImages[373], "Magma Sabertooth", "Canine Tooth from calderas beasts.", "valuable", 1000)},
     {"malachite", new RegularItem(Sprites.itemThumbnails[266], Sprites.itemImages[266], "Malachite", "Vibrant green copper mineral.", "valuable", 1000)},
+    {"mallet", new RegularItem(Sprites.itemThumbnails[51], Sprites.itemImages[51], "Mallet", "Long wooden weapon with blunt force.", "double", 500, new Effects() {atk=40})},
     // TODO: complete description
     {"mamluk-sabre", new RegularItem(Sprites.itemThumbnails[27], Sprites.itemImages[27], "Mamluk Sabre", "___ guards' weapon of choice.", "double", 500, new Effects() {atk=50})},
     // TODO: complete description
@@ -779,6 +779,26 @@ public class Objects
         new (){key="diamond", probability=2},
       }}
     }},
+    {"dryad", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=70},
+        new (){key="forest-dress", probability=15},
+        new (){key="leaf-sword", probability=10},
+        new (){key="laurel-crown", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=70},
+        new (){key="forest-dress", probability=15},
+        new (){key="leaf-sword", probability=10},
+        new (){key="flower-crown", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=70},
+        new (){key="forest-dress", probability=15},
+        new (){key="leaf-sword", probability=10},
+        new (){key="flower-wreath", probability=5},
+      }}
+    }},
     {"dwarf", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=70},
@@ -799,6 +819,46 @@ public class Objects
         new (){key="war-maul", probability=5},
       }}
     }},
+    {"fairy", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=50},
+        new (){key="low-money", probability=30},
+        new (){key="bronze-ingot", probability=12},
+        new (){key="potion", probability=8},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=50},
+        new (){key="mid-money", probability=30},
+        new (){key="silver-ingot", probability=12},
+        new (){key="fairy-dress", probability=8},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=50},
+        new (){key="high-money", probability=30},
+        new (){key="gold-ingot", probability=12},
+        new (){key="fairy-dress", probability=8},
+      }}
+    }},
+    {"faun", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="berries", probability=70},
+        new (){key="bronze-bar", probability=15},
+        new (){key="bronze-ingot", probability=10},
+        new (){key="morningstar", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="berries", probability=70},
+        new (){key="silver-bar", probability=15},
+        new (){key="silver-ingot", probability=10},
+        new (){key="morningstar", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="berries", probability=70},
+        new (){key="gold-bar", probability=15},
+        new (){key="gold-ingot", probability=10},
+        new (){key="morningstar", probability=5},
+      }}
+    }},
     {"goblin", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=50},
@@ -817,6 +877,26 @@ public class Objects
         new (){key="bandit-rapier", probability=30},
         new (){key="mid-money", probability=10},
         new (){key="gold-bar", probability=10},
+      }}
+    }},
+    {"leprechaun", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=75},
+        new (){key="leprechaun-hammer", probability=13},
+        new (){key="bronze-ingot", probability=7},
+        new (){key="pot-of-bronze", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=75},
+        new (){key="leprechaun-hammer", probability=13},
+        new (){key="silver-ingot", probability=7},
+        new (){key="pot-of-silver", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=75},
+        new (){key="leprechaun-hammer", probability=13},
+        new (){key="gold-ingot", probability=7},
+        new (){key="pot-of-gold", probability=5},
       }}
     }},
     {"nymph", new() {
@@ -919,9 +999,47 @@ public class Objects
         new (){key="gold-ingot", probability=10},
       }}
     }},
-    {"unicorn", genericItemDictionary},
+    {"unicorn", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=70},
+        new (){key="low-potions", probability=15},
+        new (){key="speed-potion", probability=10},
+        new (){key="bronze-ingot", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=70},
+        new (){key="low-potions", probability=15},
+        new (){key="speed-potion", probability=10},
+        new (){key="silver-ingot", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=70},
+        new (){key="mid-potions", probability=15},
+        new (){key="speed-potion", probability=10},
+        new (){key="gold-ingot", probability=5},
+      }}
+    }},
+    {"werewolf", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="pelt", probability=50},
+        new (){key="chicken-drumstick", probability=35},
+        new (){key="low-money", probability=10},
+        new (){key="fang", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="pelt", probability=50},
+        new (){key="ham-sausage", probability=35},
+        new (){key="mid-money", probability=10},
+        new (){key="fang", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="pelt", probability=50},
+        new (){key="steak", probability=35},
+        new (){key="high-money", probability=10},
+        new (){key="diamond-fang", probability=5},
+      }}
+    }},
     {"nereid", genericItemDictionary},
-    {"fairy", genericItemDictionary},
     {"phoenix", genericItemDictionary},
     {"frostbird", genericItemDictionary},
     {"thunderbird", genericItemDictionary},
@@ -936,10 +1054,6 @@ public class Objects
     {"kelpie", genericItemDictionary},
     {"ogre", genericItemDictionary},
     {"cyclops", genericItemDictionary},
-    {"faun", genericItemDictionary},
-    {"dryad", genericItemDictionary},
-    {"werewolf", genericItemDictionary},
-    {"leprechaun", genericItemDictionary},
     {"gnome", genericItemDictionary},
     {"nixie", genericItemDictionary},
     {"pishtaco", genericItemDictionary},
@@ -1024,7 +1138,9 @@ public class Objects
     {"low-potions", Constants.lowLevelPotions},
     {"mid-food", Constants.midLevelFood},
     {"mid-money", Constants.midLevelMoney},
-    {"mid-potions", Constants.midLevelPotions}
+    {"mid-potions", Constants.midLevelPotions},
+    {"seafood", Constants.seafood},
+    {"sea-glass", Constants.seaGlass}
   };
 
   public static Dictionary<string, MoneyItem> moneyItems = new() {

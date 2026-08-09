@@ -174,6 +174,8 @@ public class Constants {
 
   // ITEM GROUPS
     public static string[] berries = {"blueberries", "raspberries", "strawberry"};
+    public static string[] seafood = {"calamari", "ceviche", "fish", "shrimp-tail", "sushi"};
+    public static string[] seaGlass = {"blue-sea-glass", "green-sea-glass", "red-sea-glass", "yellow-sea-glass"};
     public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
     public static string[] lowLevelMoney = {"money-20", "money-50"};
     public static string[] midLevelFood = {"pineapple", "coconut", "honeydew", "watermelon", "wine-demijohn"};
@@ -192,7 +194,7 @@ public class Constants {
     public static string[] highLevelMoney = {"money-1000", "money-2000"};
 
   // END ITEM GROUPS
-  public static string[] recalculatableItemKeys = {"berries", "high-food", "high-money", "low-bracelets", "low-food", "low-money", "low-pendants", "low-potions", "mid-food", "mid-money", "mid-potions"};
+  public static string[] recalculatableItemKeys = {"berries", "high-food", "high-money", "low-bracelets", "low-food", "low-money", "low-pendants", "low-potions", "mid-food", "mid-money", "mid-potions", "seafood", "sea-glass"};
   public static string[] moneyItemKeys = {"money-20", "money-50", "money-100", "money-200", "money-500", "money-1000", "money-2000"};
   public static string[] rotateDirections = {"west", "east"};
 
