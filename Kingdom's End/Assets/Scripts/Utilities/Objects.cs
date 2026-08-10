@@ -759,6 +759,26 @@ public class Objects
   // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%,
   // then A's probability is 80, B is 10, C is 6, and D is 4
   public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new() {
+    {"bunyip", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="pelt", probability=50},
+        new (){key="low-food", probability=30},
+        new (){key="low-potions", probability=13},
+        new (){key="tusk", probability=7},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="pelt", probability=50},
+        new (){key="mid-food", probability=30},
+        new (){key="mid-potions", probability=13},
+        new (){key="tusk", probability=7},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="pelt", probability=50},
+        new (){key="high-food", probability=30},
+        new (){key="mid-potions", probability=13},
+        new (){key="marble-tusk", probability=7},
+      }}
+    }},
     {"centaur", new() {
       {"low", new ProbabilityItem[] {
         new (){key="centaur-spear", probability=80},
@@ -899,6 +919,46 @@ public class Objects
         new (){key="pot-of-gold", probability=5},
       }}
     }},
+    {"mosswyn", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=60},
+        new (){key="moss-dagger", probability=25},
+        new (){key="bronze-bar", probability=10},
+        new (){key="unrefined-stone", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=60},
+        new (){key="moss-dagger", probability=25},
+        new (){key="silver-bar", probability=10},
+        new (){key="moss-agate", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=60},
+        new (){key="moss-dagger", probability=25},
+        new (){key="gold-bar", probability=10},
+        new (){key="moss-agate", probability=5},
+      }}
+    }},
+    {"nixie", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="berries", probability=80},
+        new (){key="low-potions", probability=10},
+        new (){key="swamp-dress", probability=7},
+        new (){key="bronze-bar", probability=3},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="berries", probability=80},
+        new (){key="mid-potions", probability=10},
+        new (){key="swamp-dress", probability=7},
+        new (){key="silver-bar", probability=3},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="berries", probability=80},
+        new (){key="mid-potions", probability=10},
+        new (){key="swamp-dress", probability=7},
+        new (){key="swamp-pearl", probability=3},
+      }}
+    }},
     {"nymph", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=60},
@@ -917,6 +977,46 @@ public class Objects
         new (){key="vine-scepter", probability=20},
         new (){key="mid-potions", probability=15},
         new (){key="flower-wreath", probability=5},
+      }}
+    }},
+    {"ogre", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="spiked-club", probability=50},
+        new (){key="low-money", probability=30},
+        new (){key="chicken-drumstick", probability=15},
+        new (){key="unrefined-stone", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="spiked-club", probability=50},
+        new (){key="mid-money", probability=30},
+        new (){key="ham-sausage", probability=15},
+        new (){key="unrefined-stone", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="spiked-club", probability=50},
+        new (){key="high-money", probability=30},
+        new (){key="ham-leg", probability=15},
+        new (){key="diamond", probability=5},
+      }}
+    }},
+    {"pishtaco", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="butter", probability=60},
+        new (){key="low-money", probability=25},
+        new (){key="grapes", probability=10},
+        new (){key="machete", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="butter", probability=60},
+        new (){key="mid-money", probability=25},
+        new (){key="wine-bottle", probability=10},
+        new (){key="crimson-machete", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="butter", probability=60},
+        new (){key="high-money", probability=25},
+        new (){key="wine-demijohn", probability=10},
+        new (){key="crimson-machete", probability=5},
       }}
     }},
     {"pixie", new() {
@@ -1039,6 +1139,26 @@ public class Objects
         new (){key="diamond-fang", probability=5},
       }}
     }},
+    {"yanmabel", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="berries", probability=70},
+        new (){key="low-money", probability=17},
+        new (){key="wing-silk", probability=10},
+        new (){key="earth-med", probability=3},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="berries", probability=70},
+        new (){key="mid-money", probability=17},
+        new (){key="wing-silk", probability=10},
+        new (){key="earth-potion", probability=3},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="berries", probability=70},
+        new (){key="high-money", probability=17},
+        new (){key="wing-silk", probability=10},
+        new (){key="truth-serum", probability=3},
+      }}
+    }},
     {"nereid", genericItemDictionary},
     {"phoenix", genericItemDictionary},
     {"frostbird", genericItemDictionary},
@@ -1047,18 +1167,12 @@ public class Objects
     {"skelewing", genericItemDictionary},
     {"mummy", genericItemDictionary},
     {"samodiva", genericItemDictionary},
-    {"yanmabel", genericItemDictionary},
     {"hippocampus", genericItemDictionary},
     {"mermaid", genericItemDictionary},
     {"merman", genericItemDictionary},
     {"kelpie", genericItemDictionary},
-    {"ogre", genericItemDictionary},
     {"cyclops", genericItemDictionary},
     {"gnome", genericItemDictionary},
-    {"nixie", genericItemDictionary},
-    {"pishtaco", genericItemDictionary},
-    {"bunyip", genericItemDictionary},
-    {"mosswyn", genericItemDictionary},
     {"sugecapre", genericItemDictionary},
     {"glupus", genericItemDictionary},
     {"hellhound", genericItemDictionary},
