@@ -1963,6 +1963,7 @@ public class Hero : MonoBehaviour {
         }
 
         bool isCritical = bewitch ? true : Helpers.IsCritical(criticalRate);
+        // TODO: add element multiplier damage at the end of the line below
         int damage = bewitch ? -(currentHP - Constants.minimumDamageDealt) : ((stamina + (int)equippedSTA + (int)effectSTA) * (effectStamina >= 1 ? 1 : 0)) - (atk * (isCritical ? 2 : 1));
         // TODO: modify first argument based on different attack type used by the enemy
         TakeDamage(damage < 0 ? Math.Abs(damage) : (damage == 0 && bewitch ? 0 : Constants.minimumDamageDealt), contactPoint, isCritical, attackType);

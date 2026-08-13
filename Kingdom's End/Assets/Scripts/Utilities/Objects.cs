@@ -879,6 +879,26 @@ public class Objects
         new (){key="war-maul", probability=5},
       }}
     }},
+    {"dyrgja", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="dyrgja-hatchet", probability=60},
+        new (){key="low-food", probability=25},
+        new (){key="low-potions", probability=10},
+        new (){key="ice-potion", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="dyrgja-hatchet", probability=60},
+        new (){key="mid-food", probability=25},
+        new (){key="mid-potions", probability=10},
+        new (){key="ice-med", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="dyrgja-hatchet", probability=60},
+        new (){key="high-food", probability=25},
+        new (){key="mid-potions", probability=10},
+        new (){key="ice-infusion", probability=5},
+      }}
+    }},
     {"fairy", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=50},
@@ -937,6 +957,46 @@ public class Objects
         new (){key="high-food", probability=30},
         new (){key="fire-infusion", probability=15},
         new (){key="crimson-brace", probability=5},
+      }}
+    }},
+    {"frostbird", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=65},
+        new (){key="low-money", probability=20},
+        new (){key="ice-bracelet", probability=10},
+        new (){key="frostbird-feather", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=65},
+        new (){key="mid-money", probability=20},
+        new (){key="ice-bracelet", probability=10},
+        new (){key="frostbird-feather", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=65},
+        new (){key="high-money", probability=20},
+        new (){key="ice-bracelet", probability=10},
+        new (){key="frostbird-feather", probability=5},
+      }}
+    }},
+    {"glupus", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="chicken-drumstick", probability=45},
+        new (){key="fur", probability=25},
+        new (){key="polar-furcuff", probability=20},
+        new (){key="sabertooth", probability=10},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="ham-sausage", probability=45},
+        new (){key="fur", probability=25},
+        new (){key="polar-furcuff", probability=20},
+        new (){key="glacial-sabertooth", probability=10},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="steak", probability=45},
+        new (){key="fur", probability=25},
+        new (){key="polar-furcuff", probability=20},
+        new (){key="glacial-sabertooth", probability=10},
       }}
     }},
     {"gnome", new() {
@@ -1017,6 +1077,26 @@ public class Objects
         new (){key="harpy-feather", probability=10},
         new (){key="harpy-armor", probability=7},
         new (){key="gold-bracelet", probability=3},
+      }}
+    }},
+    {"jotunn", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=60},
+        new (){key="low-money", probability=25},
+        new (){key="giant-frost-ring", probability=9},
+        new (){key="unrefined-stone", probability=6},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=60},
+        new (){key="mid-money", probability=25},
+        new (){key="giant-frost-ring", probability=9},
+        new (){key="unrefined-stone", probability=6},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=60},
+        new (){key="high-money", probability=25},
+        new (){key="giant-frost-brace", probability=9},
+        new (){key="white-zircon", probability=6},
       }}
     }},
     {"karasu", new() {
@@ -1279,6 +1359,26 @@ public class Objects
         new (){key="silver-king-skull", probability=3},
       }}
     }},
+    {"snowman", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="ice-cream", probability=70},
+        new (){key="low-food", probability=15},
+        new (){key="bronze-bar", probability=10},
+        new (){key="core", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="ice-cream", probability=70},
+        new (){key="mid-food", probability=15},
+        new (){key="silver-bar", probability=10},
+        new (){key="core", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="ice-cream", probability=70},
+        new (){key="high-food", probability=15},
+        new (){key="gold-bar", probability=10},
+        new (){key="precious-core", probability=5},
+      }}
+    }},
     {"sugecapre", new() {
       {"low", new ProbabilityItem[] {
         new (){key="chicken-drumstick", probability=45},
@@ -1399,8 +1499,27 @@ public class Objects
         new (){key="truth-serum", probability=3},
       }}
     }},
+    {"yukionna", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="ice-cream", probability=60},
+        new (){key="berries", probability=20},
+        new (){key="yukionna-kunai", probability=16},
+        new (){key="plain-kimono", probability=4},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="ice-cream", probability=60},
+        new (){key="berries", probability=20},
+        new (){key="yukionna-kunai", probability=16},
+        new (){key="plain-kimono", probability=4},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="ice-cream", probability=60},
+        new (){key="berries", probability=20},
+        new (){key="yukionna-kunai", probability=16},
+        new (){key="white-kimono", probability=4},
+      }}
+    }},
     {"nereid", genericItemDictionary},
-    {"frostbird", genericItemDictionary},
     {"neret", genericItemDictionary},
     {"skelewing", genericItemDictionary},
     {"mummy", genericItemDictionary},
@@ -1409,15 +1528,10 @@ public class Objects
     {"mermaid", genericItemDictionary},
     {"merman", genericItemDictionary},
     {"kelpie", genericItemDictionary},
-    {"glupus", genericItemDictionary},
     {"hellhound", genericItemDictionary},
-    {"snowman", genericItemDictionary},
-    {"yukionna", genericItemDictionary},
-    {"jotunn", genericItemDictionary},
     {"dunestiff", genericItemDictionary},
     {"cusith", genericItemDictionary},
     {"canivernus", genericItemDictionary},
-    {"dyrgja", genericItemDictionary},
     {"siren", genericItemDictionary},
     {"kappa", genericItemDictionary},
     {"menehune", genericItemDictionary},
