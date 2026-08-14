@@ -1099,6 +1099,26 @@ public class Objects
         new (){key="white-zircon", probability=6},
       }}
     }},
+    {"kappa", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="seafood", probability=60},
+        new (){key="low-money", probability=25},
+        new (){key="bronze-bar", probability=10},
+        new (){key="turtle-shell", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="seafood", probability=60},
+        new (){key="mid-money", probability=25},
+        new (){key="silver-bar", probability=10},
+        new (){key="turtle-shell", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="seafood", probability=60},
+        new (){key="high-money", probability=25},
+        new (){key="gold-bar", probability=10},
+        new (){key="polished-shell", probability=5},
+      }}
+    }},
     {"karasu", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=70},
@@ -1117,6 +1137,26 @@ public class Objects
         new (){key="karasu-feather", probability=14},
         new (){key="fire-brace", probability=10},
         new (){key="black-pearl", probability=6},
+      }}
+    }},
+    {"kelpie", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=75},
+        new (){key="low-potions", probability=15},
+        new (){key="speed-potion", probability=7},
+        new (){key="ocean-fin", probability=3},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=75},
+        new (){key="mid-potions", probability=15},
+        new (){key="speed-potion", probability=7},
+        new (){key="ocean-fin", probability=3},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=75},
+        new (){key="mid-potions", probability=15},
+        new (){key="speed-potion", probability=7},
+        new (){key="pearl-fin", probability=3},
       }}
     }},
     {"kitsune", new() {
@@ -1159,6 +1199,26 @@ public class Objects
         new (){key="pot-of-gold", probability=5},
       }}
     }},
+    {"menehune", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="bronze-bar", probability=22},
+        new (){key="water-potion", probability=5},
+        new (){key="sea-glass", probability=3},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="silver-bar", probability=22},
+        new (){key="water-med", probability=5},
+        new (){key="sea-glass", probability=3},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="gold-bar", probability=22},
+        new (){key="water-infusion", probability=5},
+        new (){key="sea-glass", probability=3},
+      }}
+    }},
     {"mosswyn", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=60},
@@ -1177,6 +1237,26 @@ public class Objects
         new (){key="moss-dagger", probability=25},
         new (){key="gold-bar", probability=10},
         new (){key="moss-agate", probability=5},
+      }}
+    }},
+    {"nereid", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=60},
+        new (){key="trident", probability=20},
+        new (){key="low-bracelets", probability=15},
+        new (){key="coral-decor", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=60},
+        new (){key="trident", probability=20},
+        new (){key="low-pendants", probability=15},
+        new (){key="coral-decor", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=60},
+        new (){key="trident", probability=20},
+        new (){key="pearl", probability=15},
+        new (){key="coral-rubies", probability=5},
       }}
     }},
     {"nixie", new() {
@@ -1299,6 +1379,26 @@ public class Objects
         new (){key="gold-pixie-belt", probability=8},
       }}
     }},
+    {"selkie", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="seafood", probability=80},
+        new (){key="low-potions", probability=10},
+        new (){key="bronze-bar", probability=7},
+        new (){key="aquamarine", probability=3},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="seafood", probability=80},
+        new (){key="low-potions", probability=10},
+        new (){key="silver-bar", probability=7},
+        new (){key="aquamarine", probability=3},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="seafood", probability=80},
+        new (){key="mid-potions", probability=10},
+        new (){key="gold-bar", probability=7},
+        new (){key="aquamarine", probability=3},
+      }}
+    }},
     {"shangsen", new() {
       {"low", new ProbabilityItem[] {
         new (){key="staff", probability=50},
@@ -1317,6 +1417,26 @@ public class Objects
         new (){key="berries", probability=40},
         new (){key="monk-robe", probability=7},
         new (){key="thunder-ring", probability=3},
+      }}
+    }},
+    {"siren", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=60},
+        new (){key="low-potions", probability=20},
+        new (){key="siren-feather", probability=15},
+        new (){key="lightning-potion", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="low-food", probability=60},
+        new (){key="low-potions", probability=20},
+        new (){key="siren-feather", probability=15},
+        new (){key="lightning-med", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="mid-food", probability=60},
+        new (){key="mid-potions", probability=20},
+        new (){key="siren-feather", probability=15},
+        new (){key="lightning-infusion", probability=5},
       }}
     }},
     {"skeleton", new() {
@@ -1519,7 +1639,6 @@ public class Objects
         new (){key="white-kimono", probability=4},
       }}
     }},
-    {"nereid", genericItemDictionary},
     {"neret", genericItemDictionary},
     {"skelewing", genericItemDictionary},
     {"mummy", genericItemDictionary},
@@ -1527,15 +1646,10 @@ public class Objects
     {"hippocampus", genericItemDictionary},
     {"mermaid", genericItemDictionary},
     {"merman", genericItemDictionary},
-    {"kelpie", genericItemDictionary},
     {"hellhound", genericItemDictionary},
     {"dunestiff", genericItemDictionary},
     {"cusith", genericItemDictionary},
     {"canivernus", genericItemDictionary},
-    {"siren", genericItemDictionary},
-    {"kappa", genericItemDictionary},
-    {"menehune", genericItemDictionary},
-    {"selkie", genericItemDictionary},
     {"waterblade", genericItemDictionary},
     {"botarosa", genericItemDictionary},
     {"myrsel", genericItemDictionary},
