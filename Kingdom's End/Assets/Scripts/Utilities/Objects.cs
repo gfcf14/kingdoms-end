@@ -759,6 +759,26 @@ public class Objects
   // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%,
   // then A's probability is 80, B is 10, C is 6, and D is 4
   public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new() {
+    {"botarosa", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="strength-flask", probability=15},
+        new (){key="stamina-flask", probability=10},
+        new (){key="sea-glass", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="strength-flask", probability=15},
+        new (){key="stamina-flask", probability=10},
+        new (){key="sea-glass", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="strength-flask", probability=15},
+        new (){key="stamina-flask", probability=10},
+        new (){key="sea-glass", probability=5},
+      }}
+    }},
     {"bulgae", new() {
       {"low", new ProbabilityItem[] {
         new (){key="chicken-drumstick", probability=45},
@@ -1079,6 +1099,26 @@ public class Objects
         new (){key="gold-bracelet", probability=3},
       }}
     }},
+    {"hippocampus", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=70},
+        new (){key="low-potions", probability=15},
+        new (){key="speed-potion", probability=10},
+        new (){key="emerald-scale", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=70},
+        new (){key="low-potions", probability=15},
+        new (){key="speed-potion", probability=10},
+        new (){key="emerald-scale", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=70},
+        new (){key="mid-potions", probability=15},
+        new (){key="speed-potion", probability=10},
+        new (){key="rainbow-scale", probability=5},
+      }}
+    }},
     {"jotunn", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=60},
@@ -1219,6 +1259,46 @@ public class Objects
         new (){key="sea-glass", probability=3},
       }}
     }},
+    {"mermaid", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="seafood", probability=80},
+        new (){key="bronze-bar", probability=10},
+        new (){key="ocean-ring", probability=8},
+        new (){key="pearl", probability=2},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="seafood", probability=80},
+        new (){key="silver-bar", probability=10},
+        new (){key="ocean-bracelet", probability=8},
+        new (){key="ocean-glaive", probability=2},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="seafood", probability=80},
+        new (){key="gold-bar", probability=10},
+        new (){key="ocean-necklace", probability=8},
+        new (){key="ocean-glaive", probability=2},
+      }}
+    }},
+    {"merman", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="mid-potions", probability=18},
+        new (){key="bronze-ingot", probability=7},
+        new (){key="aqua-sword", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="mid-potions", probability=18},
+        new (){key="silver-ingot", probability=7},
+        new (){key="aqua-sword", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="mid-potions", probability=18},
+        new (){key="gold-ingot", probability=7},
+        new (){key="aqua-sword", probability=5},
+      }}
+    }},
     {"mosswyn", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=60},
@@ -1237,6 +1317,26 @@ public class Objects
         new (){key="moss-dagger", probability=25},
         new (){key="gold-bar", probability=10},
         new (){key="moss-agate", probability=5},
+      }}
+    }},
+    {"myrsel", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="stamina-flask", probability=15},
+        new (){key="bronze-bar", probability=10},
+        new (){key="unrefined-stone", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="stamina-flask", probability=15},
+        new (){key="silver-bar", probability=10},
+        new (){key="unrefined-stone", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="seafood", probability=70},
+        new (){key="stamina-flask", probability=15},
+        new (){key="gold-bar", probability=10},
+        new (){key="turquoise", probability=5},
       }}
     }},
     {"nereid", new() {
@@ -1579,6 +1679,26 @@ public class Objects
         new (){key="gold-ingot", probability=5},
       }}
     }},
+    {"waterblade", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="fish", probability=70},
+        new (){key="speed-potion", probability=15},
+        new (){key="sushi", probability=10},
+        new (){key="ceviche", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="fish", probability=70},
+        new (){key="speed-potion", probability=15},
+        new (){key="sushi", probability=10},
+        new (){key="ceviche", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="fish", probability=70},
+        new (){key="speed-potion", probability=15},
+        new (){key="sushi", probability=10},
+        new (){key="ceviche", probability=5},
+      }}
+    }},
     {"werewolf", new() {
       {"low", new ProbabilityItem[] {
         new (){key="pelt", probability=50},
@@ -1643,16 +1763,10 @@ public class Objects
     {"skelewing", genericItemDictionary},
     {"mummy", genericItemDictionary},
     {"samodiva", genericItemDictionary},
-    {"hippocampus", genericItemDictionary},
-    {"mermaid", genericItemDictionary},
-    {"merman", genericItemDictionary},
     {"hellhound", genericItemDictionary},
     {"dunestiff", genericItemDictionary},
     {"cusith", genericItemDictionary},
     {"canivernus", genericItemDictionary},
-    {"waterblade", genericItemDictionary},
-    {"botarosa", genericItemDictionary},
-    {"myrsel", genericItemDictionary},
     {"saraph", genericItemDictionary},
     {"naga", genericItemDictionary},
     {"scarabkin", genericItemDictionary},
