@@ -759,6 +759,26 @@ public class Objects
   // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%,
   // then A's probability is 80, B is 10, C is 6, and D is 4
   public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new() {
+    {"archdemon", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=70},
+        new (){key="low-potions", probability=15},
+        new (){key="fire-sword", probability=10},
+        new (){key="crimson-robe", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=70},
+        new (){key="mid-potions", probability=15},
+        new (){key="fire-sword", probability=10},
+        new (){key="crimson-robe", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=70},
+        new (){key="mid-potions", probability=15},
+        new (){key="amethyst-sword", probability=10},
+        new (){key="crimson-robe", probability=5},
+      }}
+    }},
     {"blob", new() {
       {"low", new ProbabilityItem[] {
         new (){key="jelly", probability=60},
@@ -977,6 +997,26 @@ public class Objects
         new (){key="high-money", probability=25},
         new (){key="flail", probability=10},
         new (){key="giant-eye", probability=5},
+      }}
+    }},
+    {"demon", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=50},
+        new (){key="demon-horn", probability=25},
+        new (){key="dark-shield", probability=15},
+        new (){key="hell-sword", probability=10},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=50},
+        new (){key="demon-horn", probability=25},
+        new (){key="dark-shield", probability=15},
+        new (){key="hell-sword", probability=10},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=50},
+        new (){key="demon-horn", probability=25},
+        new (){key="dark-shield", probability=15},
+        new (){key="hell-sword", probability=10},
       }}
     }},
     {"dryad", new() {
@@ -1297,6 +1337,26 @@ public class Objects
         new (){key="mid-potions", probability=15},
         new (){key="speed-potion", probability=10},
         new (){key="rainbow-scale", probability=5},
+      }}
+    }},
+    {"imp", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=77},
+        new (){key="ruby-dagger", probability=10},
+        new (){key="imp-leather", probability=8},
+        new (){key="dark-bracelet", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=77},
+        new (){key="ruby-dagger", probability=10},
+        new (){key="imp-leather", probability=8},
+        new (){key="dark-brace", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=77},
+        new (){key="ruby-dagger", probability=10},
+        new (){key="imp-leather", probability=8},
+        new (){key="dark-choker", probability=5},
       }}
     }},
     {"jorogumo", new() {
@@ -1679,6 +1739,26 @@ public class Objects
         new (){key="neret-feather", probability=5},
       }}
     }},
+    {"nightmare", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=65},
+        new (){key="speed-potion", probability=15},
+        new (){key="ember-lock", probability=15},
+        new (){key="red-mane", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=65},
+        new (){key="speed-potion", probability=15},
+        new (){key="ember-lock", probability=15},
+        new (){key="red-mane", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=65},
+        new (){key="speed-potion", probability=15},
+        new (){key="ember-lock", probability=15},
+        new (){key="flaming-mane", probability=5},
+      }}
+    }},
     {"nixie", new() {
       {"low", new ProbabilityItem[] {
         new (){key="berries", probability=80},
@@ -1717,6 +1797,26 @@ public class Objects
         new (){key="vine-scepter", probability=20},
         new (){key="mid-potions", probability=15},
         new (){key="flower-wreath", probability=5},
+      }}
+    }},
+    {"ocugoyle", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=70},
+        new (){key="bronze-bar", probability=22},
+        new (){key="leather", probability=5},
+        new (){key="core", probability=3},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=70},
+        new (){key="silver-bar", probability=22},
+        new (){key="leather", probability=5},
+        new (){key="core", probability=3},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=70},
+        new (){key="gold-bar", probability=22},
+        new (){key="premium-leather", probability=5},
+        new (){key="precious-core", probability=3},
       }}
     }},
     {"ogre", new() {
@@ -2039,6 +2139,26 @@ public class Objects
         new (){key="precious-core", probability=5},
       }}
     }},
+    {"succubus", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-potions", probability=50},
+        new (){key="bronze-bar", probability=25},
+        new (){key="bronze-ingot", probability=18},
+        new (){key="leather-boots", probability=7},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-potions", probability=50},
+        new (){key="silver-bar", probability=25},
+        new (){key="silver-ingot", probability=18},
+        new (){key="leather-gloves", probability=7},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="mid-potions", probability=50},
+        new (){key="gold-bar", probability=25},
+        new (){key="gold-ingot", probability=18},
+        new (){key="leather-bikini", probability=7},
+      }}
+    }},
     {"sugecapre", new() {
       {"low", new ProbabilityItem[] {
         new (){key="chicken-drumstick", probability=45},
@@ -2199,18 +2319,12 @@ public class Objects
         new (){key="white-kimono", probability=4},
       }}
     }},
-    {"nightmare", genericItemDictionary},
     {"pegasus", genericItemDictionary},
     {"sylphid", genericItemDictionary},
-    {"ocugoyle", genericItemDictionary},
     {"elf", genericItemDictionary},
-    {"imp", genericItemDictionary},
     {"angel", genericItemDictionary},
-    {"demon", genericItemDictionary},
     {"archeia", genericItemDictionary},
-    {"succubus", genericItemDictionary},
     {"archangel", genericItemDictionary},
-    {"archdemon", genericItemDictionary},
     {"knight", genericItemDictionary},
     {"janissary", genericItemDictionary},
     {"mamluk", genericItemDictionary},
