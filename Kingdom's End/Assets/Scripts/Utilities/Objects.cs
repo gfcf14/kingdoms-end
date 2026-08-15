@@ -779,6 +779,26 @@ public class Objects
         new (){key="precious-core", probability=5},
       }}
     }},
+    {"bluecap", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="blue-cap", probability=70},
+        new (){key="stamina-flask", probability=18},
+        new (){key="bronze-bar", probability=7},
+        new (){key="unrefined-stone", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="blue-cap", probability=70},
+        new (){key="stamina-flask", probability=18},
+        new (){key="silver-bar", probability=7},
+        new (){key="unrefined-stone", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="blue-cap", probability=70},
+        new (){key="stamina-flask", probability=18},
+        new (){key="gold-bar", probability=7},
+        new (){key="malachite", probability=5},
+      }}
+    }},
     {"botarosa", new() {
       {"low", new ProbabilityItem[] {
         new (){key="seafood", probability=70},
@@ -857,6 +877,26 @@ public class Objects
         new (){key="high-food", probability=30},
         new (){key="mid-potions", probability=13},
         new (){key="marble-tusk", probability=7},
+      }}
+    }},
+    {"canivernus", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="chicken-drumstick", probability=45},
+        new (){key="fur", probability=25},
+        new (){key="rock-furcuff", probability=20},
+        new (){key="sabertooth", probability=10},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="ham-sausage", probability=45},
+        new (){key="fur", probability=25},
+        new (){key="rock-furcuff", probability=20},
+        new (){key="earth-sabertooth", probability=10},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="steak", probability=45},
+        new (){key="fur", probability=25},
+        new (){key="rock-furcuff", probability=20},
+        new (){key="earth-sabertooth", probability=10},
       }}
     }},
     {"centaur", new() {
@@ -1299,6 +1339,26 @@ public class Objects
         new (){key="white-zircon", probability=6},
       }}
     }},
+    {"kabouter", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="small-club", probability=60},
+        new (){key="berries", probability=20},
+        new (){key="strength-flask", probability=14},
+        new (){key="silver-ingot", probability=6},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="small-club", probability=60},
+        new (){key="berries", probability=20},
+        new (){key="strength-flask", probability=14},
+        new (){key="gold-ingot", probability=6},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="small-club", probability=60},
+        new (){key="berries", probability=20},
+        new (){key="strength-flask", probability=14},
+        new (){key="onyx", probability=6},
+      }}
+    }},
     {"kappa", new() {
       {"low", new ProbabilityItem[] {
         new (){key="seafood", probability=60},
@@ -1379,6 +1439,26 @@ public class Objects
         new (){key="silk-kimono", probability=4},
       }}
     }},
+    {"leatherwing", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-money", probability=60},
+        new (){key="berries", probability=25},
+        new (){key="dark-potion", probability=10},
+        new (){key="leather", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-money", probability=60},
+        new (){key="berries", probability=25},
+        new (){key="dark-med", probability=10},
+        new (){key="leather", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-money", probability=60},
+        new (){key="berries", probability=25},
+        new (){key="dark-infusion", probability=10},
+        new (){key="premium-leather", probability=5},
+      }}
+    }},
     {"leprechaun", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=75},
@@ -1457,6 +1537,26 @@ public class Objects
         new (){key="mid-potions", probability=18},
         new (){key="gold-ingot", probability=7},
         new (){key="aqua-sword", probability=5},
+      }}
+    }},
+    {"morlock", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=75},
+        new (){key="low-potions", probability=15},
+        new (){key="bronze-ingot", probability=7},
+        new (){key="eloi-bracelet", probability=3},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=75},
+        new (){key="mid-potions", probability=15},
+        new (){key="silver-ingot", probability=7},
+        new (){key="eloi-brace", probability=3},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=75},
+        new (){key="mid-potions", probability=15},
+        new (){key="gold-ingot", probability=7},
+        new (){key="eloi-necklace", probability=3},
       }}
     }},
     {"mosswyn", new() {
@@ -1717,6 +1817,26 @@ public class Objects
         new (){key="strength-flask", probability=18},
         new (){key="gold-bar", probability=7},
         new (){key="sapphire", probability=5},
+      }}
+    }},
+    {"samodiva", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=80},
+        new (){key="bronze-bar", probability=10},
+        new (){key="glass-necklace", probability=7},
+        new (){key="unrefined-stone", probability=3},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=80},
+        new (){key="silver-bar", probability=10},
+        new (){key="glass-necklace", probability=7},
+        new (){key="unrefined-stone", probability=3},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=80},
+        new (){key="gold-bar", probability=10},
+        new (){key="diamond-necklace", probability=7},
+        new (){key="emerald", probability=3},
       }}
     }},
     {"sandman", new() {
@@ -2079,12 +2199,6 @@ public class Objects
         new (){key="white-kimono", probability=4},
       }}
     }},
-    {"samodiva", genericItemDictionary},
-    {"canivernus", genericItemDictionary},
-    {"bluecap", genericItemDictionary},
-    {"kabouter", genericItemDictionary},
-    {"morlock", genericItemDictionary},
-    {"leatherwing", genericItemDictionary},
     {"nightmare", genericItemDictionary},
     {"pegasus", genericItemDictionary},
     {"sylphid", genericItemDictionary},
