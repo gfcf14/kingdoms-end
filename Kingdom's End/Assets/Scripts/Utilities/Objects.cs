@@ -759,6 +759,46 @@ public class Objects
   // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%,
   // then A's probability is 80, B is 10, C is 6, and D is 4
   public static Dictionary<string, Dictionary<string, ProbabilityItem[]>> enemyDroppables = new() {
+    {"angel", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=50},
+        new (){key="robe", probability=25},
+        new (){key="sky-shield", probability=15},
+        new (){key="heaven-sword", probability=10},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=50},
+        new (){key="robe", probability=25},
+        new (){key="sky-shield", probability=15},
+        new (){key="heaven-sword", probability=10},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=50},
+        new (){key="robe", probability=25},
+        new (){key="sky-shield", probability=15},
+        new (){key="heaven-sword", probability=10},
+      }}
+    }},
+    {"archangel", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=70},
+        new (){key="shiny-sword", probability=15},
+        new (){key="cyan-blade", probability=10},
+        new (){key="celestial-robe", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=70},
+        new (){key="shiny-sword", probability=15},
+        new (){key="cyan-blade", probability=10},
+        new (){key="celestial-robe", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=70},
+        new (){key="gold-sword", probability=15},
+        new (){key="heaven-blade", probability=10},
+        new (){key="celestial-robe", probability=5},
+      }}
+    }},
     {"archdemon", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=70},
@@ -777,6 +817,26 @@ public class Objects
         new (){key="mid-potions", probability=15},
         new (){key="amethyst-sword", probability=10},
         new (){key="crimson-robe", probability=5},
+      }}
+    }},
+    {"archeia", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-potions", probability=50},
+        new (){key="bronze-ingot", probability=25},
+        new (){key="celestial-sundress", probability=18},
+        new (){key="heaven-bow", probability=7},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-potions", probability=50},
+        new (){key="silver-ingot", probability=25},
+        new (){key="celestial-sundress", probability=18},
+        new (){key="heaven-bow", probability=7},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="mid-potions", probability=50},
+        new (){key="gold-ingot", probability=25},
+        new (){key="celestial-sundress", probability=18},
+        new (){key="heaven-bow", probability=7},
       }}
     }},
     {"blob", new() {
@@ -1097,6 +1157,26 @@ public class Objects
         new (){key="high-food", probability=25},
         new (){key="mid-potions", probability=10},
         new (){key="ice-infusion", probability=5},
+      }}
+    }},
+    {"elf", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=77},
+        new (){key="sapphire-dagger", probability=10},
+        new (){key="light-potion", probability=8},
+        new (){key="elf-outfit", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=77},
+        new (){key="sapphire-dagger", probability=10},
+        new (){key="light-med", probability=8},
+        new (){key="light-ring", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=77},
+        new (){key="sapphire-dagger", probability=10},
+        new (){key="light-infusion", probability=8},
+        new (){key="light-bracelet", probability=5},
       }}
     }},
     {"empusa", new() {
@@ -1839,6 +1919,26 @@ public class Objects
         new (){key="diamond", probability=5},
       }}
     }},
+    {"pegasus", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=65},
+        new (){key="speed-potion", probability=15},
+        new (){key="pegasus-feather", probability=15},
+        new (){key="azure-mane", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=65},
+        new (){key="speed-potion", probability=15},
+        new (){key="pegasus-feather", probability=15},
+        new (){key="azure-mane", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=65},
+        new (){key="speed-potion", probability=15},
+        new (){key="pegasus-feather", probability=15},
+        new (){key="radiant-mane", probability=5},
+      }}
+    }},
     {"phoenix", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=65},
@@ -2179,6 +2279,26 @@ public class Objects
         new (){key="moss-sabertooth", probability=10},
       }}
     }},
+    {"sylphid", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=60},
+        new (){key="low-potions", probability=20},
+        new (){key="sylphid-feather", probability=17},
+        new (){key="beryl-bracelet", probability=3},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="low-food", probability=60},
+        new (){key="low-potions", probability=20},
+        new (){key="sylphid-feather", probability=17},
+        new (){key="beryl-brace", probability=3},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="mid-food", probability=60},
+        new (){key="mid-potions", probability=20},
+        new (){key="sylphid-feather", probability=17},
+        new (){key="beryl-necklace", probability=3},
+      }}
+    }}, 
     {"thunderbird", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-food", probability=65},
