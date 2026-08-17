@@ -617,8 +617,10 @@ public class Enemy : MonoBehaviour {
   }
 
   public void DamageCalculation(Vector2 damageLocation, int specificDamage, string damageSoundType, string weaponType = "", bool isCritical = false) {
-    // TODO: add element multiplier damage at the end of the line below
-    int damage = def - ((specificDamage + Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (isCritical ? 2 : 1));
+    // TODO: ensure player array is used correctly
+    int magicDamageMultiplier = Helpers.GetOffensiveMultiplier(Array.Empty<string>(), elementalMagic != "" ? elementalMagic.Split('-')[0] : "");
+
+    int damage = def - ((specificDamage + Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (isCritical ? 2 : 1) * magicDamageMultiplier);
 
     if (Helpers.IsValueInArray(Constants.throwableTypes, weaponType) || !(isDefending && !attackedFromBehind)) {
       // if effectStrength has a non-positive value then the player should have no strength to deal damage (e.g. when scorched)

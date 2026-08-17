@@ -1963,8 +1963,11 @@ public class Hero : MonoBehaviour {
         }
 
         bool isCritical = bewitch ? true : Helpers.IsCritical(criticalRate);
-        // TODO: add element multiplier damage at the end of the line below
-        int damage = bewitch ? -(currentHP - Constants.minimumDamageDealt) : ((stamina + (int)equippedSTA + (int)effectSTA) * (effectStamina >= 1 ? 1 : 0)) - (atk * (isCritical ? 2 : 1));
+
+        // TODO: ensure player array is used correctly
+        int magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", Array.Empty<string>());
+
+        int damage = bewitch ? -(currentHP - Constants.minimumDamageDealt) : ((stamina + (int)equippedSTA + (int)effectSTA) * (effectStamina >= 1 ? 1 : 0)) - (atk * (isCritical ? 2 : 1) * magicDamageMultiplier);
         // TODO: modify first argument based on different attack type used by the enemy
         TakeDamage(damage < 0 ? Math.Abs(damage) : (damage == 0 && bewitch ? 0 : Constants.minimumDamageDealt), contactPoint, isCritical, attackType);
 
@@ -1989,7 +1992,11 @@ public class Hero : MonoBehaviour {
             DropDefense();
             currentShieldHP--;
             bool isCritical = Helpers.IsCritical(criticalRate);
-            int damage = (stamina + (int)equippedSTA + shieldDefense + (int)effectSTA) - (atk * (isCritical ? 2 : 1));
+
+            // TODO: ensure player array is used correctly
+            int magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", Array.Empty<string>());
+
+            int damage = (stamina + (int)equippedSTA + shieldDefense + (int)effectSTA) - (atk * (isCritical ? 2 : 1) * magicDamageMultiplier);
             // TODO: modify first argument based on different attack type used by the enemy
             TakeDamage(damage < 0 ? Math.Abs(damage) :  Constants.minimumDamageDealt, contactPoint, isCritical, attackType);
 

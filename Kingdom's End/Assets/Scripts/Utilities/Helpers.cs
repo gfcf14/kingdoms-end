@@ -747,4 +747,51 @@ public class Helpers {
 
     return 3;
   }
+
+  public static int GetOffensiveMultiplier(string[] playerElements, string enemyElement) {
+    if (playerElements == null || playerElements.Length == 0) return 1;
+
+    float total = 0f;
+
+    foreach (string element in playerElements) {
+      total += GetElementMultiplier(element, enemyElement);
+    }
+
+    float decimalVal = total / playerElements.Length;
+
+    return (int)(decimalVal - (decimalVal % Constants.minimumDamageDealt));
+  }
+
+  public static int GetDefensiveMultiplier(string enemyElement, string[] playerElements) {
+    if (playerElements == null || playerElements.Length == 0) return 1;
+
+    float total = 0f;
+
+    foreach (string element in playerElements) {
+      total += GetElementMultiplier(enemyElement, element);
+    }
+
+    float decimalVal = total / playerElements.Length;
+
+    return (int)(decimalVal - (decimalVal % Constants.minimumDamageDealt));
+  }
+
+  public static float GetElementMultiplier(string attacker, string defender) {
+    // when neither the player nor enemy have elemental magic
+    if (attacker == "normal" || defender == "normal") return 1f;
+
+    int attackerIndex = Array.IndexOf(Constants.elementWheel, attacker);
+    int defenderIndex = Array.IndexOf(Constants.elementWheel, defender);
+
+    // when the elements of both is non-related (no beats or loses against)
+    if (attackerIndex == -1 || defenderIndex == -1) return 1f;
+
+    // attacker is strong against defender
+    if ((attackerIndex + 1) % Constants.elementWheel.Length == defenderIndex) return 2f;
+
+    // attacker is weak against defender
+    if ((defenderIndex + 1) % Constants.elementWheel.Length == attackerIndex) return 0.5f;
+
+    return 1f;
+  }
 }
