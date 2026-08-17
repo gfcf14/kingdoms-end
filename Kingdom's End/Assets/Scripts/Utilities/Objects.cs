@@ -733,28 +733,6 @@ public class Objects
     {"watermelon-slice", 0.5f}
   };
 
-  // TODO: this Dictionary will be used until all enemies are added to the game and all items they can drop are defined. Be sure to then update all enemies that use it
-  public static Dictionary<string, ProbabilityItem[]> genericItemDictionary = new() {
-    {"low", new ProbabilityItem[] {
-      new (){key="low-potions", probability=80},
-      new (){key="low-money", probability=10},
-      new (){key="skull", probability=6},
-      new (){key="core", probability=4},
-    }},
-    {"mid", new ProbabilityItem[] {
-      new (){key="mid-potions", probability=80},
-      new (){key="darkling-sword", probability=10},
-      new (){key="skull", probability=6},
-      new (){key="core", probability=4},
-    }},
-    {"high", new ProbabilityItem[] {
-      new (){key="silver-bracelet", probability=80},
-      new (){key="darklord-sword", probability=10},
-      new (){key="silver-skull", probability=6},
-      new (){key="precious-core", probability=4},
-    }}
-  };
-
   // Item probablities are calculated with a human readable format
   // Example: if 4 items (A, B, C, D) can be dropped, and A drops 80% of the time, B does so 10%, C does so 6% and D does so 4%,
   // then A's probability is 80, B is 10, C is 6, and D is 4
@@ -1719,6 +1697,26 @@ public class Objects
         new (){key="pot-of-gold", probability=5},
       }}
     }},
+    {"luxhusk", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="iron-ball", probability=60},
+        new (){key="wood", probability=25},
+        new (){key="bronze-bar", probability=10},
+        new (){key="bronze-ingot", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="iron-ball", probability=60},
+        new (){key="wood", probability=25},
+        new (){key="silver-bar", probability=10},
+        new (){key="silver-ingot", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="iron-ball", probability=60},
+        new (){key="wood", probability=25},
+        new (){key="gold-bar", probability=10},
+        new (){key="gold-ingot", probability=5},
+      }}
+    }},
     {"mamluk", new() {
       {"low", new ProbabilityItem[] {
         new (){key="low-money", probability=70},
@@ -1997,6 +1995,26 @@ public class Objects
         new (){key="mid-potions", probability=10},
         new (){key="swamp-dress", probability=7},
         new (){key="swamp-pearl", probability=3},
+      }}
+    }},
+    {"nomad", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=60},
+        new (){key="basic-shield", probability=20},
+        new (){key="basic-sword", probability=15},
+        new (){key="bronze-ingot", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=60},
+        new (){key="basic-shield", probability=20},
+        new (){key="basic-sword", probability=15},
+        new (){key="silver-ingot", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=60},
+        new (){key="polished-shield", probability=20},
+        new (){key="polished-sword", probability=15},
+        new (){key="gold-ingot", probability=5},
       }}
     }},
     {"nymph", new() {
@@ -2599,6 +2617,26 @@ public class Objects
         new (){key="ruby", probability=5},
       }}
     }},
+    {"wanderess", new() {
+      {"low", new ProbabilityItem[] {
+        new (){key="low-food", probability=60},
+        new (){key="mallet", probability=20},
+        new (){key="basic-shield", probability=15},
+        new (){key="basic-rapier", probability=5},
+      }},
+      {"mid", new ProbabilityItem[] {
+        new (){key="mid-food", probability=60},
+        new (){key="mallet", probability=20},
+        new (){key="basic-shield", probability=15},
+        new (){key="basic-rapier", probability=5},
+      }},
+      {"high", new ProbabilityItem[] {
+        new (){key="high-food", probability=60},
+        new (){key="sturdy-mallet", probability=20},
+        new (){key="polished-shield", probability=15},
+        new (){key="swift-rapier", probability=5},
+      }}
+    }},
     {"waterblade", new() {
       {"low", new ProbabilityItem[] {
         new (){key="fish", probability=70},
@@ -2698,10 +2736,7 @@ public class Objects
         new (){key="mid-potions", probability=10},
         new (){key="precious-core", probability=5},
       }}
-    }},
-    {"nomad", genericItemDictionary},
-    {"wanderess", genericItemDictionary},
-    {"luxhusk", genericItemDictionary}
+    }}
   };
 
   public static Dictionary<string, string[]> itemGroups = new() {
