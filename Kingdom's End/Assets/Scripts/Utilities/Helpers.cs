@@ -748,8 +748,8 @@ public class Helpers {
     return 3;
   }
 
-  public static int GetOffensiveMultiplier(string[] playerElements, string enemyElement) {
-    if (playerElements == null || playerElements.Length == 0) return 1;
+  public static int GetOffensiveMultiplier(List<string> playerElements, string enemyElement) {
+    if (playerElements == null || playerElements.Count == 0) return 1;
 
     float total = 0f;
 
@@ -757,13 +757,11 @@ public class Helpers {
       total += GetElementMultiplier(element, enemyElement);
     }
 
-    float decimalVal = total / playerElements.Length;
-
-    return (int)(decimalVal - (decimalVal % Constants.minimumDamageDealt));
+    return (int)total / playerElements.Count;
   }
 
-  public static int GetDefensiveMultiplier(string enemyElement, string[] playerElements) {
-    if (playerElements == null || playerElements.Length == 0) return 1;
+  public static int GetDefensiveMultiplier(string enemyElement, List<string> playerElements) {
+    if (playerElements == null || playerElements.Count == 0) return 1;
 
     float total = 0f;
 
@@ -771,9 +769,7 @@ public class Helpers {
       total += GetElementMultiplier(enemyElement, element);
     }
 
-    float decimalVal = total / playerElements.Length;
-
-    return (int)(decimalVal - (decimalVal % Constants.minimumDamageDealt));
+    return (int)total / playerElements.Count;
   }
 
   public static float GetElementMultiplier(string attacker, string defender) {

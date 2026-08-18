@@ -142,7 +142,7 @@ public class Hero : MonoBehaviour {
     [NonSerialized] public int maxHP = GameData.baseHP;
     [NonSerialized] public int currentMP = GameData.baseHP;
     [NonSerialized] public int maxMP = GameData.baseHP;
-    [NonSerialized] public List<string> statuses = new List<string>();
+    [NonSerialized] public List<string> statuses = new ();
     [NonSerialized] public int exp = 0;
     [NonSerialized] public int next = 0;
     [NonSerialized] public int gold = 20000;
@@ -219,6 +219,10 @@ public class Hero : MonoBehaviour {
     [NonSerialized] public int equippedDEF1 = 0;
     [NonSerialized] public int equippedDEF2 = 0;
 
+
+    [SerializeField] public List<string> infusedMagics = new ();
+
+
   // PLAYER EFFECT STATS
     [SerializeField] public float effectSTR = 0f;
     [SerializeField] public float effectSTA = 0f;
@@ -232,6 +236,7 @@ public class Hero : MonoBehaviour {
     [SerializeField] public int effectFrozen = 0;
     [SerializeField] public int effectSealed = 0;
     [SerializeField] public int effectPoisoned = 0;
+    // TODO: consider if poisonType is needed at all
     [SerializeField] public string poisonType = "";
     [SerializeField] public int poisonDamage = 0;
 
@@ -380,6 +385,15 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("banana", 2));
       items.Add(new Item("pineapple", 1));
       items.Add(new Item("mango", 2));
+
+      items.Add(new Item("air-infusion", 5));
+      items.Add(new Item("dark-infusion", 5));
+      items.Add(new Item("earth-infusion", 5));
+      items.Add(new Item("fire-infusion", 5));
+      items.Add(new Item("ice-infusion", 5));
+      items.Add(new Item("light-infusion", 5));
+      items.Add(new Item("lightning-infusion", 5));
+      items.Add(new Item("water-infusion", 5));
 
     #else
       items.Add(new Item("arrow-fire", 25));
@@ -539,6 +553,7 @@ public class Hero : MonoBehaviour {
       if (shouldRemove) {
         UpdateEffectValues(currentConsumable.key, false);
         consumables.RemoveAt(i);
+        infusedMagics.Remove(currentConsumable.key.Split('-')[0]);
       }
     }
 
@@ -549,14 +564,24 @@ public class Hero : MonoBehaviour {
   // adds consumable if it hasn't been consumed before, but
   // update the consumable's use time if it has been consumed before
   public void AddConsumable(Consumable newConsumable) {
+    // TODO: consider if a flag should be created to understand if the consumable is a magic damage effect (i.e. second element is a number)
+    bool isInfusion = newConsumable.key.Contains("infusion");
+
     string[] consumableGroup = newConsumable.key.Split('-');
-    string consumableKey = consumableGroup[0];
+    string consumableKey = isInfusion ? newConsumable.key : consumableGroup[0];
     int consumableLevel = consumableGroup.Length > 1 && int.TryParse(consumableGroup[1], out _) ? int.Parse(consumableGroup[1]) : 0;
 
     Consumable existingConsumable = consumables.FirstOrDefault(c => c.key.Split('-')[0] == consumableKey);
 
     if (existingConsumable == null) { // add consumable if it doesn't currently exist (i.e. not consumed)
       consumables.Add(newConsumable);
+
+      if (isInfusion) {
+        // TODO: play sound of an equipped infusion
+        // TODO: add a pulse effect (or modify an existing one)
+        infusedMagics.Add(consumableGroup[0]);
+      }
+
       UpdateEffectValues(newConsumable.key, true);
       UpdateEffectMagicResistances();
       InGame.instance.UpdateEffectWheel();
@@ -609,7 +634,7 @@ public class Hero : MonoBehaviour {
     effectPoisoned += (effectItem.effects.poison ?? 0) * multiplier;
     poisonTime = add ? Time.time * 1000 : 0;
     poisonType = add ? key : "";
-    poisonDamage = add && key.Contains("dark") ? GetPoisonDamage(key) : 0;
+    poisonDamage = add && key.Contains("dark") && !key.Contains("infusion") ? GetPoisonDamage(key) : 0;
 
     // reset the poison counter to allow for subsequent dark damages to occur
     // (since the timed damage depends on the counter's value)
@@ -1207,6 +1232,7 @@ public class Hero : MonoBehaviour {
           if (currentConsumable.duration != -1 && Helpers.ExceedsTime(currentConsumable.useTime, currentConsumable.duration * 1000)) {
             UpdateEffectValues(currentConsumable.key, false);
             consumables.RemoveAt(i);
+            infusedMagics.Remove(currentConsumable.key.Split('-')[0]);
             InGame.instance.UpdateEffectWheel();
             UpdateEffectMagicResistances();
           }
@@ -1964,8 +1990,7 @@ public class Hero : MonoBehaviour {
 
         bool isCritical = bewitch ? true : Helpers.IsCritical(criticalRate);
 
-        // TODO: ensure player array is used correctly
-        int magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", Array.Empty<string>());
+        int magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", infusedMagics);
 
         int damage = bewitch ? -(currentHP - Constants.minimumDamageDealt) : ((stamina + (int)equippedSTA + (int)effectSTA) * (effectStamina >= 1 ? 1 : 0)) - (atk * (isCritical ? 2 : 1) * magicDamageMultiplier);
         // TODO: modify first argument based on different attack type used by the enemy
@@ -1993,8 +2018,7 @@ public class Hero : MonoBehaviour {
             currentShieldHP--;
             bool isCritical = Helpers.IsCritical(criticalRate);
 
-            // TODO: ensure player array is used correctly
-            int magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", Array.Empty<string>());
+            int magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", infusedMagics);
 
             int damage = (stamina + (int)equippedSTA + shieldDefense + (int)effectSTA) - (atk * (isCritical ? 2 : 1) * magicDamageMultiplier);
             // TODO: modify first argument based on different attack type used by the enemy

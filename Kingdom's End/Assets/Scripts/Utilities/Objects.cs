@@ -161,7 +161,7 @@ public class Objects
     {"abdunn-eye", new RegularItem(Sprites.itemThumbnails[398], Sprites.itemImages[398], "Abdunn Eye", "Blooming from a symbol of peace.", "valuable", 1000)},
     {"air-bracelet", new RegularItem(Sprites.itemThumbnails[147], Sprites.itemImages[147], "Air Bracelet", "Bracelet which enhances attack power and provides air defense.", "armwear", 200, new Effects() {atk=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Air", type="add"}}})},
     // TODO: implement a magicDamage effect to add to this infusion
-    {"air-infusion", new RegularItem(Sprites.itemThumbnails[256], Sprites.itemImages[256], "Air Infusion", "Temporarily provides air magic to attacks.", "consumable", 350)},
+    {"air-infusion", new RegularItem(Sprites.itemThumbnails[256], Sprites.itemImages[256], "Air Infusion", "Temporarily provides air magic to attacks.", "consumable", 350, new Effects() {duration=30, elementInfusing="air"})},
     // TODO: Confirm that statusHeal works for this med
     {"air-med", new RegularItem(Sprites.itemThumbnails[247], Sprites.itemImages[247], "Air Medicine", "Heals air magic.", "consumable", 350, new Effects() {statusHeal="air"})},
     {"air-potion", new RegularItem(Sprites.itemThumbnails[225], Sprites.itemImages[225], "Air Potion", "Temporarily provides air defense.", "consumable", 350, new Effects() {duration=30, magicResistances=new MagicResistance[]{new MagicResistance(){name="Air", type="add"}}})},
@@ -241,7 +241,7 @@ public class Objects
     {"dark-bracelet", new RegularItem(Sprites.itemThumbnails[153], Sprites.itemImages[153], "Dark Bracelet", "Bracelet which enhances attack power and provides dark defense.", "armwear", 200, new Effects() {atk=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Dark", type="add"}}})},
     {"dark-choker", new RegularItem(Sprites.itemThumbnails[139], Sprites.itemImages[139], "Dark Choker", "Necklace with dark properties.", "neck", 150, new Effects() {def=40, magicResistances=new MagicResistance[]{new MagicResistance(){name="Dark", type="add"}}})},
     // TODO: implement a magicDamage effect to add to this infusion
-    {"dark-infusion", new RegularItem(Sprites.itemThumbnails[262], Sprites.itemImages[262], "Dark Infusion", "Temporarily provides dark magic to attacks.", "consumable", 350)},
+    {"dark-infusion", new RegularItem(Sprites.itemThumbnails[262], Sprites.itemImages[262], "Dark Infusion", "Temporarily provides dark magic to attacks.", "consumable", 350, new Effects() {duration=30, elementInfusing="dark"})},
     // TODO: Confirm that statusHeal works for this med
     {"dark-med", new RegularItem(Sprites.itemThumbnails[253], Sprites.itemImages[253], "Dark Medicine", "Heals dark magic.", "consumable", 350, new Effects() {statusHeal="dark"})},
     {"dark-potion", new RegularItem(Sprites.itemThumbnails[231], Sprites.itemImages[231], "Dark Potion", "Temporarily provides dark defense.", "consumable", 350, new Effects() {duration=30, magicResistances=new MagicResistance[]{new MagicResistance(){name="Dark", type="add"}}})},
@@ -262,7 +262,7 @@ public class Objects
     {"dyrgja-hatchet", new RegularItem(Sprites.itemThumbnails[55], Sprites.itemImages[55], "Dyrgja Hatchet", "Hatchet from cold lands used as a projectile.", "throwable-double", 400, new Effects() {atk=80})},
     {"earth-bracelet", new RegularItem(Sprites.itemThumbnails[146], Sprites.itemImages[146], "Earth Bracelet", "Bracelet which enhances attack power and provides earth defense.", "armwear", 200, new Effects() {atk=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Earth", type="add"}}})},
     // TODO: implement a magicDamage effect to add to this infusion
-    {"earth-infusion", new RegularItem(Sprites.itemThumbnails[255], Sprites.itemImages[255], "Earth Infusion", "Temporarily provides earth magic to attacks.", "consumable", 350)},
+    {"earth-infusion", new RegularItem(Sprites.itemThumbnails[255], Sprites.itemImages[255], "Earth Infusion", "Temporarily provides earth magic to attacks.", "consumable", 350, new Effects() {duration=30, elementInfusing="earth"})},
     // TODO: Confirm that statusHeal works for this med
     {"earth-med", new RegularItem(Sprites.itemThumbnails[246], Sprites.itemImages[246], "Earth Medicine", "Heals earth magic.", "consumable", 350, new Effects() {statusHeal="earth"})},
     {"earth-potion", new RegularItem(Sprites.itemThumbnails[224], Sprites.itemImages[224], "Earth Potion", "Temporarily provides earth defense.", "consumable", 350, new Effects() {duration=30, magicResistances=new MagicResistance[]{new MagicResistance(){name="Earth", type="add"}}})},
@@ -285,7 +285,7 @@ public class Objects
     {"fire-brace", new RegularItem(Sprites.itemThumbnails[163], Sprites.itemImages[163], "Fire Brace", "Accessory for fearless fighters.", "armwear", 200, new Effects() {atk=50, crit=0.15f, magicResistances=new MagicResistance[]{new MagicResistance(){name="Fire", type="add"}}})},
     {"fire-bracelet", new RegularItem(Sprites.itemThumbnails[149], Sprites.itemImages[149], "Fire Bracelet", "Bracelet which enhances attack power and provides fire defense.", "armwear", 200, new Effects() {atk=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Fire", type="add"}}})},
     // TODO: implement a magicDamage effect to add to this infusion
-    {"fire-infusion", new RegularItem(Sprites.itemThumbnails[258], Sprites.itemImages[258], "Fire Infusion", "Temporarily provides fire magic to attacks.", "consumable", 350)},
+    {"fire-infusion", new RegularItem(Sprites.itemThumbnails[258], Sprites.itemImages[258], "Fire Infusion", "Temporarily provides fire magic to attacks.", "consumable", 350, new Effects() {duration=30, elementInfusing="fire"})},
     // TODO: Confirm that statusHeal works for this med
     {"fire-med", new RegularItem(Sprites.itemThumbnails[249], Sprites.itemImages[249], "Fire Medicine", "Heals fire magic.", "consumable", 350, new Effects() {statusHeal="fire"})},
     {"fire-potion", new RegularItem(Sprites.itemThumbnails[227], Sprites.itemImages[227], "Fire Potion", "Temporarily provides fire defense.", "consumable", 350, new Effects() {duration=30, magicResistances=new MagicResistance[]{new MagicResistance(){name="Fire", type="add"}}})},
@@ -341,7 +341,7 @@ public class Objects
     {"ice-bracelet", new RegularItem(Sprites.itemThumbnails[151], Sprites.itemImages[151], "Ice Bracelet", "Bracelet which enhances attack power and provides ice defense.", "armwear", 200, new Effects() {atk=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Ice", type="add"}}})},
     {"ice-cream", new RegularItem(Sprites.itemThumbnails[210], Sprites.itemImages[210], "Ice Cream", "Delicious milk-based dessert.", "food", 100, new Effects() {hp=40})},
     // TODO: implement a magicDamage effect to add to this infusion
-    {"ice-infusion", new RegularItem(Sprites.itemThumbnails[260], Sprites.itemImages[260], "Ice Infusion", "Temporarily provides ice magic to attacks.", "consumable", 350)},
+    {"ice-infusion", new RegularItem(Sprites.itemThumbnails[260], Sprites.itemImages[260], "Ice Infusion", "Temporarily provides ice magic to attacks.", "consumable", 350, new Effects() {duration=30, elementInfusing="ice"})},
     // TODO: Confirm that statusHeal works for this med
     {"ice-med", new RegularItem(Sprites.itemThumbnails[251], Sprites.itemImages[251], "Ice Medicine", "Heals ice magic.", "consumable", 350, new Effects() {statusHeal="ice"})},
     {"ice-potion", new RegularItem(Sprites.itemThumbnails[229], Sprites.itemImages[229], "Ice Potion", "Temporarily provides ice defense.", "consumable", 350, new Effects() {duration=30, magicResistances=new MagicResistance[]{new MagicResistance(){name="Ice", type="add"}}})},
@@ -377,7 +377,7 @@ public class Objects
     {"leprechaun-mushroom", new RegularItem(Sprites.itemThumbnails[202], Sprites.itemImages[202], "Forest Mushroom", "Rare mushroom found by leprechauns.", "valuable", 1000)},
     {"light-bracelet", new RegularItem(Sprites.itemThumbnails[152], Sprites.itemImages[152], "Light Bracelet", "Bracelet which enhances attack power and provides light defense.", "armwear", 200, new Effects() {atk=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Light", type="add"}}})},
     // TODO: implement a magicDamage effect to add to this infusion
-    {"light-infusion", new RegularItem(Sprites.itemThumbnails[261], Sprites.itemImages[261], "Light Infusion", "Temporarily provides light magic to attacks.", "consumable", 350)},
+    {"light-infusion", new RegularItem(Sprites.itemThumbnails[261], Sprites.itemImages[261], "Light Infusion", "Temporarily provides light magic to attacks.", "consumable", 350, new Effects() {duration=30, elementInfusing="light"})},
     // TODO: Confirm that statusHeal works for this med
     {"light-med", new RegularItem(Sprites.itemThumbnails[252], Sprites.itemImages[252], "Light Medicine", "Heals light magic.", "consumable", 350, new Effects() {statusHeal="light"})},
     {"light-potion", new RegularItem(Sprites.itemThumbnails[230], Sprites.itemImages[230], "Light Potion", "Temporarily provides light defense.", "consumable", 350, new Effects() {duration=30, magicResistances=new MagicResistance[]{new MagicResistance(){name="Light", type="add"}}})},
@@ -385,7 +385,7 @@ public class Objects
     {"light-sword", new RegularItem(Sprites.itemThumbnails[42], Sprites.itemImages[42], "Light Sword", "The shine of this blade can bright light in the darkest night.", "double", 500, new Effects() {atk=120})},
     {"lightning-bracelet", new RegularItem(Sprites.itemThumbnails[150], Sprites.itemImages[150], "Lightning Bracelet", "Bracelet which enhances attack power and provides lightning defense.", "armwear", 200, new Effects() {atk=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Lightning", type="add"}}})},
     // TODO: implement a magicDamage effect to add to this infusion
-    {"lightning-infusion", new RegularItem(Sprites.itemThumbnails[259], Sprites.itemImages[259], "Lightning Infusion", "Temporarily provides lightning magic to attacks.", "consumable", 350)},
+    {"lightning-infusion", new RegularItem(Sprites.itemThumbnails[259], Sprites.itemImages[259], "Lightning Infusion", "Temporarily provides lightning magic to attacks.", "consumable", 350, new Effects() {duration=30, elementInfusing="lightning"})},
     // TODO: Confirm that statusHeal works for this med
     {"lightning-med", new RegularItem(Sprites.itemThumbnails[250], Sprites.itemImages[250], "Lightning Medicine", "Heals lightning magic.", "consumable", 350, new Effects() {statusHeal="lightning"})},
     {"lightning-potion", new RegularItem(Sprites.itemThumbnails[228], Sprites.itemImages[228], "Lightning Potion", "Temporarily provides lightning defense.", "consumable", 350, new Effects() {duration=30, magicResistances=new MagicResistance[]{new MagicResistance(){name="Lightning", type="add"}}})},
@@ -577,7 +577,7 @@ public class Objects
     {"war-maul", new RegularItem(Sprites.itemThumbnails[17], Sprites.itemImages[17], "War Maul", "Reinforced hammer that needs to be wielded with two hands.", "double", 500, new Effects() {atk=80})},
     {"water-bracelet", new RegularItem(Sprites.itemThumbnails[148], Sprites.itemImages[148], "Water Bracelet", "Bracelet which enhances attack power and provides water defense.", "armwear", 200, new Effects() {atk=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Water", type="add"}}})},
     // TODO: implement a magicDamage effect to add to this infusion
-    {"water-infusion", new RegularItem(Sprites.itemThumbnails[257], Sprites.itemImages[257], "Water Infusion", "Temporarily provides water magic to attacks.", "consumable", 350)},
+    {"water-infusion", new RegularItem(Sprites.itemThumbnails[257], Sprites.itemImages[257], "Water Infusion", "Temporarily provides water magic to attacks.", "consumable", 350, new Effects() {duration=30, elementInfusing="water"})},
     // TODO: Confirm that statusHeal works for this med
     {"water-med", new RegularItem(Sprites.itemThumbnails[248], Sprites.itemImages[248], "Water Medicine", "Heals water magic.", "consumable", 350, new Effects() {statusHeal="water"})},
     {"water-potion", new RegularItem(Sprites.itemThumbnails[226], Sprites.itemImages[226], "Water Potion", "Temporarily provides water defense.", "consumable", 350, new Effects() {duration=30, magicResistances=new MagicResistance[]{new MagicResistance(){name="Water", type="add"}}})},

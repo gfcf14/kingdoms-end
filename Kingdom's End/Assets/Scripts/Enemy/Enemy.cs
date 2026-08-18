@@ -617,8 +617,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void DamageCalculation(Vector2 damageLocation, int specificDamage, string damageSoundType, string weaponType = "", bool isCritical = false) {
-    // TODO: ensure player array is used correctly
-    int magicDamageMultiplier = Helpers.GetOffensiveMultiplier(Array.Empty<string>(), elementalMagic != "" ? elementalMagic.Split('-')[0] : "");
+    int magicDamageMultiplier = Helpers.GetOffensiveMultiplier(Hero.instance.infusedMagics, elementalMagic != "" ? elementalMagic.Split('-')[0] : "");
 
     int damage = def - ((specificDamage + Hero.instance.strength + (int)Hero.instance.equippedSTR + (int)Hero.instance.effectSTR) * (isCritical ? 2 : 1) * magicDamageMultiplier);
 
