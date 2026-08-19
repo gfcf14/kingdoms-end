@@ -1990,9 +1990,11 @@ public class Hero : MonoBehaviour {
 
         bool isCritical = bewitch ? true : Helpers.IsCritical(criticalRate);
 
-        int magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", infusedMagics);
+        float magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", infusedMagics);
 
-        int damage = bewitch ? -(currentHP - Constants.minimumDamageDealt) : ((stamina + (int)equippedSTA + (int)effectSTA) * (effectStamina >= 1 ? 1 : 0)) - (atk * (isCritical ? 2 : 1) * magicDamageMultiplier);
+        float rawDamage = bewitch ? -(currentHP - Constants.minimumDamageDealt) : ((stamina + (int)equippedSTA + (int)effectSTA) * (effectStamina >= 1 ? 1 : 0)) - (atk * (isCritical ? 2 : 1) * magicDamageMultiplier);
+        int damage = (int)(rawDamage - (rawDamage % Constants.minimumDamageDealt));
+
         // TODO: modify first argument based on different attack type used by the enemy
         TakeDamage(damage < 0 ? Math.Abs(damage) : (damage == 0 && bewitch ? 0 : Constants.minimumDamageDealt), contactPoint, isCritical, attackType);
 
@@ -2018,9 +2020,11 @@ public class Hero : MonoBehaviour {
             currentShieldHP--;
             bool isCritical = Helpers.IsCritical(criticalRate);
 
-            int magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", infusedMagics);
+            float magicDamageMultiplier = Helpers.GetDefensiveMultiplier(elementalMagic != "" ? elementalMagic.Split('-')[0] : "", infusedMagics);
 
-            int damage = (stamina + (int)equippedSTA + shieldDefense + (int)effectSTA) - (atk * (isCritical ? 2 : 1) * magicDamageMultiplier);
+            float rawDamage = (stamina + (int)equippedSTA + shieldDefense + (int)effectSTA) - (atk * (isCritical ? 2 : 1) * magicDamageMultiplier);
+            int damage = (int)(rawDamage - (rawDamage % Constants.minimumDamageDealt));
+
             // TODO: modify first argument based on different attack type used by the enemy
             TakeDamage(damage < 0 ? Math.Abs(damage) :  Constants.minimumDamageDealt, contactPoint, isCritical, attackType);
 
