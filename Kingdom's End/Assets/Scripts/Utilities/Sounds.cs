@@ -315,4 +315,15 @@ public class Sounds {
     {"lightning", Resources.Load<AudioClip>("SFX/hitting/magic/lightning")},
     {"water", Resources.Load<AudioClip>("SFX/hitting/magic/water")}
   };
+
+  public static Dictionary<string, AudioClip> elementEquipSounds = new() {
+    {"air", Resources.Load<AudioClip>("SFX/items/equip/air")},
+    {"dark", Resources.Load<AudioClip>("SFX/items/equip/dark")},
+    {"earth", Resources.Load<AudioClip>("SFX/items/equip/earth")},
+    {"fire", Resources.Load<AudioClip>("SFX/items/equip/fire")},
+    {"ice", iceblockSound},
+    {"light", Resources.Load<AudioClip>("SFX/items/equip/light")},
+    {"lightning", Resources.Load<AudioClip>("SFX/items/equip/lightning")},
+    {"water", Resources.Load<AudioClip>("SFX/items/equip/water")}
+  };
 }

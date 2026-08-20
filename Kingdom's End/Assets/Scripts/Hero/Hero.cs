@@ -577,8 +577,8 @@ public class Hero : MonoBehaviour {
       consumables.Add(newConsumable);
 
       if (isInfusion) {
-        // TODO: play sound of an equipped infusion
-        // TODO: add a pulse effect (or modify an existing one)
+        InGame.instance.PlaySound(Helpers.GetOrException(Sounds.elementEquipSounds, consumableGroup[0]), transform.position);
+        // TODO: consider adding a pulse effect
         infusedMagics.Add(consumableGroup[0]);
       }
 
@@ -2352,6 +2352,7 @@ public class Hero : MonoBehaviour {
     tempGroundType = groundType == "level" ? "" : groundType;
   }
 
+  // TODO: consider if this function has any more usefulness
   public float GroundFallDistance() {
     Vector2 fallCast = new Vector2(transform.position.x, transform.position.y);
     // TODO: consider the tradeoffs of using an infinite downward raycast
