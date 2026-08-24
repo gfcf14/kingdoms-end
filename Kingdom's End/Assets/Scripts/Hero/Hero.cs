@@ -1325,7 +1325,13 @@ public class Hero : MonoBehaviour {
           isShocked = true;
         } else if (armEquipment == "") {
           isPunching = true;
-          anim.SetTrigger("isPunching");
+
+          if (projectileCheckScript.ProjectileNearby()) {
+            anim.SetTrigger("isUppercutting");
+          } else {
+            anim.SetTrigger("isPunching");
+          }
+
           weaponCollider.SetActive(true);
         } else {
           string weaponType = Helpers.GetOrException(Objects.regularItems, armEquipment).type;
