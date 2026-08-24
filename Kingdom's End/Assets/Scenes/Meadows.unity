@@ -110533,7 +110533,7 @@ GameObject:
   - component: {fileID: 447071659}
   - component: {fileID: 447071660}
   m_Layer: 2
-  m_Name: BombCheck
+  m_Name: ProjectileCheck
   m_TagString: HeroCheck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110612,6 +110612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ff902e5a2284e438865e9caade0e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxSize: {x: 2.5, y: 3.5}
 --- !u!4 &447142277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5298363000645693708, guid: a11f0491bd05afd42b5306247a043fe9, type: 3}
@@ -286667,7 +286668,7 @@ MonoBehaviour:
   armUsed: 0
   direction: 1
   nearbyInteractableObject: {fileID: 0}
-  bombCheck: {fileID: 447071657}
+  projectileCheck: {fileID: 0}
   NPCnearby: {fileID: 0}
   NPCnearbyAction: 
   collisionDirection: 

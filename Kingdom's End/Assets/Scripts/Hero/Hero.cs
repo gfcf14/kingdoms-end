@@ -35,6 +35,7 @@ public class Hero : MonoBehaviour {
   [SerializeField] public GameObject indicator;
   public AirEdgeCheck airEdgeCheckScript;
   public ProximityCheck proximityCheckScript;
+  public ProjectileCheck projectileCheckScript;
 
   public BoxCollider2D heroCollider;
   public Rigidbody2D body;
@@ -124,9 +125,6 @@ public class Hero : MonoBehaviour {
   public int direction = 1;
 
   public GameObject nearbyInteractableObject;
-
-  [SerializeField] public GameObject bombCheck;
-  BombCheck bombCheckScript;
   public GameObject NPCnearby;
   public string NPCnearbyAction;
   [SerializeField] public string collisionDirection = "";
@@ -303,7 +301,7 @@ public class Hero : MonoBehaviour {
     audioSource = GetComponent<AudioSource>();
     airEdgeCheckScript = airEdgeCheck.GetComponent<AirEdgeCheck>();
     proximityCheckScript = transform.Find("ProximityCheck").GetComponent<ProximityCheck>();
-    bombCheckScript = bombCheck.GetComponent<BombCheck>();
+    projectileCheckScript = transform.Find("ProjectileCheck").GetComponent<ProjectileCheck>();
 
     // currentWeapon = weapons[weaponIndex % weapons.Length];
 
@@ -1141,8 +1139,8 @@ public class Hero : MonoBehaviour {
                 } else {
                   isKicking = true;
 
-                  if (bombCheckScript.BombNearby()) {
-                    anim.SetTrigger("isKickingBomb");
+                  if (projectileCheckScript.ProjectileNearby()) {
+                    anim.SetTrigger("isKickingBack");
                   } else {
                     anim.SetTrigger("isKicking");
                   }

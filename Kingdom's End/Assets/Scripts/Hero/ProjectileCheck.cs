@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BombCheck : MonoBehaviour {
+public class ProjectileCheck : MonoBehaviour {
   public Vector2 boxSize = new (2.5f, 3.5f);
   void Start() {}
   void Update() {}
