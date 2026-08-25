@@ -205,7 +205,7 @@ public class InGame : MonoBehaviour {
 
     if (Settings.showItemInfo) {
       bool displayMoney = itemKey.Contains("money");
-      InGame.instance.infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? Helpers.GetOrException(Objects.moneyItems, itemKey).text : Helpers.GetOrException(Objects.regularItems, itemKey).name);
+      infoCanvas.GetComponent<InfoCanvas>().Display(displayMoney ? Helpers.GetOrException(Objects.moneyItems, itemKey).text : Helpers.GetOrException(Objects.regularItems, itemKey).name);
     }
   }
 

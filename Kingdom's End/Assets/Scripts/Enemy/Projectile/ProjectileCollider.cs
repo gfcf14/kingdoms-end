@@ -44,13 +44,14 @@ public class ProjectileCollider : MonoBehaviour {
                 Vector2 fragmentOrigin = new Vector2(col.ClosestPoint(transform.position).x, col.ClosestPoint(transform.position).y + Helpers.GetItemDimensions(projectileKey).y);
                 GameObject fragmentParent = transform.parent.parent.parent.gameObject;
 
-                Disappear(parentObject);
+                Explode(parentObject);
                 InGame.instance.InstantiateFragments(new FragmentOutcome() { key = projectileKey, count = 1 }, fragmentOrigin, fragmentParent, isProjectile: true);
               }
             } else if (Hero.instance.isPunching) {
               // if hero is punching, he has a 50% chance of grabbing the object
               if (Random.value <= 0.5f) {
-                Disappear(parentObject);
+                InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, "rare"), transform.position);
+                Explode(parentObject);
                 InGame.instance.PickItem(projectileKey);
               }
             } else {
@@ -69,6 +70,7 @@ public class ProjectileCollider : MonoBehaviour {
     }
   }
 
+  // TODO: consider if this should be used for anything
   void Disappear(GameObject parentObject) {
     parentObject.GetComponent<Projectile>().StopProjectile();
   }
