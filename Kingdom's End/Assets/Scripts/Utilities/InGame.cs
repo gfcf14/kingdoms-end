@@ -226,7 +226,7 @@ public class InGame : MonoBehaviour {
         }
       }
 
-      InGame.instance.InstantiatePrefab("droppable", fragmentOutcome.key, "normal", parent, collisionOrigin + fragmentPositionOffset, shouldRotate: true, rotateDirection);
+      InstantiatePrefab("droppable", fragmentOutcome.key, "normal", parent, collisionOrigin + fragmentPositionOffset, shouldRotate: true, rotateDirection);
     }
   }
 
