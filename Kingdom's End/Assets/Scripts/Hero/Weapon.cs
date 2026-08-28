@@ -38,6 +38,34 @@ public class Weapon : MonoBehaviour {
     }
   }
 
+  void PlayBlockSound() {
+    // TODO: ensure this block can be different per weapon used (e.g. fist, kick, sword, rock club, etc.)
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
+  }
+
+  public void DetermineProjectileSpawn(string projectileKey, Vector2 collisionPoint, GameObject fragmentParent) {
+    if (Helpers.IsValueInArray(Constants.fragmentableProjectiles, projectileKey)) {
+      // if the projectile is "grabbable":
+      if (Hero.instance.isKicking) {
+        PlayBlockSound();
+
+        // if hero is kicking, he has a 33% chance of not destroying the object, but make it bounce away to pick later
+        if (UnityEngine.Random.value <= 0.33f) {
+          Vector2 fragmentOrigin = new (collisionPoint.x, collisionPoint.y + Helpers.GetItemDimensions(projectileKey).y);
+          InGame.instance.InstantiateFragments(new FragmentOutcome() { key = projectileKey, count = 1 }, fragmentOrigin, fragmentParent, isProjectile: true);
+        }
+      } else if (Hero.instance.isPunching) {
+        // if hero is punching, he has a 50% chance of grabbing the object
+        if (UnityEngine.Random.value <= 0.5f) {
+          InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, "rare"), transform.position);
+          InGame.instance.PickItem(projectileKey);
+        } else {
+          PlayBlockSound();
+        }
+      }
+    }
+  }
+
   private string GetThrowableSound(string type, string key) {
     return type + (
       type.Contains("double") ? "-large" : (

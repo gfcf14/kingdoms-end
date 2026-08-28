@@ -7,6 +7,7 @@ public class ProjectileCollider : MonoBehaviour {
 
   void ExplosionWithBlock() {
     Explode(transform.parent.gameObject);
+    // TODO: ensure this block can be different per weapon used (e.g. fist, kick, sword, rock club, etc.)
     InGame.instance.PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
   }
 
@@ -34,32 +35,8 @@ public class ProjectileCollider : MonoBehaviour {
       if (gameObject.tag == "EnemyWeapon") {
         // plays a weapon clash sound when enemy throwables collide with the player weapon
         if (colliderTag == "Weapon") {
-          string projectileKey = parentObject.GetComponent<Projectile>().key;
-
-          if (Helpers.IsValueInArray(Constants.fragmentableProjectiles, projectileKey)) {
-            // if the projectile is "grabbable":
-            if (Hero.instance.isKicking) {
-              // if hero is kicking, he has a 33% chance of not destroying the object, but make it bounce away to pick later
-              if (Random.value <= 0.33f) {
-                Vector2 fragmentOrigin = new Vector2(col.ClosestPoint(transform.position).x, col.ClosestPoint(transform.position).y + Helpers.GetItemDimensions(projectileKey).y);
-                GameObject fragmentParent = transform.parent.parent.parent.gameObject;
-
-                Explode(parentObject);
-                InGame.instance.InstantiateFragments(new FragmentOutcome() { key = projectileKey, count = 1 }, fragmentOrigin, fragmentParent, isProjectile: true);
-              }
-            } else if (Hero.instance.isPunching) {
-              // if hero is punching, he has a 50% chance of grabbing the object
-              if (Random.value <= 0.5f) {
-                InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, "rare"), transform.position);
-                Explode(parentObject);
-                InGame.instance.PickItem(projectileKey);
-              }
-            } else {
-              ExplosionWithBlock();
-            }
-          } else {
-            ExplosionWithBlock();
-          }
+          Explode(parentObject);
+          col.gameObject.GetComponent<Weapon>().DetermineProjectileSpawn(parentObject.GetComponent<Projectile>().key, col.ClosestPoint(transform.position), transform.parent.parent.parent.gameObject);
         }
       }
 
