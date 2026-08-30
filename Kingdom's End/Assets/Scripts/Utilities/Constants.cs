@@ -21,7 +21,7 @@ public class Constants {
 
   public static string[] variableEnemies = { "luxhusk", "nomad", "wanderess" };
   public static string[] fragmentableThrowables = { "watermelon" };
-  public static string[] fragmentableProjectiles = { "leprechaun-mushroom" };
+  public static string[] fragmentableProjectiles = { "centaur-spear", "dyrgja-hatchet", "janissary-yatagan", "kitsune-kunai", "knight-dagger", "leprechaun-mushroom", "nomad-dagger", "pegasus-feather", "siren-feather", "skeleton-king-giant-bone", "skullguard-dagger", "sylphid-feather", "yukionna-kunai" };
   public static string[] nonBouncingThrowables = { "lance", "dagger", "kunai", "shuriken-4", "shuriken-6", "hatchet", "axe", "skeleton-king-giant-bone", "coconut", "honeydew", "watermelon" };
   public static string[] nonBouncingProjectiles = {
     "angel-blast",
