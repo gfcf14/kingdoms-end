@@ -62,6 +62,8 @@ public class Weapon : MonoBehaviour {
         } else {
           PlayBlockSound();
         }
+      } else {
+        PlayBlockSound();
       }
     }
   }
