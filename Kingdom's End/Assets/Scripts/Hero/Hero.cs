@@ -319,7 +319,6 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("honeydew", 10));
       items.Add(new Item("coconut", 10));
       items.Add(new Item("luck-flask", 1));
-      items.Add(new Item("lightning-med", 2));
       items.Add(new Item("random-flask", 5));
       items.Add(new Item("strength-flask", 1));
       items.Add(new Item("stamina-flask", 5));
@@ -365,8 +364,14 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("pearl", 1));
       items.Add(new Item("mid-potion", 1));
       // items.Add(new Item("high-potion", 1));
-      items.Add(new Item("fire-med", 1));
-      items.Add(new Item("dark-med", 1));
+      items.Add(new Item("air-med", 5));
+      items.Add(new Item("dark-med", 5));
+      items.Add(new Item("earth-med", 5));
+      items.Add(new Item("fire-med", 5));
+      items.Add(new Item("ice-med", 5));
+      items.Add(new Item("light-med", 5));
+      items.Add(new Item("lightning-med", 5));
+      items.Add(new Item("water-med", 5));
       items.Add(new Item("watermelon-slice", 1));
       items.Add(new Item("arrow-ice", 100));
 
@@ -857,13 +862,10 @@ public class Hero : MonoBehaviour {
   }
 
   public void ConsumeItem(string key) {
-    int i = 0;
-    foreach (Item currItem in items) {
-      if (key == currItem.key) {
-        currItem.amount--;
-        break;
-      }
-      i++;
+    Item item = items.FirstOrDefault(i => i.key == key);
+
+    if (item != null) {
+      item.amount--;
     }
   }
 

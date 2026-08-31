@@ -733,6 +733,9 @@ public class Pause : MonoBehaviour {
 
       if (itemEffects.statusHeal != null) { // if statusHeal is set, item will remove a consumable and update status effects
         // TODO: play a sound here to indicate healing a status
+
+        // TODO: when the item is `ice-med`, check if the Hero is frozen, and if so, call a Hero's IceEffect function to PrepareFullRockExplosion and Break
+        
         Hero.instance.RemoveStatusEffects(itemEffects.statusHeal);
       } else if (itemEffects.duration == null) { // add to consumables only if the item has a duration
         // hp
