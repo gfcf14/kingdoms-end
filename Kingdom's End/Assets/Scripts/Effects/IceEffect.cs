@@ -37,6 +37,11 @@ public class IceEffect : MonoBehaviour {
     shakeRoutine = null;
   }
 
+  public void DestroyIce() {
+    InGame.instance.PrepareFullRockExplosion(gameObject, "ice", "ice");
+    Break();
+  }
+
   public void Damage(int amount) {
     strength -= amount;
 
@@ -57,8 +62,7 @@ public class IceEffect : MonoBehaviour {
     }
 
     if (strength <= 0) {
-      InGame.instance.PrepareFullRockExplosion(gameObject, "ice", "ice");
-      Break();
+      DestroyIce();
     }
   }
 

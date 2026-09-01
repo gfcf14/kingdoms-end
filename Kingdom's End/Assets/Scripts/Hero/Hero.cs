@@ -245,7 +245,7 @@ public class Hero : MonoBehaviour {
   [NonSerialized] public int poisonAttackCounter = 1;
 
   private int lastSign = 0;
-  private IceEffect currentIceEffect;
+  public IceEffect currentIceEffect;
   private GameObject currentIceCrack;
   [NonSerialized] public List<Item> items = new List<Item>();
   [NonSerialized] public List<Item> relicItems = new List<Item>();
