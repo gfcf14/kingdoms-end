@@ -735,7 +735,7 @@ public class Pause : MonoBehaviour {
         if (itemKey == "ice-med" && Hero.instance.isFrozen) {
           Hero.instance.currentIceEffect.DestroyIce();
         } else {
-          // TODO: play a sound here to indicate healing a status
+          Hero.instance.ConsumeMedicine();
         }
         
         Hero.instance.RemoveStatusEffects(itemEffects.statusHeal);

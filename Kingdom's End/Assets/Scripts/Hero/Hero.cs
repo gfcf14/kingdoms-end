@@ -2396,4 +2396,8 @@ public class Hero : MonoBehaviour {
     isFallingSlammed = false;
     isRecoveringFromSlam = false;
   }
+
+  public void ConsumeMedicine() {
+    InGame.instance.PlaySound(Sounds.consumeMedicine, transform.position);
+  }
 }
