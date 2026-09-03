@@ -105,9 +105,9 @@ public class Droppable : MonoBehaviour {
         float horizontalSpeed = speed * directionFactor;
         float time = body.position.x - initialPosition.x;
 
-        // Calculate vertical velocity based on parabolic function f(x) = -a(x - h)^2 + k
+        // Calculate vertical velocity based on parabolic function f(x) = -a(t - h)
         // then multiply by the direction factor
-        float verticalSpeed = directionFactor * (-1 * parabolaConstant * Mathf.Pow(2,(time - 1)) + parabolaConstant);
+        float verticalSpeed = directionFactor * (-1f * parabolaConstant * (time - 1f));
 
         body.linearVelocity = new Vector2(horizontalSpeed, verticalSpeed);
 
