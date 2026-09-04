@@ -1386,7 +1386,6 @@ public class Enemy : MonoBehaviour {
     EnemyBomb bombScript = enemyBomb.GetComponent<EnemyBomb>();
     bombScript.damage = atk * 2;
     bombScript.dropper = gameObject.GetComponent<Enemy>();
-    bombScript.hero = Hero.instance;
     isAttacking = false;
     coolDownStart = Time.time * 1000;
     needsCoolDown = true;

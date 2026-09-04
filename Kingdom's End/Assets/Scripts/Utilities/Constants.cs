@@ -212,7 +212,7 @@ public class Constants {
 
   public static string[] enemyBombTriggerTags = {"DamageExplosion", "EnemyBomb", "Floor", "Wall"};
 
-  public static string[] enemyBombBounceTags = {"Hero", "Weapon"};
+  public static string[] enemyBombBounceTags = {"Weapon"};
 
   public static string[] enemyProjectiles = {
     "angel-blast",
