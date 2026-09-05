@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour {
     [NonSerialized] public Rigidbody2D body;
     [NonSerialized] public SpriteRenderer enemyRenderer;
     [SerializeField] public GameObject variableObject;
+    [SerializeField] public GameObject currentBomb;
     [NonSerialized] VariableSprite variableSpriteScript;
 
     private AudioSource audioSource;
@@ -106,8 +107,6 @@ public class Enemy : MonoBehaviour {
     [SerializeField] public bool isWalking;
     [SerializeField] public bool isWatching;
     [SerializeField] public bool stunOnAttack = false;
-
-    [SerializeField] public bool bombReturned = false;
     [SerializeField] public bool canLand = false;
 
     public int direction = 1;
@@ -1389,6 +1388,7 @@ public class Enemy : MonoBehaviour {
     isAttacking = false;
     coolDownStart = Time.time * 1000;
     needsCoolDown = true;
+    currentBomb = enemyBomb;
   }
 
   public void EnableLanding() {

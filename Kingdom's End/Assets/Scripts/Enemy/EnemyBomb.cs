@@ -53,6 +53,7 @@ public class EnemyBomb : MonoBehaviour {
     explosionScript.type = "damage";
     explosionScript.damage = damage;
 
+    dropper.currentBomb = null;
     Destroy(gameObject);
   }
 
@@ -62,6 +63,5 @@ public class EnemyBomb : MonoBehaviour {
     body.linearVelocity = new Vector2(0, 8f); // Mathf.Abs(body.velocity.y));
     body.gravityScale = 0;
     wasKickedBack = true;
-    dropper.bombReturned = true;
   }
 }

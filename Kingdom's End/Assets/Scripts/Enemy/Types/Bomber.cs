@@ -12,7 +12,7 @@ public class Bomber : MonoBehaviour {
   }
 
   void Update() {
-    if (Hero.instance != null && Hero.instance.pauseCase == "" && !enemy.bombReturned) {
+    if (Hero.instance != null && Hero.instance.pauseCase == "" && enemy.currentBomb == null) {
       if (!enemy.needsCoolDown) {
         if (!enemy.playerFound) {
           enemy.AttackLogic(0.5f, forwardCastLength);
