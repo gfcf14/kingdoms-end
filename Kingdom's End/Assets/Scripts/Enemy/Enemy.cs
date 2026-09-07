@@ -1043,6 +1043,7 @@ public class Enemy : MonoBehaviour {
         Vector2.zero) * new Vector2(direction, 1));
 
     // instantiates the dropped item
+    // TODO: if killed by their own bomb, drop item should add a 10% to luck below
     string[] droppableAndRarity = (specificDrop == "" ? Helpers.GetDroppableItem(key, level, Hero.instance.luckPercentage + Hero.instance.equippedLUCK + Hero.instance.effectLCK) : "" + specificDrop + "|rare").Split('|');
     if (isDeadByFreezing) {
       GameObject iceBlock = Instantiate(Helpers.GetOrException(Objects.prefabs, $"ice-block-{UnityEngine.Random.Range(1, 6)}"), deathOrigin, Quaternion.identity, transform.parent);

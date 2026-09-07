@@ -61,6 +61,8 @@ public class EnemyCollider : MonoBehaviour {
             if (enemy.currentHP <= 0) {
               // TODO: for killing via bomb kickback, implement a means to increase this item instantiation luck by 10%
               enemy.isDead = true;
+            } else {
+              enemy.Flash();
             }
           }
         } else if (enemy.type == "ambusher" && !enemy.isAttacking) {
