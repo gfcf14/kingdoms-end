@@ -56,7 +56,12 @@ public class EnemyCollider : MonoBehaviour {
           EnemyBomb collidedBomb = col.gameObject.GetComponent<EnemyBomb>();
 
           if (collidedBomb.wasKickedBack) {
-            enemy.isDead = true;
+            enemy.TakeDamage(collidedBomb.damage, col.ClosestPoint(transform.position));
+
+            if (enemy.currentHP <= 0) {
+              // TODO: for killing via bomb kickback, implement a means to increase this item instantiation luck by 10%
+              enemy.isDead = true;
+            }
           }
         } else if (enemy.type == "ambusher" && !enemy.isAttacking) {
           if (col.gameObject.CompareTag("Floor")) {
