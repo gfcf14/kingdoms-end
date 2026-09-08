@@ -93,6 +93,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] public bool isDead = false;
     [SerializeField] public bool isDeadByBurning = false;
     [SerializeField] public bool isDeadByFreezing = false;
+    [SerializeField] public bool isDeadByBomb = false;
     [SerializeField] public bool isDeadByPoison = false;
     [SerializeField] public bool isDefending = false;
     [SerializeField] public bool isDistracted;
@@ -1043,8 +1044,8 @@ public class Enemy : MonoBehaviour {
         Vector2.zero) * new Vector2(direction, 1));
 
     // instantiates the dropped item
-    // TODO: if killed by their own bomb, drop item should add a 10% to luck below
-    string[] droppableAndRarity = (specificDrop == "" ? Helpers.GetDroppableItem(key, level, Hero.instance.luckPercentage + Hero.instance.equippedLUCK + Hero.instance.effectLCK) : "" + specificDrop + "|rare").Split('|');
+    float dropLuck = Hero.instance.luckPercentage + Hero.instance.equippedLUCK + Hero.instance.effectLCK + (isDeadByBomb ? 0.1f : 0);
+    string[] droppableAndRarity = (specificDrop == "" ? Helpers.GetDroppableItem(key, level, dropLuck) : "" + specificDrop + "|rare").Split('|');
     if (isDeadByFreezing) {
       GameObject iceBlock = Instantiate(Helpers.GetOrException(Objects.prefabs, $"ice-block-{UnityEngine.Random.Range(1, 6)}"), deathOrigin, Quaternion.identity, transform.parent);
       IceBlock iceBlockScript = iceBlock.AddComponent<IceBlock>();
