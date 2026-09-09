@@ -790,4 +790,20 @@ public class Helpers {
 
     return 1f;
   }
+
+  public static bool IsCurrentAnimation(Animator anim, string animationName, bool contains = false) {
+    AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
+
+    if (clipInfo.Length > 0) {
+      string clipName = clipInfo[0].clip.name;
+
+      if (contains) {
+        return clipName.Contains(animationName);
+      }
+
+      return clipName.Equals(animationName);
+    }
+
+    return false;
+  }
 }

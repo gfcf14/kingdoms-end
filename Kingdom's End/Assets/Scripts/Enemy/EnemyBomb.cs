@@ -1,4 +1,5 @@
 using System;
+using NUnit.Framework;
 using UnityEngine;
 
 public class EnemyBomb : MonoBehaviour {
@@ -17,10 +18,14 @@ public class EnemyBomb : MonoBehaviour {
   void Update() {}
 
   void BounceLogic(Collider2D col) {
+    // if it simply collides with the hero
     if (col.gameObject.tag == "Hero") {
       Explode(col.ClosestPoint(transform.position));
+
+    // if it collides with anything it can bounce from as per enemyBombBounceTags
     } else if (Helpers.IsValueInArray(Constants.enemyBombBounceTags, col.gameObject.tag)) {
-      if (Hero.instance.isKicking && Hero.instance.projectileCheckScript.ProjectileNearby()) {
+      // if hero is kicking when there is a projectile nearby and is kicking back (not just kicking)
+      if (Hero.instance.isKicking && Hero.instance.projectileCheckScript.ProjectileNearby() && Helpers.IsCurrentAnimation(Hero.instance.anim, "kicking-back", contains: true)) {
         Bounce();
       } else {
         Explode(col.ClosestPoint(transform.position));
