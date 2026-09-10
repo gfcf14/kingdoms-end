@@ -127,7 +127,7 @@ public class Constants {
   public static string[] itemsFromRandomFlask = {"critical-flask", "luck-flask", "stamina-flask", "strength-flask"};
 
   // TODO: to avoid disabling medicine use, ensure a new item type, consumable-med, is included, and that it can be used even while sealed
-  public static string[] usableItemTypes = {"consumable", "food", "throwable-food"};
+  public static string[] usableItemTypes = {"consumable", "food", "medicine", "throwable-food"};
 
   public static string[] bodyEquipmentTypes = {"body"};
   public static string[] armEquipmentTypes = {"double", "single", "defense", "throwable-double", "throwable", "bow", "throwable-food"};

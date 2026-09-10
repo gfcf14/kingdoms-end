@@ -443,6 +443,8 @@ public class Pause : MonoBehaviour {
     itemButtons.Clear();
   }
 
+  
+
   // adds all items in the hero item list or equipment list
   void PopulateItemsContainer(List<Item> itemsList, GameObject parentContainer, bool isRelics = false) {
     List<string> itemsToRemove = new List<string>();
@@ -499,7 +501,7 @@ public class Pause : MonoBehaviour {
           itemAmount.text = canvasStatus != "relics" ? (canvasStatus == "equipment" ? currentAmount - (Helpers.IsValueInArray(Constants.projectileHoldingWeaponTypes, currentKey) ? 0 : itemUsageFrequency) : currentAmount).ToString() : "";
 
           if (canvasStatus == "items" && isUsableItem) {
-            Color textColor = isSealed ? Colors.ailment : Colors.normalUI;
+            Color textColor = isSealed && Helpers.GetOrException(Objects.regularItems, currentKey).type != "medicine" ? Colors.ailment : Colors.normalUI;
 
             itemName.color = textColor;
             itemAmount.color = textColor;
@@ -569,7 +571,7 @@ public class Pause : MonoBehaviour {
         itemButtons.ElementAt(0).GetComponent<Button>().navigation = firstButtonNavigation;
       }
 
-      if (canvasStatus == "items" && !isSealed && Helpers.IsUsableItem(itemTypes[k])) {
+      if (canvasStatus == "items" && (!isSealed || (isSealed && itemTypes[k] == "medicine")) && Helpers.IsUsableItem(itemTypes[k])) {
         currentItemButton.GetComponent<Button>().onClick.AddListener(ProceedToUse);
       }
 
@@ -735,6 +737,10 @@ public class Pause : MonoBehaviour {
         if (itemKey == "ice-med" && Hero.instance.isFrozen) {
           Hero.instance.currentIceEffect.DestroyIce();
         } else {
+          if (itemKey == "light-med" && Hero.instance.effectSealed > 0) {
+            // TODO: add function to repaint disabled items and call it here
+          }
+
           Hero.instance.ConsumeMedicine();
         }
         
@@ -1128,7 +1134,7 @@ public class Pause : MonoBehaviour {
     itemName.GetComponent<Text>().text = currentRegularItem.name.ToUpper();
     itemImage.GetComponent<Image>().sprite = currentRegularItem.image;
     itemDescription.GetComponent<Text>().text = currentRegularItem.description;
-    itemUseRectangle.SetActive(Helpers.IsUsableItem(currentRegularItem.type, shouldDisable: Hero.instance.effectSealed > 0));
+    itemUseRectangle.SetActive(currentRegularItem.type == "medicine" || Helpers.IsUsableItem(currentRegularItem.type, shouldDisable: Hero.instance.effectSealed > 0));
 
     if (currentRegularItem.effects != null) {
       Effects itemEffects = currentRegularItem.effects;
