@@ -722,6 +722,18 @@ public class Pause : MonoBehaviour {
     if (!isTemporary) Hero.instance.UpdateStats(type, (int)itemEffectAmount);
   }
 
+  void RepaintDisabledItems() {
+    foreach (GameObject currentItemButton in itemButtons) {
+      RegularItem buttonItem = Helpers.GetOrException(Objects.regularItems, currentItemButton.GetComponent<ItemButton>().key);
+
+      if (Helpers.IsUsableItem(buttonItem.type)) {
+        currentItemButton.GetComponent<Button>().onClick.AddListener(ProceedToUse);
+        currentItemButton.transform.Find("Text").GetComponent<Text>().color = Colors.normalUI;
+        currentItemButton.transform.Find("Amount").GetComponent<Text>().color = Colors.normalUI;
+      }
+    }
+  }
+
   public void UseItem() {
     canPlayDeselect = false;
     Item heroItem = Hero.instance.items.ElementAt(currentItemButtonIndex);
@@ -738,7 +750,7 @@ public class Pause : MonoBehaviour {
           Hero.instance.currentIceEffect.DestroyIce();
         } else {
           if (itemKey == "light-med" && Hero.instance.effectSealed > 0) {
-            // TODO: add function to repaint disabled items and call it here
+            RepaintDisabledItems();
           }
 
           Hero.instance.ConsumeMedicine();
