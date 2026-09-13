@@ -2397,7 +2397,7 @@ public class Hero : MonoBehaviour {
     isRecoveringFromSlam = false;
   }
 
-  public void ConsumeMedicine() {
-    InGame.instance.PlaySound(Sounds.consumeMedicine, transform.position);
+  public void ConsumeSpecificItem(string item) {
+    InGame.instance.PlaySound(Helpers.GetOrException(Sounds.specificConsumableSounds, item), transform.position);
   }
 }

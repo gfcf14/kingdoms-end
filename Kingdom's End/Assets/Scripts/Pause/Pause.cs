@@ -745,7 +745,10 @@ public class Pause : MonoBehaviour {
     if (currentRegularItem.effects != null) {
       Effects itemEffects = currentRegularItem.effects;
 
-      if (itemEffects.statusHeal != null) { // if statusHeal is set, item will remove a consumable and update status effects
+      if (itemEffects.speed > 0) { // referring to the speed potion
+        Hero.instance.ConsumeSpecificItem("speed");
+        Hero.instance.AddConsumable(new Consumable(){key=itemKey, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
+      } else if (itemEffects.statusHeal != null) { // if statusHeal is set, item will remove a consumable and update status effects
         if (itemKey == "ice-med" && Hero.instance.isFrozen) {
           Hero.instance.currentIceEffect.DestroyIce();
         } else {
@@ -753,7 +756,7 @@ public class Pause : MonoBehaviour {
             RepaintDisabledItems();
           }
 
-          Hero.instance.ConsumeMedicine();
+          Hero.instance.ConsumeSpecificItem("medicine");
         }
         
         Hero.instance.RemoveStatusEffects(itemEffects.statusHeal);
