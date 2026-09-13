@@ -1185,6 +1185,7 @@ public class Sprites {
     {"lightning-3", effectWheelSprites[38]},
     {"lightning-infusion", effectWheelSprites[29]},
     {"luck-flask", effectWheelSprites[24]},
+    {"speed-potion", effectWheelSprites[33]},
     {"stamina-flask", effectWheelSprites[22]},
     {"strength-flask", effectWheelSprites[21]},
     {"water-1", effectWheelSprites[36]},

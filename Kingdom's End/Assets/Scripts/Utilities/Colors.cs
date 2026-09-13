@@ -184,12 +184,12 @@ public class Colors
     {"lightning-3", new Color(1.000f, 0.843f, 0.000f)},
     {"lightning-infusion", new Color(1.000f, 0.843f, 0.000f)},
     {"luck-flask", new Color(0.000f, 0.882f, 0.196f)}, // #00e162
+    {"speed-potion", new Color(0.000f, 0.000f, 1.000f)}, // #0000ff
     {"stamina-flask", new Color(0.769f, 0.769f, 0.769f)}, // #c4c4c4
     {"strength-flask", new Color(0.937f, 0.749f, 0.016f)}, // #efbf04
     {"water-1", new Color(0.118f, 0.565f, 1.000f)}, // #1e90ff
     {"water-2", new Color(0.118f, 0.565f, 1.000f)},
     {"water-3", new Color(0.118f, 0.565f, 1.000f)},
     {"water-infusion", new Color(0.118f, 0.565f, 1.000f)}
-    // TODO: add speed {"", new Color(0.000f, 0.000f, 1.000f)}, // #0000ff
   };
 }
