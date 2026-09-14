@@ -99,6 +99,7 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 | items/pick/normal                   | https://pixabay.com/sound-effects/item-pick-up-38258/                                                       |
 | items/pick/rare                     | https://pixabay.com/sound-effects/scale-e6-14577/                                                           |
 | items/medicine                      | https://pixabay.com/sound-effects/film-special-effects-fantasy-healing-spell-cast-1-547831/                 |
+| items/speed                         | https://pixabay.com/sound-effects/film-special-effects-whoosh-build-up-245866/                              |
 | loops/arrow-burn                    | https://pixabay.com/sound-effects/fire-sound-efftect-21991/                                                 |
 | melee/smash                         | https://pixabay.com/sound-effects/rock-smash-6304/                                                          |
 | menu/attention                      | https://pixabay.com/sound-effects/beep-6-96243/                                                             |
