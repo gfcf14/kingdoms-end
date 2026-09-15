@@ -2065,6 +2065,7 @@ public class Pause : MonoBehaviour {
   }
 
   public void ResetMapping() {
+    canPlayDeselect = true;
     Controls.currentControlMappings = Controls.defaultControlMappings.ToDictionary(
       outer => outer.Key,
       outer => outer.Value.ToDictionary(inner => inner.Key, inner => inner.Value)
@@ -2073,6 +2074,7 @@ public class Pause : MonoBehaviour {
     canvasStatus = "options_controls";
     resetRectangle.SetActive(false);
     Helpers.FocusUIElement(resetButton);
+    canPlayDeselect = false;
   }
 
   public void CancelReset() {
