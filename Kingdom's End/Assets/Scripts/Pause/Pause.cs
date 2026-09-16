@@ -1153,6 +1153,7 @@ public class Pause : MonoBehaviour {
 
     if (currentRegularItem.effects != null) {
       Effects itemEffects = currentRegularItem.effects;
+      bool isConsumable = currentRegularItem.type == "consumable";
 
       int effectsCounter = 0;
 
@@ -1185,14 +1186,14 @@ public class Pause : MonoBehaviour {
       }
 
       if (itemEffects.atk != null) {
-        effectsList.ElementAt(effectsCounter).transform.Find("EffectIcon").GetComponent<Image>().sprite = Sprites.statsIcons[6];
+        effectsList.ElementAt(effectsCounter).transform.Find("EffectIcon").GetComponent<Image>().sprite = Sprites.statsIcons[isConsumable ? 6 : 8];
         effectsList.ElementAt(effectsCounter).transform.Find("EffectText").GetComponent<Text>().text = (itemEffects.atk >= 0 ? "+" : "") + itemEffects.atk;
         effectsList.ElementAt(effectsCounter).SetActive(true);
         effectsCounter++;
       }
 
       if (itemEffects.def != null) {
-        effectsList.ElementAt(effectsCounter).transform.Find("EffectIcon").GetComponent<Image>().sprite = Sprites.statsIcons[7];
+        effectsList.ElementAt(effectsCounter).transform.Find("EffectIcon").GetComponent<Image>().sprite = Sprites.statsIcons[isConsumable ? 7 : 9];
         effectsList.ElementAt(effectsCounter).transform.Find("EffectText").GetComponent<Text>().text = (itemEffects.def >= 0 ? "+" : "") + itemEffects.def;
         effectsList.ElementAt(effectsCounter).SetActive(true);
         effectsCounter++;
