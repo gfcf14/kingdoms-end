@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -805,5 +806,16 @@ public class Helpers {
     }
 
     return false;
+  }
+
+  // ensures the animator provided stops for the specified duration and calls a function at the end of that
+  public static IEnumerator FreezeAnimation(Animator anim, float duration, Action callback = null) {
+    float previousSpeed = anim.speed;
+    anim.speed = 0f;
+
+    yield return new WaitForSeconds(duration);
+
+    anim.speed = previousSpeed;
+    callback?.Invoke();
   }
 }
