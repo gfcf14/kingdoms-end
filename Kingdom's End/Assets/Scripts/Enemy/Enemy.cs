@@ -938,6 +938,16 @@ public class Enemy : MonoBehaviour {
     isWalking = false;
 
     body.linearVelocity = Vector2.zero;
+    float freezeDuration = type == "shooter" ? 0.9f : 0.3f;
+    StartCoroutine(Helpers.FreezeAnimation(anim, freezeDuration, Recover, enemyRenderer));
+  }
+
+  public void StunOnAttack() {
+    stunOnAttack = true;
+
+    if (type != "bouncer") {
+      Stun();
+    }
   }
 
   void Recover() {
@@ -980,26 +990,18 @@ public class Enemy : MonoBehaviour {
       }
     } else {
       ThrowProjectile();
+      coolDownStart = Time.time * 1000;
+      needsCoolDown = true;
 
       // TODO: consider if any other enemies should avoid the block behavior
       if (key != "archeia") {
-        stunOnAttack = true;
         StunOnAttack();
       }
     }
   }
 
   public void FinishArrowShooting() {
-    stunOnAttack = true;
     StunOnAttack();
-  }
-
-  public void StunOnAttack() {
-    if (stunOnAttack) {
-      if (type != "bouncer") {
-        Stun();
-      }
-    }
   }
 
   public void StartHitting() {
@@ -1100,6 +1102,8 @@ public class Enemy : MonoBehaviour {
   }
 
   public void ThrowProjectile() {
+    AnimatorStateInfo animatorState = anim.GetCurrentAnimatorStateInfo(0);
+    Debug.Log($"ThrowProjectile: time={Time.time:F3}, type={type}, key={key}, isThrowingWeapon={isThrowingWeapon}, isStunned={isStunned}, stunOnAttack={stunOnAttack}, needsCoolDown={needsCoolDown}, animSpeed={anim.speed:F3}, state={animatorState.fullPathHash}, normalizedTime={animatorState.normalizedTime:F3}");
     GameObject projectile = Instantiate(Helpers.GetOrException(Objects.prefabs, "projectile"), originator.transform.position, Quaternion.identity, transform);
     Projectile projectileScript = projectile.GetComponent<Projectile>();
 
@@ -1356,6 +1360,7 @@ public class Enemy : MonoBehaviour {
     {
       searchPosition = searchCast.point;
       isThrowingWeapon = true;
+      anim.SetTrigger("throw");
     }
   }
 

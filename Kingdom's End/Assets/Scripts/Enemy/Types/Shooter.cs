@@ -13,8 +13,12 @@ public class Shooter : MonoBehaviour {
 
   void Update() {
     if (Hero.instance != null && Hero.instance.pauseCase == "") {
-      if (!enemy.isThrowingWeapon) {
-        enemy.SearchPlayer(searchCastLength);
+      if (!enemy.needsCoolDown) {
+        if (!enemy.isThrowingWeapon && !enemy.isStunned) {
+          enemy.SearchPlayer(searchCastLength);
+        }
+      } else {
+        enemy.CheckCoolDown();
       }
     }
   }

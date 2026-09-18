@@ -809,13 +809,21 @@ public class Helpers {
   }
 
   // ensures the animator provided stops for the specified duration and calls a function at the end of that
-  public static IEnumerator FreezeAnimation(Animator anim, float duration, Action callback = null) {
+  public static IEnumerator FreezeAnimation(Animator anim, float duration, Action callback = null, SpriteRenderer spriteRenderer = null) {
+    Sprite frozenSprite = spriteRenderer != null ? spriteRenderer.sprite : null;
     float previousSpeed = anim.speed;
+    bool previousEnabled = anim.enabled;
+
     anim.speed = 0f;
+    if (spriteRenderer != null && frozenSprite != null) {
+      spriteRenderer.sprite = frozenSprite;
+    }
+    anim.enabled = false;
 
     yield return new WaitForSeconds(duration);
 
     anim.speed = previousSpeed;
+    anim.enabled = previousEnabled;
     callback?.Invoke();
   }
 }
