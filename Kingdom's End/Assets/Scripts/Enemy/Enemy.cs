@@ -1102,8 +1102,6 @@ public class Enemy : MonoBehaviour {
   }
 
   public void ThrowProjectile() {
-    AnimatorStateInfo animatorState = anim.GetCurrentAnimatorStateInfo(0);
-    Debug.Log($"ThrowProjectile: time={Time.time:F3}, type={type}, key={key}, isThrowingWeapon={isThrowingWeapon}, isStunned={isStunned}, stunOnAttack={stunOnAttack}, needsCoolDown={needsCoolDown}, animSpeed={anim.speed:F3}, state={animatorState.fullPathHash}, normalizedTime={animatorState.normalizedTime:F3}");
     GameObject projectile = Instantiate(Helpers.GetOrException(Objects.prefabs, "projectile"), originator.transform.position, Quaternion.identity, transform);
     Projectile projectileScript = projectile.GetComponent<Projectile>();
 
