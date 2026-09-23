@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour {
       triggeredObjects.Remove(col.gameObject);
     }
   }
-
+  
   void PlayBlockSound() {
     // TODO: ensure this block can be different per weapon used (e.g. fist, kick, sword, rock club, etc.)
     InGame.instance.PlaySound(Helpers.GetOrException(Sounds.blockSounds, "basic"), transform.position);
@@ -65,6 +65,8 @@ public class Weapon : MonoBehaviour {
       } else {
         PlayBlockSound();
       }
+    } else {
+      PlayBlockSound();
     }
   }
 
