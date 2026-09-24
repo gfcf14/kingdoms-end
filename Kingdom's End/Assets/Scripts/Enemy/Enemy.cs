@@ -1083,6 +1083,14 @@ public class Enemy : MonoBehaviour {
     Destroy(gameObject);
   }
 
+  void PlayThrowWeaponSound() {
+    // TODO: change when implementing other throwable types
+    if (Settings.playSFX) {
+      audioSource.PlayOneShot(Helpers.GetOrException(Sounds.attackSounds, "throwable-double-large"));
+    }
+  }
+
+  // TODO: see if projectile throw could be modified (when throwing, not shooting) so distance can be applied
   public void ThrowWeapon(float distance) {
     GameObject throwableWeapon = Instantiate(Helpers.GetOrException(Objects.prefabs, "throwable"), originator.transform.position, Quaternion.identity);
     Throwable throwableInstance = throwableWeapon.GetComponent<Throwable>();
@@ -1091,10 +1099,7 @@ public class Enemy : MonoBehaviour {
     throwableInstance.type = Helpers.GetOrException(Objects.projectileKeys, key);
     throwableInstance.criticalRate = criticalRate;
 
-    // TODO: change when implementing other throwable types
-    if (Settings.playSFX) {
-      audioSource.PlayOneShot(Helpers.GetOrException(Sounds.attackSounds, "throwable-double-large"));
-    }
+    PlayThrowWeaponSound();
 
     Transform throwableCollider = throwableWeapon.transform.Find("ThrowableCollider");
     throwableCollider.eulerAngles = Vector3.zero;
@@ -1104,6 +1109,8 @@ public class Enemy : MonoBehaviour {
   public void ThrowProjectile() {
     GameObject projectile = Instantiate(Helpers.GetOrException(Objects.prefabs, "projectile"), originator.transform.position, Quaternion.identity, transform);
     Projectile projectileScript = projectile.GetComponent<Projectile>();
+
+    PlayThrowWeaponSound();
 
     projectileScript.fromFacingLeft = isFacingLeft;
     projectileScript.key = Helpers.GetOrException(Objects.projectileKeys, key);
