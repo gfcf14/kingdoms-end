@@ -96,7 +96,6 @@ public class Sounds {
     {"vase", vaseBreakingSounds}
   };
 
-  // TODO: add other rock explosion sounds (e.g. for meadows) when rune pillars are implemented
   public static Dictionary<string, AudioClip> rockExplosionSounds = new() {
     {"ice", Resources.Load<AudioClip>("SFX/breakables/vase/breaking-1")},
     {"pillar", Resources.Load<AudioClip>("SFX/explosions/pillar")}
@@ -157,13 +156,13 @@ public class Sounds {
   public static Dictionary<string, AudioClip> attackSounds = new() {
     {"bow", Resources.Load<AudioClip>("SFX/weapons/bow/basic")},
     {"double", Resources.Load<AudioClip>("SFX/weapons/double/sword")},
+    {"kick", Resources.Load<AudioClip>("SFX/unequipped/kick")},
+    {"punch", Resources.Load<AudioClip>("SFX/unequipped/punch")},
     {"single", Resources.Load<AudioClip>("SFX/weapons/single/sword")},
     {"throwable-small", Resources.Load<AudioClip>("SFX/weapons/throwable/small")},
     {"throwable-food-middle", Resources.Load<AudioClip>("SFX/weapons/throwable/middle")},
     {"throwable-middle", Resources.Load<AudioClip>("SFX/weapons/throwable/middle")},
-    {"throwable-double-large", Resources.Load<AudioClip>("SFX/weapons/throwable-double/large")},
-    {"punch", Resources.Load<AudioClip>("SFX/unequipped/punch")},
-    {"kick", Resources.Load<AudioClip>("SFX/unequipped/kick")},
+    {"throwable-double-large", Resources.Load<AudioClip>("SFX/weapons/throwable-double/large")}
   };
 
   public static Dictionary<string, Dictionary<string, AudioClip>> impactSounds = new() {
@@ -227,7 +226,6 @@ public class Sounds {
     {"wasteland", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")}
   };
 
-  // TODO: modify bewitch sound when more sounds are added
   public static AudioClip bewitchSound = Resources.Load<AudioClip>("SFX/hitting/recharge/recharge-1") as AudioClip;
   public static AudioClip iceblockSound = Resources.Load<AudioClip>("SFX/weapons/bow/ice") as AudioClip;
   public static AudioClip iceCrackSound = Resources.Load<AudioClip>("SFX/hitting/shake/ice-crack") as AudioClip;

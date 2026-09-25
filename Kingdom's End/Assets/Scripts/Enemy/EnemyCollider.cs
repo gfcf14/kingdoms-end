@@ -59,7 +59,6 @@ public class EnemyCollider : MonoBehaviour {
             enemy.TakeDamage(collidedBomb.damage, col.ClosestPoint(transform.position));
 
             if (enemy.currentHP <= 0) {
-              // TODO: for killing via bomb kickback, implement a means to increase this item instantiation luck by 10%
               enemy.isDead = true;
               enemy.isDeadByBomb = true;
             } else {

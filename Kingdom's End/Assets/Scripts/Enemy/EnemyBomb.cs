@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class EnemyBomb : MonoBehaviour {
   [SerializeField] public int damage;
-
-  // TODO: this variable causes a bug where if the bomb was kicked back while the bomb explodes, the bouncer would still stop dropping them. Modify logic to either:
-  // A) add isExploding and avoid the bounce logic
-  // B) modify attack frequency of bouncers by checking how many bombs are on screen
-
   [SerializeField] public bool wasKickedBack = false;
   [SerializeField] public Enemy dropper;
   [NonSerialized] private Rigidbody2D body;

@@ -9,8 +9,6 @@ public class Pulse : MonoBehaviour {
   [SerializeField] private float pulseSpeed = 4f;
   [SerializeField] private float minAlpha = 0f;
   [SerializeField] private float maxAlpha = 1f;
-
-  // TODO: set this color based on magic damage infringement
   [SerializeField] public Color outlineColor = Color.cyan;
 
   private SpriteRenderer outlineRenderer;

@@ -1152,8 +1152,6 @@ public class Sprites {
 
   public static Sprite[] comparisonStatIcons = { statsIcons[8], statsIcons[9], statsIcons[10], statsIcons[11] };
 
-  // TODO: sprites for element damages (<element>-<level>) should not be the element images, as these would be applied to
-  // indicate resistance to a specific element damage. Must change
   public static Dictionary<string, Sprite> keyToEffectSprites = new() {
     {"air-1", effectWheelSprites[35]},
     {"air-2", effectWheelSprites[35]},
