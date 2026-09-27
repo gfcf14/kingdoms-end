@@ -157,6 +157,7 @@ public class Sounds {
     {"bow", Resources.Load<AudioClip>("SFX/weapons/bow/basic")},
     {"double", Resources.Load<AudioClip>("SFX/weapons/double/sword")},
     {"kick", Resources.Load<AudioClip>("SFX/unequipped/kick")},
+    {"magic", Resources.Load<AudioClip>("SFX/weapons/magic/magic")},
     {"punch", Resources.Load<AudioClip>("SFX/unequipped/punch")},
     {"single", Resources.Load<AudioClip>("SFX/weapons/single/sword")},
     {"throwable-small", Resources.Load<AudioClip>("SFX/weapons/throwable/small")},
