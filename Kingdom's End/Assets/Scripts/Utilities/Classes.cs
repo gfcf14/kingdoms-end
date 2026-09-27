@@ -176,6 +176,7 @@ public class EnemyStats {
   public string form;
   public string baseMaterial;
   public string normalAttackType;
+  public string projectileSound;
   public int hp;
   public int atk;
   public int def;

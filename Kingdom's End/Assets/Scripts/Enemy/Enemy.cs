@@ -82,6 +82,7 @@ public class Enemy : MonoBehaviour {
     [NonSerialized] public string form;
     [NonSerialized] public string baseMaterial;
     [NonSerialized] public string normalAttackType;
+    [NonSerialized] public string projectileSound;
 
   // Game Properties
     [NonSerialized] public bool attackedFromBehind = false;
@@ -233,6 +234,7 @@ public class Enemy : MonoBehaviour {
     enemyName = enemyStats.name + " Lvl " + level;
     baseMaterial = enemyStats.baseMaterial;
     normalAttackType = enemyStats.normalAttackType;
+    projectileSound = enemyStats.projectileSound;
 
     atk = Helpers.GetStatsOnEnemyLevel(enemyStats.atk, level);
     def = Helpers.GetStatsOnEnemyLevel(enemyStats.def, level);
@@ -1084,9 +1086,8 @@ public class Enemy : MonoBehaviour {
   }
 
   void PlayThrowWeaponSound() {
-    // TODO: change when implementing other throwable types
     if (Settings.playSFX) {
-      audioSource.PlayOneShot(Helpers.GetOrException(Sounds.attackSounds, "throwable-double-large"));
+      audioSource.PlayOneShot(Helpers.GetOrException(Sounds.attackSounds, projectileSound));
     }
   }
 
