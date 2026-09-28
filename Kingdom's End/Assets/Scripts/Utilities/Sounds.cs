@@ -167,34 +167,6 @@ public class Sounds {
   };
 
   public static Dictionary<string, Dictionary<string, AudioClip>> impactSounds = new() {
-    {"punch", new() {
-      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/punch")},
-      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/punch")}
-    }},
-    {"kick", new() {
-      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/kick")},
-      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/kick")}
-    }},
-    {"sword", new() {
-      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/sword")},
-      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/sword")}
-    }},
-    {"throwable-small", new() {
-      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-small")},
-      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-small")}
-    }},
-    {"throwable-middle", new() {
-      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-middle")},
-      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-middle")}
-    }},
-    {"throwable-double-large", new() {
-      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-double-large")},
-      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-double-large")}
-    }},
-    {"throwable-fruit", new() {
-      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-fruit")},
-      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-fruit")}
-    }},
     {"arrow", new() {
       {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/arrow")},
       {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/arrow")}
@@ -207,6 +179,38 @@ public class Sounds {
       {"normal", Resources.Load<AudioClip>("SFX/explosions/basic")},
       {"critical", Resources.Load<AudioClip>("SFX/explosions/basic")}
     }},
+    {"kick", new() {
+      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/kick")},
+      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/kick")}
+    }},
+    {"magic", new() {
+      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/magic")},
+      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/magic")}
+    }},
+    {"punch", new() {
+      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/punch")},
+      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/punch")}
+    }},
+    {"sword", new() {
+      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/sword")},
+      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/sword")}
+    }},
+    {"throwable-double-large", new() {
+      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-double-large")},
+      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-double-large")}
+    }},
+    {"throwable-fruit", new() {
+      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-fruit")},
+      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-fruit")}
+    }},
+    {"throwable-middle", new() {
+      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-middle")},
+      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-middle")}
+    }},    
+    {"throwable-small", new() {
+      {"normal", Resources.Load<AudioClip>("SFX/hitting/normal/throwable-small")},
+      {"critical", Resources.Load<AudioClip>("SFX/hitting/critical/throwable-small")}
+    }}
   };
 
   // TODO: modify these as soon as more sounds are added
