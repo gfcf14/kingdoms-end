@@ -48,6 +48,7 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 | hitting/critical/arrow              | https://pixabay.com/sound-effects/arrow-impact-87260/                                                       |
 | hitting/critical/blunt              | https://pixabay.com/sound-effects/punch-140236/                                                             |
 | hitting/critical/kick               | https://pixabay.com/sound-effects/punch-2-123106/                                                           |
+| hitting/critical/magic              | https://pixabay.com/sound-effects/magic-burst-452852/                                                       |
 | hitting/critical/punch              | https://pixabay.com/sound-effects/knife-thrust-into-wall-7017/                                              |
 | hitting/critical/sword              | https://pixabay.com/sound-effects/samurai-slash-6845/                                                       |
 | hitting/critical/throwable-double   | https://pixabay.com/sound-effects/swords-collide-230574/			                                        |
@@ -67,6 +68,7 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 | hitting/normal/arrow                | https://pixabay.com/sound-effects/arrow-body-impact-146419/                                                 |
 | hitting/normal/blunt                | https://pixabay.com/sound-effects/knife-thrust-into-wall-7017/	                                            |
 | hitting/normal/kick                 | https://pixabay.com/sound-effects/fist-punch-or-kick-7171/		                                            |
+| hitting/normal/magic                | https://pixabay.com/sound-effects/film-special-effects-fire-magic-3-378640/                                 |
 | hitting/normal/punch                | https://pixabay.com/sound-effects/punch-2-37333/                                                            |
 | hitting/normal/sword                | https://pixabay.com/sound-effects/slash1-94367/                                                             |
 | hitting/normal/throwable-double     | https://pixabay.com/sound-effects/slashkut-108175/				                                            |
@@ -166,6 +168,7 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 |                                     | https://pixabay.com/sound-effects/ice-5-85026/                                                              |
 |                                     | https://pixabay.com/sound-effects/clang-4-87972/                                                            |
 | weapons/double/sword                | https://pixabay.com/sound-effects/sword-swipes-7174/                                                        |
+| weapons/magic/magic                 | https://pixabay.com/sound-effects/film-special-effects-fire-magic-3-378640/                                 |
 | weapons/single/sword                | https://pixabay.com/sound-effects/clean-fast-swooshaiff-14784/                                              |
 | weapons/throwable/middle            | https://pixabay.com/sound-effects/swoosh-6339/                                                              |
 | weapons/throwable/small             | https://pixabay.com/sound-effects/swoosh-6339/                                                              |
