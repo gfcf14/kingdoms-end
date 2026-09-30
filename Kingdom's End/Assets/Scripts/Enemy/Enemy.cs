@@ -1098,6 +1098,7 @@ public class Enemy : MonoBehaviour {
 
     throwableInstance.isFacingLeft = isFacingLeft;
     throwableInstance.type = Helpers.GetOrException(Objects.projectileKeys, key);
+    throwableInstance.sound = projectileSound;
     throwableInstance.criticalRate = criticalRate;
 
     PlayThrowWeaponSound();
@@ -1115,6 +1116,7 @@ public class Enemy : MonoBehaviour {
 
     projectileScript.fromFacingLeft = isFacingLeft;
     projectileScript.key = Helpers.GetOrException(Objects.projectileKeys, key);
+    projectileScript.sound = projectileSound;
     projectileScript.targetPoint = searchPosition;
     searchPosition = Vector2.zero;
   }

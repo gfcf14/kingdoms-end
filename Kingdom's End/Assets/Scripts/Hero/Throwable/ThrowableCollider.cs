@@ -39,7 +39,7 @@ public class ThrowableCollider : MonoBehaviour {
         if (colliderTag == "Hero") {
           // ensures the hero isn't damaged after being damaged
           if (!Hero.instance.isInvulnerable) {
-            Hero.instance.ReceiveThrowable(parentObject, col.ClosestPoint(transform.position));
+            Hero.instance.ReceiveThrowable(parentObject, col.ClosestPoint(transform.position), parentThrowable.sound);
           }
         }
 

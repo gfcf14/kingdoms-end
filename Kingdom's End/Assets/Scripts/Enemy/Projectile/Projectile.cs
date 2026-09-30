@@ -7,6 +7,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
   [SerializeField] public Vector2 targetPoint;
   [SerializeField] public string key;
+  [SerializeField] public string sound;
   [SerializeField] public bool fromFacingLeft;
 
   [NonSerialized] public int directionFactor = 0;

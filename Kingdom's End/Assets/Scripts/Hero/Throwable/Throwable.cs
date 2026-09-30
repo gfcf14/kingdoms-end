@@ -6,6 +6,7 @@ using UnityEngine;
 public class Throwable : MonoBehaviour {
   private SpriteRenderer objectRenderer;
   private CapsuleCollider2D hitBounds;
+  [SerializeField] public string sound;
 
   [NonSerialized] public GameObject extraSprite;
   [NonSerialized] public GameObject throwableCollider;

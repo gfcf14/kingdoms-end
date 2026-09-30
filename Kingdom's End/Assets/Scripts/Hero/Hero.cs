@@ -1852,7 +1852,7 @@ public class Hero : MonoBehaviour {
     }
   }
 
-  public void ReceiveThrowable(GameObject throwable, Vector2 contactPoint) {
+  public void ReceiveThrowable(GameObject throwable, Vector2 contactPoint, string sound) {
     Throwable throwableInstance = throwable.GetComponent<Throwable>();
 
     float currentX = transform.position.x;
@@ -1861,17 +1861,17 @@ public class Hero : MonoBehaviour {
     float criticalRate = throwableInstance.criticalRate;
     bool isCritical = Helpers.IsCritical(criticalRate);
 
-    ReceiveFlyingWeapon(contactPoint, currentX, throwableX, throwableType, criticalRate, isCritical);
+    ReceiveFlyingWeapon(contactPoint, currentX, throwableX, throwableType, criticalRate, isCritical, sound);
   }
 
-  public void ReceiveProjectile(float xPosition, Vector2 contactPoint) {
+  public void ReceiveProjectile(float xPosition, Vector2 contactPoint, string sound) {
     float currentX = transform.position.x;
 
     // TODO: ensure properties for other enemy throwables besides the king-bone are implemented, along with different sounds for impact
-    ReceiveFlyingWeapon(contactPoint, currentX, xPosition, type: "skeleton-king-giant-bone", criticalRate: 0, isCritical: false);
+    ReceiveFlyingWeapon(contactPoint, currentX, xPosition, type: "skeleton-king-giant-bone", criticalRate: 0, isCritical: false, sound);
   }
 
-  public void ReceiveFlyingWeapon(Vector2 contactPoint, float currentX, float flyingX, string type, float criticalRate, bool isCritical) {
+  public void ReceiveFlyingWeapon(Vector2 contactPoint, float currentX, float flyingX, string type, float criticalRate, bool isCritical, string sound) {
     hurtFromBehind = (currentX < flyingX && isFacingLeft) || (currentX > flyingX && !isFacingLeft);
     bool mustTakeDamage = (!isDefending || (isDefending && hurtFromBehind)) && (!isParrying || (isParrying && hurtFromBehind));
 
@@ -1883,7 +1883,7 @@ public class Hero : MonoBehaviour {
 
     if (mustTakeDamage) {
       int damage = (stamina + (int)equippedSTA + (int)effectSTA) - (flyingDamage * (isCritical ? 2 : 1));
-      TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, contactPoint, isCritical, Helpers.GetOrException(Objects.throwableImpactType, type));
+      TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, contactPoint, isCritical, sound);
 
       if (currentHP > 0) {
         PlayerHurt(isGrounded ? 2 : 3);
@@ -1900,7 +1900,7 @@ public class Hero : MonoBehaviour {
           DropDefense();
           currentShieldHP--;
           int damage = (stamina + (int)equippedSTA + shieldDefense + (int)effectSTA) - (flyingDamage * (isCritical ? 2 : 1));
-          TakeDamage(damage < 0 ? Math.Abs(damage) :  Constants.minimumDamageDealt, contactPoint, isCritical, Helpers.GetOrException(Objects.throwableImpactType, type));
+          TakeDamage(damage < 0 ? Math.Abs(damage) :  Constants.minimumDamageDealt, contactPoint, isCritical, sound);
 
           if (currentHP > 0) {
             PlayerHurt(isGrounded ? 2 : 3);
