@@ -6,7 +6,8 @@ public class DirectionCheck : MonoBehaviour {
   void Update() {}
 
   private void OnTriggerEnter2D(Collider2D col) {
-    if (col.tag == "Floor" || col.tag == "Wall") {
+    // wall contact at the feet is not ground support; floor contact still is.
+    if ((col.CompareTag("Floor") || col.CompareTag("Wall")) && !(direction == "bottom" && col.CompareTag("Wall"))) {
       Hero.instance.SetCollisionDirection(direction, true);
 
       if (direction == "back" && col.tag == "Wall") { // starts the slam sequence
@@ -27,7 +28,7 @@ public class DirectionCheck : MonoBehaviour {
   }
 
   private void OnTriggerExit2D(Collider2D col) {
-    if (col.tag == "Floor" || col.tag == "Wall") {
+    if ((col.CompareTag("Floor") || col.CompareTag("Wall")) && !(direction == "bottom" && col.CompareTag("Wall"))) {
       Hero.instance.SetCollisionDirection(direction, false);
     }
   }

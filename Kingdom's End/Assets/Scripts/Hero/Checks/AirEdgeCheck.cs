@@ -31,25 +31,20 @@ public class AirEdgeCheck : MonoBehaviour {
     RaycastHit2D differenceCast = Physics2D.Raycast(rayOrigin, rayDirection, rayLength);
     Debug.DrawRay(rayOrigin, rayDirection.normalized * rayLength, Helpers.GetOrException(Colors.raycastColors, "jump"));
 
-    // TODO: for now this assumes that if the cast collider is null, that the air edge check is intersecting a really tall wall, so bump is obligatory
-    //       ensure a better check is made for when the collider is null if possible
-    if (differenceCast.collider == null) {
+    // step-over requires a nearby floor hit; all other probe results should resolve as a bump.
+    if (differenceCast.collider == null || !differenceCast.collider.CompareTag("Floor")) {
       hero.Bump(bumpX: (hero.heroWidth * direction) / 4);
-    } else {
-      if (differenceCast.collider != null && differenceCast.collider.tag == "Floor" && differenceCast.distance > 0) {
-        float yDistance = Mathf.Abs(differenceCast.point.y - rayOrigin.y);
+      return;
+    }
 
-        // if there is a gap, then we can have the player step over
-        if (yDistance > 0.01f) {
-            float stepOverHeight = colliderDimension - yDistance;
-            hero.StepOver(stepOverHeight);
-            Debug.Log("step over");
-        } else {
-          // TODO: implement some bump logic here to avoid having the player stick to the "wall" and fall down slowly
-          Debug.Log("bump (checked)");
-          hero.Bump(bumpX: (hero.heroWidth * direction) / 4);
-        }
-      }
+    float yDistance = Mathf.Abs(differenceCast.point.y - rayOrigin.y);
+    float stepOverHeight = colliderDimension - yDistance;
+
+    // reject zero-height and out-of-range results so the Hero cannot settle against the wall.
+    if (differenceCast.distance > 0 && stepOverHeight > 0.01f && stepOverHeight <= colliderDimension) {
+      hero.StepOver(stepOverHeight);
+    } else {
+      hero.Bump(bumpX: (hero.heroWidth * direction) / 4);
     }
   }
 }

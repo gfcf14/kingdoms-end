@@ -344,10 +344,6 @@ public class Constants {
   // TODO: consider if this will be used again in the future. If not, delete
   // public static string[] patrollerStates = {"attack", "burning", "death", "death-by-burning", "death-by-poison", "stunned", "stunned-on-attack", "walk"};
 
-  // ensure that these tiles are updated if the dirt position in the detail tileset is updated
-  public static int[] detailDirt = { 150, 151, 158, 159 };
-  public static int[] inclineMeadows = {163, 164, 165, 166, 168, 169, 170, 171};
-
   public static int arrowExplosionDamage = 50;
   public static int arrowPoisonDamage = 10;
   public static int kickDamage = 10;
@@ -370,7 +366,7 @@ public class Constants {
   public static int actionTextHeight = 60;
   // TO TEST: change this value to 24 so each hour is a second (default value: 1440)
   public static int maxDayLength = 1440;
-
+  public static float inclineSlope = 0.25f;
   public static float startItemY = 375;
   public static float startShopItemY = 320;
   public static float itemIncrementY = 60;

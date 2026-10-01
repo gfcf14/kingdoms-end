@@ -15,7 +15,6 @@ public class Hero : MonoBehaviour {
 
   // to hold onto the ground type value should an action modify it
   [SerializeField] public string tempGroundType = "";
-  [SerializeField] public float inclineSlope = 0.125f;
 
   [Header("Movement Specific Properties")]
     [SerializeField] public float jumpHeight = GameData.playerJumpHeight;
@@ -245,6 +244,12 @@ public class Hero : MonoBehaviour {
   [NonSerialized] public int poisonAttackCounter = 1;
 
   private int lastSign = 0;
+  private const float groundSupportGracePeriod = 0.1f;
+  private float groundSupportLostAt = -1f;
+  private float inclineExitAt = -1f;
+    private bool tempGroundTypeIsAirborneCache;
+  private bool lastHasGroundSupport;
+  private bool lastHasPhysicalGroundSupport;
   public IceEffect currentIceEffect;
   private GameObject currentIceCrack;
   [NonSerialized] public List<Item> items = new List<Item>();
@@ -530,14 +535,11 @@ public class Hero : MonoBehaviour {
       return 0;
     }
 
-    if (groundType == "incline" && !isFacingLeft) { // going up left to right
-      return currentSpeed * inclineSlope;
-    } else if (groundType == "descent" && isFacingLeft) { // going up right to left
-      return -currentSpeed * inclineSlope;
-    } else if (groundType == "incline" && isFacingLeft) { // going down right to left
-      return currentSpeed * inclineSlope * 4;
-    } else if (groundType == "descent" && !isFacingLeft) { // going down left to right
-      return -currentSpeed * inclineSlope * 4;
+    // inclines rise to the right; descents rise to the left. Use horizontal speed to preserve that ratio.
+    if (groundType == "incline") {
+      return currentSpeed * Constants.inclineSlope;
+    } else if (groundType == "descent") {
+      return -currentSpeed * Constants.inclineSlope;
     }
 
     return 0;
@@ -1050,24 +1052,33 @@ public class Hero : MonoBehaviour {
       Debug.DrawRay(transform.position, body.linearVelocity, Helpers.GetOrException(Colors.raycastColors, "vxy"));
     // END of DEBUG for VELOCITY
 
-    // PLAYER FALLING ALGORITHM: checks if player collides with anything. If not, player should fall
-      // draws the collider based on the pivot plus half player height up so it is a rectangle which north and south sides start at the head and end at the feet, respectively
+    // PLAYER FALLING ALGORITHM: checks for ground support before entering the falling state
       Vector2 playerColliderPosition = new Vector2(transform.position.x, transform.position.y + heroHeight / 2);
-      Collider2D[] playerColliders = Physics2D.OverlapBoxAll(playerColliderPosition, heroDimensions, 0f);
+      // DEBUG: Enable this rectangle to visualize the full-body fall bounds while debugging.
+      // InGame.instance.DrawRectangle(playerColliderPosition, heroDimensions);
+      bool hasPhysicalGroundSupport = HasPhysicalGroundSupport();
+      bool hasGroundSupport = hasPhysicalGroundSupport || IsGroundedOnNearbyIncline();
+      lastHasGroundSupport = hasGroundSupport;
+      lastHasPhysicalGroundSupport = hasPhysicalGroundSupport;
+      if (hasGroundSupport) {
+        groundSupportLostAt = -1f;
+      } else if (groundSupportLostAt < 0f) {
+        groundSupportLostAt = Time.time;
+      }
 
-      // DEBUG for FALL BOUNDS: draws this to be visible on Scene mode (or with gizmos) to check how it can change and affect falling strategy
-        // InGame.instance.DrawRectangle(playerColliderPosition, heroDimensions);
-      // END of DEBUG for FALL BOUNDS
-
-
-      // gets all non-trigger collider count from the intersecting ones
-      int colliderCount = playerColliders.Count(col => !col.isTrigger);
-
-      // if only the player collider is found, nothing else was found and player should fall
-      // TODO: check if other attack types cause the player to lift off the ground, even but slightly, and add them here
-      // TODO: consider if at any point it'd be necessary to include some form of list of animations where falling shouldn't happen
-      if (/*!Helpers.IsAnyPlaying(anim, Constants.heroNonFallingAnimations) && */isHurt == 0 && !collidingBottom  && !IsOnIncline() && !IsMovingUphill() && !isAttackingHeavy && colliderCount <= 1 && ((!collidingBottom && body.linearVelocity.y < Constants.yAirVelocityThreshold) || (collidingBottom && /*proximityCheckScript.OverlapsWithGround() &&*/ body.linearVelocity.y < Constants.yInclineVelocityThreshold)) /*&& GroundFallDistance() > Constants.fallThreshold*/) {
+      bool hasLostGroundLongEnough = groundSupportLostAt >= 0f && Time.time - groundSupportLostAt >= groundSupportGracePeriod;
+      if (isHurt == 0 && hasLostGroundLongEnough && !isFalling && !isAttackingHeavy && !isDropKicking && (!isJumping || body.linearVelocity.y < Constants.yAirVelocityThreshold)) {
         Fall();
+      }
+
+      // keep slope movement through trigger seams only while a supported incline remains nearby.
+      if (inclineExitAt >= 0f && Time.time - inclineExitAt >= groundSupportGracePeriod) {
+        if (isGrounded && lastHasPhysicalGroundSupport && HasNearbyIncline()) {
+          inclineExitAt = Time.time;
+        } else {
+          groundType = "level";
+          inclineExitAt = -1f;
+        }
       }
     // end of PLAYER FALLING ALGORITHM
 
@@ -1091,9 +1102,11 @@ public class Hero : MonoBehaviour {
           }
         }
 
-        // restricts horizontal input based on blocked direction due to bumping or being slammed
-        if (isSlammed && isFallingSlammed && (blockedDirection == "left" && horizontalInput < -Constants.inputThreshold) || (blockedDirection == "right" && horizontalInput > Constants.inputThreshold)) {
+        // ignore input toward the wall after a bump; clear the lock when input points away.
+        if ((blockedDirection == "left" && horizontalInput < -Constants.inputThreshold) || (blockedDirection == "right" && horizontalInput > Constants.inputThreshold)) {
           horizontalInput = 0;
+        } else if (blockedDirection != "") {
+          blockedDirection = "";
         }
 
         // x axis movement
@@ -1102,7 +1115,8 @@ public class Hero : MonoBehaviour {
             float xMovement = moveFriction > 0 ? Mathf.Lerp(horizontalInput, (speed + effectSpeed) * moveSpeed * direction, moveFriction) : horizontalInput * (speed + effectSpeed);
 
             // movement happens on this line
-            body.linearVelocity = new Vector2(!isFrozen && !isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? xMovement : 0, GetGroundVerticalModifier(groundType, horizontalInput * (speed + effectSpeed)));
+            float horizontalMovement = !isFrozen && !isDropKicking && !isSlammed && !isFallingSlammed && !isRecoveringFromSlam ? xMovement : 0;
+            body.linearVelocity = new Vector2(horizontalMovement, GetGroundVerticalModifier(groundType, horizontalMovement));
           }
 
           // flip player back when moving right
@@ -1282,6 +1296,7 @@ public class Hero : MonoBehaviour {
     //     outcomeValue = "money-9999|"
     //   });
     // }
+
   }
 
   void LateUpdate() {
@@ -1570,7 +1585,8 @@ public class Hero : MonoBehaviour {
 
   void AdjustGroundType() {
     if (tempGroundType != "") {
-      groundType = tempGroundType;
+      // Restore the pre-attack slope only if the feet still have support.
+      groundType = HasGroundSupport() ? tempGroundType : "level";
       tempGroundType = "";
     }
   }
@@ -1642,6 +1658,44 @@ public class Hero : MonoBehaviour {
     DropDefense();
   }
 
+  private bool HasGroundSupport() {
+    return HasPhysicalGroundSupport() || IsGroundedOnNearbyIncline();
+  }
+
+  private bool IsGroundedOnNearbyIncline() {
+    return isGrounded && IsOnIncline() && !isJumping && HasNearbyIncline();
+  }
+
+  private bool HasPhysicalGroundSupport() {
+    if (collidingBottom) {
+      return true;
+    }
+
+    // A short cast under the collider smooths trigger gaps without treating downward slope speed as falling.
+    Bounds heroBounds = heroCollider.bounds;
+    Vector2 castOrigin = new Vector2(heroBounds.center.x, heroBounds.min.y + 0.02f);
+    Vector2 castSize = new Vector2(heroBounds.size.x * 0.9f, 0.04f);
+    RaycastHit2D[] groundHits = Physics2D.BoxCastAll(castOrigin, castSize, 0f, Vector2.down, 0.08f);
+
+    foreach (RaycastHit2D hit in groundHits) {
+      if (hit.collider != heroCollider && !hit.collider.isTrigger && Helpers.IsValueInArray(Constants.landingObjects, hit.collider.tag)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  private bool HasNearbyIncline() {
+    Bounds heroBounds = heroCollider.bounds;
+    float probeHeight = heroBounds.size.y * 0.5f;
+    Vector2 probeCenter = new Vector2(heroBounds.center.x, heroBounds.min.y + probeHeight * 0.5f);
+    Vector2 probeSize = new Vector2(heroBounds.size.x + (heroWidth * 2), probeHeight);
+    Collider2D[] nearbyColliders = Physics2D.OverlapBoxAll(probeCenter, probeSize, 0f);
+
+    return nearbyColliders.Any(collider => collider.CompareTag("Incline"));
+  }
+
   public void Jump(bool clearDropKick = false) {
     // if performing the double jump
     if (jumpsExecuted > 1) {
@@ -1652,6 +1706,7 @@ public class Hero : MonoBehaviour {
     // resets collision with ceiling to avoid that animation upon starting jump
     isCollidingWithCeiling = false;
 
+    CacheGroundTypeForAirborneMovement();
     ToggleAirCheck(true);
 
     if (clearDropKick) {
@@ -1669,6 +1724,7 @@ public class Hero : MonoBehaviour {
 
   private void DropKick() {
     canFlipOnAir = false;
+    CacheGroundTypeForAirborneMovement();
     isDropKicking = true;
     weaponCollider.SetActive(true);
   }
@@ -1678,6 +1734,10 @@ public class Hero : MonoBehaviour {
 
     if (colTag == "Incline" && !collidingTop) {
       groundType = col.gameObject.GetComponent<Incline>().inclineFromRight;
+      inclineExitAt = -1f;
+      if (!isGrounded || isJumping || isFalling || isDropKicking) {
+        CacheGroundTypeForAirborneMovement();
+      }
     } else if (colTag == "Zone") {
       Zone zoneScript = col.gameObject.GetComponent<Zone>();
 
@@ -1708,8 +1768,20 @@ public class Hero : MonoBehaviour {
   private void OnTriggerExit2D(Collider2D col) {
     string colTag = col.gameObject.tag;
 
-    if (colTag == "Incline" && !isFalling) {
-      groundType = "level";
+    if (colTag == "Incline") {
+      if (!isGrounded || isJumping || isFalling || isDropKicking) {
+        CacheGroundTypeForAirborneMovement();
+      }
+
+      Collider2D[] overlappingColliders = Physics2D.OverlapBoxAll(heroCollider.bounds.center, heroCollider.bounds.size, 0f);
+      Collider2D nextIncline = overlappingColliders.FirstOrDefault(overlap => overlap != col && overlap.CompareTag("Incline"));
+
+      if (nextIncline != null) {
+        groundType = nextIncline.GetComponent<Incline>().inclineFromRight;
+        inclineExitAt = -1f;
+      } else {
+        inclineExitAt = Time.time;
+      }
     } else if (colTag == "Zone") {
       if (!Helpers.Intersects(heroCollider, col.gameObject.GetComponent<PolygonCollider2D>())) {
         jumpHeight = GameData.playerJumpHeight * (1 + (effectJump / 10));
@@ -1719,6 +1791,34 @@ public class Hero : MonoBehaviour {
         groundMaterial = "";
       }
     }
+  }
+
+  private void CacheGroundTypeForAirborneMovement() {
+    if (groundType != "level") {
+      tempGroundType = groundType;
+      tempGroundTypeIsAirborneCache = true;
+    }
+  }
+
+  private void RestoreGroundTypeAfterLanding() {
+    if (!tempGroundTypeIsAirborneCache) {
+      return;
+    }
+
+    Collider2D[] overlappingColliders = Physics2D.OverlapBoxAll(heroCollider.bounds.center, heroCollider.bounds.size, 0f);
+    Collider2D landingIncline = overlappingColliders.FirstOrDefault(overlap => overlap.CompareTag("Incline"));
+
+    if (landingIncline != null) {
+      groundType = landingIncline.GetComponent<Incline>().inclineFromRight;
+    } else if (HasNearbyIncline()) {
+      groundType = tempGroundType;
+    } else {
+      groundType = "level";
+    }
+
+    tempGroundType = "";
+    tempGroundTypeIsAirborneCache = false;
+    inclineExitAt = -1f;
   }
 
   // gets the ground collision direction based on different states of movement:
@@ -1774,10 +1874,11 @@ public class Hero : MonoBehaviour {
 
   // moves the player back a bit to ensure behavior is correct
   public void Bump(float bumpX = 0, float bumpY = 0, string specificBlockDirection = "") {
-    // blocks the direction bumped into to avoid continous bumping
-    if (!isFalling) {
-      isFalling = true;
-    }
+    // enter a consistent airborne state and lock movement toward the wall until input turns away.
+    isGrounded = false;
+    isJumping = false;
+    isFalling = true;
+    ToggleAirCheck(true);
     blockedDirection = specificBlockDirection != "" ? specificBlockDirection : (isFacingLeft ? "left" : "right");
     ModifyPosition(new Vector2(transform.position.x - (bumpX * -direction) * direction, transform.position.y + bumpY));
   }
@@ -1806,6 +1907,7 @@ public class Hero : MonoBehaviour {
           // isJetpackUp = false;
           horizontalCollision = false;
           isDropKicking = false;
+          RestoreGroundTypeAfterLanding();
 
           if (isHurt == 3) {
             Recover();
