@@ -24,16 +24,17 @@ public class AirEdgeCheck : MonoBehaviour {
     return false;
   }
 
-  public void CheckStepOver(Hero hero, int direction) {
-    Vector2 rayOrigin = new Vector2(transform.position.x + (colliderDimension * 1.5f * direction) + (hero.heroWidth * direction * -1), transform.position.y + (colliderDimension / 2));
+  public void CheckStepOver(Hero hero, int awayFromWallDirection) {
+    Vector2 rayOrigin = new Vector2(transform.position.x + (colliderDimension * 1.5f * awayFromWallDirection) + (hero.heroWidth * awayFromWallDirection * -1), transform.position.y + (colliderDimension / 2));
     Vector2 rayDirection = Vector2.down;
 
     RaycastHit2D differenceCast = Physics2D.Raycast(rayOrigin, rayDirection, rayLength);
     Debug.DrawRay(rayOrigin, rayDirection.normalized * rayLength, Helpers.GetOrException(Colors.raycastColors, "jump"));
+    string blockedDirection = awayFromWallDirection > 0 ? "left" : "right";
 
     // step-over requires a nearby floor hit; all other probe results should resolve as a bump.
     if (differenceCast.collider == null || !differenceCast.collider.CompareTag("Floor")) {
-      hero.Bump(bumpX: (hero.heroWidth * direction) / 4);
+      hero.Bump(bumpX: (hero.heroWidth * awayFromWallDirection) / 4, specificBlockDirection: blockedDirection);
       return;
     }
 
@@ -44,7 +45,7 @@ public class AirEdgeCheck : MonoBehaviour {
     if (differenceCast.distance > 0 && stepOverHeight > 0.01f && stepOverHeight <= colliderDimension) {
       hero.StepOver(stepOverHeight);
     } else {
-      hero.Bump(bumpX: (hero.heroWidth * direction) / 4);
+      hero.Bump(bumpX: (hero.heroWidth * awayFromWallDirection) / 4, specificBlockDirection: blockedDirection);
     }
   }
 }

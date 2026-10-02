@@ -1874,13 +1874,15 @@ public class Hero : MonoBehaviour {
 
   // moves the player back a bit to ensure behavior is correct
   public void Bump(float bumpX = 0, float bumpY = 0, string specificBlockDirection = "") {
-    // enter a consistent airborne state and lock movement toward the wall until input turns away.
+    // a wall bump ends the jump and consumes remaining midair jumps until landing.
     isGrounded = false;
     isJumping = false;
     isFalling = true;
+    jumpsExecuted = GameData.maxJumpLimit;
     ToggleAirCheck(true);
     blockedDirection = specificBlockDirection != "" ? specificBlockDirection : (isFacingLeft ? "left" : "right");
-    ModifyPosition(new Vector2(transform.position.x - (bumpX * -direction) * direction, transform.position.y + bumpY));
+    body.linearVelocity = new Vector2(0f, Mathf.Min(body.linearVelocity.y, 0f));
+    ModifyPosition(new Vector2(transform.position.x + bumpX, transform.position.y + bumpY));
   }
 
   private void MainCollisionLogic(Collider2D collider, Collider2D otherCollider, string colTag) {
@@ -2448,12 +2450,11 @@ public class Hero : MonoBehaviour {
     OpenChat();
   }
 
-  public void FinishActionFromWallBump() {
+  public void FinishActionFromWallBump(int wallSide) {
     isJumping = false;
     isDropKicking = false;
     isFalling = true;
-    body.linearVelocity = Vector2.zero;
-    Bump(bumpX: (heroWidth * -direction) / 4, specificBlockDirection: isFacingLeft ? "left" : "right");
+    Bump(bumpX: -wallSide * heroWidth / 4, specificBlockDirection: wallSide > 0 ? "right" : "left");
   }
 
   public void KeepGroundType() {
