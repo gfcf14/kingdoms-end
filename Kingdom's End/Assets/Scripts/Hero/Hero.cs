@@ -379,6 +379,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("water-med", 5));
       items.Add(new Item("watermelon-slice", 1));
       items.Add(new Item("arrow-ice", 100));
+      items.Add(new Item("speed-potion", 10));
 
       bodyEquipment = "body-1";
       canKick = true;

@@ -33,7 +33,7 @@ public class AirEdgeCheck : MonoBehaviour {
     string blockedDirection = awayFromWallDirection > 0 ? "left" : "right";
 
     // step-over requires a nearby floor hit; all other probe results should resolve as a bump.
-    if (differenceCast.collider == null || !differenceCast.collider.CompareTag("Floor")) {
+    if (differenceCast.collider == null || !differenceCast.collider.CompareTag("Floor") || differenceCast.normal.y < 0.5f) {
       hero.Bump(bumpX: (hero.heroWidth * awayFromWallDirection) / 4, specificBlockDirection: blockedDirection);
       return;
     }
@@ -42,10 +42,28 @@ public class AirEdgeCheck : MonoBehaviour {
     float stepOverHeight = colliderDimension - yDistance;
 
     // reject zero-height and out-of-range results so the Hero cannot settle against the wall.
-    if (differenceCast.distance > 0 && stepOverHeight > 0.01f && stepOverHeight <= colliderDimension) {
+    if (differenceCast.distance > 0 && stepOverHeight > 0.01f && stepOverHeight <= colliderDimension && HasClearStepOverSpace(hero, differenceCast.collider, stepOverHeight)) {
       hero.StepOver(stepOverHeight);
     } else {
       hero.Bump(bumpX: (hero.heroWidth * awayFromWallDirection) / 4, specificBlockDirection: blockedDirection);
     }
+  }
+
+  private bool HasClearStepOverSpace(Hero hero, Collider2D landingFloor, float stepOverHeight) {
+    Bounds heroBounds = hero.heroCollider.bounds;
+    Vector2 destinationOffset = new Vector2(hero.heroWidth * hero.direction, stepOverHeight);
+    Vector2 destinationCenter = (Vector2)heroBounds.center + destinationOffset;
+    Vector2 clearanceSize = new Vector2(heroBounds.size.x - 0.02f, heroBounds.size.y - 0.02f);
+    Collider2D[] destinationOverlaps = Physics2D.OverlapBoxAll(destinationCenter, clearanceSize, 0f);
+
+    foreach (Collider2D overlap in destinationOverlaps) {
+      if (overlap.isTrigger || overlap == landingFloor || overlap == hero.heroCollider || overlap.transform.IsChildOf(hero.transform)) {
+        continue;
+      }
+
+      return false;
+    }
+
+    return true;
   }
 }
