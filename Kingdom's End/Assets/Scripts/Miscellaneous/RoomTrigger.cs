@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -19,7 +20,7 @@ public class RoomTrigger : MonoBehaviour {
       virtualCam.SetActive(true);
 
       // whenever the hero moves scenes, it gets removed from each VCam object. This line ensures cameras follow the hero singleton
-      virtualCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = Hero.instance.transform;
+      virtualCam.GetComponent<CinemachineVirtualCameraBase>().Follow = Hero.instance.transform;
 
       // sets the appropriate tilemaps for save/teleport points if any in the room
         Transform currentSavePoint = gameObject.transform.Find("SaveContainer");

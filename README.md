@@ -2,7 +2,7 @@
 A repository for the updated Unity 2D game Kingdom's End
 
 ## Development versions
-Use Unity Hub 3.15.4 and Unity version 6000.3.3f1
+Use Unity Hub 3.15.4 and Unity version 6000.6.4f1
 
 ## SFX Used
 
@@ -176,4 +176,4 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 
 ## Legacy Warning
 
-The game world has been divided in multiple scenes, but just in case the latest copy of GameWorld.unity (all areas put together) is kept in Google Drive
+The game world has been divided in multiple scenes, but just in case the latest copy of GameWorld.unity (as of a while ago) with all areas put together is kept in Google Drive
