@@ -20,7 +20,7 @@ public class RoomTrigger : MonoBehaviour {
       virtualCam.SetActive(true);
 
       // whenever the hero moves scenes, it gets removed from each VCam object. This line ensures cameras follow the hero singleton
-      virtualCam.GetComponent<CinemachineVirtualCameraBase>().Follow = Hero.instance.transform;
+      virtualCam.GetComponent<CinemachineCamera>().Follow = Hero.instance.transform;
 
       // sets the appropriate tilemaps for save/teleport points if any in the room
         Transform currentSavePoint = gameObject.transform.Find("SaveContainer");
