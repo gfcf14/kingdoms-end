@@ -1311,6 +1311,14 @@ public class Hero : MonoBehaviour {
 
       if (currentTime > nextPoisonAttackTime)  {
         TakeDamage(poisonDamage, null, false, "");
+
+        // TODO: simplify with other usages of `PlayerHurt(isGrounded ? 2 : 3);`
+        if (currentHP > 0) {
+          // PlayerHurt(isGrounded ? 2 : 3);
+        } else {
+          PlayerDying(isGrounded);
+        }
+
         InGame.instance.PlaySound(Helpers.GetOrException(Sounds.poisonSounds, "basic"), transform.position);
         poisonEffectTime = Time.time * 1000;
         heroRenderer.color = Helpers.GetOrException(Colors.statusColors, "poisoned");
