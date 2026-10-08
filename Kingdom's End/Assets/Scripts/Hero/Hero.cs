@@ -959,11 +959,15 @@ public class Hero : MonoBehaviour {
     return groundType != "level";
   }
 
+  public void ResetColor() {
+    heroRenderer.color = Color.white;
+  }
+
   public void ClearInvulnerability() {
     isInvulnerable = false;
     body.mass = 1;
     // restores color so the flicker won't leave it in weird transparency
-    heroRenderer.color = Color.white;
+    ResetColor();
   }
 
   public void ResumeGame() {
@@ -1299,25 +1303,29 @@ public class Hero : MonoBehaviour {
     // }
 
   }
-
+  
+  public void DeathCheck(Action AliveAction = null, Action DeadAction = null) {
+    if (currentHP > 0) {
+      Action Damage = AliveAction ?? (() => PlayerHurt(isGrounded ? 2 : 3));
+      Damage();
+    } else {
+      Action Death = DeadAction ?? (() => PlayerDying(isGrounded));
+      Death();
+    }
+  }
   void LateUpdate() {
     if (effectPoisoned > 0) {
       float currentTime = Time.time * 1000;
       float nextPoisonAttackTime = poisonTime + (poisonAttackInterval * poisonAttackCounter);
 
       if (currentTime > poisonEffectTime + poisonEffectDuration) {
-        heroRenderer.color = Color.white;
+        ResetColor();
       }
 
       if (currentTime > nextPoisonAttackTime)  {
         TakeDamage(poisonDamage, null, false, "");
 
-        // TODO: simplify with other usages of `PlayerHurt(isGrounded ? 2 : 3);`
-        if (currentHP > 0) {
-          // PlayerHurt(isGrounded ? 2 : 3);
-        } else {
-          PlayerDying(isGrounded);
-        }
+        DeathCheck(AliveAction: () => {});
 
         InGame.instance.PlaySound(Helpers.GetOrException(Sounds.poisonSounds, "basic"), transform.position);
         poisonEffectTime = Time.time * 1000;
@@ -1998,11 +2006,7 @@ public class Hero : MonoBehaviour {
       int damage = (stamina + (int)equippedSTA + (int)effectSTA) - (flyingDamage * (isCritical ? 2 : 1));
       TakeDamage(damage < 0 ? Math.Abs(damage) : Constants.minimumDamageDealt, contactPoint, isCritical, sound);
 
-      if (currentHP > 0) {
-        PlayerHurt(isGrounded ? 2 : 3);
-      } else {
-        PlayerDying(isGrounded);
-      }
+      DeathCheck();
     } else {
       if (isDefending) {
         int shieldDefense = armUsed == 1 ? equippedDEF1 : equippedDEF2;
@@ -2015,11 +2019,7 @@ public class Hero : MonoBehaviour {
           int damage = (stamina + (int)equippedSTA + shieldDefense + (int)effectSTA) - (flyingDamage * (isCritical ? 2 : 1));
           TakeDamage(damage < 0 ? Math.Abs(damage) :  Constants.minimumDamageDealt, contactPoint, isCritical, sound);
 
-          if (currentHP > 0) {
-            PlayerHurt(isGrounded ? 2 : 3);
-          } else {
-            PlayerDying(isGrounded);
-          }
+          DeathCheck();
         }
       }
 
@@ -2117,16 +2117,14 @@ public class Hero : MonoBehaviour {
         // TODO: modify first argument based on different attack type used by the enemy
         TakeDamage(damage < 0 ? Math.Abs(damage) : (damage == 0 && bewitch ? 0 : Constants.minimumDamageDealt), contactPoint, isCritical, attackType);
 
-        if (currentHP > 0) {
-          PlayerHurt(isGrounded ? 2 : 3);
-        } else {
+        DeathCheck(DeadAction: () => {
           if (isGrounded) {
             PlayerDying(isGrounded);
           } else {
             // when dying while on air, a throwback sequence would execute, deciding towards its end how the player shows their death
             PlayerHurt(3);
           }
-        }
+        });
       } else {
         if (isDefending) {
           int shieldDefense = armUsed == 1 ? equippedDEF1 : equippedDEF2;
@@ -2147,11 +2145,7 @@ public class Hero : MonoBehaviour {
             // TODO: modify first argument based on different attack type used by the enemy
             TakeDamage(damage < 0 ? Math.Abs(damage) :  Constants.minimumDamageDealt, contactPoint, isCritical, attackType);
 
-            if (currentHP > 0) {
-              PlayerHurt(isGrounded ? 2 : 3);
-            } else {
-              PlayerDying(isGrounded);
-            }
+            DeathCheck();
           }
         }
 
