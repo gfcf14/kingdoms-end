@@ -751,6 +751,9 @@ public class Pause : MonoBehaviour {
       } else if (itemEffects.statusHeal != null) { // if statusHeal is set, item will remove a consumable and update status effects
         if (itemKey == "ice-med" && Hero.instance.isFrozen) {
           Hero.instance.currentIceEffect.DestroyIce();
+        } else if (itemKey == "dark-med") { // to reset hero color if poisoned and painted purple
+          Hero.instance.ResetColor();
+          Hero.instance.ConsumeSpecificItem("medicine");
         } else {
           if (itemKey == "light-med" && Hero.instance.effectSealed > 0) {
             RepaintDisabledItems();
