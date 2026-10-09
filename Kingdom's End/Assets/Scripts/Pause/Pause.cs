@@ -749,15 +749,15 @@ public class Pause : MonoBehaviour {
         Hero.instance.ConsumeSpecificItem("speed");
         Hero.instance.AddConsumable(new Consumable(){key=itemKey, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
       } else if (itemEffects.statusHeal != null) { // if statusHeal is set, item will remove a consumable and update status effects
+        // only when medicine is ice and player is frozen do we not play medicine sound
         if (itemKey == "ice-med" && Hero.instance.isFrozen) {
           Hero.instance.currentIceEffect.DestroyIce();
-        } else if (itemKey == "dark-med") { // to reset hero color if poisoned and painted purple
-          Hero.instance.ResetColor();
-          Hero.instance.ConsumeSpecificItem("medicine");
+
+        // for every other medicine or ice when not frozen, always play medicine sound
         } else {
-          if (itemKey == "light-med" && Hero.instance.effectSealed > 0) {
-            RepaintDisabledItems();
-          }
+          // specific behavior per medicine type (and if there are specific ailment cases)
+            if (itemKey == "dark-med") Hero.instance.ResetColor();
+            else if (itemKey == "light-med" && Hero.instance.effectSealed > 0) RepaintDisabledItems();
 
           Hero.instance.ConsumeSpecificItem("medicine");
         }
