@@ -1,3 +1,4 @@
+#pragma warning disable CS8632
 using System;
 using UnityEngine;
 
@@ -190,11 +191,13 @@ public class EnemyStats {
   public float mass;
 }
 
+[Serializable]
 public class Outcome {
   public string outcomeCase;
   public string outcomeValue;
 }
 
+[Serializable]
 public class ChatLine {
   public string character;
   public string emotion;
@@ -216,6 +219,7 @@ public class ChatLine {
   }
 }
 
+[Serializable]
 public class Decision {
   public string yes;
   public string no;
@@ -237,6 +241,7 @@ public class Decision {
   }
 }
 
+[Serializable]
 public class MessageLine {
   public string line;
   public Outcome outcome; // needed if any message (like finding a note on a desk) allows the player to get an item, e.g. "Under this paper you will find a key", thus the player gets a key
@@ -307,3 +312,4 @@ public class RemapInput {
   public bool isGamepad { get; set; }
   public bool isForbidden { get; set; }
 }
+#pragma warning restore CS8632

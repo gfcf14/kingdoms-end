@@ -223,7 +223,6 @@ public class Pause : MonoBehaviour {
   [NonSerialized] int maxHP = -1;
   [NonSerialized] int currentMP = -1;
   [NonSerialized] int maxMP = -1;
-  [NonSerialized] string status = "";
   [NonSerialized] int exp = -1;
   [NonSerialized] int next = -1;
   [NonSerialized] int gold = -1;
