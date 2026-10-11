@@ -2503,7 +2503,7 @@ public class Hero : MonoBehaviour {
     isRecoveringFromSlam = false;
   }
 
-  public void ConsumeSpecificItem(string item) {
+  public void PlayConsumptionSound(string item) {
     InGame.instance.PlaySound(Helpers.GetOrException(Sounds.specificConsumableSounds, item), transform.position);
   }
 }

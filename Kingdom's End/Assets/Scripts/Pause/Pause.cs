@@ -746,7 +746,7 @@ public class Pause : MonoBehaviour {
       Effects itemEffects = currentRegularItem.effects;
 
       if (itemEffects.speed > 0) { // referring to the speed potion
-        Hero.instance.ConsumeSpecificItem("speed");
+        Hero.instance.PlayConsumptionSound("speed");
         Hero.instance.AddConsumable(new Consumable(){key=itemKey, duration=(float)itemEffects.duration, useTime=Time.time * 1000});
       } else if (itemEffects.statusHeal != null) { // if statusHeal is set, item will remove a consumable and update status effects
         // only when medicine is ice and player is frozen do we not play medicine sound
@@ -759,7 +759,7 @@ public class Pause : MonoBehaviour {
             if (itemKey == "dark-med") Hero.instance.ResetColor();
             else if (itemKey == "light-med" && Hero.instance.effectSealed > 0) RepaintDisabledItems();
 
-          Hero.instance.ConsumeSpecificItem("medicine");
+          Hero.instance.PlayConsumptionSound("medicine");
         }
         
         Hero.instance.RemoveStatusEffects(itemEffects.statusHeal);
