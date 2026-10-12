@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -41,9 +42,9 @@ public class ChatCanvas : MonoBehaviour {
     characterComponent = characterObject.GetComponent<Text>();
     textComponent = textObject.GetComponent<Text>();
 
-    if (chatLines != null) {
+    if (chatLines != null && chatLines.Count() >= 1) {
       StartChat();
-    } else if (messageLines != null) {
+    } else if (messageLines != null && messageLines.Count() >= 1) {
       StartMessage();
     }
   }
@@ -54,16 +55,16 @@ public class ChatCanvas : MonoBehaviour {
         ExecuteEvents.Execute(chatEventSystem.currentSelectedGameObject, new BaseEventData(chatEventSystem), ExecuteEvents.submitHandler);
 
       // if the entire text is on screen, get the next line
-      } else if (chatLines != null && textComponent.text == chatLines[lineIndex].line) {
+      } else if (chatLines != null && chatLines.Count() >= 1 && textComponent.text == chatLines[lineIndex].line) {
         NextChatLine();
-      } else if (messageLines != null && textComponent.text == messageLines[lineIndex].line) {
+      } else if (messageLines != null && messageLines.Count() >= 1 && textComponent.text == messageLines[lineIndex].line) {
         NextMessageLine();
       } else { // otherwise, show the entire line right away
         StopAllCoroutines();
 
-        if (chatLines != null) {
+        if (chatLines != null && chatLines.Count() >= 1) {
           textComponent.text = chatLines[lineIndex].line;
-        } else if (messageLines != null) {
+        } else if (messageLines != null && messageLines.Count() >= 1) {
           textComponent.text = messageLines[lineIndex].line;
         }
 
