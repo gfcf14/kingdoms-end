@@ -1218,6 +1218,15 @@ public class Enemy : MonoBehaviour {
     
   }
 
+  public void SenseBack(float castlength) {
+    Vector2 backCast = new Vector2(transform.position.x - ((enemyWidth / 2) * direction), transform.position.y + enemyHeight / 2);
+    Vector2 backCastDirection = transform.TransformDirection(new Vector2(-1 * (direction), 0));
+    RaycastHit2D searchCast = Physics2D.Raycast(backCast, backCastDirection, castlength);
+    Debug.DrawRay(backCast, backCastDirection.normalized * castlength, Helpers.GetOrException(Colors.raycastColors, "search"));
+
+    // TODO: implement actions to take when enemy finds player behind them
+  }
+
   public void CheckForPlayer(float forwardCastLength) {
     Vector2 forwardCast = new Vector2(transform.position.x + ((enemyWidth / 2) * direction), transform.position.y + enemyHeight / 2);
     RaycastHit2D searchCast = Physics2D.Raycast(forwardCast, forwardCastDirection, forwardCastLength);

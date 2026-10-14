@@ -19,6 +19,7 @@ public class Teleporter : MonoBehaviour {
       // FOUND PLAYER
       if (!enemy.playerFound) {
         enemy.CheckForPlayer(forwardCastLength);
+        enemy.SenseBack(forwardCastLength / 4);
       } else {
         enemy.isTeleporting = true;
       }
