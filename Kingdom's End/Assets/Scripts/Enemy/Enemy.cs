@@ -1224,7 +1224,10 @@ public class Enemy : MonoBehaviour {
     RaycastHit2D searchCast = Physics2D.Raycast(backCast, backCastDirection, castlength);
     Debug.DrawRay(backCast, backCastDirection.normalized * castlength, Helpers.GetOrException(Colors.raycastColors, "search"));
 
-    // TODO: implement actions to take when enemy finds player behind them
+    // when the player is behind the enemy
+    if (searchCast && searchCast.collider.tag == "Hero" && !Hero.instance.isFrozen) {
+      TurnAround();
+    }
   }
 
   public void CheckForPlayer(float forwardCastLength) {
