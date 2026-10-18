@@ -1231,7 +1231,10 @@ public class Enemy : MonoBehaviour {
     // when the player is behind the enemy
     if (CanActOnPlayerFound(searchCast)) {
       TurnAround();
-      // TODO: for higher level enemies, consider attacking
+      // TODO: Consider which enemy types may need to have attack included in their animation flow (e.g. teleporter)
+      if (level >= 10) {
+        isAttacking = true;
+      }
     }
   }
 
