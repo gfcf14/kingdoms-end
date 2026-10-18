@@ -1231,6 +1231,7 @@ public class Enemy : MonoBehaviour {
     // when the player is behind the enemy
     if (CanActOnPlayerFound(searchCast)) {
       TurnAround();
+      // TODO: for higher level enemies, consider attacking
     }
   }
 
