@@ -164,7 +164,9 @@ public class InGame : MonoBehaviour {
       yield return new WaitForSeconds(1);
     }
 
-    soundtrack.time = Hero.instance.isFightingBoss ? miniBossTrackPausedTime : soundtrackPausedTime;
+    #if !UNITY_WEBGL || UNITY_EDITOR
+      soundtrack.time = Hero.instance.isFightingBoss ? miniBossTrackPausedTime : soundtrackPausedTime;
+    #endif
     soundtrack.volume = 0;
     if (Settings.playSoundtrack) {
       soundtrack.Play();

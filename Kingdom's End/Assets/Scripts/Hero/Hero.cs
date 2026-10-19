@@ -2318,6 +2318,7 @@ public class Hero : MonoBehaviour {
   }
 
   public void ClearPauseCase(bool resumeSoundtrack = false, bool waitIfLevelingUp = false) {
+    // simple sound to indicate an item was obtained, even if it's a relic
     if (pauseCase == "got-relic") {
       InGame.instance.PlaySound(Helpers.GetOrException(Sounds.itemPickSounds, "normal"), transform.position);
     }
