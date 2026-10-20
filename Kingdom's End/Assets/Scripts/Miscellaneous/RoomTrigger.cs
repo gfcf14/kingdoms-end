@@ -17,10 +17,7 @@ public class RoomTrigger : MonoBehaviour {
 
   private void OnTriggerEnter2D(Collider2D col) {
     if (col.CompareTag("RoomTraverser")) {
-      virtualCam.SetActive(true);
-
-      // whenever the hero moves scenes, it gets removed from each VCam object. This line ensures cameras follow the hero singleton
-      virtualCam.GetComponent<CinemachineCamera>().Follow = Hero.instance.transform;
+      ActivateVirtualCamera();
 
       // sets the appropriate tilemaps for save/teleport points if any in the room
         Transform currentSavePoint = gameObject.transform.Find("SaveContainer");
@@ -57,6 +54,12 @@ public class RoomTrigger : MonoBehaviour {
         }
       }
     }
+  }
+
+  public void ActivateVirtualCamera() {
+    // whenever the hero moves scenes, it gets removed from each VCam object. This line ensures cameras follow the hero singleton
+    virtualCam.GetComponent<CinemachineCamera>().Follow = Hero.instance.transform;
+    virtualCam.SetActive(true);
   }
 
   // Only destroy enemies if not frozen (since player temporarily removes its physics)
