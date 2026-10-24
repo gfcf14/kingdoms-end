@@ -174,6 +174,10 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 | weapons/throwable/small             | https://pixabay.com/sound-effects/swoosh-6339/                                                              |
 | weapons/throwable-double/large      | https://pixabay.com/sound-effects/sword-swipes-7174/				                                        |
 
+## Test Scenarios
+
+Some notable test scenarios to ensure correct gameplay are documented at KINGDOM'S END TEST SCENARIOS.md
+
 ## Legacy Warning
 
 The game world has been divided in multiple scenes, but just in case the latest copy of GameWorld.unity (as of a while ago) with all areas put together is kept in Google Drive
