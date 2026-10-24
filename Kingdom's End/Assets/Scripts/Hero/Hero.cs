@@ -37,6 +37,8 @@ public class Hero : MonoBehaviour {
   public ProjectileCheck projectileCheckScript;
 
   public BoxCollider2D heroCollider;
+  private BoxCollider2D directionCheckFrontCollider;
+  private BoxCollider2D directionCheckBottomCollider;
   public Rigidbody2D body;
   public Animator anim;
   private SpriteRenderer heroRenderer;
@@ -300,6 +302,8 @@ public class Hero : MonoBehaviour {
     #endif
 
     heroCollider = GetComponent<BoxCollider2D>();
+    directionCheckFrontCollider = transform.Find("DirectionCheck-Front").GetComponent<BoxCollider2D>();
+    directionCheckBottomCollider = transform.Find("DirectionCheck-Bottom").GetComponent<BoxCollider2D>();
     body = GetComponent<Rigidbody2D>();
     anim = GetComponent<Animator>();
     heroRenderer = GetComponent<SpriteRenderer>();
@@ -1078,7 +1082,12 @@ public class Hero : MonoBehaviour {
 
       // keep slope movement through trigger seams only while a supported incline remains nearby.
       if (inclineExitAt >= 0f && Time.time - inclineExitAt >= groundSupportGracePeriod) {
-        if (isGrounded && lastHasPhysicalGroundSupport && HasNearbyIncline()) {
+        bool hasInclineAtFront = HasInclineAtFront();
+        if (isGrounded && lastHasPhysicalGroundSupport && !hasInclineAtFront) {
+          groundType = "level";
+          body.linearVelocity = new Vector2(body.linearVelocity.x, 0f);
+          inclineExitAt = -1f;
+        } else if (hasInclineAtFront) {
           inclineExitAt = Time.time;
         } else {
           groundType = "level";
@@ -1680,7 +1689,7 @@ public class Hero : MonoBehaviour {
   }
 
   private bool IsGroundedOnNearbyIncline() {
-    return isGrounded && IsOnIncline() && !isJumping && HasNearbyIncline();
+    return isGrounded && IsOnIncline() && !isJumping && HasInclineAtFeet();
   }
 
   private bool HasPhysicalGroundSupport() {
@@ -1688,10 +1697,10 @@ public class Hero : MonoBehaviour {
       return true;
     }
 
-    // A short cast under the collider smooths trigger gaps without treating downward slope speed as falling.
-    Bounds heroBounds = heroCollider.bounds;
-    Vector2 castOrigin = new Vector2(heroBounds.center.x, heroBounds.min.y + 0.02f);
-    Vector2 castSize = new Vector2(heroBounds.size.x * 0.9f, 0.04f);
+    // A short cast under the bottom sensor smooths seams without treating slope speed as falling.
+    Bounds bottomBounds = directionCheckBottomCollider.bounds;
+    Vector2 castOrigin = new Vector2(bottomBounds.center.x, bottomBounds.min.y + 0.02f);
+    Vector2 castSize = new Vector2(bottomBounds.size.x * 0.9f, 0.04f);
     RaycastHit2D[] groundHits = Physics2D.BoxCastAll(castOrigin, castSize, 0f, Vector2.down, 0.08f);
 
     foreach (RaycastHit2D hit in groundHits) {
@@ -1703,12 +1712,16 @@ public class Hero : MonoBehaviour {
     return false;
   }
 
-  private bool HasNearbyIncline() {
-    Bounds heroBounds = heroCollider.bounds;
-    float probeHeight = heroBounds.size.y * 0.5f;
-    Vector2 probeCenter = new Vector2(heroBounds.center.x, heroBounds.min.y + probeHeight * 0.5f);
-    Vector2 probeSize = new Vector2(heroBounds.size.x + (heroWidth * 2), probeHeight);
-    Collider2D[] nearbyColliders = Physics2D.OverlapBoxAll(probeCenter, probeSize, 0f);
+  private bool HasInclineAtFront() {
+    Bounds frontBounds = directionCheckFrontCollider.bounds;
+    Collider2D[] nearbyColliders = Physics2D.OverlapBoxAll(frontBounds.center, frontBounds.size, 0f);
+
+    return nearbyColliders.Any(collider => collider.CompareTag("Incline"));
+  }
+
+  private bool HasInclineAtFeet() {
+    Bounds bottomBounds = directionCheckBottomCollider.bounds;
+    Collider2D[] nearbyColliders = Physics2D.OverlapBoxAll(bottomBounds.center, bottomBounds.size, 0f);
 
     return nearbyColliders.Any(collider => collider.CompareTag("Incline"));
   }
@@ -1746,16 +1759,39 @@ public class Hero : MonoBehaviour {
     weaponCollider.SetActive(true);
   }
 
+  public void EnterIncline(Collider2D inclineCollider) {
+    if (collidingTop) {
+      return;
+    }
+
+    groundType = inclineCollider.GetComponent<Incline>().inclineFromRight;
+    inclineExitAt = -1f;
+    if (!isGrounded || isJumping || isFalling || isDropKicking) {
+      CacheGroundTypeForAirborneMovement();
+    }
+  }
+
+  public void ExitIncline(Collider2D inclineCollider) {
+    if (!isGrounded || isJumping || isFalling || isDropKicking) {
+      CacheGroundTypeForAirborneMovement();
+    }
+
+    Bounds frontBounds = directionCheckFrontCollider.bounds;
+    Collider2D[] overlappingColliders = Physics2D.OverlapBoxAll(frontBounds.center, frontBounds.size, 0f);
+    Collider2D nextIncline = overlappingColliders.FirstOrDefault(overlap => overlap != inclineCollider && overlap.CompareTag("Incline"));
+
+    if (nextIncline != null) {
+      groundType = nextIncline.GetComponent<Incline>().inclineFromRight;
+      inclineExitAt = -1f;
+    } else {
+      inclineExitAt = Time.time;
+    }
+  }
+
   private void OnTriggerEnter2D(Collider2D col) {
     string colTag = col.gameObject.tag;
 
-    if (colTag == "Incline" && !collidingTop) {
-      groundType = col.gameObject.GetComponent<Incline>().inclineFromRight;
-      inclineExitAt = -1f;
-      if (!isGrounded || isJumping || isFalling || isDropKicking) {
-        CacheGroundTypeForAirborneMovement();
-      }
-    } else if (colTag == "Zone") {
+    if (colTag == "Zone") {
       Zone zoneScript = col.gameObject.GetComponent<Zone>();
 
       ZoneSpecs currZoneSpecs = Helpers.GetOrException(Objects.zoneSpecs, zoneScript.type);
@@ -1785,21 +1821,7 @@ public class Hero : MonoBehaviour {
   private void OnTriggerExit2D(Collider2D col) {
     string colTag = col.gameObject.tag;
 
-    if (colTag == "Incline") {
-      if (!isGrounded || isJumping || isFalling || isDropKicking) {
-        CacheGroundTypeForAirborneMovement();
-      }
-
-      Collider2D[] overlappingColliders = Physics2D.OverlapBoxAll(heroCollider.bounds.center, heroCollider.bounds.size, 0f);
-      Collider2D nextIncline = overlappingColliders.FirstOrDefault(overlap => overlap != col && overlap.CompareTag("Incline"));
-
-      if (nextIncline != null) {
-        groundType = nextIncline.GetComponent<Incline>().inclineFromRight;
-        inclineExitAt = -1f;
-      } else {
-        inclineExitAt = Time.time;
-      }
-    } else if (colTag == "Zone") {
+    if (colTag == "Zone") {
       if (!Helpers.Intersects(heroCollider, col.gameObject.GetComponent<PolygonCollider2D>())) {
         jumpHeight = GameData.playerJumpHeight * (1 + (effectJump / 10));
         anim.speed = 1 + (effectSpeed / 10);
@@ -1822,12 +1844,13 @@ public class Hero : MonoBehaviour {
       return;
     }
 
-    Collider2D[] overlappingColliders = Physics2D.OverlapBoxAll(heroCollider.bounds.center, heroCollider.bounds.size, 0f);
+    Bounds bottomBounds = directionCheckBottomCollider.bounds;
+    Collider2D[] overlappingColliders = Physics2D.OverlapBoxAll(bottomBounds.center, bottomBounds.size, 0f);
     Collider2D landingIncline = overlappingColliders.FirstOrDefault(overlap => overlap.CompareTag("Incline"));
 
     if (landingIncline != null) {
       groundType = landingIncline.GetComponent<Incline>().inclineFromRight;
-    } else if (HasNearbyIncline()) {
+    } else if (HasInclineAtFeet()) {
       groundType = tempGroundType;
     } else {
       groundType = "level";
