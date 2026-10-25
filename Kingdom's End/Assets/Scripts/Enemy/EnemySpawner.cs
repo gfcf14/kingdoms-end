@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour {
   [SerializeField] public bool isMiniBoss = false;
   [SerializeField] string forceDirection = "";
   [SerializeField] string elementalMagic = "";
+  [SerializeField] int level = 1;
 
   void Start() {
     if (forceDirection != "" && !Helpers.IsValueInArray(Constants.possibleEnemyDirections, forceDirection)) {
@@ -61,8 +62,9 @@ public class EnemySpawner : MonoBehaviour {
       ambushFloorScript.dropConditions = dropConditions;
       ambushFloorScript.specificDrop = specificDrop;
       ambushFloorScript.isMiniBoss = false; // ambushers should NEVER be minibosses
+      ambushFloorScript.level = level;
     } else {
-      InGame.instance.SpawnEnemy(transform.position, spawnKey, spawnType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform, forceDirection, elementalMagic);
+      InGame.instance.SpawnEnemy(transform.position, spawnKey, spawnType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform, forceDirection, elementalMagic, level);
     }
   }
 

@@ -9,6 +9,7 @@ public class AmbushFloor : MonoBehaviour {
   [SerializeField] public List<string> dropConditions = new List<string>();
   [SerializeField] public string specificDrop = "";
   [SerializeField] public bool isMiniBoss = false;
+  [SerializeField] public int level = 1;
   private Animator anim;
   private SpriteRenderer tileImage;
 
@@ -32,7 +33,7 @@ public class AmbushFloor : MonoBehaviour {
     Vector2 spawnPosition = new (transform.position.x, transform.position.y);
 
     InGame.instance.PlaySound(Helpers.GetOrException(Sounds.ambushFloorSounds, area), spawnPosition);
-    InGame.instance.SpawnEnemy(spawnPosition, enemyKey, enemyType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform.parent);
+    InGame.instance.SpawnEnemy(spawnPosition, enemyKey, enemyType, gameCondition, dropConditions, specificDrop, isMiniBoss, transform.parent, "", "", level);
   }
 
   public void Destroy() {

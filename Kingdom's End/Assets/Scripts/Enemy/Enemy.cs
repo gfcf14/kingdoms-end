@@ -1233,6 +1233,8 @@ public class Enemy : MonoBehaviour {
       TurnAround();
       // TODO: Consider which enemy types may need to have attack included in their animation flow (e.g. teleporter)
       if (level >= 10) {
+        // TODO: isAttacking update here is NOT ENOUGH to trigger attack. Consider updating Teleporter.cs (and any other type that benefits from this)
+        // to ensure enemy can attack and then teleport (in the case of teleporters)
         isAttacking = true;
       }
     }

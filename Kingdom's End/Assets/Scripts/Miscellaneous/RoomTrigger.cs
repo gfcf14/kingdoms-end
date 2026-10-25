@@ -46,8 +46,6 @@ public class RoomTrigger : MonoBehaviour {
       foreach(Transform child in gameObject.transform) {
         if (CanSpawnMiniBoss(child)) {
           Rigidbody2D heroBody = Hero.instance.gameObject.GetComponent<Rigidbody2D>();
-          Hero heroScript = Hero.instance.gameObject.GetComponent<Hero>();
-
           Hero.instance.SetPauseCase("boss-room-entry");
           Hero.instance.bossTransitionDirection = (int)(heroBody.linearVelocity.x / Math.Abs(heroBody.linearVelocity.x));
           StartCoroutine(PauseRoomWhileOnBossEntry());
@@ -69,15 +67,6 @@ public class RoomTrigger : MonoBehaviour {
       foreach (Transform child in gameObject.transform) {
         if (child.tag == "EnemySpawner") {
           child.gameObject.GetComponent<EnemySpawner>().Cleanse();
-        // } else if (child.name == "Boss") {
-        //   child.gameObject.GetComponent<Enemy>().isOnCamera = false;
-        // } else if (child.name.Contains("Droppable")) {
-        //   Droppable droppableInstance = child.Find("GameObject").gameObject.GetComponent<Droppable>();
-
-        //   // only spawned items get destroyed; items that are part of the Scene will only destroy when grabbed
-        //   if (droppableInstance.room != null) {
-        //     GameObject.Destroy(child.gameObject);
-        //   }
         } else if (child.name.Contains("ArrowBurn")) { // destroys arrow burns so they don't infinitely harm enemies when player exits and enters repeatedly
           GameObject.Destroy(child.gameObject);
         }

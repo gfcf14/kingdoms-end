@@ -44,8 +44,6 @@ public class RoomTraverser : MonoBehaviour {
         // TODO: when implementing common enemies (nomad, wanderess, or luxhusk) ensure only one of each can implement.
         if (child.tag == "EnemySpawner") {
           child.gameObject.GetComponent<EnemySpawner>().Spawn();
-          // } else if (CanSpawnMiniBoss(child)) {
-          //   child.gameObject.GetComponent<Enemy>().isOnCamera = true;
         }
       }
     }
