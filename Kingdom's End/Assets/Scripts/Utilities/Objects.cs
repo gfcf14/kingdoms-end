@@ -2774,7 +2774,6 @@ public class Objects
     {"charger", Resources.Load("Animations/Enemy/charger") as RuntimeAnimatorController},
     {"exploder", Resources.Load("Animations/Enemy/exploder") as RuntimeAnimatorController},
     {"hero-1", Resources.Load("Animations/Hero/Hero-1") as RuntimeAnimatorController},
-    {"hero-1-movement", Resources.Load("Animations/Hero/Hero-1-Movement") as RuntimeAnimatorController}, // TODO: consider removing
     {"idler", Resources.Load("Animations/Enemy/idler") as RuntimeAnimatorController},
     {"patroller", Resources.Load("Animations/Enemy/patroller") as RuntimeAnimatorController},
     {"sentinel", Resources.Load("Animations/Enemy/sentinel") as RuntimeAnimatorController},
