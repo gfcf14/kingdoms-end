@@ -216,20 +216,20 @@ public class Sounds {
 
   // TODO: modify these as soon as more sounds are added
   public static Dictionary<string, AudioClip> ambushFloorSounds = new() {
-    {"calderas", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"desert", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"forest", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"glaciers", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"hellscape", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"meadows", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"mountains", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"oceans", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"ruins", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"seaside", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"skyway", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"swamps", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"underground", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")},
-    {"wasteland", Resources.Load<AudioClip>("SFX/falling/grass/barefoot")}
+    {"calderas", Resources.Load<AudioClip>("SFX/falling/character/on-gravel")},
+    {"desert", Resources.Load<AudioClip>("SFX/falling/character/on-sand")},
+    {"forest", Resources.Load<AudioClip>("SFX/falling/character/on-grass")},
+    {"glaciers", Resources.Load<AudioClip>("SFX/falling/character/on-snow")},
+    {"hellscape", Resources.Load<AudioClip>("SFX/falling/character/on-bedrock")},
+    {"meadows", Resources.Load<AudioClip>("SFX/falling/character/on-grass")},
+    {"mountains", Resources.Load<AudioClip>("SFX/falling/character/on-bentgrass")},
+    {"oceans", Resources.Load<AudioClip>("SFX/falling/character/on-sand")},
+    {"ruins", Resources.Load<AudioClip>("SFX/falling/character/on-sand")},
+    {"seaside", Resources.Load<AudioClip>("SFX/falling/character/on-sand")},
+    {"skyway", Resources.Load<AudioClip>("SFX/falling/character/on-grass")},
+    {"swamps", Resources.Load<AudioClip>("SFX/falling/character/on-wetland")},
+    {"underground", Resources.Load<AudioClip>("SFX/falling/character/on-gravel")},
+    {"wasteland", Resources.Load<AudioClip>("SFX/falling/character/on-bedrock")}
   };
 
   public static AudioClip bewitchSound = Resources.Load<AudioClip>("SFX/hitting/recharge/recharge-1") as AudioClip;
