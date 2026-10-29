@@ -176,7 +176,7 @@ Below are links of the sound effects I use for the game. Note that the ORIGINAL 
 
 ## Test Scenarios
 
-Some notable test scenarios to ensure correct gameplay are documented at KINGDOM'S END TEST SCENARIOS.md
+Some notable test scenarios to ensure correct gameplay are documented at `TEST SCENARIOS.md`
 
 ## Legacy Warning
 

@@ -248,10 +248,7 @@ public class Hero : MonoBehaviour {
   private int lastSign = 0;
   private const float groundSupportGracePeriod = 0.1f;
   private float groundSupportLostAt = -1f;
-  private float inclineExitAt = -1f;
     private bool tempGroundTypeIsAirborneCache;
-  private bool lastHasGroundSupport;
-  private bool lastHasPhysicalGroundSupport;
   public IceEffect currentIceEffect;
   private GameObject currentIceCrack;
   [NonSerialized] public List<Item> items = new List<Item>();
@@ -1067,8 +1064,6 @@ public class Hero : MonoBehaviour {
       // InGame.instance.DrawRectangle(playerColliderPosition, heroDimensions);
       bool hasPhysicalGroundSupport = HasPhysicalGroundSupport();
       bool hasGroundSupport = hasPhysicalGroundSupport || IsGroundedOnNearbyIncline();
-      lastHasGroundSupport = hasGroundSupport;
-      lastHasPhysicalGroundSupport = hasPhysicalGroundSupport;
       if (hasGroundSupport) {
         groundSupportLostAt = -1f;
       } else if (groundSupportLostAt < 0f) {
@@ -1078,21 +1073,6 @@ public class Hero : MonoBehaviour {
       bool hasLostGroundLongEnough = groundSupportLostAt >= 0f && Time.time - groundSupportLostAt >= groundSupportGracePeriod;
       if (isHurt == 0 && hasLostGroundLongEnough && !isFalling && !isAttackingHeavy && !isDropKicking && (!isJumping || body.linearVelocity.y < Constants.yAirVelocityThreshold)) {
         Fall();
-      }
-
-      // keep slope movement through trigger seams only while a supported incline remains nearby.
-      if (inclineExitAt >= 0f && Time.time - inclineExitAt >= groundSupportGracePeriod) {
-        bool hasInclineAtFront = HasInclineAtFront();
-        if (isGrounded && lastHasPhysicalGroundSupport && !hasInclineAtFront) {
-          groundType = "level";
-          body.linearVelocity = new Vector2(body.linearVelocity.x, 0f);
-          inclineExitAt = -1f;
-        } else if (hasInclineAtFront) {
-          inclineExitAt = Time.time;
-        } else {
-          groundType = "level";
-          inclineExitAt = -1f;
-        }
       }
     // end of PLAYER FALLING ALGORITHM
 
@@ -1712,13 +1692,6 @@ public class Hero : MonoBehaviour {
     return false;
   }
 
-  private bool HasInclineAtFront() {
-    Bounds frontBounds = directionCheckFrontCollider.bounds;
-    Collider2D[] nearbyColliders = Physics2D.OverlapBoxAll(frontBounds.center, frontBounds.size, 0f);
-
-    return nearbyColliders.Any(collider => collider.CompareTag("Incline"));
-  }
-
   private bool HasInclineAtFeet() {
     Bounds bottomBounds = directionCheckBottomCollider.bounds;
     Collider2D[] nearbyColliders = Physics2D.OverlapBoxAll(bottomBounds.center, bottomBounds.size, 0f);
@@ -1765,7 +1738,6 @@ public class Hero : MonoBehaviour {
     }
 
     groundType = inclineCollider.GetComponent<Incline>().inclineFromRight;
-    inclineExitAt = -1f;
     if (!isGrounded || isJumping || isFalling || isDropKicking) {
       CacheGroundTypeForAirborneMovement();
     }
@@ -1782,9 +1754,11 @@ public class Hero : MonoBehaviour {
 
     if (nextIncline != null) {
       groundType = nextIncline.GetComponent<Incline>().inclineFromRight;
-      inclineExitAt = -1f;
     } else {
-      inclineExitAt = Time.time;
+      groundType = "level";
+      if (isGrounded && !isJumping && !isFalling && !isDropKicking) {
+        body.linearVelocity = new Vector2(body.linearVelocity.x, 0f);
+      }
     }
   }
 
@@ -1858,7 +1832,6 @@ public class Hero : MonoBehaviour {
 
     tempGroundType = "";
     tempGroundTypeIsAirborneCache = false;
-    inclineExitAt = -1f;
   }
 
   // gets the ground collision direction based on different states of movement:

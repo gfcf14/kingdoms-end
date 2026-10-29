@@ -1,4 +1,4 @@
-# Kingdom's End: Test Scenarios
+# Test Scenarios
 
 ## Purpose
 Manually verify Hero movement and interactions with other objects.
