@@ -248,6 +248,7 @@ public class Hero : MonoBehaviour {
   private int lastSign = 0;
   private const float groundSupportGracePeriod = 0.1f;
   private float groundSupportLostAt = -1f;
+  private readonly HashSet<Collider2D> bottomGroundContacts = new HashSet<Collider2D>();
     private bool tempGroundTypeIsAirborneCache;
   public IceEffect currentIceEffect;
   private GameObject currentIceCrack;
@@ -952,6 +953,7 @@ public class Hero : MonoBehaviour {
     isFalling = false;
     jumpsExecuted = 0;
     isGrounded = true;
+    groundSupportLostAt = -1f;
     blockedDirection = "";
     PerformGroundFall();
   }
@@ -1871,6 +1873,17 @@ public class Hero : MonoBehaviour {
     }
   }
 
+  public void SetGroundContact(Collider2D collider, bool isTouching) {
+    if (isTouching) {
+      bottomGroundContacts.Add(collider);
+    } else {
+      bottomGroundContacts.Remove(collider);
+    }
+
+    bottomGroundContacts.RemoveWhere(contact => contact == null);
+    collidingBottom = bottomGroundContacts.Count > 0;
+  }
+
   public void ModifyPosition(Vector2 newPosition) {
     transform.position = newPosition;
   }
@@ -1880,6 +1893,7 @@ public class Hero : MonoBehaviour {
     ToggleAirCheck(false);
     jumpsExecuted = 0;
     isGrounded = true;
+    groundSupportLostAt = -1f;
     blockedDirection = "";
     isFalling = false;
     isJumping = false;
@@ -1898,10 +1912,33 @@ public class Hero : MonoBehaviour {
     ModifyPosition(new Vector2(transform.position.x + bumpX, transform.position.y + bumpY));
   }
 
-  private void MainCollisionLogic(Collider2D collider, Collider2D otherCollider, string colTag) {
+  private bool IsTopLandingContact(Collision2D collision, Collider2D heroCollisionCollider) {
+    for (int i = 0; i < collision.contactCount; i++) {
+      ContactPoint2D contact = collision.GetContact(i);
+      Vector2 towardHero = (Vector2)heroCollisionCollider.bounds.center - contact.point;
+      Vector2 normalTowardHero = contact.normal;
+
+      if (Vector2.Dot(normalTowardHero, towardHero) < 0f) {
+        normalTowardHero = -normalTowardHero;
+      }
+
+      if (normalTowardHero.y >= 0.5f) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  private void MainCollisionLogic(Collider2D collider, Collider2D otherCollider, string colTag, Collision2D collision) {
     if (Helpers.IsValueInArray(Constants.landingObjects, colTag)) {
       if (otherCollider.tag == "Hero") {
-        if (!isHorizontalCollision(otherCollider, collider)) {
+        if (IsTopLandingContact(collision, otherCollider)) {
+          bool wasAirborne = !isGrounded || isFalling || isJumping || isDropKicking;
+          if (!wasAirborne) {
+            return;
+          }
+
           if (collider.tag == "Floor" && isFalling) {
             PerformGroundFall();
           } else if  (collider.tag == "Breakable") {
@@ -1914,6 +1951,7 @@ public class Hero : MonoBehaviour {
           ToggleAirCheck(false);
           jumpsExecuted = 0;
           isGrounded = true;
+          groundSupportLostAt = -1f;
           blockedDirection = "";
           // TODO: Consider if it's ever necessary to perform y position modification to ensure it gets rounded
           // transform.position = new Vector2(transform.position.x, Mathf.Round(transform.position.y));
@@ -1938,7 +1976,7 @@ public class Hero : MonoBehaviour {
         } else {
           // horizontalCollision = Helpers.IsValueInArray(Constants.nonHorizontalCollidableObjects, colTag) ? true : false;
 
-          if (isBottomCollision(otherCollider, collider)) {
+          if (collidingBottom) {
             horizontalCollision = false;
             ClearAirAttackSingle();
           }
@@ -1961,7 +1999,7 @@ public class Hero : MonoBehaviour {
     if (collidingTop && !isFalling) {
       isCollidingWithCeiling = true;
     } else {
-      MainCollisionLogic(collider, otherCollider, colTag);
+      MainCollisionLogic(collider, otherCollider, colTag, col);
 
       if (IsOnIncline() && isFalling) {
         GroundOnIncline();
@@ -2255,23 +2293,6 @@ public class Hero : MonoBehaviour {
 
     currentIceEffect = null;
     currentIceCrack = null;
-  }
-
-  private bool isBottomCollision(Collider2D collider1, Collider2D collider2) {
-    int c1BottomEdge = (int) collider1.bounds.max.y;
-    int c2TopEdge = (int) collider2.bounds.min.y;
-
-    return c1BottomEdge == c2TopEdge;
-  }
-
-  private bool isHorizontalCollision(Collider2D collider1, Collider2D collider2) {
-    int c1RightEdge = (int) collider1.bounds.max.x;
-    int c1LeftEdge = (int) collider1.bounds.min.x;
-
-    int c2RightEdge = (int) collider2.bounds.max.x;
-    int c2LeftEdge = (int) collider2.bounds.min.x;
-
-    return (c1RightEdge == c2LeftEdge) || (c1LeftEdge == c2RightEdge);
   }
 
   public void CheckLevel() {

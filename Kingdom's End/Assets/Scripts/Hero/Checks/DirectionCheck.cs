@@ -11,8 +11,13 @@ public class DirectionCheck : MonoBehaviour {
     }
 
     // wall contact at the feet is not ground support; floor contact still is.
-    if ((col.CompareTag("Floor") || col.CompareTag("Wall")) && !(direction == "bottom" && col.CompareTag("Wall"))) {
-      Hero.instance.SetCollisionDirection(direction, true);
+    bool isLandingObject = Helpers.IsValueInArray(Constants.landingObjects, col.tag);
+    if ((isLandingObject || col.CompareTag("Wall")) && !(direction == "bottom" && col.CompareTag("Wall"))) {
+      if (direction == "bottom") {
+        Hero.instance.SetGroundContact(col, true);
+      } else {
+        Hero.instance.SetCollisionDirection(direction, true);
+      }
 
       if (direction == "back" && col.tag == "Wall") { // starts the slam sequence
         if (Hero.instance.isHurt == 3) {
@@ -36,8 +41,13 @@ public class DirectionCheck : MonoBehaviour {
       Hero.instance.ExitIncline(col);
     }
 
-    if ((col.CompareTag("Floor") || col.CompareTag("Wall")) && !(direction == "bottom" && col.CompareTag("Wall"))) {
-      Hero.instance.SetCollisionDirection(direction, false);
+    bool isLandingObject = Helpers.IsValueInArray(Constants.landingObjects, col.tag);
+    if ((isLandingObject || col.CompareTag("Wall")) && !(direction == "bottom" && col.CompareTag("Wall"))) {
+      if (direction == "bottom") {
+        Hero.instance.SetGroundContact(col, false);
+      } else {
+        Hero.instance.SetCollisionDirection(direction, false);
+      }
     }
   }
 }

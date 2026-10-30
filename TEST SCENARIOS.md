@@ -49,6 +49,20 @@ Manually verify Hero movement and interactions with other objects.
 - The Hero continues to follow the slope at the modified speed.
 - The rise/run remains consistent; speed changes should not cause false falling or alter the terrain angle.
 
+## Landing / Grounding
+
+### LG-01: Distinguish landing from side contact
+
+**Steps**
+1. Fall onto a Floor, a Breakable, and an Interactable such as ChestLarge.
+2. Release movement input after landing on each object.
+3. Repeat by moving into the side of each object without landing on top.
+
+**Expected**
+- Landing from above sets the Hero grounded and ends falling.
+- The grounded animation can transition to idle when there is no movement input.
+- Side contact alone does not count as a landing or prevent the Hero from moving away.
+
 ## Wall bumping
 
 ### WB-01: Jump into a tall wall from either facing direction
