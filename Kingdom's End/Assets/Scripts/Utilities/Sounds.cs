@@ -119,7 +119,7 @@ public class Sounds {
   static Dictionary<string, AudioClip> characterFallingSounds = new() {
     {"bedrock", Resources.Load<AudioClip>("SFX/falling/character/on-bedrock")},
     {"bentgrass", Resources.Load<AudioClip>("SFX/falling/character/on-bentgrass")},
-    {"box", Resources.Load<AudioClip>("SFX/falling/character/on-breakables/box")},
+    {"box", Resources.Load<AudioClip>("SFX/falling/character/on-box")},
     {"dirt", Resources.Load<AudioClip>("SFX/falling/character/on-dirt")},
     {"grass", Resources.Load<AudioClip>("SFX/falling/character/on-grass")},
     {"gravel", Resources.Load<AudioClip>("SFX/falling/character/on-gravel")},

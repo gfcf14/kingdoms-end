@@ -1944,7 +1944,7 @@ public class Hero : MonoBehaviour {
           } else if  (collider.tag == "Breakable") {
             PlayFallingSound("character", "box");
           } else if (collider.tag == "Interactable") {
-            // TODO: for now, box sounds appear to work fine. If interactables made of non-wood material are implemented, consider changing this
+            // TODO: ensure "box" can be variable by tag (e.g. different fro breakables and interactables)
             PlayFallingSound("character", "box");
           }
 
