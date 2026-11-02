@@ -124,6 +124,7 @@ public class Sounds {
     {"grass", Resources.Load<AudioClip>("SFX/falling/character/on-grass")},
     {"gravel", Resources.Load<AudioClip>("SFX/falling/character/on-gravel")},
     {"ice", Resources.Load<AudioClip>("SFX/falling/character/on-ice")},
+    {"interactable", Resources.Load<AudioClip>("SFX/breakables/box/falling/on-box")},
     {"sand", Resources.Load<AudioClip>("SFX/falling/character/on-sand")},
     {"snow", Resources.Load<AudioClip>("SFX/falling/character/on-snow")},
     {"tile", Resources.Load<AudioClip>("SFX/falling/character/on-tile")},

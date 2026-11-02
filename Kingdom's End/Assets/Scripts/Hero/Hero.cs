@@ -1971,6 +1971,19 @@ public class Hero : MonoBehaviour {
     return false;
   }
 
+  private string GetMaterialByTag(string tag) {
+    switch (tag) {
+      case "Breakable":
+        return "box";
+      case "Interactable":
+        // TODO: consider if any other interactables (e.g. not chests) require a different material
+        return "interactable";
+      default:
+        Debug.Log($"Unknown tag for falling sound: {tag}");
+        return "";
+    }
+  }
+
   private void MainCollisionLogic(Collider2D collider, Collider2D otherCollider, string colTag, Collision2D collision) {
     if (Helpers.IsValueInArray(Constants.landingObjects, colTag)) {
       if (otherCollider.tag == "Hero") {
@@ -1985,8 +1998,7 @@ public class Hero : MonoBehaviour {
           } else if  (collider.tag == "Breakable") {
             PlayFallingSound("character", "box");
           } else if (collider.tag == "Interactable") {
-            // TODO: ensure "box" can be variable by tag (e.g. different fro breakables and interactables)
-            PlayFallingSound("character", "box");
+            PlayFallingSound("character", GetMaterialByTag(collider.tag));
           }
 
           ToggleAirCheck(false);
