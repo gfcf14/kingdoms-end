@@ -247,9 +247,6 @@ public class Hero : MonoBehaviour {
 
   private int lastSign = 0;
   private const float groundSupportGracePeriod = 0.1f;
-  private const float groundSupportCastOriginOffset = 0.02f;
-  private const float groundSupportCastHeight = 0.04f;
-  private const float groundSupportCastDistance = 0.08f;
   private float groundSupportLostAt = -1f;
   private readonly HashSet<Collider2D> landingSupportContacts = new HashSet<Collider2D>();
   private readonly HashSet<Collider2D> bottomGroundContacts = new HashSet<Collider2D>();
@@ -1689,50 +1686,7 @@ public class Hero : MonoBehaviour {
       return true;
     }
 
-    // A short cast under the bottom sensor smooths seams without treating slope speed as falling.
-    // TODO: Consider if changing the height of DirectionCheck-Bottom would make this irrelevant
-    Bounds bottomBounds = directionCheckBottomCollider.bounds;
-    Vector2 castOrigin = new Vector2(bottomBounds.center.x, bottomBounds.min.y + groundSupportCastOriginOffset);
-    Vector2 castSize = new Vector2(bottomBounds.size.x * 0.9f, groundSupportCastHeight);
-    RaycastHit2D[] groundHits = Physics2D.BoxCastAll(castOrigin, castSize, 0f, Vector2.down, groundSupportCastDistance);
-
-    foreach (RaycastHit2D hit in groundHits) {
-      if (hit.collider != heroCollider && !hit.collider.isTrigger && Helpers.IsValueInArray(Constants.landingObjects, hit.collider.tag)) {
-        return true;
-      }
-    }
-
     return false;
-  }
-
-  private void OnDrawGizmos() {
-    BoxCollider2D bottomCollider = directionCheckBottomCollider;
-    if (bottomCollider == null) {
-      Transform bottomCheck = transform.Find("DirectionCheck-Bottom");
-      if (bottomCheck == null) {
-        return;
-      }
-
-      bottomCollider = bottomCheck.GetComponent<BoxCollider2D>();
-      if (bottomCollider == null) {
-        return;
-      }
-    }
-
-    Bounds bottomBounds = bottomCollider.bounds;
-    Vector2 castOrigin = new Vector2(bottomBounds.center.x, bottomBounds.min.y + groundSupportCastOriginOffset);
-    Vector2 castSize = new Vector2(bottomBounds.size.x * 0.9f, groundSupportCastHeight);
-    Vector2 castEnd = castOrigin + Vector2.down * groundSupportCastDistance;
-    Vector3 halfSize = castSize * 0.5f;
-
-    Gizmos.color = Helpers.GetOrException(Colors.raycastColors, "search");
-    Gizmos.DrawWireCube(castOrigin, castSize);
-    Gizmos.DrawWireCube(castEnd, castSize);
-
-    Gizmos.DrawLine(castOrigin + new Vector2(-halfSize.x, halfSize.y), castEnd + new Vector2(-halfSize.x, halfSize.y));
-    Gizmos.DrawLine(castOrigin + new Vector2(halfSize.x, halfSize.y), castEnd + new Vector2(halfSize.x, halfSize.y));
-    Gizmos.DrawLine(castOrigin + new Vector2(-halfSize.x, -halfSize.y), castEnd + new Vector2(-halfSize.x, -halfSize.y));
-    Gizmos.DrawLine(castOrigin + new Vector2(halfSize.x, -halfSize.y), castEnd + new Vector2(halfSize.x, -halfSize.y));
   }
 
   private bool HasInclineAtFeet() {
