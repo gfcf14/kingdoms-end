@@ -15,6 +15,8 @@ public class DirectionCheck : MonoBehaviour {
     if ((isLandingObject || col.CompareTag("Wall")) && !(direction == "bottom" && col.CompareTag("Wall"))) {
       if (direction == "bottom") {
         Hero.instance.SetGroundContact(col, true);
+      } else if (direction == "top") {
+        Hero.instance.SetCeilingContact(col, true);
       } else {
         Hero.instance.SetCollisionDirection(direction, true);
       }
@@ -45,6 +47,8 @@ public class DirectionCheck : MonoBehaviour {
     if ((isLandingObject || col.CompareTag("Wall")) && !(direction == "bottom" && col.CompareTag("Wall"))) {
       if (direction == "bottom") {
         Hero.instance.SetGroundContact(col, false);
+      } else if (direction == "top") {
+        Hero.instance.SetCeilingContact(col, false);
       } else {
         Hero.instance.SetCollisionDirection(direction, false);
       }

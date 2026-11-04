@@ -63,6 +63,21 @@ Manually verify Hero movement and interactions with other objects.
 - The grounded animation can transition to idle when there is no movement input.
 - Side contact alone does not count as a landing or prevent the Hero from moving away.
 
+## Ceiling contact
+
+### CC-01: Hit a ceiling while jumping
+
+**Steps**
+1. Jump straight up beneath a low ceiling.
+2. Repeat while moving into the underside of a ledge.
+3. Move away from the ceiling and jump again.
+4. Walk or jump into the side of a wall without contacting its underside.
+
+**Expected**
+- Hitting the underside while rising triggers the ceiling-collision response.
+- Side contact alone does not trigger the ceiling response.
+- The Hero can jump normally again after leaving the ceiling.
+
 ## Wall bumping
 
 ### WB-01: Jump into a tall wall from either facing direction

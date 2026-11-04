@@ -250,6 +250,7 @@ public class Hero : MonoBehaviour {
   private float groundSupportLostAt = -1f;
   private readonly HashSet<Collider2D> landingSupportContacts = new HashSet<Collider2D>();
   private readonly HashSet<Collider2D> bottomGroundContacts = new HashSet<Collider2D>();
+  private readonly HashSet<Collider2D> ceilingContacts = new HashSet<Collider2D>();
     private bool tempGroundTypeIsAirborneCache;
   public IceEffect currentIceEffect;
   private GameObject currentIceCrack;
@@ -1879,6 +1880,26 @@ public class Hero : MonoBehaviour {
     collidingBottom = bottomGroundContacts.Count > 0;
   }
 
+  public void SetCeilingContact(Collider2D collider, bool isTouching) {
+    if (collider == null) {
+      return;
+    }
+
+    if (isTouching && !collider.isTrigger) {
+      ceilingContacts.Add(collider);
+    } else {
+      ceilingContacts.Remove(collider);
+    }
+
+    ceilingContacts.RemoveWhere(contact =>
+      contact == null ||
+      !contact.enabled ||
+      !contact.gameObject.activeInHierarchy ||
+      contact.isTrigger
+    );
+    collidingTop = ceilingContacts.Count > 0;
+  }
+
   public void ModifyPosition(Vector2 newPosition) {
     transform.position = newPosition;
   }
@@ -1923,6 +1944,33 @@ public class Hero : MonoBehaviour {
     }
 
     return false;
+  }
+
+  private bool IsBottomCeilingContact(Collision2D collision, Collider2D heroCollisionCollider) {
+    for (int i = 0; i < collision.contactCount; i++) {
+      ContactPoint2D contact = collision.GetContact(i);
+      Vector2 towardHero = (Vector2)heroCollisionCollider.bounds.center - contact.point;
+      Vector2 normalTowardHero = contact.normal;
+
+      if (Vector2.Dot(normalTowardHero, towardHero) < 0f) {
+        normalTowardHero = -normalTowardHero;
+      }
+
+      if (normalTowardHero.y <= -0.5f) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  private bool IsUpwardCeilingCollision(Collision2D collision) {
+    return collidingTop &&
+      ceilingContacts.Contains(collision.collider) &&
+      isJumping &&
+      !isFalling &&
+      body.linearVelocity.y > Constants.yAirVelocityThreshold &&
+      IsBottomCeilingContact(collision, collision.otherCollider);
   }
 
   private string GetMaterialByTag(string tag) {
@@ -2016,8 +2064,7 @@ public class Hero : MonoBehaviour {
     // TODO: consider the use of collisionDirection and remove it if not needed
     collisionDirection = GetGroundCollisionDirection();
 
-    // only toggle the isCollidingWithCeiling flag if the player has collided while jumping, i.e. not falling
-    if (collidingTop && !isFalling) {
+    if (IsUpwardCeilingCollision(col)) {
       isCollidingWithCeiling = true;
     } else {
       UpdateLandingSupportContact(col);
@@ -2030,6 +2077,11 @@ public class Hero : MonoBehaviour {
   }
 
   private void OnCollisionStay2D(Collision2D col) {
+    if (IsUpwardCeilingCollision(col)) {
+      isCollidingWithCeiling = true;
+      return;
+    }
+
     UpdateLandingSupportContact(col);
   }
 
