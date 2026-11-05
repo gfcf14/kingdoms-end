@@ -19,6 +19,9 @@ public class DirectionCheck : MonoBehaviour {
         Hero.instance.SetCeilingContact(col, true);
       } else {
         Hero.instance.SetCollisionDirection(direction, true);
+        if (direction == "front" || direction == "back") {
+          Hero.instance.SetHorizontalContact(col, direction, true);
+        }
       }
 
       if (direction == "back" && col.tag == "Wall") { // starts the slam sequence
@@ -51,6 +54,9 @@ public class DirectionCheck : MonoBehaviour {
         Hero.instance.SetCeilingContact(col, false);
       } else {
         Hero.instance.SetCollisionDirection(direction, false);
+        if (direction == "front" || direction == "back") {
+          Hero.instance.SetHorizontalContact(col, direction, false);
+        }
       }
     }
   }

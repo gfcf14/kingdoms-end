@@ -100,5 +100,18 @@ Manually verify Hero movement and interactions with other objects.
 **Expected**
 - The Hero bumps away instead of stepping over or appearing on top of the wall beneath the ceiling.
 
+### WB-03: Drive horizontal blocking from front/back contact
+
+**Steps**
+1. Walk into a Wall, a Breakable, and an Interactable from the front until the Hero makes contact.
+2. Keep holding toward each object, then press away from it.
+3. Repeat with the object on the Hero's opposite side.
+4. Walk beside a Floor without contacting a Wall, Breakable, or Interactable.
+
+**Expected**
+- The Hero cannot move through a blocking Wall, Breakable, or Interactable.
+- Movement away from a contacted object is not blocked.
+- Contact with a Floor alone does not block horizontal movement.
+
 ## Results
 Record the build, platform, status, and any reproduction notes when a test fails or behaves intermittently.

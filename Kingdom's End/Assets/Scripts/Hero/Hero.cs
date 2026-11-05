@@ -251,6 +251,8 @@ public class Hero : MonoBehaviour {
   private readonly HashSet<Collider2D> landingSupportContacts = new HashSet<Collider2D>();
   private readonly HashSet<Collider2D> bottomGroundContacts = new HashSet<Collider2D>();
   private readonly HashSet<Collider2D> ceilingContacts = new HashSet<Collider2D>();
+  private readonly HashSet<Collider2D> frontBlockingContacts = new HashSet<Collider2D>();
+  private readonly HashSet<Collider2D> backBlockingContacts = new HashSet<Collider2D>();
     private bool tempGroundTypeIsAirborneCache;
   public IceEffect currentIceEffect;
   private GameObject currentIceCrack;
@@ -1048,6 +1050,7 @@ public class Hero : MonoBehaviour {
   // called on every frame of the game
   private void Update() {
     direction = isFacingLeft ? -1 : 1;
+    UpdateHorizontalCollisionState();
 
     // THE DEBUG OPTIONS BELOW SHOULD IDEALLY BE TESTED INDIVIDUALLY (by commenting out all others when testing one) to avoid over saturating the window with colors
 
@@ -1108,7 +1111,7 @@ public class Hero : MonoBehaviour {
         }
 
         // x axis movement
-        if (!horizontalCollision && isHurt < 1) {
+        if (!IsHorizontalMovementBlocked(horizontalInput) && isHurt < 1) {
           if (!isDefending && !isParrying && !isClashing && isThrowing == 0) {
             float xMovement = moveFriction > 0 ? Mathf.Lerp(horizontalInput, (speed + effectSpeed) * moveSpeed * direction, moveFriction) : horizontalInput * (speed + effectSpeed);
 
@@ -1869,6 +1872,50 @@ public class Hero : MonoBehaviour {
     }
   }
 
+  public void SetHorizontalContact(Collider2D collider, string side, bool isTouching) {
+    if (collider == null) {
+      return;
+    }
+
+    HashSet<Collider2D> contacts = side == "front" ? frontBlockingContacts : backBlockingContacts;
+    if (isTouching && !collider.isTrigger &&
+        (collider.CompareTag("Wall") || Helpers.IsValueInArray(Constants.nonHorizontalCollidableObjects, collider.tag))) {
+      contacts.Add(collider);
+    } else {
+      contacts.Remove(collider);
+    }
+
+    UpdateHorizontalCollisionState();
+  }
+
+  private void UpdateHorizontalCollisionState() {
+    RemoveInvalidHorizontalContacts(frontBlockingContacts);
+    RemoveInvalidHorizontalContacts(backBlockingContacts);
+    horizontalCollision = frontBlockingContacts.Count > 0 || backBlockingContacts.Count > 0;
+  }
+
+  private static void RemoveInvalidHorizontalContacts(HashSet<Collider2D> contacts) {
+    contacts.RemoveWhere(collider =>
+      collider == null ||
+      !collider.enabled ||
+      !collider.gameObject.activeInHierarchy ||
+      collider.isTrigger ||
+      !(collider.CompareTag("Wall") || Helpers.IsValueInArray(Constants.nonHorizontalCollidableObjects, collider.tag))
+    );
+  }
+
+  private bool IsHorizontalMovementBlocked(float horizontalInput) {
+    if (horizontalInput * direction > Constants.inputThreshold) {
+      return frontBlockingContacts.Count > 0;
+    }
+
+    if (horizontalInput * direction < -Constants.inputThreshold) {
+      return backBlockingContacts.Count > 0;
+    }
+
+    return false;
+  }
+
   public void SetGroundContact(Collider2D collider, bool isTouching) {
     if (isTouching) {
       bottomGroundContacts.Add(collider);
@@ -2029,10 +2076,8 @@ public class Hero : MonoBehaviour {
 
           weaponCollider.SetActive(false);
         } else {
-          // horizontalCollision = Helpers.IsValueInArray(Constants.nonHorizontalCollidableObjects, colTag) ? true : false;
-
           if (collidingBottom) {
-            horizontalCollision = false;
+            UpdateHorizontalCollisionState();
             ClearAirAttackSingle();
           }
         }
