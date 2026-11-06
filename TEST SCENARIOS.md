@@ -71,10 +71,12 @@ Manually verify Hero movement and interactions with other objects.
 1. Jump straight up beneath a low ceiling.
 2. Repeat while moving into the underside of a ledge.
 3. Move away from the ceiling and jump again.
-4. Walk or jump into the side of a wall without contacting its underside.
+4. Jump beneath a low ceiling, wait until descending, then double jump and hit its underside while rising.
+5. Walk or jump into the side of a wall without contacting its underside.
 
 **Expected**
 - Hitting the underside while rising triggers the ceiling-collision response.
+- Hitting the underside during a double jump from descent triggers the ceiling-collision response before falling.
 - Side contact alone does not trigger the ceiling response.
 - The Hero can jump normally again after leaving the ceiling.
 

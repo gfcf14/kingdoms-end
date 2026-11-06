@@ -1723,6 +1723,7 @@ public class Hero : MonoBehaviour {
     body.linearVelocity = new Vector2(body.linearVelocity.x, jumpHeight);
 
     isJumping = true;
+    isFalling = false;
     isGrounded = false;
   }
 
@@ -1734,9 +1735,7 @@ public class Hero : MonoBehaviour {
   }
 
   public void EnterIncline(Collider2D inclineCollider) {
-    if (collidingTop) {
-      return;
-    }
+    if (collidingTop) return;
 
     groundType = inclineCollider.GetComponent<Incline>().inclineFromRight;
     if (!isGrounded || isJumping || isFalling || isDropKicking) {
@@ -1815,9 +1814,7 @@ public class Hero : MonoBehaviour {
   }
 
   private void RestoreGroundTypeAfterLanding() {
-    if (!tempGroundTypeIsAirborneCache) {
-      return;
-    }
+    if (!tempGroundTypeIsAirborneCache) return;
 
     Bounds bottomBounds = directionCheckBottomCollider.bounds;
     Collider2D[] overlappingColliders = Physics2D.OverlapBoxAll(bottomBounds.center, bottomBounds.size, 0f);
@@ -1873,9 +1870,7 @@ public class Hero : MonoBehaviour {
   }
 
   public void SetHorizontalContact(Collider2D collider, string side, bool isTouching) {
-    if (collider == null) {
-      return;
-    }
+    if (collider == null) return;
 
     HashSet<Collider2D> contacts = side == "front" ? frontBlockingContacts : backBlockingContacts;
     if (isTouching && !collider.isTrigger &&
@@ -1928,9 +1923,7 @@ public class Hero : MonoBehaviour {
   }
 
   public void SetCeilingContact(Collider2D collider, bool isTouching) {
-    if (collider == null) {
-      return;
-    }
+    if (collider == null) return;
 
     if (isTouching && !collider.isTrigger) {
       ceilingContacts.Add(collider);
@@ -2012,12 +2005,16 @@ public class Hero : MonoBehaviour {
   }
 
   private bool IsUpwardCeilingCollision(Collision2D collision) {
-    return collidingTop &&
-      ceilingContacts.Contains(collision.collider) &&
-      isJumping &&
-      !isFalling &&
-      body.linearVelocity.y > Constants.yAirVelocityThreshold &&
-      IsBottomCeilingContact(collision, collision.otherCollider);
+    bool isRisingJump = body.linearVelocity.y > Constants.yAirVelocityThreshold && !isFalling && (isJumping || jumpsExecuted > 1);
+
+    return collidingTop && ceilingContacts.Contains(collision.collider) && isRisingJump && IsBottomCeilingContact(collision, collision.otherCollider);
+  }
+
+  private void StartCeilingCollision() {
+    if (isCollidingWithCeiling) return;
+
+    isCollidingWithCeiling = true;
+    anim.Play("ceiling-collision-1", -1, 0f);
   }
 
   private string GetMaterialByTag(string tag) {
@@ -2110,7 +2107,7 @@ public class Hero : MonoBehaviour {
     collisionDirection = GetGroundCollisionDirection();
 
     if (IsUpwardCeilingCollision(col)) {
-      isCollidingWithCeiling = true;
+      StartCeilingCollision();
     } else {
       UpdateLandingSupportContact(col);
       MainCollisionLogic(collider, otherCollider, colTag, col);
@@ -2123,7 +2120,7 @@ public class Hero : MonoBehaviour {
 
   private void OnCollisionStay2D(Collision2D col) {
     if (IsUpwardCeilingCollision(col)) {
-      isCollidingWithCeiling = true;
+      StartCeilingCollision();
       return;
     }
 
