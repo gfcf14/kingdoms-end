@@ -246,8 +246,14 @@ public class Hero : MonoBehaviour {
   [NonSerialized] public int poisonAttackCounter = 1;
 
   private int lastSign = 0;
+
+  // TODO: consider which const variables like this could be moved to Constants.cs
   private const float groundSupportGracePeriod = 0.1f;
+  private const float wallBumpRecoilDuration = 0.15f;
+  private const float speedBoostWallBumpDistanceMultiplier = 1.5f;
   private float groundSupportLostAt = -1f;
+  private float wallBumpRecoilRemaining = 0f;
+  private float wallBumpRecoilVelocity = 0f;
   private readonly HashSet<Collider2D> landingSupportContacts = new HashSet<Collider2D>();
   private readonly HashSet<Collider2D> bottomGroundContacts = new HashSet<Collider2D>();
   private readonly HashSet<Collider2D> ceilingContacts = new HashSet<Collider2D>();
@@ -1103,15 +1109,26 @@ public class Hero : MonoBehaviour {
           }
         }
 
-        // ignore input toward the wall after a bump; clear the lock when input points away.
-        if ((blockedDirection == "left" && horizontalInput < -Constants.inputThreshold) || (blockedDirection == "right" && horizontalInput > Constants.inputThreshold)) {
+        // Ignore input toward the wall after a bump; clear the lock when input points away.
+        bool isWallBumpInputBlocked =
+          (blockedDirection == "left" && horizontalInput < -Constants.inputThreshold) ||
+          (blockedDirection == "right" && horizontalInput > Constants.inputThreshold);
+        if (isWallBumpInputBlocked) {
           horizontalInput = 0;
         } else if (blockedDirection != "") {
           blockedDirection = "";
         }
 
+        bool isWallBumpRecoilActive = isWallBumpInputBlocked && wallBumpRecoilRemaining > 0f;
+        if (isWallBumpRecoilActive) {
+          body.linearVelocity = new Vector2(wallBumpRecoilVelocity, body.linearVelocity.y);
+          wallBumpRecoilRemaining = Mathf.Max(0f, wallBumpRecoilRemaining - Time.deltaTime);
+        } else {
+          wallBumpRecoilRemaining = 0f;
+        }
+
         // x axis movement
-        if (!IsHorizontalMovementBlocked(horizontalInput) && isHurt < 1) {
+        if (!isWallBumpRecoilActive && !IsHorizontalMovementBlocked(horizontalInput) && isHurt < 1) {
           if (!isDefending && !isParrying && !isClashing && isThrowing == 0) {
             float xMovement = moveFriction > 0 ? Mathf.Lerp(horizontalInput, (speed + effectSpeed) * moveSpeed * direction, moveFriction) : horizontalInput * (speed + effectSpeed);
 
@@ -1964,8 +1981,13 @@ public class Hero : MonoBehaviour {
     jumpsExecuted = GameData.maxJumpLimit;
     ToggleAirCheck(true);
     blockedDirection = specificBlockDirection != "" ? specificBlockDirection : (isFacingLeft ? "left" : "right");
-    body.linearVelocity = new Vector2(0f, Mathf.Min(body.linearVelocity.y, 0f));
-    ModifyPosition(new Vector2(transform.position.x + bumpX, transform.position.y + bumpY));
+    wallBumpRecoilVelocity = bumpX == 0f
+      ? 0f
+      : Mathf.Sign(bumpX) * Mathf.Max(speed + effectSpeed, Mathf.Abs(body.linearVelocity.x)) * 0.5f;
+    wallBumpRecoilRemaining = wallBumpRecoilVelocity == 0f ? 0f : wallBumpRecoilDuration;
+    body.linearVelocity = new Vector2(wallBumpRecoilVelocity, Mathf.Min(body.linearVelocity.y, 0f));
+    float bumpDistanceMultiplier = effectSpeed > 0f ? speedBoostWallBumpDistanceMultiplier : 1f;
+    ModifyPosition(new Vector2(transform.position.x + bumpX * bumpDistanceMultiplier, transform.position.y + bumpY));
   }
 
   private bool IsTopLandingContact(Collision2D collision, Collider2D heroCollisionCollider) {

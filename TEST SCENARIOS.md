@@ -115,5 +115,21 @@ Manually verify Hero movement and interactions with other objects.
 - Movement away from a contacted object is not blocked.
 - Contact with a Floor alone does not block horizontal movement.
 
+### WB-04: Perform a long jump towards a far-away edge while speed enhanced
+
+**Steps**
+1. Consume a speed potion and stand near the edge of an elevated platform, leaving enough room for the jump to fall short of the distant platform.
+2. Jump toward the distant platform while continuing to hold the direction of travel.
+3. Repeat with the takeoff position adjusted slightly closer to and farther from the edge.
+
+**Example setup**
+- Use a takeoff point near world position (-50, 22) and a distant platform edge about 13 world units away.
+- Start near, but not at, the elevated platform's edge so the Hero does not land safely on the distant platform.
+
+**Expected**
+- Hitting the cliff edge triggers a wall-bump recoil that clears the edge even while directional input is held.
+- The bump moves the Hero farther while speed-enhanced than during a normal-speed wall bump.
+- The Hero does not remain pinned against the edge; if the distant platform is missed, the Hero falls.
+
 ## Results
 Record the build, platform, status, and any reproduction notes when a test fails or behaves intermittently.
