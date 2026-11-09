@@ -10,17 +10,13 @@ public class DirectionCheck : MonoBehaviour {
       Hero.instance.EnterIncline(col);
     }
 
-    // necessary since many (or all) edges contain a wall and floor element. If the colliders
-    // recognize a floor first then the bump logic wouldn't fire
-    if (direction == "front" &&
-        col.CompareTag("Floor") &&
-        !col.isTrigger &&
-        !Hero.instance.isGrounded &&
-        (Hero.instance.isJumping || Hero.instance.isFalling) &&
-        Hero.instance.blockedDirection == "") {
-
-      // TODO: this implies that any overlap with an edge floor is a bump. Step over logic should also be checked here
-      Hero.instance.FinishActionFromWallBump(Hero.instance.direction);
+    // Floor edges can be detected before their paired Wall collider, so apply the same step-over decision used by Wall before falling back to a bump.
+    if (direction == "front" && col.CompareTag("Floor") && !col.isTrigger && !Hero.instance.isGrounded && (Hero.instance.isJumping || Hero.instance.isFalling) && Hero.instance.blockedDirection == "") {
+      if (Hero.instance.isJumping) {
+        Hero.instance.airEdgeCheckScript.CheckStepOver(Hero.instance, -Hero.instance.direction);
+      } else {
+        Hero.instance.FinishActionFromWallBump(Hero.instance.direction);
+      }
     }
 
     // wall contact at the feet is not ground support; floor contact still is.

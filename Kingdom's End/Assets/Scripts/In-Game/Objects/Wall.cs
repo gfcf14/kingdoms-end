@@ -50,7 +50,9 @@ public class Wall : MonoBehaviour {
       string colName = objectColliding.name;
       int wallSide = GetWallSide(col);
 
-      if (colName == "DirectionCheck-Front" && !Hero.instance.isGrounded) { // implies a hero front collision with wall when active (jumping or falling)
+      if (colName == "DirectionCheck-Front" &&
+          !Hero.instance.isGrounded &&
+          Hero.instance.blockedDirection == "") { // prevents duplicate bumps when the front sensor already handled a Floor edge
         if (Hero.instance.airEdgeCheckScript.IntersectsWithWalls()) {
           if (Hero.instance.isJumping) {
             Hero.instance.airEdgeCheckScript.CheckStepOver(Hero.instance, -wallSide);

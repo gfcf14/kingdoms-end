@@ -131,5 +131,17 @@ Manually verify Hero movement and interactions with other objects.
 - The bump moves the Hero farther while speed-enhanced than during a normal-speed wall bump.
 - The Hero does not remain pinned against the edge; if the distant platform is missed, the Hero falls.
 
+### WB-05: Step over low platforms and bump blocked edges
+
+**Steps**
+1. Jump toward a low platform with clear space on top.
+2. Repeat against a taller or obstructed edge that cannot be stepped over.
+3. Repeat with the front sensor reaching a solid Floor collider before its paired Wall collider, if the setup allows.
+
+**Expected**
+- A valid step-over moves the Hero onto the low platform without triggering a wall bump.
+- An edge that is too high or has no clear landing space triggers a wall bump.
+- A Floor contact processed before its paired Wall contact still takes the correct step-over or bump response.
+
 ## Results
 Record the build, platform, status, and any reproduction notes when a test fails or behaves intermittently.
