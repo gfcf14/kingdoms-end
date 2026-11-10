@@ -53,15 +53,10 @@ public class Wall : MonoBehaviour {
       if (colName == "DirectionCheck-Front" &&
           !Hero.instance.isGrounded &&
           Hero.instance.blockedDirection == "") { // prevents duplicate bumps when the front sensor already handled a Floor edge
-        if (Hero.instance.airEdgeCheckScript.IntersectsWithWalls()) {
-          if (Hero.instance.isJumping) {
+        if (Hero.instance.isJumping || Hero.instance.isFalling) {
+          if (Hero.instance.airEdgeCheckScript.CanAttemptStepOver(Hero.instance)) {
             Hero.instance.airEdgeCheckScript.CheckStepOver(Hero.instance, -wallSide);
           } else {
-            // TODO: verify if this blanket case (i.e. always bump when colliding with wall when not jumping) is always acceptable
-            FrontBump(wallSide);
-          }
-        } else {
-          if (Hero.instance.isJumping || Hero.instance.isFalling) {
             FrontBump(wallSide);
           }
         }

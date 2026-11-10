@@ -12,11 +12,27 @@ public class AirEdgeCheck : MonoBehaviour {
   }
   void Update() {}
 
-  public bool IntersectsWithWalls() {
+  public bool CanAttemptStepOver(Hero hero) {
+    if (!hero.isJumping ||
+        hero.isFalling ||
+        hero.body.linearVelocity.y <= Constants.yAirVelocityThreshold ||
+        hero.horizontalInput * hero.direction <= Constants.inputThreshold) {
+      return false;
+    }
+
     Collider2D[] colliders = Physics2D.OverlapBoxAll(airEdgeCheckCollider.bounds.center, airEdgeCheckCollider.bounds.size, 0f);
+    bool overlapsFloor = false;
+    bool overlapsWall = false;
 
     foreach (Collider2D col in colliders) {
-      if (col.CompareTag("Wall")) {
+      if (col.isTrigger) {
+        continue;
+      }
+
+      overlapsFloor |= col.CompareTag("Floor");
+      overlapsWall |= col.CompareTag("Wall");
+
+      if (overlapsFloor && overlapsWall) {
         return true;
       }
     }

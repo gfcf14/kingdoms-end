@@ -10,9 +10,15 @@ public class DirectionCheck : MonoBehaviour {
       Hero.instance.EnterIncline(col);
     }
 
-    // Floor edges can be detected before their paired Wall collider, so apply the same step-over decision used by Wall before falling back to a bump.
-    if (direction == "front" && col.CompareTag("Floor") && !col.isTrigger && !Hero.instance.isGrounded && (Hero.instance.isJumping || Hero.instance.isFalling) && Hero.instance.blockedDirection == "") {
-      if (Hero.instance.isJumping) {
+    // Floor edges can be detected before their paired Wall collider.
+    if (direction == "front" &&
+        col.CompareTag("Floor") &&
+        !col.isTrigger &&
+        !Hero.instance.isGrounded &&
+        (Hero.instance.isJumping || Hero.instance.isFalling) &&
+        Hero.instance.blockedDirection == "" &&
+        Hero.instance.horizontalInput * Hero.instance.direction > Constants.inputThreshold) {
+      if (Hero.instance.airEdgeCheckScript.CanAttemptStepOver(Hero.instance)) {
         Hero.instance.airEdgeCheckScript.CheckStepOver(Hero.instance, -Hero.instance.direction);
       } else {
         Hero.instance.FinishActionFromWallBump(Hero.instance.direction);
