@@ -135,12 +135,14 @@ Manually verify Hero movement and interactions with other objects.
 
 **Steps**
 1. Jump toward a low platform with clear space on top.
-2. Repeat against a taller or obstructed edge that cannot be stepped over.
-3. Repeat with the front sensor reaching a solid Floor collider before its paired Wall collider, if the setup allows.
-4. Fall onto flat ground without horizontal input, then repeat while moving horizontally toward an edge.
+2. Repeat with a narrow platform, including one narrower than the Hero, and approach so the downward landing probe still reaches its top.
+3. Repeat against a taller or obstructed edge that cannot be stepped over.
+4. Repeat with the front sensor reaching a solid Floor collider before its paired Wall collider, if the setup allows.
+5. Fall onto flat ground without horizontal input, then repeat while moving horizontally toward an edge.
 
 **Expected**
 - A valid step-over moves the Hero onto the low platform without triggering a wall bump.
+- A narrow platform can be stepped onto when the landing probe finds its top and the destination has clear space.
 - An edge that is too high or has no clear landing space triggers a wall bump.
 - A Floor contact processed before its paired Wall contact still takes the correct step-over or bump response.
 - Ordinary falling without forward input does not trigger step-over.

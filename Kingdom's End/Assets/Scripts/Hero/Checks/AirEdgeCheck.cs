@@ -49,7 +49,7 @@ public class AirEdgeCheck : MonoBehaviour {
     string blockedDirection = awayFromWallDirection > 0 ? "left" : "right";
 
     // step-over requires a nearby floor hit; all other probe results should resolve as a bump.
-    if (differenceCast.collider == null || !differenceCast.collider.CompareTag("Floor") || differenceCast.normal.y < 0.5f) {
+    if (differenceCast.collider == null || !differenceCast.collider.CompareTag("Floor")) {
       hero.Bump(bumpX: (hero.heroWidth * awayFromWallDirection) / 4, specificBlockDirection: blockedDirection);
       return;
     }
