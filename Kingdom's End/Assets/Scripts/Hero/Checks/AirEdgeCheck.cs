@@ -58,14 +58,14 @@ public class AirEdgeCheck : MonoBehaviour {
     float stepOverHeight = colliderDimension - yDistance;
 
     // reject zero-height and out-of-range results so the Hero cannot settle against the wall.
-    if (differenceCast.distance > 0 && stepOverHeight > 0.01f && stepOverHeight <= colliderDimension && HasClearStepOverSpace(hero, differenceCast.collider, stepOverHeight)) {
+    if (differenceCast.distance > 0 && stepOverHeight > 0.01f && stepOverHeight <= colliderDimension && HasClearStepOverSpace(hero, stepOverHeight)) {
       hero.StepOver(stepOverHeight);
     } else {
       hero.Bump(bumpX: (hero.heroWidth * awayFromWallDirection) / 4, specificBlockDirection: blockedDirection);
     }
   }
 
-  private bool HasClearStepOverSpace(Hero hero, Collider2D landingFloor, float stepOverHeight) {
+  private bool HasClearStepOverSpace(Hero hero, float stepOverHeight) {
     Bounds heroBounds = hero.heroCollider.bounds;
     Vector2 destinationOffset = new Vector2(hero.heroWidth * hero.direction, stepOverHeight);
     Vector2 destinationCenter = (Vector2)heroBounds.center + destinationOffset;
@@ -73,7 +73,10 @@ public class AirEdgeCheck : MonoBehaviour {
     Collider2D[] destinationOverlaps = Physics2D.OverlapBoxAll(destinationCenter, clearanceSize, 0f);
 
     foreach (Collider2D overlap in destinationOverlaps) {
-      if (overlap.isTrigger || overlap == landingFloor || overlap == hero.heroCollider || overlap.transform.IsChildOf(hero.transform)) {
+      if (overlap.isTrigger ||
+          !overlap.CompareTag("Wall") ||
+          overlap == hero.heroCollider ||
+          overlap.transform.IsChildOf(hero.transform)) {
         continue;
       }
 

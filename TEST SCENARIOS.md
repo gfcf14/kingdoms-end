@@ -147,5 +147,21 @@ Manually verify Hero movement and interactions with other objects.
 - A Floor contact processed before its paired Wall contact still takes the correct step-over or bump response.
 - Ordinary falling without forward input does not trigger step-over.
 
+### WB-06: Continue moving after hitting a low ceiling over small elevations
+
+**Description**
+- Three small elevations are beneath a ceiling with approximately 3 units of vertical clearance, the lowest possible clearance for the roughly 2⅓-unit-tall Hero.
+
+**Example Setup**
+- In the Hellscape scene, use `Room - Delled Path`.
+
+**Steps**
+1. Jump to pass along the path and across the small elevations, holding movement in the direction of travel.
+2. Repeat as needed to observe the Hero hitting the ceiling.
+
+**Expected**
+- Hitting the ceiling triggers the `ceiling-collision` animation.
+- The Hero can continue moving along the path in the direction of travel and does not wall-bump or recoil backward.
+
 ## Results
 Record the build, platform, status, and any reproduction notes when a test fails or behaves intermittently.
