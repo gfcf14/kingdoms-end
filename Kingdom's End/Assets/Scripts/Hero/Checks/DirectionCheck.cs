@@ -18,9 +18,12 @@ public class DirectionCheck : MonoBehaviour {
         (Hero.instance.isJumping || Hero.instance.isFalling) &&
         Hero.instance.blockedDirection == "" &&
         Hero.instance.horizontalInput * Hero.instance.direction > Constants.inputThreshold) {
-      if (Hero.instance.airEdgeCheckScript.CanAttemptStepOver(Hero.instance)) {
+      bool canAttemptStepOver = Hero.instance.airEdgeCheckScript.CanAttemptStepOver(Hero.instance);
+      if (canAttemptStepOver) {
         Hero.instance.airEdgeCheckScript.CheckStepOver(Hero.instance, -Hero.instance.direction);
-      } else {
+      } else if (!Hero.instance.isJumping ||
+          Hero.instance.isFalling ||
+          Hero.instance.body.linearVelocity.y <= Constants.yAirVelocityThreshold) {
         Hero.instance.FinishActionFromWallBump(Hero.instance.direction);
       }
     }
