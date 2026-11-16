@@ -1957,6 +1957,10 @@ public class Hero : MonoBehaviour {
     collidingTop = ceilingContacts.Count > 0;
   }
 
+  public Bounds GetVisualBounds() {
+    return heroRenderer.bounds;
+  }
+
   public void ModifyPosition(Vector2 newPosition) {
     transform.position = newPosition;
   }

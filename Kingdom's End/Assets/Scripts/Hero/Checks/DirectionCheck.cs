@@ -10,22 +10,8 @@ public class DirectionCheck : MonoBehaviour {
       Hero.instance.EnterIncline(col);
     }
 
-    // Floor edges can be detected before their paired Wall collider.
-    if (direction == "front" &&
-        col.CompareTag("Floor") &&
-        !col.isTrigger &&
-        !Hero.instance.isGrounded &&
-        (Hero.instance.isJumping || Hero.instance.isFalling) &&
-        Hero.instance.blockedDirection == "" &&
-        Hero.instance.horizontalInput * Hero.instance.direction > Constants.inputThreshold) {
-      bool canAttemptStepOver = Hero.instance.airEdgeCheckScript.CanAttemptStepOver(Hero.instance);
-      if (canAttemptStepOver) {
-        Hero.instance.airEdgeCheckScript.CheckStepOver(Hero.instance, -Hero.instance.direction);
-      } else if (!Hero.instance.isJumping ||
-          Hero.instance.isFalling ||
-          Hero.instance.body.linearVelocity.y <= Constants.yAirVelocityThreshold) {
-        Hero.instance.FinishActionFromWallBump(Hero.instance.direction);
-      }
+    if (direction == "front" && col.CompareTag("Floor") && !col.isTrigger) {
+      Hero.instance.airEdgeCheckScript.HandleFrontFloorContact(Hero.instance, GetComponent<Collider2D>());
     }
 
     // wall contact at the feet is not ground support; floor contact still is.

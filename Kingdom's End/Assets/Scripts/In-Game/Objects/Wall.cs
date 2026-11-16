@@ -28,11 +28,6 @@ public class Wall : MonoBehaviour {
     return Hero.instance.direction;
   }
 
-  private void FrontBump(int wallSide) {
-    Debug.Log("bump from front");
-    Hero.instance.FinishActionFromWallBump(wallSide);
-  }
-
   private void OnCollisionEnter2D(Collision2D col) {
     if (!isEnemyWall) {
       if (col.collider.name == "ProximityCheck") {
@@ -50,16 +45,8 @@ public class Wall : MonoBehaviour {
       string colName = objectColliding.name;
       int wallSide = GetWallSide(col);
 
-      if (colName == "DirectionCheck-Front" &&
-          !Hero.instance.isGrounded &&
-          Hero.instance.blockedDirection == "") { // prevents duplicate bumps when the front sensor already handled a Floor edge
-        if (Hero.instance.isJumping || Hero.instance.isFalling) {
-          if (Hero.instance.airEdgeCheckScript.CanAttemptStepOver(Hero.instance)) {
-            Hero.instance.airEdgeCheckScript.CheckStepOver(Hero.instance, -wallSide);
-          } else {
-            FrontBump(wallSide);
-          }
-        }
+      if (colName == "DirectionCheck-Front") {
+        Hero.instance.airEdgeCheckScript.HandleFrontWallContact(Hero.instance, col, wallSide);
       } else if (colName == "DirectionCheck-Back" && !Hero.instance.isGrounded && Hero.instance.isHurt != 3) { // implies a hero back collision with wall when not slammed
         Debug.Log("bump from back");
         Hero.instance.Bump(bumpX: -wallSide * Hero.instance.heroWidth / 4, specificBlockDirection: wallSide > 0 ? "right" : "left");
