@@ -22,11 +22,7 @@ public class AirEdgeCheck : MonoBehaviour {
 
   private void HandleFrontContact(Hero hero, Collider2D frontCheck, int wallSide, bool floorContact) {
     // Ignore contacts that are grounded, already bump-locked, or not part of an air action.
-    if (hero.isGrounded ||
-        hero.blockedDirection != "" ||
-        (!hero.isJumping && !hero.isFalling)) {
-      return;
-    }
+    if (hero.isGrounded || hero.blockedDirection != "" || (!hero.isJumping && !hero.isFalling)) return;
 
     bool movingForward = hero.horizontalInput * hero.direction > Constants.inputThreshold;
     if (!movingForward) {
@@ -64,9 +60,16 @@ public class AirEdgeCheck : MonoBehaviour {
       return;
     }
 
+    // Keep only the low-ceiling safeguard: a solid Wall one unit above this contact blocks stepping.
+    if (IsWallOneUnitAbove(frontCheck)) {
+      BumpFromFront(hero, wallSide);
+      return;
+    }
+
     Vector2 rayOrigin = GetStepOverRayOrigin(hero, -wallSide);
     // If the cast starts inside either part of this edge, bump instead of stepping through it.
     Collider2D[] pointOverlaps = Physics2D.OverlapPointAll(rayOrigin);
+    bool originBlockedByEdge = false;
     foreach (Collider2D pointOverlap in pointOverlaps) {
       if (pointOverlap.isTrigger) {
         continue;
@@ -76,10 +79,17 @@ public class AirEdgeCheck : MonoBehaviour {
       foreach (Collider2D edgeCollider in edgeColliders) {
         if (pointOverlap == edgeCollider &&
             (edgeCollider.CompareTag("Floor") || edgeCollider.CompareTag("Wall"))) {
-          BumpFromFront(hero, wallSide);
-          return;
+          originBlockedByEdge = true;
+          break;
         }
       }
+
+      if (originBlockedByEdge) break;
+    }
+
+    if (originBlockedByEdge) {
+      BumpFromFront(hero, wallSide);
+      return;
     }
 
     CheckStepOver(hero, -wallSide);
@@ -96,6 +106,9 @@ public class AirEdgeCheck : MonoBehaviour {
     RaycastHit2D differenceCast = Physics2D.Raycast(rayOrigin, rayDirection, rayLength);
     Debug.DrawRay(rayOrigin, rayDirection.normalized * rayLength, Helpers.GetOrException(Colors.raycastColors, "jump"));
     string blockedDirection = awayFromWallDirection > 0 ? "left" : "right";
+    string hitDescription = differenceCast.collider == null
+      ? "none"
+      : $"{differenceCast.collider.name} (tag={differenceCast.collider.tag})";
 
     // step-over requires a nearby floor hit; all other probe results should resolve as a bump.
     if (differenceCast.collider == null || !differenceCast.collider.CompareTag("Floor")) {
@@ -105,9 +118,12 @@ public class AirEdgeCheck : MonoBehaviour {
 
     float yDistance = Mathf.Abs(differenceCast.point.y - rayOrigin.y);
     float stepOverHeight = colliderDimension - yDistance;
+    bool isHeightValid = differenceCast.distance > 0 &&
+      stepOverHeight > 0.01f &&
+      stepOverHeight <= colliderDimension;
 
     // reject zero-height and out-of-range results so the Hero cannot settle against the wall.
-    if (differenceCast.distance > 0 && stepOverHeight > 0.01f && stepOverHeight <= colliderDimension && HasClearStepOverSpace(hero, stepOverHeight)) {
+    if (isHeightValid) {
       hero.StepOver(stepOverHeight);
     } else {
       hero.Bump(bumpX: (hero.heroWidth * awayFromWallDirection) / 4, specificBlockDirection: blockedDirection);
@@ -122,24 +138,19 @@ public class AirEdgeCheck : MonoBehaviour {
     );
   }
 
-  private bool HasClearStepOverSpace(Hero hero, float stepOverHeight) {
-    Bounds heroBounds = hero.GetVisualBounds();
-    Vector2 destinationOffset = new Vector2(hero.heroWidth * hero.direction, stepOverHeight);
-    Vector2 destinationCenter = (Vector2)heroBounds.center + destinationOffset;
-    Vector2 clearanceSize = new Vector2(heroBounds.size.x - 0.02f, heroBounds.size.y - 0.02f);
-    Collider2D[] destinationOverlaps = Physics2D.OverlapBoxAll(destinationCenter, clearanceSize, 0f);
+  private bool IsWallOneUnitAbove(Collider2D frontCheck) {
+    Bounds frontBounds = frontCheck.bounds;
+    Vector2 raisedCenter = (Vector2)frontBounds.center + Vector2.up;
+    Collider2D[] raisedOverlaps = Physics2D.OverlapBoxAll(raisedCenter, frontBounds.size, 0f);
 
-    // A solid Wall in the destination blocks the step; the landing Floor itself is not treated as an obstruction.
-    foreach (Collider2D overlap in destinationOverlaps) {
-      if (overlap.isTrigger ||
-          !overlap.CompareTag("Wall") ||
-          overlap.transform.IsChildOf(hero.transform)) {
+    foreach (Collider2D overlap in raisedOverlaps) {
+      if (overlap.isTrigger || !overlap.CompareTag("Wall")) {
         continue;
       }
 
-      return false;
+      return true;
     }
 
-    return true;
+    return false;
   }
 }
