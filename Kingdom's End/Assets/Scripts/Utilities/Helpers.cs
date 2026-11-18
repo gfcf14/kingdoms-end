@@ -670,31 +670,19 @@ public class Helpers {
   }
 
   public static void SetZoneByArea(string newArea) {
-    if (IsValueInArray(Constants.zonedAreas, newArea)) {
-      ZoneSpecs zoneForNewArea = GetOrException(Objects.zoneSpecs, GetOrException(Objects.materialsPerArea, newArea));
+    ZoneSpecs zoneForNewArea = GetOrException(Objects.zoneSpecs, GetOrException(Objects.materialsPerArea, newArea));
 
-      GameData.playerJumpHeight = zoneForNewArea.jumpHeight;
-      Hero.instance.jumpHeight = zoneForNewArea.jumpHeight;
+    GameData.playerJumpHeight = zoneForNewArea.jumpHeight;
+    Hero.instance.jumpHeight = zoneForNewArea.jumpHeight;
 
-      GameData.playerAnimationSpeed = zoneForNewArea.animSpeed;
-      Hero.instance.anim.speed = zoneForNewArea.animSpeed;
+    GameData.playerAnimationSpeed = zoneForNewArea.animSpeed;
+    Hero.instance.anim.speed = zoneForNewArea.animSpeed;
 
-      GameData.playerMovementSpeed = zoneForNewArea.moveSpeed;
-      Hero.instance.moveSpeed = zoneForNewArea.moveSpeed;
+    GameData.playerMovementSpeed = zoneForNewArea.moveSpeed;
+    Hero.instance.moveSpeed = zoneForNewArea.moveSpeed;
 
-      GameData.playerMovementFriction = zoneForNewArea.moveFriction;
-      Hero.instance.moveFriction = zoneForNewArea.moveFriction;
-    } else {
-      GameData.playerJumpHeight = Constants.defaultPlayerJumpHeight;
-      GameData.playerAnimationSpeed = 1;
-      GameData.playerMovementSpeed = Constants.defaultPlayerMovementSpeed;
-      GameData.playerMovementFriction = Constants.defaultPlayerMovementFriction;
-
-      Hero.instance.jumpHeight = GameData.playerJumpHeight;
-      Hero.instance.anim.speed = GameData.playerAnimationSpeed;
-      Hero.instance.moveSpeed = GameData.playerMovementSpeed;
-      Hero.instance.moveFriction = GameData.playerMovementFriction;
-    }
+    GameData.playerMovementFriction = zoneForNewArea.moveFriction;
+    Hero.instance.moveFriction = zoneForNewArea.moveFriction;
   }
   public static Vector2 GetItemDimensions(string key) {
     Sprite currItem = GetOrException(Sprites.droppableSprites, key);

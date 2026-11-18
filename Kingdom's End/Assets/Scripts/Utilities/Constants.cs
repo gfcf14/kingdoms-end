@@ -321,9 +321,6 @@ public class Constants {
   public static string[] canBreakTags = {"DamageExplosion", "Explosion", "Weapon"};
   public static string[] lowReachingEnemies = {"fairy", "pixie", "kappa", "siren", "sylphid"};
   public static string[] partialLightRelics = {"dawn-gem", "royal-lamp"};
-
-  // TODO: consider if any other areas (such as ruins or desert since they contain sand, thus speed = 0.8f) need to be added
-  public static string[] zonedAreas = {"glaciers"};
   public static string[] possibleEnemyDirections = {"left", "right"};
   public static string[] ShopActionButtonNames = {"ButtonBuy", "ButtonSell"};
   public static string[] effectPercentageKeys = {"hpPercentage", "mpPercentage", "crit", "luck"};
