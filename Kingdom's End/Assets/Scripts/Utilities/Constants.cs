@@ -125,8 +125,6 @@ public class Constants {
 
   // TODO: consider if magic medicines, infusions, etc. should also be included here
   public static string[] itemsFromRandomFlask = {"critical-flask", "luck-flask", "stamina-flask", "strength-flask"};
-
-  // TODO: to avoid disabling medicine use, ensure a new item type, consumable-med, is included, and that it can be used even while sealed
   public static string[] usableItemTypes = {"consumable", "food", "medicine", "throwable-food"};
 
   public static string[] bodyEquipmentTypes = {"body"};
@@ -176,12 +174,11 @@ public class Constants {
     public static string[] berries = {"blueberries", "raspberries", "strawberry"};
     public static string[] seafood = {"calamari", "ceviche", "fish", "shrimp-tail", "sushi"};
     public static string[] seaGlass = {"blue-sea-glass", "green-sea-glass", "red-sea-glass", "yellow-sea-glass"};
-    public static string[] lowLevelFood = {"chicken-drumstick", "apple", "banana", "orange", "pear", "strawberry", "cherry", "grapes", "mango"};
+    public static string[] lowLevelFood = {"apple", "banana", "blueberries", "butter", "cheese-wedge", "cherry", "chicken-drumstick", "grapes", "mango", "orange", "pear", "pretzel", "raspberries", "strawberry"};
     public static string[] lowLevelMoney = {"money-20", "money-50"};
-    public static string[] midLevelFood = {"pineapple", "coconut", "honeydew", "watermelon", "wine-demijohn"};
+    public static string[] midLevelFood = {"burger", "coconut", "ham-sausage", "honeydew", "ice-cream", "pie", "pineapple", "steak", "watermelon", "wine-bottle"};
 
-    // TODO: wine is on high level food array as placeholder. Remove once better food items are implemented
-    public static string[] highLevelFood = {"wine-demijohn"};
+    public static string[] highLevelFood = {"ceviche", "chocolate-cake", "ham-leg", "pizza", "pot-roast", "turkey", "watermelon", "wine-demijohn"};
     public static string[] midLevelMoney = {"money-100", "money-200", "money-500"};
 
     // TODO: silver bracelet is on low level bracelets array as placeholder. Remove once worse bracelets are implemented

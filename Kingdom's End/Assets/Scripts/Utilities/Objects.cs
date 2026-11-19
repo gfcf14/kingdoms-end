@@ -364,7 +364,8 @@ public class Objects
     {"leather-boots", new RegularItem(Sprites.itemThumbnails[350], Sprites.itemImages[350], "Leather Boots", "Delicate yet sturdy boots worn by creatures of the deep.", "valuable", 1000)},
     {"leather-gloves", new RegularItem(Sprites.itemThumbnails[351], Sprites.itemImages[351], "Leather Gloves", "Snug but comfortable gloves worn by creatures of the deep.", "valuable", 1000)},
     {"leprechaun-hammer", new RegularItem(Sprites.itemThumbnails[101], Sprites.itemImages[101], "Leprechaun Hammer", "Rumored to be used to find gold.", "throwable", 300, new Effects() {atk=20})},
-    {"leprechaun-mushroom", new RegularItem(Sprites.itemThumbnails[202], Sprites.itemImages[202], "Forest Mushroom", "Rare mushroom found by leprechauns.", "valuable", 1000)},
+    // TODO: test if hp value can be negative
+    {"leprechaun-mushroom", new RegularItem(Sprites.itemThumbnails[202], Sprites.itemImages[202], "Forest Mushroom", "Rare mushroom found by leprechauns.", "food", 1000,  new Effects() {hp=10})},
     {"light-bracelet", new RegularItem(Sprites.itemThumbnails[152], Sprites.itemImages[152], "Light Bracelet", "Bracelet which enhances attack power and provides light defense.", "armwear", 200, new Effects() {atk=20, magicResistances=new MagicResistance[]{new MagicResistance(){name="Light", type="add"}}})},
     {"light-infusion", new RegularItem(Sprites.itemThumbnails[261], Sprites.itemImages[261], "Light Infusion", "Temporarily provides light magic to attacks.", "consumable", 350, new Effects() {duration=30, elementInfusing="light"})},
     {"light-med", new RegularItem(Sprites.itemThumbnails[252], Sprites.itemImages[252], "Light Medicine", "Heals light magic.", "medicine", 350, new Effects() {statusHeal="light"})},
