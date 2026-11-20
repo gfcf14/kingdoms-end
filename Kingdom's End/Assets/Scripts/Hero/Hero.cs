@@ -415,6 +415,7 @@ public class Hero : MonoBehaviour {
       items.Add(new Item("light-infusion", 5));
       items.Add(new Item("lightning-infusion", 5));
       items.Add(new Item("water-infusion", 5));
+      items.Add(new Item("leprechaun-mushroom", 10));
 
     #else
       items.Add(new Item("arrow-fire", 25));
@@ -848,25 +849,39 @@ public class Hero : MonoBehaviour {
 
   public void UpdateStats(string stat, int? aggregate) {
     switch (stat) {
+      // TODO: consider if these two cases can be consolidated into a common function
       case "hp":
         int hpAggregate = aggregate ?? 0;
 
-        // condition below prevents healing more than allowed
-        if ((currentHP + hpAggregate) >= maxHP) {
-          currentHP = maxHP;
-        } else {
+        // if hp is negative
+        if (hpAggregate < 0) {
           currentHP += hpAggregate;
-        }
+          currentHP = currentHP <= 0 ? Constants.minimumHPorMP : currentHP;
+        } else {
+          // condition below prevents healing more than allowed
+          if ((currentHP + hpAggregate) >= maxHP) {
+            currentHP = maxHP;
+          } else {
+            currentHP += hpAggregate;
+          }
+        }        
       break;
       case "mp":
         int mpAggregate = aggregate ?? 0;
 
-        // condition below prevents restoring more than allowed
-        if ((currentMP + mpAggregate) >= maxMP) {
-          currentMP = maxMP;
-        } else {
+        // if mp is negative
+        if (mpAggregate < 0) {
           currentMP += mpAggregate;
+          currentMP = currentHP <= 0 ? Constants.minimumHPorMP : currentMP;
+        } else {
+          // condition below prevents restoring more than allowed
+          if ((currentMP + mpAggregate) >= maxMP) {
+            currentMP = maxMP;
+          } else {
+            currentMP += mpAggregate;
+          }
         }
+        
       break;
       default:
         Debug.Log("Value for stat \"" + stat + "\" doesn't correspond to this function. Either overload another or check the type");
