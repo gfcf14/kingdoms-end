@@ -847,41 +847,32 @@ public class Hero : MonoBehaviour {
     UpdateStatsValues();
   }
 
+  public int AddAggregate(int aggregate, int currentStat, int maxStat) {
+    int modifyingStat = currentStat;
+
+    // if aggregate is negative
+    if (aggregate < 0) {
+      modifyingStat += aggregate;
+      modifyingStat = modifyingStat <= 0 ? Constants.minimumHPorMP : modifyingStat;
+    } else {
+      // condition below prevents healing more than allowed
+      if ((modifyingStat + aggregate) >= maxStat) {
+        modifyingStat = maxStat;
+      } else {
+        modifyingStat += aggregate;
+      }
+    }
+
+    return modifyingStat;
+  }
+
   public void UpdateStats(string stat, int? aggregate) {
     switch (stat) {
-      // TODO: consider if these two cases can be consolidated into a common function
       case "hp":
-        int hpAggregate = aggregate ?? 0;
-
-        // if hp is negative
-        if (hpAggregate < 0) {
-          currentHP += hpAggregate;
-          currentHP = currentHP <= 0 ? Constants.minimumHPorMP : currentHP;
-        } else {
-          // condition below prevents healing more than allowed
-          if ((currentHP + hpAggregate) >= maxHP) {
-            currentHP = maxHP;
-          } else {
-            currentHP += hpAggregate;
-          }
-        }        
+        currentHP = AddAggregate(aggregate ?? 0, currentHP, maxHP);
       break;
       case "mp":
-        int mpAggregate = aggregate ?? 0;
-
-        // if mp is negative
-        if (mpAggregate < 0) {
-          currentMP += mpAggregate;
-          currentMP = currentHP <= 0 ? Constants.minimumHPorMP : currentMP;
-        } else {
-          // condition below prevents restoring more than allowed
-          if ((currentMP + mpAggregate) >= maxMP) {
-            currentMP = maxMP;
-          } else {
-            currentMP += mpAggregate;
-          }
-        }
-        
+        currentMP = AddAggregate(aggregate ?? 0, currentMP, maxMP);
       break;
       default:
         Debug.Log("Value for stat \"" + stat + "\" doesn't correspond to this function. Either overload another or check the type");
